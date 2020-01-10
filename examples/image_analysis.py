@@ -1,9 +1,7 @@
 import numpy as np
-import LCLS_Devices as inj
-import glob 
+import lcls_tools.devices.LCLS_Devices as inj
 
 #Not tested, or cleaned up yet
-
 filename = 'ProfMon-CAMR_LGUN_950-2019-08-15-171000.mat'
 
 yag = inj.ProMo('YAG01B')

@@ -11,9 +11,9 @@ import matplotlib.image as mpimg
 import math
 import datetime
 from  scipy.io import loadmat
-from fitGaussian import *
+from lcls_tools.image.fitGaussian import *
 from math import pi
-from devicesDict import *
+from lcls_tools.devices.devicesDict import *
 import itertools
 
 #TODO: rename the file to LCLS_Devices.py
@@ -137,9 +137,11 @@ class ProMo(Movers):
 
     def plotimg(self,image,plotmm=False):
         if plotmm:
-            '''Convert pixel to mm to match with mathlab profile monitor '''
-            ticks_max_x=math.ceil(round(self.images.shape[2]*(self.resolution/1000)/2)/2)*2
-            ticks_max_y=math.floor(round(self.images.shape[1]*(self.resolution/1000)/2)/2)*2
+            '''Convert pixel to mm to match with matlab profile monitor '''
+            xpixels = self.images.shape[2]*(self.resolution/1000)
+            ypixels = self.images.shape[1]*(self.resolution/1000)
+            ticks_max_x=math.ceil(np.round(xpixels/2)/2)*2
+            ticks_max_y=math.floor(np.round(ypixels/2)/2)*2
             ticks_mm_x=np.arange(-ticks_max_x,ticks_max_x+0.5,0.5)
             ticks_mm_y=np.arange(-ticks_max_y,ticks_max_y+0.5,0.5)           
             ticks_px_x=[i/(self.resolution/1E3)+self.images.shape[2]/2 for i in ticks_mm_x]
@@ -178,7 +180,7 @@ class ProMo(Movers):
         image = loadmat(filename)
         imagedata=image['data'][0][0][1]
         imagedata=np.flipud(imagedata)
-        print('blah')
+        print('Loading image from file')
         self.images=np.array([imagedata])
         self.ysize,self.xsize=self.images.shape[1],self.images.shape[2]
         self.resolution=image['data'][0][0][9]
