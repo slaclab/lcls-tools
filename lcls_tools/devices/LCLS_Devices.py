@@ -33,12 +33,12 @@ class Movers(object):
             self.checkDelay=1
             self.numberChecks=25         
         except:      
-            print 'Missing or invalid device name. Please choose one of the following valid device name: '\
+            print('Missing or invalid device name. Please choose one of the following valid device name: '\
                   + 'GunRF, MechShutLCLS1, LHShut, TD11, BYKIK, AOM, MechShutLCLS2, '\
-                  + 'YAG01-03, YAGG1, YAGS1, YAGS2, OTRH1, OTRH2, OTR01-04, OTR11, OTR12, OTR21.'
+                  + 'YAG01-03, YAGG1, YAGS1, YAGS2, OTRH1, OTRH2, OTR01-04, OTR11, OTR12, OTR21.')
 
     def moving_done(self):
-        print 'Done moving'
+        print('Done moving')
 
     def checking(self, callback=moving_done,readback=None):
         if callable(callback):
@@ -48,14 +48,14 @@ class Movers(object):
                     callback_id, pv = cb_info
                     pv.remove_callback(callback_id)
             self.moverRB.add_callback(pv_callback)
-            print 'Device is moving... patience you must have, my young padawan. Wait for done moving confirmation you must.'
+            print('Device is moving... patience you must have, my young padawan. Wait for done moving confirmation you must.')
 
     def insert(self,callback=moving_done):
         '''Insert yag screen and make sure it reads back inserted'''
         if self.isInserted() ==  False:
             self.moverCommand.put(self.insertVal)
             self.checking(callback=self.moving_done,readback=self.insertRB)
-        else: print 'Device already inserted.'
+        else: print('Device already inserted.')
         return
 
     def retract(self,callback=moving_done):
@@ -63,7 +63,7 @@ class Movers(object):
         if self.isInserted() ==  True:
             self.moverCommand.put(self.retractVal)
             self.checking(callback=self.moving_done,readback=self.retractRB)
-        else: print 'Device already inserted.'
+        else: print('Device already inserted.')
         return
 
     def isInserted(self):
@@ -86,8 +86,8 @@ class ProMo(Movers):
             else:
                 self.connect_shutter=shutterDict['MechShutLCLS1'][0]
         except:
-            print 'Missing or invalid device name. Please choose one of the following valid device name: '\
-                  + 'YAG01B, YAG01-03, YAGG1, YAGS1, YAGS2, OTRH1, OTRH2, OTR01-04, OTR11, OTR12, OTR21.'
+            print('Missing or invalid device name. Please choose one of the following valid device name: '\
+                  + 'YAG01B, YAG01-03, YAGG1, YAGS1, YAGS2, OTRH1, OTRH2, OTR01-04, OTR11, OTR12, OTR21.')
         self.images=[]#Initialize
         self.bg_img=None
 
@@ -178,7 +178,7 @@ class ProMo(Movers):
         image = loadmat(filename)
         imagedata=image['data'][0][0][1]
         imagedata=np.flipud(imagedata)
-        print 'blah'
+        print('blah')
         self.images=np.array([imagedata])
         self.ysize,self.xsize=self.images.shape[1],self.images.shape[2]
         self.resolution=image['data'][0][0][9]
@@ -274,7 +274,7 @@ class ChargeMeas(object):
         elif 'SIOC' in device: self.chargeReadback=PV(device)
         elif ('TORO' in device) or ('FARC' in device): self.chargeReadback=PV(device+':CHRG')
         else: raise ValueError('Specify a valid charge measurement device- ICT, Faraday cup or BPM (i.e. supply "BPMS:IN20:371")')
-        print 'Initialized'
+        print('Initialized')
 
     def acquireCharge(self,numberShots=1):
         '''Read charge from chosen device and average multiple shots if specified, return charge in pC'''
@@ -282,7 +282,7 @@ class ChargeMeas(object):
         try:
             numberShots=int(numberShots)
         except:
-            print 'Num. shots is not a number; returning one shot only'
+            print('Num. shots is not a number; returning one shot only')
             return charge
         if numberShots > 1:
             charges=[charge]
@@ -310,9 +310,9 @@ class Laser(object):
             self.phaseTol=0.2
             self.UVLaserMode=PV('LASR:LR20:1:UV_LASER_MODE')
             #self.activeLaser=self.determineActiveLaser()
-            #print 'Active laser is #'+str(self.activeLaser)
+            #print('Active laser is #'+str(self.activeLaser))
         except:
-            print 'Missing or invalid device name. Please choose one of the following valid device name: Vitara1 or Vitara2.'
+            print('Missing or invalid device name. Please choose one of the following valid device name: Vitara1 or Vitara2.')
     
     def determineActiveLaser(self):
         if self.UVLaserMode.get() == 0: return 'COHERENT #1'
@@ -354,7 +354,7 @@ class RFgun(object):
             self.checkDelay,self.numberChecks=0.1,50
             self.Tol=0.2
         except:
-            print 'Missing or invalid device name. Please choose one of the following valid device name: LCLS1L1S, LCLS1L1X, LCLS2'
+            print('Missing or invalid device name. Please choose one of the following valid device name: LCLS1L1S, LCLS1L1X, LCLS2')
 
     def readPhase(self,numberShots=1):
         '''Return gun phase setting and readback in that order; average readback if multiple shots requested'''
@@ -362,7 +362,7 @@ class RFgun(object):
         try:
             numberShots=int(numberShots)
         except:
-            print 'Num. shots is not a number; returning one shot only'
+            print('Num. shots is not a number; returning one shot only')
             return setting,readback
         if numberShots > 1:
             readbacks=[readback]
@@ -373,7 +373,7 @@ class RFgun(object):
                     sleep(self.checkDelay)
                     if j>self.numberChecks: raise Exception('Phase readback not updating; multiple shot request cancelled')
                 readbacks.append(self.PhaseReadback.get())
-            print readbacks
+            print(readbacks)
             readback=np.mean(readbacks)
         return setting,readback
 
@@ -414,7 +414,7 @@ class Buncher(RFgun):
         try:
             self.OffsetSetting=PV(rfDict[device][4])
         except:
-            print 'Missing or invalid buncher name. Please enter (Buncher) for the LCLS2 buncher.'
+            print('Missing or invalid buncher name. Please enter (Buncher) for the LCLS2 buncher.')
 
     def setOffset(self,newSetting):
         '''Set phase offset for buncher'''
@@ -440,11 +440,11 @@ class Buncher(RFgun):
         elif request=="activate" or request=="a":
             try: reactAmplitude=self.AmpActive
             except: 
-                print 'No known react amplitude, no action taken'
+                print('No known react amplitude, no action taken')
                 return
             caput('ACCL:GUNB:455:AOPEN', self.AmpActive)
         else:
-            print "Option not specified, no action taken.  Provide argument request='deact' or request='activate'"
+            print("Option not specified, no action taken.  Provide argument request='deact' or request='activate'")
 
 class Magnet(object):
     def __init__(self,magnet="XCOR:GUNB:293"):
@@ -510,7 +510,7 @@ class Magnet(object):
 
         if want_trim:
             self.trim()
-            print 'Trim applied'
+            print('Trim applied')
 
         return self.checkB()
 
@@ -532,7 +532,7 @@ class Mirror(object):
             self.checkDelay,self.numberChecks,self.checkPosTolerance=0.1,50,0.001
             self.pvname=mirror
         except:
-            print 'Missing or invalid mirror name. Mirrors name goes as follow: (LCLS1 or LCLS2) + mirror name. EX: LCLS1M12 '
+            print('Missing or invalid mirror name. Mirrors name goes as follow: (LCLS1 or LCLS2) + mirror name. EX: LCLS1M12 ')
 
     def get(self):
         '''Return mirror setting and readback'''
@@ -579,7 +579,7 @@ class BPM(object):
             self.tmitreadback=PV(bpmDict[bpm][2])
             self.checkDelay,self.numberChecks=0.01,105
         except:
-            print 'Missing or invalid device name. Please choose one of the following valid device name: BPM1B or BPM2B.'
+            print('Missing or invalid device name. Please choose one of the following valid device name: BPM1B or BPM2B.')
             
 
     def readBPM(self,numberShots=1):
@@ -588,7 +588,7 @@ class BPM(object):
         try:
             numberShots=int(numberShots)
         except:
-            print 'Num. shots is not a number; returning one shot only'
+            print('Num. shots is not a number; returning one shot only')
             return xreadback,yreadback,tmitreadback
         if numberShots == 1:
             return self.xreadback.get()*1000.0,self.yreadback.get()*1000.0,self.tmitreadback.get()
@@ -629,8 +629,8 @@ class Klystron(object):
                  pdesList+=[pdes]
                  phasList+=[phas]
             return kLyst,PVList,msgList,pdesList,phasList
-        except: print 'Invalid input. Sector and Klystron must be input as a list.'\
-                      + ' Single Klystron must be enter as following: sector=[##],klystron=[[#]] and not klystron=[#].'
+        except: print('Invalid input. Sector and Klystron must be input as a list.'\
+                      + ' Single Klystron must be enter as following: sector=[##],klystron=[[#]] and not klystron=[#].')
 
     def changestates(self,sector,klystron,state=None):
         kLyst,PVList,msgList,pdesList,phasList = self.desireKlystron(sector,klystron)
@@ -638,7 +638,7 @@ class Klystron(object):
             klyst_num = k
             p.put(state)
             klyst_msg = m.get()
-            print str(klyst_num) +' ' +str(klyst_msg)
+            print(str(klyst_num) +' ' +str(klyst_msg))
                
     def deActivate(self,sector,klystron):
         self.changestates(sector,klystron,state=0)
@@ -651,8 +651,8 @@ class Klystron(object):
         for (k,p) in zip(kLyst,PVList): 
             num = k
             status = p.get()
-            if status==0: print str(num) + ' Deactivate'
-            elif status==1: print str(num) + ' Activate'
+            if status==0: print(str(num) + ' Deactivate')
+            elif status==1: print(str(num) + ' Activate')
   
     def readPhase(self,sector,klystron,numberShots=1):
         kLyst,PVList,msgList,pdesList,phasList = self.desireKlystron(sector,klystron)
@@ -663,7 +663,7 @@ class Klystron(object):
             try:
                 numberShots=int(numberShots)
             except:
-                print 'Num. shots is not a number; returning one shot only'
+                print('Num. shots is not a number; returning one shot only')
                 return k,setting,readback
             if numberShots > 1:
                 readbacks=[]
@@ -675,7 +675,7 @@ class Klystron(object):
                         sleep(self.checkDelay)
                         if j>self.numberChecks: raise Exception('Phase readback not updating; multiple shot request cancelled')
                 readback=np.mean(readbacks)
-            print k,readback,setting
+            print(k,readback,setting)
 
     def setPhase(self,sector,klystron,newSetting):
         try: newSetting=float(newSetting)
@@ -707,7 +707,7 @@ class GeneralStation(object):
         try:
             numberShots=int(numberShots)
         except:
-            print 'Num. shots is not a number; returning one shot only'
+            print('Num. shots is not a number; returning one shot only')
             return setting,readback
         if numberShots > 1:
             readbacks=[]
