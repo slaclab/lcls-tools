@@ -3,3 +3,6 @@ Python tools for LCLS: post processing data, PV handling, pulling archive settin
 
 ## Dependancies:
 [pyepics](https://cars9.uchicago.edu/software/python/pyepics3/installation.html)
+
+# CAUTION: THIS REPO IS A WORK IN PROGRESS
+## NOT WORKING TOOLS YET! 
