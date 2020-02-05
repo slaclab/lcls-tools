@@ -12,7 +12,7 @@ Python tools for LCLS:
 # Rules of contribution (and python coding in general)
 * Make your code readable (I like good one liners as much as the next person, but pulling apart syntax can be painful)
 * Add comments whenever possible
-* Try your best to adhere to style guidelines set forth in [PEP8](https://ww.python.org/dev/peps/pep-0008/)
+* Try your best to adhere to style guidelines set forth in [PEP8](https://www.python.org/dev/peps/pep-0008/)
 * Try to be [idiomatic](https://docs.python-guide.org/writing/style), there is a reason people spent time writing these guides.  People are sick of seeing a simple operation being done a million different ways and having to parse out what insanity was behind some lines of code.
 * Add tests (unittest is used currently, please use unit tests at a bare minimum)
 * Focus on extensibility (don't shove a bunch of modules/classes into one file or directory and make them reference each other if you can avoid it)
