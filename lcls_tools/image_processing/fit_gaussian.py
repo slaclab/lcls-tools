@@ -14,6 +14,8 @@ from scipy.optimize import curve_fit
 from operator import itemgetter
 from sys import argv, exit
 from time import time
+import numpy as np
+
 
 NUM_BUCKS = 10
 DEBUG = False
@@ -23,12 +25,15 @@ DEBUG = False
 # maximum point is in its own bucket (bucket 10), which would break a lot of 
 # shit, so it necessitates the error checking
 def get_bucket(val, step):
+    #print(val)
     bucket = int(floor(val / step))
     return bucket if bucket < 10 else 9
 
 
 def find_max(data, run):
-    max_index = max(enumerate(data[run]), key=itemgetter(1))[0]
+    #max_index = np.max(enumerate(data[run]), key=itemgetter(1))[0]
+    # If data is a list: max_index = data[run].index(max(data[run]))
+    max_index = np.argmax(data[run])
     return run[max_index]
 
 
@@ -136,14 +141,18 @@ def get_peaks(data, num_peaks, runs):
         peak_idx.append(idx)
         peaks.append(data[idx])
 
-    max_index, max_value = max(enumerate(data), key=itemgetter(1))
-
+    #max_index, max_value = max(enumerate(data), key=itemgetter(1))
+    max_value = np.max(data)
+    max_index = np.argmax(data)
+                                
     # Maybe unnecessary precaution to make sure that the max point is used in
     # the fit (a run wouldn't be found if the peak were sufficiently narrow)
     max_info = []
     if max_value not in peaks:
         if peaks:
-            min_index = min(enumerate(peaks), key=itemgetter(1))[0]
+            #min_index = np.min(enumerate(peaks), key=itemgetter(1))[0]
+            #min_index = peaks.index(min(peaks))
+            min_index = np.argmin(peaks)
             peaks[min_index] = max_value
             peak_idx[min_index] = max_index
         else:
@@ -204,7 +213,7 @@ def adjust_data(data, step):
     normalized_adjustment = 0
 
     bucket_count = zeros(NUM_BUCKS)
-    bucket_contents = [[] for i in xrange(0, NUM_BUCKS)]
+    bucket_contents = [[] for i in range(0, NUM_BUCKS)]
     buckets = zeros(len(data))
 
     for idx, element in enumerate(data):
@@ -212,9 +221,11 @@ def adjust_data(data, step):
         bucket_count[bucket] += 1
         bucket_contents[bucket] += [idx]
         buckets[idx] = bucket
-
-    zero_bucket = max(enumerate(bucket_count), key=itemgetter(1))[0]
-
+    
+    #zero_bucket = np.max(enumerate(bucket_count), key=itemgetter(1))[0]
+    #zero_bucket = bucket_count.index(max(bucket_count))
+    zero_bucket = np.argmax(bucket_count)
+    
     needs_adjustment = False
 
     for idx, bucket in enumerate(buckets):
@@ -226,7 +237,7 @@ def adjust_data(data, step):
             data[idx] = data[bucket_contents[zero_bucket][0]]
 
     if needs_adjustment:
-        normalized_adjustment = min(data[bucket_contents[zero_bucket]])
+        normalized_adjustment = np.min(data[bucket_contents[zero_bucket]])
         data = data - normalized_adjustment
         step = max(data) / NUM_BUCKS
 
@@ -287,19 +298,19 @@ def get_guess(xdata, ydata, step, use_zeros, num_peaks):
 
 
 def process_data(data):
-    first_adjustment = min(data)
+    first_adjustment = np.min(data)
 
     # Removing the pedestal
     data = data - first_adjustment
 
     # Define the step size by the number of vertical buckets
-    step = max(data) / NUM_BUCKS
+    step = np.max(data) / NUM_BUCKS
 
     data, step, normalized_adjustment = adjust_data(data, step)
 
     # This prints my vertical buckets
     if DEBUG:
-        for i in xrange(1, NUM_BUCKS):
+        for i in range(1, NUM_BUCKS):
             plt.plot([i * step for _ in xrange(0, len(data))])
 
     total_adjustment = first_adjustment + normalized_adjustment
