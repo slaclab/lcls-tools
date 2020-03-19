@@ -18,7 +18,7 @@ READ = 'readPV'
 BEAM = 'beam'
 PROF = 'profPV'
 TS = 'ts'
-
+CONFIG = 'config'
 
 class CorPlotMatScan(object):
     """Unpack a correlation plot scan .mat file"""
@@ -35,10 +35,10 @@ class CorPlotMatScan(object):
         self._read = self._unpack_read_pv(data)  # [pv][iteration][readings]
         self._twiss_pv = None  # Don't have file with this yet
         self._twiss_std = None  # Don't have file with this yet
-        self._beam = self._unpack_beam(data)
+        self._beam, self._beam_names = self._unpack_beam(data)
         self._prof_pv = self._unpack_prof(data)
         self._ts = self._unpack_ts(data)
-        #self._config = data[6]
+        self._config = self._unpack_config(data)
 
     @property
     def file(self):
@@ -47,13 +47,49 @@ class CorPlotMatScan(object):
 
     @property
     def control_dict(self):
+        """Ctrl PV and vals, units etc..."""
         return self._ctrl_dict
 
     @property
     def accelerator(self):
+        """Accelerator name"""
         return self._accel
 
+    @property
+    def ctrl_pv(self):
+        """PV being scanned, might need to change for 2D scans"""
+        if 'name' in self._ctrl_dict:
+            return self._ctrl_dict['name']
+
+        return None
+
+    @property
+    def iterations(self):
+        if self._ctrl_dict:
+            return len(self._ctrl_dict['vals'])
+
+        return 0
+
+    @property
+    def ctrl_vals(self):
+        """Vals for ctrl pv in scan"""
+        if 'vals' in self._ctrl_dict:
+            return self._ctrl_dict['vals']
+
+        return None
+
+    @property
+    def beam(self):
+        """This is a huge amount of data"""
+        return self._beam
+
+    @property
+    def beam_names(self):
+        """The different keys for a beam dict for each iteration and fit"""
+        return self._beam_names
+
     def _unpack_accl(self, data):
+        """Accelerator name such as LCLS, LCLS2, etc..."""
         if ACCL not in self._fields:
             return None
 
@@ -116,7 +152,8 @@ class CorPlotMatScan(object):
     def _unpack_beam(self, data):
         """Unpack beam, returns dict with iteration number as key.  
         The value is a list of samples, each sample being a dict with
-        the appropriate key for the data (provided by dtype names)"""
+        the appropriate key for the data (provided by dtype names).  I'm leaving
+        the business logic of extracting these to @property calls"""
         if BEAM not in self._fields:
             return None
 
@@ -128,19 +165,27 @@ class CorPlotMatScan(object):
             beams[i] = [[dict(zip(names, fit)) for fit in sample] \
             for sample in iteration]
 
-        return beams
+        return beams, names
 
     def _unpack_prof(self, data):
+        """Unpack profile monitor pvs and data.  Not super clean
+        reformatting, but it's just a list of PV data lists.  The PV
+        data list contains a list of iterations, each iteration contains
+        samples"""
         if PROF not in self._fields:
             return None
 
         idx = self._fields.index(PROF)
         prof = data[idx]
         names = prof.dtype.names
-
+        prof_pvs = dict()
         for pv in prof:
-            
-        return prof
+            if isinstance(pv[0][0][0], unicode):  # one sample
+                prof_pvs[str(pv[0][0][0])] = pv
+            else:  # Multiple samples
+                prof_pvs[str(pv[0][0][0][0])] = pv  
+
+        return prof_pvs
 
     def _unpack_ts(self, data):
         """Unpack the timestamp, datetime.fromordinal not in current version"""
@@ -149,8 +194,20 @@ class CorPlotMatScan(object):
 
         idx = self._fields.index(TS)
         ts = data[idx][0][0]
+        
         return ts
-            
+
+    def _unpack_config(self, data):
+        """As far as I can tell this is not useful except for ctrl pv,
+        but we get that with control dict"""
+        if CONFIG not in self._fields:
+            return None
+
+        idx = self._fields.index(CONFIG)
+        config = data[idx]
+
+        return config
+
 # from cor_plot_mat_scan import CorPlotMatScan as C
 # data = C('test_scan.mat')           
         
