@@ -25,20 +25,20 @@ class CorPlotMatScan(object):
     def __init__(self, mat_file):
         try:
             data = sio.loadmat(mat_file)['data'][0][0]
-        except Error as e:
+            self._file = mat_file
+            self._fields = data.dtype.names
+            self._accel = self._unpack_accl(data)
+            self._statuses = self._unpack_statuses(data)
+            self._ctrl_dict = self._unpack_ctrl_pv(data)
+            self._read = self._unpack_read_pv(data)  # [pv][iteration][readings]
+            self._twiss_pv = None  # Don't have file with this yet
+            self._twiss_std = None  # Don't have file with this yet
+            self._beam, self._beam_names = self._unpack_beam(data)
+            self._prof_pv = self._unpack_prof(data)
+            self._ts = self._unpack_ts(data)
+            self._config = self._unpack_config(data)
+        except Exception as e:
             print('Error loading mat file: {0}'.format(e))
-        self._file = mat_file
-        self._fields = data.dtype.names
-        self._accel = self._unpack_accl(data)
-        self._statuses = self._unpack_statuses(data)
-        self._ctrl_dict = self._unpack_ctrl_pv(data)
-        self._read = self._unpack_read_pv(data)  # [pv][iteration][readings]
-        self._twiss_pv = None  # Don't have file with this yet
-        self._twiss_std = None  # Don't have file with this yet
-        self._beam, self._beam_names = self._unpack_beam(data)
-        self._prof_pv = self._unpack_prof(data)
-        self._ts = self._unpack_ts(data)
-        self._config = self._unpack_config(data)
 
     @property
     def file(self):
@@ -90,6 +90,7 @@ class CorPlotMatScan(object):
 
     def _unpack_accl(self, data):
         """Accelerator name such as LCLS, LCLS2, etc..."""
+        # Need to write generic decorator for this behavior
         if ACCL not in self._fields:
             return None
 
@@ -155,7 +156,7 @@ class CorPlotMatScan(object):
         the appropriate key for the data (provided by dtype names).  I'm leaving
         the business logic of extracting these to @property calls"""
         if BEAM not in self._fields:
-            return None
+            return None, None
 
         idx = self._fields.index(BEAM)
         beam = data[idx]

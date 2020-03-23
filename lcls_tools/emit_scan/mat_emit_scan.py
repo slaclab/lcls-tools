@@ -11,60 +11,63 @@ FIT = [
     'RMS floor'
 ]
 
+STAT = 'status'
+TYPE = 'type'
+NAME = 'name'
+QUAD_NAME = 'quadName'
+QUAD_VAL = 'quadVal'
+USE = 'use'
+TS = 'ts'
+BEAM = 'beam'
+BEAM_STD = 'beamStd'
+BEAM_LIST = 'beamList'
+Q_LIST = 'chargeList'
+Q = 'charge'
+Q_STD = 'chargeStd'
+R_MAT = 'rMatrix'
+TWISS_0 = 'twiss0'
+ENERGY = 'energy'
+TWISS = 'twiss'
+TWISS_STD = 'twissstd'
+ORBIT = 'orbit'
+ORBIT_STD = 'orbitstd'
+TWISS_PV = 'twissPV'
+
+# This could use some code duplication love once it's figured out
+
 class MatEmitScan(object):
-    def __init__(self):
-        self._file = None
-        self._status = None
-        self._type = None
-        self._name = None
-        self._quad_name = None
-        self._quad_val = None
-        self._use = None
-        self._ts = None
-        self._beam = None
-        self._beam_list = None  # Not this time around
-        self._charge =  None
-        self._charge_std = None
-        self._r_matrix = None
-        self._twiss_0 = None
-        self._energy = None
-        self._twiss = None
-        self._twiss_std = None
-        self._orbit = None
-        self._orbit_std = None
-        self._twiss_pv = None
-
-    def load_mat_file(self, mat_file):
-        """Converting super gross .mat emittance scan file to an object"""
+    def __init__(self, mat_file):
         try:
-            self._unpack_mat_data(mat_file)
+            data = sio.loadmat(mat_file)['data'][0][0]
+            self._fields = data.dtype.names
+            self._file = mat_file
+            self._status = [status[0] for status in data[0]]
+            self._type = str(self._unpack_prop(TYPE, data)[0])
+            self._name = str(self._unpack_prop(NAME, data)[0][0][0])
+            self._quad_name = str(self._unpack_prop(QUAD_NAME, data)[0])
+            self._quad_val = self._unpack_prop(QUAD_VAL, data)[0]
+            self._use = [use[0] for use in data[5]]
+            self._ts = self._unpack_prop(TS, data)[0][0]
+            self._beam = self._unpack_beam(data)  # data[7][iteration][fit][names]
+            self._charge = self._unpack_prop(Q, data)[0][0]
+            self._charge_std = self._unpack_prop(Q_STD, data)[0][0]
+            self._r_matrix = self._unpack_prop(R_MAT, data)[0]  # List of r matrix per iteration
+            self._twiss_0 = self._unpack_prop(TWISS_0, data) #data[14]  # No clue how these fields are arranged
+            self._energy = self._unpack_prop(ENERGY, data)[0][0]  # GeV I believe
+            self._twiss = self._unpack_prop(TWISS, data)
+            self._twiss_std = self._unpack_prop(TWISS_STD, data)
+            self._orbit = self._unpack_prop(ORBIT, data)
+            self._orbit_std = self._unpack_prop(ORBIT_STD, data)
+            self._twiss_pv = self._unpack_twiss_pv(data[20])
         except Exception as e:
-            print('error loading mat file: {0}'.format(e))
-
-    def _unpack_mat_data(self, mat_file):
-        data = sio.loadmat(mat_file)['data'][0][0]
-        self._file = mat_file
-        self._status = [status[0] for status in data[0]]
-        self._type = str(data[1][0])
-        self._name = str(data[2][0][0][0])
-        self._quad_name = str(data[3][0])
-        self._quad_val = data[4][0]
-        self._use = [use[0] for use in data[5]]
-        self._ts = data[6][0][0]
-        self._beam = self._unpack_beam(data[7], data[8])  # data[7][iteration][fit][names]
-        self._charge = data[11][0][0]
-        self._charge_std = data[12][0][0]
-        self._r_matrix = data[13][0]  # List of r matrix per iteration
-        self._twiss_0 = data[14]  # No clue how these fields are arranged
-        self._energy = data[15][0][0]  # GeV I believe
-        self._twiss = data[16]
-        self._twiss_std = data[17]
-        self._orbit = data[18]
-        self._orbit_std = data[19]
-        self._twiss_pv = self._unpack_twiss_pv(data[20])
+            print('Error loading mat file: {0}'.format(e))
 
     @property
-    def file(self):
+    def fields(self):
+        return self._fields
+
+    @property
+    def mat_file(self):
         return self._file
 
     @property
@@ -72,7 +75,7 @@ class MatEmitScan(object):
         return self._status
 
     @property
-    def type(self):
+    def scan_type(self):
         return self._type
 
     @property
@@ -196,11 +199,29 @@ class MatEmitScan(object):
             bmag_y = dict(zip(FIT, self._twiss_pv[7]['val']))
         return bmag_y
 
-    def _unpack_beam(self, beam, beam_std):
+    def _unpack_prop(self, prop, data):
+        if prop not in self._fields:
+            return None
+
+        idx = self._fields.index(prop)
+        return data[idx]
+
+    def _unpack_beam(self, data):
         """Unpacks to a list of lists.  Each list is an iteration which contains
         all the data for each fit.  Each fit is a dictionary with all the associated types of data.
         Also, since beam_std is a duplicate of beam except for stats I just throw the stats in the
         dictionary"""
+        if BEAM not in self._fields:
+            return None
+
+        idx_beam = self._fields.index(BEAM)
+        beam = data[idx_beam]
+
+        beam_std = None
+        if BEAM_STD in self._fields:
+            idx_beam_std = self._fields.index(BEAM_STD)
+            beam_std = data[idx_beam_std]
+
         names = beam.dtype.names
         temp = []
         # Go through each scan iteration
@@ -213,7 +234,10 @@ class MatEmitScan(object):
                 for i3, name in enumerate(names):
                     iter_fit[name] = fit[i3]
                 # Throw stats in there
-                iter_fit['stats_std'] = beam_std[i1][i2][10]
+                if beam_std is not None:
+                    iter_fit['stats_std'] = beam_std[i1][i2][10]
+                else:
+                    iter_fit['stats_std'] = []
                 fit_list.append(iter_fit)
             temp.append(fit_list)
             
@@ -222,6 +246,9 @@ class MatEmitScan(object):
     def _unpack_twiss_pv(self, twiss):
         """The other important piece.  All the twiss parameters from the
         emittance scan.  7 vals corresponding to each fit method"""
+        if TWISS_PV not in self._fields:
+            return None
+
         names = twiss.dtype.names
         temp1 = []
         for val in twiss:
