@@ -20,6 +20,9 @@ PROF = 'profPV'
 TS = 'ts'
 CONFIG = 'config'
 
+# Disclaimer:  It is up to user to verify what they are getting makes
+# sense in the context of thes scan types
+
 class CorPlotMatScan(object):
     """Unpack a correlation plot scan .mat file"""
     def __init__(self, mat_file):
@@ -46,6 +49,15 @@ class CorPlotMatScan(object):
         return self._file
 
     @property
+    def fields(self):
+        """Data fields (keys) Henrik felt like populating for given scan, depends
+        on what boxes are checked for measurements, so we'll never know unless
+        we introspect because schema is not a thing in Henrik's code.  I've never
+        seen code so uninterested in organizing data in an appreciable way...
+        probably for job security?"""
+        return self._fields
+
+    @property
     def control_dict(self):
         """Ctrl PV and vals, units etc..."""
         return self._ctrl_dict
@@ -58,23 +70,24 @@ class CorPlotMatScan(object):
     @property
     def ctrl_pv(self):
         """PV being scanned, might need to change for 2D scans"""
-        if 'name' in self._ctrl_dict:
-            return self._ctrl_dict['name']
+        if self._ctrl_dict is not None:
+            return self._ctrl_dict[0]['name']
 
         return None
 
     @property
     def iterations(self):
-        if self._ctrl_dict:
-            return len(self._ctrl_dict['vals'])
+        """iterations for cor plot"""
+        if self._ctrl_dict is not None:
+            return len(self._ctrl_dict[0]['vals'])
 
         return 0
 
     @property
     def ctrl_vals(self):
         """Vals for ctrl pv in scan"""
-        if 'vals' in self._ctrl_dict:
-            return self._ctrl_dict['vals']
+        if self._ctrl_dict is not None:
+            return self._ctrl_dict[0]['vals']
 
         return None
 
@@ -87,6 +100,16 @@ class CorPlotMatScan(object):
     def beam_names(self):
         """The different keys for a beam dict for each iteration and fit"""
         return self._beam_names
+
+    @property
+    def timestamp(self):
+        """Matlab timestamp (ordinal)"""
+        return self._ts
+
+    @property
+    def config(self):
+        """Random collection of data already available from above properties, lame"""
+        return self._config
 
     def _unpack_accl(self, data):
         """Accelerator name such as LCLS, LCLS2, etc..."""

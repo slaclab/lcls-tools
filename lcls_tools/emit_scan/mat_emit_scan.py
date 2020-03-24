@@ -1,6 +1,9 @@
 import scipy.io as sio
 import numpy as np
 
+VAL = 'val'
+UNITS = 'egu'
+
 FIT = [
     'Gaussian',
     'Asymmetric',
@@ -33,7 +36,8 @@ ORBIT = 'orbit'
 ORBIT_STD = 'orbitstd'
 TWISS_PV = 'twissPV'
 
-# This could use some code duplication love once it's figured out
+# Disclaimer:  It is up to user to verify what they are getting makes
+# sense in the context of thes scan types
 
 class MatEmitScan(object):
     def __init__(self, mat_file):
@@ -175,49 +179,51 @@ class MatEmitScan(object):
     def emit_x(self):
         """Return dict of emit x vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[0]['val']))
+            return dict(zip(FIT, self._twiss_pv[0][VAL]))
 
     @property
     def beta_x(self):
         """Return dict of beta x vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[1]['val']))
+            return dict(zip(FIT, self._twiss_pv[1][VAL]))
 
     @property
     def alpha_x(self):
         """Return dict of alpha x vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[2]['val']))
+            return dict(zip(FIT, self._twiss_pv[2][VAL]))
 
     @property
     def bmag_x(self):
         """Return dict of match x vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[3]['val']))
+            return dict(zip(FIT, self._twiss_pv[3][VAL]))
 
     @property
     def emit_y(self):
         """Return dict of emit y vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[4]['val']))
+            return dict(zip(FIT, self._twiss_pv[4][VAL]))
 
     @property
     def beta_y(self):
         """Return dict of beta y vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[5]['val']))
+            return dict(zip(FIT, self._twiss_pv[5][VAL]))
 
     @property
     def alpha_y(self):
         """Return dict of alpha y vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[6]['val']))
+            return dict(zip(FIT, self._twiss_pv[6][VAL]))
 
     @property
     def bmag_y(self):
         """Return dict of match y vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[7]['val']))
+            return dict(zip(FIT, self._twiss_pv[7][VAL]))
+
+    ########## Helper Functions ###########
 
     def _unpack_prop(self, prop, data):
         """General way to pull out specific values for the fields present in data"""
@@ -275,7 +281,7 @@ class MatEmitScan(object):
         for val in twiss:
             temp2 = dict()
             for i, name in enumerate(names):
-                if name != 'egu':
+                if name != UNITS:
                     if isinstance(val[0][i][0], unicode):
                         temp2[name] = str(val[0][i][0])
                     else:
