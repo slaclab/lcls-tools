@@ -12,7 +12,7 @@ FIT = [
 ]
 
 STAT = 'status'
-TYPE = 'type'
+SCAN_TYPE = 'type'
 NAME = 'name'
 QUAD_NAME = 'quadName'
 QUAD_VAL = 'quadVal'
@@ -41,19 +41,19 @@ class MatEmitScan(object):
             data = sio.loadmat(mat_file)['data'][0][0]
             self._fields = data.dtype.names
             self._file = mat_file
-            self._status = [status[0] for status in data[0]]
-            self._type = str(self._unpack_prop(TYPE, data)[0])
-            self._name = str(self._unpack_prop(NAME, data)[0][0][0])
-            self._quad_name = str(self._unpack_prop(QUAD_NAME, data)[0])
-            self._quad_val = self._unpack_prop(QUAD_VAL, data)[0]
-            self._use = [use[0] for use in data[5]]
-            self._ts = self._unpack_prop(TS, data)[0][0]
+            self._status = self._unpack_prop(STAT, data)
+            self._scan_type = self._unpack_prop(SCAN_TYPE, data)
+            self._name = self._unpack_prop(NAME, data)
+            self._quad_name = self._unpack_prop(QUAD_NAME, data)
+            self._quad_val = self._unpack_prop(QUAD_VAL, data)
+            self._use = self._unpack_prop(USE, data)
+            self._ts = self._unpack_prop(TS, data)
             self._beam = self._unpack_beam(data)  # data[7][iteration][fit][names]
-            self._charge = self._unpack_prop(Q, data)[0][0]
-            self._charge_std = self._unpack_prop(Q_STD, data)[0][0]
-            self._r_matrix = self._unpack_prop(R_MAT, data)[0]  # List of r matrix per iteration
+            self._charge = self._unpack_prop(Q, data)
+            self._charge_std = self._unpack_prop(Q_STD, data)
+            self._r_matrix = self._unpack_prop(R_MAT, data)  # List of r matrix per iteration
             self._twiss_0 = self._unpack_prop(TWISS_0, data) #data[14]  # No clue how these fields are arranged
-            self._energy = self._unpack_prop(ENERGY, data)[0][0]  # GeV I believe
+            self._energy = self._unpack_prop(ENERGY, data)
             self._twiss = self._unpack_prop(TWISS, data)
             self._twiss_std = self._unpack_prop(TWISS_STD, data)
             self._orbit = self._unpack_prop(ORBIT, data)
@@ -64,142 +64,163 @@ class MatEmitScan(object):
 
     @property
     def fields(self):
+        """The names of meta data fields associated with scan"""
         return self._fields
 
     @property
     def mat_file(self):
+        """Mat file loaded"""
         return self._file
 
     @property
     def status(self):
-        return self._status
+        """Array of 0 or 1, no idea what status it's looking at"""
+        if self._status is not None:
+            return [status[0] for status in self._status]
 
     @property
     def scan_type(self):
-        return self._type
+        """Type of scan, useful with names like 'scan', lol"""
+        if self._scan_type:
+            return str(self._scan_type[0])
 
     @property
     def name(self):
-        return self._name
+        """Name of profile monitor/WS used for measurement"""
+        if self._name:
+            return str(self._name[0][0][0])
 
     @property
     def quad_name(self):
-        return self._quad_name
+        """Magnet scanned for emit measurement"""
+        if self._quad_name:
+            return str(self._quad_name[0])
 
     @property
     def quad_val(self):
-        return self._quad_val
+        """Values of magnet B field used in scan"""
+        if self._quad_val is not None:
+            return self._quad_val[0]
     
     @property
     def use(self):
-        return self._use
+        """Array of 1 or 0, 1 means used in calculations"""
+        if self._use is not None:
+            return [use[0] for use in self._use]
 
     @property
     def timestamp(self):
-        return self._ts
+        """Dumb matlab timestamp convention, use datetime.fromordinal"""
+        if self._ts:
+            return self._ts[0][0]
 
     @property
     def beam(self):
-        """list of dictionaries each iteration's stats"""
-        if self._beam:
-            return self._beam[0]
+        """list of dictionaries each iteration's stats, this needs more
+        properties or helper functions to parse to user's needs"""
         return self._beam
 
     @property
     def charge(self):
-        return self._charge
+        """Charge measured during each scan iteration, good for normalizing"""
+        if self._charge:
+            return self._charge[0][0]
 
     @property
     def charge_std(self):
-        return self._charge_std
+        """STD of charge during each iteration, good for dropping noisy points"""
+        if self._charge_std:
+            return self._charge_std[0][0]
 
     @property
     def rmat(self):
         """list of r matrix, one per iteration"""
-        return self._r_matrix
+        if self._r_matrix:
+            return self._r_matrix[0]
 
     @property
     def twiss_0(self):
+        """Your guess is as good as mine, maybe initial twiss"""
         return self._twiss_0
 
     @property
     def energy(self):
-        return self._energy
+        """Energy of beam at measurement location, pretty sure it's GeV"""
+        if self._energy:
+            return self._energy[0][0]
 
     @property
     def twiss(self):
+        """Twiss parameters at end of scan for each type of fit, more
+        useful properties and unpacking below"""
         return self._twiss
 
     @property
     def twiss_std(self):
+        """STD of twiss calculations, did not offer more props on this"""
         return self._twiss_std
 
     @property
     def orbit(self):
+        """Not sure how this is concocted, no usefuly bpm names to
+        indicate measurement locations"""
         return self._orbit
 
     @property
     def orbit_std(self):
+        """STD of orbit measurements"""
         return self._orbit_std
 
     @property
     def emit_x(self):
-        """Return dict of emit with fit as key"""
-        emit_x = None
+        """Return dict of emit x vals with fit as key"""
         if self._twiss_pv:
-            emit_x = dict(zip(FIT, self._twiss_pv[0]['val']))
-        return emit_x
+            return dict(zip(FIT, self._twiss_pv[0]['val']))
 
     @property
     def beta_x(self):
-        beta_x = None
+        """Return dict of beta x vals with fit as key"""
         if self._twiss_pv:
-            beta_x = dict(zip(FIT, self._twiss_pv[1]['val']))
-        return beta_x
+            return dict(zip(FIT, self._twiss_pv[1]['val']))
 
     @property
     def alpha_x(self):
-        alpha_x = None
+        """Return dict of alpha x vals with fit as key"""
         if self._twiss_pv:
-            alpha_x = dict(zip(FIT, self._twiss_pv[2]['val']))
-        return alpha_x
+            return dict(zip(FIT, self._twiss_pv[2]['val']))
 
     @property
     def bmag_x(self):
-        bmag_x = None
+        """Return dict of match x vals with fit as key"""
         if self._twiss_pv:
-            bmag_x = dict(zip(FIT, self._twiss_pv[3]['val']))
-        return bmag_x
+            return dict(zip(FIT, self._twiss_pv[3]['val']))
 
     @property
     def emit_y(self):
-        emit_y = None
+        """Return dict of emit y vals with fit as key"""
         if self._twiss_pv:
-            emit_y = dict(zip(FIT, self._twiss_pv[4]['val']))
-        return emit_y
+            return dict(zip(FIT, self._twiss_pv[4]['val']))
 
     @property
     def beta_y(self):
-        beta_y = None
+        """Return dict of beta y vals with fit as key"""
         if self._twiss_pv:
-            beta_y = dict(zip(FIT, self._twiss_pv[5]['val']))
-        return beta_y
+            return dict(zip(FIT, self._twiss_pv[5]['val']))
 
     @property
     def alpha_y(self):
-        alpha_y = None
+        """Return dict of alpha y vals with fit as key"""
         if self._twiss_pv:
-            alpha_y = dict(zip(FIT, self._twiss_pv[6]['val']))
-        return alpha_y
+            return dict(zip(FIT, self._twiss_pv[6]['val']))
 
     @property
     def bmag_y(self):
-        bmag_y = None
+        """Return dict of match y vals with fit as key"""
         if self._twiss_pv:
-            bmag_y = dict(zip(FIT, self._twiss_pv[7]['val']))
-        return bmag_y
+            return dict(zip(FIT, self._twiss_pv[7]['val']))
 
     def _unpack_prop(self, prop, data):
+        """General way to pull out specific values for the fields present in data"""
         if prop not in self._fields:
             return None
 
