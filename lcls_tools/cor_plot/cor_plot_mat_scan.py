@@ -111,6 +111,11 @@ class CorPlotMatScan(object):
         """Random collection of data already available from above properties, lame"""
         return self._config
 
+    @property
+    def samples(self):
+        if self._beam:
+            return len(self._beam[0])
+
     def _unpack_accl(self, data):
         """Accelerator name such as LCLS, LCLS2, etc..."""
         # Need to write generic decorator for this behavior

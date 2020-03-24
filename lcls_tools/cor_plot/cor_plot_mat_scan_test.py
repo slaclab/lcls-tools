@@ -41,6 +41,7 @@ CTRL_PV_TEST = 'SOLN:GUNB:212:BCTRL'
 CTRL_VAL_0_TEST = 0.073  # First value of scan ctrl pv
 ITER_TEST = 10
 TS_TEST = 737730.05
+SAMPLES_TEST = 2
 
 #QE File metadata
 BEAM_NAMES_QE = None
@@ -59,7 +60,7 @@ CTRL_VAL_0_QE = 1.93
 ITER_QE = 400
 TS_QE = 737728.26
 
-class MatEmitScanTest(unittest.TestCase):
+class CorPlotMatScanTest(unittest.TestCase):
 
     def test_init_mat_file_test(self):
         cpms = CPMS(TEST_FILE)
@@ -70,6 +71,7 @@ class MatEmitScanTest(unittest.TestCase):
         self.assertEqual(round(cpms.ctrl_vals[0], 3), CTRL_VAL_0_TEST)
         self.assertEqual(cpms.beam_names, BEAM_NAMES_TEST)
         self.assertEqual(round(cpms.timestamp, 2), TS_TEST)
+        self.assertEqual(cpms.samples, SAMPLES_TEST)
 
     def test_init_mat_file_qe(self):
         cpms = CPMS(QE_FILE)

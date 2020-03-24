@@ -18,7 +18,7 @@ STAT = 'status'
 SCAN_TYPE = 'type'
 NAME = 'name'
 QUAD_NAME = 'quadName'
-QUAD_VAL = 'quadVal'
+QUAD_VALS = 'quadVal'
 USE = 'use'
 TS = 'ts'
 BEAM = 'beam'
@@ -49,7 +49,7 @@ class MatEmitScan(object):
             self._scan_type = self._unpack_prop(SCAN_TYPE, data)
             self._name = self._unpack_prop(NAME, data)
             self._quad_name = self._unpack_prop(QUAD_NAME, data)
-            self._quad_val = self._unpack_prop(QUAD_VAL, data)
+            self._quad_vals = self._unpack_prop(QUAD_VALS, data)
             self._use = self._unpack_prop(USE, data)
             self._ts = self._unpack_prop(TS, data)
             self._beam = self._unpack_beam(data)  # data[7][iteration][fit][names]
@@ -62,7 +62,7 @@ class MatEmitScan(object):
             self._twiss_std = self._unpack_prop(TWISS_STD, data)
             self._orbit = self._unpack_prop(ORBIT, data)
             self._orbit_std = self._unpack_prop(ORBIT_STD, data)
-            self._twiss_pv = self._unpack_twiss_pv(data[20])
+            self._twiss_pv = self._unpack_twiss_pv(data)
         except Exception as e:
             print('Error loading mat file: {0}'.format(e))
 
@@ -101,10 +101,16 @@ class MatEmitScan(object):
             return str(self._quad_name[0])
 
     @property
-    def quad_val(self):
+    def quad_vals(self):
         """Values of magnet B field used in scan"""
-        if self._quad_val is not None:
-            return self._quad_val[0]
+        if self._quad_vals is not None:
+            return self._quad_vals[0]
+
+    @property
+    def iterations(self):
+        """Iterations of quad scan"""
+        if self._quad_vals is not None:
+            return len(self._quad_vals[0])
     
     @property
     def use(self):
@@ -139,7 +145,7 @@ class MatEmitScan(object):
     @property
     def rmat(self):
         """list of r matrix, one per iteration"""
-        if self._r_matrix:
+        if self._r_matrix is not None:
             return self._r_matrix[0]
 
     @property
@@ -270,15 +276,18 @@ class MatEmitScan(object):
             
         return temp
 
-    def _unpack_twiss_pv(self, twiss):
+    def _unpack_twiss_pv(self, data):
         """The other important piece.  All the twiss parameters from the
         emittance scan.  7 vals corresponding to each fit method"""
         if TWISS_PV not in self._fields:
             return None
 
-        names = twiss.dtype.names
+        idx_twiss_pv = self._fields.index(TWISS_PV)
+        twiss_pv = data[idx_twiss_pv]
+
+        names = twiss_pv.dtype.names
         temp1 = []
-        for val in twiss:
+        for val in twiss_pv:
             temp2 = dict()
             for i, name in enumerate(names):
                 if name != UNITS:
