@@ -38,13 +38,8 @@ def make_vcc_db(files, area="GUNB", outname='vcc_database', top_group = 'lcls_sc
         pv_values = meme.archive.get(pv_names, from_time=timestamp, to_time=timestamp)
 
         for pv in pv_values:
-            magnets.create_dataset(pv['pvName'], data=pv['value']['value']['values'])
-
-        #print(type(pv_values[:]))
-        #print(np.shape(pv_values[:][0]))
-	#print(i['pvName'], i['value']['value']['values'])
-        #print('\n\n\n')  
-    #print(pv_values)
+            magnets.attrs[pv['pvName']] = pv['value']['value']['values']
+    
     vhf.close()
 
            
