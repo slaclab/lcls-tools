@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 #sys.path.append('../image_processing')
 #from mat_image import MatImage as MI
 
-#import meme.archive 
-#import meme.names 
+import meme.archive 
+import meme.names 
 
 def datenum_to_datetime(datenum):
     """Convert Matlab datenum into Python datetime.
