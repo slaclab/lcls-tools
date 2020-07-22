@@ -3,12 +3,12 @@ import unittest
 import numpy as np
 from mat_emit_scan import MatEmitScan as MES
 
-FILE = 'test_scan.mat'
-BAD_FILE = 'junk.mat'
-ITERS = 10
+FILE = 'test_scan(1).mat'
+BAD_FILE = 'test_scan.mat'
+ITERS = 5
 TYPE = 'scan'
-PROF_NAME = 'YAGS:GUNB:753'
-QUAD_NAME = 'SOLN:GUNB:212'
+PROF_NAME = 'OTRS:IN20:571'
+QUAD_NAME = 'QUAD:IN20:525'
 QUAD_VAL = 0.08
 TIMESTAMP = 737730.0
 CHARGE = 0.0007
@@ -36,7 +36,7 @@ class MatEmitScanTest(unittest.TestCase):
         self.assertEqual(mes.scan_type, TYPE)
         self.assertEqual(mes.name, PROF_NAME)
         self.assertEqual(mes.quad_name, QUAD_NAME)
-        self.assertEqual(round(mes.quad_val[9], 2), QUAD_VAL)
+        self.assertEqual(round(mes.quad_vals[9], 2), QUAD_VAL)
         self.assertEqual(len(mes.use), ITERS)
         self.assertEqual(round(mes.timestamp), TIMESTAMP)
         self.assertEqual(round(mes.charge, 4), CHARGE)
