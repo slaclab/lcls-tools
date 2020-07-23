@@ -29,9 +29,9 @@ class ImageProcessingTest(unittest.TestCase):
     def test_center_of_mass(self):
         """Test that we get correct x and y centroids"""
         (x1, y1) = ip.center_of_mass(self.MI.image)
-        self.assertEqual((int(x1), int(y1)), (522, 669))
+        self.assertEqual((int(x1), int(y1)), (385, 678))
         (x2, y2) = ip.center_of_mass(self.MI.image, sigma=2)
-        self.assertEqual((int(x2), int(y2)), (540, 660))
+        self.assertEqual((int(x2), int(y2)), (468, 552))
 
     def test_average_image(self):
         """Test that we can average a number of images"""
@@ -44,23 +44,23 @@ class ImageProcessingTest(unittest.TestCase):
 
     def test_shape_image(self):
         """Test that we can reshape our ndarray"""
-        self.assertEqual(self.MI.image.shape, (1024, 1392))
+        self.assertEqual(self.MI.image.shape, (1040, 1392))
         image = ip.shape_image(self.MI.image, 16, 89088)
         self.assertEqual(image.shape, (89088, 16))
 
     def test_x_projection(self):
         """Test we get expected value for x projection"""
         x_proj = ip.x_projection(self.MI.image)
-        self.assertEqual(x_proj.sum(), 9792279)
-        self.assertEqual(int(x_proj.mean()), 7034)
-        self.assertEqual(int(x_proj.std()), 10005)
+        self.assertEqual(x_proj.sum(), 10596351)
+        self.assertEqual(int(x_proj.mean()), 7612)
+        self.assertEqual(int(x_proj.std()), 2410)
 
     def test_y_projection(self):
         """Test that we get expected value for y projection"""
         y_proj = ip.y_projection(self.MI.image)
-        self.assertEqual(y_proj.sum(), 9623943)
-        self.assertEqual(int(y_proj.mean()), 9398)
-        self.assertEqual(int(y_proj.std()), 10398)
+        self.assertEqual(y_proj.sum(), 2778671)
+        self.assertEqual(int(y_proj.mean()), 2671)
+        self.assertEqual(int(y_proj.std()), 1032)
 
     def test_gauss_func(self):
         """Test we get correct value for a gaussian evaluation"""
