@@ -37,7 +37,7 @@ ORBIT_STD = 'orbitstd'
 TWISS_PV = 'twissPV'
 
 # Disclaimer:  It is up to user to verify what they are getting makes
-# sense in the context of thes scan types
+# sense in the context of these scan types
 
 class MatEmitScan(object):
     def __init__(self, mat_file):
