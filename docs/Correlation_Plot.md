@@ -1,16 +1,18 @@
-# Correlation Plots
+# Correlation Plot
+
+## About
 These tools are used to find a relationship between the size of the beam and the    magnate strength. The sections below contains packages that are used to view and analyze the correlation plots as well as test if that code works correctly. 
 
 
-# How to view a Correlation Plot
-The purpose of this package is to unpack a mat file and allow the examination of the correlation plots. The tool currently has hard coded paths specific to the author of the code and will need to be updated to suit everyone. You can find this package on [GitHub.com](https://github.com/slaclab/lcls-tools/tree/master/lcls_tools/cor_plot). 
+## How to view a Correlation Plot
+The purpose of this package is to unpack a mat file and allow the examination of the correlation plots. The tool currently has hard coded paths specific to the author of the code and will need to be updated to suit everyone. This package may soon be available at  [GitHub.com](https://github.com/slaclab/lcls-tools/tree/master/lcls_tools/cor_plot). 
 
 ### Useful Information
- -Uses cor_plot tools from lcls-tools.
- -Loads data and plots a correlation plot from the data.
- -Error bars indicate the deviance from the mean at each x value.
- -x values (magnet strength) are found using the tool ctrl_vals.
- -At each x value, some number of iterations will be taken. 
+ - Uses cor_plot tools from lcls-tools.
+ - Loads data and plots a correlation plot from the data.
+ - Error bars indicate the deviance from the mean at each x value.
+ - x values (magnet strength) are found using the tool ctrl_vals.
+ - At each x value, some number of iterations will be taken. 
 
 A specific fit and beam name can be chosen from the following lists:
 FIT = ['Gaussian', 'Asymmetric', 'Super', 'RMS', 'RMS cut peak', 'RMS cut area', 'RMS floor']
@@ -21,20 +23,20 @@ The mean of the samples in each iteration is taken and appended to a new array.
 This new array is used for the y values (beam size).
 The x array is plotted against the y array, along with error bars.
 
-# Correlation Plot Analysis
+## Correlation Plot Analysis
 This utility, found [here](https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/cor_plot/cor_plot_mat_scan.py), can take a cor plot .mat file and turn it into a python data object.  The goal is to present the data from a cor plot in a meaningful way. Below shows an example of the test that was used for theoriginal package. The full test can be found [here](https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/cor_plot/cor_plot_mat_scan_test.py).
 
 Example: 'test_scan.mat'
 
 Import and Initialize cor plot data object
- ```
->>> from cor_plot_mat_scan import CorPlotMatScan as CPMS
->>> cpms = CPMS('test_scan.mat')
-```
+from cor_plot_mat_scan import CorPlotMatScan as CPMS
+cpms = CPMS('test_scan.mat')
+
 
 Access Properties.  Here are some of the properties that are defined for the data object.
-```
->>> cpms.fields
+
+```sh
+cpms.fields
 ('accelerator', 'status', 'ctrlPV', 'beam', 'profPV', 'ts', 'config')
 >>> cpms.accelerator
 'LCLS2'
