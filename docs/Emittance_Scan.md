@@ -1,9 +1,9 @@
-#Emittance Scan
+# Emittance Scan
 
-##About 
+## About 
 The emittance scan is a tool that calculates and analyzes the emittance of an elecron beam. The Emittance is charaterized as the momentum of the electrons in the beam. A useful emittance is one that is as small as possible in a transverse demension.
 
-##Emittance Scan Analysis Package
+## Emittance Scan Analysis Package
 This [utility](https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/emit_scan/mat_emit_scan.py) can take an emittance scan .mat file and turn it into a python data object. The goal is to present the data from an emittance scan in a meaningful way. This utility has a [test file](https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/emit_scan/mat_emit_scan_test.py)  that is used for testing, but we can use it as an example. The full test is at the link above. 
 
 Example: 'test_scan.mat'
@@ -106,7 +106,7 @@ array([[-6737.52      , -6721.44      , -6705.36      , ...,
        [   19.07582407,    19.07582407,    19.07582407, ...,
            19.07582407,    19.07582407,    19.07582407]])
 ```
-##Note
+## Note
 We could find out that this beam structure is actually similar to how it is in the cor plot .mat scan.  Then we could use the same unpacking function here in emittance scan (or define a general factory method).  I leave that up to further validation.
 
 
