@@ -1,1 +1,6 @@
 site_name: LCLS Tools
+nav:
+  - Home: 'index.md'
+  - Correlation plot: 'Correlation_Plot.md'
+theme: readthedocs
+

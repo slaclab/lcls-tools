@@ -1,9 +1,8 @@
 # Correlation Plot
 These tools are used to find a relationship between the size of the beam and the magnet strength. The sections below contain packages that are used to view and analyze the correlation plots as well as test if that code works correctly. 
 
-
 # How to view a Correlation Plot
-The python code below unpacks a mat file and allows us to examine the correlation plot. The tool currently has hard coded paths specific to the author of the code and will need to be updated to suit everyone.  
+The tool currently has hard coded paths specific to the author of the code and will need to be updated to suit everyone. This package can be installed from {GitHub}:('https://github.com/slaclab/lcls-tools/tree/master/lcls_tools/cor_plot')  
 
 ### Useful Information
  * Uses cor_plot tools from lcls-tools.
