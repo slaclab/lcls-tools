@@ -67,4 +67,5 @@ array([[ -8.04000000e+03,  -8.02392000e+03,  -8.00784000e+03, ...,
           4.98085984e+00,   4.84116133e+00,   4.70507716e+00]])
 ```
 
+## Note
 As you can see, this whole beam property needs a lot of cleanup.  I do not even know what profx is, maybe an x projection/histogram of the profile monitor?  Your guess is as good as mine.  Good luck!
