@@ -45,8 +45,8 @@ class ImageProcessingTest(unittest.TestCase):
     def test_shape_image(self):
         """Test that we can reshape our ndarray"""
         self.assertEqual(self.MI.image.shape, (1040, 1392))
-        image = ip.shape_image(self.MI.image, 16, 89088)
-        self.assertEqual(image.shape, (89088, 16))
+        image = ip.shape_image(self.MI.image, 1040, 1392)
+        self.assertEqual(image.shape, (1392,1040))
 
     def test_x_projection(self):
         """Test we get expected value for x projection"""
@@ -73,12 +73,12 @@ class ImageProcessingTest(unittest.TestCase):
         y_proj = ip.y_projection(self.MI.image)
         _, a_x, x0_x, sigma_x = ip.gauss_fit(x_proj)
         _, a_y, y0_y, sigma_y = ip.gauss_fit(y_proj)
-        self.assertEqual(int(a_x), 30373)
-        self.assertEqual(int(x0_x), 660)
-        self.assertEqual(int(sigma_x), 124)
-        self.assertEqual(int(a_y), 29528)
-        self.assertEqual(int(y0_y), 541)
-        self.assertEqual(int(sigma_y), 127)
+        self.assertEqual(int(a_x), 6491)
+        self.assertEqual(int(x0_x), 73)
+        self.assertEqual(int(sigma_x), 25)
+        self.assertEqual(int(a_y), 4798)
+        self.assertEqual(int(y0_y), 379)
+        self.assertEqual(int(sigma_y), 13)
 
 if __name__ == '__main__':
     unittest.main()

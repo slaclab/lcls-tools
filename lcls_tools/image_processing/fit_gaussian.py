@@ -108,11 +108,11 @@ def find_line(zero_runs, runs, xdata, ydata):
         zero1 = runs[zero_runs[0]]
         zero2 = runs[zero_runs[-1]]
 
-        x_ind1 = zero1[argsort(ydata[zero1])[len(zero1) / 2]]
+        x_ind1 = zero1[argsort(ydata[zero1])[int(len(zero1) / 2)]]
         x1 = xdata[x_ind1]
         y1 = ydata[x_ind1]
 
-        x_ind2 = zero2[argsort(ydata[zero2])[len(zero2) / 2]]
+        x_ind2 = zero2[argsort(ydata[zero2])[int(len(zero2) / 2)]]
         x2 = xdata[x_ind2]
         y2 = ydata[x_ind2]
 

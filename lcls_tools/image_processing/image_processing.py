@@ -24,6 +24,7 @@ def average_image(images):
 
 def shape_image(image, x_size, y_size):
     """Shape typical returned array, rows x columns so y x x"""
+
     return image.reshape(y_size, x_size)
 
 def x_projection(image, axis=0, subtract_baseline=True):
@@ -46,7 +47,7 @@ def gauss_func(x, a, x0, sigma):
     return a * np.exp(-(x - x0)**2 / (2 * sigma**2))
 
 def gauss_fit(projection, plot=False):
-    x = asarray(range(len(projection)))
+    x = np.asarray(range(len(projection)))
     data, _, step = fg.process_data(projection)
     guess = fg.get_guess(x, data, step, False, num_peaks=1)[0]
     x0_x, a_x, sigma_x = fg.get_fit(data, x, guess)[2:]
