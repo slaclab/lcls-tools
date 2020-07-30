@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Correlation plot - LCLS Tools</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Correlation plot";
+    var mkdocs_page_input_path = "Correlation_Plot.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> LCLS Tools</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">LCLS Tools</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../Solenoid_Calculation/">Beam Calculations</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Correlation plot</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#about">About</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-view-a-correlation-plot">How to view a Correlation Plot</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#useful-information">Useful Information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#correlation-plot-analysis">Correlation Plot Analysis</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#note">Note</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Emittance_Scan/">Emittance Scan</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Image_Processing/">Image Processing</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">LCLS Tools</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>LCLS Tools &raquo;</li>
+        
+      
+    
+    <li>Correlation plot</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="correlation-plot">Correlation Plot</h1>
+<h2 id="about">About</h2>
+<p>These tools are used to find a relationship between the size of the beam and the    magnate strength. The sections below contains packages that are used to view and analyze the correlation plots as well as test if that code works correctly. </p>
+<h2 id="how-to-view-a-correlation-plot">How to view a Correlation Plot</h2>
+<p>The purpose of this package is to unpack a mat file and allow the examination of the correlation plots. The tool currently has hard coded paths specific to the author of the code and will need to be updated to suit everyone. This package may soon be available at  <a href="https://github.com/slaclab/lcls-tools/tree/master/lcls_tools/cor_plot">GitHub.com</a>. </p>
+<h3 id="useful-information">Useful Information</h3>
+<ul>
+<li>Uses cor_plot tools from lcls-tools.</li>
+<li>Loads data and plots a correlation plot from the data.</li>
+<li>Error bars indicate the deviance from the mean at each x value.</li>
+<li>x values (magnet strength) are found using the tool ctrl_vals.</li>
+<li>At each x value, some number of iterations will be taken. </li>
+</ul>
+<p>A specific fit and beam name can be chosen from the following lists:
+FIT = ['Gaussian', 'Asymmetric', 'Super', 'RMS', 'RMS cut peak', 'RMS cut area', 'RMS floor']
+beam_names: profx, xStat, profy, yStat, profu, uStat, stats</p>
+<p>In each iteration, some number of samples are taken.
+The mean of the samples in each iteration is taken and appended to a new array.
+This new array is used for the y values (beam size).
+The x array is plotted against the y array, along with error bars.</p>
+<h2 id="correlation-plot-analysis">Correlation Plot Analysis</h2>
+<p>This utility, found <a href="https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/cor_plot/cor_plot_mat_scan.py">here</a>, can take a cor plot .mat file and turn it into a python data object.  The goal is to present the data from a cor plot in a meaningful way. Below shows an example of the test that was used for theoriginal package. The full test can be found <a href="https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/cor_plot/cor_plot_mat_scan_test.py">here</a>.</p>
+<p>Example: 'test_scan.mat'</p>
+<p>Import and Initialize cor plot data object
+from cor_plot_mat_scan import CorPlotMatScan as CPMS
+cpms = CPMS('test_scan.mat')</p>
+<p>Access Properties.  Here are some of the properties that are defined for the data object.</p>
+<pre><code class="sh">cpms.fields
+('accelerator', 'status', 'ctrlPV', 'beam', 'profPV', 'ts', 'config')
+&gt;&gt;&gt; cpms.accelerator
+'LCLS2'
+&gt;&gt;&gt; cpms.ctrl_pv
+'SOLN:GUNB:212:BCTRL'
+&gt;&gt;&gt; cpms.iterations
+10
+&gt;&gt;&gt; cpms.ctrl_vals
+[0.072999999999999995, 0.073888888888888879, 0.074777777777777776, 0.07566666666666666, 0.076555555555555557, 0.077444444444444441, 0.078333333333333338, 0.079222222222222222, 0.080111111111111119, 0.081000000000000003]
+&gt;&gt;&gt; cpms.beam_names
+('profx', 'xStat', 'xStatStd', 'profy', 'yStat', 'yStatStd', 'profu', 'uStat', 'uStatStd', 'method', 'stats', 'statsStd')
+&gt;&gt;&gt; cpms.timestamp
+737730.05017097027
+&gt;&gt;&gt; cpms.samples
+2
+</code></pre>
+
+<p>Access Beam Data.  This is very tricky and could use some cleanup.  This is all the metadata associated with the scan and goes by the nature of cpms.beam[iteration][sample][fit].  The fits are in the following order FIT = ['Gaussian', 'Asymmetric', 'Super', 'RMS', 'RMS cut peak', 'RMS cut area', 'RMS floor'].</p>
+<p>Example, say I want to get a specific field from beam_names.  Say 'profx' for iteration 3, sample 2 and 'RMS cut peak' (5, index of 4):</p>
+<pre><code>&gt;&gt;&gt; cpms.beam[2][1][4]['profx']
+array([[ -8.04000000e+03,  -8.02392000e+03,  -8.00784000e+03, ...,
+          5.37072000e+03,   5.38680000e+03,   5.40288000e+03],
+       [  0.00000000e+00,   0.00000000e+00,   2.49000000e+02, ...,
+          1.72000000e+02,   0.00000000e+00,   2.64000000e+02],
+       [  1.72791308e+01,   1.77236486e+01,   1.81784282e+01, ...,
+          4.98085984e+00,   4.84116133e+00,   4.70507716e+00]])
+</code></pre>
+
+<h2 id="note">Note</h2>
+<p>As you can see, this whole beam property needs a lot of cleanup.  I do not even know what profx is, maybe an x projection/histogram of the profile monitor?  Your guess is as good as mine.  Good luck!</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Emittance_Scan/" class="btn btn-neutral float-right" title="Emittance Scan">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Solenoid_Calculation/" class="btn btn-neutral" title="Beam Calculations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Solenoid_Calculation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Emittance_Scan/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
