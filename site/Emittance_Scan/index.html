@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Emittance Scan - LCLS Tools</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Emittance Scan";
+    var mkdocs_page_input_path = "Emittance_Scan.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> LCLS Tools</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">LCLS Tools</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../Solenoid_Calculation/">Beam Calculations</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Correlation_Plot/">Correlation plot</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Emittance Scan</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#about">About</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#emittance-scan-analysis">Emittance Scan Analysis</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#note">Note</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Image_Processing/">Image Processing</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">LCLS Tools</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>LCLS Tools &raquo;</li>
+        
+      
+    
+    <li>Emittance Scan</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="emittance-scan">Emittance Scan</h1>
+<h2 id="about">About</h2>
+<p>The emittance scan is a tool that calculates and analyzes the emittance of an elecron beam. The Emittance is charaterized as the momentum of the electrons in the beam. A useful emittance is one that is as small as possible in a transverse demension.</p>
+<h2 id="emittance-scan-analysis">Emittance Scan Analysis</h2>
+<p>This <a href="https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/emit_scan/mat_emit_scan.py">utility</a> can take an emittance scan .mat file and turn it into a python data object. The goal is to present the data from an emittance scan in a meaningful way. This utility has a <a href="https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/emit_scan/mat_emit_scan_test.py">test file</a>  that is used for testing, but we can use it as an example. The full test is at the link above. </p>
+<p>Example: 'test_scan.mat'</p>
+<p>Import and Initialize emit scan data object</p>
+<pre><code>&gt;&gt;&gt; from mat_emit_scan import MatEmitScan as MES
+&gt;&gt;&gt; mes = MES('test_scan.mat')
+</code></pre>
+
+<p>Look at some metadata provided</p>
+<pre><code>&gt;&gt;&gt; mes.fields
+('status', 'type', 'name', 'quadName', 'quadVal', 'use', 'ts', 'beam', 'beamStd', 'beamList', 'chargeList', 'charge', 'chargeStd', 'rMatrix', 'twiss0', 'energy', 'twiss', 'twissstd', 'orbit', 'orbitstd', 'twissPV')
+&gt;&gt;&gt; mes.mat_file
+'test_scan.mat'
+&gt;&gt;&gt; mes.status
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+&gt;&gt;&gt; mes.scan_type
+'scan'
+&gt;&gt;&gt; mes.name
+'YAGS:GUNB:753'
+&gt;&gt;&gt; mes.quad_name
+'SOLN:GUNB:212'
+&gt;&gt;&gt; mes.quad_vals
+array([ 0.072     ,  0.07288889,  0.07377778,  0.07466667,  0.07555556,
+        0.07644444,  0.07733333,  0.07822222,  0.07911111,  0.08      ])
+&gt;&gt;&gt; mes.energy
+0.00080999999999999996
+&gt;&gt;&gt; mes.emit_x
+{'RMS': 3.4515596891751565, 'RMS floor': 9.7058411460479448, 'Asymmetric': 2.3011730612686216, 'RMS cut peak': 4.1500304671227708, 'Gaussian': 2.2849066179125792, 'RMS cut area': 2.4536073194623635, 'Super': 1.688336458977292}
+&gt;&gt;&gt; mes.beta_x
+{'RMS': 80.484605665606026, 'RMS floor': 100.91535950661032, 'Asymmetric': 97.804316246866463, 'RMS cut peak': 76.108952766218465, 'Gaussian': 96.099462789374726, 'RMS cut area': 99.545334166075449, 'Super': 93.171709901593815}
+&gt;&gt;&gt; mes.alpha_x
+{'RMS': -55.395171987314683, 'RMS floor': -69.88573148701731, 'Asymmetric': -67.660687952024801, 'RMS cut peak': -52.608008222157309, 'Gaussian': -66.480550801923854, 'RMS cut area': -68.518659896328131, 'Super': -64.492473842048952}
+&gt;&gt;&gt; mes.bmag_x
+{'RMS': 1007.7399628928547, 'RMS floor': 1268.6334422248324, 'Asymmetric': 1228.6852675287346, 'RMS cut peak': 955.62547016282565, 'Gaussian': 1207.2601105065046, 'RMS cut area': 1246.4364849169979, 'Super': 1170.9257736052093}
+</code></pre>
+
+<p>There are more properties, but it's tough to list them all here.  Read the code to see all avialable properties until documentation is being written.  Hoping someone can sphinx this stuff.</p>
+<p>Now for the beam property.  This is a bit disconcerting as in a cor plot scan, the beam property contains samples, but here it only seems to have one available sample (no list nesting).  Anyway, in this case it seems to be mes.beam[iteration][fit], where fit is the same FIT = ['Gaussian', 'Asymmetric', 'Super', 'RMS', 'RMS cut peak', 'RMS cut area', 'RMS floor'].  So in an example, say I want the 'profx' data for the 'Super' fit (index 2) for iteration 2 (index 1).</p>
+<pre><code>&gt;&gt;&gt; mes.beam[1][2]['profx']
+array([[-6737.52      , -6721.44      , -6705.36      , ...,
+         2942.64      ,  2958.72      ,  2974.8       ],
+       [  164.        ,    15.        ,    77.        , ...,
+          -52.        ,   163.        ,    84.        ],
+       [   19.07582407,    19.07582407,    19.07582407, ...,
+           19.07582407,    19.07582407,    19.07582407]])
+</code></pre>
+
+<p>We could find out that this beam structure is actually similar to how it is in the cor plot .mat scan.  Then we could use the same unpacking function here in emittance scan (or define a general factory method).  I leave that up to further validation, and maybe we can have a summer student work on that.</p>
+<p>Example: 'test_scan.mat'</p>
+<p>Import and Initialize emit scan data object</p>
+<pre><code>&gt;&gt;&gt; from mat_emit_scan import MatEmitScan as MES
+&gt;&gt;&gt; mes = MES('test_scan.mat')
+</code></pre>
+
+<p>Look at some metadata provided</p>
+<pre><code>&gt;&gt;&gt; mes.fields
+('status', 'type', 'name', 'quadName', 'quadVal', 'use', 'ts', 'beam', 'beamStd', 'beamList', 'chargeList', 'charge', 'chargeStd', 'rMatrix', 'twiss0', 'energy', 'twiss', 'twissstd', 'orbit', 'orbitstd', 'twissPV')
+&gt;&gt;&gt; mes.mat_file
+'test_scan.mat'
+&gt;&gt;&gt; mes.status
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+&gt;&gt;&gt; mes.scan_type
+'scan'
+&gt;&gt;&gt; mes.name
+'YAGS:GUNB:753'
+&gt;&gt;&gt; mes.quad_name
+'SOLN:GUNB:212'
+&gt;&gt;&gt; mes.quad_vals
+array([ 0.072     ,  0.07288889,  0.07377778,  0.07466667,  0.07555556,
+        0.07644444,  0.07733333,  0.07822222,  0.07911111,  0.08      ])
+&gt;&gt;&gt; mes.energy
+0.00080999999999999996
+&gt;&gt;&gt; mes.emit_x
+{'RMS': 3.4515596891751565, 'RMS floor': 9.7058411460479448, 'Asymmetric': 2.3011730612686216, 'RMS cut peak': 4.1500304671227708, 'Gaussian': 2.2849066179125792, 'RMS cut area': 2.4536073194623635, 'Super': 1.688336458977292}
+&gt;&gt;&gt; mes.beta_x
+{'RMS': 80.484605665606026, 'RMS floor': 100.91535950661032, 'Asymmetric': 97.804316246866463, 'RMS cut peak': 76.108952766218465, 'Gaussian': 96.099462789374726, 'RMS cut area': 99.545334166075449, 'Super': 93.171709901593815}
+&gt;&gt;&gt; mes.alpha_x
+{'RMS': -55.395171987314683, 'RMS floor': -69.88573148701731, 'Asymmetric': -67.660687952024801, 'RMS cut peak': -52.608008222157309, 'Gaussian': -66.480550801923854, 'RMS cut area': -68.518659896328131, 'Super': -64.492473842048952}
+&gt;&gt;&gt; mes.bmag_x
+{'RMS': 1007.7399628928547, 'RMS floor': 1268.6334422248324, 'Asymmetric': 1228.6852675287346, 'RMS cut peak': 955.62547016282565, 'Gaussian': 1207.2601105065046, 'RMS cut area': 1246.4364849169979, 'Super': 1170.9257736052093}
+</code></pre>
+
+<p>There are more properties, but it's tough to list them all here.  Read the code to see all avialable properties until documentation is being written.  Hoping someone can sphinx this stuff.</p>
+<p>Now for the beam property.  This is a bit disconcerting as in a cor plot scan, the beam property contains samples, but here it only seems to have one available sample (no list nesting).  Anyway, in this case it seems to be mes.beam[iteration][fit], where fit is the same FIT = ['Gaussian', 'Asymmetric', 'Super', 'RMS', 'RMS cut peak', 'RMS cut area', 'RMS floor'].  So in an example, say I want the 'profx' data for the 'Super' fit (index 2) for iteration 2 (index 1).</p>
+<pre><code>&gt;&gt;&gt; mes.beam[1][2]['profx']
+array([[-6737.52      , -6721.44      , -6705.36      , ...,
+         2942.64      ,  2958.72      ,  2974.8       ],
+       [  164.        ,    15.        ,    77.        , ...,
+          -52.        ,   163.        ,    84.        ],
+       [   19.07582407,    19.07582407,    19.07582407, ...,
+           19.07582407,    19.07582407,    19.07582407]])
+</code></pre>
+
+<h2 id="note">Note</h2>
+<p>We could find out that this beam structure is actually similar to how it is in the cor plot .mat scan.  Then we could use the same unpacking function here in emittance scan (or define a general factory method).  I leave that up to further validation.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Image_Processing/" class="btn btn-neutral float-right" title="Image Processing">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Correlation_Plot/" class="btn btn-neutral" title="Correlation plot"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Correlation_Plot/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Image_Processing/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
