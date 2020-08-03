@@ -4,7 +4,11 @@ nav:
   - 'LCLS Tools':
       - Beam Calculations: 'Solenoid_Calculation.md'
       - Correlation plot: 'Correlation_Plot.md'
+      - Data Analysis: 'Data_Analysis.md'
+      - Devices: 'Devices.md'
       - Emittance Scan: 'Emittance_Scan.md'
       - Image Processing: 'Image_Processing.md'
+      - Logger: 'Logger.md'
+      - Math Tools: 'Math_Tools.md'
 theme: readthedocs
 
