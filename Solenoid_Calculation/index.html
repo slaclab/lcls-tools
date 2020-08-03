@@ -65,9 +65,17 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../Correlation_Plot/">Correlation plot</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Data_Analysis/">Data Analysis</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Devices/">Devices</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../Emittance_Scan/">Emittance Scan</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../Image_Processing/">Image Processing</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Logger/">Logger</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Math_Tools/">Math Tools</a>
                     </li>
                 </ul>
       </div>
@@ -109,13 +117,55 @@
                 <h1 id="beam-calculations">Beam Calculations</h1>
 <hr />
 <h2 id="about">About</h2>
-<p>The Solenoid is a lense inside the LCLS that is used to correct the momentum of the individual electrons that compose the electron beam. This is crucial to maintaining the size and shape of the beam. Therefore, the solenoid lowers the emittance and allows for a better stabilized beam. </p>
+<p>The Solenoid is a lense inside the LCLS that is used to correct the 
+momentum of the individual electrons that compose the electron beam. 
+This is crucial to maintaining the size and shape of the beam. </p>
 <hr />
 <h2 id="solenoid-calculation-package">Solenoid Calculation Package</h2>
-<p>The goal of this utility is to collect data from the electron beam as it passes through the solenoid and use that data to calculate how the solenoid should be positioned to create the lowest possible emittance. This package, found <a href="https://github.com/slaclab/lcls-tools/tree/python3devel/lcls_tools/beam_calcs/sol_calc">here</a>, is currently under development.</p>
+<p>The goal of this utility is to collect data from the electron beam 
+as it passes through the solenoid and use that data to calculate the 
+best position of the solenoid for what is needed. This package, 
+found <a href="https://github.com/slaclab/lcls-tools/tree/python3devel/lcls_tools/beam_calcs/sol_calc">here</a>, 
+is currently under development. </p>
+<p>Import and Initialize Solenoid calc. data object </p>
+<pre><code>&gt;&gt;&gt; from sol_calc import SolCalc as S
+&gt;&gt;&gt; s = S(0.05, 0.5, 0.1)
+</code></pre>
+
+<p>Function uses: </p>
+<pre><code>&gt;&gt;&gt; s.x_vals
+[]
+&gt;&gt;&gt; s.y_vals
+[]
+&gt;&gt;&gt; s.x_stds
+[]
+&gt;&gt;&gt; s.y_stds
+[]
+&gt;&gt;&gt; s.b_vals
+[]
+&gt;&gt;&gt; s.results
+none
+&gt;&gt;&gt; s.gun_energy
+e_gun, .5
+&gt;&gt;&gt; s.length
+l, .05
+&gt;&gt;&gt; s.calc_p
+momentum calculation
+  gamma = 1.0 + (self._e_gun / 0.511)
+  beta = sqrt(1.0 - (1/gamma)**2)
+  return beta*gamma*sc.m_e*sc.c
+&gt;&gt;&gt; s.calc_K
+Get the current K value
+  return (b * sc.e) / (2*p)
+
+</code></pre>
+
+<p>The remaining functions are calculations that will be used to generate an x and y array.
+The final function will then use the arrays to offset the previous solenoid calculation. </p>
 <hr />
 <h2 id="solenoid-calculation-test">Solenoid Calculation Test</h2>
-<p>This utility will test the functions in the solenoid calculation package to ensure that the package will complete it's intended purpose.</p>
+<p>This utility will test the functions in the solenoid calculation package 
+to ensure that the package will complete it's intended purpose. The full test can be found <a href="https://github.com/slaclab/lcls-tools/blob/master/lcls_tools/beam_calcs/sol_calc/sol_calc_test.py">here</a></p>
 <p>More packages to come.</p>
               
             </div>
