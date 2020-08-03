@@ -1,6 +1,10 @@
 site_name: LCLS Tools
 nav:
   - Home: 'index.md'
-  - Correlation plot: 'Correlation_Plot.md'
+  - 'LCLS Tools':
+      - Beam Calculations: 'Solenoid_Calculation.md'
+      - Correlation plot: 'Correlation_Plot.md'
+      - Emittance Scan: 'Emittance_Scan.md'
+      - Image Processing: 'Image_Processing.md'
 theme: readthedocs
 

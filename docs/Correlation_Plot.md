@@ -1,13 +1,25 @@
 # Correlation Plot
+------------------
 
 ## About
-These tools are used to find a relationship between the size of the beam and the    magnate strength. The sections below contains packages that are used to view and analyze the correlation plots as well as test if that code works correctly. 
 
+These tools are used to find a relationship between the size of the beam 
+and the magnet strength. The sections below contains packages that are
+used to view and analyze the correlation plots as well as test if that 
+code works correctly. 
 
+---------------------------------
 ## How to view a Correlation Plot
-The purpose of this package is to unpack a mat file and allow the examination of the correlation plots. The tool currently has hard coded paths specific to the author of the code and will need to be updated to suit everyone. This package may soon be available at  [GitHub.com](https://github.com/slaclab/lcls-tools/tree/master/lcls_tools/cor_plot). 
 
+The purpose of this package is to unpack a .mat file and allow the
+examination of the correlation plots. The tool currently has hard coded 
+paths specific to the author of the code and will need to be updated to 
+suit anyone. This package may soon be available at
+ [GitHub.com](https://github.com/slaclab/lcls-tools/tree/master/lcls_tools/cor_plot). 
+
+---------------------------------
 ### Useful Information
+
  - Uses cor_plot tools from lcls-tools.
  - Loads data and plots a correlation plot from the data.
  - Error bars indicate the deviance from the mean at each x value.
@@ -23,6 +35,7 @@ The mean of the samples in each iteration is taken and appended to a new array.
 This new array is used for the y values (beam size).
 The x array is plotted against the y array, along with error bars.
 
+----------------------------
 ## Correlation Plot Analysis
 This utility, found [here](https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/cor_plot/cor_plot_mat_scan.py), can take a cor plot .mat file and turn it into a python data object.  The goal is to present the data from a cor plot in a meaningful way. Below shows an example of the test that was used for theoriginal package. The full test can be found [here](https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/cor_plot/cor_plot_mat_scan_test.py).
 
@@ -66,6 +79,6 @@ array([[ -8.04000000e+03,  -8.02392000e+03,  -8.00784000e+03, ...,
        [  1.72791308e+01,   1.77236486e+01,   1.81784282e+01, ...,
           4.98085984e+00,   4.84116133e+00,   4.70507716e+00]])
 ```
-
+-------
 ## Note
 As you can see, this whole beam property needs a lot of cleanup.  I do not even know what profx is, maybe an x projection/histogram of the profile monitor?  Your guess is as good as mine.  Good luck!
