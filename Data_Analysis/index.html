@@ -59,7 +59,9 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Data Analysis</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#about">About</a>
+    <li class="toctree-l2"><a class="reference internal" href="#archiver">Archiver</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#archiver-test">Archiver test</a>
     </li>
     </ul>
                     </li>
@@ -111,8 +113,46 @@
             <div class="section">
               
                 <h1 id="data-analysis">Data Analysis</h1>
-<h2 id="about">About</h2>
-<p>The goal of the data analysis package is to provide functions that assist in converting data into python objects and storing that data in H5 files.</p>
+<hr />
+<h2 id="archiver">Archiver</h2>
+<p>The data analysis package consists of the archiver utility and its associated 
+test. The goal of the data Archiver utility is to provide functions 
+that assist in converting data into python objects and storing 
+that data in H5 files. This utility is found 
+<a href="https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/data_analysis/archiver.py">here</a>.</p>
+<p>Initializations and imports </p>
+<pre><code>&gt;&gt;&gt; import archiver as arch
+&gt;&gt;&gt; from mat_image import MatImage as MI
+mi = MI() 
+</code></pre>
+
+<p>The following explains how the functions in the Archiver are used.</p>
+<pre><code>&gt;&gt;&gt; arch.datenum_to_datetime(datenum)
+Converts Matlab datenum into Python datetime. This is helpful to analyze
+the data.
+
+&gt;&gt;&gt; arch.get_iso_time(pytime)
+This will format iso time from python datetime.
+
+&gt;&gt;&gt; arch.save_mat_image_attributes(mi,h5)
+Attempts to save .mat image attributes to an h5 file.
+
+&gt;&gt;&gt; arch.save_image_to_h5(mi, h5group)
+Saves .mat image and meta data to h5 file. 
+The data is seperated by timestamp, which 
+is converted from matlab datnum to python datetime.
+mi      -- matlab image object 
+h5group -- h5 group or dataset to save attributes
+
+&gt;&gt;&gt; arch.save_pvdata_to_h5
+This function will save pvdata at specific isotime to h5 file.
+</code></pre>
+
+<p>The utility is currently under development. </p>
+<h2 id="archiver-test">Archiver test</h2>
+<p>This utility will test the functions in the Archiver package 
+to ensure that the package will complete it's intended purpose. 
+The full test can be found <a href="https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/data_analysis/archiver_test.py">here</a>.</p>
               
             </div>
           </div>
