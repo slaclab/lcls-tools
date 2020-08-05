@@ -121,7 +121,9 @@ that assist in converting data into python objects and storing
 that data in H5 files. This utility is found 
 <a href="https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/data_analysis/archiver.py">here</a>.</p>
 <p>Initializations and imports </p>
-<pre><code>&gt;&gt;&gt; import archiver as arch
+<pre><code>&gt;&gt;&gt; from datetime import datetime, timedelta
+&gt;&gt;&gt; import meme.archive 
+&gt;&gt;&gt; import meme.names 
 &gt;&gt;&gt; from mat_image import MatImage as MI
 mi = MI() 
 </code></pre>
