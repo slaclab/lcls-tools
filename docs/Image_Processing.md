@@ -9,12 +9,17 @@ This package contains several utilities that are essential to the image
 processing utility. They are as follows:
 
 * [fit_gaussian.py](https://github.com/slaclab/lcls-tools/blob/master/lcls_tools/image_processing/fit_gaussian.py)
-*       This utility reads in a matlab file of xcor data and fits gaussians to it.
+```
+This utility reads in a matlab file of xcor data and fits gaussians to it.
+```
 * [image.py](https://github.com/slaclab/lcls-tools/blob/master/lcls_tools/image_processing/image.py)
-*       Defines the functions that turn the image into a python object.
+```
+Defines the functions that turn the image into a python object.
+```
 * [mat_image.py](https://github.com/slaclab/lcls-tools/blob/master/lcls_tools/image_processing/mat_image.py)
-*       Creates a .mat image object from a typical LCLS .mat file.  
-
+```
+Creates a .mat image object from a typical LCLS .mat file.  
+```
 ---------------------------
 ## Image Processing Utility
 The image processing utility has several functions that can be
