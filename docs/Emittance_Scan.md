@@ -1,11 +1,6 @@
 # Emittance Scan
 ----------------
 
-## About 
-The emittance scan is a tool that calculates and analyzes 
-the emittance of an electron beam. 
-
---------------------------
 ## Emittance Scan Analysis
 This [utility](https://github.com/slaclab/lcls-tools/blob/python3devel/lcls_tools/emit_scan/mat_emit_scan.py) 
 can take an emittance scan .mat file and turn it into a python data object. 

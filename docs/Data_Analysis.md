@@ -1,5 +1,5 @@
 # Data Analysis
---------
+---------------
 
 ## Archiver
 The data analysis package consists of the archiver utility and its associated 
@@ -10,7 +10,9 @@ that data in H5 files. This utility is found
 
 Initializations and imports 
 ```
->>> import archiver as arch
+>>> from datetime import datetime, timedelta
+>>> import meme.archive 
+>>> import meme.names 
 >>> from mat_image import MatImage as MI
 mi = MI() 
 ```
@@ -39,6 +41,7 @@ h5group -- h5 group or dataset to save attributes
 This function will save pvdata at specific isotime to h5 file.
 ```
 The utility is currently under development. 
+
 
 ## Archiver test
 This utility will test the functions in the Archiver package 

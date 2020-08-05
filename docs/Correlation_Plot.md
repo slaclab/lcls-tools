@@ -1,8 +1,6 @@
 # Correlation Plot
 ------------------
 
-## About
-
 These tools are used to find a relationship between the size of the beam 
 and the magnet strength. The sections below contains packages that are
 used to view and analyze the correlation plots as well as test if that 
@@ -17,7 +15,7 @@ paths specific to the author of the code and will need to be updated to
 suit anyone. This package may soon be available at
  [GitHub.com](https://github.com/slaclab/lcls-tools/tree/master/lcls_tools/cor_plot). 
 
----------------------------------
+----------------------
 ### Useful Information
 
  - Uses cor_plot tools from lcls-tools.
@@ -42,9 +40,10 @@ This utility, found [here](https://github.com/slaclab/lcls-tools/blob/python3dev
 Example: 'test_scan.mat'
 
 Import and Initialize cor plot data object
+```
 from cor_plot_mat_scan import CorPlotMatScan as CPMS
 cpms = CPMS('test_scan.mat')
-
+```
 
 Access Properties.  Here are some of the properties that are defined for the data object.
 
@@ -79,6 +78,47 @@ array([[ -8.04000000e+03,  -8.02392000e+03,  -8.00784000e+03, ...,
        [  1.72791308e+01,   1.77236486e+01,   1.81784282e+01, ...,
           4.98085984e+00,   4.84116133e+00,   4.70507716e+00]])
 ```
--------
+----------------
+## Function uses
+```
+>>> cpms.file
+Loads a .mat file
+
+>>> cpms.fields
+Shows different data fields
+
+>>> cpms.control_dict
+control PV and values, units, etc..
+
+>>> cpms.accelerator
+Shows accelerator name
+
+>>> cpms.ctrl_pv
+Scans PV
+
+>>> cpms.iterations
+
+>>> cpms.ctrl_vals
+Values for control PV in scans
+
+>>> cpms.beam
+Unpacks the beam data
+
+>>> cpms.beam_names
+The different keys for a beam dict
+
+>>> cpms.timestamp
+Unpacks Matlab timestamp
+
+>>> cpms.config
+Random collection of data
+
+>>> cpms.samples
+Returns the length of the beam at index 0
+
+>>> cpms.unpack...
+The remaining functions unpack the data in the .mat file 
+```
+
 ## Note
 As you can see, this whole beam property needs a lot of cleanup.  I do not even know what profx is, maybe an x projection/histogram of the profile monitor?  Your guess is as good as mine.  Good luck!

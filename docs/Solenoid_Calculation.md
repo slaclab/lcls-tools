@@ -1,7 +1,5 @@
 # Beam Calculations
-
---------
-## About
+-------------------
 The Solenoid is a lense inside the LCLS that is used to correct the 
 momentum of the individual electrons that compose the electron beam. 
 This is crucial to maintaining the size and shape of the beam. 
@@ -51,10 +49,8 @@ Get the current K value
 ```
 The remaining functions are calculations that will be used to generate an x and y array.
 The final function will then use the arrays to offset the previous solenoid calculation. 
-
-
-
 ----------------------------
+
 ## Solenoid Calculation Test
 This utility will test the functions in the solenoid calculation package 
 to ensure that the package will complete it's intended purpose. The full test can be found [here](https://github.com/slaclab/lcls-tools/blob/master/lcls_tools/beam_calcs/sol_calc/sol_calc_test.py)
