@@ -19,7 +19,7 @@ Import and Initialize Solenoid calc. data object
 >>> s = S(0.05, 0.5, 0.1)
 ```
 
-Function uses: 
+## Function uses: 
 ```
 >>> s.x_vals
 []
@@ -49,6 +49,8 @@ Get the current K value
 ```
 The remaining functions are calculations that will be used to generate an x and y array.
 The final function will then use the arrays to offset the previous solenoid calculation. 
+This Utility is currently under development and any information into what these functions
+actually do would be a helpful addition to this documentation.
 ----------------------------
 
 ## Solenoid Calculation Test

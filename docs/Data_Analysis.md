@@ -16,6 +16,8 @@ Initializations and imports
 >>> from mat_image import MatImage as MI
 mi = MI() 
 ```
+----------------
+## Function Uses
 
 The following explains how the functions in the Archiver are used.
 
@@ -42,7 +44,7 @@ This function will save pvdata at specific isotime to h5 file.
 ```
 The utility is currently under development. 
 
-
+----------------
 ## Archiver test
 This utility will test the functions in the Archiver package 
 to ensure that the package will complete it's intended purpose. 

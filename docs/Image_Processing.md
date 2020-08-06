@@ -1,4 +1,5 @@
 # Image Processing Package
+--------------------------
 
 The Image Processing package takes an electron beam image .mat file and 
 turns it into a python data object. The goal of this package is to analyze
@@ -20,6 +21,7 @@ Defines the functions that turn the image into a python object.
 ```
 Creates a .mat image object from a typical LCLS .mat file.  
 ```
+
 ---------------------------
 ## Image Processing Utility
 The image processing utility has several functions that can be
@@ -43,8 +45,8 @@ import image_processing.py as ip
 
 ```
 
----------------
-## Function Use
+----------------
+## Function Uses
 
 The following explains how to use the functions in the utility.
 
@@ -81,5 +83,11 @@ Calculates the best gaussian fit for the image array.
 ```
 
 Each utility has a test associated with it that is meant to check 
-that each function is 
+that each function is working properly. Each test can be found below.
+
+* [image_test.py](https://github.com/slaclab/lcls-tools/blob/master/lcls_tools/image_processing/image_test.py)
+* [image_processing_test.py](https://github.com/slaclab/lcls-tools/blob/master/lcls_tools/image_processing/image_processing_test.py)
+* [mat_image_test.py](https://github.com/slaclab/lcls-tools/blob/master/lcls_tools/image_processing/mat_image_test.py)
+* [run_image_tests.py](https://github.com/slaclab/lcls-tools/blob/master/lcls_tools/image_processing/run_image_tests.py)
+
 

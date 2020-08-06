@@ -119,6 +119,6 @@ Returns the length of the beam at index 0
 >>> cpms.unpack...
 The remaining functions unpack the data in the .mat file 
 ```
-
+-------
 ## Note
 As you can see, this whole beam property needs a lot of cleanup.  I do not even know what profx is, maybe an x projection/histogram of the profile monitor?  Your guess is as good as mine.  Good luck!
