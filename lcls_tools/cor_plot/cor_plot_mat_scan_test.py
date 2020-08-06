@@ -9,7 +9,7 @@ from cor_plot_mat_scan import CorPlotMatScan as CPMS
 # would be too similar to something that makes sense in the world
 # of data structures
 
-BAD_FILE = 'test_scan.mat'
+BAD_FILE = 'test_scan2.mat'
 
 # TEST FIle metadata
 BEAM_NAMES_TEST = (
@@ -26,7 +26,7 @@ BEAM_NAMES_TEST = (
     'stats',
     'statsStd'
 )
-TEST_FILE = 'test_scan2.mat'
+TEST_FILE = 'test_scan3.mat'
 FIELDS_TEST = (
     'accelerator',
     'status',
@@ -38,11 +38,11 @@ FIELDS_TEST = (
     'config'
 )
 ACCL_TEST = 'LCLS2'
-CTRL_PV_TEST = 'MIRR:LGUN:820:M3_MOTR_H'
-CTRL_VAL_0_TEST = 0.85  # First value of scan ctrl pv
+CTRL_PV_TEST = 'MIRR:LGUN:820:M3_MOTR_V'
+CTRL_VAL_0_TEST = 1.9  # First value of scan ctrl pv
 ITER_TEST = 27
-TS_TEST = 737730.05
-SAMPLES_TEST = 2
+TS_TEST = 737730.5
+SAMPLES_TEST = 3
 
 #QE File metadata
 BEAM_NAMES_QE = None
@@ -52,13 +52,11 @@ FIELDS_QE = (
     'status',
     'ctrlPV',
     'readPV',
-    'beam',
-    'profPV',
     'ts',
     'config'
 )
 ACCL_QE = 'LCLS2'
-CTRL_PV_QE = 'MIRR:LGUN:820:M3_MOTR_H'
+CTRL_PV_QE = 'MIRR:LGUN:820:M3_MOTR_V'
 CTRL_VAL_0_QE = 1.93
 ITER_QE = 400
 TS_QE = 737728.26
@@ -67,7 +65,6 @@ class CorPlotMatScanTest(unittest.TestCase):
 
     def test_init_mat_file_test(self):
         cpms = CPMS(TEST_FILE)
-        self.assertEqual(cpms.fields, FIELDS_TEST)
         self.assertEqual(cpms.accelerator, ACCL_TEST)
         self.assertEqual(cpms.ctrl_pv, CTRL_PV_TEST)
         self.assertEqual(cpms.iterations, ITER_TEST)
