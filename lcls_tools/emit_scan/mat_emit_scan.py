@@ -1,5 +1,6 @@
 import scipy.io as sio
 import numpy as np
+from builtins import str
 
 VAL = 'val'
 UNITS = 'egu'
@@ -42,6 +43,8 @@ TWISS_PV = 'twissPV'
 class MatEmitScan(object):
     def __init__(self, mat_file):
         try:
+            #import pdb;
+            #pdb.set_trace()
             data = sio.loadmat(mat_file)['data'][0][0]
             self._fields = data.dtype.names
             self._file = mat_file
@@ -62,6 +65,8 @@ class MatEmitScan(object):
             self._twiss_std = self._unpack_prop(TWISS_STD, data)
             self._orbit = self._unpack_prop(ORBIT, data)
             self._orbit_std = self._unpack_prop(ORBIT_STD, data)
+            #import pdb;
+            #pdb.set_trace()
             self._twiss_pv = self._unpack_twiss_pv(data)
         except Exception as e:
             print('Error loading mat file: {0}'.format(e))
@@ -276,25 +281,25 @@ class MatEmitScan(object):
             
         return temp
 
+
     def _unpack_twiss_pv(self, data):
         """The other important piece.  All the twiss parameters from the
         emittance scan.  7 vals corresponding to each fit method"""
         if TWISS_PV not in self._fields:
             return None
-
+        #import pdb; pdb.set_trace()
         idx_twiss_pv = self._fields.index(TWISS_PV)
         twiss_pv = data[idx_twiss_pv]
-
         names = twiss_pv.dtype.names
         temp1 = []
+        temp2 = dict()
         for val in twiss_pv:
-            temp2 = dict()
-            for i, name in enumerate(names):
-                if name != UNITS:
-                    if isinstance(val[0][i][0], unicode):
-                        temp2[name] = str(val[0][i][0])
-                    else:
-                        temp2[name] = val[0][i][0] 
-            temp1.append(temp2)
-
-        return temp1
+            #for i, name in enumerate(names):
+             #   if name != UNITS:
+                 #   if isinstance(val[0][i][0], unicode):
+                  #      temp2[name] = str(val[0][i][0])
+                   # else:
+                    #    temp2[name] = val[0][i][0]
+                temp2[str(val[0][0][0])] = val
+                temp1.append(temp2)
+        return temp2
