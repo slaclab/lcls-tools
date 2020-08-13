@@ -43,6 +43,10 @@ Unfortunately, the control system LCLS uses has Python27 as a default.  That mea
 * Make a robust and somewhat flexible logger module that knows about SLAC things, current logger is very basic
 
 ---------------------------------------
-#### Dependancies: See requirements.txt
+#### Dependancies: 
+* Numpy
+* scipy
+* matlablib
+
 
 ### CAUTION: This is a POC, use at own risk. THESE TOOLS ARE IN VARIOUS STAGES OF DEVELOPMENT
