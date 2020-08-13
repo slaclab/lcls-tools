@@ -186,49 +186,49 @@ class MatEmitScan(object):
     def emit_x(self):
         """Return dict of emit x vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[0][VAL]))
+            return dict(zip(FIT, self._twiss_pv[0][VAL][0]))
 
     @property
     def beta_x(self):
         """Return dict of beta x vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[1][VAL]))
+            return dict(zip(FIT, self._twiss_pv[1][VAL][0]))
 
     @property
     def alpha_x(self):
         """Return dict of alpha x vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[2][VAL]))
+            return dict(zip(FIT, self._twiss_pv[2][VAL][0]))
 
     @property
     def bmag_x(self):
         """Return dict of match x vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[3][VAL]))
+            return dict(zip(FIT, self._twiss_pv[3][VAL][0]))
 
     @property
     def emit_y(self):
         """Return dict of emit y vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[4][VAL]))
+            return dict(zip(FIT, self._twiss_pv[4][VAL][0]))
 
     @property
     def beta_y(self):
         """Return dict of beta y vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[5][VAL]))
+            return dict(zip(FIT, self._twiss_pv[5][VAL][0]))
 
     @property
     def alpha_y(self):
         """Return dict of alpha y vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[6][VAL]))
+            return dict(zip(FIT, self._twiss_pv[6][VAL][0]))
 
     @property
     def bmag_y(self):
         """Return dict of match y vals with fit as key"""
         if self._twiss_pv:
-            return dict(zip(FIT, self._twiss_pv[7][VAL]))
+            return dict(zip(FIT, self._twiss_pv[7][VAL][0]))
 
     ########## Helper Functions ###########
 
@@ -286,16 +286,14 @@ class MatEmitScan(object):
 
         idx_twiss_pv = self._fields.index(TWISS_PV)
         twiss_pv = data[idx_twiss_pv]
+
         names = twiss_pv.dtype.names
         temp1 = []
-        temp2 = dict()
+
         for val in twiss_pv:
-            #for i, name in enumerate(names):
-             #   if name != UNITS:
-                 #   if isinstance(val[0][i][0], unicode):
-                  #      temp2[name] = str(val[0][i][0])
-                   # else:
-                    #    temp2[name] = val[0][i][0]
-            temp2[str(val[0][0][0])] = val
+            temp2 = dict()
+
+            for i, name in enumerate(names):
+                temp2[name] = val[0][i]
             temp1.append(temp2)
-        return temp2
+        return temp1

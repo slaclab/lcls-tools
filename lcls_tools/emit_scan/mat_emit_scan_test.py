@@ -13,14 +13,14 @@ QUAD_VAL = -4.22
 TIMESTAMP = 737963.0
 CHARGE = 0.2446
 ENERGY = 0.135
-EMIT_X = 2.28
-BETA_X = 96.1
-ALPHA_X = -66.5
-BMAG_X = 1207.3
-EMIT_Y = 2.63
-BETA_Y = 136.9
-ALPHA_Y = -94.6
-BMAG_Y = 1716.6
+EMIT_X = .36
+BETA_X = 1.8
+ALPHA_X = -0.6
+BMAG_X = 1.2
+EMIT_Y = .47
+BETA_Y = 1.3
+ALPHA_Y = -0.0
+BMAG_Y = 1.0
 
 class MatEmitScanTest(unittest.TestCase):
 
