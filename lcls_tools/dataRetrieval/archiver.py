@@ -1,13 +1,13 @@
 from datetime import datetime, timedelta
 from json import loads
 from typing import List, Dict, Union
-from requests import post
+from requests import post, get
 
 
 # The double braces are to allow for partial formatting
 ARCHIVER_URL_FORMATTER = "http://{MACHINE}-archapp.slac.stanford.edu/retrieval/data/{{SUFFIX}}"
 SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}-07:00&includeProxies=true"
-RANGE_RESULT_SUFFIX = "getData.json?pv={PV}&from={START}&to={END}&donotchunk"
+RANGE_RESULT_SUFFIX = "getData.json"
 
 
 class Archiver(object):
@@ -20,8 +20,6 @@ class Archiver(object):
 
         suffix = SINGLE_RESULT_SUFFIX.format(TIME=timeRequested.isoformat())
         url = self.url_formatter.format(SUFFIX=suffix)
-        print(url)
-        print({"pv": ",".join(pvList)})
 
         response = post(url=url, data={"pv": ",".join(pvList)})
 
@@ -53,8 +51,53 @@ class Archiver(object):
 
         return results
 
-    # def getValuesOverTimeRange(self):
+    # returns timestamps in UTC
+    def getValuesOverTimeRange(self, pvList, startTime, endTime, timeInterval=None):
+        # type: (List[str], datetime, datetime, int) -> Dict[str, Dict[str, List[Union[datetime, str]]]]
+
+        if timeInterval:
+            return self.getDataWithTimeInterval(pvList, startTime, endTime, timeInterval)
+        else:
+            url = self.url_formatter.format(SUFFIX=RANGE_RESULT_SUFFIX)
+
+            results = {}
+
+            # TODO figure out how to send all PVs at once
+            for pv in pvList:
+
+                response = get(url=url, params={"pv": pv,
+                                                "from": startTime.isoformat()+"-07:00",
+                                                "to": endTime.isoformat()+"-07:00"})
+
+                try:
+                    jsonData = loads(response.text)
+                    # It returns a list of len 1 for some godforsaken reason...
+                    element = jsonData.pop()
+                    result = {"times": [], "values": []}
+                    for datum in element[u'data']:
+                        result["times"].append(datum[u'secs'])
+                        result["values"].append(datum[u'val'])
+
+                    results[pv] = result
+
+                except ValueError:
+                    print("JSON error with {PVS}".format(PVS=pvList))
+
+            return results
 
 
 if __name__ == "__main__":
-    print(Archiver("lcls").getDataAtTime(["BEND:LTUH:220:BDES"], datetime.now()))
+    archiver = Archiver("lcls")
+    testList = ["BEND:LTUH:220:BDES", "BEND:LTUH:280:BDES"]
+    print("getDataAtTime")
+    print(archiver.getDataAtTime(testList, datetime.now()))
+    print()
+    print("getDataWithTimeInterval")
+    print(archiver.getDataWithTimeInterval(testList,
+                                           datetime.now() - timedelta(seconds=10),
+                                           datetime.now(), 1))
+    print()
+    print("getValuesOverTimeRange")
+    print(archiver.getValuesOverTimeRange(testList,
+                                          datetime.now() - timedelta(days=10),
+                                          datetime.now()))
