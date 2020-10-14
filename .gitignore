@@ -184,3 +184,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# added by jetbrains IDE
+.idea
+.DS_Store
