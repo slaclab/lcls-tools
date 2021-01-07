@@ -148,6 +148,7 @@ class Tester(TestCase):
                                     datetime(2020, 10, 11, 11, 56, 30, 10),
                                     datetime(2020, 10, 12, 11, 56, 30, 10),
                                     datetime(2020, 10, 13, 11, 56, 30, 10)]}
+        
         self.expectedDeltaResult = {'BEND:LTUH:280:BDES': multiResult280,
                                     'BEND:LTUH:220:BDES': multiResult220}
 
