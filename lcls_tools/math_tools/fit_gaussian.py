@@ -18,6 +18,11 @@ NUM_BUCKS = 10
 DEBUG = False
 
 
+def extract(matlabData, column):
+    matLst = matlabData['data'][column][0][0]
+    return matLst.flatten()
+
+
 # An unfortunate consequence of defining step as max/numbucks is that the
 # maximum point is in its own bucket (bucket 10), which would break a lot of 
 # shit, so it necessitates the error checking
@@ -233,7 +238,7 @@ def adjustData(data, step):
 
 
 ################################################################################
-# So this is a giant clusterfuck of logic where I try to autodetect peaks by 
+# So this is a giant mix of logic where I try to autodetect peaks by 
 # detecting "runs" of points, defined as a group of 3 or more consecutive points
 # that belong to the same  bucket, while simultaneously tagging those runs that
 # belong to the "zeroeth" bucket (the pedestal).
@@ -310,4 +315,84 @@ def getFit(data, x, guess):
     return curve_fit(genGaussSum, x, data, p0=guess)[0]
 
 
+def plotFit(popt, totalAdjustment, x, isGuess):
+    print "adjustment: " + str(totalAdjustment)
 
+    # Print and plot the optmized line fit.
+    # Note that popt has the same format as the guess, meaning that the first
+    # two parameters are the m and b of the line, respectively
+    print "line: " + "m = " + str(popt[0]) + ", b = " + str(popt[1])
+    plt.plot([popt[0] * j + popt[1] + totalAdjustment for j in x], '--')
+
+    # Print and plot the optimized gaussian fit(s)
+    # Again, the first two elements were the line, and each gaussian is a
+    # subsequent group of 3 elements (hence starting at index 2 and incrementing
+    # by 3)
+    for i in xrange(2, len(popt), 3):
+        print ("gaussian " + str(i // 3) + ": center = " + str(popt[i])
+               + ", amplitude = " + str(popt[i + 1]) + ", width = "
+               + str(popt[i + 2]))
+        plt.plot([gaussian(j, popt[i], popt[i + 2], popt[i + 1])
+                  + totalAdjustment for j in x], '--')
+
+    if not isGuess:
+        fit = genGaussSum(x, *popt)
+        plt.plot(fit + totalAdjustment, linewidth=2)
+
+    show()
+
+
+# This is inelegant, but the only way I could think of to get around the
+# inability to pass bounds into curve_fit
+def checkBounds(popt, data, x):
+    # Assert that the y intercept of the line is bounded by min and max of the
+    # data
+    assert max(data) >= popt[1] >= min(data)
+
+    for i in xrange(2, len(popt), 3):
+        assert x[0] <= popt[i] <= x[-1]
+        assert min(data) <= popt[i + 1] <= max(data)
+
+
+if __name__ == "__main__":
+    try:
+        filepath = argv[1]
+    except IndexError:
+        print "Usage: " + argv[0] + " [path to XCor matlab file]"
+        exit()
+
+    try:
+        axdata = loadmat(filepath)
+    except (IOError, ValueError):
+        print "Invalid input"
+        exit()
+
+    ampList = extract(axdata, 'ampList')
+
+    # TODO: Ask Axel if he needs these
+    # posList = extract(axdata, 'posList')
+    # ampstdList = extract(axdata, 'ampstdList')
+
+    numPeaks = input("Number of gaussians to fit: ")
+
+    x = range(0, len(ampList))
+
+    # Plot the data
+    plt.plot(ampList, '.', marker='o')
+
+    data, totalAdjustment, step = processData(ampList)
+
+    guess = getGuess(x, data, step, False, numPeaks)[0]
+
+    if DEBUG:
+        print "----------DEBUG MODE----------"
+        plotFit(guess, totalAdjustment, x, True)
+    else:
+        try:
+            popt = getFit(data, x, guess)
+            checkBounds(popt, data, x)
+            print "----------RESULT----------"
+            plotFit(popt, totalAdjustment, x, False)
+        except (RuntimeError, AssertionError):
+            print "----------OPTIMIZATION NOT FOUND; RETURNING GUESS----------"
+            plotFit(guess, totalAdjustment, x, True)

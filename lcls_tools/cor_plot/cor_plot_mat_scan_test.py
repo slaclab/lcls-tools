@@ -5,9 +5,7 @@ from cor_plot_mat_scan import CorPlotMatScan as CPMS
 
 # We need a scan where all struct names are populated
 # to fully test.  Would have been nice to populate every
-# possible field with something (even empty array), but that
-# would be too similar to something that makes sense in the world
-# of data structures
+# possible field with something (even empty array)
 
 BAD_FILE = 'junk.mat'
 

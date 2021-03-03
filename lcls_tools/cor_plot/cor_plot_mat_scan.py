@@ -51,10 +51,7 @@ class CorPlotMatScan(object):
     @property
     def fields(self):
         """Data fields (keys) Henrik felt like populating for given scan, depends
-        on what boxes are checked for measurements, so we'll never know unless
-        we introspect because schema is not a thing in Henrik's code.  I've never
-        seen code so uninterested in organizing data in an appreciable way...
-        probably for job security?"""
+        on what boxes are checked for measurements"""
         return self._fields
 
     @property
