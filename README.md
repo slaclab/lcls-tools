@@ -1,9 +1,8 @@
 # CAUTION: This repository is a WORK IN PROGRESS, and may not always work as expected! 
-## THESE TOOLS ARE IN VARIOUS STAGES OF DEVELOPMENT!
-## You are welcome to submit pull requests for any improvements you make!
+## THESE TOOLS ARE IN VARIOUS STAGES OF DEVELOPMENT! You are welcome to submit pull requests for any improvements you make!
 
 # About
-LCLS is in need of various tools to support high level application development using python.  This is an effort to locate a single repo that can be referenced for developemnt. Thes are not polished tools, they still need a lot of work, so please keep that in mind.
+Various tools to support high level application development at LCLS using python.  This is an effort to locate a single repo that can be referenced for developemnt. Thes are not polished tools, they still need a lot of work, so please keep that in mind.
 
 # lcls-tools
 Python tools for LCLS: 
