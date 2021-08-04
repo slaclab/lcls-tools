@@ -6,19 +6,19 @@ class Linac:
     def __init__(self, name, cryomoduleStringList):
     	# type: (str, List[str]) -> None
         self.name = name
-        self.cryomodules = []
+        self.cryomodules = {}
         for cryomoduleString in cryomoduleStringList:
-            self.cryomodules.append(Cryomodule(cryomoduleString, self))
+            self.cryomodules[cryomoduleString] = Cryomodule(cryomoduleString, self)
 
 class Cryomodule:
     def __init__(self, cryoName, linacObject):
     	# type: (str, Linac) -> None
         self.name = cryoName
         self.linac = linacObject
-        self.cavities = []
+        self.cavities = {}
 		# Every cryomodule has 8 cavities, so this is hard coded
         for cavityNum in range(1, 9):
-            self.cavities.append(Cavity(cavityNum, self))
+            self.cavities[cavityNum] = Cavity(cavityNum, self)
 
 class Cavity:
     def __init__(self, cavityNum, cryoObject):
