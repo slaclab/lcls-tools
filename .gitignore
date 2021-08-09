@@ -188,3 +188,6 @@ dkms.conf
 # added by jetbrains IDE
 .idea
 .DS_Store
+
+# Added by gedit
+*~
