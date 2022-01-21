@@ -410,5 +410,6 @@ class Tester(TestCase):
         except requests.exceptions.Timeout:
             self.skipTest("testGetValuesOverTimeRange connection timed out")
 
-    if __name__ == "__main__":
-        test()
+
+if __name__ == "__main__":
+    test()
