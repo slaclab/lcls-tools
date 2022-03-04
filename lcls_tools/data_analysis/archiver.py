@@ -22,6 +22,9 @@ TIMEOUT = 3
 
 @dataclass()
 class ArchiverData:
+    # todo make this not a union
+    # Currently one list if timestamps are shared by all PVs else a dict of
+    # pv -> timstamps
     timeStamps: Union[List[datetime], Dict[str, List[datetime]]]
     values: Dict[str, List]
 

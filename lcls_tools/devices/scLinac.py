@@ -1,7 +1,7 @@
 ###########################################################
 # Utility classes for superconduting linac
 ###########################################################
-from typing import List, Type
+from typing import Dict, List, Type
 
 
 class Cavity:
@@ -43,7 +43,7 @@ class Cryomodule:
         self.racks = {"A": Rack("A", self, cavityClass),
                       "B": Rack("B", self, cavityClass)}
 
-        self.cavities = {}
+        self.cavities: Dict[int, Cavity] = {}
         self.cavities.update(self.racks["A"].cavities)
         self.cavities.update(self.racks["B"].cavities)
 
@@ -51,18 +51,18 @@ class Cryomodule:
 
 
 class Linac:
-    def __init__(self, name, cryomoduleStringList, cavityClass=Cavity, cryomoduleClass=Cryomodule):
+    def __init__(self, linacName, cryomoduleStringList, cavityClass=Cavity, cryomoduleClass=Cryomodule):
         # type: (str, List[str], Type[Cavity], Type[Cryomodule]) -> None
         """
         Parameters
         ----------
-        name: str name of Linac i.e. "L0B", "L1B", "L2B", "L3B"
+        linacName: str name of Linac i.e. "L0B", "L1B", "L2B", "L3B"
         cryomoduleStringList: list of string names of cryomodules in the linac
         cavityClass: cavity object
         """
 
-        self.name = name
-        self.cryomodules = {}
+        self.name = linacName
+        self.cryomodules: Dict[str, cryomoduleClass] = {}
         for cryomoduleString in cryomoduleStringList:
             self.cryomodules[cryomoduleString] = cryomoduleClass(cryomoduleString, self, cavityClass)
 
@@ -81,7 +81,7 @@ class Rack:
         self.cryomodule = cryoObject
         self.rackName = rackName
         self.cavities = {}
-        self.pvPrefix = self.cryomodule.pvPrefix
+        self.pvPrefix = self.cryomodule.pvPrefix + "RACK{RACK}:".format(RACK=self.rackName)
 
         if rackName == "A":
             # rack A always has cavities 1 - 4
@@ -106,6 +106,10 @@ L3B = ["16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
 
 LINACS = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
 
+CM_LINAC_MAP = {}
+
 LINAC_OBJECTS = []
-for name, cryomoduleList in LINACS:
+for idx, (name, cryomoduleList) in enumerate(LINACS):
     LINAC_OBJECTS.append(Linac(name, cryomoduleList))
+    for cm in cryomoduleList:
+        CM_LINAC_MAP[cm] = idx
