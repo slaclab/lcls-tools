@@ -53,12 +53,12 @@ class Cryomodule:
         
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}00:".format(LINAC=self.linac.name,
                                                               CRYOMODULE=self.name)
-        
-        self.racks = {}
-        self.racks["A"] = Rack("A", self, cavityClass)
-        self.racks["B"] = Rack("B", self, cavityClass)
+                
+        self.racks = {"A": Rack("A", self, cavityClass), "B": Rack("B", self, cavityClass)}
 
-        self.cavities = dict(self.racks["A"].cavities, **self.racks["B"].cavities)
+        self.cavities = {}
+        self.cavities.update(self.racks["A"].cavities)
+        self.cavities.update(self.racks["B"].cavities)
 
 class Rack:
     def __init__(self, rackName, cryoObject, cavityClass=Cavity):
