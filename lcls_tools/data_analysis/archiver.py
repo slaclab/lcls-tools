@@ -20,6 +20,8 @@ RANGE_RESULT_SUFFIX = "getData.json"
 TIMEOUT = 3
 
 
+# Adding a data class for easier data handling (so that external functions can
+# invoke .values and .timestamps instead of having to remember dictionary keys
 @dataclass()
 class ArchiverData:
     # todo make this not a union
@@ -30,6 +32,8 @@ class ArchiverData:
 
 
 class Archiver(object):
+
+    # machine is a string that is either "lcls" or "facet"
     def __init__(self, machine):
         # type: (str) -> None
         self.url_formatter = ARCHIVER_URL_FORMATTER.format(MACHINE=machine)
@@ -69,8 +73,8 @@ class Archiver(object):
         while currTime < endTime:
             result = self.getDataAtTime(pvList, currTime)
             times.append(currTime)
-            for key, val in result.values.items():
-                values[key].append(val.pop())
+            for pv, valueList in result.values.items():
+                values[pv].append(valueList.pop())
             currTime += timeDelta
 
         return ArchiverData(timeStamps=times, values=values)
@@ -92,6 +96,7 @@ class Archiver(object):
                 times[pv] = []
                 values[pv] = []
 
+                # Need to add the -7 because pacific time is UTC-7!
                 response = requests.get(url=url, timeout=TIMEOUT,
                                         params={"pv"  : pv,
                                                 "from": startTime.isoformat() + "-07:00",
@@ -103,6 +108,9 @@ class Archiver(object):
                     element = jsonData.pop()
                     for datum in element[u'data']:
                         # TODO implement filtering by BSA PV
+
+                        # Using keys from documentation found at:
+                        # https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
                         times[pv].append(datetime.fromtimestamp(datum[u'secs'])
                                          + timedelta(microseconds=datum[u'nanos'] / 1000))
                         values[pv].append(datum[u'val'])
@@ -313,6 +321,7 @@ class Tester(TestCase):
                                                   values={'BEND:LTUH:280:BDES': values280,
                                                           'BEND:LTUH:220:BDES': values220})
 
+    # Utility class to be used for mocking a response to requests.post
     class MockResponse(object):
         def __init__(self):
             self.text = ""
