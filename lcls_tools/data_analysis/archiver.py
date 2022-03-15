@@ -22,7 +22,7 @@ TIMEOUT = 3
 
 # Adding a data class for easier data handling (so that external functions can
 # invoke .values and .timestamps instead of having to remember dictionary keys
-@dataclass()
+@dataclass
 class ArchiverData:
     # todo make this not a union
     # Currently one list if timestamps are shared by all PVs else a dict of
@@ -31,7 +31,7 @@ class ArchiverData:
     values: Dict[str, List]
 
 
-class Archiver(object):
+class Archiver:
 
     # machine is a string that is either "lcls" or "facet"
     def __init__(self, machine):
