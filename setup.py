@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
 import sys
 
 if sys.version_info < (3, 6):
@@ -15,8 +15,10 @@ pip install --upgrade pip
 
 setup(
     name='lcls-tools',
-    version='0.1dev',
-    packages=['lcls_tools',],
+    version='0.1.dev0',
+    packages=find_packages(),
     license='Apache License',
-    long_description=open('README.md').read(),
+    python_requires='>=3.6',
+    long_description=open('README.md').read(), 
+    long_description_content_type='text/markdown',
 )
