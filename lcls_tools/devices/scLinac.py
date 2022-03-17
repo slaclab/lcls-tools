@@ -102,7 +102,7 @@ L2B = ["04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15"]
 L3B = ["16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
        "28", "29", "30", "31", "32", "33", "34", "35"]
 
-LINACS = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
+LINAC_TUPLES = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
 
 # Utility list of linacs
 LINAC_OBJECTS: List[Linac] = []
@@ -110,7 +110,7 @@ LINAC_OBJECTS: List[Linac] = []
 # Utility dictionary to map cryomodule name strings to cryomodule objects
 CRYOMODULE_OBJECTS: Dict[str, Cryomodule] = {}
 
-for idx, (name, cryomoduleList) in enumerate(LINACS):
+for idx, (name, cryomoduleList) in enumerate(LINAC_TUPLES):
     linac = Linac(name, cryomoduleList)
     LINAC_OBJECTS.append(linac)
     CRYOMODULE_OBJECTS.update(linac.cryomodules)
