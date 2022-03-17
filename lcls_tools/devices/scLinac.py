@@ -24,8 +24,8 @@ class Cavity:
 
 
 class Cryomodule:
-    def __init__(self, cryoName: str, linacObject: Linac,
-                 cavityClass: Type[Cavity] = Cavity):
+    def __init__(self, cryoName, linacObject, cavityClass=Cavity):
+        # type: (str, Linac, Type[Cavity]) -> None
         """
         Parameters
         ----------
@@ -46,8 +46,6 @@ class Cryomodule:
         self.cavities: Dict[int, cavityClass] = {}
         self.cavities.update(self.racks["A"].cavities)
         self.cavities.update(self.racks["B"].cavities)
-
-        # self.cavities = dict(self.racks["A"].cavities, **self.racks["B"].cavities)
 
 
 class Linac:
