@@ -24,8 +24,8 @@ class Cavity:
 
 
 class Cryomodule:
-    def __init__(self, cryoName, linacObject, cavityClass=Cavity):
-        # type: (str, Linac, Type[Cavity]) -> None
+    def __init__(self, cryoName: str, linacObject: Linac,
+                 cavityClass: Type[Cavity] = Cavity):
         """
         Parameters
         ----------
@@ -43,7 +43,7 @@ class Cryomodule:
         self.racks = {"A": Rack("A", self, cavityClass),
                       "B": Rack("B", self, cavityClass)}
 
-        self.cavities: Dict[int, Cavity] = {}
+        self.cavities: Dict[int, cavityClass] = {}
         self.cavities.update(self.racks["A"].cavities)
         self.cavities.update(self.racks["B"].cavities)
 
@@ -106,10 +106,13 @@ L3B = ["16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
 
 LINACS = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
 
-CM_LINAC_MAP = {}
+CM_LINAC_MAP: Dict[str, int] = {}
 
-LINAC_OBJECTS = []
+LINAC_OBJECTS: List[Linac] = []
+CRYOMODULE_OBJECTS = {}
+
 for idx, (name, cryomoduleList) in enumerate(LINACS):
-    LINAC_OBJECTS.append(Linac(name, cryomoduleList))
-    for cm in cryomoduleList:
-        CM_LINAC_MAP[cm] = idx
+    linac = Linac(name, cryomoduleList)
+    LINAC_OBJECTS.append(linac)
+    for cmName, cm in linac.cryomodules:
+        CRYOMODULE_OBJECTS[cmName] = cm
