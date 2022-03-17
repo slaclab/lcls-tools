@@ -1,19 +1,19 @@
 # CAUTION: This repository is a WORK IN PROGRESS, and may not always work as expected! 
-## THESE TOOLS ARE IN VARIOUS STAGES OF DEVELOPMENT! You are welcome to submit pull requests for any improvements you make!
+## THESE TOOLS ARE IN VARIOUS STAGES OF DEVELOPMENT! You are welcome to submit pull requests for any improvements you make.
 
 # About
-Various tools to support high level application development at LCLS using python.  This is an effort to locate a single repo that can be referenced for developemnt. These are not polished tools, they still need a lot of work, so please keep that in mind.
+Various tools to support high level application development at LCLS using python.  This is an effort to maintain a single repo that can be referenced for developemnt. These are not polished tools, they still need a lot of work, so please keep that in mind.
 
 # lcls-tools
 Python tools for LCLS: 
-* Device API (profile monitors, stoppers, magnets, etc...)
+* Device API (profile monitors, SC cavities, stoppers, magnets, etc...)
 * SLAC Logger
 * Custom Math Tools
 * Image Processing Tools
 * Beam calculations (emittance, solenoid alignment corrections, etc...)
 
 # Rules of contribution (and python coding in general)
-* Make your code readable (I like good one liners as much as the next person, but pulling apart syntax can be painful)
+* Make your code readable (pulling apart syntax can be painful)
 * Add comments whenever possible
 * Try your best to adhere to style guidelines set forth in [PEP8](https://www.python.org/dev/peps/pep-0008/)
 * Try to be [idiomatic](https://docs.python-guide.org/writing/style), there is a reason people spent time writing these guides.  
@@ -26,16 +26,14 @@ Python tools for LCLS:
 Python 2 is no longer supported. Please write all new modules in Python 3.7 or above. 
 
 # TODO
-* Upgrade all master code to python 3.7 or above.
+* Upgrade all main code to python 3.7 or above.
 * Use mocks in unittest once we have upgraded
-* Change import scheme to python3 style 
 * Update style for everything python3, including asyncio, generators/yield, import changes, etc...
-* Test setup.py for machine not on same network as control system and generate mock/debug objects for testing
 * Actually verify a requirements.txt file covers all dependencies
 * Create a CLI tool
 * Provide example application using lcls_tools
 * Add more examples
-* Document with sphinx or mkdocs
+* Document with sphinx or mkdocs (resolve doc branch PR)
 * Make a robust and somewhat flexible logger module that knows about SLAC things, current logger is very basic
 
 # Dependancies: See requirements.txt
