@@ -1,6 +1,9 @@
-###########################################################
+################################################################################
 # Utility classes for superconduting linac
-###########################################################
+# NOTE: For some reason, using python 3 style type annotations causes circular
+#       import issues, so leaving as python 2 style for now
+################################################################################
+
 from typing import Dict, List, Type
 
 
