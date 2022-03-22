@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Dict, List, Union
 from unittest import TestCase, main as test
+import time
 
 import requests
 
@@ -14,7 +15,12 @@ except ImportError:
 
 # The double braces are to allow for partial formatting
 ARCHIVER_URL_FORMATTER = "http://{MACHINE}-archapp.slac.stanford.edu/retrieval/data/{{SUFFIX}}"
-SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}-07:00&includeProxies=true"
+# If daylight savings time, SLAC is 7 hours behind UTC otherwise 8
+if time.localtime().tm_isdst:
+  utcDeltaT="-07:00"
+else:
+  utcDeltaT="-08:00"
+SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}"+utcDeltaT+"&includeProxies=true"
 RANGE_RESULT_SUFFIX = "getData.json"
 
 TIMEOUT = 3
