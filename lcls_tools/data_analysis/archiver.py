@@ -15,6 +15,7 @@ except ImportError:
 
 # The double braces are to allow for partial formatting
 ARCHIVER_URL_FORMATTER = "http://{MACHINE}-archapp.slac.stanford.edu/retrieval/data/{{SUFFIX}}"
+
 # If daylight savings time, SLAC is 7 hours behind UTC otherwise 8
 if time.localtime().tm_isdst:
   utcDeltaT="-07:00"
