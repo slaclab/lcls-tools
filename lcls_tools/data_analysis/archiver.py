@@ -20,6 +20,7 @@ if time.localtime().tm_isdst:
   utcDeltaT="-07:00"
 else:
   utcDeltaT="-08:00"
+
 SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}"+utcDeltaT+"&includeProxies=true"
 RANGE_RESULT_SUFFIX = "getData.json"
 
