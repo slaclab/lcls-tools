@@ -1,6 +1,9 @@
-###########################################################
+################################################################################
 # Utility classes for superconduting linac
-###########################################################
+# NOTE: For some reason, using python 3 style type annotations causes circular
+#       import issues, so leaving as python 2 style for now
+################################################################################
+
 from typing import Dict, List, Type
 
 
@@ -43,11 +46,9 @@ class Cryomodule:
         self.racks = {"A": Rack("A", self, cavityClass),
                       "B": Rack("B", self, cavityClass)}
 
-        self.cavities: Dict[int, Cavity] = {}
+        self.cavities: Dict[int, cavityClass] = {}
         self.cavities.update(self.racks["A"].cavities)
         self.cavities.update(self.racks["B"].cavities)
-
-        # self.cavities = dict(self.racks["A"].cavities, **self.racks["B"].cavities)
 
 
 class Linac:
@@ -62,7 +63,7 @@ class Linac:
         """
 
         self.name = linacName
-        self.cryomodules: Dict[str, cryomoduleClass] = {}
+        self.cryomodules: Dict[str, Cryomodule] = {}
         for cryomoduleString in cryomoduleStringList:
             self.cryomodules[cryomoduleString] = cryomoduleClass(cryomoduleString, self, cavityClass)
 
@@ -104,12 +105,15 @@ L2B = ["04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15"]
 L3B = ["16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
        "28", "29", "30", "31", "32", "33", "34", "35"]
 
-LINACS = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
+LINAC_TUPLES = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
 
-CM_LINAC_MAP = {}
+# Utility list of linacs
+LINAC_OBJECTS: List[Linac] = []
 
-LINAC_OBJECTS = []
-for idx, (name, cryomoduleList) in enumerate(LINACS):
-    LINAC_OBJECTS.append(Linac(name, cryomoduleList))
-    for cm in cryomoduleList:
-        CM_LINAC_MAP[cm] = idx
+# Utility dictionary to map cryomodule name strings to cryomodule objects
+CRYOMODULE_OBJECTS: Dict[str, Cryomodule] = {}
+
+for idx, (name, cryomoduleList) in enumerate(LINAC_TUPLES):
+    linac = Linac(name, cryomoduleList)
+    LINAC_OBJECTS.append(linac)
+    CRYOMODULE_OBJECTS.update(linac.cryomodules)
