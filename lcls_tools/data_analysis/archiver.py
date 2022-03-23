@@ -17,10 +17,10 @@ except ImportError:
 ARCHIVER_URL_FORMATTER = "http://{MACHINE}-archapp.slac.stanford.edu/retrieval/data/{{SUFFIX}}"
 # If daylight savings time, SLAC is 7 hours behind UTC otherwise 8
 if time.localtime().tm_isdst:
-  utcDeltaT="-07:00"
+  UTC_DELTA_T="-07:00"
 else:
-  utcDeltaT="-08:00"
-SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}"+utcDeltaT+"&includeProxies=true"
+  UTC_DELTA_T="-08:00"
+SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}"+UTC_DELTA_T+"&includeProxies=true"
 RANGE_RESULT_SUFFIX = "getData.json"
 
 TIMEOUT = 3
@@ -102,11 +102,10 @@ class Archiver:
                 times[pv] = []
                 values[pv] = []
 
-                # Need to add the -7 because pacific time is UTC-7!
                 response = requests.get(url=url, timeout=TIMEOUT,
                                         params={"pv"  : pv,
-                                                "from": startTime.isoformat() + "-07:00",
-                                                "to"  : endTime.isoformat() + "-07:00"})
+                                                "from": startTime.isoformat() + UTC_DELTA_T,
+                                                "to"  : endTime.isoformat() + UTC_DELTA_T})
 
                 try:
                     jsonData = json.loads(response.text)
