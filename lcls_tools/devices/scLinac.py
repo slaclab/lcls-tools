@@ -63,7 +63,7 @@ class Linac:
         """
 
         self.name = linacName
-        self.cryomodules: Dict[str, Cryomodule] = {}
+        self.cryomodules: Dict[str, cryomoduleClass] = {}
         for cryomoduleString in cryomoduleStringList:
             self.cryomodules[cryomoduleString] = cryomoduleClass(cryomoduleString, self, cavityClass)
 
