@@ -112,18 +112,23 @@ class Archiver:
                 try:
                     jsonData = json.loads(response.text)
                     # It returns a list of len 1 for some godforsaken reason...
-                    element = jsonData.pop()
-                    for datum in element[u'data']:
-                        # TODO implement filtering by BSA PV
+                    # unless the archiver returns no data in which case the list is empty...
+                    if len(jsonData)==0:
+                      times[pv].append([])
+                      values[pv].append([])
+                    else:
+                        element = jsonData.pop()
+                        for datum in element[u'data']:
+                            # TODO implement filtering by BSA PV
 
-                        # Using keys from documentation found at:
-                        # https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
-                        times[pv].append(datetime.fromtimestamp(datum[u'secs'])
-                                         + timedelta(microseconds=datum[u'nanos'] / 1000))
-                        values[pv].append(datum[u'val'])
+                            # Using keys from documentation found at:
+                            # https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
+                            times[pv].append(datetime.fromtimestamp(datum[u'secs'])
+                                             + timedelta(microseconds=datum[u'nanos'] / 1000))
+                            values[pv].append(datum[u'val'])
 
                 except ValueError:
-                    print("JSON error with {PVS}".format(PVS=pvList))
+                    print("JSON error with {pv}".format(pv=pv))
 
             return ArchiverData(timeStamps=times, values=values)
 
