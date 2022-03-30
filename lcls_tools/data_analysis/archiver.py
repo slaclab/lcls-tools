@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Dict, List, Union
 from unittest import TestCase, main as test
+import time
 
 import requests
 
@@ -14,7 +15,14 @@ except ImportError:
 
 # The double braces are to allow for partial formatting
 ARCHIVER_URL_FORMATTER = "http://{MACHINE}-archapp.slac.stanford.edu/retrieval/data/{{SUFFIX}}"
-SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}-07:00&includeProxies=true"
+
+# If daylight savings time, SLAC is 7 hours behind UTC otherwise 8
+if time.localtime().tm_isdst:
+  UTC_DELTA_T="-07:00"
+else:
+  UTC_DELTA_T="-08:00"
+
+SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}"+UTC_DELTA_T+"&includeProxies=true"
 RANGE_RESULT_SUFFIX = "getData.json"
 
 TIMEOUT = 3
@@ -96,27 +104,31 @@ class Archiver:
                 times[pv] = []
                 values[pv] = []
 
-                # Need to add the -7 because pacific time is UTC-7!
                 response = requests.get(url=url, timeout=TIMEOUT,
                                         params={"pv"  : pv,
-                                                "from": startTime.isoformat() + "-07:00",
-                                                "to"  : endTime.isoformat() + "-07:00"})
+                                                "from": startTime.isoformat() + UTC_DELTA_T,
+                                                "to"  : endTime.isoformat() + UTC_DELTA_T})
 
                 try:
                     jsonData = json.loads(response.text)
                     # It returns a list of len 1 for some godforsaken reason...
-                    element = jsonData.pop()
-                    for datum in element[u'data']:
-                        # TODO implement filtering by BSA PV
+                    # unless the archiver returns no data in which case the list is empty...
+                    if len(jsonData)==0:
+                      times[pv].append([])
+                      values[pv].append([])
+                    else:
+                        element = jsonData.pop()
+                        for datum in element[u'data']:
+                            # TODO implement filtering by BSA PV
 
-                        # Using keys from documentation found at:
-                        # https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
-                        times[pv].append(datetime.fromtimestamp(datum[u'secs'])
-                                         + timedelta(microseconds=datum[u'nanos'] / 1000))
-                        values[pv].append(datum[u'val'])
+                            # Using keys from documentation found at:
+                            # https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
+                            times[pv].append(datetime.fromtimestamp(datum[u'secs'])
+                                             + timedelta(microseconds=datum[u'nanos'] / 1000))
+                            values[pv].append(datum[u'val'])
 
                 except ValueError:
-                    print("JSON error with {PVS}".format(PVS=pvList))
+                    print("JSON error with {pv}".format(pv=pv))
 
             return ArchiverData(timeStamps=times, values=values)
 
