@@ -27,6 +27,12 @@ class Cavity:
 
 
 class Cryomodule:
+    class Magnet:
+        def __init__(self, magnettype, cryomodule):
+            # type: (str, Cryomodule) -> None
+            self.pvprefix = "{magnettype}:{linac}:{cm}85:".format(magnettype=magnettype, linac=cryomodule.linac.name,
+                                                                  cm=cryomodule.name)
+
     def __init__(self, cryoName, linacObject, cavityClass=Cavity):
         # type: (str, Linac, Type[Cavity]) -> None
         """
@@ -39,6 +45,9 @@ class Cryomodule:
 
         self.name = cryoName
         self.linac = linacObject
+        self.quad = self.Magnet("QUAD", self)
+        self.xcor = self.Magnet("XCOR", self)
+        self.ycor = self.Magnet("YCOR", self)
 
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}00:".format(LINAC=self.linac.name,
                                                               CRYOMODULE=self.name)
