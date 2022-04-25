@@ -7,7 +7,7 @@ from epics import PV
 from time import sleep
 from typing import Dict, List, Type
 
-import scLinacUtils as utils
+import lcls_tools.devices.scLinac.scLinacUtils as utils
 
 
 class SSA:
@@ -76,7 +76,7 @@ class Cavity:
         self.rack = rackObject
         self.cryomodule = self.rack.cryomodule
         self.linac = self.cryomodule.linac
-        self.ssa = SSA(self)
+
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(LINAC=self.linac.name,
                                                                      CRYOMODULE=self.cryomodule.name,
                                                                      CAVITY=self.number)
@@ -84,7 +84,7 @@ class Cavity:
                                                     cav=self.number)
         self.heaterPrefix = "CHTR:CM{cm}:1{cav}55:HV:".format(cm=self.cryomodule.name,
                                                               cav=self.number)
-
+        self.ssa = SSA(self)
         self.pushSSASlopePV = PV(self.pvPrefix + "PUSH_SSA_SLOPE.PROC")
         self.saveSSASlopePV = PV(self.pvPrefix + "SAVE_SSA_SLOPE.PROC")
         self.interlockResetPV = PV(self.pvPrefix + "INTLK_RESET_ALL")
