@@ -56,7 +56,8 @@ class SSA:
 
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSSASlopePV,
                                            currentPV=self.currentSSASlopePV,
-                                           tolerance=utils.SSA_SLOPE_CHANGE_TOL,
+                                           lowerLimit=utils.SSA_SLOPE_LOWER_LIMIT,
+                                           upperLimit=utils.SSA_SLOPE_UPPER_LIMIT,
                                            pushPV=self.cavity.pushSSASlopePV,
                                            savePV=self.cavity.saveSSASlopePV,
                                            exception=utils.SSACalibrationError)
@@ -89,6 +90,8 @@ class Cavity:
         self.saveSSASlopePV = PV(self.pvPrefix + "SAVE_SSA_SLOPE.PROC")
         self.interlockResetPV = PV(self.pvPrefix + "INTLK_RESET_ALL")
 
+        self.drivelevelPV = PV(self.pvPrefix + "SEL_ASET")
+
         self.cavityCalibrationStartPV = PV(self.pvPrefix + "PROBECALSTRT")
         self.cavityCalibrationStatusPV = PV(self.pvPrefix + "PROBECALSTS")
 
@@ -97,12 +100,13 @@ class Cavity:
         self.pushQLoadedPV = PV(self.pvPrefix + "PUSH_QLOADED.PROC")
         self.saveQLoadedPV = PV(self.pvPrefix + "SAVE_QLOADED.PROC")
 
-        self.currentCavityScale = PV(self.pvPrefix + "CAV:SCALER_SEL.B")
+        self.currentCavityScalePV = PV(self.pvPrefix + "CAV:SCALER_SEL.B")
         self.measuredCavityScalePV = PV(self.pvPrefix + "CAV:CAL_SCALEB_NEW")
         self.pushCavityScalePV = PV(self.pvPrefix + "PUSH_CAV_SCALE.PROC")
         self.saveCavityScalePV = PV(self.pvPrefix + "SAVE_CAV_SCALE.PROC")
 
-    def runCalibration(self):
+    def runCalibration(self, loadedQLowerlimit=utils.LOADED_Q_LOWER_LIMIT,
+                       loadedQUpperlimit=utils.LOADED_Q_UPPER_LIMIT):
         """
         Calibrates the cavity's RF probe so that the amplitude readback will be
         accurate. Also measures the loaded Q (quality factor) of the cavity power
@@ -112,23 +116,27 @@ class Cavity:
         self.interlockResetPV.put(1)
         sleep(2)
 
+        self.drivelevelPV.put(15)
+
         utils.runCalibration(startPV=self.cavityCalibrationStartPV,
                              statusPV=self.cavityCalibrationStatusPV,
-                             exception=utils.CavityCalibrationError)
+                             exception=utils.CavityQLoadedCalibrationError)
 
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredQLoadedPV,
                                            currentPV=self.currentQLoadedPV,
-                                           tolerance=utils.LOADED_Q_CHANGE_TOL,
+                                           lowerLimit=loadedQLowerlimit,
+                                           upperLimit=loadedQUpperlimit,
                                            pushPV=self.pushQLoadedPV,
                                            savePV=self.saveQLoadedPV,
-                                           exception=utils.CavityCalibrationError)
+                                           exception=utils.CavityQLoadedCalibrationError)
 
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredCavityScalePV,
-                                           currentPV=self.currentCavityScale,
-                                           tolerance=utils.CAVITY_SCALE_CHANGE_TOL,
+                                           currentPV=self.currentCavityScalePV,
+                                           lowerLimit=utils.CAVITY_SCALE_LOWER_LIMIT,
+                                           upperLimit=utils.CAVITY_SCALE_UPPER_LIMIT,
                                            pushPV=self.pushCavityScalePV,
                                            savePV=self.saveCavityScalePV,
-                                           exception=utils.CavityCalibrationError)
+                                           exception=utils.CavityScaleFactorCalibrationError)
 
 
 class Magnet:

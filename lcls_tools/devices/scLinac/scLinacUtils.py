@@ -3,9 +3,14 @@ from epics.ca import CASeverityException
 from time import sleep
 
 SSA_STATUS_ON_VALUE = 3
-SSA_SLOPE_CHANGE_TOL = 0.15
-LOADED_Q_CHANGE_TOL = 0.15e7
-CAVITY_SCALE_CHANGE_TOL = 0.2
+SSA_SLOPE_LOWER_LIMIT = 0.5
+SSA_SLOPE_UPPER_LIMIT = 1.5
+# TODO add limits for the HL cavities
+LOADED_Q_LOWER_LIMIT = 3.895e7
+LOADED_Q_UPPER_LIMIT = 4.305e7
+CAVITY_SCALE_UPPER_LIMIT = 40
+CAVITY_SCALE_LOWER_LIMIT = 10
+DESIGN_Q_LOADED = 4.1e7
 
 
 class SSACalibrationError(Exception):
@@ -18,9 +23,19 @@ class SSACalibrationError(Exception):
         super().__init__(self.message)
 
 
-class CavityCalibrationError(Exception):
+class CavityQLoadedCalibrationError(Exception):
     """
-    Exception thrown during cavity SSA calibration
+    Exception thrown during cavity loaded Q measurement
+    """
+
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+
+
+class CavityScaleFactorCalibrationError(Exception):
+    """
+    Exception thrown during cavity scale factor calibration
     """
 
     def __init__(self, message):
@@ -53,10 +68,10 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception):
         raise exception('CASeverityException')
 
 
-def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, tolerance: float,
+def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: float, upperLimit: float,
                                  pushPV: PV, savePV: PV,
                                  exception: Exception = Exception):
-    if abs(measuredPV.value - currentPV.value) < tolerance:
+    if lowerLimit < measuredPV.value < upperLimit:
         pushPV.put(1)
         savePV.put(1)
     else:
