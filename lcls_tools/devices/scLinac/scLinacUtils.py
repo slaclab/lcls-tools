@@ -1,4 +1,5 @@
 from epics import PV
+from epics.ca import CASeverityException
 from time import sleep
 
 SSA_STATUS_ON_VALUE = 3
@@ -38,15 +39,18 @@ class SSAPowerError(Exception):
 
 
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception):
-    startPV.put(1)
+    try:
+        startPV.put(1)
 
-    # 2 is running
-    while statusPV.value == 2:
-        sleep(1)
+        # 2 is running
+        while statusPV.value == 2:
+            sleep(1)
 
-    # 0 is crashed
-    if statusPV.value == 0:
-        raise exception("{pv} crashed".format(pv=startPV))
+        # 0 is crashed
+        if statusPV.value == 0:
+            raise exception("{pv} crashed".format(pv=startPV))
+    except CASeverityException:
+        raise exception('CASeverityException')
 
 
 def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, tolerance: float,
