@@ -69,6 +69,16 @@ class SSA:
                                            exception=utils.SSACalibrationError)
 
 
+class Heater:
+    def __init__(self, cavity):
+        # type: (Cavity) -> None
+        self.cavity = cavity
+        self.pvPrefix = "CHTR:CM{cm}:1{cav}55:HV:".format(cm=self.cavity.cryomodule.name,
+                                                          cav=self.cavity.number)
+        self.powerDesPV = PV(self.pvPrefix + "POWER_SETPT")
+        self.powerActPV = PV(self.pvPrefix + "POWER")
+
+
 class Cavity:
     def __init__(self, cavityNum, rackObject):
         # type: (int, Rack) -> None
@@ -89,9 +99,10 @@ class Cavity:
                                                                      CAVITY=self.number)
         self.ctePrefix = "CTE:CM{cm}:1{cav}".format(cm=self.cryomodule.name,
                                                     cav=self.number)
-        self.heaterPrefix = "CHTR:CM{cm}:1{cav}55:HV:".format(cm=self.cryomodule.name,
-                                                              cav=self.number)
+
         self.ssa = SSA(self)
+        self.heater = Heater(self)
+
         self.pushSSASlopePV: PV = PV(self.pvPrefix + "PUSH_SSA_SLOPE.PROC")
         self.saveSSASlopePV: PV = PV(self.pvPrefix + "SAVE_SSA_SLOPE.PROC")
         self.interlockResetPV: PV = PV(self.pvPrefix + "INTLK_RESET_ALL")
@@ -112,7 +123,7 @@ class Cavity:
         self.saveCavityScalePV: PV = PV(self.pvPrefix + "SAVE_CAV_SCALE.PROC")
 
         self.selAmplitudeDesPV: PV = PV(self.pvPrefix + "ADES")
-        self.selAmplitudeAct: PV = PV(self.pvPrefix + "AACTMEAN")
+        self.selAmplitudeActPV: PV = PV(self.pvPrefix + "AACTMEAN")
 
         self.rfModeCtrlPV: PV = PV(self.pvPrefix + "RFMODECTRL")
         self.rfModePV: PV = PV(self.pvPrefix + "RFMODE")
@@ -133,9 +144,9 @@ class Cavity:
         :return:
         """
         print("Checking RF Pulse On Time...")
-        if self.pulseOnTimePV.value != 70:
-            print("Setting RF Pulse On Time to 70 ms")
-            self.pulseOnTimePV.put(70)
+        if self.pulseOnTimePV.value != utils.NOMINAL_PULSED_ONTIME:
+            print("Setting RF Pulse On Time to {ontime} ms".format(ontime=utils.NOMINAL_PULSED_ONTIME))
+            self.pulseOnTimePV.put(utils.NOMINAL_PULSED_ONTIME)
             self.pushGoButton()
 
     def pushGoButton(self):
