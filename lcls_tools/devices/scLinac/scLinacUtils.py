@@ -12,6 +12,25 @@ CAVITY_SCALE_UPPER_LIMIT = 40
 CAVITY_SCALE_LOWER_LIMIT = 10
 DESIGN_Q_LOADED = 4.1e7
 
+RF_MODE_SELAP = 0
+RF_MODE_SELA = 1
+RF_MODE_SEL = 2
+RF_MODE_SEL_RAW = 3
+RF_MODE_PULSE = 4
+RF_MODE_CHIRP = 5
+
+SAFE_PULSED_DRIVE_LEVEL = 15
+
+
+class PulseError(Exception):
+    """
+    Exception thrown during cavity SSA calibration
+    """
+
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+
 
 class SSACalibrationError(Exception):
     """

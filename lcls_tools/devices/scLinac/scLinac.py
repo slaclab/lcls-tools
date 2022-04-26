@@ -1,5 +1,5 @@
 ################################################################################
-# Utility classes for superconduting linac
+# Utility classes for superconducting linac
 # NOTE: For some reason, using python 3 style type annotations causes circular
 #       import issues, so leaving as python 2 style for now
 ################################################################################
@@ -16,15 +16,15 @@ class SSA:
         self.cavity: Cavity = cavity
         self.pvPrefix = self.cavity.pvPrefix + "SSA:"
 
-        self.ssaStatusPV = PV(self.pvPrefix + "StatusMsg")
-        self.ssaTurnOnPV = PV(self.pvPrefix + "PowerOn")
-        self.ssaTurnOffPV = PV(self.pvPrefix + "PowerOff")
+        self.ssaStatusPV: PV = PV(self.pvPrefix + "StatusMsg")
+        self.ssaTurnOnPV: PV = PV(self.pvPrefix + "PowerOn")
+        self.ssaTurnOffPV: PV = PV(self.pvPrefix + "PowerOff")
 
-        self.ssaCalibrationStartPV = PV(self.pvPrefix + "CALSTRT")
-        self.ssaCalibrationStatusPV = PV(self.pvPrefix + "CALSTS")
+        self.ssaCalibrationStartPV: PV = PV(self.pvPrefix + "CALSTRT")
+        self.ssaCalibrationStatusPV: PV = PV(self.pvPrefix + "CALSTS")
 
-        self.currentSSASlopePV = PV(self.pvPrefix + "SLOPE")
-        self.measuredSSASlopePV = PV(self.pvPrefix + "SLOPE_NEW")
+        self.currentSSASlopePV: PV = PV(self.pvPrefix + "SLOPE")
+        self.measuredSSASlopePV: PV = PV(self.pvPrefix + "SLOPE_NEW")
 
     def turnOn(self):
         self.setPowerState(True)
@@ -92,24 +92,82 @@ class Cavity:
         self.heaterPrefix = "CHTR:CM{cm}:1{cav}55:HV:".format(cm=self.cryomodule.name,
                                                               cav=self.number)
         self.ssa = SSA(self)
-        self.pushSSASlopePV = PV(self.pvPrefix + "PUSH_SSA_SLOPE.PROC")
-        self.saveSSASlopePV = PV(self.pvPrefix + "SAVE_SSA_SLOPE.PROC")
-        self.interlockResetPV = PV(self.pvPrefix + "INTLK_RESET_ALL")
+        self.pushSSASlopePV: PV = PV(self.pvPrefix + "PUSH_SSA_SLOPE.PROC")
+        self.saveSSASlopePV: PV = PV(self.pvPrefix + "SAVE_SSA_SLOPE.PROC")
+        self.interlockResetPV: PV = PV(self.pvPrefix + "INTLK_RESET_ALL")
 
-        self.drivelevelPV = PV(self.pvPrefix + "SEL_ASET")
+        self.drivelevelPV: PV = PV(self.pvPrefix + "SEL_ASET")
 
-        self.cavityCalibrationStartPV = PV(self.pvPrefix + "PROBECALSTRT")
-        self.cavityCalibrationStatusPV = PV(self.pvPrefix + "PROBECALSTS")
+        self.cavityCalibrationStartPV: PV = PV(self.pvPrefix + "PROBECALSTRT")
+        self.cavityCalibrationStatusPV: PV = PV(self.pvPrefix + "PROBECALSTS")
 
-        self.currentQLoadedPV = PV(self.pvPrefix + "QLOADED")
-        self.measuredQLoadedPV = PV(self.pvPrefix + "QLOADED_NEW")
-        self.pushQLoadedPV = PV(self.pvPrefix + "PUSH_QLOADED.PROC")
-        self.saveQLoadedPV = PV(self.pvPrefix + "SAVE_QLOADED.PROC")
+        self.currentQLoadedPV: PV = PV(self.pvPrefix + "QLOADED")
+        self.measuredQLoadedPV: PV = PV(self.pvPrefix + "QLOADED_NEW")
+        self.pushQLoadedPV: PV = PV(self.pvPrefix + "PUSH_QLOADED.PROC")
+        self.saveQLoadedPV: PV = PV(self.pvPrefix + "SAVE_QLOADED.PROC")
 
-        self.currentCavityScalePV = PV(self.pvPrefix + "CAV:SCALER_SEL.B")
-        self.measuredCavityScalePV = PV(self.pvPrefix + "CAV:CAL_SCALEB_NEW")
-        self.pushCavityScalePV = PV(self.pvPrefix + "PUSH_CAV_SCALE.PROC")
-        self.saveCavityScalePV = PV(self.pvPrefix + "SAVE_CAV_SCALE.PROC")
+        self.currentCavityScalePV: PV = PV(self.pvPrefix + "CAV:SCALER_SEL.B")
+        self.measuredCavityScalePV: PV = PV(self.pvPrefix + "CAV:CAL_SCALEB_NEW")
+        self.pushCavityScalePV: PV = PV(self.pvPrefix + "PUSH_CAV_SCALE.PROC")
+        self.saveCavityScalePV: PV = PV(self.pvPrefix + "SAVE_CAV_SCALE.PROC")
+
+        self.selAmplitudeDesPV: PV = PV(self.pvPrefix + "ADES")
+        self.selAmplitudeAct: PV = PV(self.pvPrefix + "AACTMEAN")
+
+        self.rfModePV: PV = PV(self.pvPrefix + "RFMODECTRL")
+
+        self.rfStatePV: PV = PV(self.pvPrefix + "RFSTATE")
+        self.rfControlPV: PV = PV(self.pvPrefix + "RFCTRL")
+
+        self.pulseGoButtonPV: PV = PV(self.pvPrefix + "PULSE_DIFF_SUM")
+        self.pulseStatusPV = PV(self.pvPrefix + "PULSE_STATUS")
+        self.pulseOnTimePV: PV = PV(self.pvPrefix + "PULSE_ONTIME")
+
+    def checkAndSetOnTime(self):
+        """
+        In pulsed mode the cavity has a duty cycle determined by the on time and
+        off time. We want the on time to be 70 ms or else the various cavity
+        parameters calculated from the waveform (e.g. the RF gradient) won't be
+        accurate.
+        :return:
+        """
+        print("Checking RF Pulse On Time...")
+        if self.pulseOnTimePV.value != 70:
+            print("Setting RF Pulse On Time to 70 ms")
+            self.pulseOnTimePV.put(70)
+            self.pushGoButton()
+
+    def pushGoButton(self):
+        """
+        Many of the changes made to a cavity don't actually take effect until the
+        go button is pressed
+        :return:
+        """
+        self.pulseGoButtonPV.put(1)
+        while self.pulseStatusPV.value < 2:
+            sleep(1)
+        if self.pulseStatusPV.value > 2:
+            raise utils.PulseError("Unable to pulse cavity")
+
+    def turnOn(self):
+        self.setPowerState(True)
+
+    def turnOff(self):
+        self.setPowerState(False)
+
+    def setPowerState(self, turnOn: bool):
+        """
+        Turn the cavity on or off
+        :param turnOn:
+        :return:
+        """
+        desiredState = (1 if turnOn else 0)
+
+        if self.rfStatePV.value != desiredState:
+            print("\nSetting RF State...")
+            self.rfControlPV.put(desiredState)
+
+        print("RF state set\n")
 
     def runCalibration(self, loadedQLowerlimit=utils.LOADED_Q_LOWER_LIMIT,
                        loadedQUpperlimit=utils.LOADED_Q_UPPER_LIMIT):
@@ -178,8 +236,8 @@ class Cryomodule:
         self.cpvPrefix = "CPV:CM{cm}:".format(cm=self.name)
         self.jtPrefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
 
-        self.dsLevelPV = PV("CLL:CM{cm}:2301:DS:LVL")
-        self.usLevelPV = PV("CLL:CM{cm}:2601:US:LVL")
+        self.dsLevelPV: PV = PV("CLL:CM{cm}:2301:DS:LVL")
+        self.usLevelPV: PV = PV("CLL:CM{cm}:2601:US:LVL")
 
         self.racks = {"A": Rack("A", self, cavityClass),
                       "B": Rack("B", self, cavityClass)}
