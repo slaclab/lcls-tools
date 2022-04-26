@@ -135,6 +135,10 @@ class Cavity:
         self.pulseStatusPV = PV(self.pvPrefix + "PULSE_STATUS")
         self.pulseOnTimePV: PV = PV(self.pvPrefix + "PULSE_ONTIME")
 
+        self.revWaveformPV: PV = PV(self.pvPrefix + "REV:AWF")
+        self.fwdWaveformPV: PV = PV(self.pvPrefix + "FWD:AWF")
+        self.cavWaveformPV: PV = PV(self.pvPrefix + "CAV:AWF")
+
     def checkAndSetOnTime(self):
         """
         In pulsed mode the cavity has a duty cycle determined by the on time and

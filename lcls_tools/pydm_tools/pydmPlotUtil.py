@@ -1,9 +1,8 @@
 import abc
-from dataclasses import dataclass
-from typing import Dict, List, Optional, Tuple
-
 from PyQt5.QtWidgets import QFormLayout
+from dataclasses import dataclass
 from pydm.widgets import PyDMLabel, PyDMTimePlot, PyDMWaveformPlot
+from typing import Dict, List, Optional, Tuple
 
 
 @dataclass
@@ -61,7 +60,7 @@ class WaveformPlotUpdater(PyDMPlotUpdater):
 class TimePlotUpdater(PyDMPlotUpdater):
 
     def __init__(self, timePlotParams: Dict[str, TimePlotParams]):
-        self.plotParams: Dict[TimePlotParams] = timePlotParams
+        self.plotParams: Dict[str, TimePlotParams] = timePlotParams
 
     def clearLayout(self, layout: QFormLayout):
         if layout is not None:
