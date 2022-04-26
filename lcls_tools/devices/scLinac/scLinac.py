@@ -26,6 +26,12 @@ class SSA:
         self.currentSSASlopePV = PV(self.pvPrefix + "SLOPE")
         self.measuredSSASlopePV = PV(self.pvPrefix + "SLOPE_NEW")
 
+    def turnOn(self):
+        self.setPowerState(True)
+
+    def turnOff(self):
+        self.setPowerState(False)
+
     def setPowerState(self, turnOn: bool):
         print("\nSetting SSA power...")
 
