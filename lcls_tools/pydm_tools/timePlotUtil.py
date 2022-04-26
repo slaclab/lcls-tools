@@ -19,13 +19,22 @@ class TimePlotUpdater:
     def __init__(self, timePlotParams: Dict[str, TimePlotParams]):
         self.timePlotParams: Dict[str, TimePlotParams] = timePlotParams
 
+    def clearLayout(self, layout: QFormLayout):
+        if layout is not None:
+            while layout.count():
+                item = layout.takeAt(0)
+                widget = item.widget()
+                if widget is not None:
+                    widget.deleteLater()
+                else:
+                    self.clearLayout(item.layout())
+
     def updatePlot(self, key: str, newChannels: List[str]):
         timePlotParams = self.timePlotParams[key]
         timePlotParams.plot.clearCurves()
 
         if timePlotParams.formLayout is not None:
-            for idx in range(timePlotParams.formLayout.rowCount()):
-                timePlotParams.formLayout.removeRow(idx)
+            self.clearLayout(timePlotParams.formLayout)
 
             for channel in newChannels:
                 timePlotParams.formLayout.addRow(channel, PyDMLabel(init_channel=channel))
