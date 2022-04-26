@@ -114,7 +114,8 @@ class Cavity:
         self.selAmplitudeDesPV: PV = PV(self.pvPrefix + "ADES")
         self.selAmplitudeAct: PV = PV(self.pvPrefix + "AACTMEAN")
 
-        self.rfModePV: PV = PV(self.pvPrefix + "RFMODECTRL")
+        self.rfModeCtrlPV: PV = PV(self.pvPrefix + "RFMODECTRL")
+        self.rfModePV: PV = PV(self.pvPrefix + "RFMODE")
 
         self.rfStatePV: PV = PV(self.pvPrefix + "RFSTATE")
         self.rfControlPV: PV = PV(self.pvPrefix + "RFCTRL")
