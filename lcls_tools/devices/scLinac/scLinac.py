@@ -90,7 +90,7 @@ class Cavity:
         """
 
         self.number = cavityNum
-        self.rack = rackObject
+        self.rack: Rack = rackObject
         self.cryomodule = self.rack.cryomodule
         self.linac = self.cryomodule.linac
 
@@ -227,59 +227,6 @@ class Magnet:
                                                               cm=cryomodule.name)
 
 
-class Cryomodule:
-
-    def __init__(self, cryoName, linacObject, cavityClass=Cavity, magnetClass=Magnet):
-        # type: (str, Linac, Type[Cavity], Type[Magnet]) -> None
-        """
-        Parameters
-        ----------
-        cryoName: str name of Cryomodule i.e. "02", "03", "H1", "H2"
-        linacObject: the linac object this cryomodule belongs to i.e. CM02 is in linac L1B
-        cavityClass: cavity object
-        """
-
-        self.name = cryoName
-        self.linac = linacObject
-        self.quad = magnetClass("QUAD", self)
-        self.xcor = magnetClass("XCOR", self)
-        self.ycor = magnetClass("YCOR", self)
-
-        self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}00:".format(LINAC=self.linac.name,
-                                                              CRYOMODULE=self.name)
-        self.ctePrefix = "CTE:CM{cm}:".format(cm=self.name)
-        self.cvtPrefix = "CVT:CM{cm}:".format(cm=self.name)
-        self.cpvPrefix = "CPV:CM{cm}:".format(cm=self.name)
-        self.jtPrefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
-
-        self.dsLevelPV: PV = PV("CLL:CM{cm}:2301:DS:LVL")
-        self.usLevelPV: PV = PV("CLL:CM{cm}:2601:US:LVL")
-
-        self.racks = {"A": Rack("A", self, cavityClass),
-                      "B": Rack("B", self, cavityClass)}
-
-        self.cavities: Dict[int, cavityClass] = {}
-        self.cavities.update(self.racks["A"].cavities)
-        self.cavities.update(self.racks["B"].cavities)
-
-
-class Linac:
-    def __init__(self, linacName, cryomoduleStringList, cavityClass=Cavity, cryomoduleClass=Cryomodule):
-        # type: (str, List[str], Type[Cavity], Type[Cryomodule]) -> None
-        """
-        Parameters
-        ----------
-        linacName: str name of Linac i.e. "L0B", "L1B", "L2B", "L3B"
-        cryomoduleStringList: list of string names of cryomodules in the linac
-        cavityClass: cavity object
-        """
-
-        self.name = linacName
-        self.cryomodules: Dict[str, cryomoduleClass] = {}
-        for cryomoduleString in cryomoduleStringList:
-            self.cryomodules[cryomoduleString] = cryomoduleClass(cryomoduleString, self, cavityClass)
-
-
 class Rack:
     def __init__(self, rackName, cryoObject, cavityClass=Cavity):
         # type: (str, Cryomodule, Type[Cavity]) -> None
@@ -308,6 +255,62 @@ class Rack:
 
         else:
             raise Exception("Bad rack name")
+
+
+class Cryomodule:
+
+    def __init__(self, cryoName, linacObject, cavityClass=Cavity, magnetClass=Magnet, rackClass=Rack):
+        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack]) -> None
+        """
+        Parameters
+        ----------
+        cryoName: str name of Cryomodule i.e. "02", "03", "H1", "H2"
+        linacObject: the linac object this cryomodule belongs to i.e. CM02 is in linac L1B
+        cavityClass: cavity object
+        """
+
+        self.name = cryoName
+        self.linac = linacObject
+        self.quad = magnetClass("QUAD", self)
+        self.xcor = magnetClass("XCOR", self)
+        self.ycor = magnetClass("YCOR", self)
+
+        self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}00:".format(LINAC=self.linac.name,
+                                                              CRYOMODULE=self.name)
+        self.ctePrefix = "CTE:CM{cm}:".format(cm=self.name)
+        self.cvtPrefix = "CVT:CM{cm}:".format(cm=self.name)
+        self.cpvPrefix = "CPV:CM{cm}:".format(cm=self.name)
+        self.jtPrefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
+
+        self.dsLevelPV: PV = PV("CLL:CM{cm}:2301:DS:LVL")
+        self.usLevelPV: PV = PV("CLL:CM{cm}:2601:US:LVL")
+
+        self.racks = {"A": rackClass("A", self, cavityClass),
+                      "B": rackClass("B", self, cavityClass)}
+
+        self.cavities: Dict[int, cavityClass] = {}
+        self.cavities.update(self.racks["A"].cavities)
+        self.cavities.update(self.racks["B"].cavities)
+
+
+class Linac:
+    def __init__(self, linacName, cryomoduleStringList, cavityClass=Cavity, cryomoduleClass=Cryomodule, rackClass=Rack,
+                 magnetClass=Magnet):
+        # type: (str, List[str], Type[Cavity], Type[Cryomodule], Type[Rack], Type[Magnet]) -> None
+        """
+        Parameters
+        ----------
+        linacName: str name of Linac i.e. "L0B", "L1B", "L2B", "L3B"
+        cryomoduleStringList: list of string names of cryomodules in the linac
+        cavityClass: cavity object
+        """
+
+        self.name = linacName
+        self.cryomodules: Dict[str, cryomoduleClass] = {}
+        for cryomoduleString in cryomoduleStringList:
+            self.cryomodules[cryomoduleString] = cryomoduleClass(cryoName=cryomoduleString, linacObject=self,
+                                                                 cavityClass=cavityClass, rackClass=rackClass,
+                                                                 magnetClass=magnetClass)
 
 
 # Global list of superconducting linac objects
