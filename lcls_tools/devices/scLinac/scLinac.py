@@ -3,9 +3,10 @@
 # NOTE: For some reason, using python 3 style type annotations causes circular
 #       import issues, so leaving as python 2 style for now
 ################################################################################
-from epics import PV
 from time import sleep
 from typing import Dict, List, Type
+
+from epics import PV
 
 import lcls_tools.devices.scLinac.scLinacUtils as utils
 
@@ -88,6 +89,9 @@ class Cavity:
         cavityNum: int cavity number i.e. 1 - 8
         rackObject: the rack object the cavities belong to
         """
+
+        # TODO fix for HLs
+        self.length = 1.038
 
         self.number = cavityNum
         self.rack: Rack = rackObject
