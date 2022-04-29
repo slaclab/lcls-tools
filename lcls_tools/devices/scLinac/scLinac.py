@@ -80,8 +80,8 @@ class Heater:
 
 
 class Cavity:
-    def __init__(self, cavityNum, rackObject, length=1.038):
-        # type: (int, Rack, float) -> None
+    def __init__(self, cavityNum, rackObject, length=1.038, ssaClass=SSA):
+        # type: (int, Rack, float, Type[SSA]) -> None
         """
         Parameters
         ----------
@@ -102,7 +102,7 @@ class Cavity:
         self.ctePrefix = "CTE:CM{cm}:1{cav}".format(cm=self.cryomodule.name,
                                                     cav=self.number)
 
-        self.ssa = SSA(self)
+        self.ssa = ssaClass(self)
         self.heater = Heater(self)
 
         self.pushSSASlopePV: PV = PV(self.pvPrefix + "PUSH_SSA_SLOPE.PROC")
@@ -231,8 +231,8 @@ class Magnet:
 
 class Rack:
     def __init__(self, rackName, cryoObject, cavityClass=Cavity,
-                 cavityLength=1.038):
-        # type: (str, Cryomodule, Type[Cavity], float) -> None
+                 cavityLength=1.038, ssaClass=SSA):
+        # type: (str, Cryomodule, Type[Cavity], float, Type[SSA]) -> None
         """
         Parameters
         ----------
@@ -251,14 +251,16 @@ class Rack:
             for cavityNum in range(1, 5):
                 self.cavities[cavityNum] = cavityClass(cavityNum=cavityNum,
                                                        rackObject=self,
-                                                       length=cavityLength)
+                                                       length=cavityLength,
+                                                       ssaClass=ssaClass)
 
         elif rackName == "B":
             # rack B always has cavities 5 - 8
             for cavityNum in range(5, 9):
                 self.cavities[cavityNum] = cavityClass(cavityNum=cavityNum,
                                                        rackObject=self,
-                                                       length=cavityLength)
+                                                       length=cavityLength,
+                                                       ssaClass=ssaClass)
 
         else:
             raise Exception("Bad rack name")
@@ -267,8 +269,9 @@ class Rack:
 class Cryomodule:
 
     def __init__(self, cryoName, linacObject, cavityClass=Cavity,
-                 magnetClass=Magnet, rackClass=Rack, isHarmonicLinearizer=False):
-        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool) -> None
+                 magnetClass=Magnet, rackClass=Rack, isHarmonicLinearizer=False,
+                 ssaClass=SSA):
+        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA]) -> None
         """
         Parameters
         ----------
@@ -299,10 +302,12 @@ class Cryomodule:
         cavitylength = 1.038 if not isHarmonicLinearizer else 0.346
         self.racks = {"A": rackClass(rackName="A", cryoObject=self,
                                      cavityClass=cavityClass,
-                                     cavityLength=cavitylength),
+                                     cavityLength=cavitylength,
+                                     ssaClass=ssaClass),
                       "B": rackClass(rackName="B", cryoObject=self,
                                      cavityClass=cavityClass,
-                                     cavityLength=cavitylength)}
+                                     cavityLength=cavitylength,
+                                     ssaClass=ssaClass)}
 
         self.cavities: Dict[int, cavityClass] = {}
         self.cavities.update(self.racks["A"].cavities)
@@ -346,24 +351,29 @@ class Linac:
 
     def addCryomodules(self, cryomoduleStringList, cryomoduleClass=Cryomodule,
                        cavityClass=Cavity, rackClass=Rack,
-                       magnetClass=Magnet, isHarmonicLinearizer=False):
-        # type: (List[str], Type[Cryomodule], Type[Cavity], Type[Rack], Type[Magnet], bool) -> None
+                       magnetClass=Magnet, isHarmonicLinearizer=False,
+                       ssaClass=SSA):
+        # type: (List[str], Type[Cryomodule], Type[Cavity], Type[Rack], Type[Magnet], bool, Type[SSA]) -> None
 
         for cryomoduleString in cryomoduleStringList:
             self.addCryomodule(cryomoduleName=cryomoduleString,
                                cryomoduleClass=cryomoduleClass,
                                cavityClass=cavityClass, rackClass=rackClass,
-                               magnetClass=magnetClass, isHarmonicLinearizer=isHarmonicLinearizer)
+                               magnetClass=magnetClass,
+                               isHarmonicLinearizer=isHarmonicLinearizer,
+                               ssaClass=ssaClass)
 
     def addCryomodule(self, cryomoduleName, cryomoduleClass=Cryomodule,
-                      cavityClass=Cavity, rackClass=Rack, magnetClass=Magnet, isHarmonicLinearizer=False):
+                      cavityClass=Cavity, rackClass=Rack, magnetClass=Magnet,
+                      isHarmonicLinearizer=False, ssaClass=SSA):
         # type: (str, Type[Cryomodule], Type[Cavity], Type[Rack], Type[Magnet], bool) -> None
         self.cryomodules[cryomoduleName] = cryomoduleClass(cryoName=cryomoduleName,
                                                            linacObject=self,
                                                            cavityClass=cavityClass,
                                                            rackClass=rackClass,
                                                            magnetClass=magnetClass,
-                                                           isHarmonicLinearizer=isHarmonicLinearizer)
+                                                           isHarmonicLinearizer=isHarmonicLinearizer,
+                                                           ssaClass=ssaClass)
 
 
 # Global list of superconducting linac objects
@@ -384,7 +394,8 @@ INSULATINGVACUUM_CRYOMODULES = [['01'], ['02', 'H1'], ['04', '06', '08', '10', '
 def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
                           magnetClass: Type[Magnet] = Magnet,
                           rackClass: Type[Rack] = Rack,
-                          cavityClass: Type[Cavity] = Cavity) -> Dict[str, Cryomodule]:
+                          cavityClass: Type[Cavity] = Cavity,
+                          ssaClass: Type[SSA] = SSA) -> Dict[str, Cryomodule]:
     cryomoduleObjects: Dict[str, Cryomodule] = {}
     linacObjects: List[Linac] = []
 
@@ -395,7 +406,7 @@ def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
                              cryomoduleClass=cryomoduleClass,
                              cavityClass=cavityClass,
                              rackClass=rackClass,
-                             magnetClass=magnetClass)
+                             magnetClass=magnetClass, ssaClass=ssaClass)
         linacObjects.append(linac)
         cryomoduleObjects.update(linac.cryomodules)
 
@@ -404,7 +415,7 @@ def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
                                    isHarmonicLinearizer=True,
                                    cavityClass=cavityClass,
                                    rackClass=rackClass,
-                                   magnetClass=magnetClass)
+                                   magnetClass=magnetClass, ssaClass=ssaClass)
     cryomoduleObjects.update(linacObjects[1].cryomodules)
     return cryomoduleObjects
 
