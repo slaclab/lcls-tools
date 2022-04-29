@@ -35,7 +35,7 @@ class SSA:
     def setPowerState(self, turnOn: bool):
         print("\nSetting SSA power...")
 
-        if turnOn:
+        if turnOn and self.ssaStatusPV != utils.SSA_STATUS_ON_VALUE:
             self.ssaTurnOnPV.put(1)
             sleep(7)
             if self.ssaStatusPV != utils.SSA_STATUS_ON_VALUE:
