@@ -3,10 +3,9 @@
 # NOTE: For some reason, using python 3 style type annotations causes circular
 #       import issues, so leaving as python 2 style for now
 ################################################################################
+from epics import PV
 from time import sleep
 from typing import Dict, List, Type
-
-from epics import PV
 
 import lcls_tools.devices.scLinac.scLinacUtils as utils
 
@@ -81,8 +80,8 @@ class Heater:
 
 
 class Cavity:
-    def __init__(self, cavityNum, rackObject):
-        # type: (int, Rack) -> None
+    def __init__(self, cavityNum, rackObject, length=1.038):
+        # type: (int, Rack, float) -> None
         """
         Parameters
         ----------
@@ -90,8 +89,7 @@ class Cavity:
         rackObject: the rack object the cavities belong to
         """
 
-        # TODO fix for HLs
-        self.length = 1.038
+        self.length = length
 
         self.number = cavityNum
         self.rack: Rack = rackObject
@@ -232,8 +230,9 @@ class Magnet:
 
 
 class Rack:
-    def __init__(self, rackName, cryoObject, cavityClass=Cavity):
-        # type: (str, Cryomodule, Type[Cavity]) -> None
+    def __init__(self, rackName, cryoObject, cavityClass=Cavity,
+                 cavityLength=1.038):
+        # type: (str, Cryomodule, Type[Cavity], float) -> None
         """
         Parameters
         ----------
@@ -250,12 +249,16 @@ class Rack:
         if rackName == "A":
             # rack A always has cavities 1 - 4
             for cavityNum in range(1, 5):
-                self.cavities[cavityNum] = cavityClass(cavityNum, self)
+                self.cavities[cavityNum] = cavityClass(cavityNum=cavityNum,
+                                                       rackObject=self,
+                                                       length=cavityLength)
 
         elif rackName == "B":
             # rack B always has cavities 5 - 8
             for cavityNum in range(5, 9):
-                self.cavities[cavityNum] = cavityClass(cavityNum, self)
+                self.cavities[cavityNum] = cavityClass(cavityNum=cavityNum,
+                                                       rackObject=self,
+                                                       length=cavityLength)
 
         else:
             raise Exception("Bad rack name")
@@ -263,8 +266,9 @@ class Rack:
 
 class Cryomodule:
 
-    def __init__(self, cryoName, linacObject, cavityClass=Cavity, magnetClass=Magnet, rackClass=Rack):
-        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack]) -> None
+    def __init__(self, cryoName, linacObject, cavityClass=Cavity,
+                 magnetClass=Magnet, rackClass=Rack, isHarmonicLinearizer=False):
+        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool) -> None
         """
         Parameters
         ----------
@@ -274,7 +278,7 @@ class Cryomodule:
         """
 
         self.name = cryoName
-        self.linac = linacObject
+        self.linac: Linac = linacObject
         self.quad = magnetClass("QUAD", self)
         self.xcor = magnetClass("XCOR", self)
         self.ycor = magnetClass("YCOR", self)
@@ -286,53 +290,123 @@ class Cryomodule:
         self.cpvPrefix = "CPV:CM{cm}:".format(cm=self.name)
         self.jtPrefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
 
-        self.dsLevelPV: PV = PV("CLL:CM{cm}:2301:DS:LVL")
-        self.usLevelPV: PV = PV("CLL:CM{cm}:2601:US:LVL")
+        self.dsLevelPV: PV = PV("CLL:CM{cm}:2301:DS:LVL".format(cm=self.name))
+        self.usLevelPV: PV = PV("CLL:CM{cm}:2601:US:LVL".format(cm=self.name))
+        self.dsPressurePV: PV = PV("CPT:CM{cm}:2303:DS:PRESS".format(cm=self.name))
+        self.jtValveRdbkPV: PV = PV(self.jtPrefix + "ORBV")
 
-        self.racks = {"A": rackClass("A", self, cavityClass),
-                      "B": rackClass("B", self, cavityClass)}
+        # harmonic linearizer cavities are 1/3 the length because they are
+        cavitylength = 1.038 if not isHarmonicLinearizer else 0.346
+        self.racks = {"A": rackClass(rackName="A", cryoObject=self,
+                                     cavityClass=cavityClass,
+                                     cavityLength=cavitylength),
+                      "B": rackClass(rackName="B", cryoObject=self,
+                                     cavityClass=cavityClass,
+                                     cavityLength=cavitylength)}
 
         self.cavities: Dict[int, cavityClass] = {}
         self.cavities.update(self.racks["A"].cavities)
         self.cavities.update(self.racks["B"].cavities)
 
+        if isHarmonicLinearizer:
+            # two cavities share one SSA, this is the mapping
+            cavity_ssa_pairs = [(1, 5), (2, 6), (3, 7), (4, 8)]
+
+            for (leader, follower) in cavity_ssa_pairs:
+                self.cavities[follower].ssa = self.cavities[leader].ssa
+            self.couplerVacuumPVs: List[PV] = [PV(self.linac.vacuumPrefix + '{cm}09:COMBO_P'.format(cm=self.name)),
+                                               PV(self.linac.vacuumPrefix + '{cm}19:COMBO_P'.format(cm=self.name))]
+        else:
+            self.couplerVacuumPVs: List[PV] = [PV(self.linac.vacuumPrefix + '{cm}14:COMBO_P'.format(cm=self.name))]
+
+        self.vacuumPVs: List[str] = [pv.pvname for pv in (self.couplerVacuumPVs
+                                                          + self.linac.beamlineVacuumPVs
+                                                          + self.linac.insulatingVacuumPVs)]
+
 
 class Linac:
-    def __init__(self, linacName, cryomoduleStringList, cavityClass=Cavity, cryomoduleClass=Cryomodule, rackClass=Rack,
-                 magnetClass=Magnet):
-        # type: (str, List[str], Type[Cavity], Type[Cryomodule], Type[Rack], Type[Magnet]) -> None
+    def __init__(self, linacName, beamlineVacuumInfixes, insulatingVacuumCryomodules):
+        # type: (str, List[str], List[str]) -> None
         """
         Parameters
         ----------
         linacName: str name of Linac i.e. "L0B", "L1B", "L2B", "L3B"
-        cryomoduleStringList: list of string names of cryomodules in the linac
-        cavityClass: cavity object
         """
 
         self.name = linacName
-        self.cryomodules: Dict[str, cryomoduleClass] = {}
+        self.cryomodules: Dict[str, Cryomodule] = {}
+        self.vacuumPrefix = 'VGXX:{linac}:'.format(linac=self.name)
+
+        self.beamlineVacuumPVs = [PV(self.vacuumPrefix
+                                     + '{infix}:COMBO_P'.format(infix=infix))
+                                  for infix in beamlineVacuumInfixes]
+        self.insulatingVacuumPVs = [PV(self.vacuumPrefix
+                                       + '{cm}96:COMBO_P'.format(cm=cm))
+                                    for cm in insulatingVacuumCryomodules]
+
+    def addCryomodules(self, cryomoduleStringList, cryomoduleClass=Cryomodule,
+                       cavityClass=Cavity, rackClass=Rack,
+                       magnetClass=Magnet, isHarmonicLinearizer=False):
+        # type: (List[str], Type[Cryomodule], Type[Cavity], Type[Rack], Type[Magnet], bool) -> None
+
         for cryomoduleString in cryomoduleStringList:
-            self.cryomodules[cryomoduleString] = cryomoduleClass(cryoName=cryomoduleString, linacObject=self,
-                                                                 cavityClass=cavityClass, rackClass=rackClass,
-                                                                 magnetClass=magnetClass)
+            self.addCryomodule(cryomoduleName=cryomoduleString,
+                               cryomoduleClass=cryomoduleClass,
+                               cavityClass=cavityClass, rackClass=rackClass,
+                               magnetClass=magnetClass, isHarmonicLinearizer=isHarmonicLinearizer)
+
+    def addCryomodule(self, cryomoduleName, cryomoduleClass=Cryomodule,
+                      cavityClass=Cavity, rackClass=Rack, magnetClass=Magnet, isHarmonicLinearizer=False):
+        # type: (str, Type[Cryomodule], Type[Cavity], Type[Rack], Type[Magnet], bool) -> None
+        self.cryomodules[cryomoduleName] = cryomoduleClass(cryoName=cryomoduleName,
+                                                           linacObject=self,
+                                                           cavityClass=cavityClass,
+                                                           rackClass=rackClass,
+                                                           magnetClass=magnetClass,
+                                                           isHarmonicLinearizer=isHarmonicLinearizer)
 
 
 # Global list of superconducting linac objects
 L0B = ["01"]
-L1B = ["02", "03", "H1", "H2"]
+L1B = ["02", "03"]
+L1BHL = ["H1", "H2"]
 L2B = ["04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15"]
 L3B = ["16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
        "28", "29", "30", "31", "32", "33", "34", "35"]
 
 LINAC_TUPLES = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
 
-# Utility list of linacs
-LINAC_OBJECTS: List[Linac] = []
+BEAMLINEVACUUM_INFIXES = [['0198'], ['0202', 'H292'], ['0402', '1592'], ['1602', '2594', '2598', '3592']]
+INSULATINGVACUUM_CRYOMODULES = [['01'], ['02', 'H1'], ['04', '06', '08', '10', '12', '14'],
+                                ['16', '18', '20', '22', '24', '27', '29', '31', '33', '34']]
 
-# Utility dictionary to map cryomodule name strings to cryomodule objects
-CRYOMODULE_OBJECTS: Dict[str, Cryomodule] = {}
 
-for idx, (name, cryomoduleList) in enumerate(LINAC_TUPLES):
-    linac = Linac(name, cryomoduleList)
-    LINAC_OBJECTS.append(linac)
-    CRYOMODULE_OBJECTS.update(linac.cryomodules)
+def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
+                          magnetClass: Type[Magnet] = Magnet,
+                          rackClass: Type[Rack] = Rack,
+                          cavityClass: Type[Cavity] = Cavity) -> Dict[str, Cryomodule]:
+    cryomoduleObjects: Dict[str, Cryomodule] = {}
+    linacObjects: List[Linac] = []
+
+    for idx, (name, cryomoduleList) in enumerate(LINAC_TUPLES):
+        linac = Linac(name, beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[idx],
+                      insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[idx])
+        linac.addCryomodules(cryomoduleStringList=cryomoduleList,
+                             cryomoduleClass=cryomoduleClass,
+                             cavityClass=cavityClass,
+                             rackClass=rackClass,
+                             magnetClass=magnetClass)
+        linacObjects.append(linac)
+        cryomoduleObjects.update(linac.cryomodules)
+
+    linacObjects[1].addCryomodules(cryomoduleStringList=L1BHL,
+                                   cryomoduleClass=cryomoduleClass,
+                                   isHarmonicLinearizer=True,
+                                   cavityClass=cavityClass,
+                                   rackClass=rackClass,
+                                   magnetClass=magnetClass)
+    cryomoduleObjects.update(linacObjects[1].cryomodules)
+    return cryomoduleObjects
+
+
+CRYOMODULE_OBJECTS = make_lcls_cryomodules()
