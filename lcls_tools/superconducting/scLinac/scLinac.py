@@ -3,10 +3,11 @@
 # NOTE: For some reason, using python 3 style type annotations causes circular
 #       import issues, so leaving as python 2 style for now
 ################################################################################
-from epics import PV
-from numpy import sign
 from time import sleep
 from typing import Dict, List, Type
+
+from epics import PV
+from numpy import sign
 
 import lcls_tools.superconducting.scLinac.scLinacUtils as utils
 
@@ -171,16 +172,17 @@ class Cavity:
         self.rack: Rack = rackObject
         self.cryomodule = self.rack.cryomodule
         self.linac = self.cryomodule.linac
-        self.steppertuner = StepperTuner(self)
 
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(LINAC=self.linac.name,
                                                                      CRYOMODULE=self.cryomodule.name,
                                                                      CAVITY=self.number)
+
         self.ctePrefix = "CTE:CM{cm}:1{cav}".format(cm=self.cryomodule.name,
                                                     cav=self.number)
 
         self.ssa = ssaClass(self)
         self.heater = Heater(self)
+        self.steppertuner = StepperTuner(self)
 
         self.pushSSASlopePV: PV = PV(self.pvPrefix + "PUSH_SSA_SLOPE.PROC")
         self.saveSSASlopePV: PV = PV(self.pvPrefix + "SAVE_SSA_SLOPE.PROC")
@@ -306,10 +308,16 @@ class Magnet:
         self.pvprefix = "{magnettype}:{linac}:{cm}85:".format(magnettype=magnettype,
                                                               linac=cryomodule.linac.name,
                                                               cm=cryomodule.name)
+        self.name = magnettype
+        self.cryomodule = cryomodule
         self.bdesPV: PV = PV(self.pvprefix + 'BDES')
         self.controlPV: PV = PV(self.pvprefix + 'CTRL')
         self.interlockPV: PV = PV(self.pvprefix + 'INTLKSUMY')
         self.ps_statusPV: PV = PV(self.pvprefix + 'STATE')
+        self.bactPV: PV = PV(self.pvprefix + 'BACT')
+        self.iactPV: PV = PV(self.pvprefix + 'IACT')
+        # changing IDES immediately perturbs
+        self.idesPV: PV = PV(self.pvprefix + 'IDES')
 
 
 class Rack:

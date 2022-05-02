@@ -15,12 +15,12 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" rowspan="2" colspan="2">
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="magnetGroupBox">
      <property name="accessibleName">
       <string>${magnetType}</string>
      </property>
      <property name="title">
-      <string>${magnetType}</string>
+      <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">

@@ -1,6 +1,7 @@
+from time import sleep
+
 from epics import PV
 from epics.ca import CASeverityException
-from time import sleep
 
 SSA_STATUS_ON_VALUE = 3
 SSA_SLOPE_LOWER_LIMIT = 0.5
@@ -28,6 +29,13 @@ STEPPER_TEMP_LIMIT = 70
 DEFAULT_STEPPER_MAX_STEPS = 1000000
 DEFAULT_STEPPER_SPEED = 20000
 MAX_STEPPER_SPEED = 60000
+
+# these values are based on the list of enum states found by probing {Magnettype}:L{x}B:{cm}85:CTRL
+MAGNET_RESET_VALUE = 10
+MAGNET_ON_VALUE = 11
+MAGNET_OFF_VALUE = 12
+MAGNET_DEGAUSS_VALUE = 13
+MAGNET_TRIM_VALUE = 1
 
 
 class PulseError(Exception):
