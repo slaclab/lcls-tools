@@ -3,11 +3,10 @@
 # NOTE: For some reason, using python 3 style type annotations causes circular
 #       import issues, so leaving as python 2 style for now
 ################################################################################
-from time import sleep
-from typing import Dict, List, Type
-
 from epics import PV
 from numpy import sign
+from time import sleep
+from typing import Dict, List, Type
 
 import lcls_tools.superconducting.scLinac.scLinacUtils as utils
 
@@ -88,50 +87,72 @@ class StepperTuner:
         self.cavity: Cavity = cavity
         self.pvPrefix: str = self.cavity.pvPrefix + "STEP:"
 
-        self.move_pos_PV: PV = PV(self.pvPrefix + "MOV_REQ_POS")
-        self.move_neg_PV: PV = PV(self.pvPrefix + "MOV_REQ_NEG")
-        self.abort_PV: PV = PV(self.pvPrefix + "ABORT_REQ")
-        self.move_number_steps_PV: PV = PV(self.pvPrefix + "NSTEPS")
-        self.max_steps_PV: PV = PV(self.pvPrefix + "NSTEPS.DRVH")
-        self.speed_PV: PV = PV(self.pvPrefix + "VELO")
-        self.step_count_abs_PV: PV = PV(self.pvPrefix + "REG_TOTABS")
-        self.step_count_signed_PV: PV = PV(self.pvPrefix + "REG_TOTSGN")
-        self.count_reset_abs_PV: PV = PV(self.pvPrefix + "TOTABS_RESET")
-        self.count_reset_signed_PV: PV = PV(self.pvPrefix + "TOTSGN_RESET")
-        self.push_signed_cold_landing_PV: PV = PV(self.pvPrefix + "PUSH_NSTEPS_COLD.PROC")
-        self.push_signed_park_PV: PV = PV(self.pvPrefix + "PUSH_NSTEPS_PARK.PROC")
+        self.move_pos_pv: PV = PV(self.pvPrefix + "MOV_REQ_POS")
+        self.move_neg_pv: PV = PV(self.pvPrefix + "MOV_REQ_NEG")
+        self.abort_pv: PV = PV(self.pvPrefix + "ABORT_REQ")
+        self.step_des_pv: PV = PV(self.pvPrefix + "NSTEPS")
+        self.max_steps_pv: PV = PV(self.pvPrefix + "NSTEPS.DRVH")
+        self.speed_pv: PV = PV(self.pvPrefix + "VELO")
+        self.step_tot_pv: PV = PV(self.pvPrefix + "REG_TOTABS")
+        self.step_signed_pv: PV = PV(self.pvPrefix + "REG_TOTSGN")
+        self.reset_tot_pv: PV = PV(self.pvPrefix + "TOTABS_RESET")
+        self.reset_signed_pv: PV = PV(self.pvPrefix + "TOTSGN_RESET")
+        self.push_signed_cold_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_COLD.PROC")
+        self.push_signed_park_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_PARK.PROC")
+        self.motor_moving_pv: PV = PV(self.pvPrefix + "STAT_MOV")
+        self.motor_done_pv: PV = PV(self.pvPrefix + "STAT_DONE")
 
-        self.step_count_abs_PV.add_callback(self.checkTemp)
+        self.step_tot_pv.add_callback(self.checkTemp)
 
     def checkTemp(self):
         if self.cavity.stepper_temp_PV.value >= utils.STEPPER_TEMP_LIMIT:
-            self.abort_PV.put(1)
+            self.abort_pv.put(1)
 
-    def move(self, numSteps, maxSteps=utils.DEFAULT_STEPPER_MAX_STEPS, speed=utils.DEFAULT_STEPPER_SPEED):
+    def restoreDefaults(self):
+        self.max_steps_pv.put(utils.DEFAULT_STEPPER_MAX_STEPS)
+        self.speed_pv.put(utils.DEFAULT_STEPPER_SPEED)
+
+    def move(self, numSteps: int, maxSteps: int = utils.DEFAULT_STEPPER_MAX_STEPS,
+             speed: int = utils.DEFAULT_STEPPER_SPEED, changeLimits: bool = True):
         """
-
         :param numSteps: positive for increasing cavity length, negative for decreasing
-        :param maxSteps:
-        :param speed:
+        :param maxSteps: the maximum number of steps allowed at once
+        :param speed: the speed of the motor in steps/second
+        :param changeLimits: whether or not to change the speed and steps
         :return:
         """
-        self.max_steps_PV.put(maxSteps)
-        self.speed_PV.put(speed)
+
+        if changeLimits:
+            # on the off chance that someone tries to write a negative maximum
+            self.max_steps_pv.put(abs(maxSteps))
+
+            # make sure that we don't exceed the speed limit as defined by the tuner experts
+            self.speed_pv.put(speed if speed < utils.MAX_STEPPER_SPEED
+                              else utils.MAX_STEPPER_SPEED)
 
         if abs(numSteps) <= maxSteps:
-            self.move_number_steps_PV.put(numSteps)
-            if sign(numSteps) == 1:
-                self.move_pos_PV.put(1)
-            else:
-                self.move_neg_PV.put(1)
+            self.step_des_pv.put(numSteps)
+            self.issueMoveCommand(numSteps)
+            self.restoreDefaults()
         else:
-            self.move_number_steps_PV.put(maxSteps)
-            if sign(numSteps) == 1:
-                self.move_pos_PV.put(1)
-                self.move(numSteps - maxSteps)
-            else:
-                self.move_neg_PV.put(1)
-                self.move(numSteps + maxSteps)
+            self.step_des_pv.put(maxSteps)
+            self.issueMoveCommand(numSteps)
+
+            self.move(numSteps - (sign(numSteps) * maxSteps), maxSteps, speed,
+                      False)
+
+    def issueMoveCommand(self, numSteps):
+        # TODO check if HL controls have been fixed and handle if not
+        if sign(numSteps) == 1:
+            self.move_pos_pv.put(1)
+        else:
+            self.move_neg_pv.put(1)
+
+        while self.motor_moving_pv.value == 1:
+            sleep(1)
+
+        if self.motor_done_pv.value != 1:
+            raise utils.StepperError("Motor not in expected state")
 
 
 class Cavity:
@@ -424,7 +445,7 @@ class Linac:
     def addCryomodule(self, cryomoduleName, cryomoduleClass=Cryomodule,
                       cavityClass=Cavity, rackClass=Rack, magnetClass=Magnet,
                       isHarmonicLinearizer=False, ssaClass=SSA):
-        # type: (str, Type[Cryomodule], Type[Cavity], Type[Rack], Type[Magnet], bool) -> None
+        # type: (str, Type[Cryomodule], Type[Cavity], Type[Rack], Type[Magnet], bool, Type[SSA]) -> None
         self.cryomodules[cryomoduleName] = cryomoduleClass(cryoName=cryomoduleName,
                                                            linacObject=self,
                                                            cavityClass=cavityClass,

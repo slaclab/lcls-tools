@@ -1,7 +1,6 @@
-from time import sleep
-
 from epics import PV
 from epics.ca import CASeverityException
+from time import sleep
 
 SSA_STATUS_ON_VALUE = 3
 SSA_SLOPE_LOWER_LIMIT = 0.5
@@ -28,9 +27,20 @@ NOMINAL_PULSED_ONTIME = 70
 STEPPER_TEMP_LIMIT = 70
 DEFAULT_STEPPER_MAX_STEPS = 1000000
 DEFAULT_STEPPER_SPEED = 20000
+MAX_STEPPER_SPEED = 60000
 
 
 class PulseError(Exception):
+    """
+    Exception thrown during cavity SSA calibration
+    """
+
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+
+
+class StepperError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
