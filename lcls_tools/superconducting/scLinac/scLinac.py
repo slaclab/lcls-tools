@@ -306,6 +306,10 @@ class Magnet:
         self.pvprefix = "{magnettype}:{linac}:{cm}85:".format(magnettype=magnettype,
                                                               linac=cryomodule.linac.name,
                                                               cm=cryomodule.name)
+        self.bdesPV: PV = PV(self.pvprefix + 'BDES')
+        self.controlPV: PV = PV(self.pvprefix + 'CTRL')
+        self.interlockPV: PV = PV(self.pvprefix + 'INTLKSUMY')
+        self.ps_statusPV: PV = PV(self.pvprefix + 'STATE')
 
 
 class Rack:
@@ -361,9 +365,9 @@ class Cryomodule:
 
         self.name = cryoName
         self.linac: Linac = linacObject
-        self.quad = magnetClass("QUAD", self)
-        self.xcor = magnetClass("XCOR", self)
-        self.ycor = magnetClass("YCOR", self)
+        self.quad: Magnet = magnetClass("QUAD", self)
+        self.xcor: Magnet = magnetClass("XCOR", self)
+        self.ycor: Magnet = magnetClass("YCOR", self)
 
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}00:".format(LINAC=self.linac.name,
                                                               CRYOMODULE=self.name)

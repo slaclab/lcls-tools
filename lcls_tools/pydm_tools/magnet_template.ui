@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>621</width>
-    <height>491</height>
+    <width>353</width>
+    <height>347</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,7 +35,7 @@
            </widget>
           </item>
           <item>
-           <widget class="PyDMByteIndicator" name="PyDMByteIndicator_2">
+           <widget class="PyDMByteIndicator" name="interlockIndicator">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
               <horstretch>0</horstretch>
@@ -71,22 +71,19 @@
            </widget>
           </item>
           <item>
-           <widget class="PyDMLabel" name="PyDMLabel">
+           <widget class="PyDMLabel" name="interlockLabel">
             <property name="toolTip">
              <string/>
             </property>
             <property name="accessibleName">
              <string>${magnetType}</string>
             </property>
-            <property name="text">
-             <string>placeholder</string>
-            </property>
            </widget>
           </item>
          </layout>
         </item>
         <item>
-         <widget class="PyDMPushButton" name="PyDMPushButton">
+         <widget class="PyDMPushButton" name="resetButton">
           <property name="toolTip">
            <string/>
           </property>
@@ -111,7 +108,7 @@
            </widget>
           </item>
           <item>
-           <widget class="PyDMByteIndicator" name="PyDMByteIndicator">
+           <widget class="PyDMByteIndicator" name="powerIndicator">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
               <horstretch>0</horstretch>
@@ -140,15 +137,12 @@
            </widget>
           </item>
           <item>
-           <widget class="PyDMLabel" name="PyDMLabel_2">
+           <widget class="PyDMLabel" name="powerLabel">
             <property name="toolTip">
              <string/>
             </property>
             <property name="accessibleName">
              <string>${magnetType}</string>
-            </property>
-            <property name="text">
-             <string>placeholder</string>
             </property>
            </widget>
           </item>
@@ -157,7 +151,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="PyDMPushButton" name="PyDMPushButton_2">
+           <widget class="PyDMPushButton" name="onButton">
             <property name="toolTip">
              <string/>
             </property>
@@ -170,7 +164,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="offButton">
             <property name="accessibleName">
              <string>${magnetType}</string>
             </property>
@@ -182,7 +176,7 @@
          </layout>
         </item>
         <item>
-         <widget class="PyDMPushButton" name="PyDMPushButton_3">
+         <widget class="PyDMPushButton" name="degaussButton">
           <property name="toolTip">
            <string/>
           </property>
@@ -195,36 +189,23 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="accessibleName">
-           <string>${magnetType}</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="accessibleName">
-           <string>${magnetType}</string>
-          </property>
-          <property name="text">
-           <string>Set BDES to 0 and trim</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="label_4">
             <property name="text">
-             <string>IACT</string>
+             <string>BDES</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="PyDMLabel" name="PyDMLabel_3">
+           <widget class="PyDMLineEdit" name="bdesLineEdit">
+            <property name="toolTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMLabel" name="bactLabel">
             <property name="toolTip">
              <string/>
             </property>
@@ -233,7 +214,32 @@
          </layout>
         </item>
         <item>
-         <widget class="PyDMEDMDisplayButton" name="PyDMEDMDisplayButton">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>IDES</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMLineEdit" name="idesLineEdit">
+            <property name="toolTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMLabel" name="iactLabel">
+            <property name="toolTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="PyDMEDMDisplayButton" name="expertButton">
           <property name="toolTip">
            <string/>
           </property>
@@ -267,6 +273,11 @@
    <class>PyDMByteIndicator</class>
    <extends>QWidget</extends>
    <header>pydm.widgets.byte</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>pydm.widgets.line_edit</header>
   </customwidget>
   <customwidget>
    <class>PyDMPushButton</class>

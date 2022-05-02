@@ -1,5 +1,7 @@
 from pydm import Display
 
+from lcls_tools.superconducting.scLinac.scLinac import Magnet
+
 
 class MagnetScreen(Display):
     def __init__(self, parent=None, args=None):
@@ -7,6 +9,20 @@ class MagnetScreen(Display):
 
     def ui_filename(self):
         return 'magnet_template.ui'
+
+    def connectSignals(self, magnet: Magnet):
+        self.ui.
+
+    def update_magnets(self):
+        for magnettype, edmbutton in self._magnet_edm_buttons.items():
+            edmbutton.macros = ["DEV={dev}".format(dev=self.current_cm.magnet_name_map[magnettype].pvprefix[:-1])]
+        self.magnet_checkout_window.ui.magnet_groupbox.setTitle('CM{cm}'.format(cm=self.current_cm.name))
+        for magnetprefix in ['Quad', 'XCor', 'YCor']:
+            magnet_object = self.current_cm.magnet_name_map[magnetprefix]
+            self.magnet_interlock_indicators[magnetprefix].channel = magnet_object.interlockPV.pvname
+            self.magnet_interlock_labels[magnetprefix].channel = magnet_object.interlockPV.pvname
+            self.magnet_ps_status_labels[magnetprefix].channel = magnet_object.ps_statusPV.pvname
+            self.magnet_ps_status_indicators[magnetprefix].channel = magnet_object.ps_statusPV.pvname
 
     def get_magnet_labels(self):
         magnet_VBoxLayout_list: List[
@@ -44,18 +60,18 @@ class MagnetScreen(Display):
             # the degauss button is the 5th item in the ui-file, hence '4'
             degauss_button: QPushButton = VBoxLayout.itemAt(4).widget()
             degauss_button.clicked.connect(
-                partial(self.magnet_control, degauss_button.accessibleName(), util.MAGNET_DEGAUSS_VALUE))
+                    partial(self.magnet_control, degauss_button.accessibleName(), util.MAGNET_DEGAUSS_VALUE))
 
             # the nominal trim button is the 6th element in the ui-file, hence '5'
             nominal_trim_button: QPushButton = VBoxLayout.itemAt(5).widget()
             nominal_trim_button.setText('Set BDES to {nominalbdes} and trim'.format(nominalbdes=util.NOMINAL_BDES))
             nominal_trim_button.clicked.connect(
-                partial(self.magnet_trim, nominal_trim_button.accessibleName(), util.NOMINAL_BDES))
+                    partial(self.magnet_trim, nominal_trim_button.accessibleName(), util.NOMINAL_BDES))
 
             # the zero trim button is the 7th element in the ui-file, hence '6'
             zero_trim_button: QPushButton = VBoxLayout.itemAt(6).widget()
             zero_trim_button.clicked.connect(
-                partial(self.magnet_trim, zero_trim_button.accessibleName(), 0))
+                    partial(self.magnet_trim, zero_trim_button.accessibleName(), 0))
 
             # the edm expert display button is the 9th element in the ui-file, hence '8'
             magnet_expert_button: PyDMEDMDisplayButton = VBoxLayout.itemAt(8).widget()
