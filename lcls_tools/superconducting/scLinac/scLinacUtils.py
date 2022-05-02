@@ -1,6 +1,7 @@
+from time import sleep
+
 from epics import PV
 from epics.ca import CASeverityException
-from time import sleep
 
 SSA_STATUS_ON_VALUE = 3
 SSA_SLOPE_LOWER_LIMIT = 0.5
@@ -23,6 +24,10 @@ RF_MODE_CHIRP = 5
 
 SAFE_PULSED_DRIVE_LEVEL = 15
 NOMINAL_PULSED_ONTIME = 70
+
+STEPPER_TEMP_LIMIT = 70
+DEFAULT_STEPPER_MAX_STEPS = 1000000
+DEFAULT_STEPPER_SPEED = 20000
 
 
 class PulseError(Exception):

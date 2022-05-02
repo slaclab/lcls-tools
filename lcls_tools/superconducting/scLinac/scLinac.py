@@ -3,11 +3,13 @@
 # NOTE: For some reason, using python 3 style type annotations causes circular
 #       import issues, so leaving as python 2 style for now
 ################################################################################
-from epics import PV
 from time import sleep
 from typing import Dict, List, Type
 
-import lcls_tools.devices.scLinac.scLinacUtils as utils
+from epics import PV
+from numpy import sign
+
+import lcls_tools.superconducting.scLinac.scLinacUtils as utils
 
 
 class SSA:
@@ -79,6 +81,59 @@ class Heater:
         self.powerActPV = PV(self.pvPrefix + "POWER")
 
 
+class StepperTuner:
+    def __init__(self, cavity):
+        # type (Cavity) -> None
+
+        self.cavity: Cavity = cavity
+        self.pvPrefix: str = self.cavity.pvPrefix + "STEP:"
+
+        self.move_pos_PV: PV = PV(self.pvPrefix + "MOV_REQ_POS")
+        self.move_neg_PV: PV = PV(self.pvPrefix + "MOV_REQ_NEG")
+        self.abort_PV: PV = PV(self.pvPrefix + "ABORT_REQ")
+        self.move_number_steps_PV: PV = PV(self.pvPrefix + "NSTEPS")
+        self.max_steps_PV: PV = PV(self.pvPrefix + "NSTEPS.DRVH")
+        self.speed_PV: PV = PV(self.pvPrefix + "VELO")
+        self.step_count_abs_PV: PV = PV(self.pvPrefix + "REG_TOTABS")
+        self.step_count_signed_PV: PV = PV(self.pvPrefix + "REG_TOTSGN")
+        self.count_reset_abs_PV: PV = PV(self.pvPrefix + "TOTABS_RESET")
+        self.count_reset_signed_PV: PV = PV(self.pvPrefix + "TOTSGN_RESET")
+        self.push_signed_cold_landing_PV: PV = PV(self.pvPrefix + "PUSH_NSTEPS_COLD.PROC")
+        self.push_signed_park_PV: PV = PV(self.pvPrefix + "PUSH_NSTEPS_PARK.PROC")
+
+        self.step_count_abs_PV.add_callback(self.checkTemp)
+
+    def checkTemp(self):
+        if self.cavity.stepper_temp_PV.value >= utils.STEPPER_TEMP_LIMIT:
+            self.abort_PV.put(1)
+
+    def move(self, numSteps, maxSteps=utils.DEFAULT_STEPPER_MAX_STEPS, speed=utils.DEFAULT_STEPPER_SPEED):
+        """
+
+        :param numSteps: positive for increasing cavity length, negative for decreasing
+        :param maxSteps:
+        :param speed:
+        :return:
+        """
+        self.max_steps_PV.put(maxSteps)
+        self.speed_PV.put(speed)
+
+        if abs(numSteps) <= maxSteps:
+            self.move_number_steps_PV.put(numSteps)
+            if sign(numSteps) == 1:
+                self.move_pos_PV.put(1)
+            else:
+                self.move_neg_PV.put(1)
+        else:
+            self.move_number_steps_PV.put(maxSteps)
+            if sign(numSteps) == 1:
+                self.move_pos_PV.put(1)
+                self.move(numSteps - maxSteps)
+            else:
+                self.move_neg_PV.put(1)
+                self.move(numSteps + maxSteps)
+
+
 class Cavity:
     def __init__(self, cavityNum, rackObject, length=1.038, ssaClass=SSA):
         # type: (int, Rack, float, Type[SSA]) -> None
@@ -95,6 +150,7 @@ class Cavity:
         self.rack: Rack = rackObject
         self.cryomodule = self.rack.cryomodule
         self.linac = self.cryomodule.linac
+        self.steppertuner = StepperTuner(self)
 
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(LINAC=self.linac.name,
                                                                      CRYOMODULE=self.cryomodule.name,
@@ -140,6 +196,8 @@ class Cavity:
         self.revWaveformPV: PV = PV(self.pvPrefix + "REV:AWF")
         self.fwdWaveformPV: PV = PV(self.pvPrefix + "FWD:AWF")
         self.cavWaveformPV: PV = PV(self.pvPrefix + "CAV:AWF")
+
+        self.stepper_temp_PV: PV = PV(self.pvPrefix + "STEPTEMP")
 
     def checkAndSetOnTime(self):
         """
