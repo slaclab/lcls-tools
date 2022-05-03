@@ -3,13 +3,12 @@
 # NOTE: For some reason, using python 3 style type annotations causes circular
 #       import issues, so leaving as python 2 style for now
 ################################################################################
+from epics import PV
+from numpy import sign
 from time import sleep
 from typing import Dict, List, Type
 
-from epics import PV
-from numpy import sign
-
-import lcls_tools.superconducting.scLinac.scLinacUtils as utils
+import lcls_tools.superconducting.scLinacUtils as utils
 
 
 class SSA:
@@ -309,7 +308,7 @@ class Magnet:
                                                               linac=cryomodule.linac.name,
                                                               cm=cryomodule.name)
         self.name = magnettype
-        self.cryomodule = cryomodule
+        self.cryomodule: Cryomodule = cryomodule
         self.bdesPV: PV = PV(self.pvprefix + 'BDES')
         self.controlPV: PV = PV(self.pvprefix + 'CTRL')
         self.interlockPV: PV = PV(self.pvprefix + 'INTLKSUMY')
@@ -371,7 +370,7 @@ class Cryomodule:
         cavityClass: cavity object
         """
 
-        self.name = cryoName
+        self.name: str = cryoName
         self.linac: Linac = linacObject
         self.quad: Magnet = magnetClass("QUAD", self)
         self.xcor: Magnet = magnetClass("XCOR", self)

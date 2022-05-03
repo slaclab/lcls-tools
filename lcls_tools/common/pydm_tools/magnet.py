@@ -1,9 +1,7 @@
 from functools import partial
-
 from pydm import Display
 
-import lcls_tools.superconducting.scLinac.scLinacUtils as utils
-from lcls_tools.superconducting.scLinac.scLinac import Magnet
+from lcls_tools.superconducting import scLinac, scLinacUtils as utils
 
 
 class MagnetScreen(Display):
@@ -13,9 +11,9 @@ class MagnetScreen(Display):
     def ui_filename(self):
         return 'magnet_template.ui'
 
-    def connectSignals(self, magnet: Magnet):
+    def connectSignals(self, magnet: scLinac.Magnet):
         self.ui.expertButton.macros = ["DEV={dev}".format(dev=magnet.pvprefix[:-1])]
-        self.ui.magnetGroupBox.setTitle('CM{cm} {magnettype}'.format(cm=magnet.cryomodule, magnettype=magnet.name))
+        self.ui.magnetGroupBox.setTitle('CM{cm} {magnettype}'.format(cm=magnet.cryomodule.name, magnettype=magnet.name))
 
         self.ui.interlockIndicator.channel = magnet.interlockPV.pvname
         self.ui.interlockLabel.channel = magnet.interlockPV.pvname
@@ -38,6 +36,6 @@ class MagnetScreen(Display):
         self.ui.bdesLineEdit.channel = magnet.bdesPV.pvname
         self.ui.bdesLineEdit.returnPressed.connect(partial(magnet.controlPV.put, utils.MAGNET_TRIM_VALUE))
         self.ui.bactLabel.channel = magnet.bactPV.pvname
-        
+
         self.ui.idesLineEdit.channel = magnet.idesPV.pvname
         self.ui.iactLabel.channel = magnet.iactPV.pvname
