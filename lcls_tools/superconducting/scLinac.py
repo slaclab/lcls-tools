@@ -3,10 +3,11 @@
 # NOTE: For some reason, using python 3 style type annotations causes circular
 #       import issues, so leaving as python 2 style for now
 ################################################################################
-from epics import PV
-from numpy import sign
 from time import sleep
 from typing import Dict, List, Type
+
+from epics import PV
+from numpy import sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
 
@@ -318,6 +319,27 @@ class Magnet:
         # changing IDES immediately perturbs
         self.idesPV: PV = PV(self.pvprefix + 'IDES')
 
+    @property
+    def bdes(self):
+        return self.bdesPV.value
+
+    @bdes.setter
+    def bdes(self, value):
+        self.bdesPV.put(value)
+        self.controlPV.put(utils.MAGNET_TRIM_VALUE)
+
+    def reset(self):
+        self.controlPV.put(utils.MAGNET_RESET_VALUE)
+
+    def turnOn(self):
+        self.controlPV.put(utils.MAGNET_ON_VALUE)
+
+    def turnOff(self):
+        self.controlPV.put(utils.MAGNET_OFF_VALUE)
+
+    def degauss(self):
+        self.controlPV.put(utils.MAGNET_DEGAUSS_VALUE)
+
 
 class Rack:
     def __init__(self, rackName, cryoObject, cavityClass=Cavity,
@@ -372,9 +394,10 @@ class Cryomodule:
 
         self.name: str = cryoName
         self.linac: Linac = linacObject
-        self.quad: Magnet = magnetClass("QUAD", self)
-        self.xcor: Magnet = magnetClass("XCOR", self)
-        self.ycor: Magnet = magnetClass("YCOR", self)
+        if not isHarmonicLinearizer:
+            self.quad: Magnet = magnetClass("QUAD", self)
+            self.xcor: Magnet = magnetClass("XCOR", self)
+            self.ycor: Magnet = magnetClass("YCOR", self)
 
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}00:".format(LINAC=self.linac.name,
                                                               CRYOMODULE=self.name)

@@ -164,9 +164,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="offButton">
-            <property name="accessibleName">
-             <string>${magnetType}</string>
+           <widget class="PyDMPushButton" name="offButton">
+            <property name="toolTip">
+             <string/>
             </property>
             <property name="text">
              <string>Powersupply Off</string>
