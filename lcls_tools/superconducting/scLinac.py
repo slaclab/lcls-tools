@@ -394,6 +394,8 @@ class Cryomodule:
 
         self.name: str = cryoName
         self.linac: Linac = linacObject
+        self.isHarmonicLinearizer = isHarmonicLinearizer
+        
         if not isHarmonicLinearizer:
             self.quad: Magnet = magnetClass("QUAD", self)
             self.xcor: Magnet = magnetClass("XCOR", self)
