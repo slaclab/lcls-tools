@@ -98,6 +98,7 @@ class StepperTuner:
         self.step_signed_pv: PV = PV(self.pvPrefix + "REG_TOTSGN")
         self.reset_tot_pv: PV = PV(self.pvPrefix + "TOTABS_RESET")
         self.reset_signed_pv: PV = PV(self.pvPrefix + "TOTSGN_RESET")
+        self.steps_cold_landing_pv: PV = PV(self.pvPrefix + "NSTEPS_COLD")
         self.push_signed_cold_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_COLD.PROC")
         self.push_signed_park_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_PARK.PROC")
         self.motor_moving_pv: PV = PV(self.pvPrefix + "STAT_MOV")
