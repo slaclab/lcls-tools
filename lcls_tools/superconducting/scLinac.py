@@ -143,7 +143,11 @@ class StepperTuner:
                       False)
 
     def issueMoveCommand(self, numSteps):
-        # TODO check if HL controls have been fixed and handle if not
+
+        # this is necessary because the tuners for the HLs move the other direction
+        if self.cavity.cryomodule.isHarmonicLinearizer:
+            numSteps *= -1
+
         if sign(numSteps) == 1:
             self.move_pos_pv.put(1)
         else:
@@ -157,8 +161,8 @@ class StepperTuner:
 
 
 class Cavity:
-    def __init__(self, cavityNum, rackObject, length=1.038, ssaClass=SSA):
-        # type: (int, Rack, float, Type[SSA]) -> None
+    def __init__(self, cavityNum, rackObject, ssaClass=SSA):
+        # type: (int, Rack, Type[SSA]) -> None
         """
         Parameters
         ----------
@@ -166,12 +170,17 @@ class Cavity:
         rackObject: the rack object the cavities belong to
         """
 
-        self.length = length
-
         self.number = cavityNum
         self.rack: Rack = rackObject
         self.cryomodule = self.rack.cryomodule
         self.linac = self.cryomodule.linac
+
+        if self.cryomodule.isHarmonicLinearizer:
+            self.length = 0.346
+            self.frequency = 3.9e9
+        else:
+            self.length = 1.038
+            self.frequency = 1.3e9
 
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(LINAC=self.linac.name,
                                                                      CRYOMODULE=self.cryomodule.name,
@@ -342,9 +351,8 @@ class Magnet:
 
 
 class Rack:
-    def __init__(self, rackName, cryoObject, cavityClass=Cavity,
-                 cavityLength=1.038, ssaClass=SSA):
-        # type: (str, Cryomodule, Type[Cavity], float, Type[SSA]) -> None
+    def __init__(self, rackName, cryoObject, cavityClass=Cavity, ssaClass=SSA):
+        # type: (str, Cryomodule, Type[Cavity], Type[SSA]) -> None
         """
         Parameters
         ----------
@@ -363,7 +371,6 @@ class Rack:
             for cavityNum in range(1, 5):
                 self.cavities[cavityNum] = cavityClass(cavityNum=cavityNum,
                                                        rackObject=self,
-                                                       length=cavityLength,
                                                        ssaClass=ssaClass)
 
         elif rackName == "B":
@@ -371,7 +378,6 @@ class Rack:
             for cavityNum in range(5, 9):
                 self.cavities[cavityNum] = cavityClass(cavityNum=cavityNum,
                                                        rackObject=self,
-                                                       length=cavityLength,
                                                        ssaClass=ssaClass)
 
         else:
@@ -395,7 +401,7 @@ class Cryomodule:
         self.name: str = cryoName
         self.linac: Linac = linacObject
         self.isHarmonicLinearizer = isHarmonicLinearizer
-        
+
         if not isHarmonicLinearizer:
             self.quad: Magnet = magnetClass("QUAD", self)
             self.xcor: Magnet = magnetClass("XCOR", self)
@@ -413,15 +419,11 @@ class Cryomodule:
         self.dsPressurePV: PV = PV("CPT:CM{cm}:2303:DS:PRESS".format(cm=self.name))
         self.jtValveRdbkPV: PV = PV(self.jtPrefix + "ORBV")
 
-        # harmonic linearizer cavities are 1/3 the length because they are
-        cavitylength = 1.038 if not isHarmonicLinearizer else 0.346
         self.racks = {"A": rackClass(rackName="A", cryoObject=self,
                                      cavityClass=cavityClass,
-                                     cavityLength=cavitylength,
                                      ssaClass=ssaClass),
                       "B": rackClass(rackName="B", cryoObject=self,
                                      cavityClass=cavityClass,
-                                     cavityLength=cavitylength,
                                      ssaClass=ssaClass)}
 
         self.cavities: Dict[int, cavityClass] = {}
