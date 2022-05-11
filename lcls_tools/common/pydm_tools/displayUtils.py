@@ -24,7 +24,8 @@ def make_error_popup(title, expert_edmbutton, exception, action_func):
     popup.addButton('Abort', QMessageBox.RejectRole)
     popup.addButton('Acknowledge manual completion and continue', QMessageBox.AcceptRole)
     popup.addButton(expert_edmbutton, QMessageBox.ActionRole)
-    popup.buttonClicked.connect(partial(action_func, popup))
+    if action_func:
+        popup.buttonClicked.connect(partial(action_func, popup))
     popup.exec()
 
 
