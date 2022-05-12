@@ -6,10 +6,15 @@
 from time import sleep
 from typing import Dict, List, Type
 
-from epics import PV
+from epics import PV as epicsPV
 from numpy import sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
+
+
+class PV(epicsPV):
+    def __init__(self, pvname):
+        super().__init__(pvname, connection_timeout=0.01)
 
 
 class SSA:
