@@ -104,12 +104,6 @@ class StepperTuner:
         self.motor_moving_pv: PV = PV(self.pvPrefix + "STAT_MOV")
         self.motor_done_pv: PV = PV(self.pvPrefix + "STAT_DONE")
 
-        self.step_tot_pv.add_callback(self.checkTemp)
-
-    def checkTemp(self, **kwargs):
-        if self.cavity.stepper_temp_PV.value >= utils.STEPPER_TEMP_LIMIT:
-            self.abort_pv.put(1)
-
     def restoreDefaults(self):
         self.max_steps_pv.put(utils.DEFAULT_STEPPER_MAX_STEPS)
         self.speed_pv.put(utils.DEFAULT_STEPPER_SPEED)
@@ -162,8 +156,8 @@ class StepperTuner:
 
 
 class Cavity:
-    def __init__(self, cavityNum, rackObject, ssaClass=SSA):
-        # type: (int, Rack, Type[SSA]) -> None
+    def __init__(self, cavityNum, rackObject, ssaClass=SSA, stepperClass=StepperTuner):
+        # type: (int, Rack, Type[SSA], Type[StepperTuner]) -> None
         """
         Parameters
         ----------
@@ -192,7 +186,7 @@ class Cavity:
 
         self.ssa = ssaClass(self)
         self.heater = Heater(self)
-        self.steppertuner = StepperTuner(self)
+        self.steppertuner = stepperClass(self)
 
         self.pushSSASlopePV: PV = PV(self.pvPrefix + "PUSH_SSA_SLOPE.PROC")
         self.saveSSASlopePV: PV = PV(self.pvPrefix + "SAVE_SSA_SLOPE.PROC")
@@ -352,8 +346,8 @@ class Magnet:
 
 
 class Rack:
-    def __init__(self, rackName, cryoObject, cavityClass=Cavity, ssaClass=SSA):
-        # type: (str, Cryomodule, Type[Cavity], Type[SSA]) -> None
+    def __init__(self, rackName, cryoObject, cavityClass=Cavity, ssaClass=SSA, stepperClass=StepperTuner):
+        # type: (str, Cryomodule, Type[Cavity], Type[SSA], Type[StepperTuner]) -> None
         """
         Parameters
         ----------
@@ -372,14 +366,16 @@ class Rack:
             for cavityNum in range(1, 5):
                 self.cavities[cavityNum] = cavityClass(cavityNum=cavityNum,
                                                        rackObject=self,
-                                                       ssaClass=ssaClass)
+                                                       ssaClass=ssaClass,
+                                                       stepperClass=stepperClass)
 
         elif rackName == "B":
             # rack B always has cavities 5 - 8
             for cavityNum in range(5, 9):
                 self.cavities[cavityNum] = cavityClass(cavityNum=cavityNum,
                                                        rackObject=self,
-                                                       ssaClass=ssaClass)
+                                                       ssaClass=ssaClass,
+                                                       stepperClass=stepperClass)
 
         else:
             raise Exception("Bad rack name")
@@ -389,8 +385,8 @@ class Cryomodule:
 
     def __init__(self, cryoName, linacObject, cavityClass=Cavity,
                  magnetClass=Magnet, rackClass=Rack, isHarmonicLinearizer=False,
-                 ssaClass=SSA):
-        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA]) -> None
+                 ssaClass=SSA, stepperClass=StepperTuner):
+        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner]) -> None
         """
         Parameters
         ----------
@@ -422,10 +418,10 @@ class Cryomodule:
 
         self.racks = {"A": rackClass(rackName="A", cryoObject=self,
                                      cavityClass=cavityClass,
-                                     ssaClass=ssaClass),
+                                     ssaClass=ssaClass, stepperClass=stepperClass),
                       "B": rackClass(rackName="B", cryoObject=self,
                                      cavityClass=cavityClass,
-                                     ssaClass=ssaClass)}
+                                     ssaClass=ssaClass, stepperClass=stepperClass)}
 
         self.cavities: Dict[int, cavityClass] = {}
         self.cavities.update(self.racks["A"].cavities)
@@ -467,31 +463,32 @@ class Linac:
                                        + '{cm}96:COMBO_P'.format(cm=cm))
                                     for cm in insulatingVacuumCryomodules]
 
-    def addCryomodules(self, cryomoduleStringList, cryomoduleClass=Cryomodule,
-                       cavityClass=Cavity, rackClass=Rack,
-                       magnetClass=Magnet, isHarmonicLinearizer=False,
-                       ssaClass=SSA):
-        # type: (List[str], Type[Cryomodule], Type[Cavity], Type[Rack], Type[Magnet], bool, Type[SSA]) -> None
-
+    def addCryomodules(self, cryomoduleStringList: List[str], cryomoduleClass: Type[Cryomodule] = Cryomodule,
+                       cavityClass: Type[Cavity] = Cavity, rackClass: Type[Rack] = Rack,
+                       magnetClass: Type[Magnet] = Magnet, isHarmonicLinearizer: bool = False,
+                       ssaClass: Type[SSA] = SSA, stepperClass: Type[StepperTuner] = StepperTuner):
         for cryomoduleString in cryomoduleStringList:
             self.addCryomodule(cryomoduleName=cryomoduleString,
                                cryomoduleClass=cryomoduleClass,
                                cavityClass=cavityClass, rackClass=rackClass,
                                magnetClass=magnetClass,
                                isHarmonicLinearizer=isHarmonicLinearizer,
-                               ssaClass=ssaClass)
+                               ssaClass=ssaClass,
+                               stepperClass=stepperClass)
 
-    def addCryomodule(self, cryomoduleName, cryomoduleClass=Cryomodule,
-                      cavityClass=Cavity, rackClass=Rack, magnetClass=Magnet,
-                      isHarmonicLinearizer=False, ssaClass=SSA):
-        # type: (str, Type[Cryomodule], Type[Cavity], Type[Rack], Type[Magnet], bool, Type[SSA]) -> None
+    def addCryomodule(self, cryomoduleName: str, cryomoduleClass: Type[Cryomodule] = Cryomodule,
+                      cavityClass: Type[Cavity] = Cavity, rackClass: Type[Rack] = Rack,
+                      magnetClass: Type[Magnet] = Magnet,
+                      isHarmonicLinearizer: bool = False, ssaClass: Type[SSA] = SSA,
+                      stepperClass: Type[StepperTuner] = StepperTuner):
         self.cryomodules[cryomoduleName] = cryomoduleClass(cryoName=cryomoduleName,
                                                            linacObject=self,
                                                            cavityClass=cavityClass,
                                                            rackClass=rackClass,
                                                            magnetClass=magnetClass,
                                                            isHarmonicLinearizer=isHarmonicLinearizer,
-                                                           ssaClass=ssaClass)
+                                                           ssaClass=ssaClass,
+                                                           stepperClass=stepperClass)
 
 
 # Global list of superconducting linac objects
@@ -513,7 +510,8 @@ def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
                           magnetClass: Type[Magnet] = Magnet,
                           rackClass: Type[Rack] = Rack,
                           cavityClass: Type[Cavity] = Cavity,
-                          ssaClass: Type[SSA] = SSA) -> Dict[str, Cryomodule]:
+                          ssaClass: Type[SSA] = SSA,
+                          stepperClass: Type[StepperTuner] = StepperTuner) -> Dict[str, Cryomodule]:
     cryomoduleObjects: Dict[str, Cryomodule] = {}
     linacObjects: List[Linac] = []
 
@@ -524,7 +522,9 @@ def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
                              cryomoduleClass=cryomoduleClass,
                              cavityClass=cavityClass,
                              rackClass=rackClass,
-                             magnetClass=magnetClass, ssaClass=ssaClass)
+                             magnetClass=magnetClass,
+                             ssaClass=ssaClass,
+                             stepperClass=stepperClass)
         linacObjects.append(linac)
         cryomoduleObjects.update(linac.cryomodules)
 
@@ -533,7 +533,9 @@ def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
                                    isHarmonicLinearizer=True,
                                    cavityClass=cavityClass,
                                    rackClass=rackClass,
-                                   magnetClass=magnetClass, ssaClass=ssaClass)
+                                   magnetClass=magnetClass,
+                                   ssaClass=ssaClass,
+                                   stepperClass=stepperClass)
     cryomoduleObjects.update(linacObjects[1].cryomodules)
     return cryomoduleObjects
 
