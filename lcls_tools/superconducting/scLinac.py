@@ -106,7 +106,7 @@ class StepperTuner:
 
         self.step_tot_pv.add_callback(self.checkTemp)
 
-    def checkTemp(self):
+    def checkTemp(self, **kwargs):
         if self.cavity.stepper_temp_PV.value >= utils.STEPPER_TEMP_LIMIT:
             self.abort_pv.put(1)
 
