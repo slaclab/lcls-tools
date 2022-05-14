@@ -16,10 +16,6 @@ class PV(epicsPV):
     def __init__(self, pvname):
         super().__init__(pvname, connection_timeout=0.01)
 
-    def put(self, value, wait=False, timeout=30.0, use_complete=False,
-            callback=None, callback_data=None):
-        super(PV, self).put(value, wait=True)
-
 
 class SSA:
     def __init__(self, cavity):
