@@ -42,16 +42,16 @@ class SSA:
     def setPowerState(self, turnOn: bool):
         print("\nSetting SSA power...")
 
-        if turnOn and self.ssaStatusPV != utils.SSA_STATUS_ON_VALUE:
+        if turnOn and self.ssaStatusPV.value != utils.SSA_STATUS_ON_VALUE:
             self.ssaTurnOnPV.put(1)
             sleep(7)
-            if self.ssaStatusPV != utils.SSA_STATUS_ON_VALUE:
+            if self.ssaStatusPV.value != utils.SSA_STATUS_ON_VALUE:
                 raise utils.SSAPowerError("Unable to turn on SSA")
         else:
-            if self.ssaStatusPV == utils.SSA_STATUS_ON_VALUE:
+            if self.ssaStatusPV.value == utils.SSA_STATUS_ON_VALUE:
                 self.ssaTurnOffPV.put(1)
                 sleep(1)
-                if self.ssaStatusPV == utils.SSA_STATUS_ON_VALUE:
+                if self.ssaStatusPV.value == utils.SSA_STATUS_ON_VALUE:
                     raise utils.SSAPowerError("Unable to turn off SSA")
 
         print("SSA power set\n")
