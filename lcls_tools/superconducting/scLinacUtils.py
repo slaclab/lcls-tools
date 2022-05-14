@@ -6,6 +6,7 @@ from epics.ca import CASeverityException
 SSA_STATUS_ON_VALUE = 3
 SSA_SLOPE_LOWER_LIMIT = 0.5
 SSA_SLOPE_UPPER_LIMIT = 1.5
+SSA_RESULT_GOOD_STATUS_VALUE = 0
 
 # TODO add limits for the HL cavities
 LOADED_Q_LOWER_LIMIT = 3.895e7
@@ -98,7 +99,8 @@ class SSAPowerError(Exception):
         super().__init__(self.message)
 
 
-def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception):
+def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
+                   resultStatusPV: PV = None):
     try:
         startPV.put(1)
 
@@ -107,8 +109,9 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception):
             sleep(1)
 
         # 0 is crashed
-        if statusPV.value == 0:
+        if statusPV.value == 0 or (resultStatusPV and resultStatusPV.value != SSA_RESULT_GOOD_STATUS_VALUE):
             raise exception("{pv} crashed".format(pv=startPV))
+
     except CASeverityException:
         raise exception('CASeverityException')
 

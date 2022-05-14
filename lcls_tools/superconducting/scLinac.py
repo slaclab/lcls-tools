@@ -23,15 +23,16 @@ class SSA:
         self.cavity: Cavity = cavity
         self.pvPrefix = self.cavity.pvPrefix + "SSA:"
 
-        self.ssaStatusPV: PV = PV(self.pvPrefix + "StatusMsg")
-        self.ssaTurnOnPV: PV = PV(self.pvPrefix + "PowerOn")
-        self.ssaTurnOffPV: PV = PV(self.pvPrefix + "PowerOff")
+        self.statusPV: PV = PV(self.pvPrefix + "StatusMsg")
+        self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
+        self.turnOffPV: PV = PV(self.pvPrefix + "PowerOff")
 
-        self.ssaCalibrationStartPV: PV = PV(self.pvPrefix + "CALSTRT")
-        self.ssaCalibrationStatusPV: PV = PV(self.pvPrefix + "CALSTS")
+        self.calibrationStartPV: PV = PV(self.pvPrefix + "CALSTRT")
+        self.calibrationStatusPV: PV = PV(self.pvPrefix + "CALSTS")
+        self.calResultStatusPV: PV = PV(self.pvPrefix + "CALSTAT")
 
-        self.currentSSASlopePV: PV = PV(self.pvPrefix + "SLOPE")
-        self.measuredSSASlopePV: PV = PV(self.pvPrefix + "SLOPE_NEW")
+        self.currentSlopePV: PV = PV(self.pvPrefix + "SLOPE")
+        self.measuredSlopePV: PV = PV(self.pvPrefix + "SLOPE_NEW")
 
     def turnOn(self):
         self.setPowerState(True)
@@ -43,16 +44,16 @@ class SSA:
         print("\nSetting SSA power...")
 
         if turnOn:
-            if self.ssaStatusPV.value != utils.SSA_STATUS_ON_VALUE:
-                self.ssaTurnOnPV.put(1)
+            if self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
+                self.turnOnPV.put(1)
                 sleep(7)
-                if self.ssaStatusPV.value != utils.SSA_STATUS_ON_VALUE:
+                if self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
                     raise utils.SSAPowerError("Unable to turn on SSA")
         else:
-            if self.ssaStatusPV.value == utils.SSA_STATUS_ON_VALUE:
-                self.ssaTurnOffPV.put(1)
+            if self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
+                self.turnOffPV.put(1)
                 sleep(1)
-                if self.ssaStatusPV.value == utils.SSA_STATUS_ON_VALUE:
+                if self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
                     raise utils.SSAPowerError("Unable to turn off SSA")
 
         print("SSA power set\n")
@@ -64,12 +65,13 @@ class SSA:
         :return:
         """
         self.setPowerState(True)
-        utils.runCalibration(startPV=self.ssaCalibrationStartPV,
-                             statusPV=self.ssaCalibrationStatusPV,
-                             exception=utils.SSACalibrationError)
+        utils.runCalibration(startPV=self.calibrationStartPV,
+                             statusPV=self.calibrationStatusPV,
+                             exception=utils.SSACalibrationError,
+                             resultStatusPV=self.calResultStatusPV)
 
-        utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSSASlopePV,
-                                           currentPV=self.currentSSASlopePV,
+        utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSlopePV,
+                                           currentPV=self.currentSlopePV,
                                            lowerLimit=utils.SSA_SLOPE_LOWER_LIMIT,
                                            upperLimit=utils.SSA_SLOPE_UPPER_LIMIT,
                                            pushPV=self.cavity.pushSSASlopePV,
