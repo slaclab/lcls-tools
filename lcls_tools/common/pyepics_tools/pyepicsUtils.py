@@ -9,6 +9,11 @@ EPICS_MAJOR_VAL = 2
 EPICS_INVALID_VAL = 3
 
 
+class PVInvalidError(Exception):
+    def __init__(self, message):
+        super(PVInvalidError, self).__init__(message)
+
+
 class PV(epicsPV):
     def __init__(self, pvname):
         super().__init__(pvname, connection_timeout=0.01)
@@ -19,6 +24,8 @@ class PV(epicsPV):
         super(PV, self).put(value, wait, timeout, use_complete, callback,
                             callback_data)
         if waitForPut:
+            if self.severity == EPICS_INVALID_VAL:
+                raise PVInvalidError("{pv} invalid, aborting wait for put".format(pv=self.pvname))
             while self.value != value:
                 print("setting {pv} to {val} at {time}".format(pv=self.pvname,
                                                                val=value,
