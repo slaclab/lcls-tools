@@ -3,18 +3,14 @@
 # NOTE: For some reason, using python 3 style type annotations causes circular
 #       import issues, so leaving as python 2 style for now
 ################################################################################
+from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
-from epics import PV as epicsPV
 from numpy import sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
-
-
-class PV(epicsPV):
-    def __init__(self, pvname):
-        super().__init__(pvname, connection_timeout=0.01)
+from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
 
 
 class SSA:
@@ -152,11 +148,12 @@ class StepperTuner:
             numSteps *= -1
 
         if sign(numSteps) == 1:
-            self.move_pos_pv.put(1)
+            self.move_pos_pv.put(1, waitForPut=False)
         else:
-            self.move_neg_pv.put(1)
+            self.move_neg_pv.put(1, waitForPut=False)
 
         while self.motor_moving_pv.value == 1:
+            print("Motor moving", datetime.now())
             sleep(1)
 
         if self.motor_done_pv.value != 1:
@@ -254,8 +251,9 @@ class Cavity:
         go button is pressed
         :return:
         """
-        self.pulseGoButtonPV.put(1)
+        self.pulseGoButtonPV.put(1, waitForPut=False)
         while self.pulseStatusPV.value < 2:
+            print("waiting for pulse state", datetime.now())
             sleep(1)
         if self.pulseStatusPV.value > 2:
             raise utils.PulseError("Unable to pulse cavity")
@@ -288,7 +286,7 @@ class Cavity:
         coupler
         :return:
         """
-        self.interlockResetPV.put(1)
+        self.interlockResetPV.put(1, waitForPut=False)
         sleep(2)
 
         self.drivelevelPV.put(15)
@@ -338,19 +336,19 @@ class Magnet:
     @bdes.setter
     def bdes(self, value):
         self.bdesPV.put(value)
-        self.controlPV.put(utils.MAGNET_TRIM_VALUE)
+        self.controlPV.put(utils.MAGNET_TRIM_VALUE, waitForPut=False)
 
     def reset(self):
-        self.controlPV.put(utils.MAGNET_RESET_VALUE)
+        self.controlPV.put(utils.MAGNET_RESET_VALUE, waitForPut=False)
 
     def turnOn(self):
-        self.controlPV.put(utils.MAGNET_ON_VALUE)
+        self.controlPV.put(utils.MAGNET_ON_VALUE, waitForPut=False)
 
     def turnOff(self):
-        self.controlPV.put(utils.MAGNET_OFF_VALUE)
+        self.controlPV.put(utils.MAGNET_OFF_VALUE, waitForPut=False)
 
     def degauss(self):
-        self.controlPV.put(utils.MAGNET_DEGAUSS_VALUE)
+        self.controlPV.put(utils.MAGNET_DEGAUSS_VALUE, waitForPut=False)
 
 
 class Rack:
