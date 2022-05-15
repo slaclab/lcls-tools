@@ -28,6 +28,6 @@ class PV(epicsPV):
                 raise PVInvalidError("{pv} invalid or disconnected, aborting wait for put"
                                      .format(pv=self.pvname))
             while self.value != value:
-                print("setting {pv} to {val} at {time}".format(pv=self.pvname,
-                                                               val=value,
-                                                               time=datetime.now()))
+                print("waiting for {pv} to be {val} at {time}".format(pv=self.pvname,
+                                                                      val=value,
+                                                                      time=datetime.now()))
