@@ -1,7 +1,9 @@
+from datetime import datetime
 from time import sleep
 
-from epics import PV
 from epics.ca import CASeverityException
+
+from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
 
 SSA_STATUS_ON_VALUE = 3
 SSA_SLOPE_LOWER_LIMIT = 0.5
@@ -103,9 +105,12 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
         startPV.put(1)
+        print("waiting 5s for script to run")
+        sleep(5)
 
         # 2 is running
         while statusPV.value == 2:
+            print("waiting for script to stop running", datetime.now())
             sleep(1)
 
         # 0 is crashed
@@ -120,7 +125,7 @@ def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: floa
                                  pushPV: PV, savePV: PV,
                                  exception: Exception = Exception):
     if lowerLimit < measuredPV.value < upperLimit:
-        pushPV.put(1)
-        savePV.put(1)
+        pushPV.put(1, waitForPut=False)
+        savePV.put(1, waitForPut=False)
     else:
         raise exception("Change to {pv} too large".format(pv=currentPV.pvname))
