@@ -24,8 +24,9 @@ class PV(epicsPV):
         super(PV, self).put(value, wait, timeout, use_complete, callback,
                             callback_data)
         if waitForPut:
-            if self.severity == EPICS_INVALID_VAL:
-                raise PVInvalidError("{pv} invalid, aborting wait for put".format(pv=self.pvname))
+            if self.severity == EPICS_INVALID_VAL or not self.connected:
+                raise PVInvalidError("{pv} invalid or disconnected, aborting wait for put"
+                                     .format(pv=self.pvname))
             while self.value != value:
                 print("setting {pv} to {val} at {time}".format(pv=self.pvname,
                                                                val=value,
