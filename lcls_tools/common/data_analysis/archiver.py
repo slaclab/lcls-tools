@@ -1,9 +1,9 @@
 import json
+import time
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Dict, List, Union
 from unittest import TestCase, main as test
-import time
 
 import requests
 
@@ -18,20 +18,22 @@ ARCHIVER_URL_FORMATTER = "http://{MACHINE}-archapp.slac.stanford.edu/retrieval/d
 
 # If daylight savings time, SLAC is 7 hours behind UTC otherwise 8
 if time.localtime().tm_isdst:
-  UTC_DELTA_T="-07:00"
+    UTC_DELTA_T = "-07:00"
 else:
-  UTC_DELTA_T="-08:00"
+    UTC_DELTA_T = "-08:00"
 
-SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}"+UTC_DELTA_T+"&includeProxies=true"
+SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}" + UTC_DELTA_T + "&includeProxies=true"
 RANGE_RESULT_SUFFIX = "getData.json"
 
 TIMEOUT = 3
 
 
-# Adding a data class for easier data handling (so that external functions can
-# invoke .values and .timestamps instead of having to remember dictionary keys
 @dataclass
 class ArchiverData:
+    """
+    A data class for easier data handling (so that external functions can
+    invoke .values and .timestamps instead of having to remember dictionary keys
+    """
     # todo make this not a union
     # Currently one list if timestamps are shared by all PVs else a dict of
     # pv -> timstamps
@@ -41,9 +43,10 @@ class ArchiverData:
 
 class Archiver:
 
-    # machine is a string that is either "lcls" or "facet"
-    def __init__(self, machine):
-        # type: (str) -> None
+    def __init__(self, machine: str):
+        """
+        machine is a string that is either "lcls" or "facet"
+        """
         self.url_formatter = ARCHIVER_URL_FORMATTER.format(MACHINE=machine)
 
     def getDataAtTime(self, pvList, timeRequested):
@@ -113,9 +116,9 @@ class Archiver:
                     jsonData = json.loads(response.text)
                     # It returns a list of len 1 for some godforsaken reason...
                     # unless the archiver returns no data in which case the list is empty...
-                    if len(jsonData)==0:
-                      times[pv].append([])
-                      values[pv].append([])
+                    if len(jsonData) == 0:
+                        times[pv].append([])
+                        values[pv].append([])
                     else:
                         element = jsonData.pop()
                         for datum in element[u'data']:
