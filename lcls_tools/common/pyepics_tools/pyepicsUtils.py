@@ -1,4 +1,5 @@
 from datetime import datetime
+from time import sleep
 
 from epics import PV as epicsPV
 
@@ -31,3 +32,4 @@ class PV(epicsPV):
                 print("waiting for {pv} to be {val} at {time}".format(pv=self.pvname,
                                                                       val=value,
                                                                       time=datetime.now()))
+                sleep(0.3)
