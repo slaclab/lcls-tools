@@ -18,6 +18,7 @@ class TimePlotParams(PyDMPlotParams):
     plot: PyDMTimePlot = None
     formLayout: Optional[QFormLayout] = None
     channels: Optional[List[str]] = None
+    axes: Optional[List[str]] = None
 
 
 @dataclass
@@ -73,22 +74,23 @@ class TimePlotUpdater(PyDMPlotUpdater):
                 else:
                     self.clearLayout(item.layout())
 
-    def updatePlot(self, key: str, newChannels: List[str]):
+    def updatePlot(self, key: str, newChannels: List[Tuple[str]]):
         timePlotParams = self.plotParams[key]
         timePlotParams.plot.clearCurves()
 
         if timePlotParams.formLayout is not None:
             self.clearLayout(timePlotParams.formLayout)
 
-            for channel in newChannels:
+            for (channel, _) in newChannels:
                 timePlotParams.formLayout.addRow(channel, PyDMLabel(init_channel=channel))
 
-        for channel in newChannels:
+        for (channel, axis) in newChannels:
             timePlotParams.plot.addYChannel(channel,
                                             lineWidth=timePlotParams.lineWidth,
                                             symbol=timePlotParams.symbol,
-                                            symbolSize=timePlotParams.symbolSize)
+                                            symbolSize=timePlotParams.symbolSize,
+                                            yAxisName=axis)
 
-    def updatePlots(self, plotUpdateMap: Dict[str, List[str]]):
-        for key, channelList in plotUpdateMap.items():
-            self.updatePlot(key, channelList)
+    def updatePlots(self, plotUpdateMap: Dict[str, List[Tuple[str, str]]]):
+        for key, channelAxisTuple in plotUpdateMap.items():
+            self.updatePlot(key, channelAxisTuple)
