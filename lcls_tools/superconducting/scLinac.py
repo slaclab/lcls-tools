@@ -425,7 +425,7 @@ class Cryomodule:
 
         self.dsLevelPV: PV = PV("CLL:CM{cm}:2301:DS:LVL".format(cm=self.name))
         self.usLevelPV: PV = PV("CLL:CM{cm}:2601:US:LVL".format(cm=self.name))
-        self.dsPressurePV: PV = PV("CPT:CM{cm}:2303:DS:PRESS".format(cm=self.name))
+        self.dsPressurePV: PV = PV("CPT:CM{cm}:2302:DS:PRESS".format(cm=self.name))
         self.jtValveRdbkPV: PV = PV(self.jtPrefix + "ORBV")
 
         self.racks = {"A": rackClass(rackName="A", cryoObject=self,
