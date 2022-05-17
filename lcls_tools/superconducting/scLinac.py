@@ -544,6 +544,3 @@ def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
                                    stepperClass=stepperClass)
     cryomoduleObjects.update(linacObjects[1].cryomodules)
     return cryomoduleObjects
-
-
-CRYOMODULE_OBJECTS = make_lcls_cryomodules()

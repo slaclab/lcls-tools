@@ -35,3 +35,4 @@ def make_info_popup(text):
     popup.setIcon(QMessageBox.Information)
     popup.setText(text)
     popup.exec()
+    return popup

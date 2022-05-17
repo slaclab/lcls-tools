@@ -1,15 +1,16 @@
 import abc
-from PyQt5.QtWidgets import QFormLayout
 from dataclasses import dataclass
-from pydm.widgets import PyDMLabel, PyDMTimePlot, PyDMWaveformPlot
 from typing import Dict, List, Optional, Tuple
+
+from PyQt5.QtWidgets import QFormLayout
+from pydm.widgets import PyDMLabel, PyDMTimePlot, PyDMWaveformPlot
 
 
 @dataclass
 class PyDMPlotParams:
-    lineWidth: int = 2
-    symbol: str = "o"
-    symbolSize: int = 4
+    lineWidth: Optional[int] = None
+    symbol: Optional[str] = "o"
+    symbolSize: Optional[int] = None
 
 
 @dataclass
