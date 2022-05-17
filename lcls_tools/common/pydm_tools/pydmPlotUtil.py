@@ -9,7 +9,7 @@ from pydm.widgets import PyDMLabel, PyDMTimePlot, PyDMWaveformPlot
 @dataclass
 class PyDMPlotParams:
     lineWidth: Optional[int] = None
-    symbol: Optional[str] = "o"
+    symbol: Optional[str] = None
     symbolSize: Optional[int] = None
 
 

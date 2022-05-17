@@ -287,14 +287,18 @@ class Cavity:
         :return:
         """
         self.interlockResetPV.put(1, waitForPut=False)
+        print("resetting interlocks and waiting 2s")
         sleep(2)
 
+        print("setting drive to 15")
         self.drivelevelPV.put(15)
 
+        print("running calibration")
         utils.runCalibration(startPV=self.cavityCalibrationStartPV,
                              statusPV=self.cavityCalibrationStatusPV,
                              exception=utils.CavityQLoadedCalibrationError)
 
+        print("pushing results")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredQLoadedPV,
                                            currentPV=self.currentQLoadedPV,
                                            lowerLimit=loadedQLowerlimit,
@@ -310,6 +314,8 @@ class Cavity:
                                            pushPV=self.pushCavityScalePV,
                                            savePV=self.saveCavityScalePV,
                                            exception=utils.CavityScaleFactorCalibrationError)
+
+        print("calibration successful")
 
 
 class Magnet:
