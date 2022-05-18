@@ -550,3 +550,53 @@ def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
                                    stepperClass=stepperClass)
     cryomoduleObjects.update(linacObjects[1].cryomodules)
     return cryomoduleObjects
+
+
+linacs = {"L0B": Linac("L0B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[0],
+                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[0]),
+          "L1B": Linac("L1B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[1],
+                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[1]),
+          "L2B": Linac("L2B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[2],
+                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[2]),
+          "L3B": Linac("L3B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[3],
+                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[3])}
+
+ALL_CRYOMODULES = L0B + L1B + L1BHL + L2B + L3B
+
+
+class CryoDict(dict):
+    def __init__(self, cryomoduleClass: Type[Cryomodule] = Cryomodule,
+                 cavityClass: Type[Cavity] = Cavity,
+                 magnetClass: Type[Magnet] = Magnet, rackClass: Type[Rack] = Rack,
+                 stepperClass: Type[StepperTuner] = StepperTuner):
+        super().__init__()
+
+        self.cryomoduleClass = cryomoduleClass
+        self.cavityClass = cavityClass
+        self.magnetClass = magnetClass
+        self.rackClass = rackClass
+        self.stepperClass = stepperClass
+
+    def __missing__(self, key):
+        if key in L0B:
+            linac = linacs['L0B']
+        elif key in L1B:
+            linac = linacs['L1B']
+        elif key in L1BHL:
+            linac = linacs['L1B']
+        elif key in L2B:
+            linac = linacs['L2B']
+        elif key in L3B:
+            linac = linacs['L3B']
+        else:
+            raise ValueError("Cryomodule {} not found in any linac region.".format(key))
+        return self.cryomoduleClass(cryoName=key,
+                                    linacObject=linac,
+                                    cavityClass=self.cavityClass,
+                                    magnetClass=self.magnetClass,
+                                    rackClass=self.rackClass,
+                                    stepperClass=self.stepperClass,
+                                    isHarmonicLinearizer=(key in L1BHL))
+
+
+CRYOMODULE_OBJECTS = CryoDict()
