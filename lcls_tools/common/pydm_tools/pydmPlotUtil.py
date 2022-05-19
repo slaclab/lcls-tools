@@ -64,6 +64,10 @@ class TimePlotUpdater(PyDMPlotUpdater):
     def __init__(self, timePlotParams: Dict[str, TimePlotParams]):
         self.plotParams: Dict[str, TimePlotParams] = timePlotParams
 
+    def updateTimespans(self, timespan: int):
+        for timeplotParam in self.plotParams.values():
+            timeplotParam.plot.setTimeSpan(timespan)
+
     def clearLayout(self, layout: QFormLayout):
         if layout is not None:
             while layout.count():
