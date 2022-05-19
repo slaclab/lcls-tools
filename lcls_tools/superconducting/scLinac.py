@@ -370,7 +370,7 @@ class Rack:
 
         self.cryomodule = cryoObject
         self.rackName = rackName
-        self.cavities = {}
+        self.cavities: Dict[int, Cavity] = {}
         self.pvPrefix = self.cryomodule.pvPrefix + "RACK{RACK}:".format(RACK=self.rackName)
 
         if rackName == "A":
