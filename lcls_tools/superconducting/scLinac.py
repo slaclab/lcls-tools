@@ -42,15 +42,15 @@ class SSA:
         if turnOn:
             if self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
                 self.turnOnPV.put(1)
-                sleep(7)
-                if self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
-                    raise utils.SSAPowerError("Unable to turn on SSA")
+                while self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
+                    print("waiting for SSA to turn on")
+                    sleep(1)
         else:
             if self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
                 self.turnOffPV.put(1)
-                sleep(1)
-                if self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
-                    raise utils.SSAPowerError("Unable to turn off SSA")
+                while self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
+                    print("waiting for SSA to turn off")
+                    sleep(1)
 
         print("SSA power set\n")
 
@@ -275,6 +275,9 @@ class Cavity:
         if self.rfStatePV.value != desiredState:
             print("\nSetting RF State...")
             self.rfControlPV.put(desiredState)
+            while self.rfStatePV.value != desiredState:
+                print("Waiting for RF state to change")
+                sleep(1)
 
         print("RF state set\n")
 
