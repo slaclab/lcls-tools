@@ -26,11 +26,11 @@ class PV(epicsPV):
                             callback_data)
         attempt = 1
         while self.severity == EPICS_INVALID_VAL or not self.connected:
-            if attempt >= 3:
+            if attempt >= 5:
                 raise PVInvalidError("{pv} invalid or disconnected, aborting wait for put"
                                      .format(pv=self.pvname))
             attempt += 1
-            sleep(0.5)
+            sleep(1)
 
         if waitForPut:
             while self.value != value:
