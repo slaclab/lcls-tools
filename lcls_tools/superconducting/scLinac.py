@@ -576,7 +576,8 @@ class CryoDict(dict):
     def __init__(self, cryomoduleClass: Type[Cryomodule] = Cryomodule,
                  cavityClass: Type[Cavity] = Cavity,
                  magnetClass: Type[Magnet] = Magnet, rackClass: Type[Rack] = Rack,
-                 stepperClass: Type[StepperTuner] = StepperTuner):
+                 stepperClass: Type[StepperTuner] = StepperTuner,
+                 ssaClass: Type[SSA] = SSA):
         super().__init__()
 
         self.cryomoduleClass = cryomoduleClass
@@ -584,6 +585,7 @@ class CryoDict(dict):
         self.magnetClass = magnetClass
         self.rackClass = rackClass
         self.stepperClass = stepperClass
+        self.ssaClass = ssaClass
 
     def __missing__(self, key):
         if key in L0B:
@@ -604,7 +606,8 @@ class CryoDict(dict):
                                     magnetClass=self.magnetClass,
                                     rackClass=self.rackClass,
                                     stepperClass=self.stepperClass,
-                                    isHarmonicLinearizer=(key in L1BHL))
+                                    isHarmonicLinearizer=(key in L1BHL),
+                                    ssaClass=self.ssaClass)
 
 
 CRYOMODULE_OBJECTS = CryoDict()
