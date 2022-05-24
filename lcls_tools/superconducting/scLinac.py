@@ -152,12 +152,17 @@ class StepperTuner:
         else:
             self.move_neg_pv.put(1, waitForPut=False)
 
+        print("Waiting 5s for the motor to start moving")
+        sleep(5)
+
         while self.motor_moving_pv.value == 1:
             print("Motor moving", datetime.now())
             sleep(1)
 
         if self.motor_done_pv.value != 1:
             raise utils.StepperError("Motor not in expected state")
+
+        print("Motor done")
 
 
 class Cavity:
@@ -293,8 +298,8 @@ class Cavity:
         print("resetting interlocks and waiting 2s")
         sleep(2)
 
-        print("setting drive to 15")
-        self.drivelevelPV.put(15)
+        print("setting drive to {drive}".format(drive=utils.SAFE_PULSED_DRIVE_LEVEL))
+        self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
 
         print("running calibration")
         utils.runCalibration(startPV=self.cavityCalibrationStartPV,
