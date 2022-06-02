@@ -3,18 +3,14 @@
 # NOTE: For some reason, using python 3 style type annotations causes circular
 #       import issues, so leaving as python 2 style for now
 ################################################################################
+from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
-from epics import PV as epicsPV
 from numpy import sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
-
-
-class PV(epicsPV):
-    def __init__(self, pvname):
-        super().__init__(pvname, connection_timeout=0.01)
+from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
 
 
 class SSA:
@@ -23,15 +19,16 @@ class SSA:
         self.cavity: Cavity = cavity
         self.pvPrefix = self.cavity.pvPrefix + "SSA:"
 
-        self.ssaStatusPV: PV = PV(self.pvPrefix + "StatusMsg")
-        self.ssaTurnOnPV: PV = PV(self.pvPrefix + "PowerOn")
-        self.ssaTurnOffPV: PV = PV(self.pvPrefix + "PowerOff")
+        self.statusPV: PV = PV(self.pvPrefix + "StatusMsg")
+        self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
+        self.turnOffPV: PV = PV(self.pvPrefix + "PowerOff")
 
-        self.ssaCalibrationStartPV: PV = PV(self.pvPrefix + "CALSTRT")
-        self.ssaCalibrationStatusPV: PV = PV(self.pvPrefix + "CALSTS")
+        self.calibrationStartPV: PV = PV(self.pvPrefix + "CALSTRT")
+        self.calibrationStatusPV: PV = PV(self.pvPrefix + "CALSTS")
+        self.calResultStatusPV: PV = PV(self.pvPrefix + "CALSTAT")
 
-        self.currentSSASlopePV: PV = PV(self.pvPrefix + "SLOPE")
-        self.measuredSSASlopePV: PV = PV(self.pvPrefix + "SLOPE_NEW")
+        self.currentSlopePV: PV = PV(self.pvPrefix + "SLOPE")
+        self.measuredSlopePV: PV = PV(self.pvPrefix + "SLOPE_NEW")
 
     def turnOn(self):
         self.setPowerState(True)
@@ -42,17 +39,18 @@ class SSA:
     def setPowerState(self, turnOn: bool):
         print("\nSetting SSA power...")
 
-        if turnOn and self.ssaStatusPV != utils.SSA_STATUS_ON_VALUE:
-            self.ssaTurnOnPV.put(1)
-            sleep(7)
-            if self.ssaStatusPV != utils.SSA_STATUS_ON_VALUE:
-                raise utils.SSAPowerError("Unable to turn on SSA")
+        if turnOn:
+            if self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
+                self.turnOnPV.put(1)
+                while self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
+                    print("waiting for SSA to turn on")
+                    sleep(1)
         else:
-            if self.ssaStatusPV == utils.SSA_STATUS_ON_VALUE:
-                self.ssaTurnOffPV.put(1)
-                sleep(1)
-                if self.ssaStatusPV == utils.SSA_STATUS_ON_VALUE:
-                    raise utils.SSAPowerError("Unable to turn off SSA")
+            if self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
+                self.turnOffPV.put(1)
+                while self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
+                    print("waiting for SSA to turn off")
+                    sleep(1)
 
         print("SSA power set\n")
 
@@ -63,12 +61,13 @@ class SSA:
         :return:
         """
         self.setPowerState(True)
-        utils.runCalibration(startPV=self.ssaCalibrationStartPV,
-                             statusPV=self.ssaCalibrationStatusPV,
-                             exception=utils.SSACalibrationError)
+        utils.runCalibration(startPV=self.calibrationStartPV,
+                             statusPV=self.calibrationStatusPV,
+                             exception=utils.SSACalibrationError,
+                             resultStatusPV=self.calResultStatusPV)
 
-        utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSSASlopePV,
-                                           currentPV=self.currentSSASlopePV,
+        utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSlopePV,
+                                           currentPV=self.currentSlopePV,
                                            lowerLimit=utils.SSA_SLOPE_LOWER_LIMIT,
                                            upperLimit=utils.SSA_SLOPE_UPPER_LIMIT,
                                            pushPV=self.cavity.pushSSASlopePV,
@@ -132,7 +131,7 @@ class StepperTuner:
                               else utils.MAX_STEPPER_SPEED)
 
         if abs(numSteps) <= maxSteps:
-            self.step_des_pv.put(numSteps)
+            self.step_des_pv.put(abs(numSteps))
             self.issueMoveCommand(numSteps)
             self.restoreDefaults()
         else:
@@ -149,15 +148,21 @@ class StepperTuner:
             numSteps *= -1
 
         if sign(numSteps) == 1:
-            self.move_pos_pv.put(1)
+            self.move_pos_pv.put(1, waitForPut=False)
         else:
-            self.move_neg_pv.put(1)
+            self.move_neg_pv.put(1, waitForPut=False)
+
+        print("Waiting 5s for the motor to start moving")
+        sleep(5)
 
         while self.motor_moving_pv.value == 1:
+            print("Motor moving", datetime.now())
             sleep(1)
 
         if self.motor_done_pv.value != 1:
             raise utils.StepperError("Motor not in expected state")
+
+        print("Motor done")
 
 
 class Cavity:
@@ -251,8 +256,9 @@ class Cavity:
         go button is pressed
         :return:
         """
-        self.pulseGoButtonPV.put(1)
+        self.pulseGoButtonPV.put(1, waitForPut=False)
         while self.pulseStatusPV.value < 2:
+            print("waiting for pulse state", datetime.now())
             sleep(1)
         if self.pulseStatusPV.value > 2:
             raise utils.PulseError("Unable to pulse cavity")
@@ -274,6 +280,9 @@ class Cavity:
         if self.rfStatePV.value != desiredState:
             print("\nSetting RF State...")
             self.rfControlPV.put(desiredState)
+            while self.rfStatePV.value != desiredState:
+                print("Waiting for RF state to change")
+                sleep(1)
 
         print("RF state set\n")
 
@@ -285,15 +294,19 @@ class Cavity:
         coupler
         :return:
         """
-        self.interlockResetPV.put(1)
+        self.interlockResetPV.put(1, waitForPut=False)
+        print("resetting interlocks and waiting 2s")
         sleep(2)
 
-        self.drivelevelPV.put(15)
+        print("setting drive to {drive}".format(drive=utils.SAFE_PULSED_DRIVE_LEVEL))
+        self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
 
+        print("running calibration")
         utils.runCalibration(startPV=self.cavityCalibrationStartPV,
                              statusPV=self.cavityCalibrationStatusPV,
                              exception=utils.CavityQLoadedCalibrationError)
 
+        print("pushing results")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredQLoadedPV,
                                            currentPV=self.currentQLoadedPV,
                                            lowerLimit=loadedQLowerlimit,
@@ -309,6 +322,8 @@ class Cavity:
                                            pushPV=self.pushCavityScalePV,
                                            savePV=self.saveCavityScalePV,
                                            exception=utils.CavityScaleFactorCalibrationError)
+
+        print("calibration successful")
 
 
 class Magnet:
@@ -335,19 +350,19 @@ class Magnet:
     @bdes.setter
     def bdes(self, value):
         self.bdesPV.put(value)
-        self.controlPV.put(utils.MAGNET_TRIM_VALUE)
+        self.controlPV.put(utils.MAGNET_TRIM_VALUE, waitForPut=False)
 
     def reset(self):
-        self.controlPV.put(utils.MAGNET_RESET_VALUE)
+        self.controlPV.put(utils.MAGNET_RESET_VALUE, waitForPut=False)
 
     def turnOn(self):
-        self.controlPV.put(utils.MAGNET_ON_VALUE)
+        self.controlPV.put(utils.MAGNET_ON_VALUE, waitForPut=False)
 
     def turnOff(self):
-        self.controlPV.put(utils.MAGNET_OFF_VALUE)
+        self.controlPV.put(utils.MAGNET_OFF_VALUE, waitForPut=False)
 
     def degauss(self):
-        self.controlPV.put(utils.MAGNET_DEGAUSS_VALUE)
+        self.controlPV.put(utils.MAGNET_DEGAUSS_VALUE, waitForPut=False)
 
 
 class Rack:
@@ -363,7 +378,7 @@ class Rack:
 
         self.cryomodule = cryoObject
         self.rackName = rackName
-        self.cavities = {}
+        self.cavities: Dict[int, Cavity] = {}
         self.pvPrefix = self.cryomodule.pvPrefix + "RACK{RACK}:".format(RACK=self.rackName)
 
         if rackName == "A":
@@ -418,7 +433,7 @@ class Cryomodule:
 
         self.dsLevelPV: PV = PV("CLL:CM{cm}:2301:DS:LVL".format(cm=self.name))
         self.usLevelPV: PV = PV("CLL:CM{cm}:2601:US:LVL".format(cm=self.name))
-        self.dsPressurePV: PV = PV("CPT:CM{cm}:2303:DS:PRESS".format(cm=self.name))
+        self.dsPressurePV: PV = PV("CPT:CM{cm}:2302:DS:PRESS".format(cm=self.name))
         self.jtValveRdbkPV: PV = PV(self.jtPrefix + "ORBV")
 
         self.racks = {"A": rackClass(rackName="A", cryoObject=self,
@@ -545,4 +560,54 @@ def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
     return cryomoduleObjects
 
 
-CRYOMODULE_OBJECTS = make_lcls_cryomodules()
+linacs = {"L0B": Linac("L0B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[0],
+                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[0]),
+          "L1B": Linac("L1B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[1],
+                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[1]),
+          "L2B": Linac("L2B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[2],
+                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[2]),
+          "L3B": Linac("L3B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[3],
+                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[3])}
+
+ALL_CRYOMODULES = L0B + L1B + L1BHL + L2B + L3B
+
+
+class CryoDict(dict):
+    def __init__(self, cryomoduleClass: Type[Cryomodule] = Cryomodule,
+                 cavityClass: Type[Cavity] = Cavity,
+                 magnetClass: Type[Magnet] = Magnet, rackClass: Type[Rack] = Rack,
+                 stepperClass: Type[StepperTuner] = StepperTuner,
+                 ssaClass: Type[SSA] = SSA):
+        super().__init__()
+
+        self.cryomoduleClass = cryomoduleClass
+        self.cavityClass = cavityClass
+        self.magnetClass = magnetClass
+        self.rackClass = rackClass
+        self.stepperClass = stepperClass
+        self.ssaClass = ssaClass
+
+    def __missing__(self, key):
+        if key in L0B:
+            linac = linacs['L0B']
+        elif key in L1B:
+            linac = linacs['L1B']
+        elif key in L1BHL:
+            linac = linacs['L1B']
+        elif key in L2B:
+            linac = linacs['L2B']
+        elif key in L3B:
+            linac = linacs['L3B']
+        else:
+            raise ValueError("Cryomodule {} not found in any linac region.".format(key))
+        return self.cryomoduleClass(cryoName=key,
+                                    linacObject=linac,
+                                    cavityClass=self.cavityClass,
+                                    magnetClass=self.magnetClass,
+                                    rackClass=self.rackClass,
+                                    stepperClass=self.stepperClass,
+                                    isHarmonicLinearizer=(key in L1BHL),
+                                    ssaClass=self.ssaClass)
+
+
+CRYOMODULE_OBJECTS = CryoDict()

@@ -1,11 +1,14 @@
+from datetime import datetime
 from time import sleep
 
-from epics import PV
 from epics.ca import CASeverityException
+
+from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
 
 SSA_STATUS_ON_VALUE = 3
 SSA_SLOPE_LOWER_LIMIT = 0.5
 SSA_SLOPE_UPPER_LIMIT = 1.5
+SSA_RESULT_GOOD_STATUS_VALUE = 0
 
 # TODO add limits for the HL cavities
 LOADED_Q_LOWER_LIMIT = 3.895e7
@@ -98,17 +101,22 @@ class SSAPowerError(Exception):
         super().__init__(self.message)
 
 
-def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception):
+def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
+                   resultStatusPV: PV = None):
     try:
         startPV.put(1)
+        print("waiting 5s for script to run")
+        sleep(5)
 
         # 2 is running
         while statusPV.value == 2:
+            print("waiting for script to stop running", datetime.now())
             sleep(1)
 
         # 0 is crashed
-        if statusPV.value == 0:
+        if statusPV.value == 0 or (resultStatusPV and resultStatusPV.value != SSA_RESULT_GOOD_STATUS_VALUE):
             raise exception("{pv} crashed".format(pv=startPV))
+
     except CASeverityException:
         raise exception('CASeverityException')
 
@@ -117,7 +125,7 @@ def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: floa
                                  pushPV: PV, savePV: PV,
                                  exception: Exception = Exception):
     if lowerLimit < measuredPV.value < upperLimit:
-        pushPV.put(1)
-        savePV.put(1)
+        pushPV.put(1, waitForPut=False)
+        savePV.put(1, waitForPut=False)
     else:
         raise exception("Change to {pv} too large".format(pv=currentPV.pvname))

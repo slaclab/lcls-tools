@@ -1,15 +1,16 @@
 import abc
-from PyQt5.QtWidgets import QFormLayout
 from dataclasses import dataclass
-from pydm.widgets import PyDMLabel, PyDMTimePlot, PyDMWaveformPlot
 from typing import Dict, List, Optional, Tuple
+
+from PyQt5.QtWidgets import QFormLayout
+from pydm.widgets import PyDMLabel, PyDMTimePlot, PyDMWaveformPlot
 
 
 @dataclass
 class PyDMPlotParams:
-    lineWidth: int = 2
-    symbol: str = "o"
-    symbolSize: int = 4
+    lineWidth: Optional[int] = None
+    symbol: Optional[str] = None
+    symbolSize: Optional[int] = None
 
 
 @dataclass
@@ -17,6 +18,7 @@ class TimePlotParams(PyDMPlotParams):
     plot: PyDMTimePlot = None
     formLayout: Optional[QFormLayout] = None
     channels: Optional[List[str]] = None
+    axes: Optional[List[str]] = None
 
 
 @dataclass
@@ -62,6 +64,10 @@ class TimePlotUpdater(PyDMPlotUpdater):
     def __init__(self, timePlotParams: Dict[str, TimePlotParams]):
         self.plotParams: Dict[str, TimePlotParams] = timePlotParams
 
+    def updateTimespans(self, timespan: int):
+        for timeplotParam in self.plotParams.values():
+            timeplotParam.plot.setTimeSpan(timespan)
+
     def clearLayout(self, layout: QFormLayout):
         if layout is not None:
             while layout.count():
@@ -72,22 +78,23 @@ class TimePlotUpdater(PyDMPlotUpdater):
                 else:
                     self.clearLayout(item.layout())
 
-    def updatePlot(self, key: str, newChannels: List[str]):
+    def updatePlot(self, key: str, newChannels: List[Tuple[str]]):
         timePlotParams = self.plotParams[key]
         timePlotParams.plot.clearCurves()
 
         if timePlotParams.formLayout is not None:
             self.clearLayout(timePlotParams.formLayout)
 
-            for channel in newChannels:
+            for (channel, _) in newChannels:
                 timePlotParams.formLayout.addRow(channel, PyDMLabel(init_channel=channel))
 
-        for channel in newChannels:
+        for (channel, axis) in newChannels:
             timePlotParams.plot.addYChannel(channel,
                                             lineWidth=timePlotParams.lineWidth,
                                             symbol=timePlotParams.symbol,
-                                            symbolSize=timePlotParams.symbolSize)
+                                            symbolSize=timePlotParams.symbolSize,
+                                            yAxisName=axis)
 
-    def updatePlots(self, plotUpdateMap: Dict[str, List[str]]):
-        for key, channelList in plotUpdateMap.items():
-            self.updatePlot(key, channelList)
+    def updatePlots(self, plotUpdateMap: Dict[str, List[Tuple[str, str]]]):
+        for key, channelAxisTuple in plotUpdateMap.items():
+            self.updatePlot(key, channelAxisTuple)
