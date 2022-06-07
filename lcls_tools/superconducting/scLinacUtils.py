@@ -7,7 +7,7 @@ from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
 
 SSA_STATUS_ON_VALUE = 3
 SSA_SLOPE_LOWER_LIMIT = 0.5
-SSA_SLOPE_UPPER_LIMIT = 1.5
+SSA_SLOPE_UPPER_LIMIT = 1.6
 SSA_RESULT_GOOD_STATUS_VALUE = 0
 
 # TODO add limits for the HL cavities
@@ -45,7 +45,7 @@ class PulseError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -55,7 +55,7 @@ class StepperError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -65,7 +65,7 @@ class SSACalibrationError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -75,7 +75,7 @@ class CavityQLoadedCalibrationError(Exception):
     """
     Exception thrown during cavity loaded Q measurement
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -85,7 +85,7 @@ class CavityScaleFactorCalibrationError(Exception):
     """
     Exception thrown during cavity scale factor calibration
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -95,7 +95,7 @@ class SSAPowerError(Exception):
     """
     Exception thrown while trying to turn an SSA on or off
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -104,19 +104,22 @@ class SSAPowerError(Exception):
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
-        startPV.put(1)
+        startPV.put(1, waitForPut=False)
         print("waiting 5s for script to run")
         sleep(5)
-
+        
         # 2 is running
         while statusPV.value == 2:
             print("waiting for script to stop running", datetime.now())
             sleep(1)
-
+        
         # 0 is crashed
-        if statusPV.value == 0 or (resultStatusPV and resultStatusPV.value != SSA_RESULT_GOOD_STATUS_VALUE):
-            raise exception("{pv} crashed".format(pv=startPV))
-
+        if statusPV.value == 0:
+            raise exception("{pv} crashed".format(pv=statusPV.pvname))
+        
+        if resultStatusPV and resultStatusPV.value != SSA_RESULT_GOOD_STATUS_VALUE:
+            raise exception(f"{resultStatusPV.pvname} not in good state")
+    
     except CASeverityException:
         raise exception('CASeverityException')
 
@@ -128,4 +131,4 @@ def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: floa
         pushPV.put(1, waitForPut=False)
         savePV.put(1, waitForPut=False)
     else:
-        raise exception("Change to {pv} too large".format(pv=currentPV.pvname))
+        raise exception("{pv} out of tolerance".format(pv=currentPV.pvname))
