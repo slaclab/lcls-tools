@@ -18,27 +18,27 @@ class SSA:
         # type: (Cavity) -> None
         self.cavity: Cavity = cavity
         self.pvPrefix = self.cavity.pvPrefix + "SSA:"
-
+        
         self.statusPV: PV = PV(self.pvPrefix + "StatusMsg")
         self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
         self.turnOffPV: PV = PV(self.pvPrefix + "PowerOff")
-
+        
         self.calibrationStartPV: PV = PV(self.pvPrefix + "CALSTRT")
         self.calibrationStatusPV: PV = PV(self.pvPrefix + "CALSTS")
         self.calResultStatusPV: PV = PV(self.pvPrefix + "CALSTAT")
-
+        
         self.currentSlopePV: PV = PV(self.pvPrefix + "SLOPE")
         self.measuredSlopePV: PV = PV(self.pvPrefix + "SLOPE_NEW")
-
+    
     def turnOn(self):
         self.setPowerState(True)
-
+    
     def turnOff(self):
         self.setPowerState(False)
-
+    
     def setPowerState(self, turnOn: bool):
         print("\nSetting SSA power...")
-
+        
         if turnOn:
             if self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
                 self.turnOnPV.put(1)
@@ -51,9 +51,9 @@ class SSA:
                 while self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
                     print("waiting for SSA to turn off")
                     sleep(1)
-
+        
         print("SSA power set\n")
-
+    
     def runCalibration(self):
         """
         Runs the SSA through its range and finds the slope that describes
@@ -65,7 +65,7 @@ class SSA:
                              statusPV=self.calibrationStatusPV,
                              exception=utils.SSACalibrationError,
                              resultStatusPV=self.calResultStatusPV)
-
+        
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSlopePV,
                                            currentPV=self.currentSlopePV,
                                            lowerLimit=utils.SSA_SLOPE_LOWER_LIMIT,
@@ -88,10 +88,10 @@ class Heater:
 class StepperTuner:
     def __init__(self, cavity):
         # type (Cavity) -> None
-
+        
         self.cavity: Cavity = cavity
         self.pvPrefix: str = self.cavity.pvPrefix + "STEP:"
-
+        
         self.move_pos_pv: PV = PV(self.pvPrefix + "MOV_REQ_POS")
         self.move_neg_pv: PV = PV(self.pvPrefix + "MOV_REQ_NEG")
         self.abort_pv: PV = PV(self.pvPrefix + "ABORT_REQ")
@@ -107,11 +107,11 @@ class StepperTuner:
         self.push_signed_park_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_PARK.PROC")
         self.motor_moving_pv: PV = PV(self.pvPrefix + "STAT_MOV")
         self.motor_done_pv: PV = PV(self.pvPrefix + "STAT_DONE")
-
+    
     def restoreDefaults(self):
         self.max_steps_pv.put(utils.DEFAULT_STEPPER_MAX_STEPS)
         self.speed_pv.put(utils.DEFAULT_STEPPER_SPEED)
-
+    
     def move(self, numSteps: int, maxSteps: int = utils.DEFAULT_STEPPER_MAX_STEPS,
              speed: int = utils.DEFAULT_STEPPER_SPEED, changeLimits: bool = True):
         """
@@ -121,15 +121,15 @@ class StepperTuner:
         :param changeLimits: whether or not to change the speed and steps
         :return:
         """
-
+        
         if changeLimits:
             # on the off chance that someone tries to write a negative maximum
             self.max_steps_pv.put(abs(maxSteps))
-
+            
             # make sure that we don't exceed the speed limit as defined by the tuner experts
             self.speed_pv.put(speed if speed < utils.MAX_STEPPER_SPEED
                               else utils.MAX_STEPPER_SPEED)
-
+        
         if abs(numSteps) <= maxSteps:
             self.step_des_pv.put(abs(numSteps))
             self.issueMoveCommand(numSteps)
@@ -137,31 +137,31 @@ class StepperTuner:
         else:
             self.step_des_pv.put(maxSteps)
             self.issueMoveCommand(numSteps)
-
+            
             self.move(numSteps - (sign(numSteps) * maxSteps), maxSteps, speed,
                       False)
-
+    
     def issueMoveCommand(self, numSteps):
-
+        
         # this is necessary because the tuners for the HLs move the other direction
         if self.cavity.cryomodule.isHarmonicLinearizer:
             numSteps *= -1
-
+        
         if sign(numSteps) == 1:
             self.move_pos_pv.put(1, waitForPut=False)
         else:
             self.move_neg_pv.put(1, waitForPut=False)
-
+        
         print("Waiting 5s for the motor to start moving")
         sleep(5)
-
+        
         while self.motor_moving_pv.value == 1:
             print("Motor moving", datetime.now())
             sleep(1)
-
+        
         if self.motor_done_pv.value != 1:
             raise utils.StepperError("Motor not in expected state")
-
+        
         print("Motor done")
 
 
@@ -174,68 +174,68 @@ class Cavity:
         cavityNum: int cavity number i.e. 1 - 8
         rackObject: the rack object the cavities belong to
         """
-
+        
         self.number = cavityNum
         self.rack: Rack = rackObject
         self.cryomodule = self.rack.cryomodule
         self.linac = self.cryomodule.linac
-
+        
         if self.cryomodule.isHarmonicLinearizer:
             self.length = 0.346
             self.frequency = 3.9e9
         else:
             self.length = 1.038
             self.frequency = 1.3e9
-
+        
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(LINAC=self.linac.name,
                                                                      CRYOMODULE=self.cryomodule.name,
                                                                      CAVITY=self.number)
-
+        
         self.ctePrefix = "CTE:CM{cm}:1{cav}".format(cm=self.cryomodule.name,
                                                     cav=self.number)
-
+        
         self.ssa = ssaClass(self)
         self.heater = Heater(self)
         self.steppertuner = stepperClass(self)
-
+        
         self.pushSSASlopePV: PV = PV(self.pvPrefix + "PUSH_SSA_SLOPE.PROC")
         self.saveSSASlopePV: PV = PV(self.pvPrefix + "SAVE_SSA_SLOPE.PROC")
         self.interlockResetPV: PV = PV(self.pvPrefix + "INTLK_RESET_ALL")
-
+        
         self.drivelevelPV: PV = PV(self.pvPrefix + "SEL_ASET")
-
+        
         self.cavityCalibrationStartPV: PV = PV(self.pvPrefix + "PROBECALSTRT")
         self.cavityCalibrationStatusPV: PV = PV(self.pvPrefix + "PROBECALSTS")
-
+        
         self.currentQLoadedPV: PV = PV(self.pvPrefix + "QLOADED")
         self.measuredQLoadedPV: PV = PV(self.pvPrefix + "QLOADED_NEW")
         self.pushQLoadedPV: PV = PV(self.pvPrefix + "PUSH_QLOADED.PROC")
         self.saveQLoadedPV: PV = PV(self.pvPrefix + "SAVE_QLOADED.PROC")
-
+        
         self.currentCavityScalePV: PV = PV(self.pvPrefix + "CAV:SCALER_SEL.B")
         self.measuredCavityScalePV: PV = PV(self.pvPrefix + "CAV:CAL_SCALEB_NEW")
         self.pushCavityScalePV: PV = PV(self.pvPrefix + "PUSH_CAV_SCALE.PROC")
         self.saveCavityScalePV: PV = PV(self.pvPrefix + "SAVE_CAV_SCALE.PROC")
-
+        
         self.selAmplitudeDesPV: PV = PV(self.pvPrefix + "ADES")
         self.selAmplitudeActPV: PV = PV(self.pvPrefix + "AACTMEAN")
-
+        
         self.rfModeCtrlPV: PV = PV(self.pvPrefix + "RFMODECTRL")
         self.rfModePV: PV = PV(self.pvPrefix + "RFMODE")
-
+        
         self.rfStatePV: PV = PV(self.pvPrefix + "RFSTATE")
         self.rfControlPV: PV = PV(self.pvPrefix + "RFCTRL")
-
+        
         self.pulseGoButtonPV: PV = PV(self.pvPrefix + "PULSE_DIFF_SUM")
         self.pulseStatusPV = PV(self.pvPrefix + "PULSE_STATUS")
         self.pulseOnTimePV: PV = PV(self.pvPrefix + "PULSE_ONTIME")
-
+        
         self.revWaveformPV: PV = PV(self.pvPrefix + "REV:AWF")
         self.fwdWaveformPV: PV = PV(self.pvPrefix + "FWD:AWF")
         self.cavWaveformPV: PV = PV(self.pvPrefix + "CAV:AWF")
-
+        
         self.stepper_temp_PV: PV = PV(self.pvPrefix + "STEPTEMP")
-
+    
     def checkAndSetOnTime(self):
         """
         In pulsed mode the cavity has a duty cycle determined by the on time and
@@ -249,7 +249,7 @@ class Cavity:
             print("Setting RF Pulse On Time to {ontime} ms".format(ontime=utils.NOMINAL_PULSED_ONTIME))
             self.pulseOnTimePV.put(utils.NOMINAL_PULSED_ONTIME)
             self.pushGoButton()
-
+    
     def pushGoButton(self):
         """
         Many of the changes made to a cavity don't actually take effect until the
@@ -262,13 +262,13 @@ class Cavity:
             sleep(1)
         if self.pulseStatusPV.value > 2:
             raise utils.PulseError("Unable to pulse cavity")
-
+    
     def turnOn(self):
         self.setPowerState(True)
-
+    
     def turnOff(self):
         self.setPowerState(False)
-
+    
     def setPowerState(self, turnOn: bool):
         """
         Turn the cavity on or off
@@ -276,16 +276,16 @@ class Cavity:
         :return:
         """
         desiredState = (1 if turnOn else 0)
-
+        
         if self.rfStatePV.value != desiredState:
             print("\nSetting RF State...")
             self.rfControlPV.put(desiredState)
             while self.rfStatePV.value != desiredState:
                 print("Waiting for RF state to change")
                 sleep(1)
-
+        
         print("RF state set\n")
-
+    
     def runCalibration(self, loadedQLowerlimit=utils.LOADED_Q_LOWER_LIMIT,
                        loadedQUpperlimit=utils.LOADED_Q_UPPER_LIMIT):
         """
@@ -297,15 +297,15 @@ class Cavity:
         self.interlockResetPV.put(1, waitForPut=False)
         print("resetting interlocks and waiting 2s")
         sleep(2)
-
+        
         print("setting drive to {drive}".format(drive=utils.SAFE_PULSED_DRIVE_LEVEL))
         self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
-
+        
         print("running calibration")
         utils.runCalibration(startPV=self.cavityCalibrationStartPV,
                              statusPV=self.cavityCalibrationStatusPV,
                              exception=utils.CavityQLoadedCalibrationError)
-
+        
         print("pushing results")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredQLoadedPV,
                                            currentPV=self.currentQLoadedPV,
@@ -314,7 +314,7 @@ class Cavity:
                                            pushPV=self.pushQLoadedPV,
                                            savePV=self.saveQLoadedPV,
                                            exception=utils.CavityQLoadedCalibrationError)
-
+        
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredCavityScalePV,
                                            currentPV=self.currentCavityScalePV,
                                            lowerLimit=utils.CAVITY_SCALE_LOWER_LIMIT,
@@ -322,7 +322,7 @@ class Cavity:
                                            pushPV=self.pushCavityScalePV,
                                            savePV=self.saveCavityScalePV,
                                            exception=utils.CavityScaleFactorCalibrationError)
-
+        
         print("calibration successful")
 
 
@@ -342,27 +342,30 @@ class Magnet:
         self.iactPV: PV = PV(self.pvprefix + 'IACT')
         # changing IDES immediately perturbs
         self.idesPV: PV = PV(self.pvprefix + 'IDES')
-
+    
     @property
     def bdes(self):
         return self.bdesPV.value
-
+    
     @bdes.setter
     def bdes(self, value):
         self.bdesPV.put(value)
         self.controlPV.put(utils.MAGNET_TRIM_VALUE, waitForPut=False)
-
+    
     def reset(self):
         self.controlPV.put(utils.MAGNET_RESET_VALUE, waitForPut=False)
-
+    
     def turnOn(self):
         self.controlPV.put(utils.MAGNET_ON_VALUE, waitForPut=False)
-
+    
     def turnOff(self):
         self.controlPV.put(utils.MAGNET_OFF_VALUE, waitForPut=False)
-
+    
     def degauss(self):
         self.controlPV.put(utils.MAGNET_DEGAUSS_VALUE, waitForPut=False)
+    
+    def trim(self):
+        self.controlPV.put(utils.MAGNET_TRIM_VALUE, waitForPut=False)
 
 
 class Rack:
@@ -375,12 +378,12 @@ class Rack:
         cryoObject: the cryomodule object this rack belongs to
         cavityClass: cavity object
         """
-
+        
         self.cryomodule = cryoObject
         self.rackName = rackName
         self.cavities: Dict[int, Cavity] = {}
         self.pvPrefix = self.cryomodule.pvPrefix + "RACK{RACK}:".format(RACK=self.rackName)
-
+        
         if rackName == "A":
             # rack A always has cavities 1 - 4
             for cavityNum in range(1, 5):
@@ -388,7 +391,7 @@ class Rack:
                                                        rackObject=self,
                                                        ssaClass=ssaClass,
                                                        stepperClass=stepperClass)
-
+        
         elif rackName == "B":
             # rack B always has cavities 5 - 8
             for cavityNum in range(5, 9):
@@ -396,13 +399,13 @@ class Rack:
                                                        rackObject=self,
                                                        ssaClass=ssaClass,
                                                        stepperClass=stepperClass)
-
+        
         else:
             raise Exception("Bad rack name")
 
 
 class Cryomodule:
-
+    
     def __init__(self, cryoName, linacObject, cavityClass=Cavity,
                  magnetClass=Magnet, rackClass=Rack, isHarmonicLinearizer=False,
                  ssaClass=SSA, stepperClass=StepperTuner):
@@ -414,50 +417,50 @@ class Cryomodule:
         linacObject: the linac object this cryomodule belongs to i.e. CM02 is in linac L1B
         cavityClass: cavity object
         """
-
+        
         self.name: str = cryoName
         self.linac: Linac = linacObject
         self.isHarmonicLinearizer = isHarmonicLinearizer
-
+        
         if not isHarmonicLinearizer:
             self.quad: Magnet = magnetClass("QUAD", self)
             self.xcor: Magnet = magnetClass("XCOR", self)
             self.ycor: Magnet = magnetClass("YCOR", self)
-
+        
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}00:".format(LINAC=self.linac.name,
                                                               CRYOMODULE=self.name)
         self.ctePrefix = "CTE:CM{cm}:".format(cm=self.name)
         self.cvtPrefix = "CVT:CM{cm}:".format(cm=self.name)
         self.cpvPrefix = "CPV:CM{cm}:".format(cm=self.name)
         self.jtPrefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
-
+        
         self.dsLevelPV: PV = PV("CLL:CM{cm}:2301:DS:LVL".format(cm=self.name))
         self.usLevelPV: PV = PV("CLL:CM{cm}:2601:US:LVL".format(cm=self.name))
         self.dsPressurePV: PV = PV("CPT:CM{cm}:2302:DS:PRESS".format(cm=self.name))
         self.jtValveRdbkPV: PV = PV(self.jtPrefix + "ORBV")
-
+        
         self.racks = {"A": rackClass(rackName="A", cryoObject=self,
                                      cavityClass=cavityClass,
                                      ssaClass=ssaClass, stepperClass=stepperClass),
                       "B": rackClass(rackName="B", cryoObject=self,
                                      cavityClass=cavityClass,
                                      ssaClass=ssaClass, stepperClass=stepperClass)}
-
+        
         self.cavities: Dict[int, cavityClass] = {}
         self.cavities.update(self.racks["A"].cavities)
         self.cavities.update(self.racks["B"].cavities)
-
+        
         if isHarmonicLinearizer:
             # two cavities share one SSA, this is the mapping
             cavity_ssa_pairs = [(1, 5), (2, 6), (3, 7), (4, 8)]
-
+            
             for (leader, follower) in cavity_ssa_pairs:
                 self.cavities[follower].ssa = self.cavities[leader].ssa
             self.couplerVacuumPVs: List[PV] = [PV(self.linac.vacuumPrefix + '{cm}09:COMBO_P'.format(cm=self.name)),
                                                PV(self.linac.vacuumPrefix + '{cm}19:COMBO_P'.format(cm=self.name))]
         else:
             self.couplerVacuumPVs: List[PV] = [PV(self.linac.vacuumPrefix + '{cm}14:COMBO_P'.format(cm=self.name))]
-
+        
         self.vacuumPVs: List[str] = [pv.pvname for pv in (self.couplerVacuumPVs
                                                           + self.linac.beamlineVacuumPVs
                                                           + self.linac.insulatingVacuumPVs)]
@@ -471,18 +474,18 @@ class Linac:
         ----------
         linacName: str name of Linac i.e. "L0B", "L1B", "L2B", "L3B"
         """
-
+        
         self.name = linacName
         self.cryomodules: Dict[str, Cryomodule] = {}
         self.vacuumPrefix = 'VGXX:{linac}:'.format(linac=self.name)
-
+        
         self.beamlineVacuumPVs = [PV(self.vacuumPrefix
                                      + '{infix}:COMBO_P'.format(infix=infix))
                                   for infix in beamlineVacuumInfixes]
         self.insulatingVacuumPVs = [PV(self.vacuumPrefix
                                        + '{cm}96:COMBO_P'.format(cm=cm))
                                     for cm in insulatingVacuumCryomodules]
-
+    
     def addCryomodules(self, cryomoduleStringList: List[str], cryomoduleClass: Type[Cryomodule] = Cryomodule,
                        cavityClass: Type[Cavity] = Cavity, rackClass: Type[Rack] = Rack,
                        magnetClass: Type[Magnet] = Magnet, isHarmonicLinearizer: bool = False,
@@ -495,7 +498,7 @@ class Linac:
                                isHarmonicLinearizer=isHarmonicLinearizer,
                                ssaClass=ssaClass,
                                stepperClass=stepperClass)
-
+    
     def addCryomodule(self, cryomoduleName: str, cryomoduleClass: Type[Cryomodule] = Cryomodule,
                       cavityClass: Type[Cavity] = Cavity, rackClass: Type[Rack] = Rack,
                       magnetClass: Type[Magnet] = Magnet,
@@ -534,7 +537,7 @@ def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
                           stepperClass: Type[StepperTuner] = StepperTuner) -> Dict[str, Cryomodule]:
     cryomoduleObjects: Dict[str, Cryomodule] = {}
     linacObjects: List[Linac] = []
-
+    
     for idx, (name, cryomoduleList) in enumerate(LINAC_TUPLES):
         linac = Linac(name, beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[idx],
                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[idx])
@@ -547,7 +550,7 @@ def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
                              stepperClass=stepperClass)
         linacObjects.append(linac)
         cryomoduleObjects.update(linac.cryomodules)
-
+    
     linacObjects[1].addCryomodules(cryomoduleStringList=L1BHL,
                                    cryomoduleClass=cryomoduleClass,
                                    isHarmonicLinearizer=True,
@@ -579,14 +582,14 @@ class CryoDict(dict):
                  stepperClass: Type[StepperTuner] = StepperTuner,
                  ssaClass: Type[SSA] = SSA):
         super().__init__()
-
+        
         self.cryomoduleClass = cryomoduleClass
         self.cavityClass = cavityClass
         self.magnetClass = magnetClass
         self.rackClass = rackClass
         self.stepperClass = stepperClass
         self.ssaClass = ssaClass
-
+    
     def __missing__(self, key):
         if key in L0B:
             linac = linacs['L0B']
@@ -600,14 +603,16 @@ class CryoDict(dict):
             linac = linacs['L3B']
         else:
             raise ValueError("Cryomodule {} not found in any linac region.".format(key))
-        return self.cryomoduleClass(cryoName=key,
-                                    linacObject=linac,
-                                    cavityClass=self.cavityClass,
-                                    magnetClass=self.magnetClass,
-                                    rackClass=self.rackClass,
-                                    stepperClass=self.stepperClass,
-                                    isHarmonicLinearizer=(key in L1BHL),
-                                    ssaClass=self.ssaClass)
+        cryomodule = self.cryomoduleClass(cryoName=key,
+                                          linacObject=linac,
+                                          cavityClass=self.cavityClass,
+                                          magnetClass=self.magnetClass,
+                                          rackClass=self.rackClass,
+                                          stepperClass=self.stepperClass,
+                                          isHarmonicLinearizer=(key in L1BHL),
+                                          ssaClass=self.ssaClass)
+        self[key] = cryomodule
+        return cryomodule
 
 
 CRYOMODULE_OBJECTS = CryoDict()
