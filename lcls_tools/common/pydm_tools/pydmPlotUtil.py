@@ -51,6 +51,7 @@ class WaveformPlotUpdater(PyDMPlotUpdater):
     def updatePlot(self, key: str, newChannelPairs: List[Tuple[Optional[str], str]]):
         plotParams = self.plotParams[key]
         plotParams.plot.clearCurves()
+        plotParams.plot.clearAxes()
         
         for (xchannel, ychannel) in newChannelPairs:
             plotParams.plot.addChannel(y_channel=ychannel, x_channel=xchannel,
