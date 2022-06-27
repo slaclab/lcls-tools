@@ -44,6 +44,7 @@ class ImageProcessingTest(unittest.TestCase):
 
     def test_shape_image(self):
         """Test that we can reshape our ndarray"""
+        print(self.MI.image)
         self.assertEqual(self.MI.image.shape, (1024, 1392))
         image = ip.shape_image(self.MI.image, 16, 89088)
         self.assertEqual(image.shape, (89088, 16))
