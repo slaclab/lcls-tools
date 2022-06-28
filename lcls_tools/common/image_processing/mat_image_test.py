@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 from mat_image import MatImage as MI
 
-FILE = 'test_image.mat'
+FILE = './test_image_electron.mat'
 CAMERA = 'CAMR:LGUN:210'
 
 class MatImageTest(unittest.TestCase):

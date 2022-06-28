@@ -102,12 +102,12 @@ def find_line(zero_runs, runs, xdata, ydata):
     else:
         zero1 = runs[zero_runs[0]]
         zero2 = runs[zero_runs[-1]]
-
-        x_ind1 = zero1[argsort(ydata[zero1])[len(zero1) / 2]]
+        
+        x_ind1 = zero1[argsort(ydata[zero1])[int(len(zero1) / 2)]]
         x1 = xdata[x_ind1]
         y1 = ydata[x_ind1]
 
-        x_ind2 = zero2[argsort(ydata[zero2])[len(zero2) / 2]]
+        x_ind2 = zero2[argsort(ydata[zero2])[int(len(zero2) / 2)]]
         x2 = xdata[x_ind2]
         y2 = ydata[x_ind2]
 
@@ -204,7 +204,7 @@ def adjust_data(data, step):
     normalized_adjustment = 0
 
     bucket_count = zeros(NUM_BUCKS)
-    bucket_contents = [[] for i in xrange(0, NUM_BUCKS)]
+    bucket_contents = [[] for i in range(0, NUM_BUCKS)]
     buckets = zeros(len(data))
 
     for idx, element in enumerate(data):
@@ -299,8 +299,8 @@ def process_data(data):
 
     # This prints my vertical buckets
     if DEBUG:
-        for i in xrange(1, NUM_BUCKS):
-            plt.plot([i * step for _ in xrange(0, len(data))])
+        for i in range(1, NUM_BUCKS):
+            plt.plot([i * step for _ in range(0, len(data))])
 
     total_adjustment = first_adjustment + normalized_adjustment
 
