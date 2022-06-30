@@ -12,10 +12,10 @@ SSA_RESULT_GOOD_STATUS_VALUE = 0
 
 # TODO add limits for the HL cavities
 LOADED_Q_LOWER_LIMIT = 3.895e7
-LOADED_Q_UPPER_LIMIT = 4.305e7
+LOADED_Q_UPPER_LIMIT = 4.605e7
 DESIGN_Q_LOADED = 4.1e7
 
-CAVITY_SCALE_UPPER_LIMIT = 40
+CAVITY_SCALE_UPPER_LIMIT = 50
 CAVITY_SCALE_LOWER_LIMIT = 10
 
 RF_MODE_SELAP = 0
@@ -39,6 +39,14 @@ MAGNET_ON_VALUE = 11
 MAGNET_OFF_VALUE = 12
 MAGNET_DEGAUSS_VALUE = 13
 MAGNET_TRIM_VALUE = 1
+
+PIEZO_ENABLE_VALUE = 1
+PIEZO_DISABLE_VALUE = 0
+PIEZO_MANUAL_VALUE = 0
+PIEZO_FEEDBACK_VALUE = 1
+PIEZO_SCRIPT_RUNNING_VALUE = 2
+PIEZO_SCRIPT_COMPLETE_VALUE = 1
+PIEZO_PRERF_CHECKOUT_PASS_VALUE = 0
 
 
 class PulseError(Exception):
@@ -107,7 +115,7 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
         startPV.put(1, waitForPut=False)
         print("waiting 5s for script to run")
         sleep(5)
-
+        
         # 2 is running
         while statusPV.value == 2:
             print("waiting for script to stop running", datetime.now())

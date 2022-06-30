@@ -61,6 +61,11 @@ class SSA:
         :return:
         """
         self.setPowerState(True)
+        
+        print("Resetting interlocks and waiting 2s")
+        self.cavity.interlockResetPV.put(1, waitForPut=False)
+        sleep(2)
+        
         utils.runCalibration(startPV=self.calibrationStartPV,
                              statusPV=self.calibrationStatusPV,
                              exception=utils.SSACalibrationError,
@@ -165,9 +170,27 @@ class StepperTuner:
         print("Motor done")
 
 
+class Piezo:
+    def __init__(self, cavity):
+        # type (Cavity) -> None
+        self.cavity: Cavity = cavity
+        self.pvPrefix: str = self.cavity.pvPrefix + "PZT:"
+        self.enable_PV: PV = PV(self.pvPrefix + "ENABLE")
+        self.feedback_mode_PV: PV = PV(self.pvPrefix + "MODECTRL")
+        self.dc_setpoint_PV: PV = PV(self.pvPrefix + "DAC_SP")
+        self.bias_voltage_PV: PV = PV(self.pvPrefix + "BIAS")
+    
+    def enable_feedback(self):
+        self.enable_PV.put(utils.PIEZO_DISABLE_VALUE)
+        self.dc_setpoint_PV.put(25)
+        self.feedback_mode_PV.put(utils.PIEZO_MANUAL_VALUE)
+        self.enable_PV.put(utils.PIEZO_ENABLE_VALUE)
+
+
 class Cavity:
-    def __init__(self, cavityNum, rackObject, ssaClass=SSA, stepperClass=StepperTuner):
-        # type: (int, Rack, Type[SSA], Type[StepperTuner]) -> None
+    def __init__(self, cavityNum, rackObject, ssaClass=SSA,
+                 stepperClass=StepperTuner, piezoClass=Piezo):
+        # type: (int, Rack, Type[SSA], Type[StepperTuner], Type[Piezo]) -> None
         """
         Parameters
         ----------
@@ -177,7 +200,7 @@ class Cavity:
         
         self.number = cavityNum
         self.rack: Rack = rackObject
-        self.cryomodule = self.rack.cryomodule
+        self.cryomodule: Cryomodule = self.rack.cryomodule
         self.linac = self.cryomodule.linac
         
         if self.cryomodule.isHarmonicLinearizer:
@@ -197,6 +220,7 @@ class Cavity:
         self.ssa = ssaClass(self)
         self.heater = Heater(self)
         self.steppertuner = stepperClass(self)
+        self.piezo = piezoClass(self)
         
         self.pushSSASlopePV: PV = PV(self.pvPrefix + "PUSH_SSA_SLOPE.PROC")
         self.saveSSASlopePV: PV = PV(self.pvPrefix + "SAVE_SSA_SLOPE.PROC")
@@ -235,6 +259,7 @@ class Cavity:
         self.cavWaveformPV: PV = PV(self.pvPrefix + "CAV:AWF")
         
         self.stepper_temp_PV: PV = PV(self.pvPrefix + "STEPTEMP")
+        self.detune_best_PV: PV = PV(self.pvPrefix + "DFBEST")
     
     def checkAndSetOnTime(self):
         """
@@ -369,8 +394,9 @@ class Magnet:
 
 
 class Rack:
-    def __init__(self, rackName, cryoObject, cavityClass=Cavity, ssaClass=SSA, stepperClass=StepperTuner):
-        # type: (str, Cryomodule, Type[Cavity], Type[SSA], Type[StepperTuner]) -> None
+    def __init__(self, rackName, cryoObject, cavityClass=Cavity, ssaClass=SSA,
+                 stepperClass=StepperTuner, piezoClass=Piezo):
+        # type: (str, Cryomodule, Type[Cavity], Type[SSA], Type[StepperTuner], Type[Piezo]) -> None
         """
         Parameters
         ----------
@@ -390,7 +416,8 @@ class Rack:
                 self.cavities[cavityNum] = cavityClass(cavityNum=cavityNum,
                                                        rackObject=self,
                                                        ssaClass=ssaClass,
-                                                       stepperClass=stepperClass)
+                                                       stepperClass=stepperClass,
+                                                       piezoClass=piezoClass)
         
         elif rackName == "B":
             # rack B always has cavities 5 - 8
@@ -398,7 +425,8 @@ class Rack:
                 self.cavities[cavityNum] = cavityClass(cavityNum=cavityNum,
                                                        rackObject=self,
                                                        ssaClass=ssaClass,
-                                                       stepperClass=stepperClass)
+                                                       stepperClass=stepperClass,
+                                                       piezoClass=piezoClass)
         
         else:
             raise Exception("Bad rack name")
@@ -408,8 +436,8 @@ class Cryomodule:
     
     def __init__(self, cryoName, linacObject, cavityClass=Cavity,
                  magnetClass=Magnet, rackClass=Rack, isHarmonicLinearizer=False,
-                 ssaClass=SSA, stepperClass=StepperTuner):
-        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner]) -> None
+                 ssaClass=SSA, stepperClass=StepperTuner, piezoClass=Piezo):
+        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner], Type[Piezo]) -> None
         """
         Parameters
         ----------
@@ -441,10 +469,14 @@ class Cryomodule:
         
         self.racks = {"A": rackClass(rackName="A", cryoObject=self,
                                      cavityClass=cavityClass,
-                                     ssaClass=ssaClass, stepperClass=stepperClass),
+                                     ssaClass=ssaClass,
+                                     stepperClass=stepperClass,
+                                     piezoClass=piezoClass),
                       "B": rackClass(rackName="B", cryoObject=self,
                                      cavityClass=cavityClass,
-                                     ssaClass=ssaClass, stepperClass=stepperClass)}
+                                     ssaClass=ssaClass,
+                                     stepperClass=stepperClass,
+                                     piezoClass=piezoClass)}
         
         self.cavities: Dict[int, cavityClass] = {}
         self.cavities.update(self.racks["A"].cavities)
@@ -580,7 +612,7 @@ class CryoDict(dict):
                  cavityClass: Type[Cavity] = Cavity,
                  magnetClass: Type[Magnet] = Magnet, rackClass: Type[Rack] = Rack,
                  stepperClass: Type[StepperTuner] = StepperTuner,
-                 ssaClass: Type[SSA] = SSA):
+                 ssaClass: Type[SSA] = SSA, piezoClass: Type[Piezo] = Piezo):
         super().__init__()
         
         self.cryomoduleClass = cryomoduleClass
@@ -589,6 +621,7 @@ class CryoDict(dict):
         self.rackClass = rackClass
         self.stepperClass = stepperClass
         self.ssaClass = ssaClass
+        self.piezoClass = piezoClass
     
     def __missing__(self, key):
         if key in L0B:
@@ -610,7 +643,8 @@ class CryoDict(dict):
                                           rackClass=self.rackClass,
                                           stepperClass=self.stepperClass,
                                           isHarmonicLinearizer=(key in L1BHL),
-                                          ssaClass=self.ssaClass)
+                                          ssaClass=self.ssaClass,
+                                          piezoClass=self.piezoClass)
         self[key] = cryomodule
         return cryomodule
 
