@@ -7,15 +7,15 @@ from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
 
 SSA_STATUS_ON_VALUE = 3
 SSA_SLOPE_LOWER_LIMIT = 0.5
-SSA_SLOPE_UPPER_LIMIT = 1.5
+SSA_SLOPE_UPPER_LIMIT = 1.6
 SSA_RESULT_GOOD_STATUS_VALUE = 0
 
 # TODO add limits for the HL cavities
 LOADED_Q_LOWER_LIMIT = 3.895e7
-LOADED_Q_UPPER_LIMIT = 4.305e7
+LOADED_Q_UPPER_LIMIT = 4.605e7
 DESIGN_Q_LOADED = 4.1e7
 
-CAVITY_SCALE_UPPER_LIMIT = 40
+CAVITY_SCALE_UPPER_LIMIT = 50
 CAVITY_SCALE_LOWER_LIMIT = 10
 
 RF_MODE_SELAP = 0
@@ -40,12 +40,20 @@ MAGNET_OFF_VALUE = 12
 MAGNET_DEGAUSS_VALUE = 13
 MAGNET_TRIM_VALUE = 1
 
+PIEZO_ENABLE_VALUE = 1
+PIEZO_DISABLE_VALUE = 0
+PIEZO_MANUAL_VALUE = 0
+PIEZO_FEEDBACK_VALUE = 1
+PIEZO_SCRIPT_RUNNING_VALUE = 2
+PIEZO_SCRIPT_COMPLETE_VALUE = 1
+PIEZO_PRERF_CHECKOUT_PASS_VALUE = 0
+
 
 class PulseError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -55,7 +63,7 @@ class StepperError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -65,7 +73,7 @@ class SSACalibrationError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -75,7 +83,7 @@ class CavityQLoadedCalibrationError(Exception):
     """
     Exception thrown during cavity loaded Q measurement
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -85,7 +93,7 @@ class CavityScaleFactorCalibrationError(Exception):
     """
     Exception thrown during cavity scale factor calibration
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -95,7 +103,7 @@ class SSAPowerError(Exception):
     """
     Exception thrown while trying to turn an SSA on or off
     """
-
+    
     def __init__(self, message):
         self.message = message
         super().__init__(self.message)
@@ -104,19 +112,22 @@ class SSAPowerError(Exception):
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
-        startPV.put(1)
+        startPV.put(1, waitForPut=False)
         print("waiting 5s for script to run")
         sleep(5)
-
+        
         # 2 is running
         while statusPV.value == 2:
             print("waiting for script to stop running", datetime.now())
             sleep(1)
-
+        
         # 0 is crashed
         if statusPV.value == 0 or (resultStatusPV and resultStatusPV.value != SSA_RESULT_GOOD_STATUS_VALUE):
-            raise exception("{pv} crashed".format(pv=startPV))
-
+            raise exception("{pv} crashed".format(pv=statusPV.pvname))
+        
+        if resultStatusPV and resultStatusPV.value != SSA_RESULT_GOOD_STATUS_VALUE:
+            raise exception(f"{resultStatusPV.pvname} not in good state")
+    
     except CASeverityException:
         raise exception('CASeverityException')
 
@@ -128,4 +139,4 @@ def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: floa
         pushPV.put(1, waitForPut=False)
         savePV.put(1, waitForPut=False)
     else:
-        raise exception("Change to {pv} too large".format(pv=currentPV.pvname))
+        raise exception("{pv} out of tolerance".format(pv=currentPV.pvname))
