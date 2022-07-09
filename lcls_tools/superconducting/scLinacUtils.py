@@ -122,8 +122,8 @@ class SSAPowerError(Exception):
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
-        print(f"Pushing {startPV.pvname} button and waiting for response")
-        caput(startPV.pvname, 1, wait=True)
+        print(f"Pushing {startPV.pvname} button")
+        caput(startPV.pvname, 1)
         print("waiting 2s for script to run")
         sleep(2)
         
