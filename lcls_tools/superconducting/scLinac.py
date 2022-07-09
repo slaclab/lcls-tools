@@ -314,8 +314,8 @@ class Cavity:
         
         if caget(self.pvPrefix + "RFSTATE") != desiredState:
             print("\nSetting RF State...")
-            caput(self.rfControlPV.pvname, desiredState)
-            if caget(self.pvPrefix + "RFSTATE") != desiredState:
+            caput(self.rfControlPV.pvname, desiredState, wait=True)
+            while caget(self.pvPrefix + "RFSTATE") != desiredState:
                 print("Waiting for RF state to change")
                 sleep(1)
         
