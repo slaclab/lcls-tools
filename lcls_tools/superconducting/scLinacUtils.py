@@ -122,13 +122,14 @@ class SSAPowerError(Exception):
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
+        print(f"Pushing {startPV.pvname} button and waiting for response")
         caput(startPV.pvname, 1, wait=True)
         print("waiting 2s for script to run")
         sleep(2)
         
         # 2 is running
         while caget(statusPV.pvname) is None or caget(statusPV.pvname) == 2:
-            print("waiting for script to stop running", datetime.now())
+            print(f"waiting for {statusPV.pvname} to stop running", datetime.now())
             sleep(1)
         
         # 0 is crashed

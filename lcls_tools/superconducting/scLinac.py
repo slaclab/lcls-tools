@@ -57,13 +57,6 @@ class SSA:
         
         print("SSA power set\n")
     
-    def reset(self):
-        print(f"Resetting interlocks for CM{self.cavity.cryomodule.name}"
-              f" cavity {self.cavity.number}")
-        caput(self.cavity.pvPrefix + "INTLK_RESET_ALL", 1, wait=True)
-        print(f"Interlocks reset for CM{self.cavity.cryomodule.name}"
-              f" cavity {self.cavity.number}")
-    
     def runCalibration(self):
         """
         Runs the SSA through its range and finds the slope that describes
@@ -72,13 +65,17 @@ class SSA:
         """
         self.setPowerState(True)
         
-        self.reset()
+        self.cavity.reset_interlocks()
         
+        print(f"Running SSA Calibration for CM{self.cavity.cryomodule.name}"
+              f" cavity {self.cavity.number}")
         utils.runCalibration(startPV=self.calibrationStartPV,
                              statusPV=self.calibrationStatusPV,
                              exception=utils.SSACalibrationError,
                              resultStatusPV=self.calResultStatusPV)
         
+        print(f"Pushing SSA calibration results for CM{self.cavity.cryomodule.name}"
+              f" cavity {self.cavity.number}")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSlopePV,
                                            currentPV=self.currentSlopePV,
                                            lowerLimit=utils.SSA_SLOPE_LOWER_LIMIT,
@@ -272,6 +269,7 @@ class Cavity:
         self.detune_rfs_PV: PV = PV(self.pvPrefix + "DF")
         
         self.ades_max_PV: PV = PV(self.pvPrefix + "ADES_MAX")
+        self.rf_permit_pv: str = self.pvPrefix + "RFPERMIT"
     
     def checkAndSetOnTime(self):
         """
@@ -323,10 +321,11 @@ class Cavity:
         
         print("RF state set\n")
     
-    def reset(self):
-        print(f"Resetting interlocks for CM{self.cryomodule.name}"
-              f" cavity {self.number}")
-        caput(self.interlockResetPV.pvname, 1, wait=True)
+    def reset_interlocks(self):
+        if caget(self.rf_permit_pv) != 1:
+            print(f"Resetting interlocks for CM{self.cryomodule.name}"
+                  f" cavity {self.number}")
+            caput(self.interlockResetPV.pvname, 1, wait=True)
     
     def runCalibration(self, loadedQLowerlimit=utils.LOADED_Q_LOWER_LIMIT,
                        loadedQUpperlimit=utils.LOADED_Q_UPPER_LIMIT):
@@ -337,7 +336,7 @@ class Cavity:
         :return:
         """
         
-        self.reset()
+        self.reset_interlocks()
         
         print("setting drive to {drive}".format(drive=utils.SAFE_PULSED_DRIVE_LEVEL))
         self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
