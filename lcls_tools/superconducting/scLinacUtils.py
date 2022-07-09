@@ -123,13 +123,11 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
         caput(startPV.pvname, 1, wait=True)
-        # startPV.put(1, waitForPut=False)
         print("waiting 2s for script to run")
         sleep(2)
         
         # 2 is running
         while caget(statusPV.pvname) is None or caget(statusPV.pvname) == 2:
-            # while statusPV.value == 2:
             print("waiting for script to stop running", datetime.now())
             sleep(1)
         

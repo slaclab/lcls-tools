@@ -58,9 +58,11 @@ class SSA:
         print("SSA power set\n")
     
     def reset(self):
-        print(f"Resetting interlocks for {self.cavity.cryomodule.name}"
+        print(f"Resetting interlocks for CM{self.cavity.cryomodule.name}"
               f" cavity {self.cavity.number}")
         caput(self.cavity.pvPrefix + "INTLK_RESET_ALL", 1, wait=True)
+        print(f"Interlocks reset for CM{self.cavity.cryomodule.name}"
+              f" cavity {self.cavity.number}")
     
     def runCalibration(self):
         """
