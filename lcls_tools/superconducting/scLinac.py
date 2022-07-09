@@ -7,6 +7,7 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
+from epics import caget, caput
 from numpy import sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
@@ -41,18 +42,25 @@ class SSA:
         
         if turnOn:
             if self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
-                self.turnOnPV.put(1)
-                while self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
+                while caput(self.turnOnPV.pvname, 1, wait=True) != 1:
+                    print("Trying to power on SSA")
+                while caget(self.statusPV.pvname) != utils.SSA_STATUS_ON_VALUE:
                     print("waiting for SSA to turn on")
                     sleep(1)
         else:
             if self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
-                self.turnOffPV.put(1)
-                while self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
+                while caput(self.turnOffPV.pvname, 1, wait=True) != 1:
+                    print("Trying to power off SSA")
+                while caget(self.statusPV.pvname) == utils.SSA_STATUS_ON_VALUE:
                     print("waiting for SSA to turn off")
                     sleep(1)
         
         print("SSA power set\n")
+    
+    def reset(self):
+        print(f"Resetting interlocks for {self.cavity.cryomodule.name}"
+              f" cavity {self.cavity.number}")
+        caput(self.cavity.pvPrefix + "INTLK_RESET_ALL", 1, wait=True)
     
     def runCalibration(self):
         """
@@ -62,9 +70,7 @@ class SSA:
         """
         self.setPowerState(True)
         
-        print("Resetting interlocks and waiting 2s")
-        self.cavity.interlockResetPV.put(1, waitForPut=False)
-        sleep(2)
+        self.reset()
         
         utils.runCalibration(startPV=self.calibrationStartPV,
                              statusPV=self.calibrationStatusPV,
@@ -114,8 +120,8 @@ class StepperTuner:
         self.motor_done_pv: PV = PV(self.pvPrefix + "STAT_DONE")
     
     def restoreDefaults(self):
-        self.max_steps_pv.put(utils.DEFAULT_STEPPER_MAX_STEPS)
-        self.speed_pv.put(utils.DEFAULT_STEPPER_SPEED)
+        caput(self.max_steps_pv.pvname, utils.DEFAULT_STEPPER_MAX_STEPS, wait=True)
+        caput(self.speed_pv.pvname, utils.DEFAULT_STEPPER_SPEED, wait=True)
     
     def move(self, numSteps: int, maxSteps: int = utils.DEFAULT_STEPPER_MAX_STEPS,
              speed: int = utils.DEFAULT_STEPPER_SPEED, changeLimits: bool = True):
@@ -129,18 +135,19 @@ class StepperTuner:
         
         if changeLimits:
             # on the off chance that someone tries to write a negative maximum
-            self.max_steps_pv.put(abs(maxSteps))
+            caput(self.max_steps_pv.pvname, abs(maxSteps), wait=True)
             
             # make sure that we don't exceed the speed limit as defined by the tuner experts
-            self.speed_pv.put(speed if speed < utils.MAX_STEPPER_SPEED
-                              else utils.MAX_STEPPER_SPEED)
+            caput(self.speed_pv.pvname,
+                  speed if speed < utils.MAX_STEPPER_SPEED
+                  else utils.MAX_STEPPER_SPEED, wait=True)
         
         if abs(numSteps) <= maxSteps:
-            self.step_des_pv.put(abs(numSteps))
+            caput(self.step_des_pv.pvname, abs(numSteps), wait=True)
             self.issueMoveCommand(numSteps)
             self.restoreDefaults()
         else:
-            self.step_des_pv.put(maxSteps)
+            caput(self.step_des_pv.pvname, maxSteps, wait=True)
             self.issueMoveCommand(numSteps)
             
             self.move(numSteps - (sign(numSteps) * maxSteps), maxSteps, speed,
@@ -153,18 +160,18 @@ class StepperTuner:
             numSteps *= -1
         
         if sign(numSteps) == 1:
-            self.move_pos_pv.put(1, waitForPut=False)
+            caput(self.move_pos_pv.pvname, 1, wait=True)
         else:
-            self.move_neg_pv.put(1, waitForPut=False)
+            caput(self.move_neg_pv.pvname, 1, wait=True)
         
         print("Waiting 5s for the motor to start moving")
         sleep(5)
         
-        while self.motor_moving_pv.value == 1:
+        while caget(self.motor_moving_pv.pvname) == 1:
             print("Motor moving", datetime.now())
             sleep(1)
         
-        if self.motor_done_pv.value != 1:
+        if caget(self.motor_done_pv.pvname) != 1:
             raise utils.StepperError("Motor not in expected state")
         
         print("Motor done")
@@ -260,6 +267,9 @@ class Cavity:
         
         self.stepper_temp_PV: PV = PV(self.pvPrefix + "STEPTEMP")
         self.detune_best_PV: PV = PV(self.pvPrefix + "DFBEST")
+        self.detune_rfs_PV: PV = PV(self.pvPrefix + "DF")
+        
+        self.ades_max_PV: PV = PV(self.pvPrefix + "ADES_MAX")
     
     def checkAndSetOnTime(self):
         """
@@ -302,14 +312,19 @@ class Cavity:
         """
         desiredState = (1 if turnOn else 0)
         
-        if self.rfStatePV.value != desiredState:
+        if caget(self.pvPrefix + "RFSTATE") != desiredState:
             print("\nSetting RF State...")
-            self.rfControlPV.put(desiredState)
-            while self.rfStatePV.value != desiredState:
+            caput(self.rfControlPV.pvname, desiredState)
+            if caget(self.pvPrefix + "RFSTATE") != desiredState:
                 print("Waiting for RF state to change")
                 sleep(1)
         
         print("RF state set\n")
+    
+    def reset(self):
+        print(f"Resetting interlocks for CM{self.cryomodule.name}"
+              f" cavity {self.number}")
+        caput(self.interlockResetPV.pvname, 1, wait=True)
     
     def runCalibration(self, loadedQLowerlimit=utils.LOADED_Q_LOWER_LIMIT,
                        loadedQUpperlimit=utils.LOADED_Q_UPPER_LIMIT):
@@ -319,9 +334,8 @@ class Cavity:
         coupler
         :return:
         """
-        self.interlockResetPV.put(1, waitForPut=False)
-        print("resetting interlocks and waiting 2s")
-        sleep(2)
+        
+        self.reset()
         
         print("setting drive to {drive}".format(drive=utils.SAFE_PULSED_DRIVE_LEVEL))
         self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)

@@ -1,6 +1,7 @@
 from datetime import datetime
 from time import sleep
 
+from epics import caget, caput
 from epics.ca import CASeverityException
 
 from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
@@ -47,6 +48,15 @@ PIEZO_FEEDBACK_VALUE = 1
 PIEZO_SCRIPT_RUNNING_VALUE = 2
 PIEZO_SCRIPT_COMPLETE_VALUE = 1
 PIEZO_PRERF_CHECKOUT_PASS_VALUE = 0
+
+MICROSTEPS_PER_STEP = 256
+
+HZ_PER_STEP = 1.4
+HL_HZ_PER_STEP = 18.3
+
+# These are very rough values obtained empirically
+ESTIMATED_MICROSTEPS_PER_HZ = MICROSTEPS_PER_STEP / HZ_PER_STEP
+ESTIMATED_MICROSTEPS_PER_HZ_HL = MICROSTEPS_PER_STEP / HL_HZ_PER_STEP
 
 
 class PulseError(Exception):
@@ -112,20 +122,25 @@ class SSAPowerError(Exception):
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
-        startPV.put(1, waitForPut=False)
-        print("waiting 5s for script to run")
-        sleep(5)
+        caput(startPV.pvname, 1, wait=True)
+        # startPV.put(1, waitForPut=False)
+        print("waiting 2s for script to run")
+        sleep(2)
         
         # 2 is running
-        while statusPV.value == 2:
+        while caget(statusPV.pvname) is None or caget(statusPV.pvname) == 2:
+            # while statusPV.value == 2:
             print("waiting for script to stop running", datetime.now())
             sleep(1)
         
         # 0 is crashed
-        if statusPV.value == 0 or (resultStatusPV and resultStatusPV.value != SSA_RESULT_GOOD_STATUS_VALUE):
+        if (caget(statusPV.pvname) == 0
+                or (resultStatusPV
+                    and caget(resultStatusPV.pvname)
+                    != SSA_RESULT_GOOD_STATUS_VALUE)):
             raise exception("{pv} crashed".format(pv=statusPV.pvname))
         
-        if resultStatusPV and resultStatusPV.value != SSA_RESULT_GOOD_STATUS_VALUE:
+        if resultStatusPV and caget(resultStatusPV.pvname) != SSA_RESULT_GOOD_STATUS_VALUE:
             raise exception(f"{resultStatusPV.pvname} not in good state")
     
     except CASeverityException:
