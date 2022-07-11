@@ -37,6 +37,7 @@ STEPPER_TEMP_LIMIT = 70
 DEFAULT_STEPPER_MAX_STEPS = 1000000
 DEFAULT_STEPPER_SPEED = 20000
 MAX_STEPPER_SPEED = 60000
+STEPPER_ON_LIMIT_SWITCH_VALUE = 1
 
 # these values are based on the list of enum states found by probing {Magnettype}:L{x}B:{cm}85:CTRL
 MAGNET_RESET_VALUE = 10

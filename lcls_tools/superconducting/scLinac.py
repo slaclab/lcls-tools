@@ -128,6 +128,8 @@ class StepperTuner:
         self.push_signed_park_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_PARK.PROC")
         self.motor_moving_pv: PV = PV(self.pvPrefix + "STAT_MOV")
         self.motor_done_pv: PV = PV(self.pvPrefix + "STAT_DONE")
+        self.limit_switch_a_pv: str = self.pvPrefix + "STAT_LIMA"
+        self.limit_switch_b_pv: str = self.pvPrefix + "STAT_LIMB"
     
     def restoreDefaults(self):
         caput(self.max_steps_pv.pvname, utils.DEFAULT_STEPPER_MAX_STEPS, wait=True)
@@ -142,6 +144,10 @@ class StepperTuner:
         :param changeLimits: whether or not to change the speed and steps
         :return:
         """
+        
+        if (caget(self.limit_switch_a_pv) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
+                or caget(self.limit_switch_b_pv) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
+            raise utils.StepperError("Stepper motor on limit switch")
         
         if changeLimits:
             # on the off chance that someone tries to write a negative maximum
