@@ -23,6 +23,7 @@ class SSA:
         self.statusPV: PV = PV(self.pvPrefix + "StatusMsg")
         self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
         self.turnOffPV: PV = PV(self.pvPrefix + "PowerOff")
+        self.resetPV: str = self.pvPrefix + "FaultReset"
         
         self.calibrationStartPV: PV = PV(self.pvPrefix + "CALSTRT")
         self.calibrationStatusPV: PV = PV(self.pvPrefix + "CALSTS")
@@ -36,6 +37,15 @@ class SSA:
     
     def turnOff(self):
         self.setPowerState(False)
+    
+    def reset(self):
+        print("Resetting SSA...")
+        caput(self.resetPV, 1, wait=True)
+        while caget(self.statusPV.pvname) == utils.SSA_STATUS_RESETTING_FAULTS_VALUE:
+            sleep(1)
+        if caget(self.statusPV.pvname) in [utils.SSA_STATUS_FAULTED_VALUE,
+                                           utils.SSA_STATUS_FAULT_RESET_FAILED_VALUE]:
+            raise utils.SSAFaultError("Unable to reset SSA")
     
     def setPowerState(self, turnOn: bool):
         print("\nSetting SSA power...")
@@ -63,6 +73,7 @@ class SSA:
         the relationship between SSA drive signal and output power
         :return:
         """
+        self.reset()
         self.setPowerState(True)
         
         self.cavity.reset_interlocks()

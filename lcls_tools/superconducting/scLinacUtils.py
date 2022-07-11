@@ -7,6 +7,10 @@ from epics.ca import CASeverityException
 from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
 
 SSA_STATUS_ON_VALUE = 3
+SSA_STATUS_FAULTED_VALUE = 1
+SSA_STATUS_OFF_VALUE = 2
+SSA_STATUS_RESETTING_FAULTS_VALUE = 4
+SSA_STATUS_FAULT_RESET_FAILED_VALUE = 7
 SSA_SLOPE_LOWER_LIMIT = 0.5
 SSA_SLOPE_UPPER_LIMIT = 1.6
 SSA_RESULT_GOOD_STATUS_VALUE = 0
@@ -63,60 +67,49 @@ class PulseError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 
 class StepperError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 
 class SSACalibrationError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 
 class CavityQLoadedCalibrationError(Exception):
     """
     Exception thrown during cavity loaded Q measurement
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 
 class CavityScaleFactorCalibrationError(Exception):
     """
     Exception thrown during cavity scale factor calibration
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 
 class SSAPowerError(Exception):
     """
     Exception thrown while trying to turn an SSA on or off
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
+
+
+class SSAFaultError(Exception):
+    """
+    Exception thrown while trying to turn an SSA on or off
+    """
+    pass
 
 
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
