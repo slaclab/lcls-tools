@@ -229,9 +229,13 @@ class Cavity:
         if self.cryomodule.isHarmonicLinearizer:
             self.length = 0.346
             self.frequency = 3.9e9
+            self.loaded_q_lower_limit = utils.LOADED_Q_LOWER_LIMIT_HL
+            self.loaded_q_upper_limit = utils.LOADED_Q_UPPER_LIMIT_HL
         else:
             self.length = 1.038
             self.frequency = 1.3e9
+            self.loaded_q_lower_limit = utils.LOADED_Q_LOWER_LIMIT
+            self.loaded_q_upper_limit = utils.LOADED_Q_UPPER_LIMIT
         
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(LINAC=self.linac.name,
                                                                      CRYOMODULE=self.cryomodule.name,
@@ -343,8 +347,7 @@ class Cavity:
                   f" cavity {self.number}")
             caput(self.interlockResetPV.pvname, 1, wait=True)
     
-    def runCalibration(self, loadedQLowerlimit=utils.LOADED_Q_LOWER_LIMIT,
-                       loadedQUpperlimit=utils.LOADED_Q_UPPER_LIMIT):
+    def runCalibration(self):
         """
         Calibrates the cavity's RF probe so that the amplitude readback will be
         accurate. Also measures the loaded Q (quality factor) of the cavity power
@@ -365,8 +368,8 @@ class Cavity:
         print("pushing results")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredQLoadedPV,
                                            currentPV=self.currentQLoadedPV,
-                                           lowerLimit=loadedQLowerlimit,
-                                           upperLimit=loadedQUpperlimit,
+                                           lowerLimit=self.loaded_q_lower_limit,
+                                           upperLimit=self.loaded_q_upper_limit,
                                            pushPV=self.pushQLoadedPV,
                                            savePV=self.saveQLoadedPV,
                                            exception=utils.CavityQLoadedCalibrationError)
