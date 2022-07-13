@@ -11,7 +11,7 @@ from epics import caget, caput
 from numpy import sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
-from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
+from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
 
 
 class SSA:
@@ -291,6 +291,32 @@ class Cavity:
         
         self.ades_max_PV: PV = PV(self.pvPrefix + "ADES_MAX")
         self.rf_permit_pv: str = self.pvPrefix + "RFPERMIT"
+        self.quench_latch_pv: str = self.pvPrefix + "QUENCH_LTCH"
+    
+    def auto_tune(self, des_detune=0, limit=10000):
+        cm_name = self.cryomodule.name
+        cav_num = self.number
+        
+        delta = caget(self.detune_best_PV.pvname) - des_detune
+        steps_per_hz = (utils.ESTIMATED_MICROSTEPS_PER_HZ_HL
+                        if self.cryomodule.isHarmonicLinearizer
+                        else utils.ESTIMATED_MICROSTEPS_PER_HZ)
+        
+        if self.detune_best_PV.severity == 3 or abs(delta) > limit:
+            raise utils.DetuneError(f"Tuning for CM{cm_name} cavity"
+                                    f" {cav_num} needs to be checked"
+                                    f" (either invalid or above {limit})")
+        
+        while abs(delta) > 50:
+            if caget(self.quench_latch_pv) == 1:
+                raise utils.QuenchError(f"CM{cm_name} cavity"
+                                        f" {cav_num} quenched, aborting autotune")
+            est_steps = int(0.9 * sign(delta) * delta * steps_per_hz)
+            print(f"Moving stepper for CM{cm_name} cavity {cav_num} {est_steps} steps")
+            self.steppertuner.move(est_steps,
+                                   maxSteps=utils.DEFAULT_STEPPER_MAX_STEPS,
+                                   speed=utils.MAX_STEPPER_SPEED)
+            delta = caget(self.detune_best_PV.pvname) - des_detune
     
     def checkAndSetOnTime(self):
         """
@@ -340,6 +366,35 @@ class Cavity:
             sleep(1)
         
         print("RF state set\n")
+    
+    def setup_tuning(self):
+        # self.turnOff()
+        print("enabling piezo")
+        self.piezo.enable_PV.put(utils.PIEZO_ENABLE_VALUE)
+        
+        print("setting piezo to manual")
+        self.piezo.feedback_mode_PV.put(utils.PIEZO_MANUAL_VALUE)
+        
+        print("setting piezo DC voltage offset to 0V")
+        self.piezo.dc_setpoint_PV.put(0)
+        
+        print("setting piezo bias voltage to 25V")
+        self.piezo.bias_voltage_PV.put(25)
+        
+        print("setting drive level to {lev}".format(lev=utils.SAFE_PULSED_DRIVE_LEVEL))
+        self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
+        
+        print("setting RF to chirp")
+        self.rfModeCtrlPV.put(utils.RF_MODE_CHIRP)
+        
+        print("turning RF on and waiting 5s for detune to catch up")
+        self.turnOn()
+        sleep(5)
+        
+        if self.detune_best_PV.severity == EPICS_INVALID_VAL:
+            raise utils.DetuneError("Detune PV invalid. Either expand the chirp"
+                                    " range or use the rack large frequency scan"
+                                    " to find the detune.")
     
     def reset_interlocks(self):
         if caget(self.rf_permit_pv) != 1:

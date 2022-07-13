@@ -117,6 +117,20 @@ class SSAFaultError(Exception):
     pass
 
 
+class DetuneError(Exception):
+    """
+    Exception thrown when the detune PV is out of tolerance or invalid
+    """
+    pass
+
+
+class QuenchError(Exception):
+    """
+    Exception thrown when the quench fault is latched
+    """
+    pass
+
+
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
