@@ -31,6 +31,24 @@ class SSA:
         
         self.currentSlopePV: PV = PV(self.pvPrefix + "SLOPE")
         self.measuredSlopePV: PV = PV(self.pvPrefix + "SLOPE_NEW")
+        
+        self.maxdrive_pv: str = self.pvPrefix + "DRV_MAX_REQ"
+        self.drivemax = 1 if self.cavity.cryomodule.isHarmonicLinearizer else 0.8
+    
+    def calibrate(self, drivemax):
+        print(f"Trying SSA calibration with drivemax {drivemax}")
+        if drivemax < 0.6:
+            raise utils.SSACalibrationError("Requested drive max too low")
+        
+        while caput(self.maxdrive_pv, drivemax, wait=True) != 1:
+            print("Setting max drive")
+        
+        try:
+            self.runCalibration()
+        
+        except utils.SSACalibrationError as e:
+            print("SSA Calibration failed, retrying")
+            self.calibrate(drivemax - 0.05)
     
     def turnOn(self):
         self.setPowerState(True)
@@ -270,6 +288,7 @@ class Cavity:
         
         self.selAmplitudeDesPV: PV = PV(self.pvPrefix + "ADES")
         self.selAmplitudeActPV: PV = PV(self.pvPrefix + "AACTMEAN")
+        self.ades_max_PV: PV = PV(self.pvPrefix + "ADES_MAX")
         
         self.rfModeCtrlPV: PV = PV(self.pvPrefix + "RFMODECTRL")
         self.rfModePV: PV = PV(self.pvPrefix + "RFMODE")
@@ -289,11 +308,14 @@ class Cavity:
         self.detune_best_PV: PV = PV(self.pvPrefix + "DFBEST")
         self.detune_rfs_PV: PV = PV(self.pvPrefix + "DF")
         
-        self.ades_max_PV: PV = PV(self.pvPrefix + "ADES_MAX")
         self.rf_permit_pv: str = self.pvPrefix + "RFPERMIT"
+        
         self.quench_latch_pv: str = self.pvPrefix + "QUENCH_LTCH"
+        self.quench_bypass_pv: str = self.pvPrefix + "QUENCH_BYP"
     
-    def auto_tune(self, des_detune=0, limit=10000):
+    def auto_tune(self, des_detune=0, delta_limit=10000):
+        self.setup_tuning()
+        
         cm_name = self.cryomodule.name
         cav_num = self.number
         
@@ -302,10 +324,10 @@ class Cavity:
                         if self.cryomodule.isHarmonicLinearizer
                         else utils.ESTIMATED_MICROSTEPS_PER_HZ)
         
-        if self.detune_best_PV.severity == 3 or abs(delta) > limit:
+        if self.detune_best_PV.severity == 3 or abs(delta) > delta_limit:
             raise utils.DetuneError(f"Tuning for CM{cm_name} cavity"
                                     f" {cav_num} needs to be checked"
-                                    f" (either invalid or above {limit})")
+                                    f" (either invalid or delta above {delta_limit})")
         
         while abs(delta) > 50:
             if caget(self.quench_latch_pv) == 1:
@@ -367,6 +389,43 @@ class Cavity:
         
         print("RF state set\n")
     
+    def setup_SELAP(self, desAmp: float = 5):
+        self.setup_rf(desAmp)
+
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELAP, wait=True)
+        print(f"CM{self.cryomodule.name} Cavity{self.number} set up in SELAP")
+        
+    def setup_SELA(self, desAmp: float = 5):
+        self.setup_rf(desAmp)
+
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA, wait=True)
+        print(f"CM{self.cryomodule.name} Cavity{self.number} set up in SELA")
+
+    def setup_rf(self, desAmp):
+        if desAmp > caget(self.ades_max_PV):
+            print("Requested amplitude too high - ramping up to AMAX instead")
+            desAmp = caget(self.ades_max_PV)
+        print(f"setting up cm{self.cryomodule.name} cavity {self.number}")
+        self.turnOff()
+        self.ssa.calibrate(self.ssa.drivemax)
+        self.auto_tune()
+        
+        caput(self.quench_bypass_pv, 1, wait=True)
+        self.runCalibration()
+        caput(self.quench_bypass_pv, 0, wait=True)
+        
+        caput(self.selAmplitudeDesPV.pvname, min(5, desAmp), wait=True)
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SEL, wait=True)
+        caput(self.piezo.feedback_mode_PV.pvname, utils.PIEZO_FEEDBACK_VALUE, wait=True)
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA, wait=True)
+        
+        if desAmp <= 10:
+            self.walk_amp(desAmp, 0.5)
+    
+        else:
+            self.walk_amp(10, 0.5)
+            self.walk_amp(desAmp, 0.1)
+
     def setup_tuning(self):
         # self.turnOff()
         print("enabling piezo")
@@ -438,6 +497,21 @@ class Cavity:
                                            exception=utils.CavityScaleFactorCalibrationError)
         
         print("calibration successful")
+    
+    def walk_amp(self, des_amp, step_size):
+        print(f"walking CM{self.cryomodule.name} cavity {self.number} to {des_amp}")
+        
+        while caget(self.selAmplitudeDesPV.pvname) <= (des_amp - step_size):
+            if caget(self.quench_latch_pv) == 1:
+                raise utils.QuenchError(f"Quench detected on CM{self.cryomodule.name}"
+                                        f" cavity {self.number}, aborting rampup")
+            caput(self.selAmplitudeDesPV.pvname,
+                  self.selAmplitudeDesPV.value + step_size, wait=True)
+        
+        if caget(self.selAmplitudeDesPV.pvname) != des_amp:
+            caput(self.selAmplitudeDesPV.pvname, des_amp)
+        
+        print(f"CM{self.cryomodule.name} cavity {self.number} at {des_amp}")
 
 
 class Magnet:

@@ -15,9 +15,8 @@ SSA_SLOPE_LOWER_LIMIT = 0.5
 SSA_SLOPE_UPPER_LIMIT = 1.6
 SSA_RESULT_GOOD_STATUS_VALUE = 0
 
-# TODO add limits for the HL cavities
-LOADED_Q_LOWER_LIMIT = 3.895e7
-LOADED_Q_UPPER_LIMIT = 4.605e7
+LOADED_Q_LOWER_LIMIT = 3.1e7
+LOADED_Q_UPPER_LIMIT = 5.1e7
 DESIGN_Q_LOADED = 4.1e7
 
 LOADED_Q_LOWER_LIMIT_HL = 1.5e7
@@ -57,6 +56,7 @@ PIEZO_FEEDBACK_VALUE = 1
 PIEZO_SCRIPT_RUNNING_VALUE = 2
 PIEZO_SCRIPT_COMPLETE_VALUE = 1
 PIEZO_PRERF_CHECKOUT_PASS_VALUE = 0
+PIEZO_WITH_RF_GRAD = 6.5
 
 MICROSTEPS_PER_STEP = 256
 
@@ -165,4 +165,5 @@ def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: floa
         pushPV.put(1, waitForPut=False)
         savePV.put(1, waitForPut=False)
     else:
-        raise exception("{pv} out of tolerance".format(pv=currentPV.pvname))
+        raise exception(f"{measuredPV.pvname}: {measuredPV.value}"
+                        f" not between {lowerLimit} and {upperLimit}")
