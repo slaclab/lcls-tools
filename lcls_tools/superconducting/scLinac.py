@@ -311,7 +311,7 @@ class Cavity:
             if caget(self.quench_latch_pv) == 1:
                 raise utils.QuenchError(f"CM{cm_name} cavity"
                                         f" {cav_num} quenched, aborting autotune")
-            est_steps = int(0.9 * sign(delta) * delta * steps_per_hz)
+            est_steps = int(0.9 * delta * steps_per_hz)
             print(f"Moving stepper for CM{cm_name} cavity {cav_num} {est_steps} steps")
             self.steppertuner.move(est_steps,
                                    maxSteps=utils.DEFAULT_STEPPER_MAX_STEPS,
