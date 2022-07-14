@@ -1,21 +1,29 @@
 from datetime import datetime
 from time import sleep
 
+from epics import caget, caput
 from epics.ca import CASeverityException
 
 from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
 
 SSA_STATUS_ON_VALUE = 3
+SSA_STATUS_FAULTED_VALUE = 1
+SSA_STATUS_OFF_VALUE = 2
+SSA_STATUS_RESETTING_FAULTS_VALUE = 4
+SSA_STATUS_FAULT_RESET_FAILED_VALUE = 7
 SSA_SLOPE_LOWER_LIMIT = 0.5
 SSA_SLOPE_UPPER_LIMIT = 1.6
 SSA_RESULT_GOOD_STATUS_VALUE = 0
 
-# TODO add limits for the HL cavities
-LOADED_Q_LOWER_LIMIT = 3.895e7
-LOADED_Q_UPPER_LIMIT = 4.605e7
+LOADED_Q_LOWER_LIMIT = 3.1e7
+LOADED_Q_UPPER_LIMIT = 5.1e7
 DESIGN_Q_LOADED = 4.1e7
 
-CAVITY_SCALE_UPPER_LIMIT = 50
+LOADED_Q_LOWER_LIMIT_HL = 1.5e7
+LOADED_Q_UPPER_LIMIT_HL = 3.5e7
+DESIGN_Q_LOADED_HL = 2.5e7
+
+CAVITY_SCALE_UPPER_LIMIT = 100
 CAVITY_SCALE_LOWER_LIMIT = 10
 
 RF_MODE_SELAP = 0
@@ -32,6 +40,7 @@ STEPPER_TEMP_LIMIT = 70
 DEFAULT_STEPPER_MAX_STEPS = 1000000
 DEFAULT_STEPPER_SPEED = 20000
 MAX_STEPPER_SPEED = 60000
+STEPPER_ON_LIMIT_SWITCH_VALUE = 1
 
 # these values are based on the list of enum states found by probing {Magnettype}:L{x}B:{cm}85:CTRL
 MAGNET_RESET_VALUE = 10
@@ -47,85 +56,102 @@ PIEZO_FEEDBACK_VALUE = 1
 PIEZO_SCRIPT_RUNNING_VALUE = 2
 PIEZO_SCRIPT_COMPLETE_VALUE = 1
 PIEZO_PRERF_CHECKOUT_PASS_VALUE = 0
+PIEZO_WITH_RF_GRAD = 6.5
+
+MICROSTEPS_PER_STEP = 256
+
+HZ_PER_STEP = 1.4
+HL_HZ_PER_STEP = 18.3
+
+# These are very rough values obtained empirically
+ESTIMATED_MICROSTEPS_PER_HZ = MICROSTEPS_PER_STEP / HZ_PER_STEP
+ESTIMATED_MICROSTEPS_PER_HZ_HL = MICROSTEPS_PER_STEP / HL_HZ_PER_STEP
 
 
 class PulseError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 
 class StepperError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 
 class SSACalibrationError(Exception):
     """
     Exception thrown during cavity SSA calibration
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 
 class CavityQLoadedCalibrationError(Exception):
     """
     Exception thrown during cavity loaded Q measurement
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 
 class CavityScaleFactorCalibrationError(Exception):
     """
     Exception thrown during cavity scale factor calibration
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
 
 
 class SSAPowerError(Exception):
     """
     Exception thrown while trying to turn an SSA on or off
     """
-    
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+    pass
+
+
+class SSAFaultError(Exception):
+    """
+    Exception thrown while trying to turn an SSA on or off
+    """
+    pass
+
+
+class DetuneError(Exception):
+    """
+    Exception thrown when the detune PV is out of tolerance or invalid
+    """
+    pass
+
+
+class QuenchError(Exception):
+    """
+    Exception thrown when the quench fault is latched
+    """
+    pass
 
 
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
-        startPV.put(1, waitForPut=False)
-        print("waiting 5s for script to run")
-        sleep(5)
+        print(f"Pushing {startPV.pvname} button")
+        caput(startPV.pvname, 1)
+        print("waiting 2s for script to run")
+        sleep(2)
         
         # 2 is running
-        while statusPV.value == 2:
-            print("waiting for script to stop running", datetime.now())
+        while caget(statusPV.pvname) is None or caget(statusPV.pvname) == 2:
+            print(f"waiting for {statusPV.pvname} to stop running", datetime.now())
             sleep(1)
         
         # 0 is crashed
-        if statusPV.value == 0 or (resultStatusPV and resultStatusPV.value != SSA_RESULT_GOOD_STATUS_VALUE):
+        if (caget(statusPV.pvname) == 0
+                or (resultStatusPV
+                    and caget(resultStatusPV.pvname)
+                    != SSA_RESULT_GOOD_STATUS_VALUE)):
             raise exception("{pv} crashed".format(pv=statusPV.pvname))
         
-        if resultStatusPV and resultStatusPV.value != SSA_RESULT_GOOD_STATUS_VALUE:
+        if resultStatusPV and caget(resultStatusPV.pvname) != SSA_RESULT_GOOD_STATUS_VALUE:
             raise exception(f"{resultStatusPV.pvname} not in good state")
     
     except CASeverityException:
@@ -139,4 +165,5 @@ def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: floa
         pushPV.put(1, waitForPut=False)
         savePV.put(1, waitForPut=False)
     else:
-        raise exception("{pv} out of tolerance".format(pv=currentPV.pvname))
+        raise exception(f"{measuredPV.pvname}: {measuredPV.value}"
+                        f" not between {lowerLimit} and {upperLimit}")
