@@ -32,15 +32,16 @@ class SSA:
         self.currentSlopePV: PV = PV(self.pvPrefix + "SLOPE")
         self.measuredSlopePV: PV = PV(self.pvPrefix + "SLOPE_NEW")
         
-        self.maxdrive_pv: str = self.pvPrefix + "DRV_MAX_REQ"
-        self.drivemax = 1 if self.cavity.cryomodule.isHarmonicLinearizer else 0.8
+        self.maxdrive_setpoint_pv: str = self.pvPrefix + "DRV_MAX_REQ"
+        self.saved_maxdrive_pv: str = self.pvPrefix + "DRV_MAX_SAVE"
+        self.drivemax = 1 if self.cavity.cryomodule.isHarmonicLinearizer else caget(self.saved_maxdrive_pv)
     
     def calibrate(self, drivemax):
         print(f"Trying SSA calibration with drivemax {drivemax}")
         if drivemax < 0.6:
             raise utils.SSACalibrationError("Requested drive max too low")
         
-        while caput(self.maxdrive_pv, drivemax, wait=True) != 1:
+        while caput(self.maxdrive_setpoint_pv, drivemax, wait=True) != 1:
             print("Setting max drive")
         
         try:
@@ -48,7 +49,7 @@ class SSA:
         
         except utils.SSACalibrationError as e:
             print("SSA Calibration failed, retrying")
-            self.calibrate(drivemax - 0.05)
+            self.calibrate(drivemax - 0.02)
     
     def turnOn(self):
         self.setPowerState(True)
@@ -312,6 +313,8 @@ class Cavity:
         
         self.quench_latch_pv: str = self.pvPrefix + "QUENCH_LTCH"
         self.quench_bypass_pv: str = self.pvPrefix + "QUENCH_BYP"
+        
+        self.data_decim_pv: str = self.pvPrefix + "ACQ_DECIM"
     
     def auto_tune(self, des_detune=0, delta_limit=10000):
         self.setup_tuning()
@@ -413,6 +416,7 @@ class Cavity:
         caput(self.quench_bypass_pv, 1, wait=True)
         self.runCalibration()
         caput(self.quench_bypass_pv, 0, wait=True)
+        caput(self.data_decim_pv, 255, wait=True)
         
         caput(self.selAmplitudeDesPV.pvname, min(5, desAmp), wait=True)
         caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SEL, wait=True)
