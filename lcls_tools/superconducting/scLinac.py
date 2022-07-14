@@ -402,9 +402,9 @@ class Cavity:
         print(f"CM{self.cryomodule.name} Cavity{self.number} set up in SELA")
 
     def setup_rf(self, desAmp):
-        if desAmp > caget(self.ades_max_PV):
+        if desAmp > caget(self.ades_max_PV.pvname):
             print("Requested amplitude too high - ramping up to AMAX instead")
-            desAmp = caget(self.ades_max_PV)
+            desAmp = caget(self.ades_max_PV.pvname)
         print(f"setting up cm{self.cryomodule.name} cavity {self.number}")
         self.turnOff()
         self.ssa.calibrate(self.ssa.drivemax)
