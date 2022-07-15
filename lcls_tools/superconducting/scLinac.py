@@ -461,11 +461,17 @@ class Cavity:
                                     " range or use the rack large frequency scan"
                                     " to find the detune.")
     
-    def reset_interlocks(self):
+    def reset_interlocks(self, keep_trying=False):
         print(f"Resetting interlocks for CM{self.cryomodule.name}"
               f" cavity {self.number} and waiting 3s")
         caput(self.interlockResetPV.pvname, 1, wait=True)
         sleep(3)
+        
+        if keep_trying:
+            while caget(self.quench_latch_pv) != 0:
+                print("Reset unsuccessful, retrying")
+                caput(self.interlockResetPV.pvname, 1, wait=True)
+                sleep(3)
     
     def runCalibration(self):
         """
