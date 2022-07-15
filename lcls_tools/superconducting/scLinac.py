@@ -396,16 +396,16 @@ class Cavity:
     
     def setup_SELAP(self, desAmp: float = 5):
         self.setup_rf(desAmp)
-
+        
         caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELAP, wait=True)
         print(f"CM{self.cryomodule.name} Cavity{self.number} set up in SELAP")
-        
+    
     def setup_SELA(self, desAmp: float = 5):
         self.setup_rf(desAmp)
-
+        
         caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA, wait=True)
         print(f"CM{self.cryomodule.name} Cavity{self.number} set up in SELA")
-
+    
     def setup_rf(self, desAmp):
         if desAmp > caget(self.ades_max_PV.pvname):
             print("Requested amplitude too high - ramping up to AMAX instead")
@@ -427,11 +427,11 @@ class Cavity:
         
         if desAmp <= 10:
             self.walk_amp(desAmp, 0.5)
-    
+        
         else:
             self.walk_amp(10, 0.5)
             self.walk_amp(desAmp, 0.1)
-
+    
     def setup_tuning(self):
         # self.turnOff()
         print("enabling piezo")
@@ -462,12 +462,10 @@ class Cavity:
                                     " to find the detune.")
     
     def reset_interlocks(self):
-        if caget(self.rf_permit_pv) != 1:
-            print(f"Resetting interlocks for CM{self.cryomodule.name}"
-                  f" cavity {self.number}")
-            caput(self.interlockResetPV.pvname, 1, wait=True)
-            sleep(3)
-                
+        print(f"Resetting interlocks for CM{self.cryomodule.name}"
+              f" cavity {self.number} and waiting 3s")
+        caput(self.interlockResetPV.pvname, 1, wait=True)
+        sleep(3)
     
     def runCalibration(self):
         """
