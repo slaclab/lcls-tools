@@ -34,7 +34,9 @@ class SSA:
         
         self.maxdrive_setpoint_pv: str = self.pvPrefix + "DRV_MAX_REQ"
         self.saved_maxdrive_pv: str = self.pvPrefix + "DRV_MAX_SAVE"
-        self.drivemax = 1 if self.cavity.cryomodule.isHarmonicLinearizer else caget(self.saved_maxdrive_pv)
+        saved_val = caget(self.saved_maxdrive_pv)
+        self.drivemax = (1 if self.cavity.cryomodule.isHarmonicLinearizer
+                         else (saved_val if saved_val else 0.8))
     
     def calibrate(self, drivemax):
         print(f"Trying SSA calibration with drivemax {drivemax}")
@@ -464,6 +466,10 @@ class Cavity:
             print(f"Resetting interlocks for CM{self.cryomodule.name}"
                   f" cavity {self.number}")
             caput(self.interlockResetPV.pvname, 1, wait=True)
+            while caget(self.rf_permit_pv) != 1:
+                print(f"Waiting for CM{self.cryomodule.name} cavity {self.number} interlocks to reset")
+                sleep(0.1)
+                
     
     def runCalibration(self):
         """
