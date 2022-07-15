@@ -466,9 +466,7 @@ class Cavity:
             print(f"Resetting interlocks for CM{self.cryomodule.name}"
                   f" cavity {self.number}")
             caput(self.interlockResetPV.pvname, 1, wait=True)
-            while caget(self.rf_permit_pv) != 1:
-                print(f"Waiting for CM{self.cryomodule.name} cavity {self.number} interlocks to reset")
-                sleep(0.1)
+            sleep(3)
                 
     
     def runCalibration(self):
