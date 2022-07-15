@@ -519,6 +519,8 @@ class Cavity:
                                         f" cavity {self.number}, aborting rampup")
             caput(self.selAmplitudeDesPV.pvname,
                   self.selAmplitudeDesPV.value + step_size, wait=True)
+            # to avoid tripping sensitive interlock
+            sleep(0.1)
         
         if caget(self.selAmplitudeDesPV.pvname) != des_amp:
             caput(self.selAmplitudeDesPV.pvname, des_amp)
