@@ -79,12 +79,27 @@ class TimePlotUpdater(PyDMPlotUpdater):
                 else:
                     self.clearLayout(item.layout())
     
-    def updatePlot(self, key: str, newChannels: List[Tuple[str]]):
+    def clear_plot(self, key: str) -> TimePlotParams:
         timePlotParams = self.plotParams[key]
         timePlotParams.plot.clearCurves()
         
         if timePlotParams.formLayout is not None:
             self.clearLayout(timePlotParams.formLayout)
+        
+        return timePlotParams
+    
+    def clear_plots(self, key_list: List[str] = None):
+        if key_list:
+            for key in key_list:
+                self.clear_plot(key)
+        else:
+            for key in self.plotParams.keys():
+                self.clear_plot(key)
+    
+    def updatePlot(self, key: str, newChannels: List[Tuple[str]]):
+        timePlotParams: TimePlotParams = self.clear_plot(key)
+        
+        if timePlotParams.formLayout is not None:
             
             for (channel, _) in newChannels:
                 timePlotParams.formLayout.addRow(channel, PyDMLabel(init_channel=channel))

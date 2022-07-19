@@ -7,11 +7,10 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
-from epics import caget, caput
-from numpy import sign
-
 import lcls_tools.superconducting.scLinacUtils as utils
+from epics import caget, caput
 from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
+from numpy import sign
 
 
 class SSA:
@@ -32,15 +31,18 @@ class SSA:
         self.currentSlopePV: PV = PV(self.pvPrefix + "SLOPE")
         self.measuredSlopePV: PV = PV(self.pvPrefix + "SLOPE_NEW")
         
-        self.maxdrive_pv: str = self.pvPrefix + "DRV_MAX_REQ"
-        self.drivemax = 1 if self.cavity.cryomodule.isHarmonicLinearizer else 0.8
+        self.maxdrive_setpoint_pv: str = self.pvPrefix + "DRV_MAX_REQ"
+        self.saved_maxdrive_pv: str = self.pvPrefix + "DRV_MAX_SAVE"
+        saved_val = caget(self.saved_maxdrive_pv)
+        self.drivemax = (1 if self.cavity.cryomodule.isHarmonicLinearizer
+                         else (saved_val if saved_val else 0.8))
     
     def calibrate(self, drivemax):
         print(f"Trying SSA calibration with drivemax {drivemax}")
         if drivemax < 0.6:
             raise utils.SSACalibrationError("Requested drive max too low")
         
-        while caput(self.maxdrive_pv, drivemax, wait=True) != 1:
+        while caput(self.maxdrive_setpoint_pv, drivemax, wait=True) != 1:
             print("Setting max drive")
         
         try:
@@ -48,7 +50,7 @@ class SSA:
         
         except utils.SSACalibrationError as e:
             print("SSA Calibration failed, retrying")
-            self.calibrate(drivemax - 0.05)
+            self.calibrate(drivemax - 0.02)
     
     def turnOn(self):
         self.setPowerState(True)
@@ -304,7 +306,7 @@ class Cavity:
         self.fwdWaveformPV: PV = PV(self.pvPrefix + "FWD:AWF")
         self.cavWaveformPV: PV = PV(self.pvPrefix + "CAV:AWF")
         
-        self.stepper_temp_PV: PV = PV(self.pvPrefix + "STEPTEMP")
+        self.stepper_temp_pv: str = self.pvPrefix + "STEPTEMP"
         self.detune_best_PV: PV = PV(self.pvPrefix + "DFBEST")
         self.detune_rfs_PV: PV = PV(self.pvPrefix + "DF")
         
@@ -312,6 +314,8 @@ class Cavity:
         
         self.quench_latch_pv: str = self.pvPrefix + "QUENCH_LTCH"
         self.quench_bypass_pv: str = self.pvPrefix + "QUENCH_BYP"
+        
+        self.data_decim_pv: str = self.pvPrefix + "ACQ_DECIM"
     
     def auto_tune(self, des_detune=0, delta_limit=10000):
         self.setup_tuning()
@@ -391,16 +395,16 @@ class Cavity:
     
     def setup_SELAP(self, desAmp: float = 5):
         self.setup_rf(desAmp)
-
+        
         caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELAP, wait=True)
         print(f"CM{self.cryomodule.name} Cavity{self.number} set up in SELAP")
-        
+    
     def setup_SELA(self, desAmp: float = 5):
         self.setup_rf(desAmp)
-
+        
         caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA, wait=True)
         print(f"CM{self.cryomodule.name} Cavity{self.number} set up in SELA")
-
+    
     def setup_rf(self, desAmp):
         if desAmp > caget(self.ades_max_PV.pvname):
             print("Requested amplitude too high - ramping up to AMAX instead")
@@ -413,6 +417,7 @@ class Cavity:
         caput(self.quench_bypass_pv, 1, wait=True)
         self.runCalibration()
         caput(self.quench_bypass_pv, 0, wait=True)
+        caput(self.data_decim_pv, 255, wait=True)
         
         caput(self.selAmplitudeDesPV.pvname, min(5, desAmp), wait=True)
         caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SEL, wait=True)
@@ -421,11 +426,11 @@ class Cavity:
         
         if desAmp <= 10:
             self.walk_amp(desAmp, 0.5)
-    
+        
         else:
             self.walk_amp(10, 0.5)
             self.walk_amp(desAmp, 0.1)
-
+    
     def setup_tuning(self):
         # self.turnOff()
         print("enabling piezo")
@@ -455,11 +460,17 @@ class Cavity:
                                     " range or use the rack large frequency scan"
                                     " to find the detune.")
     
-    def reset_interlocks(self):
-        if caget(self.rf_permit_pv) != 1:
-            print(f"Resetting interlocks for CM{self.cryomodule.name}"
-                  f" cavity {self.number}")
-            caput(self.interlockResetPV.pvname, 1, wait=True)
+    def reset_interlocks(self, keep_trying=False):
+        print(f"Resetting interlocks for CM{self.cryomodule.name}"
+              f" cavity {self.number} and waiting 3s")
+        caput(self.interlockResetPV.pvname, 1, wait=True)
+        sleep(3)
+        
+        if keep_trying:
+            while caget(self.quench_latch_pv) != 0:
+                print("Reset unsuccessful, retrying")
+                caput(self.interlockResetPV.pvname, 1, wait=True)
+                sleep(3)
     
     def runCalibration(self):
         """
@@ -507,6 +518,8 @@ class Cavity:
                                         f" cavity {self.number}, aborting rampup")
             caput(self.selAmplitudeDesPV.pvname,
                   self.selAmplitudeDesPV.value + step_size, wait=True)
+            # to avoid tripping sensitive interlock
+            sleep(0.1)
         
         if caget(self.selAmplitudeDesPV.pvname) != des_amp:
             caput(self.selAmplitudeDesPV.pvname, des_amp)
@@ -798,7 +811,7 @@ class CryoDict(dict):
         elif key in L3B:
             linac = linacs['L3B']
         else:
-            raise ValueError("Cryomodule {} not found in any linac region.".format(key))
+            raise KeyError("Cryomodule {} not found in any linac region.".format(key))
         cryomodule = self.cryomoduleClass(cryoName=key,
                                           linacObject=linac,
                                           cavityClass=self.cavityClass,
