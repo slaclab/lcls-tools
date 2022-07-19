@@ -7,11 +7,10 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
-from epics import caget, caput
-from numpy import sign
-
 import lcls_tools.superconducting.scLinacUtils as utils
+from epics import caget, caput
 from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
+from numpy import sign
 
 
 class SSA:
@@ -307,7 +306,7 @@ class Cavity:
         self.fwdWaveformPV: PV = PV(self.pvPrefix + "FWD:AWF")
         self.cavWaveformPV: PV = PV(self.pvPrefix + "CAV:AWF")
         
-        self.stepper_temp_PV: PV = PV(self.pvPrefix + "STEPTEMP")
+        self.stepper_temp_pv: str = self.pvPrefix + "STEPTEMP"
         self.detune_best_PV: PV = PV(self.pvPrefix + "DFBEST")
         self.detune_rfs_PV: PV = PV(self.pvPrefix + "DF")
         
@@ -812,7 +811,7 @@ class CryoDict(dict):
         elif key in L3B:
             linac = linacs['L3B']
         else:
-            raise ValueError("Cryomodule {} not found in any linac region.".format(key))
+            raise KeyError("Cryomodule {} not found in any linac region.".format(key))
         cryomodule = self.cryomoduleClass(cryoName=key,
                                           linacObject=linac,
                                           cavityClass=self.cavityClass,
