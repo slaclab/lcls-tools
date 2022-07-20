@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Union
 from unittest import TestCase, main as test
 
+import numpy as np
 import requests
 
 # Python compatibility. The first branch is for 3, the second for 2
@@ -42,37 +43,38 @@ class ArchiverData:
 
 
 class Archiver:
-
+    
     def __init__(self, machine: str):
         """
         machine is a string that is either "lcls" or "facet"
         """
         self.url_formatter = ARCHIVER_URL_FORMATTER.format(MACHINE=machine)
-
+    
     def getDataAtTime(self, pvList, timeRequested):
         # type: (List[str], datetime) -> ArchiverData
-
+        
         suffix = SINGLE_RESULT_SUFFIX.format(TIME=timeRequested.isoformat())
         url = self.url_formatter.format(SUFFIX=suffix)
-
+        
         response = requests.post(url=url, data={"pv": ",".join(pvList)},
                                  timeout=TIMEOUT)
-
+        
         values = {}
         times = [timeRequested]
         for pv in pvList:
             values[pv] = []
-
+        
         try:
             jsonData = json.loads(response.text)
             for pv, data in jsonData.items():
                 values[pv].append(data[u'val'])
-
+        
         except ValueError:
             print("JSON error with {PVS} at {TIME}".format(PVS=pvList,
                                                            TIME=timeRequested))
+            print(jsonData)
         return ArchiverData(timeStamps=times, values=values)
-
+    
     def getDataWithTimeInterval(self, pvList, startTime, endTime, timeDelta):
         # type: (List[str], datetime, datetime, timedelta) -> ArchiverData
         currTime = startTime
@@ -80,38 +82,41 @@ class Archiver:
         values = {}
         for pv in pvList:
             values[pv] = []
-
+        
         while currTime < endTime:
             result = self.getDataAtTime(pvList, currTime)
             times.append(currTime)
             for pv, valueList in result.values.items():
-                values[pv].append(valueList.pop())
+                try:
+                    values[pv].append(valueList.pop())
+                except IndexError:
+                    values[pv].append(np.nan)
             currTime += timeDelta
-
+        
         return ArchiverData(timeStamps=times, values=values)
-
+    
     # returns timestamps in UTC
     def getValuesOverTimeRange(self, pvList, startTime, endTime, timeDelta=None):
         # type: (List[str], datetime, datetime, timedelta) -> ArchiverData
-
+        
         if timeDelta:
             return self.getDataWithTimeInterval(pvList, startTime, endTime, timeDelta)
         else:
             url = self.url_formatter.format(SUFFIX=RANGE_RESULT_SUFFIX)
-
+            
             times = {}
             values = {}
-
+            
             # TODO figure out how to send all PVs at once
             for pv in pvList:
                 times[pv] = []
                 values[pv] = []
-
+                
                 response = requests.get(url=url, timeout=TIMEOUT,
                                         params={"pv"  : pv,
                                                 "from": startTime.isoformat() + UTC_DELTA_T,
                                                 "to"  : endTime.isoformat() + UTC_DELTA_T})
-
+                
                 try:
                     jsonData = json.loads(response.text)
                     # It returns a list of len 1 for some godforsaken reason...
@@ -123,41 +128,41 @@ class Archiver:
                         element = jsonData.pop()
                         for datum in element[u'data']:
                             # TODO implement filtering by BSA PV
-
+                            
                             # Using keys from documentation found at:
                             # https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
                             times[pv].append(datetime.fromtimestamp(datum[u'secs'])
                                              + timedelta(microseconds=datum[u'nanos'] / 1000))
                             values[pv].append(datum[u'val'])
-
+                
                 except ValueError:
                     print("JSON error with {pv}".format(pv=pv))
-
+            
             return ArchiverData(timeStamps=times, values=values)
 
 
 class Tester(TestCase):
-
+    
     def __init__(self, *args, **kwargs):
         super(Tester, self).__init__(*args, **kwargs)
         self.archiver = Archiver("lcls")
-
+        
         self.time = datetime(year=2020, month=10, day=14, hour=11,
                              minute=56, second=30, microsecond=10)
-
+        
         self.pvList = ["BEND:LTUH:220:BDES", "BEND:LTUH:280:BDES"]
-
+        
         self.jsonDict = {u'BEND:LTUH:280:BDES': {u'nanos': 230452646, u'status': 0,
                                                  u'secs' : 1602694677, u'severity': 0,
                                                  u'val'  : 10.7099896749672},
                          u'BEND:LTUH:220:BDES': {u'nanos': 230327182, u'status': 0,
                                                  u'secs' : 1602694677, u'severity': 0,
                                                  u'val'  : 10.709989796551309}}
-
+        
         self.expectedSingleResult = ArchiverData(timeStamps=[self.time],
                                                  values={'BEND:LTUH:280:BDES': [10.7099896749672],
                                                          'BEND:LTUH:220:BDES': [10.709989796551309]})
-
+        
         times = [datetime(2020, 10, 4, 11, 56, 30, 10),
                  datetime(2020, 10, 5, 11, 56, 30, 10),
                  datetime(2020, 10, 6, 11, 56, 30, 10),
@@ -168,23 +173,23 @@ class Tester(TestCase):
                  datetime(2020, 10, 11, 11, 56, 30, 10),
                  datetime(2020, 10, 12, 11, 56, 30, 10),
                  datetime(2020, 10, 13, 11, 56, 30, 10)]
-
+        
         multiResult280 = [10.69994225003475, 10.69994225003475,
                           10.69994225003475, 10.69994225003475,
                           10.69994225003475, 10.69998960449891,
                           10.709996462228325, 10.709943385505909,
                           10.709999116032312, 10.70997130324195]
-
+        
         multiResult220 = [10.6999430312505, 10.6999430312505,
                           10.6999430312505, 10.6999430312505,
                           10.6999430312505, 10.699989622852124,
                           10.709996502988615, 10.709944052738756,
                           10.709999125516292, 10.709944052743765]
-
+        
         self.expectedDeltaResult = ArchiverData(timeStamps=times,
                                                 values={'BEND:LTUH:280:BDES': multiResult280,
                                                         'BEND:LTUH:220:BDES': multiResult220})
-
+        
         times220 = [datetime(2020, 10, 1, 10, 7, 28, 958256),
                     datetime(2020, 10, 8, 12, 45, 6, 319376),
                     datetime(2020, 10, 8, 12, 46, 35, 772626),
@@ -238,7 +243,7 @@ class Tester(TestCase):
                     datetime(2020, 10, 14, 9, 57, 2, 72604),
                     datetime(2020, 10, 14, 9, 57, 57, 213193),
                     datetime(2020, 10, 14, 9, 57, 57, 230327)]
-
+        
         values220 = [10.6999430312505, 10.699979249418897, 10.699989622852124,
                      10.67654020042446, 9.770055309041588, 9.793692412032708,
                      10.709944052743694, 10.709972026207458, 10.709986012939506,
@@ -257,7 +262,7 @@ class Tester(TestCase):
                      10.709979592937366, 10.709989796468655, 10.674551128973944,
                      9.338040760145944, 9.373426056057786, 10.70995918620558,
                      10.709979593102673, 10.709989796551309]
-
+        
         times280 = [datetime(2020, 10, 1, 10, 7, 28, 959441),
                     datetime(2020, 10, 8, 12, 45, 6, 319491),
                     datetime(2020, 10, 8, 12, 46, 35, 772712),
@@ -311,7 +316,7 @@ class Tester(TestCase):
                     datetime(2020, 10, 14, 9, 57, 2, 72728),
                     datetime(2020, 10, 14, 9, 57, 57, 213338),
                     datetime(2020, 10, 14, 9, 57, 57, 230453)]
-
+        
         values280 = [10.69994225003475, 10.699979211981582, 10.69998960449891,
                      10.687312044187102, 9.770055963611634, 9.770055963611634,
                      10.709943385515894, 10.709971693095635, 10.709985846885697,
@@ -330,28 +335,28 @@ class Tester(TestCase):
                      10.709979350271261, 10.7099896751356, 10.690381982944237,
                      9.33804124242413, 9.33804124242413, 10.709958699869212,
                      10.709979349934471, 10.7099896749672]
-
+        
         self.expectedNoDeltaResult = ArchiverData(timeStamps={'BEND:LTUH:280:BDES': times280,
                                                               'BEND:LTUH:220:BDES': times220},
                                                   values={'BEND:LTUH:280:BDES': values280,
                                                           'BEND:LTUH:220:BDES': values220})
-
+    
     # Utility class to be used for mocking a response to requests.post
     class MockResponse(object):
         def __init__(self):
             self.text = ""
-
+    
     @mock.patch("requests.post")
     @mock.patch("json.loads")
     def testGetDataAtTimeMockedData(self, mockedLoads, mockedPost):
-
+        
         mockedLoads.return_value = self.jsonDict
         mockedPost.return_value = self.MockResponse()
-
+        
         self.assertEqual(self.archiver.getDataAtTime(self.pvList,
                                                      self.time),
                          self.expectedSingleResult)
-
+    
     def testGetDataAtTime(self):
         try:
             self.assertEqual(self.archiver.getDataAtTime(self.pvList,
@@ -359,7 +364,7 @@ class Tester(TestCase):
                              self.expectedSingleResult)
         except requests.exceptions.Timeout:
             self.skipTest("testGetDataAtTime connection timed out")
-
+    
     def testGetDataWithTimeInterval(self):
         try:
             self.assertEqual(self.archiver.getDataWithTimeInterval(self.pvList,
@@ -367,14 +372,14 @@ class Tester(TestCase):
                                                                    self.time,
                                                                    timedelta(days=1)),
                              self.expectedDeltaResult)
-
+        
         except requests.exceptions.Timeout:
             self.skipTest("testGetDataWithTimeInterval connection timed out")
-
+    
     def testGetDataWithTimeIntervalMocked(self):
         def side_effect(pvList, time):
             self.assertEqual(pvList, self.pvList)
-
+            
             if time == datetime(2020, 10, 4, 11, 56, 30, 10):
                 return ArchiverData(timeStamps=[datetime(2020, 10, 4, 11, 56, 30, 10)],
                                     values={u'BEND:LTUH:280:BDES': [10.69994225003475],
@@ -417,23 +422,23 @@ class Tester(TestCase):
                                             u'BEND:LTUH:220:BDES': [10.709944052743765]})
             else:
                 raise Exception("Unexpected datetime")
-
+        
         self.archiver.getDataAtTime = mock.MagicMock(name="getDataAtTime")
         self.archiver.getDataAtTime.side_effect = side_effect
-
+        
         self.assertEqual(self.archiver.getDataWithTimeInterval(self.pvList,
                                                                self.time - timedelta(days=10),
                                                                self.time,
                                                                timedelta(days=1)),
                          self.expectedDeltaResult)
-
+    
     def testGetValuesOverTimeRange(self):
         try:
             self.assertEqual(self.archiver.getValuesOverTimeRange(self.pvList,
                                                                   self.time - timedelta(days=10),
                                                                   self.time),
                              self.expectedNoDeltaResult)
-
+        
         except requests.exceptions.Timeout:
             self.skipTest("testGetValuesOverTimeRange connection timed out")
 

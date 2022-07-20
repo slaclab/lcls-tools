@@ -116,16 +116,6 @@ class SSA:
                                            exception=utils.SSACalibrationError)
 
 
-class Heater:
-    def __init__(self, cavity):
-        # type: (Cavity) -> None
-        self.cavity = cavity
-        self.pvPrefix = "CHTR:CM{cm}:1{cav}55:HV:".format(cm=self.cavity.cryomodule.name,
-                                                          cav=self.cavity.number)
-        self.powerDesPV = PV(self.pvPrefix + "POWER_SETPT")
-        self.powerActPV = PV(self.pvPrefix + "POWER")
-
-
 class StepperTuner:
     def __init__(self, cavity):
         # type (Cavity) -> None
@@ -265,7 +255,6 @@ class Cavity:
                                                     cav=self.number)
         
         self.ssa = ssaClass(self)
-        self.heater = Heater(self)
         self.steppertuner = stepperClass(self)
         self.piezo = piezoClass(self)
         
@@ -638,10 +627,11 @@ class Cryomodule:
         self.cpvPrefix = "CPV:CM{cm}:".format(cm=self.name)
         self.jtPrefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
         
-        self.dsLevelPV: PV = PV("CLL:CM{cm}:2301:DS:LVL".format(cm=self.name))
-        self.usLevelPV: PV = PV("CLL:CM{cm}:2601:US:LVL".format(cm=self.name))
-        self.dsPressurePV: PV = PV("CPT:CM{cm}:2302:DS:PRESS".format(cm=self.name))
-        self.jtValveRdbkPV: PV = PV(self.jtPrefix + "ORBV")
+        self.dsLevelPV: str = "CLL:CM{cm}:2301:DS:LVL".format(cm=self.name)
+        self.usLevelPV: str = "CLL:CM{cm}:2601:US:LVL".format(cm=self.name)
+        self.dsPressurePV: str = "CPT:CM{cm}:2302:DS:PRESS".format(cm=self.name)
+        self.jtValveReadbackPV: str = self.jtPrefix + "ORBV"
+        self.heater_readback_pv: str = f"CPIC:CM{self.name}:0000:EHCV:ORBV"
         
         self.racks = {"A": rackClass(rackName="A", cryoObject=self,
                                      cavityClass=cavityClass,
