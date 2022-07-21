@@ -102,7 +102,9 @@ class TimePlotUpdater(PyDMPlotUpdater):
         if timePlotParams.formLayout is not None:
             
             for (channel, _) in newChannels:
-                timePlotParams.formLayout.addRow(channel, PyDMLabel(init_channel=channel))
+                pydm_label: PyDMLabel = PyDMLabel(init_channel=channel)
+                pydm_label.showUnits = True
+                timePlotParams.formLayout.addRow(channel, pydm_label)
         
         for (channel, axis) in newChannels:
             timePlotParams.plot.addYChannel(channel,
