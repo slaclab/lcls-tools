@@ -39,7 +39,7 @@ class SSA:
     
     def calibrate(self, drivemax):
         print(f"Trying SSA calibration with drivemax {drivemax}")
-        if drivemax < 0.6:
+        if drivemax < 0.5:
             raise utils.SSACalibrationError("Requested drive max too low")
         
         while caput(self.maxdrive_setpoint_pv, drivemax, wait=True) != 1:
@@ -304,7 +304,8 @@ class Cavity:
         self.quench_latch_pv: str = self.pvPrefix + "QUENCH_LTCH"
         self.quench_bypass_pv: str = self.pvPrefix + "QUENCH_BYP"
         
-        self.data_decim_pv: str = self.pvPrefix + "ACQ_DECIM"
+        self.cw_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.A"
+        self.pulsed_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.C"
     
     def auto_tune(self, des_detune=0, delta_limit=10000):
         self.setup_tuning()
@@ -406,7 +407,10 @@ class Cavity:
         caput(self.quench_bypass_pv, 1, wait=True)
         self.runCalibration()
         caput(self.quench_bypass_pv, 0, wait=True)
-        caput(self.data_decim_pv, 255, wait=True)
+        
+        print("Setting data decimation PVs")
+        caput(self.cw_data_decim_pv, 255, wait=True)
+        caput(self.pulsed_data_decim_pv, 255, wait=True)
         
         caput(self.selAmplitudeDesPV.pvname, min(5, desAmp), wait=True)
         caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SEL, wait=True)
