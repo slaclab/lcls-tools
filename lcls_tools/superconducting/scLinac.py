@@ -7,10 +7,11 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
-import lcls_tools.superconducting.scLinacUtils as utils
 from epics import caget, caput
-from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
 from numpy import sign
+
+import lcls_tools.superconducting.scLinacUtils as utils
+from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
 
 
 class SSA:
@@ -19,7 +20,7 @@ class SSA:
         self.cavity: Cavity = cavity
         self.pvPrefix = self.cavity.pvPrefix + "SSA:"
         
-        self.statusPV: PV = PV(self.pvPrefix + "StatusMsg")
+        self.statusPV: str = (self.pvPrefix + "StatusMsg")
         self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
         self.turnOffPV: PV = PV(self.pvPrefix + "PowerOff")
         self.resetPV: str = self.pvPrefix + "FaultReset"
@@ -61,27 +62,27 @@ class SSA:
     def reset(self):
         print("Resetting SSA...")
         caput(self.resetPV, 1, wait=True)
-        while caget(self.statusPV.pvname) == utils.SSA_STATUS_RESETTING_FAULTS_VALUE:
+        while caget(self.statusPV) == utils.SSA_STATUS_RESETTING_FAULTS_VALUE:
             sleep(1)
-        if caget(self.statusPV.pvname) in [utils.SSA_STATUS_FAULTED_VALUE,
-                                           utils.SSA_STATUS_FAULT_RESET_FAILED_VALUE]:
+        if caget(self.statusPV) in [utils.SSA_STATUS_FAULTED_VALUE,
+                                    utils.SSA_STATUS_FAULT_RESET_FAILED_VALUE]:
             raise utils.SSAFaultError("Unable to reset SSA")
     
     def setPowerState(self, turnOn: bool):
         print("\nSetting SSA power...")
         
         if turnOn:
-            if self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
+            if caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
                 while caput(self.turnOnPV.pvname, 1, wait=True) != 1:
                     print("Trying to power on SSA")
-                while caget(self.statusPV.pvname) != utils.SSA_STATUS_ON_VALUE:
+                while caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
                     print("waiting for SSA to turn on")
                     sleep(1)
         else:
-            if self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
+            if caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
                 while caput(self.turnOffPV.pvname, 1, wait=True) != 1:
                     print("Trying to power off SSA")
-                while caget(self.statusPV.pvname) == utils.SSA_STATUS_ON_VALUE:
+                while caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
                     print("waiting for SSA to turn off")
                     sleep(1)
         
@@ -284,7 +285,7 @@ class Cavity:
         self.rfModeCtrlPV: PV = PV(self.pvPrefix + "RFMODECTRL")
         self.rfModePV: PV = PV(self.pvPrefix + "RFMODE")
         
-        self.rfStatePV: PV = PV(self.pvPrefix + "RFSTATE")
+        self.rfStatePV: str = (self.pvPrefix + "RFSTATE")
         self.rfControlPV: PV = PV(self.pvPrefix + "RFCTRL")
         
         self.pulseGoButtonPV: PV = PV(self.pvPrefix + "PULSE_DIFF_SUM")
