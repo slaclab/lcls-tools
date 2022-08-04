@@ -731,41 +731,6 @@ BEAMLINEVACUUM_INFIXES = [['0198'], ['0202', 'H292'], ['0402', '1592'], ['1602',
 INSULATINGVACUUM_CRYOMODULES = [['01'], ['02', 'H1'], ['04', '06', '08', '10', '12', '14'],
                                 ['16', '18', '20', '22', '24', '27', '29', '31', '33', '34']]
 
-
-def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
-                          magnetClass: Type[Magnet] = Magnet,
-                          rackClass: Type[Rack] = Rack,
-                          cavityClass: Type[Cavity] = Cavity,
-                          ssaClass: Type[SSA] = SSA,
-                          stepperClass: Type[StepperTuner] = StepperTuner) -> Dict[str, Cryomodule]:
-    cryomoduleObjects: Dict[str, Cryomodule] = {}
-    linacObjects: List[Linac] = []
-    
-    for idx, (name, cryomoduleList) in enumerate(LINAC_TUPLES):
-        linac = Linac(name, beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[idx],
-                      insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[idx])
-        linac.addCryomodules(cryomoduleStringList=cryomoduleList,
-                             cryomoduleClass=cryomoduleClass,
-                             cavityClass=cavityClass,
-                             rackClass=rackClass,
-                             magnetClass=magnetClass,
-                             ssaClass=ssaClass,
-                             stepperClass=stepperClass)
-        linacObjects.append(linac)
-        cryomoduleObjects.update(linac.cryomodules)
-    
-    linacObjects[1].addCryomodules(cryomoduleStringList=L1BHL,
-                                   cryomoduleClass=cryomoduleClass,
-                                   isHarmonicLinearizer=True,
-                                   cavityClass=cavityClass,
-                                   rackClass=rackClass,
-                                   magnetClass=magnetClass,
-                                   ssaClass=ssaClass,
-                                   stepperClass=stepperClass)
-    cryomoduleObjects.update(linacObjects[1].cryomodules)
-    return cryomoduleObjects
-
-
 linacs = {"L0B": Linac("L0B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[0],
                        insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[0]),
           "L1B": Linac("L1B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[1],
