@@ -7,10 +7,11 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
-import lcls_tools.superconducting.scLinacUtils as utils
 from epics import caget, caput
-from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
 from numpy import sign
+
+import lcls_tools.superconducting.scLinacUtils as utils
+from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
 
 
 class SSA:
@@ -19,7 +20,7 @@ class SSA:
         self.cavity: Cavity = cavity
         self.pvPrefix = self.cavity.pvPrefix + "SSA:"
         
-        self.statusPV: PV = PV(self.pvPrefix + "StatusMsg")
+        self.statusPV: str = (self.pvPrefix + "StatusMsg")
         self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
         self.turnOffPV: PV = PV(self.pvPrefix + "PowerOff")
         self.resetPV: str = self.pvPrefix + "FaultReset"
@@ -33,13 +34,16 @@ class SSA:
         
         self.maxdrive_setpoint_pv: str = self.pvPrefix + "DRV_MAX_REQ"
         self.saved_maxdrive_pv: str = self.pvPrefix + "DRV_MAX_SAVE"
+    
+    @property
+    def drivemax(self):
         saved_val = caget(self.saved_maxdrive_pv)
-        self.drivemax = (1 if self.cavity.cryomodule.isHarmonicLinearizer
-                         else (saved_val if saved_val else 0.8))
+        return (1 if self.cavity.cryomodule.isHarmonicLinearizer
+                else (saved_val if saved_val else 0.8))
     
     def calibrate(self, drivemax):
         print(f"Trying SSA calibration with drivemax {drivemax}")
-        if drivemax < 0.6:
+        if drivemax < 0.5:
             raise utils.SSACalibrationError("Requested drive max too low")
         
         while caput(self.maxdrive_setpoint_pv, drivemax, wait=True) != 1:
@@ -61,27 +65,27 @@ class SSA:
     def reset(self):
         print("Resetting SSA...")
         caput(self.resetPV, 1, wait=True)
-        while caget(self.statusPV.pvname) == utils.SSA_STATUS_RESETTING_FAULTS_VALUE:
+        while caget(self.statusPV) == utils.SSA_STATUS_RESETTING_FAULTS_VALUE:
             sleep(1)
-        if caget(self.statusPV.pvname) in [utils.SSA_STATUS_FAULTED_VALUE,
-                                           utils.SSA_STATUS_FAULT_RESET_FAILED_VALUE]:
+        if caget(self.statusPV) in [utils.SSA_STATUS_FAULTED_VALUE,
+                                    utils.SSA_STATUS_FAULT_RESET_FAILED_VALUE]:
             raise utils.SSAFaultError("Unable to reset SSA")
     
     def setPowerState(self, turnOn: bool):
         print("\nSetting SSA power...")
         
         if turnOn:
-            if self.statusPV.value != utils.SSA_STATUS_ON_VALUE:
+            if caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
                 while caput(self.turnOnPV.pvname, 1, wait=True) != 1:
                     print("Trying to power on SSA")
-                while caget(self.statusPV.pvname) != utils.SSA_STATUS_ON_VALUE:
+                while caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
                     print("waiting for SSA to turn on")
                     sleep(1)
         else:
-            if self.statusPV.value == utils.SSA_STATUS_ON_VALUE:
+            if caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
                 while caput(self.turnOffPV.pvname, 1, wait=True) != 1:
                     print("Trying to power off SSA")
-                while caget(self.statusPV.pvname) == utils.SSA_STATUS_ON_VALUE:
+                while caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
                     print("waiting for SSA to turn off")
                     sleep(1)
         
@@ -284,7 +288,7 @@ class Cavity:
         self.rfModeCtrlPV: PV = PV(self.pvPrefix + "RFMODECTRL")
         self.rfModePV: PV = PV(self.pvPrefix + "RFMODE")
         
-        self.rfStatePV: PV = PV(self.pvPrefix + "RFSTATE")
+        self.rfStatePV: str = (self.pvPrefix + "RFSTATE")
         self.rfControlPV: PV = PV(self.pvPrefix + "RFCTRL")
         
         self.pulseGoButtonPV: PV = PV(self.pvPrefix + "PULSE_DIFF_SUM")
@@ -304,9 +308,16 @@ class Cavity:
         self.quench_latch_pv: str = self.pvPrefix + "QUENCH_LTCH"
         self.quench_bypass_pv: str = self.pvPrefix + "QUENCH_BYP"
         
-        self.data_decim_pv: str = self.pvPrefix + "ACQ_DECIM"
+        self.cw_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.A"
+        self.pulsed_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.C"
+        
+        self.tune_config_pv: str = self.pvPrefix + "TUNE_CONFIG"
     
-    def auto_tune(self, des_detune=0, delta_limit=10000):
+    def move_to_resonance(self):
+        self.auto_tune(des_detune=0,
+                       config_val=utils.TUNE_CONFIG_RESONANCE_VALUE)
+    
+    def auto_tune(self, des_detune, config_val):
         self.setup_tuning()
         
         cm_name = self.cryomodule.name
@@ -317,21 +328,25 @@ class Cavity:
                         if self.cryomodule.isHarmonicLinearizer
                         else utils.ESTIMATED_MICROSTEPS_PER_HZ)
         
-        if self.detune_best_PV.severity == 3 or abs(delta) > delta_limit:
-            raise utils.DetuneError(f"Tuning for CM{cm_name} cavity"
-                                    f" {cav_num} needs to be checked"
-                                    f" (either invalid or delta above {delta_limit})")
+        if self.detune_best_PV.severity == 3:
+            raise utils.DetuneError(f"Detune for CM{cm_name} cavity {cav_num} is invalid")
         
         while abs(delta) > 50:
             if caget(self.quench_latch_pv) == 1:
                 raise utils.QuenchError(f"CM{cm_name} cavity"
                                         f" {cav_num} quenched, aborting autotune")
             est_steps = int(0.9 * delta * steps_per_hz)
+            
             print(f"Moving stepper for CM{cm_name} cavity {cav_num} {est_steps} steps")
+            
+            caput(self.tune_config_pv, utils.TUNE_CONFIG_OTHER_VALUE)
+            
             self.steppertuner.move(est_steps,
                                    maxSteps=utils.DEFAULT_STEPPER_MAX_STEPS,
                                    speed=utils.MAX_STEPPER_SPEED)
             delta = caget(self.detune_best_PV.pvname) - des_detune
+        
+        caput(self.tune_config_pv, config_val)
     
     def checkAndSetOnTime(self):
         """
@@ -401,12 +416,15 @@ class Cavity:
         print(f"setting up cm{self.cryomodule.name} cavity {self.number}")
         self.turnOff()
         self.ssa.calibrate(self.ssa.drivemax)
-        self.auto_tune()
+        self.move_to_resonance()
         
         caput(self.quench_bypass_pv, 1, wait=True)
         self.runCalibration()
         caput(self.quench_bypass_pv, 0, wait=True)
-        caput(self.data_decim_pv, 255, wait=True)
+        
+        print("Setting data decimation PVs")
+        caput(self.cw_data_decim_pv, 255, wait=True)
+        caput(self.pulsed_data_decim_pv, 255, wait=True)
         
         caput(self.selAmplitudeDesPV.pvname, min(5, desAmp), wait=True)
         caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SEL, wait=True)
@@ -725,41 +743,6 @@ LINAC_TUPLES = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
 BEAMLINEVACUUM_INFIXES = [['0198'], ['0202', 'H292'], ['0402', '1592'], ['1602', '2594', '2598', '3592']]
 INSULATINGVACUUM_CRYOMODULES = [['01'], ['02', 'H1'], ['04', '06', '08', '10', '12', '14'],
                                 ['16', '18', '20', '22', '24', '27', '29', '31', '33', '34']]
-
-
-def make_lcls_cryomodules(cryomoduleClass: Type[Cryomodule] = Cryomodule,
-                          magnetClass: Type[Magnet] = Magnet,
-                          rackClass: Type[Rack] = Rack,
-                          cavityClass: Type[Cavity] = Cavity,
-                          ssaClass: Type[SSA] = SSA,
-                          stepperClass: Type[StepperTuner] = StepperTuner) -> Dict[str, Cryomodule]:
-    cryomoduleObjects: Dict[str, Cryomodule] = {}
-    linacObjects: List[Linac] = []
-    
-    for idx, (name, cryomoduleList) in enumerate(LINAC_TUPLES):
-        linac = Linac(name, beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[idx],
-                      insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[idx])
-        linac.addCryomodules(cryomoduleStringList=cryomoduleList,
-                             cryomoduleClass=cryomoduleClass,
-                             cavityClass=cavityClass,
-                             rackClass=rackClass,
-                             magnetClass=magnetClass,
-                             ssaClass=ssaClass,
-                             stepperClass=stepperClass)
-        linacObjects.append(linac)
-        cryomoduleObjects.update(linac.cryomodules)
-    
-    linacObjects[1].addCryomodules(cryomoduleStringList=L1BHL,
-                                   cryomoduleClass=cryomoduleClass,
-                                   isHarmonicLinearizer=True,
-                                   cavityClass=cavityClass,
-                                   rackClass=rackClass,
-                                   magnetClass=magnetClass,
-                                   ssaClass=ssaClass,
-                                   stepperClass=stepperClass)
-    cryomoduleObjects.update(linacObjects[1].cryomodules)
-    return cryomoduleObjects
-
 
 linacs = {"L0B": Linac("L0B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[0],
                        insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[0]),
