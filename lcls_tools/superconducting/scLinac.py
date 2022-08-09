@@ -310,8 +310,14 @@ class Cavity:
         
         self.cw_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.A"
         self.pulsed_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.C"
+        
+        self.tune_config_pv: str = self.pvPrefix + "TUNE_CONFIG"
     
-    def auto_tune(self, des_detune=0, delta_limit=10000):
+    def move_to_resonance(self):
+        self.auto_tune(des_detune=0,
+                       config_val=utils.TUNE_CONFIG_RESONANCE_VALUE)
+    
+    def auto_tune(self, des_detune, config_val):
         self.setup_tuning()
         
         cm_name = self.cryomodule.name
@@ -322,21 +328,25 @@ class Cavity:
                         if self.cryomodule.isHarmonicLinearizer
                         else utils.ESTIMATED_MICROSTEPS_PER_HZ)
         
-        if self.detune_best_PV.severity == 3 or abs(delta) > delta_limit:
-            raise utils.DetuneError(f"Tuning for CM{cm_name} cavity"
-                                    f" {cav_num} needs to be checked"
-                                    f" (either invalid or delta above {delta_limit})")
+        if self.detune_best_PV.severity == 3:
+            raise utils.DetuneError(f"Detune for CM{cm_name} cavity {cav_num} is invalid")
         
         while abs(delta) > 50:
             if caget(self.quench_latch_pv) == 1:
                 raise utils.QuenchError(f"CM{cm_name} cavity"
                                         f" {cav_num} quenched, aborting autotune")
             est_steps = int(0.9 * delta * steps_per_hz)
+            
             print(f"Moving stepper for CM{cm_name} cavity {cav_num} {est_steps} steps")
+            
+            caput(self.tune_config_pv, utils.TUNE_CONFIG_OTHER_VALUE)
+            
             self.steppertuner.move(est_steps,
                                    maxSteps=utils.DEFAULT_STEPPER_MAX_STEPS,
                                    speed=utils.MAX_STEPPER_SPEED)
             delta = caget(self.detune_best_PV.pvname) - des_detune
+        
+        caput(self.tune_config_pv, config_val)
     
     def checkAndSetOnTime(self):
         """
@@ -406,7 +416,7 @@ class Cavity:
         print(f"setting up cm{self.cryomodule.name} cavity {self.number}")
         self.turnOff()
         self.ssa.calibrate(self.ssa.drivemax)
-        self.auto_tune()
+        self.move_to_resonance()
         
         caput(self.quench_bypass_pv, 1, wait=True)
         self.runCalibration()
