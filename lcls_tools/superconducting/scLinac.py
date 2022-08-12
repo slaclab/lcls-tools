@@ -7,11 +7,11 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
-from epics import caget, caput
+from epics import PV, caget, caput
 from numpy import sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
-from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
+from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL
 
 
 class SSA:
@@ -136,7 +136,7 @@ class StepperTuner:
         self.step_tot_pv: PV = PV(self.pvPrefix + "REG_TOTABS")
         self.step_signed_pv: PV = PV(self.pvPrefix + "REG_TOTSGN")
         self.reset_tot_pv: PV = PV(self.pvPrefix + "TOTABS_RESET")
-        self.reset_signed_pv: PV = PV(self.pvPrefix + "TOTSGN_RESET")
+        self._reset_signed_pv: PV = None
         self.steps_cold_landing_pv: PV = PV(self.pvPrefix + "NSTEPS_COLD")
         self.push_signed_cold_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_COLD.PROC")
         self.push_signed_park_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_PARK.PROC")
@@ -144,6 +144,13 @@ class StepperTuner:
         self.motor_done_pv: PV = PV(self.pvPrefix + "STAT_DONE")
         self._limit_switch_a_pv: PV = None
         self._limit_switch_b_pv: PV = None
+    
+    @property
+    def reset_signed_pv(self):
+        if not self._reset_signed_pv:
+            self._reset_signed_pv = PV(self.pvPrefix + "TOTSGN_RESET")
+            self._reset_signed_pv.connect()
+        return self._reset_signed_pv
     
     @property
     def limit_switch_a_pv(self) -> PV:
