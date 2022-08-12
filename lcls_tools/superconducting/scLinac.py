@@ -142,8 +142,22 @@ class StepperTuner:
         self.push_signed_park_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_PARK.PROC")
         self.motor_moving_pv: PV = PV(self.pvPrefix + "STAT_MOV")
         self.motor_done_pv: PV = PV(self.pvPrefix + "STAT_DONE")
-        self.limit_switch_a_pv: str = self.pvPrefix + "STAT_LIMA"
-        self.limit_switch_b_pv: str = self.pvPrefix + "STAT_LIMB"
+        self._limit_switch_a_pv: PV = None
+        self._limit_switch_b_pv: PV = None
+    
+    @property
+    def limit_switch_a_pv(self) -> PV:
+        if not self._limit_switch_a_pv:
+            self._limit_switch_a_pv = PV(self.pvPrefix + "STAT_LIMA")
+            self._limit_switch_a_pv.connect()
+        return self._limit_switch_a_pv
+    
+    @property
+    def limit_switch_b_pv(self) -> PV:
+        if not self._limit_switch_b_pv:
+            self._limit_switch_b_pv = PV(self.pvPrefix + "STAT_LIMB")
+            self._limit_switch_b_pv.connect()
+        return self._limit_switch_b_pv
     
     def restoreDefaults(self):
         caput(self.max_steps_pv.pvname, utils.DEFAULT_STEPPER_MAX_STEPS, wait=True)
@@ -159,8 +173,8 @@ class StepperTuner:
         :return:
         """
         
-        if (caget(self.limit_switch_a_pv) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
-                or caget(self.limit_switch_b_pv) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
+        if (self.limit_switch_a_pv.value == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
+                or self.limit_switch_b_pv.value == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
             raise utils.StepperError("Stepper motor on limit switch")
         
         if changeLimits:
