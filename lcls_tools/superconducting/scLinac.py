@@ -335,11 +335,18 @@ class Cavity:
         self.cw_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.A"
         self.pulsed_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.C"
         
-        self.tune_config_pv: str = self.pvPrefix + "TUNE_CONFIG"
+        self._tune_config_pv: PV = None
         self.chirp_prefix = self.pvPrefix + "CHIRP:"
         
         self._freq_start_pv: str = None
         self._freq_stop_pv: str = None
+    
+    @property
+    def tune_config_pv(self) -> PV:
+        if not self._tune_config_pv:
+            self._tune_config_pv = PV(self.pvPrefix + "TUNE_CONFIG")
+            self._tune_config_pv.connect()
+        return self._tune_config_pv
     
     @property
     def freq_start_pv(self) -> PV:
