@@ -345,7 +345,6 @@ class Cavity:
     def tune_config_pv(self) -> PV:
         if not self._tune_config_pv:
             self._tune_config_pv = PV(self.pvPrefix + "TUNE_CONFIG")
-            self._tune_config_pv.connect()
         return self._tune_config_pv
     
     @property
