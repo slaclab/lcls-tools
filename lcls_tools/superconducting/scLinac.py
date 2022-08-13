@@ -218,11 +218,11 @@ class StepperTuner:
         print("Waiting 5s for the motor to start moving")
         sleep(5)
         
-        while caget(self.motor_moving_pv.pvname) == 1:
+        while self.motor_moving_pv.value == 1:
             print("Motor moving", datetime.now())
             sleep(1)
         
-        if caget(self.motor_done_pv.pvname) != 1:
+        if self.motor_done_pv.value != 1:
             raise utils.StepperError("Motor not in expected state")
         
         print("Motor done")
@@ -389,7 +389,7 @@ class Cavity:
         go button is pressed
         :return:
         """
-        self.pulseGoButtonPV.put(1, waitForPut=False)
+        self.pulseGoButtonPV.put(1)
         while self.pulseStatusPV.value < 2:
             print("waiting for pulse state", datetime.now())
             sleep(1)
@@ -480,6 +480,7 @@ class Cavity:
         self.rfModeCtrlPV.put(utils.RF_MODE_CHIRP)
         
         print("turning RF on and waiting 5s for detune to catch up")
+        self.ssa.turnOn()
         self.turnOn()
         sleep(5)
         
@@ -579,22 +580,22 @@ class Magnet:
     @bdes.setter
     def bdes(self, value):
         self.bdesPV.put(value)
-        self.controlPV.put(utils.MAGNET_TRIM_VALUE, waitForPut=False)
+        self.controlPV.put(utils.MAGNET_TRIM_VALUE)
     
     def reset(self):
-        self.controlPV.put(utils.MAGNET_RESET_VALUE, waitForPut=False)
+        self.controlPV.put(utils.MAGNET_RESET_VALUE)
     
     def turnOn(self):
-        self.controlPV.put(utils.MAGNET_ON_VALUE, waitForPut=False)
+        self.controlPV.put(utils.MAGNET_ON_VALUE)
     
     def turnOff(self):
-        self.controlPV.put(utils.MAGNET_OFF_VALUE, waitForPut=False)
+        self.controlPV.put(utils.MAGNET_OFF_VALUE)
     
     def degauss(self):
-        self.controlPV.put(utils.MAGNET_DEGAUSS_VALUE, waitForPut=False)
+        self.controlPV.put(utils.MAGNET_DEGAUSS_VALUE)
     
     def trim(self):
-        self.controlPV.put(utils.MAGNET_TRIM_VALUE, waitForPut=False)
+        self.controlPV.put(utils.MAGNET_TRIM_VALUE)
 
 
 class Rack:
