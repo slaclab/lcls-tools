@@ -221,6 +221,9 @@ class StepperTuner:
         while self.motor_moving_pv.value == 1:
             print("Motor moving", datetime.now())
             sleep(1)
+            if (abs(self.cavity.detune_best_PV.value) > 150000
+                    and self.cavity.freq_stop_pv.value != 400000):
+                self.cavity.set_chirp_range(400000)
         
         if self.motor_done_pv.value != 1:
             raise utils.StepperError("Motor not in expected state")
@@ -333,6 +336,31 @@ class Cavity:
         self.pulsed_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.C"
         
         self.tune_config_pv: str = self.pvPrefix + "TUNE_CONFIG"
+        self.chirp_prefix = self.pvPrefix + "CHIRP:"
+        
+        self._freq_start_pv: str = None
+        self._freq_stop_pv: str = None
+    
+    @property
+    def freq_start_pv(self) -> PV:
+        if not self._freq_start_pv:
+            self._freq_start_pv = PV(self.chirp_prefix + "FREQ_START")
+            self._freq_start_pv.connect()
+        return self._freq_start_pv
+    
+    @property
+    def freq_stop_pv(self) -> PV:
+        if not self._freq_stop_pv:
+            self._freq_stop_pv = PV(self.chirp_prefix + "FREQ_STOP")
+            self._freq_stop_pv.connect()
+        return self._freq_stop_pv
+    
+    def set_chirp_range(self, offset: int):
+        offset = abs(offset)
+        print(f"Setting chirp range for cm{self.cryomodule.name} cavity {self.number} to +/- {offset} Hz")
+        caput(self.freq_start_pv, -offset, wait=True)
+        caput(self.freq_stop_pv, offset, wait=True)
+        print(f"Chirp range set for cm{self.cryomodule.name} cavity {self.number}")
     
     @property
     def rfStatePV(self) -> PV:
