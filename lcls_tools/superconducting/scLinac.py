@@ -309,7 +309,7 @@ class Cavity:
         self.rfModeCtrlPV: PV = PV(self.pvPrefix + "RFMODECTRL")
         self.rfModePV: PV = PV(self.pvPrefix + "RFMODE")
         
-        self.rfStatePV: str = (self.pvPrefix + "RFSTATE")
+        self._rfStatePV: PV = None
         self.rfControlPV: PV = PV(self.pvPrefix + "RFCTRL")
         
         self.pulseGoButtonPV: PV = PV(self.pvPrefix + "PULSE_DIFF_SUM")
@@ -333,6 +333,12 @@ class Cavity:
         self.pulsed_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.C"
         
         self.tune_config_pv: str = self.pvPrefix + "TUNE_CONFIG"
+    
+    @property
+    def rfStatePV(self) -> PV:
+        if not self._rfStatePV:
+            self._rfStatePV = PV(self.pvPrefix + "RFSTATE")
+        return self._rfStatePV
     
     def move_to_resonance(self):
         self.auto_tune(des_detune=0,
@@ -412,7 +418,7 @@ class Cavity:
         
         print("\nSetting RF State...")
         caput(self.rfControlPV.pvname, desiredState, wait=True)
-        while caget(self.pvPrefix + "RFSTATE") != desiredState:
+        while self.rfStatePV.value != desiredState:
             print("Waiting for RF state to change")
             sleep(1)
         
