@@ -358,8 +358,8 @@ class Cavity:
     def set_chirp_range(self, offset: int):
         offset = abs(offset)
         print(f"Setting chirp range for cm{self.cryomodule.name} cavity {self.number} to +/- {offset} Hz")
-        caput(self.freq_start_pv, -offset, wait=True)
-        caput(self.freq_stop_pv, offset, wait=True)
+        self.freq_start_pv.put(-offset)
+        self.freq_stop_pv.put(offset)
         print(f"Chirp range set for cm{self.cryomodule.name} cavity {self.number}")
     
     @property
