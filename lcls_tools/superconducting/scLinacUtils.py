@@ -166,8 +166,8 @@ def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: floa
                                  pushPV: PV, savePV: PV,
                                  exception: Exception = Exception):
     if lowerLimit < measuredPV.value < upperLimit:
-        pushPV.put(1, waitForPut=False)
-        savePV.put(1, waitForPut=False)
+        pushPV.put(1)
+        savePV.put(1)
     else:
         raise exception(f"{measuredPV.pvname}: {measuredPV.value}"
                         f" not between {lowerLimit} and {upperLimit}")

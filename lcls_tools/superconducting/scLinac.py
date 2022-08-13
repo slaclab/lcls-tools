@@ -344,7 +344,7 @@ class Cavity:
         cm_name = self.cryomodule.name
         cav_num = self.number
         
-        delta = caget(self.detune_best_PV.pvname) - des_detune
+        delta = self.detune_best_PV.value - des_detune
         steps_per_hz = (utils.ESTIMATED_MICROSTEPS_PER_HZ_HL
                         if self.cryomodule.isHarmonicLinearizer
                         else utils.ESTIMATED_MICROSTEPS_PER_HZ)
@@ -481,6 +481,9 @@ class Cavity:
         
         print("turning RF on and waiting 5s for detune to catch up")
         self.ssa.turnOn()
+        
+        self.reset_interlocks()
+        
         self.turnOn()
         sleep(5)
         
