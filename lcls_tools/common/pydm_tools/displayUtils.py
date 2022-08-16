@@ -1,17 +1,49 @@
 from functools import partial
 
-from PyQt5.QtWidgets import QMessageBox, QWidget
+from PyQt5.QtCore import QObject, pyqtSignal
+from PyQt5.QtWidgets import QLabel, QMessageBox, QWidget
 from qtpy.QtCore import Slot
+
+ABORT_STYLESHEET = "color: rgb(128, 0, 2);"
+FINISHED_STYLESHEET = "color: rgb(16, 128, 1);"
+STATUS_STYLESHEET = "color: rgb(7, 64, 128);"
+
+
+class WorkerSignals(QObject):
+    status = pyqtSignal(str)
+    finished = pyqtSignal(str)
+    error = pyqtSignal(str)
+    abort = pyqtSignal(bool)
+    
+    def __init__(self, label: QLabel = None):
+        super().__init__()
+        if label:
+            self.status.connect(label.setText)
+            self.status.connect(partial(label.setStyleSheet, STATUS_STYLESHEET))
+            
+            self.finished.connect(label.setText)
+            self.finished.connect(partial(label.setStyleSheet, FINISHED_STYLESHEET))
+            
+            self.error.connect(label.setText)
+            self.error.connect(partial(label.setStyleSheet, ABORT_STYLESHEET))
+            
+            self.abort.connect(label.setText)
+            self.abort.connect(partial(label.setStyleSheet, ABORT_STYLESHEET))
+        
+        self.status.connect(print)
+        self.finished.connect(print)
+        self.error.connect(print)
+        self.abort.connect(print)
 
 
 # Making this a Qt slot for connecting to Qt signals (i.e. buttons that open screens)
 @Slot()
 def showDisplay(display: QWidget):
     display.show()
-
+    
     # brings the display to the front
     display.raise_()
-
+    
     # gives the display focus
     display.activateWindow()
 

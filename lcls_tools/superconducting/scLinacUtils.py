@@ -135,6 +135,18 @@ class QuenchError(Exception):
     pass
 
 
+class StepperAbortError(Exception):
+    pass
+
+
+class CavityAbortError(Exception):
+    pass
+
+
+class CavityFaultError(Exception):
+    pass
+
+
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
