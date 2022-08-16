@@ -42,21 +42,20 @@ class SSA:
                 else (saved_val if saved_val else 0.8))
     
     def calibrate(self, drivemax):
-        print(f"Trying SSA calibration with drivemax {drivemax}")
+        print(f"Trying {self.cavity} SSA calibration with drivemax {drivemax}")
         if drivemax < 0.5:
-            raise utils.SSACalibrationError("Requested drive max too low")
+            raise utils.SSACalibrationError(f"Requested {self.cavity} SSA drive max too low")
         
         while caput(self.maxdrive_setpoint_pv, drivemax, wait=True) != 1:
             print("Setting max drive")
         
         try:
             if self.cavity.abort_flag:
-                raise utils.CavityAbortError(
-                        f"Abort requested for {self}")
+                raise utils.CavityAbortError(f"Abort requested for {self.cavity}")
             self.runCalibration()
         
         except utils.SSACalibrationError as e:
-            print("SSA Calibration failed, retrying")
+            print(f"{self.cavity} SSA Calibration failed, retrying")
             self.calibrate(drivemax - 0.02)
     
     def turnOn(self):
@@ -66,33 +65,33 @@ class SSA:
         self.setPowerState(False)
     
     def reset(self):
-        print("Resetting SSA...")
+        print(f"Resetting {self.cavity} SSA...")
         caput(self.resetPV, 1, wait=True)
         while caget(self.statusPV) == utils.SSA_STATUS_RESETTING_FAULTS_VALUE:
             sleep(1)
         if caget(self.statusPV) in [utils.SSA_STATUS_FAULTED_VALUE,
                                     utils.SSA_STATUS_FAULT_RESET_FAILED_VALUE]:
-            raise utils.SSAFaultError("Unable to reset SSA")
+            raise utils.SSAFaultError(f"Unable to reset {self.cavity} SSA")
     
     def setPowerState(self, turnOn: bool):
-        print("\nSetting SSA power...")
+        print(f"Setting {self.cavity} SSA power...")
         
         if turnOn:
             if caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
                 while caput(self.turnOnPV.pvname, 1, wait=True) != 1:
-                    print("Trying to power on SSA")
+                    print(f"Trying to power on {self.cavity} SSA")
                 while caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
-                    print("waiting for SSA to turn on")
+                    print(f"waiting for {self.cavity} SSA to turn on")
                     sleep(1)
         else:
             if caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
                 while caput(self.turnOffPV.pvname, 1, wait=True) != 1:
-                    print("Trying to power off SSA")
+                    print(f"Trying to power off {self.cavity} SSA")
                 while caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
-                    print("waiting for SSA to turn off")
+                    print(f"waiting for {self.cavity} SSA to turn off")
                     sleep(1)
         
-        print("SSA power set\n")
+        print(f"{self.cavity} SSA power set")
     
     def runCalibration(self):
         """
@@ -353,6 +352,25 @@ class Cavity:
     
     def __str__(self):
         return f"{self.linac.name} CM{self.cryomodule.name} Cavity {self.number}"
+    
+    @property
+    def edm_macro_string(self):
+        rfs_map = {1: "1A", 2: "1A", 3: "2A", 4: "2A", 5: "1B", 6: "1B", 7: "2B", 8: "2B"}
+        
+        rfs = rfs_map[self.number]
+        
+        r = self.rack.rackName
+        cm = self.cryomodule.pvPrefix[:-3]  # need to remove trailing colon and zeroes to match needed format
+        id = self.cryomodule.name
+        
+        ch = 2 if self.number in [2, 4] else 1
+        
+        macro_string = ",".join(["C={c}".format(c=self.number),
+                                 "RFS={rfs}".format(rfs=rfs),
+                                 "R={r}".format(r=r), "CM={cm}".format(cm=cm),
+                                 "ID={id}".format(id=id),
+                                 "CH={ch}".format(ch=ch)])
+        return macro_string
     
     @property
     def tune_config_pv(self) -> PV:
