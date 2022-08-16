@@ -135,6 +135,18 @@ class QuenchError(Exception):
     pass
 
 
+class StepperAbortError(Exception):
+    pass
+
+
+class CavityAbortError(Exception):
+    pass
+
+
+class CavityFaultError(Exception):
+    pass
+
+
 def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
                    resultStatusPV: PV = None):
     try:
@@ -166,8 +178,8 @@ def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: floa
                                  pushPV: PV, savePV: PV,
                                  exception: Exception = Exception):
     if lowerLimit < measuredPV.value < upperLimit:
-        pushPV.put(1, waitForPut=False)
-        savePV.put(1, waitForPut=False)
+        pushPV.put(1)
+        savePV.put(1)
     else:
         raise exception(f"{measuredPV.pvname}: {measuredPV.value}"
                         f" not between {lowerLimit} and {upperLimit}")
