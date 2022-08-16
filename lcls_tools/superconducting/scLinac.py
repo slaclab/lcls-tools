@@ -225,7 +225,7 @@ class StepperTuner:
             if self.abort_flag:
                 self.abort_pv.put(1)
                 raise utils.StepperAbortError(
-                        f"Abort Requested for {self} stepper tuner")
+                        f"Abort requested for {self.cavity.cryomodule.name} cavity {self.cavity.number} stepper tuner")
             
             print("Motor moving", datetime.now())
             sleep(1)
