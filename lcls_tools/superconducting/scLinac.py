@@ -52,7 +52,7 @@ class SSA:
         try:
             if self.cavity.abort_flag:
                 raise utils.CavityAbortError(
-                        f"Abort requested for CM{self.cavity.cryomodule.name} cavity {self.cavity.number}")
+                        f"Abort requested for {self}")
             self.runCalibration()
         
         except utils.SSACalibrationError as e:
@@ -105,15 +105,13 @@ class SSA:
         
         self.cavity.reset_interlocks()
         
-        print(f"Running SSA Calibration for CM{self.cavity.cryomodule.name}"
-              f" cavity {self.cavity.number}")
+        print(f"Running SSA Calibration for {self.cavity}")
         utils.runCalibration(startPV=self.calibrationStartPV,
                              statusPV=self.calibrationStatusPV,
                              exception=utils.SSACalibrationError,
                              resultStatusPV=self.calResultStatusPV)
         
-        print(f"Pushing SSA calibration results for CM{self.cavity.cryomodule.name}"
-              f" cavity {self.cavity.number}")
+        print(f"Pushing SSA calibration results for {self.cavity}")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSlopePV,
                                            currentPV=self.currentSlopePV,
                                            lowerLimit=utils.SSA_SLOPE_LOWER_LIMIT,
@@ -227,7 +225,7 @@ class StepperTuner:
             if self.abort_flag:
                 self.abort_pv.put(1)
                 raise utils.StepperAbortError(
-                        f"Abort Requested for {self.cavity.cryomodule.name} cavity {self.cavity.number} stepper tuner")
+                        f"Abort Requested for {self} stepper tuner")
             
             print("Motor moving", datetime.now())
             sleep(1)
@@ -236,7 +234,7 @@ class StepperTuner:
                 self.cavity.set_chirp_range(400000)
         
         if self.motor_done_pv.value != 1:
-            raise utils.StepperError("Motor not in expected state")
+            raise utils.StepperError(f"Motor for not in expected state for {self}")
         
         print("Motor done")
 
@@ -353,6 +351,9 @@ class Cavity:
         
         self.abort_flag: bool = False
     
+    def __str__(self):
+        return f"{self.linac.name} CM{self.cryomodule.name} Cavity {self.number}"
+    
     @property
     def tune_config_pv(self) -> PV:
         if not self._tune_config_pv:
@@ -375,10 +376,10 @@ class Cavity:
     
     def set_chirp_range(self, offset: int):
         offset = abs(offset)
-        print(f"Setting chirp range for cm{self.cryomodule.name} cavity {self.number} to +/- {offset} Hz")
+        print(f"Setting chirp range for {self} to +/- {offset} Hz")
         self.freq_start_pv.put(-offset, wait=True)
         self.freq_stop_pv.put(offset, wait=True)
-        print(f"Chirp range set for cm{self.cryomodule.name} cavity {self.number}")
+        print(f"Chirp range set for {self}")
     
     @property
     def rfStatePV(self) -> PV:
@@ -402,15 +403,14 @@ class Cavity:
                         else utils.ESTIMATED_MICROSTEPS_PER_HZ)
         
         if self.detune_best_PV.severity == 3:
-            raise utils.DetuneError(f"Detune for CM{cm_name} cavity {cav_num} is invalid")
+            raise utils.DetuneError(f"Detune for {self} is invalid")
         
         while abs(delta) > 50:
             if caget(self.quench_latch_pv) == 1:
-                raise utils.QuenchError(f"CM{cm_name} cavity"
-                                        f" {cav_num} quenched, aborting autotune")
+                raise utils.QuenchError(f"{self} quenched, aborting autotune")
             est_steps = int(0.9 * delta * steps_per_hz)
             
-            print(f"Moving stepper for CM{cm_name} cavity {cav_num} {est_steps} steps")
+            print(f"Moving stepper for {self} {est_steps} steps")
             
             self.tune_config_pv.put(utils.TUNE_CONFIG_OTHER_VALUE)
             
@@ -462,35 +462,35 @@ class Cavity:
         """
         desiredState = (1 if turnOn else 0)
         
-        print("\nSetting RF State...")
+        print(f"\nSetting RF State for {self}")
         caput(self.rfControlPV.pvname, desiredState, wait=True)
         while self.rfStatePV.value != desiredState:
-            print("Waiting for RF state to change")
+            print(f"Waiting for RF state to change for {self}")
             sleep(1)
         
-        print("RF state set\n")
+        print(f"RF state set for {self}")
     
     def setup_SELAP(self, desAmp: float = 5):
         self.setup_rf(desAmp)
         
         caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELAP, wait=True)
-        print(f"CM{self.cryomodule.name} Cavity{self.number} set up in SELAP")
+        print(f"{self} set up in SELAP")
     
     def setup_SELA(self, desAmp: float = 5):
         self.setup_rf(desAmp)
         
         caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA, wait=True)
-        print(f"CM{self.cryomodule.name} Cavity{self.number} set up in SELA")
+        print(f"{self} set up in SELA")
     
     def check_abort(self):
         if self.abort_flag:
-            raise utils.CavityAbortError(f"Abort requested for cm{self.cryomodule.name} cavity {self.number}")
+            raise utils.CavityAbortError(f"Abort requested for {self}")
     
     def setup_rf(self, desAmp):
         if desAmp > caget(self.ades_max_PV.pvname):
-            print("Requested amplitude too high - ramping up to AMAX instead")
+            print(f"Requested amplitude for {self} too high - ramping up to AMAX instead")
             desAmp = caget(self.ades_max_PV.pvname)
-        print(f"setting up cm{self.cryomodule.name} cavity {self.number}")
+        print(f"setting up {self}")
         self.turnOff()
         self.ssa.calibrate(self.ssa.drivemax)
         self.move_to_resonance()
@@ -501,7 +501,7 @@ class Cavity:
         
         self.check_abort()
         
-        print("Setting data decimation PVs")
+        print(f"Setting data decimation PVs for {self}")
         caput(self.cw_data_decim_pv, 255, wait=True)
         caput(self.pulsed_data_decim_pv, 255, wait=True)
         
@@ -523,25 +523,25 @@ class Cavity:
     
     def setup_tuning(self):
         # self.turnOff()
-        print("enabling piezo")
+        print(f"enabling {self} piezo")
         self.piezo.enable_PV.put(utils.PIEZO_ENABLE_VALUE)
         
-        print("setting piezo to manual")
+        print(f"setting {self} piezo to manual")
         self.piezo.feedback_mode_PV.put(utils.PIEZO_MANUAL_VALUE)
         
-        print("setting piezo DC voltage offset to 0V")
+        print(f"setting {self} piezo DC voltage offset to 0V")
         self.piezo.dc_setpoint_PV.put(0)
         
-        print("setting piezo bias voltage to 25V")
+        print(f"setting {self} piezo bias voltage to 25V")
         self.piezo.bias_voltage_PV.put(25)
         
-        print("setting drive level to {lev}".format(lev=utils.SAFE_PULSED_DRIVE_LEVEL))
+        print(f"setting {self} drive level to {utils.SAFE_PULSED_DRIVE_LEVEL}")
         self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
         
-        print("setting RF to chirp")
+        print(f"setting {self} RF to chirp")
         self.rfModeCtrlPV.put(utils.RF_MODE_CHIRP)
         
-        print("turning RF on and waiting 5s for detune to catch up")
+        print(f"turning {self} RF on and waiting 5s for detune to catch up")
         self.ssa.turnOn()
         
         self.reset_interlocks()
@@ -550,13 +550,12 @@ class Cavity:
         sleep(5)
         
         if self.detune_best_PV.severity == EPICS_INVALID_VAL:
-            raise utils.DetuneError("Detune PV invalid. Either expand the chirp"
+            raise utils.DetuneError(f"{self} Detune PV invalid. Either expand the chirp"
                                     " range or use the rack large frequency scan"
                                     " to find the detune.")
     
     def reset_interlocks(self, retry=True):
-        print(f"Resetting interlocks for CM{self.cryomodule.name}"
-              f" cavity {self.number} and waiting 3s")
+        print(f"Resetting interlocks for {self} and waiting 3s")
         self.interlockResetPV.put(1, wait=True)
         sleep(3)
         
@@ -564,13 +563,13 @@ class Cavity:
             count = 0
             wait = 5
             while caget(self.rf_permit_pv) == 0 and count < 3 and caget(self.quench_latch_pv) != 0:
-                print(f"Reset unsuccessful, retrying and waiting {wait} seconds")
+                print(f"{self} reset unsuccessful, retrying and waiting {wait} seconds")
                 self.interlockResetPV.put(1, wait=True)
                 sleep(wait)
                 count += 1
                 wait += 2
             if caget(self.rf_permit_pv) == 0:
-                raise utils.CavityFaultError("Cavity still faulted after 3 reset attempts")
+                raise utils.CavityFaultError(f"{self} still faulted after 3 reset attempts")
     
     def runCalibration(self):
         """
@@ -582,15 +581,15 @@ class Cavity:
         
         self.reset_interlocks()
         
-        print("setting drive to {drive}".format(drive=utils.SAFE_PULSED_DRIVE_LEVEL))
+        print(f"setting {self} drive to {utils.SAFE_PULSED_DRIVE_LEVEL}")
         self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
         
-        print("running calibration")
+        print(f"running {self} calibration")
         utils.runCalibration(startPV=self.cavityCalibrationStartPV,
                              statusPV=self.cavityCalibrationStatusPV,
                              exception=utils.CavityQLoadedCalibrationError)
         
-        print("pushing results")
+        print(f"pushing {self} calibration results")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredQLoadedPV,
                                            currentPV=self.currentQLoadedPV,
                                            lowerLimit=self.loaded_q_lower_limit,
@@ -607,16 +606,15 @@ class Cavity:
                                            savePV=self.saveCavityScalePV,
                                            exception=utils.CavityScaleFactorCalibrationError)
         
-        print("calibration successful")
+        print(f"{self} calibration successful")
     
     def walk_amp(self, des_amp, step_size):
-        print(f"walking CM{self.cryomodule.name} cavity {self.number} to {des_amp}")
+        print(f"walking {self} to {des_amp}")
         
         while caget(self.selAmplitudeDesPV.pvname) <= (des_amp - step_size):
             self.check_abort()
             if caget(self.quench_latch_pv) == 1:
-                raise utils.QuenchError(f"Quench detected on CM{self.cryomodule.name}"
-                                        f" cavity {self.number}, aborting rampup")
+                raise utils.QuenchError(f"{self} quench detected, aborting rampup")
             caput(self.selAmplitudeDesPV.pvname,
                   self.selAmplitudeDesPV.value + step_size, wait=True)
             # to avoid tripping sensitive interlock
@@ -625,7 +623,7 @@ class Cavity:
         if caget(self.selAmplitudeDesPV.pvname) != des_amp:
             caput(self.selAmplitudeDesPV.pvname, des_amp)
         
-        print(f"CM{self.cryomodule.name} cavity {self.number} at {des_amp}")
+        print(f"{self} at {des_amp}")
 
 
 class Magnet:
@@ -706,7 +704,7 @@ class Rack:
                                                        piezoClass=piezoClass)
         
         else:
-            raise Exception("Bad rack name")
+            raise Exception(f"Bad rack name {rackName}")
 
 
 class Cryomodule:
@@ -878,7 +876,7 @@ class CryoDict(dict):
         elif key in L3B:
             linac = linacs['L3B']
         else:
-            raise KeyError("Cryomodule {} not found in any linac region.".format(key))
+            raise KeyError(f"Cryomodule {key} not found in any linac region.")
         cryomodule = self.cryomoduleClass(cryoName=key,
                                           linacObject=linac,
                                           cavityClass=self.cavityClass,

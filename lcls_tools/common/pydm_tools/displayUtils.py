@@ -4,7 +4,7 @@ from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtWidgets import QLabel, QMessageBox, QWidget
 from qtpy.QtCore import Slot
 
-ABORT_STYLESHEET = "color: rgb(128, 0, 2);"
+ERROR_STYLESHEET = "color: rgb(128, 0, 2);"
 FINISHED_STYLESHEET = "color: rgb(16, 128, 1);"
 STATUS_STYLESHEET = "color: rgb(7, 64, 128);"
 
@@ -25,10 +25,10 @@ class WorkerSignals(QObject):
             self.finished.connect(partial(label.setStyleSheet, FINISHED_STYLESHEET))
             
             self.error.connect(label.setText)
-            self.error.connect(partial(label.setStyleSheet, ABORT_STYLESHEET))
+            self.error.connect(partial(label.setStyleSheet, ERROR_STYLESHEET))
             
             self.abort.connect(label.setText)
-            self.abort.connect(partial(label.setStyleSheet, ABORT_STYLESHEET))
+            self.abort.connect(partial(label.setStyleSheet, ERROR_STYLESHEET))
         
         self.status.connect(print)
         self.finished.connect(print)
