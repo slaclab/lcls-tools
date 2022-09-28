@@ -7,10 +7,11 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
-import lcls_tools.superconducting.scLinacUtils as utils
 from epics import PV, caget, caput
-from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL
 from numpy import sign
+
+import lcls_tools.superconducting.scLinacUtils as utils
+from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL
 
 
 class SSA:
