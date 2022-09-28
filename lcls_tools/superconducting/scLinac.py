@@ -7,11 +7,10 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
-from epics import PV, caget, caput
-from numpy import sign
-
 import lcls_tools.superconducting.scLinacUtils as utils
+from epics import PV, caget, caput
 from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL
+from numpy import sign
 
 
 class SSA:
@@ -482,9 +481,13 @@ class Cavity:
         
         print(f"\nSetting RF State for {self}")
         caput(self.rfControlPV.pvname, desiredState, wait=True)
+        
+        wait = 1
+        
         while self.rfStatePV.value != desiredState:
-            print(f"Waiting for RF state to change for {self}")
-            sleep(1)
+            print(f"Waiting {wait} seconds for {self} RF state to change")
+            sleep(wait)
+            wait += 2
         
         print(f"RF state set for {self}")
     
