@@ -13,12 +13,18 @@ from numpy import sign
 import lcls_tools.superconducting.scLinacUtils as utils
 from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL
 
+HL_SSA_MAP = {1: 1, 2: 2, 3: 3, 4: 4, 5: 1, 6: 2, 7: 3, 8: 4}
+
 
 class SSA:
     def __init__(self, cavity):
         # type: (Cavity) -> None
         self.cavity: Cavity = cavity
-        self.pvPrefix = self.cavity.pvPrefix + "SSA:"
+        if self.cavity.cryomodule.isHarmonicLinearizer:
+            cavity_num = HL_SSA_MAP[self.cavity.number]
+            self.pvPrefix = self.cavity.cryomodule.cavities[cavity_num].pvPrefix + "SSA:"
+        else:
+            self.pvPrefix = self.cavity.pvPrefix + "SSA:"
         
         self.statusPV: str = (self.pvPrefix + "StatusMsg")
         self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
