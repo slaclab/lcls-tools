@@ -22,7 +22,9 @@ class SSA:
         self.cavity: Cavity = cavity
         if self.cavity.cryomodule.isHarmonicLinearizer:
             cavity_num = HL_SSA_MAP[self.cavity.number]
-            self.pvPrefix = self.cavity.cryomodule.cavities[cavity_num].pvPrefix + "SSA:"
+            self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
+                                                                             CRYOMODULE=self.cavity.cryomodule.name,
+                                                                             CAVITY=cavity_num)
         else:
             self.pvPrefix = self.cavity.pvPrefix + "SSA:"
         
