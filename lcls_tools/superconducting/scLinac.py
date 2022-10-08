@@ -348,7 +348,7 @@ class Cavity:
         
         self.rf_permit_pv: str = self.pvPrefix + "RFPERMIT"
         
-        self.quench_latch_pv: str = self.pvPrefix + "QUENCH_LTCH"
+        self._quench_latch_pv: PV = None
         self.quench_bypass_pv: str = self.pvPrefix + "QUENCH_BYP"
         
         self.cw_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.A"
@@ -383,6 +383,12 @@ class Cavity:
                                  "ID={id}".format(id=id),
                                  "CH={ch}".format(ch=ch)])
         return macro_string
+    
+    @property
+    def quench_latch_pv(self) -> PV:
+        if not self._quench_latch_pv:
+            self._quench_latch_pv = PV(self.pvPrefix + "QUENCH_LTCH")
+        return self._quench_latch_pv
     
     @property
     def tune_config_pv(self) -> PV:
