@@ -442,7 +442,7 @@ class Cavity:
             raise utils.DetuneError(f"Detune for {self} is invalid")
         
         while abs(delta) > 50:
-            if caget(self.quench_latch_pv) == 1:
+            if self.quench_latch_pv.value == 1:
                 raise utils.QuenchError(f"{self} quenched, aborting autotune")
             est_steps = int(0.9 * delta * steps_per_hz)
             
@@ -603,7 +603,7 @@ class Cavity:
         if retry:
             count = 0
             wait = 5
-            while caget(self.rf_permit_pv) == 0 and count < 3 and caget(self.quench_latch_pv) != 0:
+            while caget(self.rf_permit_pv) == 0 and count < 3 and self.quench_latch_pv.value != 0:
                 print(f"{self} reset unsuccessful, retrying and waiting {wait} seconds")
                 self.interlockResetPV.put(1, wait=True)
                 sleep(wait)
@@ -654,7 +654,7 @@ class Cavity:
         
         while caget(self.selAmplitudeDesPV.pvname) <= (des_amp - step_size):
             self.check_abort()
-            if caget(self.quench_latch_pv) == 1:
+            if (self.quench_latch_pv.value) == 1:
                 raise utils.QuenchError(f"{self} quench detected, aborting rampup")
             caput(self.selAmplitudeDesPV.pvname,
                   self.selAmplitudeDesPV.value + step_size, wait=True)
