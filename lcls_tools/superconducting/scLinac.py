@@ -87,15 +87,19 @@ class SSA:
         if turnOn:
             if caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
                 while caput(self.turnOnPV.pvname, 1, wait=True) != 1:
+                    self.cavity.check_abort()
                     print(f"Trying to power on {self.cavity} SSA")
                 while caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
+                    self.cavity.check_abort()
                     print(f"waiting for {self.cavity} SSA to turn on")
                     sleep(1)
         else:
             if caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
                 while caput(self.turnOffPV.pvname, 1, wait=True) != 1:
+                    self.cavity.check_abort()
                     print(f"Trying to power off {self.cavity} SSA")
                 while caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
+                    self.cavity.check_abort()
                     print(f"waiting for {self.cavity} SSA to turn off")
                     sleep(1)
         
@@ -494,6 +498,7 @@ class Cavity:
         wait = 1
         
         while self.rfStatePV.value != desiredState:
+            self.check_abort()
             print(f"Waiting {wait} seconds for {self} RF state to change")
             sleep(wait)
             wait += 2
