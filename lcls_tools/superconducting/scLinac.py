@@ -595,10 +595,11 @@ class Cavity:
                                     " range or use the rack large frequency scan"
                                     " to find the detune.")
     
-    def reset_interlocks(self, retry=True):
+    def reset_interlocks(self, retry=True, wait=True):
         print(f"Resetting interlocks for {self} and waiting 3s")
         self.interlockResetPV.put(1, wait=True)
-        sleep(3)
+        if wait:
+            sleep(3)
         
         if retry:
             count = 0
