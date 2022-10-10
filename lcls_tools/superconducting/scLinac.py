@@ -453,7 +453,10 @@ class Cavity:
             self.steppertuner.move(est_steps,
                                    maxSteps=10000000,
                                    speed=utils.MAX_STEPPER_SPEED)
-            delta = caget(self.detune_best_PV.pvname) - des_detune
+            try:
+                delta = caget(self.detune_best_PV.pvname) - des_detune
+            except TypeError as e:
+                raise utils.StepperError(str(e))
         
         self.tune_config_pv.put(config_val)
     
