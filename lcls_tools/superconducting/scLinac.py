@@ -528,6 +528,7 @@ class Cavity:
     
     def check_abort(self):
         if self.abort_flag:
+            self.abort_flag = False
             raise utils.CavityAbortError(f"Abort requested for {self}")
     
     def setup_rf(self, desAmp):
