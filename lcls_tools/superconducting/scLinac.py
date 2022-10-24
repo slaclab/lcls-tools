@@ -13,12 +13,20 @@ from numpy import sign
 import lcls_tools.superconducting.scLinacUtils as utils
 from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL
 
+HL_SSA_MAP = {1: 1, 2: 2, 3: 3, 4: 4, 5: 1, 6: 2, 7: 3, 8: 4}
+
 
 class SSA:
     def __init__(self, cavity):
         # type: (Cavity) -> None
         self.cavity: Cavity = cavity
-        self.pvPrefix = self.cavity.pvPrefix + "SSA:"
+        if self.cavity.cryomodule.isHarmonicLinearizer:
+            cavity_num = HL_SSA_MAP[self.cavity.number]
+            self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
+                                                                             CRYOMODULE=self.cavity.cryomodule.name,
+                                                                             CAVITY=cavity_num)
+        else:
+            self.pvPrefix = self.cavity.pvPrefix + "SSA:"
         
         self.statusPV: str = (self.pvPrefix + "StatusMsg")
         self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
@@ -79,15 +87,19 @@ class SSA:
         if turnOn:
             if caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
                 while caput(self.turnOnPV.pvname, 1, wait=True) != 1:
+                    self.cavity.check_abort()
                     print(f"Trying to power on {self.cavity} SSA")
                 while caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
+                    self.cavity.check_abort()
                     print(f"waiting for {self.cavity} SSA to turn on")
                     sleep(1)
         else:
             if caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
                 while caput(self.turnOffPV.pvname, 1, wait=True) != 1:
+                    self.cavity.check_abort()
                     print(f"Trying to power off {self.cavity} SSA")
                 while caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
+                    self.cavity.check_abort()
                     print(f"waiting for {self.cavity} SSA to turn off")
                     sleep(1)
         
@@ -336,7 +348,7 @@ class Cavity:
         
         self.rf_permit_pv: str = self.pvPrefix + "RFPERMIT"
         
-        self.quench_latch_pv: str = self.pvPrefix + "QUENCH_LTCH"
+        self._quench_latch_pv: PV = None
         self.quench_bypass_pv: str = self.pvPrefix + "QUENCH_BYP"
         
         self.cw_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.A"
@@ -371,6 +383,12 @@ class Cavity:
                                  "ID={id}".format(id=id),
                                  "CH={ch}".format(ch=ch)])
         return macro_string
+    
+    @property
+    def quench_latch_pv(self) -> PV:
+        if not self._quench_latch_pv:
+            self._quench_latch_pv = PV(self.pvPrefix + "QUENCH_LTCH")
+        return self._quench_latch_pv
     
     @property
     def tune_config_pv(self) -> PV:
@@ -424,7 +442,7 @@ class Cavity:
             raise utils.DetuneError(f"Detune for {self} is invalid")
         
         while abs(delta) > 50:
-            if caget(self.quench_latch_pv) == 1:
+            if self.quench_latch_pv.value == 1:
                 raise utils.QuenchError(f"{self} quenched, aborting autotune")
             est_steps = int(0.9 * delta * steps_per_hz)
             
@@ -433,9 +451,12 @@ class Cavity:
             self.tune_config_pv.put(utils.TUNE_CONFIG_OTHER_VALUE)
             
             self.steppertuner.move(est_steps,
-                                   maxSteps=utils.DEFAULT_STEPPER_MAX_STEPS,
+                                   maxSteps=10000000,
                                    speed=utils.MAX_STEPPER_SPEED)
-            delta = caget(self.detune_best_PV.pvname) - des_detune
+            try:
+                delta = caget(self.detune_best_PV.pvname) - des_detune
+            except TypeError as e:
+                raise utils.StepperError(str(e))
         
         self.tune_config_pv.put(config_val)
     
@@ -486,6 +507,7 @@ class Cavity:
         wait = 1
         
         while self.rfStatePV.value != desiredState:
+            self.check_abort()
             print(f"Waiting {wait} seconds for {self} RF state to change")
             sleep(wait)
             wait += 2
@@ -506,6 +528,7 @@ class Cavity:
     
     def check_abort(self):
         if self.abort_flag:
+            self.abort_flag = False
             raise utils.CavityAbortError(f"Abort requested for {self}")
     
     def setup_rf(self, desAmp):
@@ -576,15 +599,16 @@ class Cavity:
                                     " range or use the rack large frequency scan"
                                     " to find the detune.")
     
-    def reset_interlocks(self, retry=True):
+    def reset_interlocks(self, retry=True, wait=True):
         print(f"Resetting interlocks for {self} and waiting 3s")
         self.interlockResetPV.put(1, wait=True)
-        sleep(3)
+        if wait:
+            sleep(3)
         
         if retry:
             count = 0
             wait = 5
-            while caget(self.rf_permit_pv) == 0 and count < 3 and caget(self.quench_latch_pv) != 0:
+            while caget(self.rf_permit_pv) == 0 and count < 3 and self.quench_latch_pv.value != 0:
                 print(f"{self} reset unsuccessful, retrying and waiting {wait} seconds")
                 self.interlockResetPV.put(1, wait=True)
                 sleep(wait)
@@ -635,7 +659,7 @@ class Cavity:
         
         while caget(self.selAmplitudeDesPV.pvname) <= (des_amp - step_size):
             self.check_abort()
-            if caget(self.quench_latch_pv) == 1:
+            if (self.quench_latch_pv.value) == 1:
                 raise utils.QuenchError(f"{self} quench detected, aborting rampup")
             caput(self.selAmplitudeDesPV.pvname,
                   self.selAmplitudeDesPV.value + step_size, wait=True)
