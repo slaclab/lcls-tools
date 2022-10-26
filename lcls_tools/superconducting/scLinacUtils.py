@@ -167,12 +167,13 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
         sleep(2)
         
         # 0 is crashed
-        if statusPV.connect() == 0:
+        if statusPV.get() == 0:
             raise exception("{pv} crashed".format(pv=statusPV.pvname))
         
-        while not resultStatusPV.connect():
-            print(f"waiting for {resultStatusPV.pvname} to connect")
-            sleep(1)
+        if resultStatusPV:
+            while not resultStatusPV.connect():
+                print(f"waiting for {resultStatusPV.pvname} to connect")
+                sleep(1)
         
         if resultStatusPV and resultStatusPV.get() != SSA_RESULT_GOOD_STATUS_VALUE:
             raise exception(f"{resultStatusPV.pvname} not in good state")
@@ -181,7 +182,8 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
         raise exception('CASeverityException')
 
 
-def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: float, upperLimit: float,
+def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV,
+                                 lowerLimit: float, upperLimit: float,
                                  pushPV: PV, savePV: PV,
                                  exception: Exception = Exception):
     if lowerLimit < measuredPV.value < upperLimit:
