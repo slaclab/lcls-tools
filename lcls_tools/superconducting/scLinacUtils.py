@@ -1,7 +1,7 @@
 from datetime import datetime
 from time import sleep
 
-from epics import caget, caput
+from epics import caput
 from epics.ca import CASeverityException
 
 from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
@@ -155,19 +155,26 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
         print("waiting 2s for script to run")
         sleep(2)
         
+        while not statusPV.connect():
+            print(f"waiting for {statusPV.pvname} to connect")
+            sleep(1)
+        
         # 2 is running
-        while caget(statusPV.pvname) is None or caget(statusPV.pvname) == 2:
+        while statusPV.get() is None or statusPV.get() == 2:
             print(f"waiting for {statusPV.pvname} to stop running", datetime.now())
             sleep(1)
         
+        sleep(2)
+        
         # 0 is crashed
-        if (caget(statusPV.pvname) == 0
-                or (resultStatusPV
-                    and caget(resultStatusPV.pvname)
-                    != SSA_RESULT_GOOD_STATUS_VALUE)):
+        if statusPV.connect() == 0:
             raise exception("{pv} crashed".format(pv=statusPV.pvname))
         
-        if resultStatusPV and caget(resultStatusPV.pvname) != SSA_RESULT_GOOD_STATUS_VALUE:
+        while not resultStatusPV.connect():
+            print(f"waiting for {resultStatusPV.pvname} to connect")
+            sleep(1)
+        
+        if resultStatusPV and resultStatusPV.get() != SSA_RESULT_GOOD_STATUS_VALUE:
             raise exception(f"{resultStatusPV.pvname} not in good state")
     
     except CASeverityException:
