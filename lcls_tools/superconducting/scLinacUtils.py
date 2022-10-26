@@ -93,6 +93,13 @@ class SSACalibrationError(Exception):
     pass
 
 
+class SSACalibrationToleranceError(Exception):
+    """
+    Exception thrown during cavity SSA calibration
+    """
+    pass
+
+
 class CavityQLoadedCalibrationError(Exception):
     """
     Exception thrown during cavity loaded Q measurement

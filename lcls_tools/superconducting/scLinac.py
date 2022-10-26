@@ -65,6 +65,10 @@ class SSA:
         except utils.SSACalibrationError as e:
             print(f"{self.cavity} SSA Calibration failed with '{e}', retrying")
             self.calibrate(drivemax - 0.02)
+        
+        except utils.SSACalibrationToleranceError as e:
+            print(f"{self.cavity} SSA Calibration failed with '{e}', retrying")
+            self.calibrate(drivemax)
     
     def turnOn(self):
         self.setPowerState(True)
@@ -123,8 +127,13 @@ class SSA:
                              resultStatusPV=self.calResultStatusPV)
         
         print(f"Pushing SSA calibration results for {self.cavity}")
-        self.cavity.pushSSASlopePV.put(1)
-        self.cavity.saveSSASlopePV.put(1)
+        utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSlopePV,
+                                           currentPV=self.currentSlopePV,
+                                           lowerLimit=utils.SSA_SLOPE_LOWER_LIMIT,
+                                           upperLimit=utils.SSA_SLOPE_UPPER_LIMIT,
+                                           pushPV=self.cavity.pushSSASlopePV,
+                                           savePV=self.cavity.saveSSASlopePV,
+                                           exception=utils.SSACalibrationToleranceError)
 
 
 class StepperTuner:
