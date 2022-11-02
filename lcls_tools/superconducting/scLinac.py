@@ -585,6 +585,8 @@ class Cavity:
         # self.turnOff()
         print(f"enabling {self} piezo")
         while self.piezo.enable_stat_pv.get() != utils.PIEZO_ENABLE_VALUE:
+            self.piezo.enable_pv.put(utils.PIEZO_DISABLE_VALUE)
+            sleep(1)
             self.piezo.enable_pv.put(utils.PIEZO_ENABLE_VALUE)
             print(f"{self} piezo not enabled, retrying")
             sleep(1)
