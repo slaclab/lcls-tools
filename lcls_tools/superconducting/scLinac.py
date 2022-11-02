@@ -258,16 +258,29 @@ class Piezo:
         # type (Cavity) -> None
         self.cavity: Cavity = cavity
         self.pvPrefix: str = self.cavity.pvPrefix + "PZT:"
-        self.enable_PV: PV = PV(self.pvPrefix + "ENABLE")
+        self._enable_PV: PV = None
+        self._enable_stat_pv: PV = None
         self.feedback_mode_PV: PV = PV(self.pvPrefix + "MODECTRL")
         self.dc_setpoint_PV: PV = PV(self.pvPrefix + "DAC_SP")
         self.bias_voltage_PV: PV = PV(self.pvPrefix + "BIAS")
     
+    @property
+    def enable_pv(self) -> PV:
+        if not self._enable_PV:
+            self._enable_PV = PV(self.pvPrefix + "ENABLE")
+        return self._enable_PV
+    
+    @property
+    def enable_stat_pv(self) -> PV:
+        if not self._enable_stat_pv:
+            self._enable_stat_pv = PV(self.pvPrefix + "ENABLESTAT")
+        return self._enable_stat_pv
+    
     def enable_feedback(self):
-        self.enable_PV.put(utils.PIEZO_DISABLE_VALUE)
+        self.enable_pv.put(utils.PIEZO_DISABLE_VALUE)
         self.dc_setpoint_PV.put(25)
         self.feedback_mode_PV.put(utils.PIEZO_MANUAL_VALUE)
-        self.enable_PV.put(utils.PIEZO_ENABLE_VALUE)
+        self.enable_pv.put(utils.PIEZO_ENABLE_VALUE)
 
 
 class Cavity:
@@ -433,9 +446,6 @@ class Cavity:
     def auto_tune(self, des_detune, config_val):
         self.setup_tuning()
         
-        cm_name = self.cryomodule.name
-        cav_num = self.number
-        
         delta = self.detune_best_PV.value - des_detune
         steps_per_hz = (utils.ESTIMATED_MICROSTEPS_PER_HZ_HL
                         if self.cryomodule.isHarmonicLinearizer
@@ -574,7 +584,10 @@ class Cavity:
     def setup_tuning(self):
         # self.turnOff()
         print(f"enabling {self} piezo")
-        self.piezo.enable_PV.put(utils.PIEZO_ENABLE_VALUE)
+        while self.piezo.enable_stat_pv.get() != utils.PIEZO_ENABLE_VALUE:
+            self.piezo.enable_pv.put(utils.PIEZO_ENABLE_VALUE)
+            print(f"{self} piezo not enabled, retrying")
+            sleep(1)
         
         print(f"setting {self} piezo to manual")
         self.piezo.feedback_mode_PV.put(utils.PIEZO_MANUAL_VALUE)
