@@ -63,8 +63,12 @@ class SSA:
             self.runCalibration()
         
         except utils.SSACalibrationError as e:
-            print(f"{self.cavity} SSA Calibration failed, retrying")
+            print(f"{self.cavity} SSA Calibration failed with '{e}', retrying")
             self.calibrate(drivemax - 0.02)
+        
+        except utils.SSACalibrationToleranceError as e:
+            print(f"{self.cavity} SSA Calibration failed with '{e}', retrying")
+            self.calibrate(drivemax)
     
     def turnOn(self):
         self.setPowerState(True)
@@ -124,12 +128,11 @@ class SSA:
         
         print(f"Pushing SSA calibration results for {self.cavity}")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSlopePV,
-                                           currentPV=self.currentSlopePV,
                                            lowerLimit=utils.SSA_SLOPE_LOWER_LIMIT,
                                            upperLimit=utils.SSA_SLOPE_UPPER_LIMIT,
                                            pushPV=self.cavity.pushSSASlopePV,
                                            savePV=self.cavity.saveSSASlopePV,
-                                           exception=utils.SSACalibrationError)
+                                           exception=utils.SSACalibrationToleranceError)
 
 
 class StepperTuner:
@@ -255,16 +258,29 @@ class Piezo:
         # type (Cavity) -> None
         self.cavity: Cavity = cavity
         self.pvPrefix: str = self.cavity.pvPrefix + "PZT:"
-        self.enable_PV: PV = PV(self.pvPrefix + "ENABLE")
+        self._enable_PV: PV = None
+        self._enable_stat_pv: PV = None
         self.feedback_mode_PV: PV = PV(self.pvPrefix + "MODECTRL")
         self.dc_setpoint_PV: PV = PV(self.pvPrefix + "DAC_SP")
         self.bias_voltage_PV: PV = PV(self.pvPrefix + "BIAS")
     
+    @property
+    def enable_pv(self) -> PV:
+        if not self._enable_PV:
+            self._enable_PV = PV(self.pvPrefix + "ENABLE")
+        return self._enable_PV
+    
+    @property
+    def enable_stat_pv(self) -> PV:
+        if not self._enable_stat_pv:
+            self._enable_stat_pv = PV(self.pvPrefix + "ENABLESTAT")
+        return self._enable_stat_pv
+    
     def enable_feedback(self):
-        self.enable_PV.put(utils.PIEZO_DISABLE_VALUE)
+        self.enable_pv.put(utils.PIEZO_DISABLE_VALUE)
         self.dc_setpoint_PV.put(25)
         self.feedback_mode_PV.put(utils.PIEZO_MANUAL_VALUE)
-        self.enable_PV.put(utils.PIEZO_ENABLE_VALUE)
+        self.enable_pv.put(utils.PIEZO_ENABLE_VALUE)
 
 
 class Cavity:
@@ -430,9 +446,6 @@ class Cavity:
     def auto_tune(self, des_detune, config_val):
         self.setup_tuning()
         
-        cm_name = self.cryomodule.name
-        cav_num = self.number
-        
         delta = self.detune_best_PV.value - des_detune
         steps_per_hz = (utils.ESTIMATED_MICROSTEPS_PER_HZ_HL
                         if self.cryomodule.isHarmonicLinearizer
@@ -529,6 +542,8 @@ class Cavity:
     def check_abort(self):
         if self.abort_flag:
             self.abort_flag = False
+            self.turnOff()
+            self.ssa.turnOff()
             raise utils.CavityAbortError(f"Abort requested for {self}")
     
     def setup_rf(self, desAmp):
@@ -569,7 +584,12 @@ class Cavity:
     def setup_tuning(self):
         # self.turnOff()
         print(f"enabling {self} piezo")
-        self.piezo.enable_PV.put(utils.PIEZO_ENABLE_VALUE)
+        while self.piezo.enable_stat_pv.get() != utils.PIEZO_ENABLE_VALUE:
+            self.piezo.enable_pv.put(utils.PIEZO_DISABLE_VALUE)
+            sleep(1)
+            self.piezo.enable_pv.put(utils.PIEZO_ENABLE_VALUE)
+            print(f"{self} piezo not enabled, retrying")
+            sleep(1)
         
         print(f"setting {self} piezo to manual")
         self.piezo.feedback_mode_PV.put(utils.PIEZO_MANUAL_VALUE)
@@ -637,7 +657,6 @@ class Cavity:
         
         print(f"pushing {self} calibration results")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredQLoadedPV,
-                                           currentPV=self.currentQLoadedPV,
                                            lowerLimit=self.loaded_q_lower_limit,
                                            upperLimit=self.loaded_q_upper_limit,
                                            pushPV=self.pushQLoadedPV,
@@ -645,7 +664,6 @@ class Cavity:
                                            exception=utils.CavityQLoadedCalibrationError)
         
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredCavityScalePV,
-                                           currentPV=self.currentCavityScalePV,
                                            lowerLimit=utils.CAVITY_SCALE_LOWER_LIMIT,
                                            upperLimit=utils.CAVITY_SCALE_UPPER_LIMIT,
                                            pushPV=self.pushCavityScalePV,

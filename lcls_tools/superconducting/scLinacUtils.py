@@ -1,7 +1,7 @@
 from datetime import datetime
 from time import sleep
 
-from epics import caget, caput
+from epics import caput
 from epics.ca import CASeverityException
 
 from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
@@ -23,7 +23,7 @@ LOADED_Q_LOWER_LIMIT_HL = 1.5e7
 LOADED_Q_UPPER_LIMIT_HL = 3.5e7
 DESIGN_Q_LOADED_HL = 2.5e7
 
-CAVITY_SCALE_UPPER_LIMIT = 100
+CAVITY_SCALE_UPPER_LIMIT = 125
 CAVITY_SCALE_LOWER_LIMIT = 10
 
 RF_MODE_SELAP = 0
@@ -93,6 +93,13 @@ class SSACalibrationError(Exception):
     pass
 
 
+class SSACalibrationToleranceError(Exception):
+    """
+    Exception thrown during cavity SSA calibration
+    """
+    pass
+
+
 class CavityQLoadedCalibrationError(Exception):
     """
     Exception thrown during cavity loaded Q measurement
@@ -155,31 +162,42 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
         print("waiting 2s for script to run")
         sleep(2)
         
+        while not statusPV.connect():
+            print(f"waiting for {statusPV.pvname} to connect")
+            sleep(1)
+        
         # 2 is running
-        while caget(statusPV.pvname) is None or caget(statusPV.pvname) == 2:
+        while statusPV.get() is None or statusPV.get() == 2:
             print(f"waiting for {statusPV.pvname} to stop running", datetime.now())
             sleep(1)
         
+        sleep(2)
+        
         # 0 is crashed
-        if (caget(statusPV.pvname) == 0
-                or (resultStatusPV
-                    and caget(resultStatusPV.pvname)
-                    != SSA_RESULT_GOOD_STATUS_VALUE)):
+        if statusPV.get() == 0:
             raise exception("{pv} crashed".format(pv=statusPV.pvname))
         
-        if resultStatusPV and caget(resultStatusPV.pvname) != SSA_RESULT_GOOD_STATUS_VALUE:
+        if resultStatusPV:
+            while not resultStatusPV.connect():
+                print(f"waiting for {resultStatusPV.pvname} to connect")
+                sleep(1)
+        
+        if resultStatusPV and resultStatusPV.get() != SSA_RESULT_GOOD_STATUS_VALUE:
             raise exception(f"{resultStatusPV.pvname} not in good state")
     
     except CASeverityException:
         raise exception('CASeverityException')
 
 
-def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV, lowerLimit: float, upperLimit: float,
+def pushAndSaveCalibrationChange(measuredPV: PV,
+                                 lowerLimit: float, upperLimit: float,
                                  pushPV: PV, savePV: PV,
-                                 exception: Exception = Exception):
+                                 exception: Exception = Exception,
+                                 save=False):
     if lowerLimit < measuredPV.value < upperLimit:
         pushPV.put(1)
-        savePV.put(1)
+        if save:
+            savePV.put(1)
     else:
         raise exception(f"{measuredPV.pvname}: {measuredPV.value}"
                         f" not between {lowerLimit} and {upperLimit}")
