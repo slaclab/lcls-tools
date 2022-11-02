@@ -128,7 +128,6 @@ class SSA:
         
         print(f"Pushing SSA calibration results for {self.cavity}")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSlopePV,
-                                           currentPV=self.currentSlopePV,
                                            lowerLimit=utils.SSA_SLOPE_LOWER_LIMIT,
                                            upperLimit=utils.SSA_SLOPE_UPPER_LIMIT,
                                            pushPV=self.cavity.pushSSASlopePV,
@@ -643,7 +642,6 @@ class Cavity:
         
         print(f"pushing {self} calibration results")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredQLoadedPV,
-                                           currentPV=self.currentQLoadedPV,
                                            lowerLimit=self.loaded_q_lower_limit,
                                            upperLimit=self.loaded_q_upper_limit,
                                            pushPV=self.pushQLoadedPV,
@@ -651,7 +649,6 @@ class Cavity:
                                            exception=utils.CavityQLoadedCalibrationError)
         
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredCavityScalePV,
-                                           currentPV=self.currentCavityScalePV,
                                            lowerLimit=utils.CAVITY_SCALE_LOWER_LIMIT,
                                            upperLimit=utils.CAVITY_SCALE_UPPER_LIMIT,
                                            pushPV=self.pushCavityScalePV,

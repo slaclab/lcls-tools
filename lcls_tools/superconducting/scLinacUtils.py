@@ -189,13 +189,15 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
         raise exception('CASeverityException')
 
 
-def pushAndSaveCalibrationChange(measuredPV: PV, currentPV: PV,
+def pushAndSaveCalibrationChange(measuredPV: PV,
                                  lowerLimit: float, upperLimit: float,
                                  pushPV: PV, savePV: PV,
-                                 exception: Exception = Exception):
+                                 exception: Exception = Exception,
+                                 save=False):
     if lowerLimit < measuredPV.value < upperLimit:
         pushPV.put(1)
-        savePV.put(1)
+        if save:
+            savePV.put(1)
     else:
         raise exception(f"{measuredPV.pvname}: {measuredPV.value}"
                         f" not between {lowerLimit} and {upperLimit}")
