@@ -71,6 +71,10 @@ TUNE_CONFIG_RESONANCE_VALUE = 0
 TUNE_CONFIG_COLD_VALUE = 1
 TUNE_CONFIG_OTHER_VALUE = 3
 
+HW_MODE_ONLINE_VALUE = 0
+HW_MODE_MAINTENANCE_VALUE = 1
+HW_MODE_OFFLINE_VALUE = 2
+
 
 class PulseError(Exception):
     """
@@ -151,6 +155,10 @@ class CavityAbortError(Exception):
 
 
 class CavityFaultError(Exception):
+    pass
+
+
+class CavityHWModeError(Exception):
     pass
 
 
