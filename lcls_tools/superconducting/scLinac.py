@@ -377,6 +377,8 @@ class Cavity:
         self._freq_stop_pv: str = None
         
         self.abort_flag: bool = False
+        
+        self._hw_mode_pv: PV = None
     
     def __str__(self):
         return f"{self.linac.name} CM{self.cryomodule.name} Cavity {self.number}"
@@ -399,6 +401,12 @@ class Cavity:
                                  "ID={id}".format(id=id),
                                  "CH={ch}".format(ch=ch)])
         return macro_string
+    
+    @property
+    def hw_mode_pv(self) -> PV:
+        if not self._hw_mode_pv:
+            self._hw_mode_pv = PV(self.pvPrefix + "HWMODE")
+        return self._hw_mode_pv
     
     @property
     def quench_latch_pv(self) -> PV:
@@ -501,7 +509,16 @@ class Cavity:
             raise utils.PulseError("Unable to pulse cavity")
     
     def turnOn(self):
-        self.setPowerState(True)
+        while not self.hw_mode_pv.connect():
+            self.check_abort()
+            print(f"{self.hw_mode_pv.pvname} not connected, retrying")
+            sleep(1)
+        
+        if self.hw_mode_pv.get() != utils.HW_MODE_ONLINE_VALUE:
+            self.ssa.turnOn()
+            self.setPowerState(True)
+        else:
+            raise utils.CavityHWModeError(f"{self} not online")
     
     def turnOff(self):
         self.setPowerState(False)
