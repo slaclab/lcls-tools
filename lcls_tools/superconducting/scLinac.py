@@ -514,7 +514,9 @@ class Cavity:
             print(f"{self.hw_mode_pv.pvname} not connected, retrying")
             sleep(1)
         
-        if self.hw_mode_pv.get() != utils.HW_MODE_ONLINE_VALUE:
+        print(f"{self.hw_mode_pv.pvname} connected")
+        
+        if self.hw_mode_pv.get() == utils.HW_MODE_ONLINE_VALUE:
             self.ssa.turnOn()
             self.setPowerState(True)
         else:
