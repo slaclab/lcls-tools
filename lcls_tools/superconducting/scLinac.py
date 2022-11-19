@@ -260,7 +260,8 @@ class Piezo:
         self.pvPrefix: str = self.cavity.pvPrefix + "PZT:"
         self._enable_PV: PV = None
         self._enable_stat_pv: PV = None
-        self.feedback_mode_PV: PV = PV(self.pvPrefix + "MODECTRL")
+        self._feedback_mode_PV: PV = None
+        self._feedback_stat_pv: PV = None
         self.dc_setpoint_PV: PV = PV(self.pvPrefix + "DAC_SP")
         self.bias_voltage_PV: PV = PV(self.pvPrefix + "BIAS")
     
@@ -275,6 +276,18 @@ class Piezo:
         if not self._enable_stat_pv:
             self._enable_stat_pv = PV(self.pvPrefix + "ENABLESTAT")
         return self._enable_stat_pv
+    
+    @property
+    def feedback_mode_PV(self) -> PV:
+        if not self._feedback_mode_PV:
+            self._feedback_mode_PV = PV(self.pvPrefix + "MODECTRL")
+        return self._feedback_mode_PV
+    
+    @property
+    def feedback_stat_pv(self) -> PV:
+        if not self._feedback_stat_pv:
+            self._feedback_stat_pv = PV(self.pvPrefix + "MODESTAT")
+        return self._feedback_stat_pv
     
     def enable_feedback(self):
         self.enable_pv.put(utils.PIEZO_DISABLE_VALUE)
@@ -604,14 +617,19 @@ class Cavity:
         # self.turnOff()
         print(f"enabling {self} piezo")
         while self.piezo.enable_stat_pv.get() != utils.PIEZO_ENABLE_VALUE:
+            print(f"{self} piezo not enabled, retrying")
             self.piezo.enable_pv.put(utils.PIEZO_DISABLE_VALUE)
             sleep(1)
             self.piezo.enable_pv.put(utils.PIEZO_ENABLE_VALUE)
-            print(f"{self} piezo not enabled, retrying")
             sleep(1)
         
         print(f"setting {self} piezo to manual")
-        self.piezo.feedback_mode_PV.put(utils.PIEZO_MANUAL_VALUE)
+        while self.piezo.feedback_stat_pv.get() != utils.PIEZO_MANUAL_VALUE:
+            print(f"{self} piezo not in manual, retrying")
+            self.piezo.feedback_mode_PV.put(utils.PIEZO_FEEDBACK_VALUE)
+            sleep(1)
+            self.piezo.feedback_mode_PV.put(utils.PIEZO_MANUAL_VALUE)
+            sleep(1)
         
         print(f"setting {self} piezo DC voltage offset to 0V")
         self.piezo.dc_setpoint_PV.put(0)
