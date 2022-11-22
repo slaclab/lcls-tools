@@ -522,7 +522,7 @@ class Cavity:
             raise utils.PulseError("Unable to pulse cavity")
     
     def turnOn(self):
-        while not self.hw_mode_pv.connect():
+        while not self.hw_mode_pv.connect() or self.hw_mode_pv.get() is None:
             self.check_abort()
             print(f"{self.hw_mode_pv.pvname} not connected, retrying")
             sleep(1)
@@ -538,9 +538,10 @@ class Cavity:
     def turnOff(self):
         self.setPowerState(False)
     
-    def setPowerState(self, turnOn: bool):
+    def setPowerState(self, turnOn: bool, wait_time=1):
         """
         Turn the cavity on or off
+        :param wait_time:
         :param turnOn:
         :return:
         """
@@ -549,13 +550,10 @@ class Cavity:
         print(f"\nSetting RF State for {self}")
         caput(self.rfControlPV.pvname, desiredState, wait=True)
         
-        wait = 1
-        
         while self.rfStatePV.value != desiredState:
             self.check_abort()
-            print(f"Waiting {wait} seconds for {self} RF state to change")
-            sleep(wait)
-            wait += 2
+            print(f"Waiting {wait_time} seconds for {self} RF state to change")
+            sleep(wait_time)
         
         print(f"RF state set for {self}")
     
