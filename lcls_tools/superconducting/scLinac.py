@@ -307,6 +307,7 @@ class Cavity:
         rackObject: the rack object the cavities belong to
         """
         
+        self._calc_probe_q_pv = None
         self.number = cavityNum
         self.rack: Rack = rackObject
         self.cryomodule: Cryomodule = self.rack.cryomodule
@@ -447,6 +448,12 @@ class Cavity:
             self._freq_stop_pv.connect()
         return self._freq_stop_pv
     
+    @property
+    def calc_probe_q_pv(self):
+        if not self._calc_probe_q_pv:
+            self._calc_probe_q_pv = PV(self.pvPrefix + "QPROBE_CALC1.PROC")
+        return self._calc_probe_q_pv
+    
     def set_chirp_range(self, offset: int):
         offset = abs(offset)
         print(f"Setting chirp range for {self} to +/- {offset} Hz")
@@ -585,9 +592,8 @@ class Cavity:
         self.ssa.calibrate(self.ssa.drivemax)
         self.move_to_resonance()
         
-        caput(self.quench_bypass_pv, 1, wait=True)
         self.runCalibration()
-        caput(self.quench_bypass_pv, 0, wait=True)
+        self.calc_probe_q_pv.put(1)
         
         self.check_abort()
         
