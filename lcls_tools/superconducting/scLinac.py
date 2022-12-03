@@ -42,6 +42,16 @@ class SSA:
         
         self.maxdrive_setpoint_pv: str = self.pvPrefix + "DRV_MAX_REQ"
         self.saved_maxdrive_pv: str = self.pvPrefix + "DRV_MAX_SAVE"
+        self._max_fwd_pwr_pv: PV = None
+    
+    @property
+    def max_fwd_pwr(self):
+        if not self._max_fwd_pwr_pv:
+            self._max_fwd_pwr_pv = PV(self.pvPrefix + "CALPWR")
+        while not (self._max_fwd_pwr_pv.connect()):
+            print(f"Waiting for {self._max_fwd_pwr_pv.pvname} to connect")
+            sleep(1)
+        return self._max_fwd_pwr_pv.get()
     
     @property
     def drivemax(self):
@@ -125,6 +135,9 @@ class SSA:
                              statusPV=self.calibrationStatusPV,
                              exception=utils.SSACalibrationError,
                              resultStatusPV=self.calResultStatusPV)
+        
+        if self.max_fwd_pwr < utils.SSA_FWD_PWR_LOWER_LIMIT:
+            raise utils.SSACalibrationToleranceError(f"{self.cavity} SSA forward power too low")
         
         print(f"Pushing SSA calibration results for {self.cavity}")
         utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSlopePV,
