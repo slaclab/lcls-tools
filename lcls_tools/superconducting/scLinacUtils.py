@@ -70,6 +70,7 @@ ESTIMATED_MICROSTEPS_PER_HZ_HL = MICROSTEPS_PER_STEP / HL_HZ_PER_STEP
 
 TUNE_CONFIG_RESONANCE_VALUE = 0
 TUNE_CONFIG_COLD_VALUE = 1
+TUNE_CONFIG_PARKED_VALUE = 2
 TUNE_CONFIG_OTHER_VALUE = 3
 
 HW_MODE_ONLINE_VALUE = 0
@@ -172,30 +173,30 @@ def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
         caput(startPV.pvname, 1)
         print("waiting 2s for script to run")
         sleep(2)
-        
+
         while not statusPV.connect():
             print(f"waiting for {statusPV.pvname} to connect")
             sleep(1)
-        
+
         # 2 is running
         while statusPV.get() is None or statusPV.get() == 2:
             print(f"waiting for {statusPV.pvname} to stop running", datetime.now())
             sleep(1)
-        
+
         sleep(2)
-        
+
         # 0 is crashed
         if statusPV.get() == 0:
             raise exception("{pv} crashed".format(pv=statusPV.pvname))
-        
+
         if resultStatusPV:
             while not resultStatusPV.connect():
                 print(f"waiting for {resultStatusPV.pvname} to connect")
                 sleep(1)
-        
+
         if resultStatusPV and resultStatusPV.get() != SSA_RESULT_GOOD_STATUS_VALUE:
             raise exception(f"{resultStatusPV.pvname} not in good state")
-    
+
     except CASeverityException:
         raise exception('CASeverityException')
 
