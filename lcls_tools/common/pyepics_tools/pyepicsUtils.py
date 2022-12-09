@@ -20,21 +20,40 @@ class PV(epicsPV):
     def __init__(self, pvname):
         super().__init__(pvname, connection_timeout=0.01)
     
-    def put(self, value, wait=False, timeout=30.0,
+    def get(self, count=None, as_string=False, as_numpy=True,
+            timeout=None, with_ctrlvars=False, use_monitor=True,
+            retry_until_valid=True):
+        
+        if retry_until_valid:
+            while not self.connect():
+                print(f"Waiting for {self.pvname} to connect")
+                sleep(0.1)
+            value = super().get(count, as_string, as_numpy, timeout,
+                                with_ctrlvars, use_monitor)
+            while value is None:
+                value = super().get(count, as_string, as_numpy, timeout,
+                                    with_ctrlvars, use_monitor)
+            return value
+        
+        else:
+            return super().get(count, as_string, as_numpy, timeout,
+                               with_ctrlvars, use_monitor)
+    
+    def put(self, value, wait=True, timeout=30.0,
             use_complete=False, callback=None, callback_data=None,
-            waitForPut=True):
-        super(PV, self).put(value, wait=True, timeout=timeout,
+            waitForPut=False):
+        super(PV, self).put(value, wait=wait, timeout=timeout,
                             use_complete=use_complete, callback=callback,
                             callback_data=callback_data)
         
         if waitForPut:
             attempt = 1
-            while self.severity == EPICS_INVALID_VAL or not self.connected:
+            while self.severity == EPICS_INVALID_VAL or not self.connect():
                 if attempt >= 5:
                     raise PVInvalidError("{pv} invalid or disconnected, aborting wait for put"
                                          .format(pv=self.pvname))
                 attempt += 1
-                sleep(1)
+                sleep(0.1)
             
             if type(value) != float:
                 while self.value != value:
