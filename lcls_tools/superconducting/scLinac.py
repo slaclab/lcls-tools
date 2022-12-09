@@ -964,7 +964,7 @@ linacs = {"L0B": Linac("L0B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[0],
                        insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[3])}
 
 ALL_CRYOMODULES = L0B + L1B + L1BHL + L2B + L3B
-ALL_CRYOMODULES_NOHL = L0B + L1B + L2B + L3B
+ALL_CRYOMODULES_NO_HL = L0B + L1B + L2B + L3B
 
 
 class CryoDict(dict):
