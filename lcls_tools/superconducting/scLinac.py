@@ -245,17 +245,18 @@ class StepperTuner:
         print("Waiting 5s for the motor to start moving")
         sleep(5)
         
-        while self.motor_moving_pv.value == 1:
+        while self.motor_moving_pv.get() == 1:
             if self.abort_flag:
                 self.abort_pv.put(1)
                 raise utils.StepperAbortError(
                         f"Abort requested for {self.cavity.cryomodule.name} cavity {self.cavity.number} stepper tuner")
             
-            print("Motor moving", datetime.now())
-            sleep(1)
-            if (abs(self.cavity.detune_best_PV.value) > 150000
-                    and self.cavity.freq_stop_pv.value != 400000):
+            print(f"{self} motor moving", datetime.now())
+            
+            if abs(self.cavity.detune_best_PV.get()) > 150000:
                 self.cavity.set_chirp_range(400000)
+            
+            sleep(1)
         
         if self.motor_done_pv.value != 1:
             raise utils.StepperError(f"Motor for not in expected state for {self}")
@@ -474,8 +475,8 @@ class Cavity:
     def set_chirp_range(self, offset: int):
         offset = abs(offset)
         print(f"Setting chirp range for {self} to +/- {offset} Hz")
-        self.freq_start_pv.put(-offset, wait=True)
-        self.freq_stop_pv.put(offset, wait=True)
+        self.freq_start_pv.put(-offset)
+        self.freq_stop_pv.put(offset)
         print(f"Chirp range set for {self}")
     
     @property
@@ -488,7 +489,7 @@ class Cavity:
         self.auto_tune(des_detune=0,
                        config_val=utils.TUNE_CONFIG_RESONANCE_VALUE)
     
-    def auto_tune(self, des_detune, config_val):
+    def auto_tune(self, des_detune, config_val, tolerance=50):
         self.setup_tuning()
         
         delta = self.detune_best_PV.value - des_detune
@@ -499,14 +500,14 @@ class Cavity:
         if self.detune_best_PV.severity == 3:
             raise utils.DetuneError(f"Detune for {self} is invalid")
         
-        while abs(delta) > 50:
+        self.tune_config_pv.put(utils.TUNE_CONFIG_OTHER_VALUE)
+        
+        while abs(delta) > tolerance:
             if self.quench_latch_pv.value == 1:
                 raise utils.QuenchError(f"{self} quenched, aborting autotune")
             est_steps = int(0.9 * delta * steps_per_hz)
             
             print(f"Moving stepper for {self} {est_steps} steps")
-            
-            self.tune_config_pv.put(utils.TUNE_CONFIG_OTHER_VALUE)
             
             self.steppertuner.move(est_steps,
                                    maxSteps=10000000,
@@ -674,6 +675,7 @@ class Cavity:
             raise utils.DetuneError(f"{self} Detune PV invalid. Either expand the chirp"
                                     " range or use the rack large frequency scan"
                                     " to find the detune.")
+        self.set_chirp_range(200000)
     
     def reset_interlocks(self, retry=True, wait=True):
         print(f"Resetting interlocks for {self} and waiting 3s")
@@ -746,7 +748,7 @@ class Cavity:
         
         while caget(self.selAmplitudeDesPV.pvname) <= (des_amp - step_size):
             self.check_abort()
-            if (self.quench_latch_pv.value) == 1:
+            if self.quench_latch_pv.value == 1:
                 raise utils.QuenchError(f"{self} quench detected, aborting rampup")
             caput(self.selAmplitudeDesPV.pvname,
                   self.selAmplitudeDesPV.value + step_size, wait=True)
