@@ -336,11 +336,13 @@ class Cavity:
             self.frequency = 3.9e9
             self.loaded_q_lower_limit = utils.LOADED_Q_LOWER_LIMIT_HL
             self.loaded_q_upper_limit = utils.LOADED_Q_UPPER_LIMIT_HL
+            self.steps_per_hz = utils.ESTIMATED_MICROSTEPS_PER_HZ_HL
         else:
             self.length = 1.038
             self.frequency = 1.3e9
             self.loaded_q_lower_limit = utils.LOADED_Q_LOWER_LIMIT
             self.loaded_q_upper_limit = utils.LOADED_Q_UPPER_LIMIT
+            self.steps_per_hz = utils.ESTIMATED_MICROSTEPS_PER_HZ
         
         self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(LINAC=self.linac.name,
                                                                      CRYOMODULE=self.cryomodule.name,
@@ -493,9 +495,6 @@ class Cavity:
         self.setup_tuning()
         
         delta = self.detune_best_PV.value - des_detune
-        steps_per_hz = (utils.ESTIMATED_MICROSTEPS_PER_HZ_HL
-                        if self.cryomodule.isHarmonicLinearizer
-                        else utils.ESTIMATED_MICROSTEPS_PER_HZ)
         
         if self.detune_best_PV.severity == 3:
             raise utils.DetuneError(f"Detune for {self} is invalid")
@@ -505,7 +504,7 @@ class Cavity:
         while abs(delta) > tolerance:
             if self.quench_latch_pv.value == 1:
                 raise utils.QuenchError(f"{self} quenched, aborting autotune")
-            est_steps = int(0.9 * delta * steps_per_hz)
+            est_steps = int(0.9 * delta * self.steps_per_hz)
             
             print(f"Moving stepper for {self} {est_steps} steps")
             
@@ -847,8 +846,7 @@ class Cryomodule:
     def __init__(self, cryoName, linacObject, cavityClass=Cavity,
                  magnetClass=Magnet, rackClass=Rack, isHarmonicLinearizer=False,
                  ssaClass=SSA, stepperClass=StepperTuner, piezoClass=Piezo):
-        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner],
-        # Type[Piezo]) -> None
+        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner], Type[Piezo]) -> None
         """
         Parameters
         ----------
