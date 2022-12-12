@@ -176,21 +176,18 @@ class StepperTuner:
     def reset_signed_pv(self):
         if not self._reset_signed_pv:
             self._reset_signed_pv = PV(self.pvPrefix + "TOTSGN_RESET")
-            self._reset_signed_pv.connect()
         return self._reset_signed_pv
     
     @property
     def limit_switch_a_pv(self) -> PV:
         if not self._limit_switch_a_pv:
             self._limit_switch_a_pv = PV(self.pvPrefix + "STAT_LIMA")
-            self._limit_switch_a_pv.connect()
         return self._limit_switch_a_pv
     
     @property
     def limit_switch_b_pv(self) -> PV:
         if not self._limit_switch_b_pv:
             self._limit_switch_b_pv = PV(self.pvPrefix + "STAT_LIMB")
-            self._limit_switch_b_pv.connect()
         return self._limit_switch_b_pv
     
     def restoreDefaults(self):
@@ -458,14 +455,12 @@ class Cavity:
     def freq_start_pv(self) -> PV:
         if not self._freq_start_pv:
             self._freq_start_pv = PV(self.chirp_prefix + "FREQ_START")
-            self._freq_start_pv.connect()
         return self._freq_start_pv
     
     @property
     def freq_stop_pv(self) -> PV:
         if not self._freq_stop_pv:
             self._freq_stop_pv = PV(self.chirp_prefix + "FREQ_STOP")
-            self._freq_stop_pv.connect()
         return self._freq_stop_pv
     
     @property
