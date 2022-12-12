@@ -491,8 +491,8 @@ class Cavity:
         self.auto_tune(des_detune=0,
                        config_val=utils.TUNE_CONFIG_RESONANCE_VALUE)
     
-    def auto_tune(self, des_detune, config_val, tolerance=50):
-        self.setup_tuning()
+    def auto_tune(self, des_detune, config_val, tolerance=50, chirp_range=200000):
+        self.setup_tuning(chirp_range)
         
         delta = self.detune_best_PV.value - des_detune
         
@@ -633,7 +633,7 @@ class Cavity:
             self.walk_amp(10, 0.5)
             self.walk_amp(desAmp, 0.1)
     
-    def setup_tuning(self):
+    def setup_tuning(self, chirp_range=200000):
         print(f"enabling {self} piezo")
         while self.piezo.enable_stat_pv.get() != utils.PIEZO_ENABLE_VALUE:
             print(f"{self} piezo not enabled, retrying")
@@ -674,7 +674,7 @@ class Cavity:
             raise utils.DetuneError(f"{self} Detune PV invalid. Either expand the chirp"
                                     " range or use the rack large frequency scan"
                                     " to find the detune.")
-        self.set_chirp_range(200000)
+        self.set_chirp_range(chirp_range)
     
     def reset_interlocks(self, retry=True, wait=True):
         print(f"Resetting interlocks for {self} and waiting 3s")
