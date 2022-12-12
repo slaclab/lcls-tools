@@ -361,7 +361,7 @@ class Cavity:
         
         self.drivelevelPV: PV = PV(self.pvPrefix + "SEL_ASET")
         
-        self.cavityCalibrationStartPV: PV = PV(self.pvPrefix + "PROBECALSTRT")
+        self.cavityCharacterizationStartPV: PV = PV(self.pvPrefix + "PROBECALSTRT")
         self.cavityCharacterizationStatusPV: PV = PV(self.pvPrefix + "PROBECALSTS")
         
         self.currentQLoadedPV: PV = PV(self.pvPrefix + "QLOADED")
@@ -708,7 +708,7 @@ class Cavity:
         self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
         
         print(f"running {self} cavity characterization")
-        self.cavityCalibrationStartPV.put(1)
+        self.cavityCharacterizationStartPV.put(1)
         print(f"waiting 2s for {self} cavity characterization script to run")
         sleep(2)
         
