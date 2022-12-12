@@ -251,7 +251,7 @@ class StepperTuner:
                 raise utils.StepperAbortError(
                         f"Abort requested for {self.cavity.cryomodule.name} cavity {self.cavity.number} stepper tuner")
             
-            print(f"{self} motor moving", datetime.now())
+            print(f"{self.cavity} motor moving", datetime.now())
             
             if abs(self.cavity.detune_best_PV.get()) > 150000:
                 self.cavity.set_chirp_range(400000)
