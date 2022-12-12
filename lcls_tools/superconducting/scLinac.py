@@ -207,8 +207,8 @@ class StepperTuner:
         :return:
         """
         
-        if (self.limit_switch_a_pv.value == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
-                or self.limit_switch_b_pv.value == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
+        if (self.limit_switch_a_pv.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
+                or self.limit_switch_b_pv.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
             raise utils.StepperError("Stepper motor on limit switch")
         
         if changeLimits:
@@ -258,7 +258,7 @@ class StepperTuner:
             
             sleep(1)
         
-        if self.motor_done_pv.value != 1:
+        if self.motor_done_pv.get() != 1:
             raise utils.StepperError(f"Motor for not in expected state for {self}")
         
         print("Motor done")
@@ -494,7 +494,7 @@ class Cavity:
     def auto_tune(self, des_detune, config_val, tolerance=50, chirp_range=200000):
         self.setup_tuning(chirp_range)
         
-        delta = self.detune_best_PV.value - des_detune
+        delta = self.detune_best_PV.get() - des_detune
         
         if self.detune_best_PV.severity == 3:
             raise utils.DetuneError(f"Detune for {self} is invalid")
@@ -502,7 +502,7 @@ class Cavity:
         self.tune_config_pv.put(utils.TUNE_CONFIG_OTHER_VALUE)
         
         while abs(delta) > tolerance:
-            if self.quench_latch_pv.value == 1:
+            if self.quench_latch_pv.get() == 1:
                 raise utils.QuenchError(f"{self} quenched, aborting autotune")
             est_steps = int(0.9 * delta * self.steps_per_hz)
             
@@ -512,7 +512,7 @@ class Cavity:
                                    maxSteps=10000000,
                                    speed=utils.MAX_STEPPER_SPEED)
             try:
-                delta = caget(self.detune_best_PV.pvname) - des_detune
+                delta = self.detune_best_PV.get() - des_detune
             except TypeError as e:
                 raise utils.StepperError(str(e))
         
@@ -527,7 +527,7 @@ class Cavity:
         :return:
         """
         print("Checking RF Pulse On Time...")
-        if self.pulseOnTimePV.value != utils.NOMINAL_PULSED_ONTIME:
+        if self.pulseOnTimePV.get() != utils.NOMINAL_PULSED_ONTIME:
             print("Setting RF Pulse On Time to {ontime} ms".format(ontime=utils.NOMINAL_PULSED_ONTIME))
             self.pulseOnTimePV.put(utils.NOMINAL_PULSED_ONTIME)
             self.pushGoButton()
@@ -539,20 +539,13 @@ class Cavity:
         :return:
         """
         self.pulseGoButtonPV.put(1)
-        while self.pulseStatusPV.value < 2:
+        while self.pulseStatusPV.get() < 2:
             print("waiting for pulse state", datetime.now())
             sleep(1)
-        if self.pulseStatusPV.value > 2:
+        if self.pulseStatusPV.get() > 2:
             raise utils.PulseError("Unable to pulse cavity")
     
     def turnOn(self):
-        while not self.hw_mode_pv.connect() or self.hw_mode_pv.get() is None:
-            self.check_abort()
-            print(f"{self.hw_mode_pv.pvname} not connected, retrying")
-            sleep(1)
-        
-        print(f"{self.hw_mode_pv.pvname} connected")
-        
         if self.hw_mode_pv.get() == utils.HW_MODE_ONLINE_VALUE:
             self.ssa.turnOn()
             self.setPowerState(True)
@@ -574,7 +567,7 @@ class Cavity:
         print(f"\nSetting RF State for {self}")
         caput(self.rfControlPV.pvname, desiredState, wait=True)
         
-        while self.rfStatePV.value != desiredState:
+        while self.rfStatePV.get() != desiredState:
             self.check_abort()
             print(f"Waiting {wait_time} seconds for {self} RF state to change")
             sleep(wait_time)
@@ -747,10 +740,10 @@ class Cavity:
         
         while caget(self.selAmplitudeDesPV.pvname) <= (des_amp - step_size):
             self.check_abort()
-            if self.quench_latch_pv.value == 1:
+            if self.quench_latch_pv.get() == 1:
                 raise utils.QuenchError(f"{self} quench detected, aborting rampup")
             caput(self.selAmplitudeDesPV.pvname,
-                  self.selAmplitudeDesPV.value + step_size, wait=True)
+                  self.selAmplitudeDesPV.get() + step_size, wait=True)
             # to avoid tripping sensitive interlock
             sleep(0.1)
         
@@ -779,7 +772,7 @@ class Magnet:
     
     @property
     def bdes(self):
-        return self.bdesPV.value
+        return self.bdesPV.get()
     
     @bdes.setter
     def bdes(self, value):
