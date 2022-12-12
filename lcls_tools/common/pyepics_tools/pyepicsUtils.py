@@ -25,14 +25,13 @@ class PV(epicsPV):
             retry_until_valid=True):
         
         if retry_until_valid:
-            while not self.connect():
-                print(f"Waiting for {self.pvname} to connect")
-                sleep(0.1)
             value = super().get(count, as_string, as_numpy, timeout,
                                 with_ctrlvars, use_monitor)
             while value is None:
                 value = super().get(count, as_string, as_numpy, timeout,
                                     with_ctrlvars, use_monitor)
+                print(f"{self.pvname} value is None, retrying")
+                sleep(0.5)
             return value
         
         else:
