@@ -9,9 +9,10 @@ from typing import Dict, List, Type
 
 from epics import caget, caput
 from numpy import sign
+from psp import PV
 
 import lcls_tools.superconducting.scLinacUtils as utils
-from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
+from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL
 
 HL_SSA_MAP = {1: 1, 2: 2, 3: 3, 4: 4, 5: 1, 6: 2, 7: 3, 8: 4}
 
