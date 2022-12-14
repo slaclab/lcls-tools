@@ -176,21 +176,18 @@ class StepperTuner:
     def reset_signed_pv(self):
         if not self._reset_signed_pv:
             self._reset_signed_pv = PV(self.pvPrefix + "TOTSGN_RESET")
-            self._reset_signed_pv.connect()
         return self._reset_signed_pv
     
     @property
     def limit_switch_a_pv(self) -> PV:
         if not self._limit_switch_a_pv:
             self._limit_switch_a_pv = PV(self.pvPrefix + "STAT_LIMA")
-            self._limit_switch_a_pv.connect()
         return self._limit_switch_a_pv
     
     @property
     def limit_switch_b_pv(self) -> PV:
         if not self._limit_switch_b_pv:
             self._limit_switch_b_pv = PV(self.pvPrefix + "STAT_LIMB")
-            self._limit_switch_b_pv.connect()
         return self._limit_switch_b_pv
     
     def restoreDefaults(self):
@@ -207,10 +204,6 @@ class StepperTuner:
         :return:
         """
         
-        if (self.limit_switch_a_pv.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
-                or self.limit_switch_b_pv.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
-            raise utils.StepperError("Stepper motor on limit switch")
-        
         if changeLimits:
             # on the off chance that someone tries to write a negative maximum
             caput(self.max_steps_pv.pvname, abs(maxSteps), wait=True)
@@ -221,13 +214,12 @@ class StepperTuner:
                   else utils.MAX_STEPPER_SPEED, wait=True)
         
         if abs(numSteps) <= maxSteps:
-            caput(self.step_des_pv.pvname, abs(numSteps), wait=True)
+            self.step_des_pv.put(abs(numSteps))
             self.issueMoveCommand(numSteps)
             self.restoreDefaults()
         else:
-            caput(self.step_des_pv.pvname, maxSteps, wait=True)
+            self.step_des_pv.put(maxSteps)
             self.issueMoveCommand(numSteps)
-            
             self.move(numSteps - (sign(numSteps) * maxSteps), maxSteps, speed,
                       False)
     
@@ -238,9 +230,9 @@ class StepperTuner:
             numSteps *= -1
         
         if sign(numSteps) == 1:
-            caput(self.move_pos_pv.pvname, 1, wait=True)
+            self.move_pos_pv.put(1)
         else:
-            caput(self.move_neg_pv.pvname, 1, wait=True)
+            self.move_neg_pv.put(1)
         
         print("Waiting 5s for the motor to start moving")
         sleep(5)
@@ -251,17 +243,15 @@ class StepperTuner:
                 raise utils.StepperAbortError(
                         f"Abort requested for {self.cavity.cryomodule.name} cavity {self.cavity.number} stepper tuner")
             
-            print(f"{self.cavity} motor moving", datetime.now())
-            
-            if abs(self.cavity.detune_best_PV.get()) > 150000:
-                self.cavity.set_chirp_range(400000)
-            
-            sleep(1)
+            print(f"{self.cavity} motor still moving, waiting 5s", datetime.now())
+            sleep(5)
         
-        if self.motor_done_pv.get() != 1:
-            raise utils.StepperError(f"Motor for not in expected state for {self}")
+        print(f"{self.cavity} motor done moving")
         
-        print("Motor done")
+        # the motor can be done moving for good OR bad reasons
+        if (self.limit_switch_a_pv.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
+                or self.limit_switch_b_pv.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
+            raise utils.StepperError(f"{self.cavity} stepper motor on limit switch")
 
 
 class Piezo:
@@ -458,14 +448,12 @@ class Cavity:
     def freq_start_pv(self) -> PV:
         if not self._freq_start_pv:
             self._freq_start_pv = PV(self.chirp_prefix + "FREQ_START")
-            self._freq_start_pv.connect()
         return self._freq_start_pv
     
     @property
     def freq_stop_pv(self) -> PV:
         if not self._freq_stop_pv:
             self._freq_stop_pv = PV(self.chirp_prefix + "FREQ_STOP")
-            self._freq_stop_pv.connect()
         return self._freq_stop_pv
     
     @property
@@ -494,16 +482,14 @@ class Cavity:
     def auto_tune(self, des_detune, config_val, tolerance=50, chirp_range=200000):
         self.setup_tuning(chirp_range)
         
-        delta = self.detune_best_PV.get() - des_detune
-        
         if self.detune_best_PV.severity == 3:
             raise utils.DetuneError(f"Detune for {self} is invalid")
+        
+        delta = self.detune_best_PV.get() - des_detune
         
         self.tune_config_pv.put(utils.TUNE_CONFIG_OTHER_VALUE)
         
         while abs(delta) > tolerance:
-            if self.quench_latch_pv.get() == 1:
-                raise utils.QuenchError(f"{self} quenched, aborting autotune")
             est_steps = int(0.9 * delta * self.steps_per_hz)
             
             print(f"Moving stepper for {self} {est_steps} steps")
@@ -511,10 +497,12 @@ class Cavity:
             self.steppertuner.move(est_steps,
                                    maxSteps=10000000,
                                    speed=utils.MAX_STEPPER_SPEED)
-            try:
-                delta = self.detune_best_PV.get() - des_detune
-            except TypeError as e:
-                raise utils.StepperError(str(e))
+            
+            # this should catch if the chirp range is wrong or if the cavity is off
+            if self.detune_best_PV.severity == EPICS_INVALID_VAL:
+                raise utils.DetuneError(f"Detune for {self} is invalid")
+            
+            delta = self.detune_best_PV.get() - des_detune
         
         self.tune_config_pv.put(config_val)
     
