@@ -7,11 +7,11 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
+from epics import caget, caput
 from numpy import sign
-from psp.Pv import Pv as PV, get as caget, put as caput
 
 import lcls_tools.superconducting.scLinacUtils as utils
-from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL
+from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
 
 HL_SSA_MAP = {1: 1, 2: 2, 3: 3, 4: 4, 5: 1, 6: 2, 7: 3, 8: 4}
 
@@ -97,7 +97,7 @@ class SSA:
         
         if turnOn:
             if caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
-                while caput(self.turnOnPV.name, 1) != 1:
+                while caput(self.turnOnPV.pvname, 1) != 1:
                     self.cavity.check_abort()
                     print(f"Trying to power on {self.cavity} SSA")
                 while caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
@@ -106,7 +106,7 @@ class SSA:
                     sleep(1)
         else:
             if caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
-                while caput(self.turnOffPV.name, 1) != 1:
+                while caput(self.turnOffPV.pvname, 1) != 1:
                     self.cavity.check_abort()
                     print(f"Trying to power off {self.cavity} SSA")
                 while caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
@@ -191,8 +191,8 @@ class StepperTuner:
         return self._limit_switch_b_pv
     
     def restoreDefaults(self):
-        caput(self.max_steps_pv.name, utils.DEFAULT_STEPPER_MAX_STEPS)
-        caput(self.speed_pv.name, utils.DEFAULT_STEPPER_SPEED)
+        caput(self.max_steps_pv.pvname, utils.DEFAULT_STEPPER_MAX_STEPS)
+        caput(self.speed_pv.pvname, utils.DEFAULT_STEPPER_SPEED)
     
     def move(self, numSteps: int, maxSteps: int = utils.DEFAULT_STEPPER_MAX_STEPS,
              speed: int = utils.DEFAULT_STEPPER_SPEED, changeLimits: bool = True):
@@ -206,10 +206,10 @@ class StepperTuner:
         
         if changeLimits:
             # on the off chance that someone tries to write a negative maximum
-            caput(self.max_steps_pv.name, abs(maxSteps))
+            caput(self.max_steps_pv.pvname, abs(maxSteps))
             
             # make sure that we don't exceed the speed limit as defined by the tuner experts
-            caput(self.speed_pv.name,
+            caput(self.speed_pv.pvname,
                   speed if speed < utils.MAX_STEPPER_SPEED
                   else utils.MAX_STEPPER_SPEED)
         
@@ -559,7 +559,7 @@ class Cavity:
         desiredState = (1 if turnOn else 0)
         
         print(f"\nSetting RF State for {self}")
-        caput(self.rfControlPV.name, desiredState)
+        caput(self.rfControlPV.pvname, desiredState)
         
         while self.rfStatePV.get() != desiredState:
             self.check_abort()
@@ -571,13 +571,13 @@ class Cavity:
     def setup_SELAP(self, desAmp: float = 5):
         self.setup_rf(desAmp)
         
-        caput(self.rfModeCtrlPV.name, utils.RF_MODE_SELAP)
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELAP)
         print(f"{self} set up in SELAP")
     
     def setup_SELA(self, desAmp: float = 5):
         self.setup_rf(desAmp)
         
-        caput(self.rfModeCtrlPV.name, utils.RF_MODE_SELA)
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA)
         print(f"{self} set up in SELA")
     
     def check_abort(self):
@@ -587,9 +587,9 @@ class Cavity:
             raise utils.CavityAbortError(f"Abort requested for {self}")
     
     def setup_rf(self, desAmp):
-        if desAmp > caget(self.ades_max_PV.name):
+        if desAmp > caget(self.ades_max_PV.pvname):
             print(f"Requested amplitude for {self} too high - ramping up to AMAX instead")
-            desAmp = caget(self.ades_max_PV.name)
+            desAmp = caget(self.ades_max_PV.pvname)
         print(f"setting up {self}")
         self.turnOff()
         self.ssa.calibrate(self.ssa.drivemax)
@@ -606,10 +606,10 @@ class Cavity:
         
         self.check_abort()
         
-        caput(self.selAmplitudeDesPV.name, min(5, desAmp))
-        caput(self.rfModeCtrlPV.name, utils.RF_MODE_SEL)
-        caput(self.piezo.feedback_mode_PV.name, utils.PIEZO_FEEDBACK_VALUE)
-        caput(self.rfModeCtrlPV.name, utils.RF_MODE_SELA)
+        caput(self.selAmplitudeDesPV.pvname, min(5, desAmp))
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SEL)
+        caput(self.piezo.feedback_mode_PV.pvname, utils.PIEZO_FEEDBACK_VALUE)
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA)
         
         self.check_abort()
         
@@ -701,7 +701,7 @@ class Cavity:
         
         while (self.cavityCharacterizationStatusPV.get()
                == utils.CALIBRATION_RUNNING_VALUE):
-            print(f"waiting for {self.cavityCharacterizationStatusPV.name}"
+            print(f"waiting for {self.cavityCharacterizationStatusPV.pvname}"
                   f" to stop running", datetime.now())
             sleep(1)
         
@@ -732,17 +732,17 @@ class Cavity:
     def walk_amp(self, des_amp, step_size):
         print(f"walking {self} to {des_amp}")
         
-        while caget(self.selAmplitudeDesPV.name) <= (des_amp - step_size):
+        while caget(self.selAmplitudeDesPV.pvname) <= (des_amp - step_size):
             self.check_abort()
             if self.quench_latch_pv.get() == 1:
                 raise utils.QuenchError(f"{self} quench detected, aborting rampup")
-            caput(self.selAmplitudeDesPV.name,
+            caput(self.selAmplitudeDesPV.pvname,
                   self.selAmplitudeDesPV.get() + step_size)
             # to avoid tripping sensitive interlock
             sleep(0.1)
         
-        if caget(self.selAmplitudeDesPV.name) != des_amp:
-            caput(self.selAmplitudeDesPV.name, des_amp)
+        if caget(self.selAmplitudeDesPV.pvname) != des_amp:
+            caput(self.selAmplitudeDesPV.pvname, des_amp)
         
         print(f"{self} at {des_amp}")
 
@@ -890,9 +890,9 @@ class Cryomodule:
         else:
             self.couplerVacuumPVs: List[PV] = [PV(self.linac.vacuumPrefix + '{cm}14:COMBO_P'.format(cm=self.name))]
         
-        self.vacuumPVs: List[str] = [pv.name for pv in (self.couplerVacuumPVs
-                                                        + self.linac.beamlineVacuumPVs
-                                                        + self.linac.insulatingVacuumPVs)]
+        self.vacuumPVs: List[str] = [pv.pvname for pv in (self.couplerVacuumPVs
+                                                          + self.linac.beamlineVacuumPVs
+                                                          + self.linac.insulatingVacuumPVs)]
 
 
 class Linac:
