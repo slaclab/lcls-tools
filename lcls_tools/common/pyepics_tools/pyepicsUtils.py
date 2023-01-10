@@ -1,8 +1,9 @@
 from datetime import datetime
 from math import isclose
-from time import sleep
 
 from epics import PV as epicsPV
+
+from lcls_tools.common.helper_funcs.helper_funcs import sleep
 
 # These are the values that decide whether a PV is alarming (and if so, how)
 EPICS_NO_ALARM_VAL = 0

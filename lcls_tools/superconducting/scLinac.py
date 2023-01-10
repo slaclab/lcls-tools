@@ -4,13 +4,13 @@
 #       import issues, so leaving as python 2 style for now
 ################################################################################
 from datetime import datetime
-from time import sleep
 from typing import Dict, List, Type
 
 from epics import caget, caput
 from numpy import sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
+from lcls_tools.common.helper_funcs.helper_funcs import sleep
 from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
 
 HL_SSA_MAP = {1: 1, 2: 2, 3: 3, 4: 4, 5: 1, 6: 2, 7: 3, 8: 4}
