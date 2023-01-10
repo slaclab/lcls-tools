@@ -555,7 +555,7 @@ class Cavity:
         print(f"\nSetting RF State for {self}")
         caput(self.rfControlPV.pvname, desiredState)
         
-        while self.rfStatePV.get() != desiredState:
+        while self.rfStatePV.get(retry_until_valid=False) != desiredState:
             self.check_abort()
             print(f"Waiting {wait_time} seconds for {self} RF state to change")
             sleep(wait_time)
