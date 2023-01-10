@@ -430,42 +430,36 @@ class Cavity:
     def hw_mode_pv(self) -> PV:
         if not self._hw_mode_pv:
             self._hw_mode_pv = PV(self.pvPrefix + "HWMODE")
-            self._hw_mode_pv.connect(timeout=5)
         return self._hw_mode_pv
     
     @property
     def quench_latch_pv(self) -> PV:
         if not self._quench_latch_pv:
             self._quench_latch_pv = PV(self.pvPrefix + "QUENCH_LTCH")
-            self._quench_latch_pv.connect(timeout=5)
         return self._quench_latch_pv
     
     @property
     def tune_config_pv(self) -> PV:
         if not self._tune_config_pv:
             self._tune_config_pv = PV(self.pvPrefix + "TUNE_CONFIG")
-            self._tune_config_pv.connect(timeout=5)
         return self._tune_config_pv
     
     @property
     def freq_start_pv(self) -> PV:
         if not self._freq_start_pv:
             self._freq_start_pv = PV(self.chirp_prefix + "FREQ_START")
-            self._freq_start_pv.connect(timeout=5)
         return self._freq_start_pv
     
     @property
     def freq_stop_pv(self) -> PV:
         if not self._freq_stop_pv:
             self._freq_stop_pv = PV(self.chirp_prefix + "FREQ_STOP")
-            self._freq_stop_pv.connect(timeout=5)
         return self._freq_stop_pv
     
     @property
     def calc_probe_q_pv(self):
         if not self._calc_probe_q_pv:
             self._calc_probe_q_pv = PV(self.pvPrefix + "QPROBE_CALC1.PROC")
-            self._calc_probe_q_pv.connect(timeout=5)
         return self._calc_probe_q_pv
     
     def set_chirp_range(self, offset: int):
