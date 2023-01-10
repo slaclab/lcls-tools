@@ -1,9 +1,9 @@
 from datetime import datetime
+from time import sleep
 
 from epics import caput
 from epics.ca import CASeverityException
 
-from lcls_tools.common.helper_funcs.helper_funcs import sleep
 from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
 
 CALIBRATION_CRASHED_VALUE = 0
