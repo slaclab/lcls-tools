@@ -249,8 +249,8 @@ class StepperTuner:
         print(f"{self.cavity} motor done moving")
         
         # the motor can be done moving for good OR bad reasons
-        if (self.limit_switch_a_pv.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
-                or self.limit_switch_b_pv.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
+        if (caget(self.limit_switch_a_pv.pvname) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
+                or caget(self.limit_switch_b_pv.pvname) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
             raise utils.StepperError(f"{self.cavity} stepper motor on limit switch")
 
 
@@ -489,6 +489,9 @@ class Cavity:
         
         self.tune_config_pv.put(utils.TUNE_CONFIG_OTHER_VALUE)
         
+        expected_steps: int = abs(int(delta * self.steps_per_hz))
+        steps_moved: int = 0
+        
         while abs(delta) > tolerance:
             est_steps = int(0.9 * delta * self.steps_per_hz)
             
@@ -497,6 +500,10 @@ class Cavity:
             self.steppertuner.move(est_steps,
                                    maxSteps=10000000,
                                    speed=utils.MAX_STEPPER_SPEED)
+            steps_moved += abs(est_steps)
+            
+            if steps_moved > expected_steps * 1.1:
+                raise utils.DetuneError(f"{self} motor moved more steps than expected")
             
             # this should catch if the chirp range is wrong or if the cavity is off
             if self.detune_best_PV.severity == EPICS_INVALID_VAL:
@@ -594,9 +601,7 @@ class Cavity:
         
         self.check_abort()
         
-        print(f"Setting data decimation PVs for {self}")
-        caput(self.cw_data_decim_pv, 255)
-        caput(self.pulsed_data_decim_pv, 255)
+        self.reset_data_decimation()
         
         self.check_abort()
         
@@ -613,6 +618,11 @@ class Cavity:
         else:
             self.walk_amp(10, 0.5)
             self.walk_amp(desAmp, 0.1)
+    
+    def reset_data_decimation(self):
+        print(f"Setting data decimation PVs for {self}")
+        caput(self.cw_data_decim_pv, 255)
+        caput(self.pulsed_data_decim_pv, 255)
     
     def setup_tuning(self, chirp_range=200000):
         print(f"enabling {self} piezo")
@@ -717,6 +727,8 @@ class Cavity:
             self.pushCavityScalePV.put(1)
         else:
             raise utils.CavityScaleFactorCalibrationError(f"{self} scale factor out of tolerance")
+        
+        self.reset_data_decimation()
         
         print(f"restoring {self} piezo feedback setpoint to 0")
         self.piezo.feedback_setpoint_pv.put(0)
