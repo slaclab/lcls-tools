@@ -507,7 +507,7 @@ class Cavity:
             
             # this should catch if the chirp range is wrong or if the cavity is off
             if self.detune_best_PV.severity == EPICS_INVALID_VAL:
-                raise utils.DetuneError(f"Detune for {self} is invalid")
+                self.find_chirp_range()
             
             delta = self.detune_best_PV.get() - des_detune
         
@@ -668,7 +668,7 @@ class Cavity:
         sleep(1)
         if self.detune_best_PV.severity == EPICS_INVALID_VAL:
             if chirp_range < 500000:
-                self.find_chirp_range(chirp_range * 1.5)
+                self.find_chirp_range(chirp_range * 1.25)
             else:
                 raise utils.DetuneError(f"{self}: No valid detune found within"
                                         f"+/-500000Hz chirp range")
