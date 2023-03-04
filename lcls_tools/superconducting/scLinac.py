@@ -661,11 +661,17 @@ class Cavity:
         self.turnOn()
         sleep(5)
         
-        if self.detune_best_PV.severity == EPICS_INVALID_VAL:
-            raise utils.DetuneError(f"{self} Detune PV invalid. Either expand the chirp"
-                                    " range or use the rack large frequency scan"
-                                    " to find the detune.")
+        self.find_chirp_range(chirp_range)
+    
+    def find_chirp_range(self, chirp_range=200000):
         self.set_chirp_range(chirp_range)
+        sleep(1)
+        if self.detune_best_PV.severity == EPICS_INVALID_VAL:
+            if chirp_range < 500000:
+                self.find_chirp_range(chirp_range * 1.5)
+            else:
+                raise utils.DetuneError(f"{self}: No valid detune found within"
+                                        f"+/-500000Hz chirp range")
     
     def reset_interlocks(self, retry=True, wait=True):
         print(f"Resetting interlocks for {self} and waiting 3s")
