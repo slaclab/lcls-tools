@@ -61,7 +61,7 @@ class SSA:
         if drivemax < 0.5:
             raise utils.SSACalibrationError(f"Requested {self.cavity} SSA drive max too low")
         
-        while caput(self.maxdrive_setpoint_pv, drivemax, wait=True) != 1:
+        while caput(self.maxdrive_setpoint_pv, drivemax) != 1:
             print("Setting max drive")
         
         try:
@@ -85,7 +85,7 @@ class SSA:
     
     def reset(self):
         print(f"Resetting {self.cavity} SSA...")
-        caput(self.resetPV, 1, wait=True)
+        caput(self.resetPV, 1)
         while caget(self.statusPV) == utils.SSA_STATUS_RESETTING_FAULTS_VALUE:
             sleep(1)
         if caget(self.statusPV) in [utils.SSA_STATUS_FAULTED_VALUE,
@@ -97,7 +97,7 @@ class SSA:
         
         if turnOn:
             if caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
-                while caput(self.turnOnPV.pvname, 1, wait=True) != 1:
+                while caput(self.turnOnPV.pvname, 1) != 1:
                     self.cavity.check_abort()
                     print(f"Trying to power on {self.cavity} SSA")
                 while caget(self.statusPV) != utils.SSA_STATUS_ON_VALUE:
@@ -106,7 +106,7 @@ class SSA:
                     sleep(1)
         else:
             if caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
-                while caput(self.turnOffPV.pvname, 1, wait=True) != 1:
+                while caput(self.turnOffPV.pvname, 1) != 1:
                     self.cavity.check_abort()
                     print(f"Trying to power off {self.cavity} SSA")
                 while caget(self.statusPV) == utils.SSA_STATUS_ON_VALUE:
@@ -191,8 +191,8 @@ class StepperTuner:
         return self._limit_switch_b_pv
     
     def restoreDefaults(self):
-        caput(self.max_steps_pv.pvname, utils.DEFAULT_STEPPER_MAX_STEPS, wait=True)
-        caput(self.speed_pv.pvname, utils.DEFAULT_STEPPER_SPEED, wait=True)
+        caput(self.max_steps_pv.pvname, utils.DEFAULT_STEPPER_MAX_STEPS)
+        caput(self.speed_pv.pvname, utils.DEFAULT_STEPPER_SPEED)
     
     def move(self, numSteps: int, maxSteps: int = utils.DEFAULT_STEPPER_MAX_STEPS,
              speed: int = utils.DEFAULT_STEPPER_SPEED, changeLimits: bool = True):
@@ -206,12 +206,12 @@ class StepperTuner:
         
         if changeLimits:
             # on the off chance that someone tries to write a negative maximum
-            caput(self.max_steps_pv.pvname, abs(maxSteps), wait=True)
+            caput(self.max_steps_pv.pvname, abs(maxSteps))
             
             # make sure that we don't exceed the speed limit as defined by the tuner experts
             caput(self.speed_pv.pvname,
                   speed if speed < utils.MAX_STEPPER_SPEED
-                  else utils.MAX_STEPPER_SPEED, wait=True)
+                  else utils.MAX_STEPPER_SPEED)
         
         if abs(numSteps) <= maxSteps:
             self.step_des_pv.put(abs(numSteps))
@@ -249,8 +249,8 @@ class StepperTuner:
         print(f"{self.cavity} motor done moving")
         
         # the motor can be done moving for good OR bad reasons
-        if (self.limit_switch_a_pv.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
-                or self.limit_switch_b_pv.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
+        if (caget(self.limit_switch_a_pv.pvname) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
+                or caget(self.limit_switch_b_pv.pvname) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
             raise utils.StepperError(f"{self.cavity} stepper motor on limit switch")
 
 
@@ -489,6 +489,9 @@ class Cavity:
         
         self.tune_config_pv.put(utils.TUNE_CONFIG_OTHER_VALUE)
         
+        expected_steps: int = abs(int(delta * self.steps_per_hz))
+        steps_moved: int = 0
+        
         while abs(delta) > tolerance:
             est_steps = int(0.9 * delta * self.steps_per_hz)
             
@@ -497,10 +500,14 @@ class Cavity:
             self.steppertuner.move(est_steps,
                                    maxSteps=10000000,
                                    speed=utils.MAX_STEPPER_SPEED)
+            steps_moved += abs(est_steps)
+            
+            if steps_moved > expected_steps * 1.1:
+                raise utils.DetuneError(f"{self} motor moved more steps than expected")
             
             # this should catch if the chirp range is wrong or if the cavity is off
             if self.detune_best_PV.severity == EPICS_INVALID_VAL:
-                raise utils.DetuneError(f"Detune for {self} is invalid")
+                self.find_chirp_range()
             
             delta = self.detune_best_PV.get() - des_detune
         
@@ -553,9 +560,9 @@ class Cavity:
         desiredState = (1 if turnOn else 0)
         
         print(f"\nSetting RF State for {self}")
-        caput(self.rfControlPV.pvname, desiredState, wait=True)
+        caput(self.rfControlPV.pvname, desiredState)
         
-        while self.rfStatePV.get() != desiredState:
+        while caget(self.rfStatePV.pvname) != desiredState:
             self.check_abort()
             print(f"Waiting {wait_time} seconds for {self} RF state to change")
             sleep(wait_time)
@@ -565,13 +572,13 @@ class Cavity:
     def setup_SELAP(self, desAmp: float = 5):
         self.setup_rf(desAmp)
         
-        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELAP, wait=True)
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELAP)
         print(f"{self} set up in SELAP")
     
     def setup_SELA(self, desAmp: float = 5):
         self.setup_rf(desAmp)
         
-        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA, wait=True)
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA)
         print(f"{self} set up in SELA")
     
     def check_abort(self):
@@ -594,16 +601,14 @@ class Cavity:
         
         self.check_abort()
         
-        print(f"Setting data decimation PVs for {self}")
-        caput(self.cw_data_decim_pv, 255, wait=True)
-        caput(self.pulsed_data_decim_pv, 255, wait=True)
+        self.reset_data_decimation()
         
         self.check_abort()
         
-        caput(self.selAmplitudeDesPV.pvname, min(5, desAmp), wait=True)
-        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SEL, wait=True)
-        caput(self.piezo.feedback_mode_PV.pvname, utils.PIEZO_FEEDBACK_VALUE, wait=True)
-        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA, wait=True)
+        caput(self.selAmplitudeDesPV.pvname, min(5, desAmp))
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SEL)
+        caput(self.piezo.feedback_mode_PV.pvname, utils.PIEZO_FEEDBACK_VALUE)
+        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA)
         
         self.check_abort()
         
@@ -613,6 +618,11 @@ class Cavity:
         else:
             self.walk_amp(10, 0.5)
             self.walk_amp(desAmp, 0.1)
+    
+    def reset_data_decimation(self):
+        print(f"Setting data decimation PVs for {self}")
+        caput(self.cw_data_decim_pv, 255)
+        caput(self.pulsed_data_decim_pv, 255)
     
     def setup_tuning(self, chirp_range=200000):
         print(f"enabling {self} piezo")
@@ -651,15 +661,21 @@ class Cavity:
         self.turnOn()
         sleep(5)
         
-        if self.detune_best_PV.severity == EPICS_INVALID_VAL:
-            raise utils.DetuneError(f"{self} Detune PV invalid. Either expand the chirp"
-                                    " range or use the rack large frequency scan"
-                                    " to find the detune.")
+        self.find_chirp_range(chirp_range)
+    
+    def find_chirp_range(self, chirp_range=200000):
         self.set_chirp_range(chirp_range)
+        sleep(1)
+        if self.detune_best_PV.severity == EPICS_INVALID_VAL:
+            if chirp_range < 500000:
+                self.find_chirp_range(int(chirp_range * 1.25))
+            else:
+                raise utils.DetuneError(f"{self}: No valid detune found within"
+                                        f"+/-500000Hz chirp range")
     
     def reset_interlocks(self, retry=True, wait=True):
         print(f"Resetting interlocks for {self} and waiting 3s")
-        self.interlockResetPV.put(1, wait=True)
+        self.interlockResetPV.put(1)
         if wait:
             sleep(3)
         
@@ -668,7 +684,7 @@ class Cavity:
             wait = 5
             while caget(self.rf_permit_pv) == 0 and count < 3:
                 print(f"{self} reset unsuccessful, retrying and waiting {wait} seconds")
-                self.interlockResetPV.put(1, wait=True)
+                self.interlockResetPV.put(1)
                 sleep(wait)
                 count += 1
                 wait += 2
@@ -718,6 +734,8 @@ class Cavity:
         else:
             raise utils.CavityScaleFactorCalibrationError(f"{self} scale factor out of tolerance")
         
+        self.reset_data_decimation()
+        
         print(f"restoring {self} piezo feedback setpoint to 0")
         self.piezo.feedback_setpoint_pv.put(0)
         
@@ -731,7 +749,7 @@ class Cavity:
             if self.quench_latch_pv.get() == 1:
                 raise utils.QuenchError(f"{self} quench detected, aborting rampup")
             caput(self.selAmplitudeDesPV.pvname,
-                  self.selAmplitudeDesPV.get() + step_size, wait=True)
+                  self.selAmplitudeDesPV.get() + step_size)
             # to avoid tripping sensitive interlock
             sleep(0.1)
         

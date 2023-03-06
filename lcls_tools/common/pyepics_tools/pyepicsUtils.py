@@ -24,6 +24,7 @@ class PV(epicsPV):
             timeout=None, with_ctrlvars=False, use_monitor=True,
             retry_until_valid=True):
         
+        self.connect()
         if retry_until_valid:
             value = super().get(count, as_string, as_numpy, timeout,
                                 with_ctrlvars, use_monitor)
