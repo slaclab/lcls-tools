@@ -668,7 +668,7 @@ class Cavity:
         sleep(1)
         if self.detune_best_PV.severity == EPICS_INVALID_VAL:
             if chirp_range < 500000:
-                self.find_chirp_range(chirp_range * 1.25)
+                self.find_chirp_range(int(chirp_range * 1.25))
             else:
                 raise utils.DetuneError(f"{self}: No valid detune found within"
                                         f"+/-500000Hz chirp range")
