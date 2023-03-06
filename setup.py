@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 setup(
         name='lcls-tools',
         packages=find_packages(),
-        version='0.1.dev0',
+        version='0.1.dev1',
         url='https://github.com/slaclab/lcls-tools',
         license='Apache License',
         python_requires='>=3.6',
