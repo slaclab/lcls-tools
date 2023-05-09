@@ -498,7 +498,7 @@ class Cavity:
             print(f"Moving stepper for {self} {est_steps} steps")
             
             self.steppertuner.move(est_steps,
-                                   maxSteps=10000000,
+                                   maxSteps=est_steps * 1.1,
                                    speed=utils.MAX_STEPPER_SPEED)
             steps_moved += abs(est_steps)
             
