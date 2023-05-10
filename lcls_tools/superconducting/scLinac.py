@@ -475,11 +475,13 @@ class Cavity:
             self._rfStatePV = PV(self.pvPrefix + "RFSTATE")
         return self._rfStatePV
     
-    def move_to_resonance(self):
+    def move_to_resonance(self, reset_signed_steps=False):
         self.auto_tune(des_detune=0,
-                       config_val=utils.TUNE_CONFIG_RESONANCE_VALUE)
+                       config_val=utils.TUNE_CONFIG_RESONANCE_VALUE,
+                       reset_signed_steps=reset_signed_steps)
     
-    def auto_tune(self, des_detune, config_val, tolerance=50, chirp_range=200000):
+    def auto_tune(self, des_detune, config_val, tolerance=50,
+                  chirp_range=200000, reset_signed_steps=False):
         self.setup_tuning(chirp_range)
         
         if self.detune_best_PV.severity == 3:
@@ -491,6 +493,9 @@ class Cavity:
         
         expected_steps: int = abs(int(delta * self.steps_per_hz))
         steps_moved: int = 0
+        
+        if reset_signed_steps:
+            self.steppertuner.reset_signed_pv.put(0)
         
         while abs(delta) > tolerance:
             est_steps = int(0.9 * delta * self.steps_per_hz)
