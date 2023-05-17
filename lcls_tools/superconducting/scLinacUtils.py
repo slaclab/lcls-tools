@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from datetime import datetime
 from time import sleep
 
@@ -20,6 +21,8 @@ SSA_RESULT_GOOD_STATUS_VALUE = 0
 SSA_FWD_PWR_LOWER_LIMIT = 3000
 SSA_CALIBRATION_RUNNING_VALUE = 2
 SSA_CALIBRATION_CRASHED_VALUE = 0
+
+HL_SSA_MAP = {1: 1, 2: 2, 3: 3, 4: 4, 5: 1, 6: 2, 7: 3, 8: 4}
 
 LOADED_Q_LOWER_LIMIT = 2.5e7
 LOADED_Q_UPPER_LIMIT = 5.1e7
@@ -83,6 +86,18 @@ HW_MODE_MAINTENANCE_VALUE = 1
 HW_MODE_OFFLINE_VALUE = 2
 HW_MODE_MAIN_DONE_VALUE = 3
 HW_MODE_READY_VALUE = 4
+
+INTERLOCK_RESET_ATTEMPS = 3
+
+
+class SCLinacObject(ABC, object):
+    @property
+    @abstractmethod
+    def pv_prefix(self):
+        raise NotImplementedError("SC Linac Objects should implement pv_prefix")
+    
+    def pv_addr(self, suffix: str):
+        return self.pv_prefix + suffix
 
 
 class PulseError(Exception):

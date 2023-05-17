@@ -12,20 +12,18 @@ from numpy import sign
 import lcls_tools.superconducting.scLinacUtils as utils
 from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
 
-HL_SSA_MAP = {1: 1, 2: 2, 3: 3, 4: 4, 5: 1, 6: 2, 7: 3, 8: 4}
 
-
-class SSA:
+class SSA(utils.SCLinacObject):
     def __init__(self, cavity):
         # type: (Cavity) -> None
         self.cavity: Cavity = cavity
         if self.cavity.cryomodule.isHarmonicLinearizer:
-            cavity_num = HL_SSA_MAP[self.cavity.number]
-            self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
-                                                                             CRYOMODULE=self.cavity.cryomodule.name,
-                                                                             CAVITY=cavity_num)
+            cavity_num = utils.HL_SSA_MAP[self.cavity.number]
+            self._pv_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
+                                                                               CRYOMODULE=self.cavity.cryomodule.name,
+                                                                               CAVITY=cavity_num)
         else:
-            self.pvPrefix = self.cavity.pvPrefix + "SSA:"
+            self._pv_prefix = self.cavity.pv_addr("SSA:")
         
         self._status_pv: PV = None
         self._turn_on_pv: PV = None
@@ -36,7 +34,7 @@ class SSA:
         self._calibration_status_pv: PV = None
         self._cal_result_status_pv: PV = None
         
-        self.currentSlopePV: PV = PV(self.pvPrefix + "SLOPE")
+        self.currentSlopePV: PV = PV(self.pv_prefix + "SLOPE")
         self._measured_slope_pv: PV = None
         
         self._maxdrive_setpoint_pv: PV = None
@@ -47,9 +45,13 @@ class SSA:
         return f"{self.cavity} SSA"
     
     @property
+    def pv_prefix(self):
+        return self._pv_prefix
+    
+    @property
     def status_message(self):
         if not self._status_pv:
-            self._status_pv = PV(self.pvPrefix + "StatusMsg")
+            self._status_pv = PV(self.pv_prefix + "StatusMsg")
         return self._status_pv.get()
     
     @property
@@ -59,13 +61,13 @@ class SSA:
     @property
     def max_fwd_pwr(self):
         if not self._max_fwd_pwr_pv:
-            self._max_fwd_pwr_pv = PV(self.pvPrefix + "CALPWR")
+            self._max_fwd_pwr_pv = PV(self.pv_prefix + "CALPWR")
         return self._max_fwd_pwr_pv.get()
     
     @property
     def drivemax(self):
         if not self._saved_maxdrive_pv:
-            self._saved_maxdrive_pv = PV(self.pvPrefix + "DRV_MAX_SAVE")
+            self._saved_maxdrive_pv = PV(self.pv_prefix + "DRV_MAX_SAVE")
         saved_val = self._saved_maxdrive_pv.get()
         return (1 if self.cavity.cryomodule.isHarmonicLinearizer
                 else (saved_val if saved_val else 0.8))
@@ -73,7 +75,7 @@ class SSA:
     @drivemax.setter
     def drivemax(self, value: float):
         if not self._maxdrive_setpoint_pv:
-            self._maxdrive_setpoint_pv = PV(self.pvPrefix + "DRV_MAX_REQ")
+            self._maxdrive_setpoint_pv = PV(self.pv_prefix + "DRV_MAX_REQ")
         self._maxdrive_setpoint_pv.put(value)
     
     def calibrate(self, drivemax):
@@ -101,7 +103,7 @@ class SSA:
             print(f"Turning {self} on")
             
             if not self._turn_on_pv:
-                self._turn_on_pv = PV(self.pvPrefix + "PowerOn")
+                self._turn_on_pv = PV(self.pv_prefix + "PowerOn")
             self._turn_on_pv.put(1)
             
             while not self.is_on:
@@ -115,7 +117,7 @@ class SSA:
         if self.is_on:
             print(f"Turning {self} off")
             if not self._turn_off_pv:
-                self._turn_off_pv = PV(self.pvPrefix + "PowerOff")
+                self._turn_off_pv = PV(self.pv_prefix + "PowerOff")
             self._turn_off_pv.put(1)
             
             while self.is_on:
@@ -128,7 +130,7 @@ class SSA:
     def reset(self):
         print(f"Resetting {self}...")
         if not self._reset_pv:
-            self._reset_pv = PV(self.pvPrefix + "FaultReset")
+            self._reset_pv = PV(self.pv_prefix + "FaultReset")
         self._reset_pv.put(1)
         
         while self.status_message == utils.SSA_STATUS_RESETTING_FAULTS_VALUE:
@@ -142,13 +144,13 @@ class SSA:
     
     def start_calibration(self):
         if not self._calibration_start_pv:
-            self._calibration_start_pv = PV(self.pvPrefix + "CALSTRT")
+            self._calibration_start_pv = PV(self.pv_prefix + "CALSTRT")
         self._calibration_start_pv.put(1)
     
     @property
     def calibration_status(self):
         if not self._calibration_status_pv:
-            self._calibration_status_pv = PV(self.pvPrefix + "CALSTS")
+            self._calibration_status_pv = PV(self.pv_prefix + "CALSTS")
         return self._calibration_status_pv.get()
     
     @property
@@ -162,7 +164,7 @@ class SSA:
     @property
     def calibration_result_good(self) -> bool:
         if not self._cal_result_status_pv:
-            self._cal_result_status_pv = PV(self.pvPrefix + "CALSTAT")
+            self._cal_result_status_pv = PV(self.pv_prefix + "CALSTAT")
         return self._cal_result_status_pv.get() == utils.SSA_RESULT_GOOD_STATUS_VALUE
     
     def runCalibration(self, save_slope: bool = False):
@@ -206,7 +208,7 @@ class SSA:
     @property
     def measured_slope(self):
         if not self._measured_slope_pv:
-            self._measured_slope_pv = PV(self.pvPrefix + "SLOPE_NEW")
+            self._measured_slope_pv = PV(self.pv_prefix + "SLOPE_NEW")
         return self._measured_slope_pv.get()
     
     @property
@@ -216,28 +218,34 @@ class SSA:
                 > utils.SSA_SLOPE_UPPER_LIMIT)
 
 
-class StepperTuner:
+class StepperTuner(utils.SCLinacObject):
     def __init__(self, cavity):
         # type (Cavity) -> None
         
         self.cavity: Cavity = cavity
-        self.pvPrefix: str = self.cavity.pvPrefix + "STEP:"
+        self._pv_prefix: str = self.cavity.pv_addr("STEP:")
         
         self._move_pos_pv: PV = None
         self._move_neg_pv: PV = None
         self._abort_pv: PV = None
-        self._step_des_pv: PV = None
-        self._max_steps_pv: PV = None
-        self._speed_pv: PV = None
-        self.step_tot_pv: PV = PV(self.pvPrefix + "REG_TOTABS")
-        self.step_signed_pv: PV = PV(self.pvPrefix + "REG_TOTSGN")
-        self.reset_tot_pv: PV = PV(self.pvPrefix + "TOTABS_RESET")
+        
+        self.step_des_pv: str = self.pv_addr("NSTEPS")
+        self._step_des_pv_obj: PV = None
+        
+        self.max_steps_pv: str = self.pv_addr("NSTEPS.DRVH")
+        self._max_steps_pv_obj: PV = None
+        
+        self.speed_pv: str = self._pv_prefix + "VELO"
+        self._speed_pv_obj: PV = None
+        # self.step_tot_pv: PV = PV(self.pv_prefix + "REG_TOTABS")
+        # self.step_signed_pv: PV = PV(self.pv_prefix + "REG_TOTSGN")
+        # self.reset_tot_pv: PV = PV(self.pv_prefix + "TOTABS_RESET")
         self._reset_signed_pv: PV = None
-        self.steps_cold_landing_pv: PV = PV(self.pvPrefix + "NSTEPS_COLD")
-        self.push_signed_cold_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_COLD.PROC")
-        self.push_signed_park_pv: PV = PV(self.pvPrefix + "PUSH_NSTEPS_PARK.PROC")
+        # self.steps_cold_landing_pv: PV = PV(self.pv_prefix + "NSTEPS_COLD")
+        # self.push_signed_cold_pv: PV = PV(self.pv_prefix + "PUSH_NSTEPS_COLD.PROC")
+        # self.push_signed_park_pv: PV = PV(self.pv_prefix + "PUSH_NSTEPS_PARK.PROC")
         self._motor_moving_pv: PV = None
-        self.motor_done_pv: PV = PV(self.pvPrefix + "STAT_DONE")
+        # self.motor_done_pv: PV = PV(self.pv_prefix + "STAT_DONE")
         self._limit_switch_a_pv: PV = None
         self._limit_switch_b_pv: PV = None
         
@@ -245,6 +253,10 @@ class StepperTuner:
     
     def __str__(self):
         return f"{self.cavity} Stepper Tuner"
+    
+    @property
+    def pv_prefix(self):
+        return self._pv_prefix
     
     def check_abort(self):
         if self.abort_flag:
@@ -254,50 +266,50 @@ class StepperTuner:
     
     def abort(self):
         if not self._abort_pv:
-            self._abort_pv = PV(self.pvPrefix + "ABORT_REQ")
+            self._abort_pv = PV(self._pv_prefix + "ABORT_REQ")
         self._abort_pv.put(1)
     
     def move_positive(self):
         if not self._move_pos_pv:
-            self._move_pos_pv = PV(self.pvPrefix + "MOV_REQ_POS")
+            self._move_pos_pv = PV(self._pv_prefix + "MOV_REQ_POS")
         self._move_pos_pv.put(1)
     
     def move_negative(self):
         if not self._move_neg_pv:
-            self._move_neg_pv = PV(self.pvPrefix + "MOV_REQ_NEG")
+            self._move_neg_pv = PV(self._pv_prefix + "MOV_REQ_NEG")
         self._move_neg_pv.put(1)
     
     @property
-    def step_des_pv(self):
-        if not self._step_des_pv:
-            self._step_des_pv = PV(self.pvPrefix + "NSTEPS")
-        return self._step_des_pv
+    def step_des_pv_obj(self):
+        if not self._step_des_pv_obj:
+            self._step_des_pv_obj = PV(self.step_des_pv)
+        return self._step_des_pv_obj
     
     @property
     def step_des(self):
-        return self.step_des_pv.get()
+        return self.step_des_pv_obj.get()
     
     @step_des.setter
     def step_des(self, value: int):
-        self.step_des_pv.put(value)
+        self.step_des_pv_obj.put(value)
     
     @property
     def motor_moving(self) -> bool:
         if not self._motor_moving_pv:
-            self._motor_moving_pv = PV(self.pvPrefix + "STAT_MOV")
+            self._motor_moving_pv = PV(self._pv_prefix + "STAT_MOV")
         return self._motor_moving_pv.get() == 1
     
     def reset_signed_steps(self):
         if not self._reset_signed_pv:
-            self._reset_signed_pv = PV(self.pvPrefix + "TOTSGN_RESET")
+            self._reset_signed_pv = PV(self._pv_prefix + "TOTSGN_RESET")
         self._reset_signed_pv.put(0)
     
     @property
     def on_limit_switch(self) -> bool:
         if not self._limit_switch_a_pv:
-            self._limit_switch_a_pv = PV(self.pvPrefix + "STAT_LIMA")
+            self._limit_switch_a_pv = PV(self._pv_prefix + "STAT_LIMA")
         if not self._limit_switch_b_pv:
-            self._limit_switch_b_pv = PV(self.pvPrefix + "STAT_LIMB")
+            self._limit_switch_b_pv = PV(self._pv_prefix + "STAT_LIMB")
         
         return (self._limit_switch_a_pv.get()
                 == utils.STEPPER_ON_LIMIT_SWITCH_VALUE or
@@ -305,32 +317,32 @@ class StepperTuner:
                 == utils.STEPPER_ON_LIMIT_SWITCH_VALUE)
     
     @property
-    def max_steps_pv(self) -> PV:
-        if not self._max_steps_pv:
-            self._max_steps_pv = PV(self.pvPrefix + "NSTEPS.DRVH")
-        return self._max_steps_pv
+    def max_steps_pv_obj(self) -> PV:
+        if not self._max_steps_pv_obj:
+            self._max_steps_pv_obj = PV(self.max_steps_pv)
+        return self._max_steps_pv_obj
     
     @property
     def max_steps(self):
-        return self.max_steps_pv.get()
+        return self.max_steps_pv_obj.get()
     
     @max_steps.setter
     def max_steps(self, value: int):
-        self.max_steps_pv.put(value)
+        self.max_steps_pv_obj.put(value)
     
     @property
-    def speed_pv(self):
-        if not self._speed_pv:
-            self._speed_pv = PV(self.pvPrefix + "VELO")
-        return self._speed_pv
+    def speed_pv_obj(self):
+        if not self._speed_pv_obj:
+            self._speed_pv_obj = PV(self.speed_pv)
+        return self._speed_pv_obj
     
     @property
     def speed(self):
-        return self.speed_pv.get()
+        return self.speed_pv_obj.get()
     
     @speed.setter
     def speed(self, value: int):
-        self.speed_pv.put(value)
+        self.speed_pv_obj.put(value)
     
     def restoreDefaults(self):
         self.max_steps = utils.DEFAULT_STEPPER_MAX_STEPS
@@ -390,95 +402,121 @@ class StepperTuner:
             raise utils.StepperError(f"{self.cavity} stepper motor on limit switch")
 
 
-class Piezo:
+class Piezo(utils.SCLinacObject):
     def __init__(self, cavity):
         # type (Cavity) -> None
         self.cavity: Cavity = cavity
-        self.pvPrefix: str = self.cavity.pvPrefix + "PZT:"
-        self._enable_PV: PV = None
+        self._pv_prefix: str = self.cavity.pv_addr("PZT:")
+        
+        self.enable_pv: str = self.pv_addr("ENABLE")
+        self._enable_pv_obj: PV = None
+        
         self._enable_stat_pv: PV = None
-        self._feedback_mode_PV: PV = None
-        self._feedback_stat_pv: PV = None
-        self._feedback_setpoint_pv: PV = None
-        self._dc_setpoint_pv: PV = None
-        self._bias_voltage_pv: PV = None
+        
+        self.feedback_control_pv: str = self.pv_addr("MODECTRL")
+        self._feedback_control_pv_obj: PV = None
+        
+        self.feedback_stat_pv: str = self.pv_addr("MODESTAT")
+        self._feedback_stat_pv_obj: PV = None
+        
+        self.feedback_setpoint_pv: str = self.pv_addr("INTEG_SP")
+        self._feedback_setpoint_pv_obj: PV = None
+        
+        self.dc_setpoint_pv: str = self.pv_addr("DAC_SP")
+        self._dc_setpoint_pv_obj: PV = None
+        
+        self.bias_voltage_pv: str = self.pv_addr("BIAS")
+        self._bias_voltage_pv_obj: PV = None
     
     @property
-    def bias_voltage_pv(self):
-        if not self._bias_voltage_pv:
-            self._bias_voltage_pv = PV(self.pvPrefix + "BIAS")
-        return self._bias_voltage_pv
+    def pv_prefix(self):
+        return self._pv_prefix
+    
+    @property
+    def bias_voltage_pv_obj(self):
+        if not self._bias_voltage_pv_obj:
+            self._bias_voltage_pv_obj = PV(self.bias_voltage_pv)
+        return self._bias_voltage_pv_obj
     
     @property
     def bias_voltage(self):
-        return self.bias_voltage_pv.get()
+        return self.bias_voltage_pv_obj.get()
     
     @bias_voltage.setter
     def bias_voltage(self, value):
-        self.bias_voltage_pv.put(value)
+        self.bias_voltage_pv_obj.put(value)
     
     @property
-    def dc_setpoint_pv(self) -> PV:
-        if not self._dc_setpoint_pv:
-            self._dc_setpoint_pv = PV(self.pvPrefix + "DAC_SP")
-        return self._dc_setpoint_pv
+    def dc_setpoint_pv_obj(self) -> PV:
+        if not self._dc_setpoint_pv_obj:
+            self._dc_setpoint_pv_obj = PV(self.dc_setpoint_pv)
+        return self._dc_setpoint_pv_obj
     
     @property
     def dc_setpoint(self):
-        return self.dc_setpoint_pv.get()
+        return self.dc_setpoint_pv_obj.get()
     
     @dc_setpoint.setter
     def dc_setpoint(self, value: float):
-        self.dc_setpoint_pv.put(value)
+        self.dc_setpoint_pv_obj.put(value)
     
     @property
-    def feedback_setpoint_pv(self) -> PV:
-        if not self._feedback_setpoint_pv:
-            self._feedback_setpoint_pv = PV(self.pvPrefix + "INTEG_SP")
-        return self._feedback_setpoint_pv
+    def feedback_setpoint_pv_obj(self) -> PV:
+        if not self._feedback_setpoint_pv_obj:
+            self._feedback_setpoint_pv_obj = PV(self.feedback_setpoint_pv)
+        return self._feedback_setpoint_pv_obj
     
     @property
-    def enable_pv(self) -> PV:
-        if not self._enable_PV:
-            self._enable_PV = PV(self.pvPrefix + "ENABLE")
-        return self._enable_PV
+    def feedback_setpoint(self):
+        return self.feedback_setpoint_pv_obj.get()
+    
+    @feedback_setpoint.setter
+    def feedback_setpoint(self, value):
+        self.feedback_setpoint_pv_obj.put(value)
+    
+    @property
+    def enable_pv_obj(self) -> PV:
+        if not self._enable_pv_obj:
+            self._enable_pv_obj = PV(self._pv_prefix + "ENABLE")
+        return self._enable_pv_obj
     
     @property
     def is_enabled(self) -> bool:
         if not self._enable_stat_pv:
-            self._enable_stat_pv = PV(self.pvPrefix + "ENABLESTAT")
+            self._enable_stat_pv = PV(self._pv_prefix + "ENABLESTAT")
         return self._enable_stat_pv.get() == utils.PIEZO_ENABLE_VALUE
     
     @property
-    def feedback_mode_pv(self) -> PV:
-        if not self._feedback_mode_PV:
-            self._feedback_mode_PV = PV(self.pvPrefix + "MODECTRL")
-        return self._feedback_mode_PV
+    def feedback_control_pv_obj(self) -> PV:
+        if not self._feedback_control_pv_obj:
+            self._feedback_control_pv_obj = PV(self.feedback_control_pv)
+        return self._feedback_control_pv_obj
     
     @property
     def feedback_stat(self):
-        if not self._feedback_stat_pv:
-            self._feedback_stat_pv = PV(self.pvPrefix + "MODESTAT")
-        return self._feedback_stat_pv.get()
+        if not self._feedback_stat_pv_obj:
+            self._feedback_stat_pv_obj = PV(self.feedback_stat_pv)
+        return self._feedback_stat_pv_obj.get()
     
     @property
     def in_manual(self) -> bool:
         return self.feedback_stat == utils.PIEZO_MANUAL_VALUE
     
     def set_to_feedback(self):
-        self.feedback_mode_pv.put(utils.PIEZO_FEEDBACK_VALUE)
+        self.feedback_control_pv_obj.put(utils.PIEZO_FEEDBACK_VALUE)
     
     def set_to_manual(self):
-        self.feedback_mode_pv.put(utils.PIEZO_MANUAL_VALUE)
+        self.feedback_control_pv_obj.put(utils.PIEZO_MANUAL_VALUE)
     
     def enable_feedback(self):
-        self.enable_pv.put(utils.PIEZO_DISABLE_VALUE)
+        self.enable_pv_obj.put(utils.PIEZO_DISABLE_VALUE)
         self.dc_setpoint = 25
         self.set_to_manual()
-        self.enable_pv.put(utils.PIEZO_ENABLE_VALUE)
+        self.enable_pv_obj.put(utils.PIEZO_ENABLE_VALUE)
 
 
-class Cavity:
+class Cavity(utils.SCLinacObject):
+    
     def __init__(self, cavityNum, rackObject, ssaClass=SSA,
                  stepperClass=StepperTuner, piezoClass=Piezo):
         # type: (int, Rack, Type[SSA], Type[StepperTuner], Type[Piezo]) -> None
@@ -489,7 +527,7 @@ class Cavity:
         rackObject: the rack object the cavities belong to
         """
         
-        self._calc_probe_q_pv = None
+        self._calc_probe_q_pv_obj = None
         self.number = cavityNum
         self.rack: Rack = rackObject
         self.cryomodule: Cryomodule = self.rack.cryomodule
@@ -508,12 +546,14 @@ class Cavity:
             self.loaded_q_upper_limit = utils.LOADED_Q_UPPER_LIMIT
             self.steps_per_hz = utils.ESTIMATED_MICROSTEPS_PER_HZ
         
-        self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(LINAC=self.linac.name,
-                                                                     CRYOMODULE=self.cryomodule.name,
-                                                                     CAVITY=self.number)
+        self._pv_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(LINAC=self.linac.name,
+                                                                       CRYOMODULE=self.cryomodule.name,
+                                                                       CAVITY=self.number)
         
         self.ctePrefix = "CTE:CM{cm}:1{cav}".format(cm=self.cryomodule.name,
                                                     cav=self.number)
+        
+        self.chirp_prefix = self._pv_prefix + "CHIRP:"
         
         self.ssa = ssaClass(self)
         self.steppertuner = stepperClass(self)
@@ -523,56 +563,67 @@ class Cavity:
         self._save_ssa_slope_pv: PV = None
         self._interlock_reset_pv: PV = None
         
-        self._drive_level_pv: PV = None
+        self.drive_level_pv: str = self.pv_addr("SEL_ASET")
+        self._drive_level_pv_obj: PV = None
         
-        self._characterization_start_pv: PV = None
+        self.characterization_start_pv: str = self.pv_addr("PROBECALSTRT")
+        self._characterization_start_pv_obj: PV = None
+        
         self._characterization_status_pv: PV = None
         
-        self.currentQLoadedPV: PV = PV(self.pvPrefix + "QLOADED")
+        # self.currentQLoadedPV: PV = PV(self.pv_prefix + "QLOADED")
         self._measured_loaded_q_pv: PV = None
         self._push_loaded_q_pv: PV = None
-        self.saveQLoadedPV: PV = PV(self.pvPrefix + "SAVE_QLOADED.PROC")
+        # self.saveQLoadedPV: PV = PV(self.pv_prefix + "SAVE_QLOADED.PROC")
         
-        self.currentCavityScalePV: PV = PV(self.pvPrefix + "CAV:SCALER_SEL.B")
+        # self.currentCavityScalePV: PV = PV(self.pv_prefix + "CAV:SCALER_SEL.B")
         self._measured_scale_factor_pv: PV = None
         self._push_scale_factor_pv: PV = None
-        self.saveCavityScalePV: PV = PV(self.pvPrefix + "SAVE_CAV_SCALE.PROC")
+        # self.saveCavityScalePV: PV = PV(self.pv_prefix + "SAVE_CAV_SCALE.PROC")
         
         self._ades_pv: PV = None
         self._aact_pv: PV = None
         self._ades_max_pv: PV = None
         
-        self._rf_mode_ctrl_pv: PV = None
-        self.rfModePV: PV = PV(self.pvPrefix + "RFMODE")
+        self.rf_mode_ctrl_pv: str = self.pv_addr("RFMODECTRL")
+        self._rf_mode_ctrl_pv_obj: PV = None
+        # self.rfModePV: PV = PV(self.pv_prefix + "RFMODE")
         
-        self._rf_state_pv: PV = None
+        self.rf_state_pv: str = self.pv_addr("RFSTATE")
+        self._rf_state_pv_obj: PV = None
+        
         self._rf_control_pv: PV = None
         
-        self.pulseGoButtonPV: PV = PV(self.pvPrefix + "PULSE_DIFF_SUM")
+        self.pulse_go_pv: str = self.pv_addr("PULSE_DIFF_SUM")
+        self._pulse_go_pv_obj: PV = None
+        
         self._pulse_status_pv: PV = None
         self._pulse_on_time_pv: PV = None
         
-        self.revWaveformPV: PV = PV(self.pvPrefix + "REV:AWF")
-        self.fwdWaveformPV: PV = PV(self.pvPrefix + "FWD:AWF")
-        self.cavWaveformPV: PV = PV(self.pvPrefix + "CAV:AWF")
+        # self.revWaveformPV: PV = PV(self.pv_prefix + "REV:AWF")
+        # self.fwdWaveformPV: PV = PV(self.pv_prefix + "FWD:AWF")
+        # self.cavWaveformPV: PV = PV(self.pv_prefix + "CAV:AWF")
         
-        self.stepper_temp_pv: str = self.pvPrefix + "STEPTEMP"
+        # self.stepper_temp_pv: str = self.pv_prefix + "STEPTEMP"
         self._detune_best_pv: PV = None
-        self.detune_rfs_PV: PV = PV(self.pvPrefix + "DF")
+        # self.detune_rfs_PV: PV = PV(self.pv_prefix + "DF")
         
         self._rf_permit_pv: PV = None
         
         self._quench_latch_pv: PV = None
-        self.quench_bypass_pv: str = self.pvPrefix + "QUENCH_BYP"
+        # self.quench_bypass_pv: str = self.pv_prefix + "QUENCH_BYP"
         
-        self._cw_data_decim_pv: PV = None
-        self._pulsed_data_decim_pv: PV = None
+        self.cw_data_decimation_pv: str = self.pv_addr("ACQ_DECIM_SEL.A")
+        self._cw_data_decim_pv_obj: PV = None
         
-        self._tune_config_pv: PV = None
-        self.chirp_prefix = self.pvPrefix + "CHIRP:"
+        self.pulsed_data_decimation_pv: str = self.pv_addr("ACQ_DECIM_SEL.C")
+        self._pulsed_data_decim_pv_obj: PV = None
         
-        self._freq_start_pv: str = None
-        self._freq_stop_pv: str = None
+        self.tune_config_pv: str = self.pv_addr("TUNE_CONFIG")
+        self._tune_config_pv_obj: PV = None
+        
+        self._chirp_freq_start_pv_obj: str = None
+        self._freq_stop_pv_obj: str = None
         
         self.abort_flag: bool = False
         
@@ -582,108 +633,102 @@ class Cavity:
         return f"{self.linac.name} CM{self.cryomodule.name} Cavity {self.number}"
     
     @property
-    def characterization_start_pv(self):
-        if not self._characterization_start_pv:
-            self._characterization_start_pv = PV(self.pvPrefix + "PROBECALSTRT")
-        return self._characterization_start_pv
+    def pv_prefix(self):
+        return self._pv_prefix
     
     def start_characterization(self):
-        self.characterization_start_pv.put(1)
+        if not self._characterization_start_pv_obj:
+            self._characterization_start_pv_obj = PV(self.characterization_start_pv)
+        self._characterization_start_pv_obj.put(1)
     
     @property
-    def interlock_reset_pv(self):
-        if not self._interlock_reset_pv:
-            self._interlock_reset_pv = PV(self.pvPrefix + "INTLK_RESET_ALL")
-        return self._interlock_reset_pv
-    
-    @property
-    def cw_data_decimation_pv(self) -> PV:
-        if not self._cw_data_decim_pv:
-            self._cw_data_decim_pv = PV(self.pvPrefix + "ACQ_DECIM_SEL.A")
-        return self._cw_data_decim_pv
+    def cw_data_decimation_pv_obj(self) -> PV:
+        if not self._cw_data_decim_pv_obj:
+            self._cw_data_decim_pv_obj = PV(self.cw_data_decimation_pv)
+        return self._cw_data_decim_pv_obj
     
     @property
     def cw_data_decimation(self):
-        return self.cw_data_decimation_pv.get()
+        return self.cw_data_decimation_pv_obj.get()
     
     @cw_data_decimation.setter
     def cw_data_decimation(self, value: float):
-        self.cw_data_decimation_pv.put(value)
+        self.cw_data_decimation_pv_obj.put(value)
     
     @property
-    def pulsed_data_decimation_pv(self):
-        if not self._pulsed_data_decim_pv:
-            self._pulsed_data_decim_pv = PV(self.pvPrefix + "ACQ_DECIM_SEL.C")
-        return self._pulsed_data_decim_pv
+    def pulsed_data_decimation_pv_obj(self) -> PV:
+        if not self._pulsed_data_decim_pv_obj:
+            self._pulsed_data_decim_pv_obj = PV(self.pulsed_data_decimation_pv)
+        return self._pulsed_data_decim_pv_obj
     
     @property
     def pulsed_data_decimation(self):
-        return self.pulsed_data_decimation_pv.get()
+        return self.pulsed_data_decimation_pv_obj.get()
     
     @pulsed_data_decimation.setter
     def pulsed_data_decimation(self, value):
-        self.pulsed_data_decimation_pv.put(value)
+        self.pulsed_data_decimation_pv_obj.put(value)
     
     @property
-    def rf_control_pv(self):
+    def rf_control_pv_obj(self) -> PV:
         if not self._rf_control_pv:
-            self._rf_control_pv = PV(self.pvPrefix + "RFCTRL")
+            self._rf_control_pv = PV(self.pv_addr("RFCTRL"))
         return self._rf_control_pv
     
     @property
     def rf_control(self):
-        return self.rf_control_pv.get()
+        return self.rf_control_pv_obj.get()
     
     @rf_control.setter
     def rf_control(self, value):
-        self.rf_control_pv.put(value)
+        self.rf_control_pv_obj.put(value)
     
     @property
-    def rf_mode_ctrl_pv(self) -> PV:
-        if not self._rf_mode_ctrl_pv:
-            self._rf_mode_ctrl_pv = PV(self.pvPrefix + "RFMODECTRL")
-        return self._rf_mode_ctrl_pv
+    def rf_mode_ctrl_pv_obj(self) -> PV:
+        if not self._rf_mode_ctrl_pv_obj:
+            self._rf_mode_ctrl_pv_obj = PV(self.rf_mode_ctrl_pv)
+        return self._rf_mode_ctrl_pv_obj
     
     def set_chirp_mode(self):
-        self.rf_mode_ctrl_pv.put(utils.RF_MODE_CHIRP)
+        self.rf_mode_ctrl_pv_obj.put(utils.RF_MODE_CHIRP)
     
     def set_sel_mode(self):
-        self.rf_mode_ctrl_pv.put(utils.RF_MODE_SEL)
+        self.rf_mode_ctrl_pv_obj.put(utils.RF_MODE_SEL)
     
     def set_sela_mode(self):
-        self.rf_mode_ctrl_pv.put(utils.RF_MODE_SELA)
+        self.rf_mode_ctrl_pv_obj.put(utils.RF_MODE_SELA)
     
     def set_selap_mode(self):
-        self.rf_mode_ctrl_pv.put(utils.RF_MODE_SELAP)
+        self.rf_mode_ctrl_pv_obj.put(utils.RF_MODE_SELAP)
     
     @property
-    def drive_level_pv(self):
-        if not self._drive_level_pv:
-            self._drive_level_pv = PV(self.pvPrefix + "SEL_ASET")
-        return self._drive_level_pv
+    def drive_level_pv_obj(self):
+        if not self._drive_level_pv_obj:
+            self._drive_level_pv_obj = PV(self.drive_level_pv)
+        return self._drive_level_pv_obj
     
     @property
     def drive_level(self):
-        return self._drive_level_pv.get()
+        return self.drive_level_pv_obj.get()
     
     @drive_level.setter
     def drive_level(self, value):
-        self.drive_level_pv.put(value)
+        self.drive_level_pv_obj.put(value)
     
     def push_ssa_slope(self):
         if not self._push_ssa_slope_pv:
-            self._push_ssa_slope_pv = PV(self.pvPrefix + "PUSH_SSA_SLOPE.PROC")
+            self._push_ssa_slope_pv = PV(self._pv_prefix + "PUSH_SSA_SLOPE.PROC")
         self._push_ssa_slope_pv.put(1)
     
     def save_ssa_slope(self):
         if not self._save_ssa_slope_pv:
-            self._save_ssa_slope_pv = PV(self.pvPrefix + "SAVE_SSA_SLOPE.PROC")
+            self._save_ssa_slope_pv = PV(self._pv_prefix + "SAVE_SSA_SLOPE.PROC")
         self._save_ssa_slope_pv.put(1)
     
     @property
     def measured_loaded_q(self) -> float:
         if not self._measured_loaded_q_pv:
-            self._measured_loaded_q_pv = PV(self.pvPrefix + "QLOADED_NEW")
+            self._measured_loaded_q_pv = PV(self._pv_prefix + "QLOADED_NEW")
         return self._measured_loaded_q_pv.get()
     
     @property
@@ -694,13 +739,13 @@ class Cavity:
     
     def push_loaded_q(self):
         if not self._push_loaded_q_pv:
-            self._push_loaded_q_pv = PV(self.pvPrefix + "PUSH_QLOADED.PROC")
+            self._push_loaded_q_pv = PV(self._pv_prefix + "PUSH_QLOADED.PROC")
         self._push_loaded_q_pv.put(1)
     
     @property
     def measured_scale_factor(self) -> float:
         if not self._measured_scale_factor_pv:
-            self._measured_scale_factor_pv = PV(self.pvPrefix + "CAV:CAL_SCALEB_NEW")
+            self._measured_scale_factor_pv = PV(self._pv_prefix + "CAV:CAL_SCALEB_NEW")
         return self._measured_scale_factor_pv.get()
     
     @property
@@ -711,45 +756,45 @@ class Cavity:
     
     def push_scale_factor(self):
         if not self._push_scale_factor_pv:
-            self._push_scale_factor_pv = PV(self.pvPrefix + "PUSH_CAV_SCALE.PROC")
+            self._push_scale_factor_pv = PV(self._pv_prefix + "PUSH_CAV_SCALE.PROC")
         self._push_scale_factor_pv.put(1)
     
     @property
     def characterization_status(self):
         if not self._characterization_status_pv:
-            self._characterization_status_pv = PV(self.pvPrefix + "PROBECALSTS")
+            self._characterization_status_pv = PV(self._pv_prefix + "PROBECALSTS")
         return self._characterization_status_pv.get()
     
     @property
     def characterization_running(self) -> bool:
-        return self.characterization_status == utils.CALIBRATION_RUNNING_VALUE
+        return self.characterization_status == utils.CHARACTERIZATION_RUNNING_VALUE
     
     @property
     def characterization_crashed(self) -> bool:
-        return self.characterization_status == utils.CALIBRATION_CRASHED_VALUE
+        return self.characterization_status == utils.CHARACTERIZATION_CRASHED_VALUE
     
     @property
     def pulse_on_time(self):
         if not self._pulse_on_time_pv:
-            self._pulse_on_time_pv = PV(self.pvPrefix + "PULSE_ONTIME")
+            self._pulse_on_time_pv = PV(self._pv_prefix + "PULSE_ONTIME")
         return self._pulse_on_time_pv.get()
     
     @pulse_on_time.setter
     def pulse_on_time(self, value: int):
         if not self._pulse_on_time_pv:
-            self._pulse_on_time_pv = PV(self.pvPrefix + "PULSE_ONTIME")
+            self._pulse_on_time_pv = PV(self._pv_prefix + "PULSE_ONTIME")
         self._pulse_on_time_pv.put(value)
     
     @property
     def pulse_status(self):
         if not self._pulse_status_pv:
-            self._pulse_status_pv = PV(self.pvPrefix + "PULSE_STATUS")
+            self._pulse_status_pv = PV(self._pv_prefix + "PULSE_STATUS")
         return self._pulse_status_pv.get()
     
     @property
     def rf_permit(self):
         if not self._rf_permit_pv:
-            self._rf_permit_pv = self.pvPrefix + "RFPERMIT"
+            self._rf_permit_pv = self._pv_prefix + "RFPERMIT"
         return self._rf_permit_pv.get()
     
     @property
@@ -759,25 +804,25 @@ class Cavity:
     @property
     def ades(self):
         if not self._ades_pv:
-            self._ades_pv = PV(self.pvPrefix + "ADES")
+            self._ades_pv = PV(self._pv_prefix + "ADES")
         return self._ades_pv.get()
     
     @ades.setter
     def ades(self, value: float):
         if not self._ades_pv:
-            self._ades_pv = PV(self.pvPrefix + "ADES")
+            self._ades_pv = PV(self._pv_prefix + "ADES")
         self._ades_pv.put(value)
     
     @property
     def aact(self):
         if not self._aact_pv:
-            self._aact_pv = PV(self.pvPrefix + "AACTMEAN")
+            self._aact_pv = PV(self._pv_prefix + "AACTMEAN")
         return self._aact_pv.get()
     
     @property
     def ades_max(self):
         if not self._ades_max_pv:
-            self._ades_max_pv = PV(self.pvPrefix + "ADES_MAX")
+            self._ades_max_pv = PV(self._pv_prefix + "ADES_MAX")
         return self._ades_max_pv.get()
     
     @property
@@ -787,7 +832,7 @@ class Cavity:
         rfs = rfs_map[self.number]
         
         r = self.rack.rackName
-        cm = self.cryomodule.pvPrefix[:-3]  # need to remove trailing colon and zeroes to match needed format
+        cm = self.cryomodule.pv_prefix[:-3]  # need to remove trailing colon and zeroes to match needed format
         id = self.cryomodule.name
         
         ch = 2 if self.number in [2, 4] else 1
@@ -802,7 +847,7 @@ class Cavity:
     @property
     def hw_mode(self):
         if not self._hw_mode_pv:
-            self._hw_mode_pv = PV(self.pvPrefix + "HWMODE")
+            self._hw_mode_pv = PV(self._pv_prefix + "HWMODE")
         return self._hw_mode_pv.get()
     
     @property
@@ -812,53 +857,73 @@ class Cavity:
     @property
     def is_quenched(self) -> bool:
         if not self._quench_latch_pv:
-            self._quench_latch_pv = PV(self.pvPrefix + "QUENCH_LTCH")
+            self._quench_latch_pv = PV(self._pv_prefix + "QUENCH_LTCH")
         return self._quench_latch_pv.get() == 1
     
     @property
-    def tune_config_pv(self) -> PV:
-        if not self._tune_config_pv:
-            self._tune_config_pv = PV(self.pvPrefix + "TUNE_CONFIG")
-        return self._tune_config_pv
+    def tune_config_pv_obj(self) -> PV:
+        if not self._tune_config_pv_obj:
+            self._tune_config_pv_obj = PV(self.tune_config_pv)
+        return self._tune_config_pv_obj
     
     @property
-    def freq_start_pv(self) -> PV:
-        if not self._freq_start_pv:
-            self._freq_start_pv = PV(self.chirp_prefix + "FREQ_START")
-        return self._freq_start_pv
+    def chirp_freq_start_pv_obj(self) -> PV:
+        if not self._chirp_freq_start_pv_obj:
+            self._chirp_freq_start_pv_obj = PV(self.chirp_prefix + "FREQ_START")
+        return self._chirp_freq_start_pv_obj
     
     @property
-    def freq_stop_pv(self) -> PV:
-        if not self._freq_stop_pv:
-            self._freq_stop_pv = PV(self.chirp_prefix + "FREQ_STOP")
-        return self._freq_stop_pv
+    def chirp_freq_start(self):
+        return self.chirp_freq_start_pv_obj.get()
+    
+    @chirp_freq_start.setter
+    def chirp_freq_start(self, value):
+        self.chirp_freq_start_pv_obj.put(value)
     
     @property
-    def calc_probe_q_pv(self):
-        if not self._calc_probe_q_pv:
-            self._calc_probe_q_pv = PV(self.pvPrefix + "QPROBE_CALC1.PROC")
-        return self._calc_probe_q_pv
+    def freq_stop_pv_obj(self) -> PV:
+        if not self._freq_stop_pv_obj:
+            self._freq_stop_pv_obj = PV(self.chirp_prefix + "FREQ_STOP")
+        return self._freq_stop_pv_obj
+    
+    @property
+    def chirp_freq_stop(self):
+        return self.freq_stop_pv_obj.get()
+    
+    @chirp_freq_stop.setter
+    def chirp_freq_stop(self, value):
+        self.freq_stop_pv_obj.put(value)
+    
+    @property
+    def calc_probe_q_pv_obj(self) -> PV:
+        if not self._calc_probe_q_pv_obj:
+            self._calc_probe_q_pv_obj = PV(self._pv_prefix + "QPROBE_CALC1.PROC")
+        return self._calc_probe_q_pv_obj
+    
+    def calculate_probe_q(self):
+        self.calc_probe_q_pv_obj.put(1)
     
     def set_chirp_range(self, offset: int):
         offset = abs(offset)
         print(f"Setting chirp range for {self} to +/- {offset} Hz")
-        self.freq_start_pv.put(-offset)
-        self.freq_stop_pv.put(offset)
+        self.chirp_freq_start = -offset
+        self.chirp_freq_stop = offset
         print(f"Chirp range set for {self}")
     
     @property
+    def rf_state_pv_obj(self) -> PV:
+        if not self._rf_state_pv_obj:
+            self._rf_state_pv_obj = PV(self.rf_state_pv)
+        return self._rf_state_pv_obj
+    
+    @property
     def rf_state(self):
-        return self.rf_state_pv.get()
+        """This property is read only"""
+        return self.rf_state_pv_obj.get()
     
     @property
     def is_on(self):
         return self.rf_state == 1
-    
-    @property
-    def rf_state_pv(self) -> PV:
-        if not self._rf_state_pv:
-            self._rf_state_pv = PV(self.pvPrefix + "RFSTATE")
-        return self._rf_state_pv
     
     def move_to_resonance(self, reset_signed_steps=False):
         self.auto_tune(des_detune=0,
@@ -868,7 +933,7 @@ class Cavity:
     @property
     def detune_best(self):
         if not self._detune_best_pv:
-            self._detune_best_pv = PV(self.pvPrefix + "DFBEST")
+            self._detune_best_pv = PV(self._pv_prefix + "DFBEST")
         return self._detune_best_pv.get()
     
     def auto_tune(self, des_detune, config_val, tolerance=50,
@@ -880,7 +945,7 @@ class Cavity:
         
         delta = self.detune_best - des_detune
         
-        self.tune_config_pv.put(utils.TUNE_CONFIG_OTHER_VALUE)
+        self.tune_config_pv_obj.put(utils.TUNE_CONFIG_OTHER_VALUE)
         
         expected_steps: int = abs(int(delta * self.steps_per_hz))
         steps_moved: int = 0
@@ -907,7 +972,7 @@ class Cavity:
             
             delta = self.detune_best - des_detune
         
-        self.tune_config_pv.put(config_val)
+        self.tune_config_pv_obj.put(config_val)
     
     def checkAndSetOnTime(self):
         """
@@ -923,13 +988,19 @@ class Cavity:
             self.pulse_on_time = utils.NOMINAL_PULSED_ONTIME
             self.pushGoButton()
     
+    @property
+    def pulse_go_pv_obj(self) -> PV:
+        if not self._pulse_go_pv_obj:
+            self._pulse_go_pv_obj = PV(self._pv_prefix + "PULSE_DIFF_SUM")
+        return self._pulse_go_pv_obj
+    
     def pushGoButton(self):
         """
         Many of the changes made to a cavity don't actually take effect until the
         go button is pressed
         :return:
         """
-        self.pulseGoButtonPV.put(1)
+        self._pulse_go_pv_obj.put(1)
         while self.pulse_status < 2:
             print("waiting for pulse state", datetime.now())
             sleep(1)
@@ -986,7 +1057,7 @@ class Cavity:
         self.move_to_resonance()
         
         self.characterize()
-        self.calc_probe_q_pv.put(1)
+        self.calculate_probe_q()
         
         self.check_abort()
         
@@ -1017,9 +1088,9 @@ class Cavity:
         print(f"enabling {self} piezo")
         while not self.piezo.is_enabled:
             print(f"{self} piezo not enabled, retrying")
-            self.piezo.enable_pv.put(utils.PIEZO_DISABLE_VALUE)
+            self.piezo.enable_pv_obj.put(utils.PIEZO_DISABLE_VALUE)
             sleep(1)
-            self.piezo.enable_pv.put(utils.PIEZO_ENABLE_VALUE)
+            self.piezo.enable_pv_obj.put(utils.PIEZO_ENABLE_VALUE)
             sleep(1)
         
         print(f"setting {self} piezo to manual")
@@ -1063,16 +1134,23 @@ class Cavity:
                                         f"+/-500000Hz chirp range")
     
     def reset_interlocks(self, wait: int = 3, attempt: int = 0):
-        # TODO see if it makes sense to implement this non-recursively
+        # TODO see if it makes more sense to implement this non-recursively
         print(f"Resetting interlocks for {self} and waiting {wait}s")
-        self.interlock_reset_pv.put(1)
+        
+        if not self._interlock_reset_pv:
+            self._interlock_reset_pv = PV(self.pv_addr("INTLK_RESET_ALL"))
+        
+        self._interlock_reset_pv.put(1)
         sleep(wait)
         
+        print(f"Checking {self} RF permit")
         if self.rf_inhibited:
-            if attempt > 2:
-                raise utils.CavityFaultError(f"{self} still faulted after 3 reset attempts")
+            if attempt >= utils.INTERLOCK_RESET_ATTEMPS:
+                raise utils.CavityFaultError(f"{self} still faulted after"
+                                             f" {utils.INTERLOCK_RESET_ATTEMPS} "
+                                             f"reset attempts")
             else:
-                print(f"{self} reset unsuccessful; retrying")
+                print(f"{self} reset {attempt} unsuccessful; retrying")
                 self.reset_interlocks(wait=wait + 2, attempt=attempt + 1)
         else:
             print(f"{self} interlocks reset")
@@ -1120,7 +1198,7 @@ class Cavity:
         self.reset_data_decimation()
         
         print(f"restoring {self} piezo feedback setpoint to 0")
-        self.piezo.feedback_setpoint_pv.put(0)
+        self.piezo.feedback_setpoint = 0
         
         print(f"{self} characterization successful")
     
@@ -1141,57 +1219,66 @@ class Cavity:
         print(f"{self} at {des_amp}")
 
 
-class Magnet:
+class Magnet(utils.SCLinacObject):
     def __init__(self, magnettype, cryomodule):
         # type: (str, Cryomodule) -> None
-        self.pvprefix = "{magnettype}:{linac}:{cm}85:".format(magnettype=magnettype,
-                                                              linac=cryomodule.linac.name,
-                                                              cm=cryomodule.name)
+        self._pv_prefix = "{magnettype}:{linac}:{cm}85:".format(magnettype=magnettype,
+                                                                linac=cryomodule.linac.name,
+                                                                cm=cryomodule.name)
         self.name = magnettype
         self.cryomodule: Cryomodule = cryomodule
-        self._bdes_pv: PV = None
-        self._control_pv: PV = None
-        self.interlockPV: PV = PV(self.pvprefix + 'INTLKSUMY')
-        self.ps_statusPV: PV = PV(self.pvprefix + 'STATE')
-        self.bactPV: PV = PV(self.pvprefix + 'BACT')
-        self.iactPV: PV = PV(self.pvprefix + 'IACT')
+        
+        self.bdes_pv: str = self.pv_addr("BDES")
+        self._bdes_pv_obj: PV = None
+        
+        self.control_pv: str = self.pv_addr("CTRL")
+        self._control_pv_obj: PV = None
+        
+        # self.interlockPV: PV = PV(self._pv_prefix + 'INTLKSUMY')
+        # self.ps_statusPV: PV = PV(self._pv_prefix + 'STATE')
+        # self.bactPV: PV = PV(self._pv_prefix + 'BACT')
+        # self.iactPV: PV = PV(self._pv_prefix + 'IACT')
         # changing IDES immediately perturbs
-        self.idesPV: PV = PV(self.pvprefix + 'IDES')
+        # self.idesPV: PV = PV(self._pv_prefix + 'IDES')
+    
+    @property
+    def pv_prefix(self):
+        return self._pv_prefix
+    
+    @property
+    def control_pv_obj(self) -> PV:
+        if not self._control_pv_obj:
+            self._control_pv_obj = PV(self.control_pv)
+        return self._control_pv_obj
     
     @property
     def bdes(self):
-        if not self._bdes_pv:
-            self._bdes_pv = PV(self.pvprefix + 'BDES')
-        return self._bdes_pv.get()
-    
-    @property
-    def control_pv(self) -> PV:
-        if not self._control_pv:
-            self._control_pv = PV(self.pvprefix + 'CTRL')
-        return self._control_pv
+        if not self._bdes_pv_obj:
+            self._bdes_pv_obj = PV(self.bdes_pv)
+        return self._bdes_pv_obj.get()
     
     @bdes.setter
     def bdes(self, value):
-        self._bdes_pv.put(value)
-        self.control_pv.put(utils.MAGNET_TRIM_VALUE)
+        self._bdes_pv_obj.put(value)
+        self.control_pv_obj.put(utils.MAGNET_TRIM_VALUE)
     
     def reset(self):
-        self.control_pv.put(utils.MAGNET_RESET_VALUE)
+        self.control_pv_obj.put(utils.MAGNET_RESET_VALUE)
     
     def turnOn(self):
-        self.control_pv.put(utils.MAGNET_ON_VALUE)
+        self.control_pv_obj.put(utils.MAGNET_ON_VALUE)
     
     def turnOff(self):
-        self.control_pv.put(utils.MAGNET_OFF_VALUE)
+        self.control_pv_obj.put(utils.MAGNET_OFF_VALUE)
     
     def degauss(self):
-        self.control_pv.put(utils.MAGNET_DEGAUSS_VALUE)
+        self.control_pv_obj.put(utils.MAGNET_DEGAUSS_VALUE)
     
     def trim(self):
-        self.control_pv.put(utils.MAGNET_TRIM_VALUE)
+        self.control_pv_obj.put(utils.MAGNET_TRIM_VALUE)
 
 
-class Rack:
+class Rack(utils.SCLinacObject):
     def __init__(self, rackName, cryoObject, cavityClass=Cavity, ssaClass=SSA,
                  stepperClass=StepperTuner, piezoClass=Piezo):
         # type: (str, Cryomodule, Type[Cavity], Type[SSA], Type[StepperTuner], Type[Piezo]) -> None
@@ -1206,7 +1293,7 @@ class Rack:
         self.cryomodule = cryoObject
         self.rackName = rackName
         self.cavities: Dict[int, Cavity] = {}
-        self.pvPrefix = self.cryomodule.pvPrefix + "RACK{RACK}:".format(RACK=self.rackName)
+        self._pv_prefix = self.cryomodule.pv_addr("RACK{RACK}:".format(RACK=self.rackName))
         
         if rackName == "A":
             # rack A always has cavities 1 - 4
@@ -1228,9 +1315,13 @@ class Rack:
         
         else:
             raise Exception(f"Bad rack name {rackName}")
+    
+    @property
+    def pv_prefix(self):
+        return self._pv_prefix
 
 
-class Cryomodule:
+class Cryomodule(utils.SCLinacObject):
     
     def __init__(self, cryoName, linacObject, cavityClass=Cavity,
                  magnetClass=Magnet, rackClass=Rack, isHarmonicLinearizer=False,
@@ -1253,17 +1344,17 @@ class Cryomodule:
             self.xcor: Magnet = magnetClass("XCOR", self)
             self.ycor: Magnet = magnetClass("YCOR", self)
         
-        self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}00:".format(LINAC=self.linac.name,
-                                                              CRYOMODULE=self.name)
-        self.ctePrefix = "CTE:CM{cm}:".format(cm=self.name)
-        self.cvtPrefix = "CVT:CM{cm}:".format(cm=self.name)
-        self.cpvPrefix = "CPV:CM{cm}:".format(cm=self.name)
-        self.jtPrefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
+        self._pv_prefix = "ACCL:{LINAC}:{CRYOMODULE}00:".format(LINAC=self.linac.name,
+                                                                CRYOMODULE=self.name)
+        self.cte_prefix = "CTE:CM{cm}:".format(cm=self.name)
+        self.cvt_prefix = "CVT:CM{cm}:".format(cm=self.name)
+        self.cpv_prefix = "CPV:CM{cm}:".format(cm=self.name)
+        self.jt_prefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
         
         self.dsLevelPV: str = "CLL:CM{cm}:2301:DS:LVL".format(cm=self.name)
         self.usLevelPV: str = "CLL:CM{cm}:2601:US:LVL".format(cm=self.name)
         self.dsPressurePV: str = "CPT:CM{cm}:2302:DS:PRESS".format(cm=self.name)
-        self.jtValveReadbackPV: str = self.jtPrefix + "ORBV"
+        self.jtValveReadbackPV: str = self.jt_prefix + "ORBV"
         self.heater_readback_pv: str = f"CPIC:CM{self.name}:0000:EHCV:ORBV"
         
         self.racks = {"A": rackClass(rackName="A", cryoObject=self,
@@ -1295,6 +1386,10 @@ class Cryomodule:
         self.vacuumPVs: List[str] = [pv.pvname for pv in (self.couplerVacuumPVs
                                                           + self.linac.beamlineVacuumPVs
                                                           + self.linac.insulatingVacuumPVs)]
+    
+    @property
+    def pv_prefix(self):
+        return self._pv_prefix
 
 
 class Linac:
