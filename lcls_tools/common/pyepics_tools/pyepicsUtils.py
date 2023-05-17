@@ -2,7 +2,7 @@ from datetime import datetime
 from math import isclose
 from time import sleep
 
-from epics import PV as epicsPV
+from epics import PV as epicsPV, caget
 
 # These are the values that decide whether a PV is alarming (and if so, how)
 EPICS_NO_ALARM_VAL = 0
@@ -22,22 +22,27 @@ class PV(epicsPV):
     
     def get(self, count=None, as_string=False, as_numpy=True,
             timeout=None, with_ctrlvars=False, use_monitor=True,
-            retry_until_valid=True):
+            retry_until_valid=True, use_caget=False):
         
-        self.connect()
-        if retry_until_valid:
-            value = super().get(count, as_string, as_numpy, timeout,
-                                with_ctrlvars, use_monitor)
-            while value is None:
-                value = super().get(count, as_string, as_numpy, timeout,
-                                    with_ctrlvars, use_monitor)
-                print(f"{self.pvname} value is None, retrying")
-                sleep(0.5)
-            return value
+        if use_caget:
+            return caget(self.pvname)
         
         else:
-            return super().get(count, as_string, as_numpy, timeout,
-                               with_ctrlvars, use_monitor)
+            self.connect()
+            
+            if retry_until_valid:
+                value = super().get(count, as_string, as_numpy, timeout,
+                                    with_ctrlvars, use_monitor)
+                while value is None:
+                    value = super().get(count, as_string, as_numpy, timeout,
+                                        with_ctrlvars, use_monitor)
+                    print(f"{self.pvname} value is None, retrying")
+                    sleep(0.5)
+                return value
+            
+            else:
+                return super().get(count, as_string, as_numpy, timeout,
+                                   with_ctrlvars, use_monitor)
     
     def put(self, value, wait=True, timeout=30.0,
             use_complete=False, callback=None, callback_data=None,

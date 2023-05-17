@@ -7,7 +7,6 @@ from datetime import datetime
 from time import sleep
 from typing import Dict, List, Type
 
-from epics import caput
 from numpy import sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
@@ -224,9 +223,9 @@ class StepperTuner:
         self.cavity: Cavity = cavity
         self.pvPrefix: str = self.cavity.pvPrefix + "STEP:"
         
-        self.move_pos_pv: PV = PV(self.pvPrefix + "MOV_REQ_POS")
-        self.move_neg_pv: PV = PV(self.pvPrefix + "MOV_REQ_NEG")
-        self.abort_pv: PV = PV(self.pvPrefix + "ABORT_REQ")
+        self._move_pos_pv: PV = None
+        self._move_neg_pv: PV = None
+        self._abort_pv: PV = None
         self._step_des_pv: PV = None
         self._max_steps_pv: PV = None
         self._speed_pv: PV = None
@@ -243,6 +242,30 @@ class StepperTuner:
         self._limit_switch_b_pv: PV = None
         
         self.abort_flag: bool = False
+    
+    def __str__(self):
+        return f"{self.cavity} Stepper Tuner"
+    
+    def check_abort(self):
+        if self.abort_flag:
+            self.abort()
+            self.abort_flag = False
+            raise utils.StepperAbortError(f"Abort requested for {self}")
+    
+    def abort(self):
+        if not self._abort_pv:
+            self._abort_pv = PV(self.pvPrefix + "ABORT_REQ")
+        self._abort_pv.put(1)
+    
+    def move_positive(self):
+        if not self._move_pos_pv:
+            self._move_pos_pv = PV(self.pvPrefix + "MOV_REQ_POS")
+        self._move_pos_pv.put(1)
+    
+    def move_negative(self):
+        if not self._move_neg_pv:
+            self._move_neg_pv = PV(self.pvPrefix + "MOV_REQ_NEG")
+        self._move_neg_pv.put(1)
     
     @property
     def step_des_pv(self):
@@ -348,23 +371,19 @@ class StepperTuner:
             numSteps *= -1
         
         if sign(numSteps) == 1:
-            self.move_pos_pv.put(1)
+            self.move_positive()
         else:
-            self.move_neg_pv.put(1)
+            self.move_negative()
         
         print("Waiting 5s for the motor to start moving")
         sleep(5)
         
         while self.motor_moving:
-            if self.abort_flag:
-                self.abort_pv.put(1)
-                raise utils.StepperAbortError(
-                        f"Abort requested for {self.cavity.cryomodule.name} cavity {self.cavity.number} stepper tuner")
-            
-            print(f"{self.cavity} motor still moving, waiting 5s", datetime.now())
+            self.check_abort()
+            print(f"{self} motor still moving, waiting 5s", datetime.now())
             sleep(5)
         
-        print(f"{self.cavity} motor done moving")
+        print(f"{self} motor done moving")
         
         # the motor can be done moving for good OR bad reasons
         if self.on_limit_switch:
@@ -381,8 +400,36 @@ class Piezo:
         self._feedback_mode_PV: PV = None
         self._feedback_stat_pv: PV = None
         self._feedback_setpoint_pv: PV = None
-        self.dc_setpoint_PV: PV = PV(self.pvPrefix + "DAC_SP")
-        self.bias_voltage_PV: PV = PV(self.pvPrefix + "BIAS")
+        self._dc_setpoint_pv: PV = None
+        self._bias_voltage_pv: PV = None
+    
+    @property
+    def bias_voltage_pv(self):
+        if not self._bias_voltage_pv:
+            self._bias_voltage_pv = PV(self.pvPrefix + "BIAS")
+        return self._bias_voltage_pv
+    
+    @property
+    def bias_voltage(self):
+        return self.bias_voltage_pv.get()
+    
+    @bias_voltage.setter
+    def bias_voltage(self, value):
+        self.bias_voltage_pv.put(value)
+    
+    @property
+    def dc_setpoint_pv(self) -> PV:
+        if not self._dc_setpoint_pv:
+            self._dc_setpoint_pv = PV(self.pvPrefix + "DAC_SP")
+        return self._dc_setpoint_pv
+    
+    @property
+    def dc_setpoint(self):
+        return self.dc_setpoint_pv.get()
+    
+    @dc_setpoint.setter
+    def dc_setpoint(self, value: float):
+        self.dc_setpoint_pv.put(value)
     
     @property
     def feedback_setpoint_pv(self) -> PV:
@@ -426,7 +473,7 @@ class Piezo:
     
     def enable_feedback(self):
         self.enable_pv.put(utils.PIEZO_DISABLE_VALUE)
-        self.dc_setpoint_PV.put(25)
+        self.dc_setpoint = 25
         self.set_to_manual()
         self.enable_pv.put(utils.PIEZO_ENABLE_VALUE)
 
@@ -474,11 +521,11 @@ class Cavity:
         
         self._push_ssa_slope_pv: PV = None
         self._save_ssa_slope_pv: PV = None
-        self.interlockResetPV: PV = PV(self.pvPrefix + "INTLK_RESET_ALL")
+        self._interlock_reset_pv: PV = None
         
-        self.drivelevelPV: PV = PV(self.pvPrefix + "SEL_ASET")
+        self._drive_level_pv: PV = None
         
-        self.cavityCharacterizationStartPV: PV = PV(self.pvPrefix + "PROBECALSTRT")
+        self._characterization_start_pv: PV = None
         self._characterization_status_pv: PV = None
         
         self.currentQLoadedPV: PV = PV(self.pvPrefix + "QLOADED")
@@ -495,11 +542,11 @@ class Cavity:
         self._aact_pv: PV = None
         self._ades_max_pv: PV = None
         
-        self.rfModeCtrlPV: PV = PV(self.pvPrefix + "RFMODECTRL")
+        self._rf_mode_ctrl_pv: PV = None
         self.rfModePV: PV = PV(self.pvPrefix + "RFMODE")
         
         self._rf_state_pv: PV = None
-        self.rfControlPV: PV = PV(self.pvPrefix + "RFCTRL")
+        self._rf_control_pv: PV = None
         
         self.pulseGoButtonPV: PV = PV(self.pvPrefix + "PULSE_DIFF_SUM")
         self._pulse_status_pv: PV = None
@@ -518,8 +565,8 @@ class Cavity:
         self._quench_latch_pv: PV = None
         self.quench_bypass_pv: str = self.pvPrefix + "QUENCH_BYP"
         
-        self.cw_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.A"
-        self.pulsed_data_decim_pv: str = self.pvPrefix + "ACQ_DECIM_SEL.C"
+        self._cw_data_decim_pv: PV = None
+        self._pulsed_data_decim_pv: PV = None
         
         self._tune_config_pv: PV = None
         self.chirp_prefix = self.pvPrefix + "CHIRP:"
@@ -533,6 +580,95 @@ class Cavity:
     
     def __str__(self):
         return f"{self.linac.name} CM{self.cryomodule.name} Cavity {self.number}"
+    
+    @property
+    def characterization_start_pv(self):
+        if not self._characterization_start_pv:
+            self._characterization_start_pv = PV(self.pvPrefix + "PROBECALSTRT")
+        return self._characterization_start_pv
+    
+    def start_characterization(self):
+        self.characterization_start_pv.put(1)
+    
+    @property
+    def interlock_reset_pv(self):
+        if not self._interlock_reset_pv:
+            self._interlock_reset_pv = PV(self.pvPrefix + "INTLK_RESET_ALL")
+        return self._interlock_reset_pv
+    
+    @property
+    def cw_data_decimation_pv(self) -> PV:
+        if not self._cw_data_decim_pv:
+            self._cw_data_decim_pv = PV(self.pvPrefix + "ACQ_DECIM_SEL.A")
+        return self._cw_data_decim_pv
+    
+    @property
+    def cw_data_decimation(self):
+        return self.cw_data_decimation_pv.get()
+    
+    @cw_data_decimation.setter
+    def cw_data_decimation(self, value: float):
+        self.cw_data_decimation_pv.put(value)
+    
+    @property
+    def pulsed_data_decimation_pv(self):
+        if not self._pulsed_data_decim_pv:
+            self._pulsed_data_decim_pv = PV(self.pvPrefix + "ACQ_DECIM_SEL.C")
+        return self._pulsed_data_decim_pv
+    
+    @property
+    def pulsed_data_decimation(self):
+        return self.pulsed_data_decimation_pv.get()
+    
+    @pulsed_data_decimation.setter
+    def pulsed_data_decimation(self, value):
+        self.pulsed_data_decimation_pv.put(value)
+    
+    @property
+    def rf_control_pv(self):
+        if not self._rf_control_pv:
+            self._rf_control_pv = PV(self.pvPrefix + "RFCTRL")
+        return self._rf_control_pv
+    
+    @property
+    def rf_control(self):
+        return self.rf_control_pv.get()
+    
+    @rf_control.setter
+    def rf_control(self, value):
+        self.rf_control_pv.put(value)
+    
+    @property
+    def rf_mode_ctrl_pv(self) -> PV:
+        if not self._rf_mode_ctrl_pv:
+            self._rf_mode_ctrl_pv = PV(self.pvPrefix + "RFMODECTRL")
+        return self._rf_mode_ctrl_pv
+    
+    def set_chirp_mode(self):
+        self.rf_mode_ctrl_pv.put(utils.RF_MODE_CHIRP)
+    
+    def set_sel_mode(self):
+        self.rf_mode_ctrl_pv.put(utils.RF_MODE_SEL)
+    
+    def set_sela_mode(self):
+        self.rf_mode_ctrl_pv.put(utils.RF_MODE_SELA)
+    
+    def set_selap_mode(self):
+        self.rf_mode_ctrl_pv.put(utils.RF_MODE_SELAP)
+    
+    @property
+    def drive_level_pv(self):
+        if not self._drive_level_pv:
+            self._drive_level_pv = PV(self.pvPrefix + "SEL_ASET")
+        return self._drive_level_pv
+    
+    @property
+    def drive_level(self):
+        return self._drive_level_pv.get()
+    
+    @drive_level.setter
+    def drive_level(self, value):
+        self.drive_level_pv.put(value)
     
     def push_ssa_slope(self):
         if not self._push_ssa_slope_pv:
@@ -714,9 +850,9 @@ class Cavity:
     def rf_state(self):
         return self.rf_state_pv.get()
     
-    @rf_state.setter
-    def rf_state(self, value):
-        self.rf_state_pv.put(value)
+    @property
+    def is_on(self):
+        return self.rf_state == 1
     
     @property
     def rf_state_pv(self) -> PV:
@@ -801,44 +937,37 @@ class Cavity:
             raise utils.PulseError("Unable to pulse cavity")
     
     def turnOn(self):
+        print(f"Turning {self} on")
         if self.is_online:
             self.ssa.turn_on()
-            self.setPowerState(True)
+            self.rf_control = 1
+            
+            while not self.is_on:
+                self.check_abort()
+                print(f"waiting for {self} to turn on", datetime.now())
+                sleep(1)
+            
+            print(f"{self} on")
         else:
             raise utils.CavityHWModeError(f"{self} not online")
     
     def turnOff(self):
-        self.setPowerState(False)
-    
-    def setPowerState(self, turnOn: bool, wait_time=1):
-        """
-        Turn the cavity on or off
-        :param wait_time:
-        :param turnOn:
-        :return:
-        """
-        desiredState = (1 if turnOn else 0)
-        
-        print(f"\nSetting RF State for {self}")
-        caput(self.rfControlPV.pvname, desiredState)
-        
-        while self.rf_state != desiredState:
+        print(f"turning {self} off")
+        self.rf_control = 0
+        while self.is_on:
             self.check_abort()
-            print(f"Waiting {wait_time} seconds for {self} RF state to change")
-            sleep(wait_time)
-        
-        print(f"RF state set for {self}")
+            print(f"waiting for {self} to turn off")
+            sleep(1)
+        print(f"{self} off")
     
-    def setup_SELAP(self, desAmp: float = 5):
+    def setup_selap(self, desAmp: float = 5):
         self.setup_rf(desAmp)
-        
-        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELAP)
+        self.set_selap_mode()
         print(f"{self} set up in SELAP")
     
-    def setup_SELA(self, desAmp: float = 5):
+    def setup_sela(self, desAmp: float = 5):
         self.setup_rf(desAmp)
-        
-        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA)
+        self.set_sela_mode()
         print(f"{self} set up in SELA")
     
     def check_abort(self):
@@ -866,9 +995,9 @@ class Cavity:
         self.check_abort()
         
         self.ades = min(5, desAmp)
-        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SEL)
+        self.set_sel_mode()
         self.piezo.set_to_feedback()
-        caput(self.rfModeCtrlPV.pvname, utils.RF_MODE_SELA)
+        self.set_sela_mode()
         
         self.check_abort()
         
@@ -880,9 +1009,9 @@ class Cavity:
             self.walk_amp(desAmp, 0.1)
     
     def reset_data_decimation(self):
-        print(f"Setting data decimation PVs for {self}")
-        caput(self.cw_data_decim_pv, 255)
-        caput(self.pulsed_data_decim_pv, 255)
+        print(f"Setting data decimation for {self}")
+        self.cw_data_decimation = 255
+        self.pulsed_data_decimation = 255
     
     def setup_tuning(self, chirp_range=200000):
         print(f"enabling {self} piezo")
@@ -902,16 +1031,16 @@ class Cavity:
             sleep(1)
         
         print(f"setting {self} piezo DC voltage offset to 0V")
-        self.piezo.dc_setpoint_PV.put(0)
+        self.piezo.dc_setpoint = 0
         
         print(f"setting {self} piezo bias voltage to 25V")
-        self.piezo.bias_voltage_PV.put(25)
+        self.piezo.bias_voltage = 25
         
         print(f"setting {self} drive level to {utils.SAFE_PULSED_DRIVE_LEVEL}")
-        self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
+        self.drive_level = utils.SAFE_PULSED_DRIVE_LEVEL
         
         print(f"setting {self} RF to chirp")
-        self.rfModeCtrlPV.put(utils.RF_MODE_CHIRP)
+        self.set_chirp_mode()
         
         print(f"turning {self} RF on and waiting 5s for detune to catch up")
         self.ssa.turn_on()
@@ -933,23 +1062,20 @@ class Cavity:
                 raise utils.DetuneError(f"{self}: No valid detune found within"
                                         f"+/-500000Hz chirp range")
     
-    def reset_interlocks(self, retry=True, wait=True):
-        print(f"Resetting interlocks for {self} and waiting 3s")
-        self.interlockResetPV.put(1)
-        if wait:
-            sleep(3)
+    def reset_interlocks(self, wait: int = 3, attempt: int = 0):
+        # TODO see if it makes sense to implement this non-recursively
+        print(f"Resetting interlocks for {self} and waiting {wait}s")
+        self.interlock_reset_pv.put(1)
+        sleep(wait)
         
-        if retry:
-            count = 0
-            wait = 5
-            while self.rf_inhibited and count < 3:
-                print(f"{self} reset unsuccessful, retrying and waiting {wait} seconds")
-                self.interlockResetPV.put(1)
-                sleep(wait)
-                count += 1
-                wait += 2
-            if self.rf_inhibited:
+        if self.rf_inhibited:
+            if attempt > 2:
                 raise utils.CavityFaultError(f"{self} still faulted after 3 reset attempts")
+            else:
+                print(f"{self} reset unsuccessful; retrying")
+                self.reset_interlocks(wait=wait + 2, attempt=attempt + 1)
+        else:
+            print(f"{self} interlocks reset")
     
     def characterize(self):
         """
@@ -962,10 +1088,10 @@ class Cavity:
         self.reset_interlocks()
         
         print(f"setting {self} drive to {utils.SAFE_PULSED_DRIVE_LEVEL}")
-        self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
+        self.drive_level = utils.SAFE_PULSED_DRIVE_LEVEL
         
-        print(f"running {self} cavity characterization")
-        self.cavityCharacterizationStartPV.put(1)
+        print(f"starting {self} cavity characterization")
+        self.start_characterization()
         print(f"waiting 2s for {self} cavity characterization script to run")
         sleep(2)
         
