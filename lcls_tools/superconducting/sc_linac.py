@@ -18,7 +18,7 @@ class SSA(utils.SCLinacObject):
         # type: (Cavity) -> None
         self.cavity: Cavity = cavity
         
-        if self.cavity.cryomodule.isHarmonicLinearizer:
+        if self.cavity.cryomodule.is_harmonic_linearizer:
             cavity_num = utils.HL_SSA_MAP[self.cavity.number]
             self._pv_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
                                                                                CRYOMODULE=self.cavity.cryomodule.name,
@@ -98,7 +98,7 @@ class SSA(utils.SCLinacObject):
         if not self._saved_drive_max_pv_obj:
             self._saved_drive_max_pv_obj = PV(self.saved_drive_max_pv)
         saved_val = self._saved_drive_max_pv_obj.get()
-        return (1 if self.cavity.cryomodule.isHarmonicLinearizer
+        return (1 if self.cavity.cryomodule.is_harmonic_linearizer
                 else (saved_val if saved_val else 0.8))
     
     @drive_max.setter
@@ -434,7 +434,7 @@ class StepperTuner(utils.SCLinacObject):
     def issueMoveCommand(self, numSteps):
         
         # this is necessary because the tuners for the HLs move the other direction
-        if self.cavity.cryomodule.isHarmonicLinearizer:
+        if self.cavity.cryomodule.is_harmonic_linearizer:
             numSteps *= -1
         
         if sign(numSteps) == 1:
@@ -588,7 +588,7 @@ class Cavity(utils.SCLinacObject):
         self.cryomodule: Cryomodule = self.rack.cryomodule
         self.linac = self.cryomodule.linac
         
-        if self.cryomodule.isHarmonicLinearizer:
+        if self.cryomodule.is_harmonic_linearizer:
             self.length = 0.346
             self.frequency = 3.9e9
             self.loaded_q_lower_limit = utils.LOADED_Q_LOWER_LIMIT_HL
@@ -1385,26 +1385,26 @@ class Rack(utils.SCLinacObject):
 
 class Cryomodule(utils.SCLinacObject):
     
-    def __init__(self, cryoName, linacObject, cavityClass=Cavity,
-                 magnetClass=Magnet, rackClass=Rack, isHarmonicLinearizer=False,
-                 ssaClass=SSA, stepperClass=StepperTuner, piezoClass=Piezo):
+    def __init__(self, cryo_name, linac_object, cavity_class=Cavity,
+                 magnet_class=Magnet, rack_class=Rack, is_harmonic_linearizer=False,
+                 ssa_class=SSA, stepper_class=StepperTuner, piezo_class=Piezo):
         # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner], Type[Piezo]) -> None
         """
         Parameters
         ----------
-        cryoName: str name of Cryomodule i.e. "02", "03", "H1", "H2"
-        linacObject: the linac object this cryomodule belongs to i.e. CM02 is in linac L1B
-        cavityClass: cavity object
+        cryo_name: str name of Cryomodule i.e. "02", "03", "H1", "H2"
+        linac_object: the linac object this cryomodule belongs to i.e. CM02 is in linac L1B
+        cavity_class: cavity object
         """
         
-        self.name: str = cryoName
-        self.linac: Linac = linacObject
-        self.isHarmonicLinearizer = isHarmonicLinearizer
+        self.name: str = cryo_name
+        self.linac: Linac = linac_object
+        self.is_harmonic_linearizer: bool = is_harmonic_linearizer
         
-        if not isHarmonicLinearizer:
-            self.quad: Magnet = magnetClass("QUAD", self)
-            self.xcor: Magnet = magnetClass("XCOR", self)
-            self.ycor: Magnet = magnetClass("YCOR", self)
+        if not is_harmonic_linearizer:
+            self.quad: Magnet = magnet_class("QUAD", self)
+            self.xcor: Magnet = magnet_class("XCOR", self)
+            self.ycor: Magnet = magnet_class("YCOR", self)
         
         self._pv_prefix = "ACCL:{LINAC}:{CRYOMODULE}00:".format(LINAC=self.linac.name,
                                                                 CRYOMODULE=self.name)
@@ -1419,35 +1419,36 @@ class Cryomodule(utils.SCLinacObject):
         self.jt_valve_readback_pv: str = self.jt_prefix + "ORBV"
         self.heater_readback_pv: str = f"CPIC:CM{self.name}:0000:EHCV:ORBV"
         
-        self.racks = {"A": rackClass(rackName="A", cryoObject=self,
-                                     cavityClass=cavityClass,
-                                     ssaClass=ssaClass,
-                                     stepperClass=stepperClass,
-                                     piezoClass=piezoClass),
-                      "B": rackClass(rackName="B", cryoObject=self,
-                                     cavityClass=cavityClass,
-                                     ssaClass=ssaClass,
-                                     stepperClass=stepperClass,
-                                     piezoClass=piezoClass)}
+        self.rack_a: rack_class = rack_class(rackName="A", cryoObject=self,
+                                             cavityClass=cavity_class,
+                                             ssaClass=ssa_class,
+                                             stepperClass=stepper_class,
+                                             piezoClass=piezo_class)
         
-        self.cavities: Dict[int, cavityClass] = {}
-        self.cavities.update(self.racks["A"].cavities)
-        self.cavities.update(self.racks["B"].cavities)
+        self.rack_b: rack_class = rack_class(rackName="B", cryoObject=self,
+                                             cavityClass=cavity_class,
+                                             ssaClass=ssa_class,
+                                             stepperClass=stepper_class,
+                                             piezoClass=piezo_class)
         
-        if isHarmonicLinearizer:
+        self.cavities: Dict[int, cavity_class] = {}
+        self.cavities.update(self.rack_a.cavities)
+        self.cavities.update(self.rack_b.cavities)
+        
+        if is_harmonic_linearizer:
             # two cavities share one SSA, this is the mapping
             cavity_ssa_pairs = [(1, 5), (2, 6), (3, 7), (4, 8)]
             
             for (leader, follower) in cavity_ssa_pairs:
                 self.cavities[follower].ssa = self.cavities[leader].ssa
-            self.couplerVacuumPVs: List[PV] = [PV(self.linac.vacuumPrefix + '{cm}09:COMBO_P'.format(cm=self.name)),
-                                               PV(self.linac.vacuumPrefix + '{cm}19:COMBO_P'.format(cm=self.name))]
+            self.coupler_vacuum_pvs: List[str] = [self.linac.vacuumPrefix + '{cm}09:COMBO_P'.format(cm=self.name),
+                                                  self.linac.vacuumPrefix + '{cm}19:COMBO_P'.format(cm=self.name)]
         else:
-            self.couplerVacuumPVs: List[PV] = [PV(self.linac.vacuumPrefix + '{cm}14:COMBO_P'.format(cm=self.name))]
+            self.coupler_vacuum_pvs: List[str] = [self.linac.vacuumPrefix + '{cm}14:COMBO_P'.format(cm=self.name)]
         
-        self.vacuumPVs: List[str] = [pv.pvname for pv in (self.couplerVacuumPVs
-                                                          + self.linac.beamline_vacuum_pvs
-                                                          + self.linac.insulating_vacuum_pvs)]
+        self.vacuum_pvs: List[str] = [self.coupler_vacuum_pvs
+                                      + self.linac.beamline_vacuum_pvs
+                                      + self.linac.insulating_vacuum_pvs]
     
     @property
     def pv_prefix(self):
@@ -1467,12 +1468,12 @@ class Linac:
         self.cryomodules: Dict[str, Cryomodule] = {}
         self.vacuumPrefix = 'VGXX:{linac}:'.format(linac=self.name)
         
-        self.beamline_vacuum_pvs = [(self.vacuumPrefix
-                                     + '{infix}:COMBO_P'.format(infix=infix))
-                                    for infix in beamline_vacuum_infixes]
-        self.insulating_vacuum_pvs = [(self.vacuumPrefix
-                                       + '{cm}96:COMBO_P'.format(cm=cm))
-                                      for cm in insulating_vacuum_cryomodules]
+        self.beamline_vacuum_pvs: List[str] = [self.vacuumPrefix
+                                               + '{infix}:COMBO_P'.format(infix=infix)
+                                               for infix in beamline_vacuum_infixes]
+        self.insulating_vacuum_pvs: List[str] = [self.vacuumPrefix
+                                                 + '{cm}96:COMBO_P'.format(cm=cm)
+                                                 for cm in insulating_vacuum_cryomodules]
     
     def addCryomodules(self, cryomoduleStringList: List[str], cryomoduleClass: Type[Cryomodule] = Cryomodule,
                        cavityClass: Type[Cavity] = Cavity, rackClass: Type[Rack] = Rack,
@@ -1492,14 +1493,14 @@ class Linac:
                       magnetClass: Type[Magnet] = Magnet,
                       isHarmonicLinearizer: bool = False, ssaClass: Type[SSA] = SSA,
                       stepperClass: Type[StepperTuner] = StepperTuner):
-        self.cryomodules[cryomoduleName] = cryomoduleClass(cryoName=cryomoduleName,
-                                                           linacObject=self,
-                                                           cavityClass=cavityClass,
-                                                           rackClass=rackClass,
-                                                           magnetClass=magnetClass,
-                                                           isHarmonicLinearizer=isHarmonicLinearizer,
-                                                           ssaClass=ssaClass,
-                                                           stepperClass=stepperClass)
+        self.cryomodules[cryomoduleName] = cryomoduleClass(cryo_name=cryomoduleName,
+                                                           linac_object=self,
+                                                           cavity_class=cavityClass,
+                                                           rack_class=rackClass,
+                                                           magnet_class=magnetClass,
+                                                           is_harmonic_linearizer=isHarmonicLinearizer,
+                                                           ssa_class=ssaClass,
+                                                           stepper_class=stepperClass)
 
 
 # Global list of superconducting linac objects
@@ -1558,15 +1559,15 @@ class CryoDict(dict):
             linac = linacs['L3B']
         else:
             raise KeyError(f"Cryomodule {key} not found in any linac region.")
-        cryomodule = self.cryomoduleClass(cryoName=key,
-                                          linacObject=linac,
-                                          cavityClass=self.cavityClass,
-                                          magnetClass=self.magnetClass,
-                                          rackClass=self.rackClass,
-                                          stepperClass=self.stepperClass,
-                                          isHarmonicLinearizer=(key in L1BHL),
-                                          ssaClass=self.ssaClass,
-                                          piezoClass=self.piezoClass)
+        cryomodule = self.cryomoduleClass(cryo_name=key,
+                                          linac_object=linac,
+                                          cavity_class=self.cavityClass,
+                                          magnet_class=self.magnetClass,
+                                          rack_class=self.rackClass,
+                                          stepper_class=self.stepperClass,
+                                          is_harmonic_linearizer=(key in L1BHL),
+                                          ssa_class=self.ssaClass,
+                                          piezo_class=self.piezoClass)
         self[key] = cryomodule
         return cryomodule
 
