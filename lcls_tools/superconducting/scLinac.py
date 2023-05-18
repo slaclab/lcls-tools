@@ -17,6 +17,7 @@ class SSA(utils.SCLinacObject):
     def __init__(self, cavity):
         # type: (Cavity) -> None
         self.cavity: Cavity = cavity
+        
         if self.cavity.cryomodule.isHarmonicLinearizer:
             cavity_num = utils.HL_SSA_MAP[self.cavity.number]
             self._pv_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
@@ -279,15 +280,21 @@ class StepperTuner(utils.SCLinacObject):
         
         self.speed_pv: str = self._pv_prefix + "VELO"
         self._speed_pv_obj: PV = None
-        # self.step_tot_pv: PV = PV(self.pv_prefix + "REG_TOTABS")
-        # self.step_signed_pv: PV = PV(self.pv_prefix + "REG_TOTSGN")
-        # self.reset_tot_pv: PV = PV(self.pv_prefix + "TOTABS_RESET")
+        
+        self.step_tot_pv: str = self.pv_addr("REG_TOTABS")
+        self.step_signed_pv: str = self.pv_addr("REG_TOTSGN")
+        self.reset_tot_pv: str = self.pv_addr("TOTABS_RESET")
+        
         self._reset_signed_pv: PV = None
-        # self.steps_cold_landing_pv: PV = PV(self.pv_prefix + "NSTEPS_COLD")
-        # self.push_signed_cold_pv: PV = PV(self.pv_prefix + "PUSH_NSTEPS_COLD.PROC")
-        # self.push_signed_park_pv: PV = PV(self.pv_prefix + "PUSH_NSTEPS_PARK.PROC")
+        
+        self.steps_cold_landing_pv: str = self.pv_addr("NSTEPS_COLD")
+        self.push_signed_cold_pv: str = self.pv_addr("PUSH_NSTEPS_COLD.PROC")
+        self.push_signed_park_pv: str = self.pv_addr("PUSH_NSTEPS_PARK.PROC")
+        
         self._motor_moving_pv: PV = None
-        # self.motor_done_pv: PV = PV(self.pv_prefix + "STAT_DONE")
+        
+        self.motor_done_pv: str = self.pv_addr("STAT_DONE")
+        
         self._limit_switch_a_pv: PV = None
         self._limit_switch_b_pv: PV = None
         
@@ -613,15 +620,19 @@ class Cavity(utils.SCLinacObject):
         
         self._characterization_status_pv: PV = None
         
-        # self.currentQLoadedPV: PV = PV(self.pv_prefix + "QLOADED")
+        self.current_q_loaded_pv: str = self.pv_addr("QLOADED")
+        
         self._measured_loaded_q_pv: PV = None
         self._push_loaded_q_pv: PV = None
-        # self.saveQLoadedPV: PV = PV(self.pv_prefix + "SAVE_QLOADED.PROC")
         
-        # self.currentCavityScalePV: PV = PV(self.pv_prefix + "CAV:SCALER_SEL.B")
+        self.save_q_loaded_pv: str = self.pv_addr("SAVE_QLOADED.PROC")
+        
+        self.current_cavity_scale_pv: str = self.pv_addr("CAV:SCALER_SEL.B")
+        
         self._measured_scale_factor_pv: PV = None
         self._push_scale_factor_pv: PV = None
-        # self.saveCavityScalePV: PV = PV(self.pv_prefix + "SAVE_CAV_SCALE.PROC")
+        
+        self.save_cavity_scale_pv: str = self.pv_addr("SAVE_CAV_SCALE.PROC")
         
         self._ades_pv: PV = None
         self._aact_pv: PV = None
@@ -629,7 +640,8 @@ class Cavity(utils.SCLinacObject):
         
         self.rf_mode_ctrl_pv: str = self.pv_addr("RFMODECTRL")
         self._rf_mode_ctrl_pv_obj: PV = None
-        # self.rfModePV: PV = PV(self.pv_prefix + "RFMODE")
+        
+        self.rf_mode_pv: str = self.pv_addr("RFMODE")
         
         self.rf_state_pv: str = self.pv_addr("RFSTATE")
         self._rf_state_pv_obj: PV = None
@@ -642,18 +654,19 @@ class Cavity(utils.SCLinacObject):
         self._pulse_status_pv: PV = None
         self._pulse_on_time_pv: PV = None
         
-        # self.revWaveformPV: PV = PV(self.pv_prefix + "REV:AWF")
-        # self.fwdWaveformPV: PV = PV(self.pv_prefix + "FWD:AWF")
-        # self.cavWaveformPV: PV = PV(self.pv_prefix + "CAV:AWF")
+        self.rev_waveform_pv: str = self.pv_addr("REV:AWF")
+        self.fwd_waveform_pv: str = self.pv_addr("FWD:AWF")
+        self.cav_waveform_pv: str = self.pv_addr("CAV:AWF")
         
-        # self.stepper_temp_pv: str = self.pv_prefix + "STEPTEMP"
+        self.stepper_temp_pv: str = self.pv_addr("STEPTEMP")
+        
         self._detune_best_pv: PV = None
-        # self.detune_rfs_PV: PV = PV(self.pv_prefix + "DF")
         
         self._rf_permit_pv: PV = None
         
         self._quench_latch_pv: PV = None
-        # self.quench_bypass_pv: str = self.pv_prefix + "QUENCH_BYP"
+        
+        self.quench_bypass_pv: str = self.pv_addr("QUENCH_BYP")
         
         self.cw_data_decimation_pv: str = self.pv_addr("ACQ_DECIM_SEL.A")
         self._cw_data_decim_pv_obj: PV = None
@@ -1276,12 +1289,13 @@ class Magnet(utils.SCLinacObject):
         self.control_pv: str = self.pv_addr("CTRL")
         self._control_pv_obj: PV = None
         
-        # self.interlockPV: PV = PV(self._pv_prefix + 'INTLKSUMY')
-        # self.ps_statusPV: PV = PV(self._pv_prefix + 'STATE')
-        # self.bactPV: PV = PV(self._pv_prefix + 'BACT')
-        # self.iactPV: PV = PV(self._pv_prefix + 'IACT')
+        self.interlock_pv: str = self.pv_addr("INTLKSUMY")
+        self.ps_status_pv: str = self.pv_addr("STATE")
+        self.bact_pv: str = self.pv_addr("BACT")
+        self.iact_pv: str = self.pv_addr("IACT")
+        
         # changing IDES immediately perturbs
-        # self.idesPV: PV = PV(self._pv_prefix + 'IDES')
+        self.ides_pv: str = self.pv_addr("IDES")
     
     @property
     def pv_prefix(self):
@@ -1393,10 +1407,10 @@ class Cryomodule(utils.SCLinacObject):
         self.cpv_prefix = "CPV:CM{cm}:".format(cm=self.name)
         self.jt_prefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
         
-        self.dsLevelPV: str = "CLL:CM{cm}:2301:DS:LVL".format(cm=self.name)
-        self.usLevelPV: str = "CLL:CM{cm}:2601:US:LVL".format(cm=self.name)
-        self.dsPressurePV: str = "CPT:CM{cm}:2302:DS:PRESS".format(cm=self.name)
-        self.jtValveReadbackPV: str = self.jt_prefix + "ORBV"
+        self.ds_level_pv: str = "CLL:CM{cm}:2301:DS:LVL".format(cm=self.name)
+        self.us_level_pv: str = "CLL:CM{cm}:2601:US:LVL".format(cm=self.name)
+        self.ds_pressure_pv: str = "CPT:CM{cm}:2302:DS:PRESS".format(cm=self.name)
+        self.jt_valve_readback_pv: str = self.jt_prefix + "ORBV"
         self.heater_readback_pv: str = f"CPIC:CM{self.name}:0000:EHCV:ORBV"
         
         self.racks = {"A": rackClass(rackName="A", cryoObject=self,
@@ -1426,8 +1440,8 @@ class Cryomodule(utils.SCLinacObject):
             self.couplerVacuumPVs: List[PV] = [PV(self.linac.vacuumPrefix + '{cm}14:COMBO_P'.format(cm=self.name))]
         
         self.vacuumPVs: List[str] = [pv.pvname for pv in (self.couplerVacuumPVs
-                                                          + self.linac.beamlineVacuumPVs
-                                                          + self.linac.insulatingVacuumPVs)]
+                                                          + self.linac.beamline_vacuum_pvs
+                                                          + self.linac.insulating_vacuum_pvs)]
     
     @property
     def pv_prefix(self):
@@ -1435,7 +1449,7 @@ class Cryomodule(utils.SCLinacObject):
 
 
 class Linac:
-    def __init__(self, linacName, beamlineVacuumInfixes, insulatingVacuumCryomodules):
+    def __init__(self, linacName, beamline_vacuum_infixes, insulating_vacuum_cryomodules):
         # type: (str, List[str], List[str]) -> None
         """
         Parameters
@@ -1447,12 +1461,12 @@ class Linac:
         self.cryomodules: Dict[str, Cryomodule] = {}
         self.vacuumPrefix = 'VGXX:{linac}:'.format(linac=self.name)
         
-        self.beamlineVacuumPVs = [PV(self.vacuumPrefix
+        self.beamline_vacuum_pvs = [(self.vacuumPrefix
                                      + '{infix}:COMBO_P'.format(infix=infix))
-                                  for infix in beamlineVacuumInfixes]
-        self.insulatingVacuumPVs = [PV(self.vacuumPrefix
+                                    for infix in beamline_vacuum_infixes]
+        self.insulating_vacuum_pvs = [(self.vacuumPrefix
                                        + '{cm}96:COMBO_P'.format(cm=cm))
-                                    for cm in insulatingVacuumCryomodules]
+                                      for cm in insulating_vacuum_cryomodules]
     
     def addCryomodules(self, cryomoduleStringList: List[str], cryomoduleClass: Type[Cryomodule] = Cryomodule,
                        cavityClass: Type[Cavity] = Cavity, rackClass: Type[Rack] = Rack,
@@ -1496,14 +1510,14 @@ BEAMLINEVACUUM_INFIXES = [['0198'], ['0202', 'H292'], ['0402', '1592'], ['1602',
 INSULATINGVACUUM_CRYOMODULES = [['01'], ['02', 'H1'], ['04', '06', '08', '10', '12', '14'],
                                 ['16', '18', '20', '22', '24', '27', '29', '31', '33', '34']]
 
-linacs = {"L0B": Linac("L0B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[0],
-                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[0]),
-          "L1B": Linac("L1B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[1],
-                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[1]),
-          "L2B": Linac("L2B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[2],
-                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[2]),
-          "L3B": Linac("L3B", beamlineVacuumInfixes=BEAMLINEVACUUM_INFIXES[3],
-                       insulatingVacuumCryomodules=INSULATINGVACUUM_CRYOMODULES[3])}
+linacs = {"L0B": Linac("L0B", beamline_vacuum_infixes=BEAMLINEVACUUM_INFIXES[0],
+                       insulating_vacuum_cryomodules=INSULATINGVACUUM_CRYOMODULES[0]),
+          "L1B": Linac("L1B", beamline_vacuum_infixes=BEAMLINEVACUUM_INFIXES[1],
+                       insulating_vacuum_cryomodules=INSULATINGVACUUM_CRYOMODULES[1]),
+          "L2B": Linac("L2B", beamline_vacuum_infixes=BEAMLINEVACUUM_INFIXES[2],
+                       insulating_vacuum_cryomodules=INSULATINGVACUUM_CRYOMODULES[2]),
+          "L3B": Linac("L3B", beamline_vacuum_infixes=BEAMLINEVACUUM_INFIXES[3],
+                       insulating_vacuum_cryomodules=INSULATINGVACUUM_CRYOMODULES[3])}
 
 ALL_CRYOMODULES = L0B + L1B + L1BHL + L2B + L3B
 ALL_CRYOMODULES_NO_HL = L0B + L1B + L2B + L3B
