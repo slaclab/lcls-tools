@@ -25,21 +25,40 @@ class SSA(utils.SCLinacObject):
         else:
             self._pv_prefix = self.cavity.pv_addr("SSA:")
         
-        self._status_pv: PV = None
-        self._turn_on_pv: PV = None
-        self._turn_off_pv: PV = None
-        self._reset_pv: PV = None
+        self.status_pv: str = self.pv_addr("StatusMsg")
+        self._status_pv_obj: PV = None
         
-        self._calibration_start_pv: PV = None
-        self._calibration_status_pv: PV = None
-        self._cal_result_status_pv: PV = None
+        self.turn_on_pv: str = self.pv_addr("PowerOn")
+        self._turn_on_pv_obj: PV = None
         
-        self.currentSlopePV: PV = PV(self.pv_prefix + "SLOPE")
-        self._measured_slope_pv: PV = None
+        self.turn_off_pv: str = self.pv_addr("PowerOff")
+        self._turn_off_pv_obj: PV = None
         
-        self._maxdrive_setpoint_pv: PV = None
-        self._saved_maxdrive_pv: PV = None
-        self._max_fwd_pwr_pv: PV = None
+        self.reset_pv: str = self.pv_addr("FaultReset")
+        self._reset_pv_obj: PV = None
+        
+        self.calibration_start_pv: str = self.pv_addr("CALSTRT")
+        self._calibration_start_pv_obj: PV = None
+        
+        self.calibration_status_pv: str = self.pv_addr("CALSTS")
+        self._calibration_status_pv_obj: PV = None
+        
+        self.cal_result_status_pv: str = self.pv_addr("CALSTAT")
+        self._cal_result_status_pv_obj: PV = None
+        
+        self.current_slope_pv: str = self.pv_addr("SLOPE")
+        
+        self.measured_slope_pv: str = self.pv_addr("SLOPE_NEW")
+        self._measured_slope_pv_obj: PV = None
+        
+        self.drive_max_setpoint_pv: str = self.pv_addr("DRV_MAX_REQ")
+        self._drive_max_setpoint_pv_obj: PV = None
+        
+        self.saved_drive_max_pv: str = self.pv_addr("DRV_MAX_SAVE")
+        self._saved_drive_max_pv_obj: PV = None
+        
+        self.max_fwd_pwr_pv: str = self.pv_addr("CALPWR")
+        self._max_fwd_pwr_pv_obj: PV = None
     
     def __str__(self):
         return f"{self.cavity} SSA"
@@ -50,33 +69,42 @@ class SSA(utils.SCLinacObject):
     
     @property
     def status_message(self):
-        if not self._status_pv:
-            self._status_pv = PV(self.pv_prefix + "StatusMsg")
-        return self._status_pv.get()
+        if not self._status_pv_obj:
+            self._status_pv_obj = PV(self.status_pv)
+        return self._status_pv_obj.get()
     
     @property
-    def is_on(self):
+    def is_on(self) -> bool:
         return self.status_message == utils.SSA_STATUS_ON_VALUE
     
     @property
-    def max_fwd_pwr(self):
-        if not self._max_fwd_pwr_pv:
-            self._max_fwd_pwr_pv = PV(self.pv_prefix + "CALPWR")
-        return self._max_fwd_pwr_pv.get()
+    def is_resetting(self) -> bool:
+        return self.status_message == utils.SSA_STATUS_RESETTING_FAULTS_VALUE
     
     @property
-    def drivemax(self):
-        if not self._saved_maxdrive_pv:
-            self._saved_maxdrive_pv = PV(self.pv_prefix + "DRV_MAX_SAVE")
-        saved_val = self._saved_maxdrive_pv.get()
+    def is_faulted(self) -> bool:
+        return self.status_message in [utils.SSA_STATUS_FAULTED_VALUE,
+                                       utils.SSA_STATUS_FAULT_RESET_FAILED_VALUE]
+    
+    @property
+    def max_fwd_pwr(self):
+        if not self._max_fwd_pwr_pv_obj:
+            self._max_fwd_pwr_pv_obj = PV(self.max_fwd_pwr_pv)
+        return self._max_fwd_pwr_pv_obj.get()
+    
+    @property
+    def drive_max(self):
+        if not self._saved_drive_max_pv_obj:
+            self._saved_drive_max_pv_obj = PV(self.saved_drive_max_pv)
+        saved_val = self._saved_drive_max_pv_obj.get()
         return (1 if self.cavity.cryomodule.isHarmonicLinearizer
                 else (saved_val if saved_val else 0.8))
     
-    @drivemax.setter
-    def drivemax(self, value: float):
-        if not self._maxdrive_setpoint_pv:
-            self._maxdrive_setpoint_pv = PV(self.pv_prefix + "DRV_MAX_REQ")
-        self._maxdrive_setpoint_pv.put(value)
+    @drive_max.setter
+    def drive_max(self, value: float):
+        if not self._drive_max_setpoint_pv_obj:
+            self._drive_max_setpoint_pv_obj = PV(self.drive_max_setpoint_pv)
+        self._drive_max_setpoint_pv_obj.put(value)
     
     def calibrate(self, drivemax):
         print(f"Trying {self} calibration with drivemax {drivemax}")
@@ -84,7 +112,7 @@ class SSA(utils.SCLinacObject):
             raise utils.SSACalibrationError(f"Requested {self} drive max too low")
         
         print(f"Setting {self} max drive")
-        self.drivemax = drivemax
+        self.drive_max = drivemax
         
         try:
             self.cavity.check_abort()
@@ -98,13 +126,16 @@ class SSA(utils.SCLinacObject):
             print(f"{self} Calibration failed with '{e}', retrying")
             self.calibrate(drivemax)
     
+    @property
+    def turn_on_pv_obj(self) -> PV:
+        if not self._turn_on_pv_obj:
+            self._turn_on_pv_obj = PV(self.turn_on_pv)
+        return self._turn_on_pv_obj
+    
     def turn_on(self):
         if not self.is_on:
             print(f"Turning {self} on")
-            
-            if not self._turn_on_pv:
-                self._turn_on_pv = PV(self.pv_prefix + "PowerOn")
-            self._turn_on_pv.put(1)
+            self.turn_on_pv_obj.put(1)
             
             while not self.is_on:
                 self.cavity.check_abort()
@@ -113,12 +144,16 @@ class SSA(utils.SCLinacObject):
         
         print(f"{self} on")
     
+    @property
+    def turn_off_pv_obj(self) -> PV:
+        if not self._turn_off_pv_obj:
+            self._turn_off_pv_obj = PV(self.turn_off_pv)
+        return self._turn_off_pv_obj
+    
     def turn_off(self):
         if self.is_on:
             print(f"Turning {self} off")
-            if not self._turn_off_pv:
-                self._turn_off_pv = PV(self.pv_prefix + "PowerOff")
-            self._turn_off_pv.put(1)
+            self.turn_off_pv_obj.put(1)
             
             while self.is_on:
                 self.cavity.check_abort()
@@ -127,31 +162,34 @@ class SSA(utils.SCLinacObject):
         
         print(f"{self} off")
     
+    @property
+    def reset_pv_obj(self) -> PV:
+        if not self._reset_pv_obj:
+            self._reset_pv_obj = PV(self.reset_pv)
+        return self._reset_pv_obj
+    
     def reset(self):
         print(f"Resetting {self}...")
-        if not self._reset_pv:
-            self._reset_pv = PV(self.pv_prefix + "FaultReset")
-        self._reset_pv.put(1)
+        self.reset_pv_obj.put(1)
         
-        while self.status_message == utils.SSA_STATUS_RESETTING_FAULTS_VALUE:
+        while self.is_resetting:
             sleep(1)
         
-        if self.status_message in [utils.SSA_STATUS_FAULTED_VALUE,
-                                   utils.SSA_STATUS_FAULT_RESET_FAILED_VALUE]:
+        if self.is_faulted:
             raise utils.SSAFaultError(f"Unable to reset {self}")
         
         print(f"{self} reset")
     
     def start_calibration(self):
-        if not self._calibration_start_pv:
-            self._calibration_start_pv = PV(self.pv_prefix + "CALSTRT")
-        self._calibration_start_pv.put(1)
+        if not self._calibration_start_pv_obj:
+            self._calibration_start_pv_obj = PV(self.calibration_start_pv)
+        self._calibration_start_pv_obj.put(1)
     
     @property
     def calibration_status(self):
-        if not self._calibration_status_pv:
-            self._calibration_status_pv = PV(self.pv_prefix + "CALSTS")
-        return self._calibration_status_pv.get()
+        if not self._calibration_status_pv_obj:
+            self._calibration_status_pv_obj = PV(self.calibration_status_pv)
+        return self._calibration_status_pv_obj.get()
     
     @property
     def calibration_running(self) -> bool:
@@ -162,10 +200,14 @@ class SSA(utils.SCLinacObject):
         return self.calibration_status == utils.SSA_CALIBRATION_CRASHED_VALUE
     
     @property
+    def cal_result_status_pv_obj(self) -> PV:
+        if not self._cal_result_status_pv_obj:
+            self._cal_result_status_pv_obj = PV(self.cal_result_status_pv)
+        return self._cal_result_status_pv_obj
+    
+    @property
     def calibration_result_good(self) -> bool:
-        if not self._cal_result_status_pv:
-            self._cal_result_status_pv = PV(self.pv_prefix + "CALSTAT")
-        return self._cal_result_status_pv.get() == utils.SSA_RESULT_GOOD_STATUS_VALUE
+        return self.cal_result_status_pv_obj.get() == utils.SSA_RESULT_GOOD_STATUS_VALUE
     
     def runCalibration(self, save_slope: bool = False):
         """
@@ -207,9 +249,9 @@ class SSA(utils.SCLinacObject):
     
     @property
     def measured_slope(self):
-        if not self._measured_slope_pv:
-            self._measured_slope_pv = PV(self.pv_prefix + "SLOPE_NEW")
-        return self._measured_slope_pv.get()
+        if not self._measured_slope_pv_obj:
+            self._measured_slope_pv_obj = PV(self.measured_slope_pv)
+        return self._measured_slope_pv_obj.get()
     
     @property
     def measured_slope_in_tolerance(self) -> bool:
@@ -1053,7 +1095,7 @@ class Cavity(utils.SCLinacObject):
             desAmp = self.ades_max
         print(f"setting up {self}")
         self.turnOff()
-        self.ssa.calibrate(self.ssa.drivemax)
+        self.ssa.calibrate(self.ssa.drive_max)
         self.move_to_resonance()
         
         self.characterize()
