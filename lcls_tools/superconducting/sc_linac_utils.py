@@ -1,11 +1,4 @@
 from abc import ABC, abstractmethod
-from datetime import datetime
-from time import sleep
-
-from epics import caput
-from epics.ca import CASeverityException
-
-from lcls_tools.common.pyepics_tools.pyepicsUtils import PV
 
 CHARACTERIZATION_CRASHED_VALUE = 0
 CHARACTERIZATION_RUNNING_VALUE = 2
@@ -184,52 +177,3 @@ class CavityFaultError(Exception):
 
 class CavityHWModeError(Exception):
     pass
-
-
-def runCalibration(startPV: PV, statusPV: PV, exception: Exception = Exception,
-                   resultStatusPV: PV = None):
-    try:
-        print(f"Pushing {startPV.pvname} button")
-        caput(startPV.pvname, 1)
-        print("waiting 2s for script to run")
-        sleep(2)
-        
-        while not statusPV.connect():
-            print(f"waiting for {statusPV.pvname} to connect")
-            sleep(1)
-        
-        # 2 is running
-        while statusPV.get() is None or statusPV.get() == 2:
-            print(f"waiting for {statusPV.pvname} to stop running", datetime.now())
-            sleep(1)
-        
-        sleep(2)
-        
-        # 0 is crashed
-        if statusPV.get() == 0:
-            raise exception("{pv} crashed".format(pv=statusPV.pvname))
-        
-        if resultStatusPV:
-            while not resultStatusPV.connect():
-                print(f"waiting for {resultStatusPV.pvname} to connect")
-                sleep(1)
-        
-        if resultStatusPV and resultStatusPV.get() != SSA_RESULT_GOOD_STATUS_VALUE:
-            raise exception(f"{resultStatusPV.pvname} not in good state")
-    
-    except CASeverityException:
-        raise exception('CASeverityException')
-
-
-def pushAndSaveCalibrationChange(measuredPV: PV,
-                                 lowerLimit: float, upperLimit: float,
-                                 pushPV: PV, savePV: PV,
-                                 exception: Exception = Exception,
-                                 save=False):
-    if lowerLimit < measuredPV.value < upperLimit:
-        pushPV.put(1)
-        if save:
-            savePV.put(1)
-    else:
-        raise exception(f"{measuredPV.pvname}: {measuredPV.value}"
-                        f" not between {lowerLimit} and {upperLimit}")

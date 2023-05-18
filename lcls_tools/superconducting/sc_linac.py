@@ -9,8 +9,8 @@ from typing import Dict, List, Type
 
 from numpy import sign
 
-import lcls_tools.superconducting.scLinacUtils as utils
-from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
+import lcls_tools.superconducting.sc_linac_utils as utils
+from lcls_tools.common.pyepics_tools.pyepics_utils import EPICS_INVALID_VAL, PV
 
 
 class SSA(utils.SCLinacObject):
@@ -295,8 +295,8 @@ class StepperTuner(utils.SCLinacObject):
         
         self.motor_done_pv: str = self.pv_addr("STAT_DONE")
         
-        self._limit_switch_a_pv: PV = None
-        self._limit_switch_b_pv: PV = None
+        self._limit_switch_a_pv_obj: PV = None
+        self._limit_switch_b_pv_obj: PV = None
         
         self.abort_flag: bool = False
     
@@ -354,16 +354,22 @@ class StepperTuner(utils.SCLinacObject):
         self._reset_signed_pv.put(0)
     
     @property
+    def limit_switch_a_pv_obj(self):
+        if not self._limit_switch_a_pv_obj:
+            self._limit_switch_a_pv_obj = PV(self._pv_prefix + "STAT_LIMA")
+        return self._limit_switch_a_pv_obj
+    
+    @property
+    def limit_switch_b_pv_obj(self):
+        if not self._limit_switch_b_pv_obj:
+            self._limit_switch_b_pv_obj = PV(self._pv_prefix + "STAT_LIMB")
+        return self._limit_switch_b_pv_obj
+    
+    @property
     def on_limit_switch(self) -> bool:
-        if not self._limit_switch_a_pv:
-            self._limit_switch_a_pv = PV(self._pv_prefix + "STAT_LIMA")
-        if not self._limit_switch_b_pv:
-            self._limit_switch_b_pv = PV(self._pv_prefix + "STAT_LIMB")
-        
-        return (self._limit_switch_a_pv.get()
-                == utils.STEPPER_ON_LIMIT_SWITCH_VALUE or
-                self._limit_switch_b_pv.get()
-                == utils.STEPPER_ON_LIMIT_SWITCH_VALUE)
+        return (self.limit_switch_a_pv_obj.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
+                or
+                self.limit_switch_b_pv_obj.get() == utils.STEPPER_ON_LIMIT_SWITCH_VALUE)
     
     @property
     def max_steps_pv_obj(self) -> PV:
