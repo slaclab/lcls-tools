@@ -66,7 +66,7 @@ class SSA:
     
     def calibrate(self, drivemax):
         print(f"Trying {self.cavity} SSA calibration with drivemax {drivemax}")
-        if drivemax < 0.5:
+        if drivemax < 0.4:
             raise utils.SSACalibrationError(f"Requested {self.cavity} SSA drive max too low")
         
         while caput(self.maxdrive_setpoint_pv, drivemax) != 1:
