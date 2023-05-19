@@ -26,6 +26,12 @@ class SSA:
                                                                              CRYOMODULE=self.cavity.cryomodule.name,
                                                                              CAVITY=cavity_num)
             self.fwd_power_lower_limit = 500
+            
+            self.ps_volt_setpoint1_pv: str = self.pvPrefix + "PSVoltSetpt1"
+            self._ps_volt_setpoint1_pv_obj: PV = None
+            
+            self.ps_volt_setpoint2_pv: str = self.pvPrefix + "PSVoltSetpt2"
+            self._ps_volt_setpoint2_pv_obj: PV = None
         else:
             self.pvPrefix = self.cavity.pvPrefix + "SSA:"
             self.fwd_power_lower_limit = 3000
@@ -79,8 +85,24 @@ class SSA:
             print(f"{self.cavity} SSA Calibration failed with '{e}', retrying")
             self.calibrate(drivemax)
     
+    @property
+    def ps_volt_setpoint2_pv_obj(self):
+        if not self._ps_volt_setpoint2_pv_obj:
+            self._ps_volt_setpoint2_pv_obj = PV(self.ps_volt_setpoint2_pv)
+        return self._ps_volt_setpoint2_pv_obj
+    
+    @property
+    def ps_volt_setpoint1_pv_obj(self):
+        if not self._ps_volt_setpoint1_pv_obj:
+            self._ps_volt_setpoint1_pv_obj = PV(self.ps_volt_setpoint1_pv)
+        return self._ps_volt_setpoint1_pv_obj
+    
     def turnOn(self):
         self.setPowerState(True)
+        
+        if self.cavity.cryomodule.isHarmonicLinearizer:
+            self.ps_volt_setpoint2_pv_obj.put(2500)
+            self.ps_volt_setpoint1_pv_obj.put(2500)
     
     def turnOff(self):
         self.setPowerState(False)
