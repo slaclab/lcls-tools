@@ -204,6 +204,8 @@ class StepperTuner:
         :return:
         """
         
+        self.check_abort()
+        
         if changeLimits:
             # on the off chance that someone tries to write a negative maximum
             caput(self.max_steps_pv.pvname, abs(maxSteps))
