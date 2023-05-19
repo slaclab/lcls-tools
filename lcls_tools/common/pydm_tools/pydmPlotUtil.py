@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
 from PyQt5.QtWidgets import QFormLayout
-from pydm.widgets import PyDMLabel, PyDMTimePlot, PyDMWaveformPlot
+from pydm.widgets import PyDMArchiverTimePlot, PyDMLabel, PyDMWaveformPlot
 
 
 @dataclass
@@ -15,7 +15,7 @@ class PyDMPlotParams:
 
 @dataclass
 class TimePlotParams(PyDMPlotParams):
-    plot: PyDMTimePlot = None
+    plot: PyDMArchiverTimePlot = None
     formLayout: Optional[QFormLayout] = None
     channels: Optional[List[str]] = None
     axes: Optional[List[str]] = None
@@ -111,7 +111,8 @@ class TimePlotUpdater(PyDMPlotUpdater):
                                             lineWidth=timePlotParams.lineWidth,
                                             symbol=timePlotParams.symbol,
                                             symbolSize=timePlotParams.symbolSize,
-                                            yAxisName=axis)
+                                            yAxisName=axis,
+                                            useArchiveData=True)
     
     def updatePlots(self, plotUpdateMap: Dict[str, List[Tuple[str, str]]]):
         for key, channelAxisTuple in plotUpdateMap.items():
