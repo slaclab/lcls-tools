@@ -237,7 +237,7 @@ class StepperTuner:
         print("Waiting 5s for the motor to start moving")
         sleep(5)
         
-        while self.motor_moving_pv.get() == 1:
+        while self.motor_moving_pv.get(retry_until_valid=True) == 1:
             if self.abort_flag:
                 self.abort_pv.put(1)
                 raise utils.StepperAbortError(
