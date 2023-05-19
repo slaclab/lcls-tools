@@ -238,11 +238,7 @@ class StepperTuner:
         sleep(5)
         
         while self.motor_moving_pv.get(retry_until_valid=True) == 1:
-            if self.abort_flag:
-                self.abort_pv.put(1)
-                raise utils.StepperAbortError(
-                        f"Abort requested for {self.cavity.cryomodule.name} cavity {self.cavity.number} stepper tuner")
-            
+            self.check_abort()
             print(f"{self.cavity} motor still moving, waiting 5s", datetime.now())
             sleep(5)
         
@@ -252,6 +248,12 @@ class StepperTuner:
         if (caget(self.limit_switch_a_pv.pvname) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
                 or caget(self.limit_switch_b_pv.pvname) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
             raise utils.StepperError(f"{self.cavity} stepper motor on limit switch")
+    
+    def check_abort(self):
+        if self.abort_flag:
+            self.abort_pv.put(1)
+            raise utils.StepperAbortError(
+                    f"Abort requested for {self.cavity.cryomodule.name} cavity {self.cavity.number} stepper tuner")
 
 
 class Piezo:
@@ -493,6 +495,7 @@ class Cavity:
         steps_moved: int = 0
         
         while abs(delta) > tolerance:
+            self.check_abort()
             est_steps = int(0.9 * delta * self.steps_per_hz)
             
             print(f"Moving stepper for {self} {est_steps} steps")
