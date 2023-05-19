@@ -502,7 +502,7 @@ class Cavity:
                                    speed=utils.MAX_STEPPER_SPEED)
             steps_moved += abs(est_steps)
             
-            if steps_moved > expected_steps * 1.1:
+            if steps_moved > expected_steps * 1.2:
                 raise utils.DetuneError(f"{self} motor moved more steps than expected")
             
             # this should catch if the chirp range is wrong or if the cavity is off
