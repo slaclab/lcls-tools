@@ -86,7 +86,8 @@ class SSA:
             if attempt < 3:
                 print(f"retyring {self.cavity} calibration")
                 self.calibrate(drivemax, attempt=attempt + 1)
-            raise e
+            else:
+                raise utils.SSACalibrationError(f"{self.cavity} SSA Calibration failed with '{e}'")
     
     @property
     def ps_volt_setpoint2_pv_obj(self):
