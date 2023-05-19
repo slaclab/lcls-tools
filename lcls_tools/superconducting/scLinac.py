@@ -25,8 +25,10 @@ class SSA:
             self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
                                                                              CRYOMODULE=self.cavity.cryomodule.name,
                                                                              CAVITY=cavity_num)
+            self.fwd_power_lower_limit = 500
         else:
             self.pvPrefix = self.cavity.pvPrefix + "SSA:"
+            self.fwd_power_lower_limit = 3000
         
         self.statusPV: str = (self.pvPrefix + "StatusMsg")
         self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
@@ -133,7 +135,7 @@ class SSA:
                              exception=utils.SSACalibrationError,
                              resultStatusPV=self.calResultStatusPV)
         
-        if self.max_fwd_pwr < utils.SSA_FWD_PWR_LOWER_LIMIT:
+        if self.max_fwd_pwr < self.fwd_power_lower_limit:
             raise utils.SSACalibrationToleranceError(f"{self.cavity} SSA forward power too low")
         
         print(f"Pushing SSA calibration results for {self.cavity}")
