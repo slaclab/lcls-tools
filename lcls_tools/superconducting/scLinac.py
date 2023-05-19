@@ -214,12 +214,15 @@ class StepperTuner:
                   else utils.MAX_STEPPER_SPEED)
         
         if abs(numSteps) <= maxSteps:
+            print(f"{self.cavity} {numSteps} steps <= {maxSteps} max")
             self.step_des_pv.put(abs(numSteps))
             self.issueMoveCommand(numSteps)
             self.restoreDefaults()
         else:
+            print(f"{self.cavity} {numSteps} steps > {maxSteps} max")
             self.step_des_pv.put(maxSteps)
             self.issueMoveCommand(numSteps)
+            print(f"{self.cavity} moving {numSteps - (sign(numSteps) * maxSteps)}")
             self.move(numSteps - (sign(numSteps) * maxSteps), maxSteps, speed,
                       False)
     
@@ -234,7 +237,7 @@ class StepperTuner:
         else:
             self.move_neg_pv.put(1)
         
-        print("Waiting 5s for the motor to start moving")
+        print(f"Waiting 5s for {self.cavity} motor to start moving")
         sleep(5)
         
         while self.motor_moving_pv.get(retry_until_valid=True) == 1:
