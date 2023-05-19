@@ -61,8 +61,8 @@ class SSA:
     @property
     def drivemax(self):
         saved_val = caget(self.saved_maxdrive_pv)
-        return (1 if self.cavity.cryomodule.isHarmonicLinearizer
-                else (saved_val if saved_val else 0.8))
+        return (saved_val if saved_val
+                else (1 if self.cavity.cryomodule.isHarmonicLinearizer else 0.8))
     
     def calibrate(self, drivemax):
         print(f"Trying {self.cavity} SSA calibration with drivemax {drivemax}")
