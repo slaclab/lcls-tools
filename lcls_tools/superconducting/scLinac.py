@@ -513,7 +513,7 @@ class Cavity:
         self.auto_tune(des_detune=0,
                        config_val=utils.TUNE_CONFIG_RESONANCE_VALUE)
     
-    def auto_tune(self, des_detune, config_val, tolerance=50, chirp_range=200000):
+    def auto_tune(self, des_detune, config_val, tolerance=50, chirp_range=50000):
         self.setup_tuning(chirp_range)
         
         if self.detune_best_PV.severity == 3:
@@ -698,7 +698,7 @@ class Cavity:
         
         self.find_chirp_range(chirp_range)
     
-    def find_chirp_range(self, chirp_range=200000):
+    def find_chirp_range(self, chirp_range=50000):
         self.set_chirp_range(chirp_range)
         sleep(1)
         if self.detune_best_PV.severity == EPICS_INVALID_VAL:
