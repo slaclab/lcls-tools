@@ -105,8 +105,8 @@ class SSA:
         self.setPowerState(True)
         
         if self.cavity.cryomodule.isHarmonicLinearizer:
-            self.ps_volt_setpoint2_pv_obj.put(2500)
-            self.ps_volt_setpoint1_pv_obj.put(2500)
+            self.ps_volt_setpoint2_pv_obj.put(utils.HL_SSA_PS_SETPOINT)
+            self.ps_volt_setpoint1_pv_obj.put(utils.HL_SSA_PS_SETPOINT)
     
     def turnOff(self):
         self.setPowerState(False)
