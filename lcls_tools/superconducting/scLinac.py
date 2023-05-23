@@ -25,8 +25,16 @@ class SSA:
             self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
                                                                              CRYOMODULE=self.cavity.cryomodule.name,
                                                                              CAVITY=cavity_num)
+            self.fwd_power_lower_limit = 500
+            
+            self.ps_volt_setpoint1_pv: str = self.pvPrefix + "PSVoltSetpt1"
+            self._ps_volt_setpoint1_pv_obj: PV = None
+            
+            self.ps_volt_setpoint2_pv: str = self.pvPrefix + "PSVoltSetpt2"
+            self._ps_volt_setpoint2_pv_obj: PV = None
         else:
             self.pvPrefix = self.cavity.pvPrefix + "SSA:"
+            self.fwd_power_lower_limit = 3000
         
         self.statusPV: str = (self.pvPrefix + "StatusMsg")
         self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
@@ -53,12 +61,12 @@ class SSA:
     @property
     def drivemax(self):
         saved_val = caget(self.saved_maxdrive_pv)
-        return (1 if self.cavity.cryomodule.isHarmonicLinearizer
-                else (saved_val if saved_val else 0.8))
+        return (saved_val if saved_val
+                else (1 if self.cavity.cryomodule.isHarmonicLinearizer else 0.8))
     
-    def calibrate(self, drivemax):
+    def calibrate(self, drivemax, attempt=0):
         print(f"Trying {self.cavity} SSA calibration with drivemax {drivemax}")
-        if drivemax < 0.5:
+        if drivemax < 0.4:
             raise utils.SSACalibrationError(f"Requested {self.cavity} SSA drive max too low")
         
         while caput(self.maxdrive_setpoint_pv, drivemax) != 1:
@@ -74,11 +82,31 @@ class SSA:
             self.calibrate(drivemax - 0.02)
         
         except utils.SSACalibrationToleranceError as e:
-            print(f"{self.cavity} SSA Calibration failed with '{e}', retrying")
-            self.calibrate(drivemax)
+            print(f"{self.cavity} SSA Calibration failed with '{e}'")
+            if attempt < 3:
+                print(f"retyring {self.cavity} calibration")
+                self.calibrate(drivemax, attempt=attempt + 1)
+            else:
+                raise utils.SSACalibrationError(f"{self.cavity} SSA Calibration failed with '{e}'")
+    
+    @property
+    def ps_volt_setpoint2_pv_obj(self):
+        if not self._ps_volt_setpoint2_pv_obj:
+            self._ps_volt_setpoint2_pv_obj = PV(self.ps_volt_setpoint2_pv)
+        return self._ps_volt_setpoint2_pv_obj
+    
+    @property
+    def ps_volt_setpoint1_pv_obj(self):
+        if not self._ps_volt_setpoint1_pv_obj:
+            self._ps_volt_setpoint1_pv_obj = PV(self.ps_volt_setpoint1_pv)
+        return self._ps_volt_setpoint1_pv_obj
     
     def turnOn(self):
         self.setPowerState(True)
+        
+        if self.cavity.cryomodule.isHarmonicLinearizer:
+            self.ps_volt_setpoint2_pv_obj.put(utils.HL_SSA_PS_SETPOINT)
+            self.ps_volt_setpoint1_pv_obj.put(utils.HL_SSA_PS_SETPOINT)
     
     def turnOff(self):
         self.setPowerState(False)
@@ -133,7 +161,7 @@ class SSA:
                              exception=utils.SSACalibrationError,
                              resultStatusPV=self.calResultStatusPV)
         
-        if self.max_fwd_pwr < utils.SSA_FWD_PWR_LOWER_LIMIT:
+        if self.max_fwd_pwr < self.fwd_power_lower_limit:
             raise utils.SSACalibrationToleranceError(f"{self.cavity} SSA forward power too low")
         
         print(f"Pushing SSA calibration results for {self.cavity}")
@@ -204,6 +232,8 @@ class StepperTuner:
         :return:
         """
         
+        self.check_abort()
+        
         if changeLimits:
             # on the off chance that someone tries to write a negative maximum
             caput(self.max_steps_pv.pvname, abs(maxSteps))
@@ -214,12 +244,15 @@ class StepperTuner:
                   else utils.MAX_STEPPER_SPEED)
         
         if abs(numSteps) <= maxSteps:
+            print(f"{self.cavity} {numSteps} steps <= {maxSteps} max")
             self.step_des_pv.put(abs(numSteps))
             self.issueMoveCommand(numSteps)
             self.restoreDefaults()
         else:
+            print(f"{self.cavity} {numSteps} steps > {maxSteps} max")
             self.step_des_pv.put(maxSteps)
             self.issueMoveCommand(numSteps)
+            print(f"{self.cavity} moving {numSteps - (sign(numSteps) * maxSteps)}")
             self.move(numSteps - (sign(numSteps) * maxSteps), maxSteps, speed,
                       False)
     
@@ -234,15 +267,11 @@ class StepperTuner:
         else:
             self.move_neg_pv.put(1)
         
-        print("Waiting 5s for the motor to start moving")
+        print(f"Waiting 5s for {self.cavity} motor to start moving")
         sleep(5)
         
-        while self.motor_moving_pv.get() == 1:
-            if self.abort_flag:
-                self.abort_pv.put(1)
-                raise utils.StepperAbortError(
-                        f"Abort requested for {self.cavity.cryomodule.name} cavity {self.cavity.number} stepper tuner")
-            
+        while self.motor_moving_pv.get(retry_until_valid=True) == 1:
+            self.check_abort()
             print(f"{self.cavity} motor still moving, waiting 5s", datetime.now())
             sleep(5)
         
@@ -252,6 +281,12 @@ class StepperTuner:
         if (caget(self.limit_switch_a_pv.pvname) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE
                 or caget(self.limit_switch_b_pv.pvname) == utils.STEPPER_ON_LIMIT_SWITCH_VALUE):
             raise utils.StepperError(f"{self.cavity} stepper motor on limit switch")
+    
+    def check_abort(self):
+        if self.abort_flag:
+            self.abort_pv.put(1)
+            raise utils.StepperAbortError(
+                    f"Abort requested for {self.cavity.cryomodule.name} cavity {self.cavity.number} stepper tuner")
 
 
 class Piezo:
@@ -479,7 +514,7 @@ class Cavity:
         self.auto_tune(des_detune=0,
                        config_val=utils.TUNE_CONFIG_RESONANCE_VALUE)
     
-    def auto_tune(self, des_detune, config_val, tolerance=50, chirp_range=200000):
+    def auto_tune(self, des_detune, config_val, tolerance=50, chirp_range=50000):
         self.setup_tuning(chirp_range)
         
         if self.detune_best_PV.severity == 3:
@@ -493,16 +528,17 @@ class Cavity:
         steps_moved: int = 0
         
         while abs(delta) > tolerance:
+            self.check_abort()
             est_steps = int(0.9 * delta * self.steps_per_hz)
             
             print(f"Moving stepper for {self} {est_steps} steps")
             
             self.steppertuner.move(est_steps,
-                                   maxSteps=est_steps * 1.1,
+                                   maxSteps=abs(est_steps) * 1.1,
                                    speed=utils.MAX_STEPPER_SPEED)
             steps_moved += abs(est_steps)
             
-            if steps_moved > expected_steps * 1.1:
+            if steps_moved > expected_steps * 1.5:
                 raise utils.DetuneError(f"{self} motor moved more steps than expected")
             
             # this should catch if the chirp range is wrong or if the cavity is off
@@ -663,7 +699,7 @@ class Cavity:
         
         self.find_chirp_range(chirp_range)
     
-    def find_chirp_range(self, chirp_range=200000):
+    def find_chirp_range(self, chirp_range=50000):
         self.set_chirp_range(chirp_range)
         sleep(1)
         if self.detune_best_PV.severity == EPICS_INVALID_VAL:
