@@ -17,13 +17,20 @@ class SSA(utils.SCLinacObject):
     def __init__(self, cavity):
         # type: (Cavity) -> None
         self.cavity: Cavity = cavity
-        
         if self.cavity.cryomodule.is_harmonic_linearizer:
             cavity_num = utils.HL_SSA_MAP[self.cavity.number]
             self._pv_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
                                                                                CRYOMODULE=self.cavity.cryomodule.name,
                                                                                CAVITY=cavity_num)
+            self.fwd_power_lower_limit = 500
+            
+            self.ps_volt_setpoint1_pv: str = self.pv_addr("PSVoltSetpt1")
+            self._ps_volt_setpoint1_pv_obj: PV = None
+            
+            self.ps_volt_setpoint2_pv: str = self.pv_addr("PSVoltSetpt2")
+            self._ps_volt_setpoint2_pv_obj: PV = None
         else:
+            self.fwd_power_lower_limit = 3000
             self._pv_prefix = self.cavity.pv_addr("SSA:")
         
         self.status_pv: str = self.pv_addr("StatusMsg")
@@ -98,8 +105,8 @@ class SSA(utils.SCLinacObject):
         if not self._saved_drive_max_pv_obj:
             self._saved_drive_max_pv_obj = PV(self.saved_drive_max_pv)
         saved_val = self._saved_drive_max_pv_obj.get()
-        return (1 if self.cavity.cryomodule.is_harmonic_linearizer
-                else (saved_val if saved_val else 0.8))
+        return (saved_val if saved_val
+                else (1 if self.cavity.cryomodule.is_harmonic_linearizer else 0.8))
     
     @drive_max.setter
     def drive_max(self, value: float):
@@ -107,9 +114,9 @@ class SSA(utils.SCLinacObject):
             self._drive_max_setpoint_pv_obj = PV(self.drive_max_setpoint_pv)
         self._drive_max_setpoint_pv_obj.put(value)
     
-    def calibrate(self, drivemax):
+    def calibrate(self, drivemax, attempt=0):
         print(f"Trying {self} calibration with drivemax {drivemax}")
-        if drivemax < 0.5:
+        if drivemax < 0.4:
             raise utils.SSACalibrationError(f"Requested {self} drive max too low")
         
         print(f"Setting {self} max drive")
@@ -124,8 +131,24 @@ class SSA(utils.SCLinacObject):
             self.calibrate(drivemax - 0.02)
         
         except utils.SSACalibrationToleranceError as e:
-            print(f"{self} Calibration failed with '{e}', retrying")
-            self.calibrate(drivemax)
+            print(f"{self} Calibration failed with '{e}'")
+            if attempt < 3:
+                print(f"retyring {self.cavity} calibration")
+                self.calibrate(drivemax, attempt=attempt + 1)
+            else:
+                raise utils.SSACalibrationError(f"{self.cavity} SSA Calibration failed with '{e}'")
+    
+    @property
+    def ps_volt_setpoint2_pv_obj(self):
+        if not self._ps_volt_setpoint2_pv_obj:
+            self._ps_volt_setpoint2_pv_obj = PV(self.ps_volt_setpoint2_pv)
+        return self._ps_volt_setpoint2_pv_obj
+    
+    @property
+    def ps_volt_setpoint1_pv_obj(self):
+        if not self._ps_volt_setpoint1_pv_obj:
+            self._ps_volt_setpoint1_pv_obj = PV(self.ps_volt_setpoint1_pv)
+        return self._ps_volt_setpoint1_pv_obj
     
     @property
     def turn_on_pv_obj(self) -> PV:
@@ -142,6 +165,10 @@ class SSA(utils.SCLinacObject):
                 self.cavity.check_abort()
                 print(f"waiting for {self} to turn on")
                 sleep(1)
+        
+        if self.cavity.cryomodule.is_harmonic_linearizer:
+            self.ps_volt_setpoint2_pv_obj.put(utils.HL_SSA_PS_SETPOINT)
+            self.ps_volt_setpoint1_pv_obj.put(utils.HL_SSA_PS_SETPOINT)
         
         print(f"{self} on")
     
@@ -236,7 +263,7 @@ class SSA(utils.SCLinacObject):
         if not self.calibration_result_good:
             raise utils.SSACalibrationError(f"{self} calibration result not good")
         
-        if self.max_fwd_pwr < utils.SSA_FWD_PWR_LOWER_LIMIT:
+        if self.max_fwd_pwr < self.fwd_power_lower_limit:
             raise utils.SSACalibrationToleranceError(f"{self.cavity} SSA forward power too low")
         
         if not self.measured_slope_in_tolerance:
@@ -268,9 +295,14 @@ class StepperTuner(utils.SCLinacObject):
         self.cavity: Cavity = cavity
         self._pv_prefix: str = self.cavity.pv_addr("STEP:")
         
-        self._move_pos_pv: PV = None
-        self._move_neg_pv: PV = None
-        self._abort_pv: PV = None
+        self.move_pos_pv: str = self.pv_addr("MOV_REQ_POS")
+        self._move_pos_pv_obj: PV = None
+        
+        self.move_neg_pv: str = self.pv_addr("MOV_REQ_NEG")
+        self._move_neg_pv_obj: PV = None
+        
+        self.abort_pv: str = self.pv_addr("ABORT_REQ")
+        self._abort_pv_obj: PV = None
         
         self.step_des_pv: str = self.pv_addr("NSTEPS")
         self._step_des_pv_obj: PV = None
@@ -278,24 +310,29 @@ class StepperTuner(utils.SCLinacObject):
         self.max_steps_pv: str = self.pv_addr("NSTEPS.DRVH")
         self._max_steps_pv_obj: PV = None
         
-        self.speed_pv: str = self._pv_prefix + "VELO"
+        self.speed_pv: str = self.pv_addr("VELO")
         self._speed_pv_obj: PV = None
         
         self.step_tot_pv: str = self.pv_addr("REG_TOTABS")
         self.step_signed_pv: str = self.pv_addr("REG_TOTSGN")
         self.reset_tot_pv: str = self.pv_addr("TOTABS_RESET")
         
-        self._reset_signed_pv: PV = None
+        self.reset_signed_pv: str = self.pv_addr("TOTSGN_RESET")
+        self._reset_signed_pv_obj: PV = None
         
         self.steps_cold_landing_pv: str = self.pv_addr("NSTEPS_COLD")
         self.push_signed_cold_pv: str = self.pv_addr("PUSH_NSTEPS_COLD.PROC")
         self.push_signed_park_pv: str = self.pv_addr("PUSH_NSTEPS_PARK.PROC")
         
-        self._motor_moving_pv: PV = None
+        self.motor_moving_pv: str = self.pv_addr("STAT_MOV")
+        self._motor_moving_pv_obj: PV = None
         
         self.motor_done_pv: str = self.pv_addr("STAT_DONE")
         
+        self.limit_switch_a_pv: str = self.pv_addr("STAT_LIMA")
         self._limit_switch_a_pv_obj: PV = None
+        
+        self.limit_switch_b_pv: str = self.pv_addr("STAT_LIMB")
         self._limit_switch_b_pv_obj: PV = None
         
         self.abort_flag: bool = False
@@ -314,19 +351,19 @@ class StepperTuner(utils.SCLinacObject):
             raise utils.StepperAbortError(f"Abort requested for {self}")
     
     def abort(self):
-        if not self._abort_pv:
-            self._abort_pv = PV(self._pv_prefix + "ABORT_REQ")
-        self._abort_pv.put(1)
+        if not self._abort_pv_obj:
+            self._abort_pv_obj = PV(self.abort_pv)
+        self._abort_pv_obj.put(1)
     
     def move_positive(self):
-        if not self._move_pos_pv:
-            self._move_pos_pv = PV(self._pv_prefix + "MOV_REQ_POS")
-        self._move_pos_pv.put(1)
+        if not self._move_pos_pv_obj:
+            self._move_pos_pv_obj = PV(self.move_pos_pv)
+        self._move_pos_pv_obj.put(1)
     
     def move_negative(self):
-        if not self._move_neg_pv:
-            self._move_neg_pv = PV(self._pv_prefix + "MOV_REQ_NEG")
-        self._move_neg_pv.put(1)
+        if not self._move_neg_pv_obj:
+            self._move_neg_pv_obj = PV(self.move_neg_pv)
+        self._move_neg_pv_obj.put(1)
     
     @property
     def step_des_pv_obj(self):
@@ -344,25 +381,25 @@ class StepperTuner(utils.SCLinacObject):
     
     @property
     def motor_moving(self) -> bool:
-        if not self._motor_moving_pv:
-            self._motor_moving_pv = PV(self._pv_prefix + "STAT_MOV")
-        return self._motor_moving_pv.get() == 1
+        if not self._motor_moving_pv_obj:
+            self._motor_moving_pv_obj = PV(self.motor_moving_pv)
+        return self._motor_moving_pv_obj.get() == 1
     
     def reset_signed_steps(self):
-        if not self._reset_signed_pv:
-            self._reset_signed_pv = PV(self._pv_prefix + "TOTSGN_RESET")
-        self._reset_signed_pv.put(0)
+        if not self._reset_signed_pv_obj:
+            self._reset_signed_pv_obj = PV(self.reset_signed_pv)
+        self._reset_signed_pv_obj.put(0)
     
     @property
     def limit_switch_a_pv_obj(self):
         if not self._limit_switch_a_pv_obj:
-            self._limit_switch_a_pv_obj = PV(self._pv_prefix + "STAT_LIMA")
+            self._limit_switch_a_pv_obj = PV(self.limit_switch_a_pv)
         return self._limit_switch_a_pv_obj
     
     @property
     def limit_switch_b_pv_obj(self):
         if not self._limit_switch_b_pv_obj:
-            self._limit_switch_b_pv_obj = PV(self._pv_prefix + "STAT_LIMB")
+            self._limit_switch_b_pv_obj = PV(self.limit_switch_b_pv)
         return self._limit_switch_b_pv_obj
     
     @property
@@ -413,6 +450,8 @@ class StepperTuner(utils.SCLinacObject):
         :return:
         """
         
+        self.check_abort()
+        
         if changeLimits:
             # on the off chance that someone tries to write a negative maximum
             self.max_steps = abs(maxSteps)
@@ -422,12 +461,15 @@ class StepperTuner(utils.SCLinacObject):
                           else utils.MAX_STEPPER_SPEED)
         
         if abs(numSteps) <= maxSteps:
+            print(f"{self.cavity} {numSteps} steps <= {maxSteps} max")
             self.step_des = abs(numSteps)
             self.issueMoveCommand(numSteps)
             self.restoreDefaults()
         else:
+            print(f"{self.cavity} {numSteps} steps > {maxSteps} max")
             self.step_des = maxSteps
             self.issueMoveCommand(numSteps)
+            print(f"{self.cavity} moving {numSteps - (sign(numSteps) * maxSteps)}")
             self.move(numSteps - (sign(numSteps) * maxSteps), maxSteps, speed,
                       False)
     
@@ -442,7 +484,7 @@ class StepperTuner(utils.SCLinacObject):
         else:
             self.move_negative()
         
-        print("Waiting 5s for the motor to start moving")
+        print(f"Waiting 5s for {self.cavity} motor to start moving")
         sleep(5)
         
         while self.motor_moving:
@@ -466,7 +508,8 @@ class Piezo(utils.SCLinacObject):
         self.enable_pv: str = self.pv_addr("ENABLE")
         self._enable_pv_obj: PV = None
         
-        self._enable_stat_pv: PV = None
+        self.enable_stat_pv: str = self.pv_addr("ENABLESTAT")
+        self._enable_stat_pv_obj: PV = None
         
         self.feedback_control_pv: str = self.pv_addr("MODECTRL")
         self._feedback_control_pv_obj: PV = None
@@ -537,9 +580,9 @@ class Piezo(utils.SCLinacObject):
     
     @property
     def is_enabled(self) -> bool:
-        if not self._enable_stat_pv:
-            self._enable_stat_pv = PV(self._pv_prefix + "ENABLESTAT")
-        return self._enable_stat_pv.get() == utils.PIEZO_ENABLE_VALUE
+        if not self._enable_stat_pv_obj:
+            self._enable_stat_pv_obj = PV(self.enable_stat_pv)
+        return self._enable_stat_pv_obj.get() == utils.PIEZO_ENABLE_VALUE
     
     @property
     def feedback_control_pv_obj(self) -> PV:
@@ -582,7 +625,6 @@ class Cavity(utils.SCLinacObject):
         rackObject: the rack object the cavities belong to
         """
         
-        self._calc_probe_q_pv_obj = None
         self.number = cavityNum
         self.rack: Rack = rackObject
         self.cryomodule: Cryomodule = self.rack.cryomodule
@@ -614,9 +656,17 @@ class Cavity(utils.SCLinacObject):
         self.steppertuner = stepperClass(self)
         self.piezo = piezoClass(self)
         
-        self._push_ssa_slope_pv: PV = None
-        self._save_ssa_slope_pv: PV = None
-        self._interlock_reset_pv: PV = None
+        self._calc_probe_q_pv_obj: PV = None
+        self.calc_probe_q_pv: str = self.pv_addr("QPROBE_CALC1.PROC")
+        
+        self._push_ssa_slope_pv_obj: PV = None
+        self.push_ssa_slope_pv: str = self.pv_addr("PUSH_SSA_SLOPE.PROC")
+        
+        self.save_ssa_slope_pv: str = self.pv_addr("SAVE_SSA_SLOPE.PROC")
+        self._save_ssa_slope_pv_obj: PV = None
+        
+        self.interlock_reset_pv: str = self.pv_addr("INTLK_RESET_ALL")
+        self._interlock_reset_pv_obj: PV = None
         
         self.drive_level_pv: str = self.pv_addr("SEL_ASET")
         self._drive_level_pv_obj: PV = None
@@ -624,25 +674,37 @@ class Cavity(utils.SCLinacObject):
         self.characterization_start_pv: str = self.pv_addr("PROBECALSTRT")
         self._characterization_start_pv_obj: PV = None
         
-        self._characterization_status_pv: PV = None
+        self.characterization_status_pv: str = self.pv_addr("PROBECALSTS")
+        self._characterization_status_pv_obj: PV = None
         
         self.current_q_loaded_pv: str = self.pv_addr("QLOADED")
         
-        self._measured_loaded_q_pv: PV = None
-        self._push_loaded_q_pv: PV = None
+        self.measured_loaded_q_pv: str = self.pv_addr("QLOADED_NEW")
+        self._measured_loaded_q_pv_obj: PV = None
+        
+        self.push_loaded_q_pv: str = self.pv_addr("PUSH_QLOADED.PROC")
+        self._push_loaded_q_pv_obj: PV = None
         
         self.save_q_loaded_pv: str = self.pv_addr("SAVE_QLOADED.PROC")
         
         self.current_cavity_scale_pv: str = self.pv_addr("CAV:SCALER_SEL.B")
         
-        self._measured_scale_factor_pv: PV = None
-        self._push_scale_factor_pv: PV = None
+        self.measured_scale_factor_pv: str = self.pv_addr("CAV:CAL_SCALEB_NEW")
+        self._measured_scale_factor_pv_obj: PV = None
+        
+        self.push_scale_factor_pv: str = self.pv_addr("PUSH_CAV_SCALE.PROC")
+        self._push_scale_factor_pv_obj: PV = None
         
         self.save_cavity_scale_pv: str = self.pv_addr("SAVE_CAV_SCALE.PROC")
         
-        self._ades_pv: PV = None
-        self._aact_pv: PV = None
-        self._ades_max_pv: PV = None
+        self.ades_pv: str = self.pv_addr("ADES")
+        self._ades_pv_obj: PV = None
+        
+        self.aact_pv: str = self.pv_addr("AACTMEAN")
+        self._aact_pv_obj: PV = None
+        
+        self.ades_max_pv: str = self.pv_addr("ADES_MAX")
+        self._ades_max_pv_obj: PV = None
         
         self.rf_mode_ctrl_pv: str = self.pv_addr("RFMODECTRL")
         self._rf_mode_ctrl_pv_obj: PV = None
@@ -652,13 +714,17 @@ class Cavity(utils.SCLinacObject):
         self.rf_state_pv: str = self.pv_addr("RFSTATE")
         self._rf_state_pv_obj: PV = None
         
-        self._rf_control_pv: PV = None
+        self.rf_control_pv: str = self.pv_addr("RFCTRL")
+        self._rf_control_pv_obj: PV = None
         
         self.pulse_go_pv: str = self.pv_addr("PULSE_DIFF_SUM")
         self._pulse_go_pv_obj: PV = None
         
-        self._pulse_status_pv: PV = None
-        self._pulse_on_time_pv: PV = None
+        self.pulse_status_pv: str = self.pv_addr("PULSE_STATUS")
+        self._pulse_status_pv_obj: PV = None
+        
+        self.pulse_on_time_pv: str = self.pv_addr("PULSE_ONTIME")
+        self._pulse_on_time_pv_obj: PV = None
         
         self.rev_waveform_pv: str = self.pv_addr("REV:AWF")
         self.fwd_waveform_pv: str = self.pv_addr("FWD:AWF")
@@ -666,11 +732,14 @@ class Cavity(utils.SCLinacObject):
         
         self.stepper_temp_pv: str = self.pv_addr("STEPTEMP")
         
-        self._detune_best_pv: PV = None
+        self.detune_best_pv: str = self.pv_addr("DFBEST")
+        self._detune_best_pv_obj: PV = None
         
-        self._rf_permit_pv: PV = None
+        self.rf_permit_pv: str = self.pv_addr("RFPERMIT")
+        self._rf_permit_pv_obj: PV = None
         
-        self._quench_latch_pv: PV = None
+        self.quench_latch_pv: str = self.pv_addr("QUENCH_LTCH")
+        self._quench_latch_pv_obj: PV = None
         
         self.quench_bypass_pv: str = self.pv_addr("QUENCH_BYP")
         
@@ -683,12 +752,16 @@ class Cavity(utils.SCLinacObject):
         self.tune_config_pv: str = self.pv_addr("TUNE_CONFIG")
         self._tune_config_pv_obj: PV = None
         
-        self._chirp_freq_start_pv_obj: str = None
-        self._freq_stop_pv_obj: str = None
+        self.chirp_freq_start_pv: str = self.chirp_prefix + "FREQ_START"
+        self._chirp_freq_start_pv_obj: PV = None
+        
+        self.freq_stop_pv: str = self.chirp_prefix + "FREQ_STOP"
+        self._freq_stop_pv_obj: PV = None
         
         self.abort_flag: bool = False
         
-        self._hw_mode_pv: PV = None
+        self.hw_mode_pv: str = self.pv_addr("HWMODE")
+        self._hw_mode_pv_obj: PV = None
     
     def __str__(self):
         return f"{self.linac.name} CM{self.cryomodule.name} Cavity {self.number}"
@@ -732,9 +805,9 @@ class Cavity(utils.SCLinacObject):
     
     @property
     def rf_control_pv_obj(self) -> PV:
-        if not self._rf_control_pv:
-            self._rf_control_pv = PV(self.pv_addr("RFCTRL"))
-        return self._rf_control_pv
+        if not self._rf_control_pv_obj:
+            self._rf_control_pv_obj = PV(self.rf_control_pv)
+        return self._rf_control_pv_obj
     
     @property
     def rf_control(self):
@@ -777,20 +850,20 @@ class Cavity(utils.SCLinacObject):
         self.drive_level_pv_obj.put(value)
     
     def push_ssa_slope(self):
-        if not self._push_ssa_slope_pv:
-            self._push_ssa_slope_pv = PV(self._pv_prefix + "PUSH_SSA_SLOPE.PROC")
-        self._push_ssa_slope_pv.put(1)
+        if not self._push_ssa_slope_pv_obj:
+            self._push_ssa_slope_pv_obj = PV(self._pv_prefix + "PUSH_SSA_SLOPE.PROC")
+        self._push_ssa_slope_pv_obj.put(1)
     
     def save_ssa_slope(self):
-        if not self._save_ssa_slope_pv:
-            self._save_ssa_slope_pv = PV(self._pv_prefix + "SAVE_SSA_SLOPE.PROC")
-        self._save_ssa_slope_pv.put(1)
+        if not self._save_ssa_slope_pv_obj:
+            self._save_ssa_slope_pv_obj = PV(self.save_ssa_slope_pv)
+        self._save_ssa_slope_pv_obj.put(1)
     
     @property
     def measured_loaded_q(self) -> float:
-        if not self._measured_loaded_q_pv:
-            self._measured_loaded_q_pv = PV(self._pv_prefix + "QLOADED_NEW")
-        return self._measured_loaded_q_pv.get()
+        if not self._measured_loaded_q_pv_obj:
+            self._measured_loaded_q_pv_obj = PV(self.measured_loaded_q_pv)
+        return self._measured_loaded_q_pv_obj.get()
     
     @property
     def measured_loaded_q_in_tolerance(self) -> bool:
@@ -799,15 +872,15 @@ class Cavity(utils.SCLinacObject):
                 < self.loaded_q_upper_limit)
     
     def push_loaded_q(self):
-        if not self._push_loaded_q_pv:
-            self._push_loaded_q_pv = PV(self._pv_prefix + "PUSH_QLOADED.PROC")
-        self._push_loaded_q_pv.put(1)
+        if not self._push_loaded_q_pv_obj:
+            self._push_loaded_q_pv_obj = PV(self.push_loaded_q_pv)
+        self._push_loaded_q_pv_obj.put(1)
     
     @property
     def measured_scale_factor(self) -> float:
-        if not self._measured_scale_factor_pv:
-            self._measured_scale_factor_pv = PV(self._pv_prefix + "CAV:CAL_SCALEB_NEW")
-        return self._measured_scale_factor_pv.get()
+        if not self._measured_scale_factor_pv_obj:
+            self._measured_scale_factor_pv_obj = PV(self.measured_scale_factor_pv)
+        return self._measured_scale_factor_pv_obj.get()
     
     @property
     def measured_scale_factor_in_tolerance(self) -> bool:
@@ -816,15 +889,15 @@ class Cavity(utils.SCLinacObject):
                 < utils.CAVITY_SCALE_UPPER_LIMIT)
     
     def push_scale_factor(self):
-        if not self._push_scale_factor_pv:
-            self._push_scale_factor_pv = PV(self._pv_prefix + "PUSH_CAV_SCALE.PROC")
-        self._push_scale_factor_pv.put(1)
+        if not self._push_scale_factor_pv_obj:
+            self._push_scale_factor_pv_obj = PV(self.push_scale_factor_pv)
+        self._push_scale_factor_pv_obj.put(1)
     
     @property
     def characterization_status(self):
-        if not self._characterization_status_pv:
-            self._characterization_status_pv = PV(self._pv_prefix + "PROBECALSTS")
-        return self._characterization_status_pv.get()
+        if not self._characterization_status_pv_obj:
+            self._characterization_status_pv_obj = PV(self.characterization_status_pv)
+        return self._characterization_status_pv_obj.get()
     
     @property
     def characterization_running(self) -> bool:
@@ -836,27 +909,27 @@ class Cavity(utils.SCLinacObject):
     
     @property
     def pulse_on_time(self):
-        if not self._pulse_on_time_pv:
-            self._pulse_on_time_pv = PV(self._pv_prefix + "PULSE_ONTIME")
-        return self._pulse_on_time_pv.get()
+        if not self._pulse_on_time_pv_obj:
+            self._pulse_on_time_pv_obj = PV(self._pv_prefix + "PULSE_ONTIME")
+        return self._pulse_on_time_pv_obj.get()
     
     @pulse_on_time.setter
     def pulse_on_time(self, value: int):
-        if not self._pulse_on_time_pv:
-            self._pulse_on_time_pv = PV(self._pv_prefix + "PULSE_ONTIME")
-        self._pulse_on_time_pv.put(value)
+        if not self._pulse_on_time_pv_obj:
+            self._pulse_on_time_pv_obj = PV(self.pulse_on_time_pv)
+        self._pulse_on_time_pv_obj.put(value)
     
     @property
     def pulse_status(self):
-        if not self._pulse_status_pv:
-            self._pulse_status_pv = PV(self._pv_prefix + "PULSE_STATUS")
-        return self._pulse_status_pv.get()
+        if not self._pulse_status_pv_obj:
+            self._pulse_status_pv_obj = PV(self.pulse_status_pv)
+        return self._pulse_status_pv_obj.get()
     
     @property
     def rf_permit(self):
-        if not self._rf_permit_pv:
-            self._rf_permit_pv = self._pv_prefix + "RFPERMIT"
-        return self._rf_permit_pv.get()
+        if not self._rf_permit_pv_obj:
+            self._rf_permit_pv_obj = PV(self.rf_permit_pv)
+        return self._rf_permit_pv_obj.get()
     
     @property
     def rf_inhibited(self) -> bool:
@@ -864,27 +937,27 @@ class Cavity(utils.SCLinacObject):
     
     @property
     def ades(self):
-        if not self._ades_pv:
-            self._ades_pv = PV(self._pv_prefix + "ADES")
-        return self._ades_pv.get()
+        if not self._ades_pv_obj:
+            self._ades_pv_obj = PV(self.ades_pv)
+        return self._ades_pv_obj.get()
     
     @ades.setter
     def ades(self, value: float):
-        if not self._ades_pv:
-            self._ades_pv = PV(self._pv_prefix + "ADES")
-        self._ades_pv.put(value)
+        if not self._ades_pv_obj:
+            self._ades_pv_obj = PV(self._pv_prefix + "ADES")
+        self._ades_pv_obj.put(value)
     
     @property
     def aact(self):
-        if not self._aact_pv:
-            self._aact_pv = PV(self._pv_prefix + "AACTMEAN")
-        return self._aact_pv.get()
+        if not self._aact_pv_obj:
+            self._aact_pv_obj = PV(self.aact_pv)
+        return self._aact_pv_obj.get()
     
     @property
     def ades_max(self):
-        if not self._ades_max_pv:
-            self._ades_max_pv = PV(self._pv_prefix + "ADES_MAX")
-        return self._ades_max_pv.get()
+        if not self._ades_max_pv_obj:
+            self._ades_max_pv_obj = PV(self.ades_max_pv)
+        return self._ades_max_pv_obj.get()
     
     @property
     def edm_macro_string(self):
@@ -907,9 +980,9 @@ class Cavity(utils.SCLinacObject):
     
     @property
     def hw_mode(self):
-        if not self._hw_mode_pv:
-            self._hw_mode_pv = PV(self._pv_prefix + "HWMODE")
-        return self._hw_mode_pv.get()
+        if not self._hw_mode_pv_obj:
+            self._hw_mode_pv_obj = PV(self.hw_mode_pv)
+        return self._hw_mode_pv_obj.get()
     
     @property
     def is_online(self) -> bool:
@@ -917,9 +990,9 @@ class Cavity(utils.SCLinacObject):
     
     @property
     def is_quenched(self) -> bool:
-        if not self._quench_latch_pv:
-            self._quench_latch_pv = PV(self._pv_prefix + "QUENCH_LTCH")
-        return self._quench_latch_pv.get() == 1
+        if not self._quench_latch_pv_obj:
+            self._quench_latch_pv_obj = PV(self.quench_latch_pv)
+        return self._quench_latch_pv_obj.get() == 1
     
     @property
     def tune_config_pv_obj(self) -> PV:
@@ -930,7 +1003,7 @@ class Cavity(utils.SCLinacObject):
     @property
     def chirp_freq_start_pv_obj(self) -> PV:
         if not self._chirp_freq_start_pv_obj:
-            self._chirp_freq_start_pv_obj = PV(self.chirp_prefix + "FREQ_START")
+            self._chirp_freq_start_pv_obj = PV(self.chirp_freq_start_pv)
         return self._chirp_freq_start_pv_obj
     
     @property
@@ -944,7 +1017,7 @@ class Cavity(utils.SCLinacObject):
     @property
     def freq_stop_pv_obj(self) -> PV:
         if not self._freq_stop_pv_obj:
-            self._freq_stop_pv_obj = PV(self.chirp_prefix + "FREQ_STOP")
+            self._freq_stop_pv_obj = PV(self.freq_stop_pv)
         return self._freq_stop_pv_obj
     
     @property
@@ -958,7 +1031,7 @@ class Cavity(utils.SCLinacObject):
     @property
     def calc_probe_q_pv_obj(self) -> PV:
         if not self._calc_probe_q_pv_obj:
-            self._calc_probe_q_pv_obj = PV(self._pv_prefix + "QPROBE_CALC1.PROC")
+            self._calc_probe_q_pv_obj = PV(self.calc_probe_q_pv)
         return self._calc_probe_q_pv_obj
     
     def calculate_probe_q(self):
@@ -992,16 +1065,24 @@ class Cavity(utils.SCLinacObject):
                        reset_signed_steps=reset_signed_steps)
     
     @property
+    def detune_best_pv_obj(self) -> PV:
+        if not self._detune_best_pv_obj:
+            self._detune_best_pv_obj = PV(self.detune_best_pv)
+        return self._detune_best_pv_obj
+    
+    @property
     def detune_best(self):
-        if not self._detune_best_pv:
-            self._detune_best_pv = PV(self._pv_prefix + "DFBEST")
-        return self._detune_best_pv.get()
+        return self.detune_best_pv_obj.get()
+    
+    @property
+    def detune_invalid(self) -> bool:
+        return self.detune_best_pv_obj.severity == EPICS_INVALID_VAL
     
     def auto_tune(self, des_detune, config_val, tolerance=50,
-                  chirp_range=200000, reset_signed_steps=False):
+                  chirp_range=50000, reset_signed_steps=False):
         self.setup_tuning(chirp_range)
         
-        if self._detune_best_pv.severity == 3:
+        if self.detune_invalid:
             raise utils.DetuneError(f"Detune for {self} is invalid")
         
         delta = self.detune_best - des_detune
@@ -1015,20 +1096,21 @@ class Cavity(utils.SCLinacObject):
             self.steppertuner.reset_signed_steps()
         
         while abs(delta) > tolerance:
+            self.check_abort()
             est_steps = int(0.9 * delta * self.steps_per_hz)
             
             print(f"Moving stepper for {self} {est_steps} steps")
             
             self.steppertuner.move(est_steps,
-                                   maxSteps=est_steps * 1.1,
+                                   maxSteps=abs(est_steps) * 1.1,
                                    speed=utils.MAX_STEPPER_SPEED)
             steps_moved += abs(est_steps)
             
-            if steps_moved > expected_steps * 1.1:
+            if steps_moved > expected_steps * 1.5:
                 raise utils.DetuneError(f"{self} motor moved more steps than expected")
             
             # this should catch if the chirp range is wrong or if the cavity is off
-            if self._detune_best_pv.severity == EPICS_INVALID_VAL:
+            if self.detune_invalid:
                 self.find_chirp_range()
             
             delta = self.detune_best - des_detune
@@ -1184,10 +1266,10 @@ class Cavity(utils.SCLinacObject):
         
         self.find_chirp_range(chirp_range)
     
-    def find_chirp_range(self, chirp_range=200000):
+    def find_chirp_range(self, chirp_range=50000):
         self.set_chirp_range(chirp_range)
         sleep(1)
-        if self._detune_best_pv.severity == EPICS_INVALID_VAL:
+        if self.detune_invalid:
             if chirp_range < 500000:
                 self.find_chirp_range(int(chirp_range * 1.25))
             else:
@@ -1198,10 +1280,10 @@ class Cavity(utils.SCLinacObject):
         # TODO see if it makes more sense to implement this non-recursively
         print(f"Resetting interlocks for {self} and waiting {wait}s")
         
-        if not self._interlock_reset_pv:
-            self._interlock_reset_pv = PV(self.pv_addr("INTLK_RESET_ALL"))
+        if not self._interlock_reset_pv_obj:
+            self._interlock_reset_pv_obj = PV(self.interlock_reset_pv)
         
-        self._interlock_reset_pv.put(1)
+        self._interlock_reset_pv_obj.put(1)
         sleep(wait)
         
         print(f"Checking {self} RF permit")
