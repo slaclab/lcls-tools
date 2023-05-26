@@ -20,29 +20,31 @@ class PV(epicsPV):
     def __init__(self, pvname):
         super().__init__(pvname, connection_timeout=0.01)
     
+    def caget(self):
+        while True:
+            value = caget(self.pvname)
+            if value is not None:
+                break
+            print(f"{self.pvname} did not return a valid value, retrying")
+            sleep(0.5)
+        return value
+    
     def get(self, count=None, as_string=False, as_numpy=True,
             timeout=None, with_ctrlvars=False, use_monitor=True,
             retry_until_valid=True, use_caget=False):
         
         if use_caget:
-            return caget(self.pvname)
+            self.caget()
         
         else:
             self.connect()
             
-            if retry_until_valid:
-                value = super().get(count, as_string, as_numpy, timeout,
-                                    with_ctrlvars, use_monitor)
-                while value is None:
-                    value = super().get(count, as_string, as_numpy, timeout,
-                                        with_ctrlvars, use_monitor)
-                    print(f"{self.pvname} value is None, retrying")
-                    sleep(0.5)
+            value = super().get(count, as_string, as_numpy, timeout,
+                                with_ctrlvars, use_monitor)
+            if value is not None:
                 return value
-            
             else:
-                return super().get(count, as_string, as_numpy, timeout,
-                                   with_ctrlvars, use_monitor)
+                return self.caget()
     
     def put(self, value, wait=True, timeout=30.0,
             use_complete=False, callback=None, callback_data=None,
