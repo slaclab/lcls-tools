@@ -60,5 +60,5 @@ class PV(epics_pv):
                              use_complete=use_complete, callback=callback,
                              callback_data=callback_data)
         
-        if retry and status is not 1:
+        if retry and (status is not 1):
             self.caput(value)
