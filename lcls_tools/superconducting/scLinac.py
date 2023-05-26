@@ -741,7 +741,7 @@ class Cavity:
         self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
         
         print(f"running {self} cavity characterization")
-        self.cavityCharacterizationStartPV.put(1)
+        self.cavityCharacterizationStartPV.put(1, retry=False)
         print(f"waiting 2s for {self} cavity characterization script to run")
         sleep(2)
         
