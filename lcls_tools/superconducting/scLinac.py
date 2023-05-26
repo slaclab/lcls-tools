@@ -1523,10 +1523,10 @@ class Cryomodule(utils.SCLinacObject):
             
             for (leader, follower) in cavity_ssa_pairs:
                 self.cavities[follower].ssa = self.cavities[leader].ssa
-            self.coupler_vacuum_pvs: List[str] = [self.linac.vacuumPrefix + '{cm}09:COMBO_P'.format(cm=self.name),
-                                                  self.linac.vacuumPrefix + '{cm}19:COMBO_P'.format(cm=self.name)]
+            self.coupler_vacuum_pvs: List[str] = [self.linac.vacuum_prefix + '{cm}09:COMBO_P'.format(cm=self.name),
+                                                  self.linac.vacuum_prefix + '{cm}19:COMBO_P'.format(cm=self.name)]
         else:
-            self.coupler_vacuum_pvs: List[str] = [self.linac.vacuumPrefix + '{cm}14:COMBO_P'.format(cm=self.name)]
+            self.coupler_vacuum_pvs: List[str] = [self.linac.vacuum_prefix + '{cm}14:COMBO_P'.format(cm=self.name)]
         
         self.vacuum_pvs: List[str] = [self.coupler_vacuum_pvs
                                       + self.linac.beamline_vacuum_pvs
@@ -1538,78 +1538,117 @@ class Cryomodule(utils.SCLinacObject):
 
 
 class Linac:
-    def __init__(self, linacName, beamline_vacuum_infixes, insulating_vacuum_cryomodules):
+    def __init__(self, linac_name, beamline_vacuum_infixes,
+                 insulating_vacuum_cryomodules):
         # type: (str, List[str], List[str]) -> None
         """
         Parameters
         ----------
-        linacName: str name of Linac i.e. "L0B", "L1B", "L2B", "L3B"
+        linac_name: str name of Linac i.e. "L0B", "L1B", "L2B", "L3B"
         """
         
-        self.name = linacName
+        self.name = linac_name
         self.cryomodules: Dict[str, Cryomodule] = {}
-        self.vacuumPrefix = 'VGXX:{linac}:'.format(linac=self.name)
+        self.vacuum_prefix = 'VGXX:{linac}:'.format(linac=self.name)
         
-        self.beamline_vacuum_pvs: List[str] = [self.vacuumPrefix
+        self.beamline_vacuum_pvs: List[str] = [self.vacuum_prefix
                                                + '{infix}:COMBO_P'.format(infix=infix)
                                                for infix in beamline_vacuum_infixes]
-        self.insulating_vacuum_pvs: List[str] = [self.vacuumPrefix
+        self.insulating_vacuum_pvs: List[str] = [self.vacuum_prefix
                                                  + '{cm}96:COMBO_P'.format(cm=cm)
                                                  for cm in insulating_vacuum_cryomodules]
     
-    def addCryomodules(self, cryomoduleStringList: List[str], cryomoduleClass: Type[Cryomodule] = Cryomodule,
-                       cavityClass: Type[Cavity] = Cavity, rackClass: Type[Rack] = Rack,
-                       magnetClass: Type[Magnet] = Magnet, isHarmonicLinearizer: bool = False,
-                       ssaClass: Type[SSA] = SSA, stepperClass: Type[StepperTuner] = StepperTuner):
-        for cryomoduleString in cryomoduleStringList:
-            self.addCryomodule(cryomoduleName=cryomoduleString,
-                               cryomoduleClass=cryomoduleClass,
-                               cavityClass=cavityClass, rackClass=rackClass,
-                               magnetClass=magnetClass,
-                               isHarmonicLinearizer=isHarmonicLinearizer,
-                               ssaClass=ssaClass,
-                               stepperClass=stepperClass)
+    def add_cryomodules(self, cryomodule_string_list: List[str],
+                        cryomoduleClass: Type[Cryomodule] = Cryomodule,
+                        cavityClass: Type[Cavity] = Cavity,
+                        rackClass: Type[Rack] = Rack,
+                        magnetClass: Type[Magnet] = Magnet,
+                        is_harmonic_linearizer: bool = False,
+                        ssaClass: Type[SSA] = SSA,
+                        stepperClass: Type[StepperTuner] = StepperTuner,
+                        piezoClass: Type[Piezo] = Piezo):
+        for cryomoduleString in cryomodule_string_list:
+            self.add_cryomodule(cryomodule_name=cryomoduleString,
+                                cryomoduleClass=cryomoduleClass,
+                                cavityClass=cavityClass, rackClass=rackClass,
+                                magnetClass=magnetClass,
+                                is_harmonic_linearizer=is_harmonic_linearizer,
+                                ssaClass=ssaClass,
+                                stepperClass=stepperClass,
+                                piezoClass=piezoClass)
     
-    def addCryomodule(self, cryomoduleName: str, cryomoduleClass: Type[Cryomodule] = Cryomodule,
-                      cavityClass: Type[Cavity] = Cavity, rackClass: Type[Rack] = Rack,
-                      magnetClass: Type[Magnet] = Magnet,
-                      isHarmonicLinearizer: bool = False, ssaClass: Type[SSA] = SSA,
-                      stepperClass: Type[StepperTuner] = StepperTuner):
-        self.cryomodules[cryomoduleName] = cryomoduleClass(cryo_name=cryomoduleName,
-                                                           linac_object=self,
-                                                           cavity_class=cavityClass,
-                                                           rack_class=rackClass,
-                                                           magnet_class=magnetClass,
-                                                           is_harmonic_linearizer=isHarmonicLinearizer,
-                                                           ssa_class=ssaClass,
-                                                           stepper_class=stepperClass)
+    def add_cryomodule(self, cryomodule_name: str,
+                       cryomoduleClass: Type[Cryomodule] = Cryomodule,
+                       cavityClass: Type[Cavity] = Cavity,
+                       rackClass: Type[Rack] = Rack,
+                       magnetClass: Type[Magnet] = Magnet,
+                       is_harmonic_linearizer: bool = False,
+                       ssaClass: Type[SSA] = SSA,
+                       stepperClass: Type[StepperTuner] = StepperTuner,
+                       piezoClass: Type[Piezo] = Piezo):
+        self.cryomodules[cryomodule_name] = cryomoduleClass(cryo_name=cryomodule_name,
+                                                            linac_object=self,
+                                                            cavity_class=cavityClass,
+                                                            rack_class=rackClass,
+                                                            magnet_class=magnetClass,
+                                                            is_harmonic_linearizer=is_harmonic_linearizer,
+                                                            ssa_class=ssaClass,
+                                                            stepper_class=stepperClass,
+                                                            piezo_class=piezoClass)
 
 
-# Global list of superconducting linac objects
-L0B = ["01"]
-L1B = ["02", "03"]
-L1BHL = ["H1", "H2"]
-L2B = ["04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15"]
-L3B = ["16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
-       "28", "29", "30", "31", "32", "33", "34", "35"]
+def make_linac(section: int, LinacClass: Type[Linac] = Linac) -> Type[Linac]:
+    return LinacClass(f"L{section}B",
+                      beamline_vacuum_infixes=utils.BEAMLINEVACUUM_INFIXES[section],
+                      insulating_vacuum_cryomodules=utils.INSULATINGVACUUM_CRYOMODULES[section])
 
-LINAC_TUPLES = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
 
-BEAMLINEVACUUM_INFIXES = [['0198'], ['0202', 'H292'], ['0402', '1592'], ['1602', '2594', '2598', '3592']]
-INSULATINGVACUUM_CRYOMODULES = [['01'], ['02', 'H1'], ['04', '06', '08', '10', '12', '14'],
-                                ['16', '18', '20', '22', '24', '27', '29', '31', '33', '34']]
-
-linacs = {"L0B": Linac("L0B", beamline_vacuum_infixes=BEAMLINEVACUUM_INFIXES[0],
-                       insulating_vacuum_cryomodules=INSULATINGVACUUM_CRYOMODULES[0]),
-          "L1B": Linac("L1B", beamline_vacuum_infixes=BEAMLINEVACUUM_INFIXES[1],
-                       insulating_vacuum_cryomodules=INSULATINGVACUUM_CRYOMODULES[1]),
-          "L2B": Linac("L2B", beamline_vacuum_infixes=BEAMLINEVACUUM_INFIXES[2],
-                       insulating_vacuum_cryomodules=INSULATINGVACUUM_CRYOMODULES[2]),
-          "L3B": Linac("L3B", beamline_vacuum_infixes=BEAMLINEVACUUM_INFIXES[3],
-                       insulating_vacuum_cryomodules=INSULATINGVACUUM_CRYOMODULES[3])}
-
-ALL_CRYOMODULES = L0B + L1B + L1BHL + L2B + L3B
-ALL_CRYOMODULES_NO_HL = L0B + L1B + L2B + L3B
+class LinacDict(dict):
+    def __init__(self, LinacClass: Type[Linac] = Linac,
+                 cryomoduleClass: Type[Cryomodule] = Cryomodule,
+                 cavityClass: Type[Cavity] = Cavity,
+                 magnetClass: Type[Magnet] = Magnet, rackClass: Type[Rack] = Rack,
+                 stepperClass: Type[StepperTuner] = StepperTuner,
+                 ssaClass: Type[SSA] = SSA, piezoClass: Type[Piezo] = Piezo):
+        super().__init__()
+        self.cryomoduleClass = cryomoduleClass
+        self.cavityClass = cavityClass
+        self.magnetClass = magnetClass
+        self.rackClass = rackClass
+        self.stepperClass = stepperClass
+        self.ssaClass = ssaClass
+        self.piezoClass = piezoClass
+        self.LinacClass: Type[Linac] = LinacClass
+    
+    def __missing__(self, key: int) -> Linac:
+        if key not in range(4):
+            raise KeyError(f"Linac section {key} does not exist")
+        else:
+            linac = make_linac(section=key, LinacClass=self.LinacClass)
+            self[key] = linac
+            return linac
+    
+    def populate(self):
+        for section, cm_list in utils.LINAC_CM_DICT.items():
+            self[section].add_cryomodules(cm_list,
+                                          cryomoduleClass=self.cryomoduleClass,
+                                          cavityClass=self.cavityClass,
+                                          rackClass=self.rackClass,
+                                          magnetClass=self.magnetClass,
+                                          ssaClass=self.ssaClass,
+                                          stepperClass=self.stepperClass,
+                                          piezoClass=self.piezoClass,
+                                          is_harmonic_linearizer=False)
+        
+        self[1].add_cryomodules(utils.L1BHL,
+                                cryomoduleClass=self.cryomoduleClass,
+                                cavityClass=self.cavityClass,
+                                rackClass=self.rackClass,
+                                magnetClass=self.magnetClass,
+                                ssaClass=self.ssaClass,
+                                stepperClass=self.stepperClass,
+                                piezoClass=self.piezoClass,
+                                is_harmonic_linearizer=True)
 
 
 class CryoDict(dict):
@@ -1617,7 +1656,8 @@ class CryoDict(dict):
                  cavityClass: Type[Cavity] = Cavity,
                  magnetClass: Type[Magnet] = Magnet, rackClass: Type[Rack] = Rack,
                  stepperClass: Type[StepperTuner] = StepperTuner,
-                 ssaClass: Type[SSA] = SSA, piezoClass: Type[Piezo] = Piezo):
+                 ssaClass: Type[SSA] = SSA, piezoClass: Type[Piezo] = Piezo,
+                 linacClass: Type[Linac] = Linac):
         super().__init__()
         
         self.cryomoduleClass = cryomoduleClass
@@ -1627,31 +1667,39 @@ class CryoDict(dict):
         self.stepperClass = stepperClass
         self.ssaClass = ssaClass
         self.piezoClass = piezoClass
+        self.linacClass = linacClass
+        
+        self.linac_dict = LinacDict(LinacClass=linacClass)
     
     def __missing__(self, key):
-        if key in L0B:
-            linac = linacs['L0B']
-        elif key in L1B:
-            linac = linacs['L1B']
-        elif key in L1BHL:
-            linac = linacs['L1B']
-        elif key in L2B:
-            linac = linacs['L2B']
-        elif key in L3B:
-            linac = linacs['L3B']
+        if key in utils.L0B:
+            linac: Linac = self.linac_dict[0]
+        elif key in utils.L1B:
+            linac: Linac = self.linac_dict[1]
+        elif key in utils.L1BHL:
+            linac: Linac = self.linac_dict[1]
+        elif key in utils.L2B:
+            linac: Linac = self.linac_dict[2]
+        elif key in utils.L3B:
+            linac: Linac = self.linac_dict[3]
         else:
             raise KeyError(f"Cryomodule {key} not found in any linac region.")
-        cryomodule = self.cryomoduleClass(cryo_name=key,
-                                          linac_object=linac,
-                                          cavity_class=self.cavityClass,
-                                          magnet_class=self.magnetClass,
-                                          rack_class=self.rackClass,
-                                          stepper_class=self.stepperClass,
-                                          is_harmonic_linearizer=(key in L1BHL),
-                                          ssa_class=self.ssaClass,
-                                          piezo_class=self.piezoClass)
+        
+        if key not in linac.cryomodules.keys():
+            linac.add_cryomodule(cryomodule_name=key,
+                                 cryomoduleClass=self.cryomoduleClass,
+                                 cavityClass=self.cavityClass,
+                                 rackClass=self.rackClass,
+                                 magnetClass=self.magnetClass,
+                                 is_harmonic_linearizer=(key in utils.L1BHL),
+                                 ssaClass=self.ssaClass,
+                                 stepperClass=self.stepperClass,
+                                 piezoClass=self.piezoClass)
+        
+        cryomodule = linac.cryomodules[key]
         self[key] = cryomodule
+        
         return cryomodule
 
 
-CRYOMODULE_OBJECTS = CryoDict()
+CRYOMODULE_OBJECTS: Dict[str, Cryomodule] = CryoDict()
