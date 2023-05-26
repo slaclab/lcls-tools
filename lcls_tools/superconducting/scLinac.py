@@ -784,8 +784,7 @@ class Cavity:
             self.check_abort()
             if self.quench_latch_pv.get() == 1:
                 raise utils.QuenchError(f"{self} quench detected, aborting rampup")
-            self.selAmplitudeDesPV.put(self.selAmplitudeDesPV.get() + step_size,
-                                       waitForPut=True)
+            self.selAmplitudeDesPV.put(self.selAmplitudeDesPV.get() + step_size)
             # to avoid tripping sensitive interlock
             sleep(0.1)
         

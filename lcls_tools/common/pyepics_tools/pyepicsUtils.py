@@ -54,8 +54,7 @@ class PV(epics_pv):
                 return self.caget()
     
     def put(self, value, wait=True, timeout=30.0,
-            use_complete=False, callback=None, callback_data=None,
-            waitForPut=False):
+            use_complete=False, callback=None, callback_data=None):
         
         status = super().put(value, wait=wait, timeout=timeout,
                              use_complete=use_complete, callback=callback,
