@@ -780,17 +780,16 @@ class Cavity:
     def walk_amp(self, des_amp, step_size):
         print(f"walking {self} to {des_amp}")
         
-        while caget(self.selAmplitudeDesPV.pvname) <= (des_amp - step_size):
+        while self.selAmplitudeDesPV.get() <= (des_amp - step_size):
             self.check_abort()
             if self.quench_latch_pv.get() == 1:
                 raise utils.QuenchError(f"{self} quench detected, aborting rampup")
-            caput(self.selAmplitudeDesPV.pvname,
-                  self.selAmplitudeDesPV.get() + step_size)
+            self.selAmplitudeDesPV.put(self.selAmplitudeDesPV.get() + step_size)
             # to avoid tripping sensitive interlock
             sleep(0.1)
         
-        if caget(self.selAmplitudeDesPV.pvname) != des_amp:
-            caput(self.selAmplitudeDesPV.pvname, des_amp)
+        if self.selAmplitudeDesPV.get() != des_amp:
+            self.selAmplitudeDesPV.put(des_amp)
         
         print(f"{self} at {des_amp}")
 
