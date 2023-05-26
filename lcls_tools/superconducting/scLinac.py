@@ -438,6 +438,9 @@ class Cavity:
         self.abort_flag: bool = False
         
         self._hw_mode_pv: PV = None
+        
+        self.char_timestamp_pv: str = self.pvPrefix + "PROBECALTS"
+        self._char_timestamp_pv_obj: PV = None
     
     def __str__(self):
         return f"{self.linac.name} CM{self.cryomodule.name} Cavity {self.number}"
@@ -727,6 +730,13 @@ class Cavity:
             if caget(self.rf_permit_pv) == 0:
                 raise utils.CavityFaultError(f"{self} still faulted after 3 reset attempts")
     
+    @property
+    def characterization_timestamp(self) -> datetime:
+        if not self._char_timestamp_pv_obj:
+            self._char_timestamp_pv_obj = PV(self.char_timestamp_pv)
+        date_string = self._char_timestamp_pv_obj.get()
+        return datetime.strptime(date_string, '%Y-%m-%d-%H:%M:%S')
+    
     def characterize(self):
         """
         Calibrates the cavity's RF probe so that the amplitude readback will be
@@ -740,10 +750,21 @@ class Cavity:
         print(f"setting {self} drive to {utils.SAFE_PULSED_DRIVE_LEVEL}")
         self.drivelevelPV.put(utils.SAFE_PULSED_DRIVE_LEVEL)
         
+        if (datetime.now() - self.characterization_timestamp).total_seconds() < 60:
+            if self.cavityCharacterizationStatusPV.get() == 1:
+                print(f"{self} successful characterization within the last minute")
+                self.finish_characterization()
+                return
+        
         print(f"running {self} cavity characterization")
+        char_start_time = datetime.now()
         self.cavityCharacterizationStartPV.put(1, retry=False)
+        
         print(f"waiting 2s for {self} cavity characterization script to run")
         sleep(2)
+        
+        if (self.characterization_timestamp - char_start_time) < 0:
+            raise utils.CavityQLoadedCalibrationError(f"{self} characterization did not start")
         
         while (self.cavityCharacterizationStatusPV.get()
                == utils.CALIBRATION_RUNNING_VALUE):
@@ -758,23 +779,22 @@ class Cavity:
         
         print(f"pushing {self} characterization results")
         
+        self.finish_characterization()
+    
+    def finish_characterization(self):
         if (self.loaded_q_lower_limit < self.measuredQLoadedPV.get()
                 < self.loaded_q_upper_limit):
             self.pushQLoadedPV.put(1)
         else:
             raise utils.CavityQLoadedCalibrationError(f"{self} loaded Q out of tolerance")
-        
         if (utils.CAVITY_SCALE_LOWER_LIMIT < self.measuredCavityScalePV.get()
                 < utils.CAVITY_SCALE_UPPER_LIMIT):
             self.pushCavityScalePV.put(1)
         else:
             raise utils.CavityScaleFactorCalibrationError(f"{self} scale factor out of tolerance")
-        
         self.reset_data_decimation()
-        
         print(f"restoring {self} piezo feedback setpoint to 0")
         self.piezo.feedback_setpoint_pv.put(0)
-        
         print(f"{self} characterization successful")
     
     def walk_amp(self, des_amp, step_size):
