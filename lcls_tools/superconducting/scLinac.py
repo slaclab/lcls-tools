@@ -752,7 +752,7 @@ class Cavity:
         
         if (datetime.now() - self.characterization_timestamp).total_seconds() < 60:
             if self.cavityCharacterizationStatusPV.get() == 1:
-                print(f"{self} successful characterization within the last minute")
+                print(f"{self} successful characterization within the last minute, not starting a new one")
                 self.finish_characterization()
                 return
         
