@@ -763,7 +763,7 @@ class Cavity:
         print(f"waiting 2s for {self} cavity characterization script to run")
         sleep(2)
         
-        if (self.characterization_timestamp - char_start_time) < 0:
+        if (self.characterization_timestamp - char_start_time).total_seconds() < 0:
             raise utils.CavityQLoadedCalibrationError(f"{self} characterization did not start")
         
         while (self.cavityCharacterizationStatusPV.get()
