@@ -76,10 +76,7 @@ class SSA:
         try:
             self.runCalibration()
         
-        except utils.SSACalibrationToleranceError as e:
-            raise utils.SSACalibrationError(e)
-        
-        except utils.SSACalibrationError as e:
+        except (utils.SSACalibrationToleranceError, utils.SSACalibrationError) as e:
             if attempt < 3:
                 self.calibrate(drivemax, attempt + 1)
             else:
