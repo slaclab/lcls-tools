@@ -501,7 +501,8 @@ class Cavity:
     
     def move_to_resonance(self):
         self.auto_tune(des_detune=0,
-                       config_val=utils.TUNE_CONFIG_RESONANCE_VALUE)
+                       config_val=utils.TUNE_CONFIG_RESONANCE_VALUE,
+                       tolerance=(200 if self.cryomodule.isHarmonicLinearizer else 50))
     
     def auto_tune(self, des_detune, config_val, tolerance=50, chirp_range=50000):
         self.setup_tuning(chirp_range)
