@@ -73,7 +73,10 @@ class SSA:
         if self.cavity.abort_flag:
             raise utils.CavityAbortError(f"Abort requested for {self.cavity}")
         
-        self.runCalibration()
+        try:
+            self.runCalibration()
+        except utils.SSACalibrationToleranceError as e:
+            raise utils.SSACalibrationError(e)
     
     @property
     def ps_volt_setpoint2_pv_obj(self):
@@ -719,10 +722,13 @@ class Cavity:
     
     @property
     def characterization_timestamp(self) -> datetime:
+        print(f"getting {self} characterization time")
         if not self._char_timestamp_pv_obj:
             self._char_timestamp_pv_obj = PV(self.char_timestamp_pv)
         date_string = self._char_timestamp_pv_obj.get()
-        return datetime.strptime(date_string, '%Y-%m-%d-%H:%M:%S')
+        time_readback = datetime.strptime(date_string, '%Y-%m-%d-%H:%M:%S')
+        print(f"{self} characterization time is {time_readback}")
+        return time_readback
     
     def characterize(self):
         """
@@ -744,8 +750,8 @@ class Cavity:
                 self.finish_characterization()
                 return
         
-        print(f"running {self} cavity characterization")
         char_start_time = datetime.now()
+        print(f"Starting {self} cavity characterization at {char_start_time}")
         self.cavityCharacterizationStartPV.put(1, retry=False)
         
         print(f"waiting 2s for {self} cavity characterization script to run")
