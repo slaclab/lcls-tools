@@ -64,30 +64,16 @@ class SSA:
         return (saved_val if saved_val
                 else (1 if self.cavity.cryomodule.isHarmonicLinearizer else 0.8))
     
-    def calibrate(self, drivemax, attempt=0):
-        print(f"Trying {self.cavity} SSA calibration with drivemax {drivemax}")
-        if drivemax < 0.4:
-            raise utils.SSACalibrationError(f"Requested {self.cavity} SSA drive max too low")
+    def calibrate(self, drivemax):
+        print(f"Running {self.cavity} SSA calibration with drivemax {drivemax}")
         
         while caput(self.maxdrive_setpoint_pv, drivemax) != 1:
-            print("Setting max drive")
+            print(f"{self} SSA max drive not set successfully, retrying")
         
-        try:
-            if self.cavity.abort_flag:
-                raise utils.CavityAbortError(f"Abort requested for {self.cavity}")
-            self.runCalibration()
+        if self.cavity.abort_flag:
+            raise utils.CavityAbortError(f"Abort requested for {self.cavity}")
         
-        except utils.SSACalibrationError as e:
-            print(f"{self.cavity} SSA Calibration failed with '{e}', retrying")
-            self.calibrate(drivemax - 0.02)
-        
-        except utils.SSACalibrationToleranceError as e:
-            print(f"{self.cavity} SSA Calibration failed with '{e}'")
-            if attempt < 3:
-                print(f"retyring {self.cavity} calibration")
-                self.calibrate(drivemax, attempt=attempt + 1)
-            else:
-                raise utils.SSACalibrationError(f"{self.cavity} SSA Calibration failed with '{e}'")
+        self.runCalibration()
     
     @property
     def ps_volt_setpoint2_pv_obj(self):
@@ -752,7 +738,8 @@ class Cavity:
         
         if (datetime.now() - self.characterization_timestamp).total_seconds() < 60:
             if self.cavityCharacterizationStatusPV.get() == 1:
-                print(f"{self} successful characterization within the last minute, not starting a new one")
+                print(f"{self} successful characterization within the last minute,"
+                      f" not starting a new one")
                 self.finish_characterization()
                 return
         
