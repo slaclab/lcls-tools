@@ -64,7 +64,7 @@ class SSA:
         return (saved_val if saved_val
                 else (1 if self.cavity.cryomodule.isHarmonicLinearizer else 0.8))
     
-    def calibrate(self, drivemax):
+    def calibrate(self, drivemax, attempt=0):
         print(f"Running {self.cavity} SSA calibration with drivemax {drivemax}")
         
         while caput(self.maxdrive_setpoint_pv, drivemax) != 1:
@@ -75,8 +75,15 @@ class SSA:
         
         try:
             self.runCalibration()
+        
         except utils.SSACalibrationToleranceError as e:
             raise utils.SSACalibrationError(e)
+        
+        except utils.SSACalibrationError as e:
+            if attempt < 3:
+                self.calibrate(drivemax, attempt + 1)
+            else:
+                raise utils.SSACalibrationError(e)
     
     @property
     def ps_volt_setpoint2_pv_obj(self):
