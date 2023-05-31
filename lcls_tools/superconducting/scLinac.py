@@ -65,29 +65,22 @@ class SSA:
                 else (1 if self.cavity.cryomodule.isHarmonicLinearizer else 0.8))
     
     def calibrate(self, drivemax, attempt=0):
-        print(f"Trying {self.cavity} SSA calibration with drivemax {drivemax}")
-        if drivemax < 0.4:
-            raise utils.SSACalibrationError(f"Requested {self.cavity} SSA drive max too low")
+        print(f"Running {self.cavity} SSA calibration with drivemax {drivemax}")
         
         while caput(self.maxdrive_setpoint_pv, drivemax) != 1:
-            print("Setting max drive")
+            print(f"{self} SSA max drive not set successfully, retrying")
+        
+        if self.cavity.abort_flag:
+            raise utils.CavityAbortError(f"Abort requested for {self.cavity}")
         
         try:
-            if self.cavity.abort_flag:
-                raise utils.CavityAbortError(f"Abort requested for {self.cavity}")
             self.runCalibration()
         
-        except utils.SSACalibrationError as e:
-            print(f"{self.cavity} SSA Calibration failed with '{e}', retrying")
-            self.calibrate(drivemax - 0.02)
-        
-        except utils.SSACalibrationToleranceError as e:
-            print(f"{self.cavity} SSA Calibration failed with '{e}'")
+        except (utils.SSACalibrationToleranceError, utils.SSACalibrationError) as e:
             if attempt < 3:
-                print(f"retyring {self.cavity} calibration")
-                self.calibrate(drivemax, attempt=attempt + 1)
+                self.calibrate(drivemax, attempt + 1)
             else:
-                raise utils.SSACalibrationError(f"{self.cavity} SSA Calibration failed with '{e}'")
+                raise utils.SSACalibrationError(e)
     
     @property
     def ps_volt_setpoint2_pv_obj(self):
@@ -515,7 +508,8 @@ class Cavity:
     
     def move_to_resonance(self):
         self.auto_tune(des_detune=0,
-                       config_val=utils.TUNE_CONFIG_RESONANCE_VALUE)
+                       config_val=utils.TUNE_CONFIG_RESONANCE_VALUE,
+                       tolerance=(200 if self.cryomodule.isHarmonicLinearizer else 50))
     
     def auto_tune(self, des_detune, config_val, tolerance=50, chirp_range=50000):
         self.setup_tuning(chirp_range)
@@ -732,10 +726,13 @@ class Cavity:
     
     @property
     def characterization_timestamp(self) -> datetime:
+        print(f"getting {self} characterization time")
         if not self._char_timestamp_pv_obj:
             self._char_timestamp_pv_obj = PV(self.char_timestamp_pv)
         date_string = self._char_timestamp_pv_obj.get()
-        return datetime.strptime(date_string, '%Y-%m-%d-%H:%M:%S')
+        time_readback = datetime.strptime(date_string, '%Y-%m-%d-%H:%M:%S')
+        print(f"{self} characterization time is {time_readback}")
+        return time_readback
     
     def characterize(self):
         """
@@ -752,18 +749,18 @@ class Cavity:
         
         if (datetime.now() - self.characterization_timestamp).total_seconds() < 60:
             if self.cavityCharacterizationStatusPV.get() == 1:
-                print(f"{self} successful characterization within the last minute, not starting a new one")
+                print(f"{self} successful characterization within the last minute,"
+                      f" not starting a new one")
                 self.finish_characterization()
                 return
         
-        print(f"running {self} cavity characterization")
-        char_start_time = datetime.now()
+        print(f"Starting {self} cavity characterization at {datetime.now()}")
         self.cavityCharacterizationStartPV.put(1, retry=False)
         
         print(f"waiting 2s for {self} cavity characterization script to run")
         sleep(2)
         
-        if (self.characterization_timestamp - char_start_time).total_seconds() < 0:
+        if (datetime.now() - self.characterization_timestamp).total_seconds() > 60:
             raise utils.CavityQLoadedCalibrationError(f"{self} characterization did not start")
         
         while (self.cavityCharacterizationStatusPV.get()
