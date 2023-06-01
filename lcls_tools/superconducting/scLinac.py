@@ -126,17 +126,11 @@ class SSA(utils.SCLinacObject):
             self.cavity.check_abort()
             self.runCalibration()
         
-        except utils.SSACalibrationError as e:
-            print(f"{self} Calibration failed with '{e}', retrying")
-            self.calibrate(drivemax - 0.02)
-        
-        except utils.SSACalibrationToleranceError as e:
-            print(f"{self} Calibration failed with '{e}'")
+        except (utils.SSACalibrationToleranceError, utils.SSACalibrationError) as e:
             if attempt < 3:
-                print(f"retyring {self.cavity} calibration")
-                self.calibrate(drivemax, attempt=attempt + 1)
+                self.calibrate(drivemax, attempt + 1)
             else:
-                raise utils.SSACalibrationError(f"{self.cavity} SSA Calibration failed with '{e}'")
+                raise utils.SSACalibrationError(e)
     
     @property
     def ps_volt_setpoint2_pv_obj(self):
@@ -762,6 +756,9 @@ class Cavity(utils.SCLinacObject):
         
         self.hw_mode_pv: str = self.pv_addr("HWMODE")
         self._hw_mode_pv_obj: PV = None
+        
+        self.char_timestamp_pv: str = self.pvPrefix + "PROBECALTS"
+        self._char_timestamp_pv_obj: PV = None
     
     def __str__(self):
         return f"{self.linac.name} CM{self.cryomodule.name} Cavity {self.number}"
@@ -1062,7 +1059,8 @@ class Cavity(utils.SCLinacObject):
     def move_to_resonance(self, reset_signed_steps=False):
         self.auto_tune(des_detune=0,
                        config_val=utils.TUNE_CONFIG_RESONANCE_VALUE,
-                       reset_signed_steps=reset_signed_steps)
+                       reset_signed_steps=reset_signed_steps,
+                       tolerance=(200 if self.cryomodule.is_harmonic_linearizer else 50))
     
     @property
     def detune_best_pv_obj(self) -> PV:
@@ -1298,6 +1296,16 @@ class Cavity(utils.SCLinacObject):
         else:
             print(f"{self} interlocks reset")
     
+    @property
+    def characterization_timestamp(self) -> datetime:
+        print(f"getting {self} characterization time")
+        if not self._char_timestamp_pv_obj:
+            self._char_timestamp_pv_obj = PV(self.char_timestamp_pv)
+        date_string = self._char_timestamp_pv_obj.get()
+        time_readback = datetime.strptime(date_string, '%Y-%m-%d-%H:%M:%S')
+        print(f"{self} characterization time is {time_readback}")
+        return time_readback
+    
     def characterize(self):
         """
         Calibrates the cavity's RF probe so that the amplitude readback will be
@@ -1311,10 +1319,21 @@ class Cavity(utils.SCLinacObject):
         print(f"setting {self} drive to {utils.SAFE_PULSED_DRIVE_LEVEL}")
         self.drive_level = utils.SAFE_PULSED_DRIVE_LEVEL
         
-        print(f"starting {self} cavity characterization")
+        if (datetime.now() - self.characterization_timestamp).total_seconds() < 60:
+            if self.characterization_status == 1:
+                print(f"{self} successful characterization within the last minute,"
+                      f" not starting a new one")
+                self.finish_characterization()
+                return
+        
+        print(f"Starting {self} cavity characterization at {datetime.now()}")
         self.start_characterization()
+        
         print(f"waiting 2s for {self} cavity characterization script to run")
         sleep(2)
+        
+        if (datetime.now() - self.characterization_timestamp).total_seconds() > 60:
+            raise utils.CavityQLoadedCalibrationError(f"{self} characterization did not start")
         
         while self.characterization_running:
             print(f"waiting for {self} characterization"
@@ -1328,18 +1347,18 @@ class Cavity(utils.SCLinacObject):
         
         print(f"pushing {self} characterization results")
         
+        self.finish_characterization()
+    
+    def finish_characterization(self):
         if self.measured_loaded_q_in_tolerance:
             self.push_loaded_q()
         else:
             raise utils.CavityQLoadedCalibrationError(f"{self} loaded Q out of tolerance")
-        
         if self.measured_scale_factor_in_tolerance:
             self.push_scale_factor()
         else:
             raise utils.CavityScaleFactorCalibrationError(f"{self} scale factor out of tolerance")
-        
         self.reset_data_decimation()
-        
         print(f"restoring {self} piezo feedback setpoint to 0")
         self.piezo.feedback_setpoint = 0
         

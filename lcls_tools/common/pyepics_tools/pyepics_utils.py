@@ -1,8 +1,6 @@
-from datetime import datetime
-from math import isclose
 from time import sleep
 
-from epics import PV as epicsPV, caget
+from epics import PV as epics_pv, caget as epics_caget, caput as epics_caput
 
 # These are the values that decide whether a PV is alarming (and if so, how)
 EPICS_NO_ALARM_VAL = 0
@@ -16,18 +14,27 @@ class PVInvalidError(Exception):
         super(PVInvalidError, self).__init__(message)
 
 
-class PV(epicsPV):
+class PV(epics_pv):
     def __init__(self, pvname):
         super().__init__(pvname, connection_timeout=0.01)
     
     def caget(self):
         while True:
-            value = caget(self.pvname)
+            value = epics_caget(self.pvname)
             if value is not None:
                 break
             print(f"{self.pvname} did not return a valid value, retrying")
             sleep(0.5)
         return value
+    
+    def caput(self, value):
+        while True:
+            status = epics_caput(self.pvname, value)
+            if status == 1:
+                break
+            print(f"{self} caput did not execute successfully, retrying")
+            sleep(0.5)
+        return status
     
     def get(self, count=None, as_string=False, as_numpy=True,
             timeout=None, with_ctrlvars=False, use_monitor=True,
@@ -47,30 +54,11 @@ class PV(epicsPV):
                 return self.caget()
     
     def put(self, value, wait=True, timeout=30.0,
-            use_complete=False, callback=None, callback_data=None,
-            waitForPut=False):
-        super(PV, self).put(value, wait=wait, timeout=timeout,
-                            use_complete=use_complete, callback=callback,
-                            callback_data=callback_data)
+            use_complete=False, callback=None, callback_data=None, retry=True):
         
-        if waitForPut:
-            attempt = 1
-            while self.severity == EPICS_INVALID_VAL or not self.connect():
-                if attempt >= 5:
-                    raise PVInvalidError("{pv} invalid or disconnected, aborting wait for put"
-                                         .format(pv=self.pvname))
-                attempt += 1
-                sleep(0.1)
-            
-            if type(value) != float:
-                while self.value != value:
-                    self.printAndSleep(value)
-            else:
-                while not isclose(self.value, value, rel_tol=1e-06):
-                    self.printAndSleep(value)
-    
-    def printAndSleep(self, value):
-        print("waiting for {pv} to be {val} at {time}".format(pv=self.pvname,
-                                                              val=value,
-                                                              time=datetime.now()))
-        sleep(1)
+        status = super().put(value, wait=wait, timeout=timeout,
+                             use_complete=use_complete, callback=callback,
+                             callback_data=callback_data)
+        
+        if retry and (status is not 1):
+            self.caput(value)
