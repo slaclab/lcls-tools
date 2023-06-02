@@ -8,7 +8,7 @@ from time import sleep
 from typing import Dict, List, Type
 
 from epics import caget, caput
-from numpy import sign
+from numpy import isclose, sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
 from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
@@ -802,20 +802,22 @@ class Cavity:
         print(f"{self} characterization successful")
     
     def walk_amp(self, des_amp, step_size):
-        print(f"walking {self} to {des_amp}")
+        print(f"walking {self} to {des_amp} from {self.selAmplitudeActPV.get()}")
         
-        while self.selAmplitudeDesPV.get() <= (des_amp - step_size):
+        while self.selAmplitudeActPV.get() <= (des_amp - step_size):
             self.check_abort()
             if self.quench_latch_pv.get() == 1:
                 raise utils.QuenchError(f"{self} quench detected, aborting rampup")
-            self.selAmplitudeDesPV.put(self.selAmplitudeDesPV.get() + step_size)
+            self.selAmplitudeDesPV.put(self.selAmplitudeActPV.get() + step_size)
             # to avoid tripping sensitive interlock
             sleep(0.1)
         
-        if self.selAmplitudeDesPV.get() != des_amp:
+        while not isclose(self.selAmplitudeActPV.get(), des_amp):
+            print(f"{self} not at desired ampltude, using caput")
             self.selAmplitudeDesPV.put(des_amp)
+            sleep(0.5)
         
-        print(f"{self} at {des_amp}")
+        print(f"{self} at {self.selAmplitudeActPV.get()} out of {des_amp}")
 
 
 class Magnet:
