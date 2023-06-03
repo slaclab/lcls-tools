@@ -8,7 +8,7 @@ from time import sleep
 from typing import Dict, List, Type
 
 from epics import caget, caput
-from numpy import sign
+from numpy import isclose, sign
 
 import lcls_tools.superconducting.scLinacUtils as utils
 from lcls_tools.common.pyepics_tools.pyepicsUtils import EPICS_INVALID_VAL, PV
@@ -20,26 +20,33 @@ class SSA:
     def __init__(self, cavity):
         # type: (Cavity) -> None
         self.cavity: Cavity = cavity
+        
+        self.pvPrefix = self.cavity.pvPrefix + "SSA:"
+        
         if self.cavity.cryomodule.isHarmonicLinearizer:
             cavity_num = HL_SSA_MAP[self.cavity.number]
-            self.pvPrefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
-                                                                             CRYOMODULE=self.cavity.cryomodule.name,
-                                                                             CAVITY=cavity_num)
+            hl_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
+                                                                         CRYOMODULE=self.cavity.cryomodule.name,
+                                                                         CAVITY=cavity_num)
             self.fwd_power_lower_limit = 500
             
-            self.ps_volt_setpoint1_pv: str = self.pvPrefix + "PSVoltSetpt1"
+            self.ps_volt_setpoint1_pv: str = hl_prefix + "PSVoltSetpt1"
             self._ps_volt_setpoint1_pv_obj: PV = None
             
-            self.ps_volt_setpoint2_pv: str = self.pvPrefix + "PSVoltSetpt2"
+            self.ps_volt_setpoint2_pv: str = hl_prefix + "PSVoltSetpt2"
             self._ps_volt_setpoint2_pv_obj: PV = None
-        else:
-            self.pvPrefix = self.cavity.pvPrefix + "SSA:"
-            self.fwd_power_lower_limit = 3000
+            
+            self.statusPV: str = (hl_prefix + "StatusMsg")
+            self.turnOnPV: PV = PV(hl_prefix + "PowerOn")
+            self.turnOffPV: PV = PV(hl_prefix + "PowerOff")
+            self.resetPV: str = hl_prefix + "FaultReset"
         
-        self.statusPV: str = (self.pvPrefix + "StatusMsg")
-        self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
-        self.turnOffPV: PV = PV(self.pvPrefix + "PowerOff")
-        self.resetPV: str = self.pvPrefix + "FaultReset"
+        else:
+            self.statusPV: str = (self.pvPrefix + "StatusMsg")
+            self.turnOnPV: PV = PV(self.pvPrefix + "PowerOn")
+            self.turnOffPV: PV = PV(self.pvPrefix + "PowerOff")
+            self.resetPV: str = self.pvPrefix + "FaultReset"
+            self.fwd_power_lower_limit = 3000
         
         self.calibrationStartPV: PV = PV(self.pvPrefix + "CALSTRT")
         self.calibrationStatusPV: PV = PV(self.pvPrefix + "CALSTS")
@@ -795,20 +802,22 @@ class Cavity:
         print(f"{self} characterization successful")
     
     def walk_amp(self, des_amp, step_size):
-        print(f"walking {self} to {des_amp}")
+        print(f"walking {self} to {des_amp} from {self.selAmplitudeActPV.get()}")
         
-        while self.selAmplitudeDesPV.get() <= (des_amp - step_size):
+        while self.selAmplitudeActPV.get() <= (des_amp - step_size):
             self.check_abort()
             if self.quench_latch_pv.get() == 1:
                 raise utils.QuenchError(f"{self} quench detected, aborting rampup")
-            self.selAmplitudeDesPV.put(self.selAmplitudeDesPV.get() + step_size)
+            self.selAmplitudeDesPV.put(self.selAmplitudeActPV.get() + step_size)
             # to avoid tripping sensitive interlock
             sleep(0.1)
         
-        if self.selAmplitudeDesPV.get() != des_amp:
+        while not isclose(self.selAmplitudeActPV.get(), des_amp):
+            print(f"{self} not at desired amplitude, setting value again")
             self.selAmplitudeDesPV.put(des_amp)
+            sleep(0.5)
         
-        print(f"{self} at {des_amp}")
+        print(f"{self} at {self.selAmplitudeActPV.get()} out of {des_amp}")
 
 
 class Magnet:
@@ -944,11 +953,6 @@ class Cryomodule:
         self.cavities.update(self.racks["B"].cavities)
         
         if isHarmonicLinearizer:
-            # two cavities share one SSA, this is the mapping
-            cavity_ssa_pairs = [(1, 5), (2, 6), (3, 7), (4, 8)]
-            
-            for (leader, follower) in cavity_ssa_pairs:
-                self.cavities[follower].ssa = self.cavities[leader].ssa
             self.couplerVacuumPVs: List[PV] = [PV(self.linac.vacuumPrefix + '{cm}09:COMBO_P'.format(cm=self.name)),
                                                PV(self.linac.vacuumPrefix + '{cm}19:COMBO_P'.format(cm=self.name))]
         else:
