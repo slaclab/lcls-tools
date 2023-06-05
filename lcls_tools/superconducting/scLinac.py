@@ -819,19 +819,20 @@ class Cavity:
         print(f"{self} characterization successful")
     
     def walk_amp(self, des_amp, step_size):
-        print(f"walking {self} to {des_amp} from {self.selAmplitudeActPV.get()}")
+        print(f"walking {self} to {des_amp} from {self.selAmplitudeDesPV.get()}")
         
-        while self.selAmplitudeActPV.get() <= (des_amp - step_size):
+        while self.selAmplitudeDesPV.get() <= (des_amp - step_size):
             self.check_abort()
-            self.selAmplitudeDesPV.put(self.selAmplitudeActPV.get() + step_size)
+            self.selAmplitudeDesPV.put(self.selAmplitudeDesPV.get() + step_size)
             # to avoid tripping sensitive interlock
             sleep(0.1)
         
         while not isclose(self.selAmplitudeDesPV.get(), des_amp):
             print(f"{self} ADES not at {des_amp}, retrying")
             self.selAmplitudeDesPV.put(des_amp, use_caput=True)
+            sleep(0.5)
         
-        print(f"{self} at {self.selAmplitudeActPV.get()} out of {des_amp}")
+        print(f"{self} at {des_amp} MV")
 
 
 class Magnet:
