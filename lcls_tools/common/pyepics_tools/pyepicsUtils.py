@@ -18,6 +18,9 @@ class PV(epics_pv):
     def __init__(self, pvname):
         super().__init__(pvname, connection_timeout=0.01)
     
+    def __str__(self):
+        return f"{self.pvname} PV Object"
+    
     def caget(self):
         while True:
             value = epics_caget(self.pvname)
@@ -54,11 +57,16 @@ class PV(epics_pv):
                 return self.caget()
     
     def put(self, value, wait=True, timeout=30.0,
-            use_complete=False, callback=None, callback_data=None, retry=True):
+            use_complete=False, callback=None, callback_data=None, retry=True,
+            use_caput=False):
+        
+        if use_caput:
+            return self.caput(value)
         
         status = super().put(value, wait=wait, timeout=timeout,
                              use_complete=use_complete, callback=callback,
                              callback_data=callback_data)
         
         if retry and (status is not 1):
+            print(f"{self} put not successful, using caput")
             self.caput(value)
