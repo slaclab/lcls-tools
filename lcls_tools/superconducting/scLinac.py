@@ -812,11 +812,9 @@ class Cavity:
             # to avoid tripping sensitive interlock
             sleep(0.1)
         
-        while not isclose(self.selAmplitudeActPV.get(), des_amp):
-            self.check_abort()
-            print(f"{self} not at desired amplitude, setting value again")
+        while not isclose(self.selAmplitudeDesPV.get(), des_amp):
+            print(f"{self} ADES not at {des_amp}, retrying")
             self.selAmplitudeDesPV.put(des_amp, use_caput=True)
-            sleep(0.5)
         
         print(f"{self} at {self.selAmplitudeActPV.get()} out of {des_amp}")
 
