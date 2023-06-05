@@ -813,8 +813,9 @@ class Cavity:
             sleep(0.1)
         
         while not isclose(self.selAmplitudeActPV.get(), des_amp):
+            self.check_abort()
             print(f"{self} not at desired amplitude, setting value again")
-            self.selAmplitudeDesPV.put(des_amp)
+            self.selAmplitudeDesPV.put(des_amp, use_caput=True)
             sleep(0.5)
         
         print(f"{self} at {self.selAmplitudeActPV.get()} out of {des_amp}")
