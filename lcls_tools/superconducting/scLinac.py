@@ -56,7 +56,9 @@ class SSA:
         self.measuredSlopePV: PV = PV(self.pvPrefix + "SLOPE_NEW")
         
         self.maxdrive_setpoint_pv: str = self.pvPrefix + "DRV_MAX_REQ"
+        self._maxdrive_setpoint_pv_obj: PV = None
         self.saved_maxdrive_pv: str = self.pvPrefix + "DRV_MAX_SAVE"
+        self._saved_maxdrive_pv_obj: PV = None
         self._max_fwd_pwr_pv: PV = None
     
     @property
@@ -67,18 +69,24 @@ class SSA:
     
     @property
     def drivemax(self):
-        saved_val = caget(self.saved_maxdrive_pv)
+        if not self._saved_maxdrive_pv_obj:
+            self._saved_maxdrive_pv_obj = PV(self.saved_maxdrive_pv)
+        saved_val = self._saved_maxdrive_pv_obj.get()
         return (saved_val if saved_val
                 else (1 if self.cavity.cryomodule.isHarmonicLinearizer else 0.8))
+    
+    @property
+    def maxdrive_setpoint_pv_obj(self):
+        if not self._maxdrive_setpoint_pv_obj:
+            self._maxdrive_setpoint_pv_obj = PV(self.maxdrive_setpoint_pv)
+        return self._maxdrive_setpoint_pv_obj
     
     def calibrate(self, drivemax, attempt=0):
         print(f"Running {self.cavity} SSA calibration with drivemax {drivemax}")
         
-        while caput(self.maxdrive_setpoint_pv, drivemax) != 1:
-            print(f"{self} SSA max drive not set successfully, retrying")
+        self.maxdrive_setpoint_pv_obj.put(drivemax)
         
-        if self.cavity.abort_flag:
-            raise utils.CavityAbortError(f"Abort requested for {self.cavity}")
+        self.cavity.check_abort()
         
         try:
             self.runCalibration()
@@ -156,10 +164,19 @@ class SSA:
         self.cavity.reset_interlocks()
         
         print(f"Running SSA Calibration for {self.cavity}")
-        utils.runCalibration(startPV=self.calibrationStartPV,
-                             statusPV=self.calibrationStatusPV,
-                             exception=utils.SSACalibrationError,
-                             resultStatusPV=self.calResultStatusPV)
+        self.calibrationStartPV.put(1)
+        
+        while self.calibrationStatusPV.get() == 2:
+            print(f"waiting for {self.calibrationStatusPV.pvname} to stop running",
+                  datetime.now())
+            sleep(1)
+        
+        if self.calibrationStatusPV.get() == 0:
+            raise utils.SSACalibrationError("{pv} crashed"
+                                            .format(pv=self.calibrationStatusPV.pvname))
+        
+        if self.calResultStatusPV.get() != utils.SSA_RESULT_GOOD_STATUS_VALUE:
+            raise utils.SSACalibrationError(f"{self.calResultStatusPV.pvname} not in good state")
         
         if self.max_fwd_pwr < self.fwd_power_lower_limit:
             raise utils.SSACalibrationToleranceError(f"{self.cavity} SSA forward power too low")
