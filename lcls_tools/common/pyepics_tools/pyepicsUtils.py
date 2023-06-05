@@ -41,7 +41,7 @@ class PV(epics_pv):
 
     def get(self, count=None, as_string=False, as_numpy=True,
             timeout=None, with_ctrlvars=False, use_monitor=True,
-            use_caget=False):
+            use_caget=True):
 
         if use_caget:
             self.caget()
@@ -59,7 +59,7 @@ class PV(epics_pv):
 
     def put(self, value, wait=True, timeout=30.0,
             use_complete=False, callback=None, callback_data=None, retry=True,
-            use_caput=False):
+            use_caput=True):
 
         if use_caput:
             return self.caput(value)
