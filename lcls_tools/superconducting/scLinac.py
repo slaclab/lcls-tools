@@ -270,7 +270,7 @@ class StepperTuner:
         print(f"Waiting 5s for {self.cavity} motor to start moving")
         sleep(5)
         
-        while self.motor_moving_pv.get(retry_until_valid=True) == 1:
+        while self.motor_moving_pv.get() == 1:
             self.check_abort()
             print(f"{self.cavity} motor still moving, waiting 5s", datetime.now())
             sleep(5)
@@ -806,8 +806,6 @@ class Cavity:
         
         while self.selAmplitudeActPV.get() <= (des_amp - step_size):
             self.check_abort()
-            if self.quench_latch_pv.get() == 1:
-                raise utils.QuenchError(f"{self} quench detected, aborting rampup")
             self.selAmplitudeDesPV.put(self.selAmplitudeActPV.get() + step_size)
             # to avoid tripping sensitive interlock
             sleep(0.1)

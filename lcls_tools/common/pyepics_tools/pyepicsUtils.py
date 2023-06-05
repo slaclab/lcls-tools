@@ -41,7 +41,7 @@ class PV(epics_pv):
     
     def get(self, count=None, as_string=False, as_numpy=True,
             timeout=None, with_ctrlvars=False, use_monitor=True,
-            retry_until_valid=True, use_caget=False):
+            use_caget=False):
         
         if use_caget:
             self.caget()
@@ -54,6 +54,7 @@ class PV(epics_pv):
             if value is not None:
                 return value
             else:
+                print(f"{self} put failed, trying caget instead")
                 return self.caget()
     
     def put(self, value, wait=True, timeout=30.0,
