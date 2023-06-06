@@ -188,7 +188,7 @@ class SSA:
         while self.measuredSlopePV.get() != self.currentSlopePV.get():
             print(f"{self.cavity} SSA current slope differs from measured slope, pushing")
             self.cavity.pushSSASlopePV.put(1)
-            sleep(0.5)
+            sleep(2)
 
 
 class StepperTuner:
