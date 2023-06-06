@@ -181,13 +181,14 @@ class SSA:
         if self.max_fwd_pwr < self.fwd_power_lower_limit:
             raise utils.SSACalibrationToleranceError(f"{self.cavity} SSA forward power too low")
         
-        print(f"Pushing SSA calibration results for {self.cavity}")
-        utils.pushAndSaveCalibrationChange(measuredPV=self.measuredSlopePV,
-                                           lowerLimit=utils.SSA_SLOPE_LOWER_LIMIT,
-                                           upperLimit=utils.SSA_SLOPE_UPPER_LIMIT,
-                                           pushPV=self.cavity.pushSSASlopePV,
-                                           savePV=self.cavity.saveSSASlopePV,
-                                           exception=utils.SSACalibrationToleranceError)
+        if (self.measuredSlopePV.get() < utils.SSA_SLOPE_LOWER_LIMIT
+                or self.measuredSlopePV.get() > utils.SSA_SLOPE_UPPER_LIMIT):
+            raise utils.SSACalibrationToleranceError(f"{self.cavity} SSA measured slope out of tolerance")
+        
+        while self.measuredSlopePV.get() != self.currentSlopePV.get():
+            print(f"{self.cavity} SSA current slope differs from measured slope, pushing")
+            self.cavity.pushSSASlopePV.put(1)
+            sleep(0.5)
 
 
 class StepperTuner:
@@ -750,10 +751,9 @@ class Cavity:
     
     @property
     def characterization_timestamp(self) -> datetime:
-        print(f"getting {self} characterization time")
         if not self._char_timestamp_pv_obj:
             self._char_timestamp_pv_obj = PV(self.char_timestamp_pv)
-        date_string = self._char_timestamp_pv_obj.get()
+        date_string = self._char_timestamp_pv_obj.get(use_caget=False)
         time_readback = datetime.strptime(date_string, '%Y-%m-%d-%H:%M:%S')
         print(f"{self} characterization time is {time_readback}")
         return time_readback
