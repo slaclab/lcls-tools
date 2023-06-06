@@ -780,29 +780,24 @@ class Cavity:
         
         print(f"Starting {self} cavity characterization at {datetime.now()}")
         self.cavityCharacterizationStartPV.put(1, retry=False)
-        
-        print(f"waiting 2s for {self} cavity characterization script to run")
         sleep(2)
-        
-        if (datetime.now() - self.characterization_timestamp).total_seconds() > 60:
-            raise utils.CavityQLoadedCalibrationError(f"{self} characterization did not start")
         
         while (self.cavityCharacterizationStatusPV.get()
                == utils.CALIBRATION_RUNNING_VALUE):
             print(f"waiting for {self.cavityCharacterizationStatusPV.pvname}"
                   f" to stop running", datetime.now())
             sleep(1)
+            
+        if self.cavityCharacterizationStatusPV.get() == utils.CALIBRATION_COMPLETE_VALUE:
+            if (datetime.now() - self.characterization_timestamp).total_seconds() > 60:
+                raise utils.CavityQLoadedCalibrationError(f"{self} characterization did not start")
+            self.finish_characterization()
         
-        sleep(2)
-        
-        if self.cavityCharacterizationStatusPV.get() == utils.CALIBRATION_CRASHED_VALUE:
+        else:
             raise utils.CavityQLoadedCalibrationError(f"{self} characterization crashed")
-        
-        print(f"pushing {self} characterization results")
-        
-        self.finish_characterization()
     
     def finish_characterization(self):
+        print(f"pushing {self} characterization results")
         if (self.loaded_q_lower_limit < self.measuredQLoadedPV.get()
                 < self.loaded_q_upper_limit):
             self.pushQLoadedPV.put(1)
@@ -813,6 +808,7 @@ class Cavity:
             self.pushCavityScalePV.put(1)
         else:
             raise utils.CavityScaleFactorCalibrationError(f"{self} scale factor out of tolerance")
+        
         self.reset_data_decimation()
         print(f"restoring {self} piezo feedback setpoint to 0")
         self.piezo.feedback_setpoint_pv.put(0)
