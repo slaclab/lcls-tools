@@ -687,17 +687,17 @@ class Cavity:
         while self.piezo.enable_stat_pv.get() != utils.PIEZO_ENABLE_VALUE:
             print(f"{self} piezo not enabled, retrying")
             self.piezo.enable_pv.put(utils.PIEZO_DISABLE_VALUE)
-            sleep(1)
+            sleep(2)
             self.piezo.enable_pv.put(utils.PIEZO_ENABLE_VALUE)
-            sleep(1)
+            sleep(2)
         
         print(f"setting {self} piezo to manual")
         while self.piezo.feedback_stat_pv.get() != utils.PIEZO_MANUAL_VALUE:
             print(f"{self} piezo not in manual, retrying")
             self.piezo.feedback_mode_PV.put(utils.PIEZO_FEEDBACK_VALUE)
-            sleep(1)
+            sleep(2)
             self.piezo.feedback_mode_PV.put(utils.PIEZO_MANUAL_VALUE)
-            sleep(1)
+            sleep(2)
         
         print(f"setting {self} piezo DC voltage offset to 0V")
         self.piezo.dc_setpoint_PV.put(0)
