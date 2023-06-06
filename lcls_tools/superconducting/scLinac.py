@@ -17,32 +17,36 @@ class SSA(utils.SCLinacObject):
     def __init__(self, cavity):
         # type: (Cavity) -> None
         self.cavity: Cavity = cavity
+        self._pv_prefix = self.cavity.pv_addr("SSA:")
+        
         if self.cavity.cryomodule.is_harmonic_linearizer:
             cavity_num = utils.HL_SSA_MAP[self.cavity.number]
-            self._pv_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
-                                                                               CRYOMODULE=self.cavity.cryomodule.name,
-                                                                               CAVITY=cavity_num)
+            hl_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
+                                                                         CRYOMODULE=self.cavity.cryomodule.name,
+                                                                         CAVITY=cavity_num)
             self.fwd_power_lower_limit = 500
             
-            self.ps_volt_setpoint1_pv: str = self.pv_addr("PSVoltSetpt1")
+            self.ps_volt_setpoint1_pv: str = hl_prefix + "PSVoltSetpt1"
             self._ps_volt_setpoint1_pv_obj: PV = None
             
-            self.ps_volt_setpoint2_pv: str = self.pv_addr("PSVoltSetpt2")
+            self.ps_volt_setpoint2_pv: str = hl_prefix + "PSVoltSetpt2"
             self._ps_volt_setpoint2_pv_obj: PV = None
+            
+            self.status_pv: str = (hl_prefix + "StatusMsg")
+            self.turn_on_pv: PV = PV(hl_prefix + "PowerOn")
+            self.turn_off_pv: PV = PV(hl_prefix + "PowerOff")
+            self.reset_pv: str = hl_prefix + "FaultReset"
+        
         else:
             self.fwd_power_lower_limit = 3000
-            self._pv_prefix = self.cavity.pv_addr("SSA:")
-        
-        self.status_pv: str = self.pv_addr("StatusMsg")
+            self.status_pv: str = self.pv_addr("StatusMsg")
+            self.turn_on_pv: str = self.pv_addr("PowerOn")
+            self.turn_off_pv: str = self.pv_addr("PowerOff")
+            self.reset_pv: str = self.pv_addr("FaultReset")
+            
         self._status_pv_obj: PV = None
-        
-        self.turn_on_pv: str = self.pv_addr("PowerOn")
         self._turn_on_pv_obj: PV = None
-        
-        self.turn_off_pv: str = self.pv_addr("PowerOff")
         self._turn_off_pv_obj: PV = None
-        
-        self.reset_pv: str = self.pv_addr("FaultReset")
         self._reset_pv_obj: PV = None
         
         self.calibration_start_pv: str = self.pv_addr("CALSTRT")
@@ -440,7 +444,7 @@ class StepperTuner(utils.SCLinacObject):
         :param numSteps: positive for increasing cavity length, negative for decreasing
         :param maxSteps: the maximum number of steps allowed at once
         :param speed: the speed of the motor in steps/second
-        :param changeLimits: whether or not to change the speed and steps
+        :param changeLimits: whether to change the speed and steps
         :return:
         """
         
@@ -936,7 +940,7 @@ class Cavity(utils.SCLinacObject):
     def ades(self):
         if not self._ades_pv_obj:
             self._ades_pv_obj = PV(self.ades_pv)
-        return self._ades_pv_obj.get()
+        return self._ades_pv_obj.get(use_caget=True)
     
     @ades.setter
     def ades(self, value: float):
@@ -1365,7 +1369,7 @@ class Cavity(utils.SCLinacObject):
         print(f"{self} characterization successful")
     
     def walk_amp(self, des_amp, step_size):
-        print(f"walking {self} to {des_amp}")
+        print(f"walking {self} to {des_amp} from {self.ades}")
         
         while self.ades <= (des_amp - step_size):
             self.check_abort()
@@ -1378,7 +1382,7 @@ class Cavity(utils.SCLinacObject):
         if self.ades != des_amp:
             self.ades = des_amp
         
-        print(f"{self} at {des_amp}")
+        print(f"{self} at {des_amp} MV")
 
 
 class Magnet(utils.SCLinacObject):
@@ -1537,11 +1541,6 @@ class Cryomodule(utils.SCLinacObject):
         self.cavities.update(self.rack_b.cavities)
         
         if is_harmonic_linearizer:
-            # two cavities share one SSA, this is the mapping
-            cavity_ssa_pairs = [(1, 5), (2, 6), (3, 7), (4, 8)]
-            
-            for (leader, follower) in cavity_ssa_pairs:
-                self.cavities[follower].ssa = self.cavities[leader].ssa
             self.coupler_vacuum_pvs: List[str] = [self.linac.vacuum_prefix + '{cm}09:COMBO_P'.format(cm=self.name),
                                                   self.linac.vacuum_prefix + '{cm}19:COMBO_P'.format(cm=self.name)]
         else:
