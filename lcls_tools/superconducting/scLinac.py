@@ -43,7 +43,7 @@ class SSA(utils.SCLinacObject):
             self.turn_on_pv: str = self.pv_addr("PowerOn")
             self.turn_off_pv: str = self.pv_addr("PowerOff")
             self.reset_pv: str = self.pv_addr("FaultReset")
-            
+        
         self._status_pv_obj: PV = None
         self._turn_on_pv_obj: PV = None
         self._turn_off_pv_obj: PV = None
@@ -282,8 +282,8 @@ class SSA(utils.SCLinacObject):
     @property
     def measured_slope_in_tolerance(self) -> bool:
         return (utils.SSA_SLOPE_LOWER_LIMIT
-                > self.measured_slope
-                > utils.SSA_SLOPE_UPPER_LIMIT)
+                < self.measured_slope
+                < utils.SSA_SLOPE_UPPER_LIMIT)
 
 
 class StepperTuner(utils.SCLinacObject):
