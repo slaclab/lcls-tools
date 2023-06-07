@@ -841,7 +841,7 @@ class Cavity(utils.SCLinacObject):
         self.rf_mode_ctrl_pv_obj.put(utils.RF_MODE_SELA)
     
     def set_selap_mode(self):
-        self.rf_mode_ctrl_pv_obj.put(utils.RF_MODE_SELAP)
+        self.rf_mode_ctrl_pv_obj.put(utils.RF_MODE_SELAP, use_caput=False)
     
     @property
     def drive_level_pv_obj(self):
