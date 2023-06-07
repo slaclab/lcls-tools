@@ -761,7 +761,7 @@ class Cavity(utils.SCLinacObject):
         self.hw_mode_pv: str = self.pv_addr("HWMODE")
         self._hw_mode_pv_obj: PV = None
         
-        self.char_timestamp_pv: str = self.pvPrefix + "PROBECALTS"
+        self.char_timestamp_pv: str = self.pv_addr("PROBECALTS")
         self._char_timestamp_pv_obj: PV = None
     
     def __str__(self):
