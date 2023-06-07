@@ -109,7 +109,7 @@ class SCLinacObject(ABC, object):
     @property
     @abstractmethod
     def pv_prefix(self):
-        raise NotImplementedError("SC Linac Objects should implement pv_prefix")
+        raise NotImplementedError("SC Linac Objects need to implement pv_prefix")
     
     def pv_addr(self, suffix: str):
         return self.pv_prefix + suffix
