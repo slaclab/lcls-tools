@@ -708,6 +708,7 @@ class Cavity(utils.SCLinacObject):
         self._rf_mode_ctrl_pv_obj: PV = None
         
         self.rf_mode_pv: str = self.pv_addr("RFMODE")
+        self._rf_mode_pv_obj: PV = None
         
         self.rf_state_pv: str = self.pv_addr("RFSTATE")
         self._rf_state_pv_obj: PV = None
@@ -761,7 +762,7 @@ class Cavity(utils.SCLinacObject):
         self.hw_mode_pv: str = self.pv_addr("HWMODE")
         self._hw_mode_pv_obj: PV = None
         
-        self.char_timestamp_pv: str = self.pvPrefix + "PROBECALTS"
+        self.char_timestamp_pv: str = self.pv_addr("PROBECALTS")
         self._char_timestamp_pv_obj: PV = None
     
     def __str__(self):
@@ -817,6 +818,12 @@ class Cavity(utils.SCLinacObject):
     @rf_control.setter
     def rf_control(self, value):
         self.rf_control_pv_obj.put(value)
+    
+    @property
+    def rf_mode(self):
+        if not self._rf_mode_pv_obj:
+            self._rf_mode_pv_obj = self.pv_addr(self.rf_mode_pv)
+        return self._rf_mode_pv_obj.get()
     
     @property
     def rf_mode_ctrl_pv_obj(self) -> PV:
@@ -1234,17 +1241,17 @@ class Cavity(utils.SCLinacObject):
         while not self.piezo.is_enabled:
             print(f"{self} piezo not enabled, retrying")
             self.piezo.enable_pv_obj.put(utils.PIEZO_DISABLE_VALUE)
-            sleep(1)
+            sleep(2)
             self.piezo.enable_pv_obj.put(utils.PIEZO_ENABLE_VALUE)
-            sleep(1)
+            sleep(2)
         
         print(f"setting {self} piezo to manual")
         while not self.piezo.in_manual:
             print(f"{self} piezo not in manual, retrying")
             self.piezo.set_to_feedback()
-            sleep(1)
+            sleep(2)
             self.piezo.set_to_manual()
-            sleep(1)
+            sleep(2)
         
         print(f"setting {self} piezo DC voltage offset to 0V")
         self.piezo.dc_setpoint = 0
@@ -1302,10 +1309,9 @@ class Cavity(utils.SCLinacObject):
     
     @property
     def characterization_timestamp(self) -> datetime:
-        print(f"getting {self} characterization time")
         if not self._char_timestamp_pv_obj:
             self._char_timestamp_pv_obj = PV(self.char_timestamp_pv)
-        date_string = self._char_timestamp_pv_obj.get()
+        date_string = self._char_timestamp_pv_obj.get(use_caget=False)
         time_readback = datetime.strptime(date_string, '%Y-%m-%d-%H:%M:%S')
         print(f"{self} characterization time is {time_readback}")
         return time_readback
@@ -1332,28 +1338,23 @@ class Cavity(utils.SCLinacObject):
         
         print(f"Starting {self} cavity characterization at {datetime.now()}")
         self.start_characterization()
-        
-        print(f"waiting 2s for {self} cavity characterization script to run")
         sleep(2)
-        
-        if (datetime.now() - self.characterization_timestamp).total_seconds() > 60:
-            raise utils.CavityQLoadedCalibrationError(f"{self} characterization did not start")
         
         while self.characterization_running:
             print(f"waiting for {self} characterization"
                   f" to stop running", datetime.now())
             sleep(1)
         
-        sleep(2)
+        if self.characterization_status == utils.CALIBRATION_COMPLETE_VALUE:
+            if (datetime.now() - self.characterization_timestamp).total_seconds() > 60:
+                raise utils.CavityQLoadedCalibrationError(f"{self} characterization did not start")
+            self.finish_characterization()
         
         if self.characterization_crashed:
             raise utils.CavityQLoadedCalibrationError(f"{self} characterization crashed")
-        
-        print(f"pushing {self} characterization results")
-        
-        self.finish_characterization()
     
     def finish_characterization(self):
+        print(f"pushing {self} characterization results")
         if self.measured_loaded_q_in_tolerance:
             self.push_loaded_q()
         else:
@@ -1362,6 +1363,7 @@ class Cavity(utils.SCLinacObject):
             self.push_scale_factor()
         else:
             raise utils.CavityScaleFactorCalibrationError(f"{self} scale factor out of tolerance")
+        
         self.reset_data_decimation()
         print(f"restoring {self} piezo feedback setpoint to 0")
         self.piezo.feedback_setpoint = 0
