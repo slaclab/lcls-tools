@@ -282,8 +282,8 @@ class SSA(utils.SCLinacObject):
     @property
     def measured_slope_in_tolerance(self) -> bool:
         return (utils.SSA_SLOPE_LOWER_LIMIT
-                > self.measured_slope
-                > utils.SSA_SLOPE_UPPER_LIMIT)
+                < self.measured_slope
+                < utils.SSA_SLOPE_UPPER_LIMIT)
 
 
 class StepperTuner(utils.SCLinacObject):
