@@ -708,6 +708,7 @@ class Cavity(utils.SCLinacObject):
         self._rf_mode_ctrl_pv_obj: PV = None
         
         self.rf_mode_pv: str = self.pv_addr("RFMODE")
+        self._rf_mode_pv_obj: PV = None
         
         self.rf_state_pv: str = self.pv_addr("RFSTATE")
         self._rf_state_pv_obj: PV = None
@@ -817,6 +818,12 @@ class Cavity(utils.SCLinacObject):
     @rf_control.setter
     def rf_control(self, value):
         self.rf_control_pv_obj.put(value)
+    
+    @property
+    def rf_mode(self):
+        if not self._rf_mode_pv_obj:
+            self._rf_mode_pv_obj = self.pv_addr(self.rf_mode_pv)
+        return self._rf_mode_pv_obj.get()
     
     @property
     def rf_mode_ctrl_pv_obj(self) -> PV:
