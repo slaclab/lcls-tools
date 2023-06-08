@@ -333,6 +333,9 @@ class StepperTuner(utils.SCLinacObject):
         self.limit_switch_b_pv: str = self.pv_addr("STAT_LIMB")
         self._limit_switch_b_pv_obj: PV = None
         
+        self.hz_per_microstep_pv: str = self.pv_addr("SCALE")
+        self._hz_per_microstep_pv_obj: PV = None
+        
         self.abort_flag: bool = False
     
     def __str__(self):
@@ -341,6 +344,16 @@ class StepperTuner(utils.SCLinacObject):
     @property
     def pv_prefix(self):
         return self._pv_prefix
+    
+    @property
+    def hz_per_microstep_pv_obj(self) -> PV:
+        if not self._hz_per_microstep_pv_obj:
+            self._hz_per_microstep_pv_obj = PV(self.hz_per_microstep_pv)
+        return self._hz_per_microstep_pv_obj
+    
+    @property
+    def hz_per_microstep(self):
+        return abs(self.hz_per_microstep_pv_obj.get())
     
     def check_abort(self):
         if self.abort_flag:
@@ -604,11 +617,35 @@ class Piezo(utils.SCLinacObject):
     def set_to_manual(self):
         self.feedback_control_pv_obj.put(utils.PIEZO_MANUAL_VALUE)
     
+    def enable(self):
+        self.bias_voltage = 25
+        while not self.is_enabled:
+            self.cavity.check_abort()
+            print(f"{self} not enabled, trying to enable")
+            self.enable_pv_obj.put(utils.PIEZO_DISABLE_VALUE)
+            sleep(2)
+            self.enable_pv_obj.put(utils.PIEZO_ENABLE_VALUE)
+            sleep(2)
+    
     def enable_feedback(self):
-        self.enable_pv_obj.put(utils.PIEZO_DISABLE_VALUE)
-        self.dc_setpoint = 25
-        self.set_to_manual()
-        self.enable_pv_obj.put(utils.PIEZO_ENABLE_VALUE)
+        self.enable()
+        while self.in_manual:
+            self.cavity.check_abort()
+            print(f"{self} feedback not enabled, trying to enable feedback")
+            self.set_to_manual()
+            sleep(2)
+            self.set_to_feedback()
+            sleep(2)
+    
+    def disable_feedback(self):
+        self.enable()
+        while not self.in_manual:
+            self.cavity.check_abort()
+            print(f"{self} feedback enabled, trying to disable feedback")
+            self.set_to_feedback()
+            sleep(2)
+            self.set_to_manual()
+            sleep(2)
 
 
 class Cavity(utils.SCLinacObject):
@@ -633,13 +670,11 @@ class Cavity(utils.SCLinacObject):
             self.frequency = 3.9e9
             self.loaded_q_lower_limit = utils.LOADED_Q_LOWER_LIMIT_HL
             self.loaded_q_upper_limit = utils.LOADED_Q_UPPER_LIMIT_HL
-            self.steps_per_hz = utils.ESTIMATED_MICROSTEPS_PER_HZ_HL
         else:
             self.length = 1.038
             self.frequency = 1.3e9
             self.loaded_q_lower_limit = utils.LOADED_Q_LOWER_LIMIT
             self.loaded_q_upper_limit = utils.LOADED_Q_UPPER_LIMIT
-            self.steps_per_hz = utils.ESTIMATED_MICROSTEPS_PER_HZ
         
         self._pv_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(LINAC=self.linac.name,
                                                                        CRYOMODULE=self.cryomodule.name,
@@ -771,6 +806,10 @@ class Cavity(utils.SCLinacObject):
     @property
     def pv_prefix(self):
         return self._pv_prefix
+    
+    @property
+    def microsteps_per_hz(self):
+        return 1 / self.steppertuner.hz_per_microstep
     
     def start_characterization(self):
         if not self._characterization_start_pv_obj:
@@ -1067,11 +1106,12 @@ class Cavity(utils.SCLinacObject):
     def is_on(self):
         return self.rf_state == 1
     
-    def move_to_resonance(self, reset_signed_steps=False):
+    def move_to_resonance(self, reset_signed_steps=False, use_chirp=True):
         self.auto_tune(des_detune=0,
                        config_val=utils.TUNE_CONFIG_RESONANCE_VALUE,
                        reset_signed_steps=reset_signed_steps,
-                       tolerance=(200 if self.cryomodule.is_harmonic_linearizer else 50))
+                       tolerance=(200 if self.cryomodule.is_harmonic_linearizer else 50),
+                       use_chirp=use_chirp)
     
     @property
     def detune_best_pv_obj(self) -> PV:
@@ -1088,8 +1128,8 @@ class Cavity(utils.SCLinacObject):
         return self.detune_best_pv_obj.severity == EPICS_INVALID_VAL
     
     def auto_tune(self, des_detune, config_val, tolerance=50,
-                  chirp_range=50000, reset_signed_steps=False):
-        self.setup_tuning(chirp_range)
+                  chirp_range=50000, reset_signed_steps=False, use_chirp=True):
+        self.setup_tuning(chirp_range, use_chirp=use_chirp)
         
         if self.detune_invalid:
             raise utils.DetuneError(f"Detune for {self} is invalid")
@@ -1098,7 +1138,7 @@ class Cavity(utils.SCLinacObject):
         
         self.tune_config_pv_obj.put(utils.TUNE_CONFIG_OTHER_VALUE)
         
-        expected_steps: int = abs(int(delta * self.steps_per_hz))
+        expected_steps: int = abs(int(delta * self.microsteps_per_hz))
         steps_moved: int = 0
         
         if reset_signed_steps:
@@ -1106,7 +1146,7 @@ class Cavity(utils.SCLinacObject):
         
         while abs(delta) > tolerance:
             self.check_abort()
-            est_steps = int(0.9 * delta * self.steps_per_hz)
+            est_steps = int(0.9 * delta * self.microsteps_per_hz)
             
             print(f"Moving stepper for {self} {est_steps} steps")
             
@@ -1119,7 +1159,7 @@ class Cavity(utils.SCLinacObject):
                 raise utils.DetuneError(f"{self} motor moved more steps than expected")
             
             # this should catch if the chirp range is wrong or if the cavity is off
-            if self.detune_invalid:
+            if use_chirp and self.detune_invalid:
                 self.find_chirp_range()
             
             delta = self.detune_best - des_detune
@@ -1159,10 +1199,11 @@ class Cavity(utils.SCLinacObject):
         if self.pulse_status > 2:
             raise utils.PulseError("Unable to pulse cavity")
     
-    def turnOn(self):
+    def turn_on(self):
         print(f"Turning {self} on")
         if self.is_online:
             self.ssa.turn_on()
+            self.reset_interlocks()
             self.rf_control = 1
             
             while not self.is_on:
@@ -1219,7 +1260,7 @@ class Cavity(utils.SCLinacObject):
         
         self.ades = min(5, desAmp)
         self.set_sel_mode()
-        self.piezo.set_to_feedback()
+        self.piezo.enable_feedback()
         self.set_sela_mode()
         
         self.check_abort()
@@ -1236,44 +1277,30 @@ class Cavity(utils.SCLinacObject):
         self.cw_data_decimation = 255
         self.pulsed_data_decimation = 255
     
-    def setup_tuning(self, chirp_range=200000):
-        print(f"enabling {self} piezo")
-        while not self.piezo.is_enabled:
-            print(f"{self} piezo not enabled, retrying")
-            self.piezo.enable_pv_obj.put(utils.PIEZO_DISABLE_VALUE)
-            sleep(2)
-            self.piezo.enable_pv_obj.put(utils.PIEZO_ENABLE_VALUE)
-            sleep(2)
+    def setup_tuning(self, chirp_range=200000, use_chirp=True):
+        self.piezo.enable()
         
-        print(f"setting {self} piezo to manual")
-        while not self.piezo.in_manual:
-            print(f"{self} piezo not in manual, retrying")
-            self.piezo.set_to_feedback()
-            sleep(2)
-            self.piezo.set_to_manual()
-            sleep(2)
+        if use_chirp:
+            self.piezo.disable_feedback()
+            
+            print(f"setting {self} piezo DC voltage offset to 0V")
+            self.piezo.dc_setpoint = 0
+            
+            print(f"setting {self} drive level to {utils.SAFE_PULSED_DRIVE_LEVEL}")
+            self.drive_level = utils.SAFE_PULSED_DRIVE_LEVEL
+            
+            print(f"setting {self} RF to chirp")
+            self.set_chirp_mode()
+            
+            print(f"turning {self} RF on and waiting 5s for detune to catch up")
+            self.turn_on()
+            sleep(5)
+            self.find_chirp_range(chirp_range)
         
-        print(f"setting {self} piezo DC voltage offset to 0V")
-        self.piezo.dc_setpoint = 0
-        
-        print(f"setting {self} piezo bias voltage to 25V")
-        self.piezo.bias_voltage = 25
-        
-        print(f"setting {self} drive level to {utils.SAFE_PULSED_DRIVE_LEVEL}")
-        self.drive_level = utils.SAFE_PULSED_DRIVE_LEVEL
-        
-        print(f"setting {self} RF to chirp")
-        self.set_chirp_mode()
-        
-        print(f"turning {self} RF on and waiting 5s for detune to catch up")
-        self.ssa.turn_on()
-        
-        self.reset_interlocks()
-        
-        self.turnOn()
-        sleep(5)
-        
-        self.find_chirp_range(chirp_range)
+        else:
+            self.piezo.enable_feedback()
+            self.set_sela_mode()
+            self.turn_on()
     
     def find_chirp_range(self, chirp_range=50000):
         self.set_chirp_range(chirp_range)
