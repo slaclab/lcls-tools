@@ -1124,17 +1124,17 @@ class Cavity(utils.SCLinacObject):
             return self.detune_best
         
         self.setup_tuning(use_sela=use_sela)
-        self.auto_tune(delta_hz_func=delta_detune,
-                       tolerance=(200 if self.cryomodule.is_harmonic_linearizer else 50),
-                       reset_signed_steps=reset_signed_steps)
+        self._auto_tune(delta_hz_func=delta_detune,
+                        tolerance=(200 if self.cryomodule.is_harmonic_linearizer else 50),
+                        reset_signed_steps=reset_signed_steps)
         
         if use_sela:
             def delta_piezo():
                 delta_volts = self.piezo.voltage - utils.PIEZO_CENTER_VOLTAGE
                 return delta_volts * utils.PIEZO_HZ_PER_VOLT
             
-            self.auto_tune(delta_hz_func=delta_piezo, tolerance=100,
-                           reset_signed_steps=False)
+            self._auto_tune(delta_hz_func=delta_piezo, tolerance=100,
+                            reset_signed_steps=False)
         
         self.tune_config_pv_obj.put(utils.TUNE_CONFIG_RESONANCE_VALUE)
     
@@ -1152,8 +1152,8 @@ class Cavity(utils.SCLinacObject):
     def detune_invalid(self) -> bool:
         return self.detune_best_pv_obj.severity == EPICS_INVALID_VAL
     
-    def auto_tune(self, delta_hz_func: Callable, tolerance: int = 50,
-                  reset_signed_steps: bool = False):
+    def _auto_tune(self, delta_hz_func: Callable, tolerance: int = 50,
+                   reset_signed_steps: bool = False):
         if self.detune_invalid:
             raise utils.DetuneError(f"Detune for {self} is invalid")
         
