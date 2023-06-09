@@ -999,7 +999,7 @@ class Cavity(utils.SCLinacObject):
     def ades(self):
         if not self._ades_pv_obj:
             self._ades_pv_obj = PV(self.ades_pv)
-        return self._ades_pv_obj.get(use_caget=True)
+        return self._ades_pv_obj.get(use_caget=False)
     
     @ades.setter
     def ades(self, value: float):
