@@ -5,7 +5,7 @@
 ################################################################################
 from datetime import datetime
 from time import sleep
-from typing import Dict, List, Type
+from typing import Callable, Dict, List, Type
 
 from numpy import sign
 
@@ -536,10 +536,23 @@ class Piezo(utils.SCLinacObject):
         
         self.bias_voltage_pv: str = self.pv_addr("BIAS")
         self._bias_voltage_pv_obj: PV = None
+        
+        self.voltage_pv: str = self.pv_addr("V")
+        self._voltage_pv_obj: PV = None
     
     @property
     def pv_prefix(self):
         return self._pv_prefix
+    
+    @property
+    def voltage_pv_obj(self):
+        if not self._voltage_pv_obj:
+            self._voltage_pv_obj = PV(self.voltage_pv)
+        return self._voltage_pv_obj
+    
+    @property
+    def voltage(self):
+        return self.voltage_pv_obj.get()
     
     @property
     def bias_voltage_pv_obj(self):
@@ -1106,12 +1119,24 @@ class Cavity(utils.SCLinacObject):
     def is_on(self):
         return self.rf_state == 1
     
-    def move_to_resonance(self, reset_signed_steps=False, use_chirp=True):
-        self.auto_tune(des_detune=0,
-                       config_val=utils.TUNE_CONFIG_RESONANCE_VALUE,
-                       reset_signed_steps=reset_signed_steps,
+    def move_to_resonance(self, reset_signed_steps=False, use_sela=False):
+        def delta_detune():
+            return self.detune_best
+        
+        self.setup_tuning(use_sela=use_sela)
+        self.auto_tune(delta_hz_func=delta_detune,
                        tolerance=(200 if self.cryomodule.is_harmonic_linearizer else 50),
-                       use_chirp=use_chirp)
+                       reset_signed_steps=reset_signed_steps)
+        
+        if use_sela:
+            def delta_piezo():
+                delta_volts = self.piezo.voltage - utils.PIEZO_CENTER_VOLTAGE
+                return delta_volts * utils.PIEZO_HZ_PER_VOLT
+            
+            self.auto_tune(delta_hz_func=delta_piezo, tolerance=100,
+                           reset_signed_steps=False)
+        
+        self.tune_config_pv_obj.put(utils.TUNE_CONFIG_RESONANCE_VALUE)
     
     @property
     def detune_best_pv_obj(self) -> PV:
@@ -1127,26 +1152,23 @@ class Cavity(utils.SCLinacObject):
     def detune_invalid(self) -> bool:
         return self.detune_best_pv_obj.severity == EPICS_INVALID_VAL
     
-    def auto_tune(self, des_detune, config_val, tolerance=50,
-                  chirp_range=50000, reset_signed_steps=False, use_chirp=True):
-        self.setup_tuning(chirp_range, use_chirp=use_chirp)
-        
+    def auto_tune(self, delta_hz_func: Callable, tolerance: int = 50,
+                  reset_signed_steps: bool = False):
         if self.detune_invalid:
             raise utils.DetuneError(f"Detune for {self} is invalid")
         
-        delta = self.detune_best - des_detune
-        
-        self.tune_config_pv_obj.put(utils.TUNE_CONFIG_OTHER_VALUE)
-        
-        expected_steps: int = abs(int(delta * self.microsteps_per_hz))
+        delta_hz = delta_hz_func()
+        expected_steps: int = abs(int(delta_hz * self.microsteps_per_hz))
         steps_moved: int = 0
         
         if reset_signed_steps:
             self.steppertuner.reset_signed_steps()
         
-        while abs(delta) > tolerance:
+        self.tune_config_pv_obj.put(utils.TUNE_CONFIG_OTHER_VALUE)
+        
+        while abs(delta_hz) > tolerance:
             self.check_abort()
-            est_steps = int(0.9 * delta * self.microsteps_per_hz)
+            est_steps = int(0.9 * delta_hz * self.microsteps_per_hz)
             
             print(f"Moving stepper for {self} {est_steps} steps")
             
@@ -1159,12 +1181,13 @@ class Cavity(utils.SCLinacObject):
                 raise utils.DetuneError(f"{self} motor moved more steps than expected")
             
             # this should catch if the chirp range is wrong or if the cavity is off
-            if use_chirp and self.detune_invalid:
-                self.find_chirp_range()
+            if self.detune_invalid:
+                if self.rf_mode == utils.RF_MODE_CHIRP:
+                    self.find_chirp_range()
+                else:
+                    raise utils.DetuneError(f"Cannot tune {self} in SELA with invalid detune")
             
-            delta = self.detune_best - des_detune
-        
-        self.tune_config_pv_obj.put(config_val)
+            delta_hz = delta_hz_func()
     
     def checkAndSetOnTime(self):
         """
@@ -1277,10 +1300,10 @@ class Cavity(utils.SCLinacObject):
         self.cw_data_decimation = 255
         self.pulsed_data_decimation = 255
     
-    def setup_tuning(self, chirp_range=200000, use_chirp=True):
+    def setup_tuning(self, chirp_range=50000, use_sela=False):
         self.piezo.enable()
         
-        if use_chirp:
+        if not use_sela:
             self.piezo.disable_feedback()
             
             print(f"setting {self} piezo DC voltage offset to 0V")
