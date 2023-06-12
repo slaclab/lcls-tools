@@ -33,8 +33,8 @@ class SSA(utils.SCLinacObject):
             self._ps_volt_setpoint2_pv_obj: PV = None
             
             self.status_pv: str = (hl_prefix + "StatusMsg")
-            self.turn_on_pv: PV = PV(hl_prefix + "PowerOn")
-            self.turn_off_pv: PV = PV(hl_prefix + "PowerOff")
+            self.turn_on_pv: str = (hl_prefix + "PowerOn")
+            self.turn_off_pv: str = (hl_prefix + "PowerOff")
             self.reset_pv: str = hl_prefix + "FaultReset"
         
         else:
