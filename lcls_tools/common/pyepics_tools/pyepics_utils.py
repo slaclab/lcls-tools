@@ -22,19 +22,27 @@ class PV(epics_pv):
         return f"{self.pvname} PV Object"
     
     def caget(self):
+        attempt = 1
         while True:
+            if attempt > 3:
+                raise PVInvalidError(f"{self} caget failed 3 times, aborting")
             value = epics_caget(self.pvname)
             if value is not None:
                 break
+            attempt += 1
             print(f"{self.pvname} did not return a valid value, retrying")
             sleep(0.5)
         return value
     
     def caput(self, value):
+        attempt = 1
         while True:
+            if attempt > 3:
+                raise PVInvalidError(f"{self} caget failed 3 times, aborting")
             status = epics_caput(self.pvname, value)
             if status == 1:
                 break
+            attempt += 1
             print(f"{self} caput did not execute successfully, retrying")
             sleep(0.5)
         return status
