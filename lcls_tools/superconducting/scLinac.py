@@ -500,6 +500,7 @@ class StepperTuner(utils.SCLinacObject):
         
         while self.motor_moving:
             self.check_abort()
+            self.cavity.check_detune()
             print(f"{self} motor still moving, waiting 5s", datetime.now())
             sleep(5)
         
@@ -539,6 +540,9 @@ class Piezo(utils.SCLinacObject):
         
         self.voltage_pv: str = self.pv_addr("V")
         self._voltage_pv_obj: PV = None
+    
+    def __str__(self):
+        return self.cavity.__str__() + " Piezo"
     
     @property
     def pv_prefix(self):
@@ -1124,6 +1128,7 @@ class Cavity(utils.SCLinacObject):
             return self.detune_best
         
         self.setup_tuning(use_sela=use_sela)
+        print(f"Tuning {self} to resonance in " + ("SELA" if use_sela else "chirp"))
         self._auto_tune(delta_hz_func=delta_detune,
                         tolerance=(200 if self.cryomodule.is_harmonic_linearizer else 50),
                         reset_signed_steps=reset_signed_steps)
@@ -1131,8 +1136,11 @@ class Cavity(utils.SCLinacObject):
         if use_sela:
             def delta_piezo():
                 delta_volts = self.piezo.voltage - utils.PIEZO_CENTER_VOLTAGE
-                return delta_volts * utils.PIEZO_HZ_PER_VOLT
+                delta_hz = delta_volts * utils.PIEZO_HZ_PER_VOLT
+                print(f"{self} piezo detune: {delta_hz}")
+                return delta_hz
             
+            print(f"Centering {self} piezo")
             self._auto_tune(delta_hz_func=delta_piezo, tolerance=100,
                             reset_signed_steps=False)
         
@@ -1181,13 +1189,16 @@ class Cavity(utils.SCLinacObject):
                 raise utils.DetuneError(f"{self} motor moved more steps than expected")
             
             # this should catch if the chirp range is wrong or if the cavity is off
-            if self.detune_invalid:
-                if self.rf_mode == utils.RF_MODE_CHIRP:
-                    self.find_chirp_range()
-                else:
-                    raise utils.DetuneError(f"Cannot tune {self} in SELA with invalid detune")
+            self.check_detune()
             
             delta_hz = delta_hz_func()
+    
+    def check_detune(self):
+        if self.detune_invalid:
+            if self.rf_mode == utils.RF_MODE_CHIRP:
+                self.find_chirp_range(self.chirp_freq_start * 1.1)
+            else:
+                raise utils.DetuneError(f"Cannot tune {self} in SELA with invalid detune")
     
     def checkAndSetOnTime(self):
         """
@@ -1329,8 +1340,8 @@ class Cavity(utils.SCLinacObject):
         self.set_chirp_range(chirp_range)
         sleep(1)
         if self.detune_invalid:
-            if chirp_range < 500000:
-                self.find_chirp_range(int(chirp_range * 1.25))
+            if chirp_range < 400000:
+                self.find_chirp_range(int(chirp_range * 1.1))
             else:
                 raise utils.DetuneError(f"{self}: No valid detune found within"
                                         f"+/-500000Hz chirp range")
