@@ -1142,7 +1142,7 @@ class Cavity(utils.SCLinacObject):
             
             print(f"Centering {self} piezo")
             self._auto_tune(delta_hz_func=delta_piezo, tolerance=100,
-                            reset_signed_steps=False)
+                            reset_signed_steps=False, step_thresh=10)
         
         self.tune_config_pv_obj.put(utils.TUNE_CONFIG_RESONANCE_VALUE)
     
@@ -1161,7 +1161,7 @@ class Cavity(utils.SCLinacObject):
         return self.detune_best_pv_obj.severity == EPICS_INVALID_VAL
     
     def _auto_tune(self, delta_hz_func: Callable, tolerance: int = 50,
-                   reset_signed_steps: bool = False):
+                   reset_signed_steps: bool = False, step_thresh: float = 1.5):
         if self.detune_invalid:
             raise utils.DetuneError(f"Detune for {self} is invalid")
         
@@ -1185,7 +1185,7 @@ class Cavity(utils.SCLinacObject):
                                    speed=utils.MAX_STEPPER_SPEED)
             steps_moved += abs(est_steps)
             
-            if steps_moved > expected_steps * 1.5:
+            if steps_moved > expected_steps * step_thresh:
                 raise utils.DetuneError(f"{self} motor moved more steps than expected")
             
             # this should catch if the chirp range is wrong or if the cavity is off
