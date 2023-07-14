@@ -18,8 +18,6 @@ class SSA(utils.SCLinacObject):
         # type: (Cavity) -> None
         self.cavity: Cavity = cavity
         self._pv_prefix = self.cavity.pv_addr("SSA:")
-        self.shared_pvs = ["PSVoltSetpt1", "PSVoltSetpt2", "StatusMsg",
-                           "PowerOn", "PowerOff", "FaultReset", "NRP_PRMT"]
         
         if self.cavity.cryomodule.is_harmonic_linearizer:
             cavity_num = utils.HL_SSA_MAP[self.cavity.number]
@@ -82,7 +80,8 @@ class SSA(utils.SCLinacObject):
         return self._pv_prefix
 
     def pv_addr(self, suffix: str):
-        if self.cavity.cryomodule.is_harmonic_linearizer and suffix in self.shared_pvs:
+        if (self.cavity.cryomodule.is_harmonic_linearizer
+                and suffix in utils.HL_SSA_SHARED_PVS):
             return self.hl_prefix + suffix
         else:
             return self.pv_prefix + suffix
