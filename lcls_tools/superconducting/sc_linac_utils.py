@@ -38,7 +38,7 @@ SSA_CALIBRATION_CRASHED_VALUE = 0
 
 HL_SSA_MAP = {1: 1, 2: 2, 3: 3, 4: 4, 5: 1, 6: 2, 7: 3, 8: 4}
 HL_SSA_SHARED_PVS = ["PSVoltSetpt1", "PSVoltSetpt2", "StatusMsg", "PowerOn",
-                     "PowerOff", "FaultReset", "NRP_PRMT"]
+                     "PowerOff", "FaultReset", "NRP_PRMT", "FaultSummary.SEVR"]
 
 HL_SSA_PS_SETPOINT = 2500
 
