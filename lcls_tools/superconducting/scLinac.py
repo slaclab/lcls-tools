@@ -21,21 +21,21 @@ class SSA(utils.SCLinacObject):
         
         if self.cavity.cryomodule.is_harmonic_linearizer:
             cavity_num = utils.HL_SSA_MAP[self.cavity.number]
-            hl_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
+            self.hl_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
                                                                          CRYOMODULE=self.cavity.cryomodule.name,
                                                                          CAVITY=cavity_num)
             self.fwd_power_lower_limit = 500
             
-            self.ps_volt_setpoint1_pv: str = hl_prefix + "PSVoltSetpt1"
+            self.ps_volt_setpoint1_pv: str = self.hl_prefix + "PSVoltSetpt1"
             self._ps_volt_setpoint1_pv_obj: PV = None
             
-            self.ps_volt_setpoint2_pv: str = hl_prefix + "PSVoltSetpt2"
+            self.ps_volt_setpoint2_pv: str = self.hl_prefix + "PSVoltSetpt2"
             self._ps_volt_setpoint2_pv_obj: PV = None
             
-            self.status_pv: str = (hl_prefix + "StatusMsg")
-            self.turn_on_pv: str = (hl_prefix + "PowerOn")
-            self.turn_off_pv: str = (hl_prefix + "PowerOff")
-            self.reset_pv: str = hl_prefix + "FaultReset"
+            self.status_pv: str = (self.hl_prefix + "StatusMsg")
+            self.turn_on_pv: str = (self.hl_prefix + "PowerOn")
+            self.turn_off_pv: str = (self.hl_prefix + "PowerOff")
+            self.reset_pv: str = self.hl_prefix + "FaultReset"
         
         else:
             self.fwd_power_lower_limit = 3000
@@ -78,6 +78,13 @@ class SSA(utils.SCLinacObject):
     @property
     def pv_prefix(self):
         return self._pv_prefix
+
+    def pv_addr(self, suffix: str):
+        if (self.cavity.cryomodule.is_harmonic_linearizer
+                and suffix in utils.HL_SSA_SHARED_PVS):
+            return self.hl_prefix + suffix
+        else:
+            return self.pv_prefix + suffix
     
     @property
     def status_message(self):
