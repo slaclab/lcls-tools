@@ -22,8 +22,8 @@ class SSA(utils.SCLinacObject):
         if self.cavity.cryomodule.is_harmonic_linearizer:
             cavity_num = utils.HL_SSA_MAP[self.cavity.number]
             self.hl_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
-                                                                         CRYOMODULE=self.cavity.cryomodule.name,
-                                                                         CAVITY=cavity_num)
+                                                                              CRYOMODULE=self.cavity.cryomodule.name,
+                                                                              CAVITY=cavity_num)
             self.fwd_power_lower_limit = 500
             
             self.ps_volt_setpoint1_pv: str = self.hl_prefix + "PSVoltSetpt1"
@@ -78,7 +78,7 @@ class SSA(utils.SCLinacObject):
     @property
     def pv_prefix(self):
         return self._pv_prefix
-
+    
     def pv_addr(self, suffix: str):
         if (self.cavity.cryomodule.is_harmonic_linearizer
                 and suffix in utils.HL_SSA_SHARED_PVS):
@@ -248,7 +248,6 @@ class SSA(utils.SCLinacObject):
         the relationship between SSA drive signal and output power
         :return:
         """
-        self.reset()
         self.turn_on()
         
         self.cavity.reset_interlocks()
