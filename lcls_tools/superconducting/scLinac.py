@@ -955,9 +955,14 @@ class Cavity(utils.SCLinacObject):
     
     @property
     def measured_scale_factor_in_tolerance(self) -> bool:
-        return (utils.CAVITY_SCALE_LOWER_LIMIT
-                < self.measured_scale_factor
-                < utils.CAVITY_SCALE_UPPER_LIMIT)
+        if self.cryomodule.is_harmonic_linearizer:
+            return (utils.CAVITY_SCALE_LOWER_LIMIT_HL
+                    < self.measured_scale_factor
+                    < utils.CAVITY_SCALE_UPPER_LIMIT_HL)
+        else:
+            return (utils.CAVITY_SCALE_LOWER_LIMIT
+                    < self.measured_scale_factor
+                    < utils.CAVITY_SCALE_UPPER_LIMIT)
     
     def push_scale_factor(self):
         if not self._push_scale_factor_pv_obj:
