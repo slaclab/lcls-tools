@@ -22,8 +22,8 @@ class SSA(utils.SCLinacObject):
         if self.cavity.cryomodule.is_harmonic_linearizer:
             cavity_num = utils.HL_SSA_MAP[self.cavity.number]
             self.hl_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(LINAC=self.cavity.linac.name,
-                                                                         CRYOMODULE=self.cavity.cryomodule.name,
-                                                                         CAVITY=cavity_num)
+                                                                              CRYOMODULE=self.cavity.cryomodule.name,
+                                                                              CAVITY=cavity_num)
             self.fwd_power_lower_limit = 500
             
             self.ps_volt_setpoint1_pv: str = self.hl_prefix + "PSVoltSetpt1"
@@ -78,7 +78,7 @@ class SSA(utils.SCLinacObject):
     @property
     def pv_prefix(self):
         return self._pv_prefix
-
+    
     def pv_addr(self, suffix: str):
         if (self.cavity.cryomodule.is_harmonic_linearizer
                 and suffix in utils.HL_SSA_SHARED_PVS):
@@ -1150,7 +1150,7 @@ class Cavity(utils.SCLinacObject):
                 delta_volts = self.piezo.voltage - utils.PIEZO_CENTER_VOLTAGE
                 delta_hz = delta_volts * utils.PIEZO_HZ_PER_VOLT
                 print(f"{self} piezo detune: {delta_hz}")
-                return delta_hz
+                return delta_hz if not self.cryomodule.is_harmonic_linearizer else -delta_hz
             
             print(f"Centering {self} piezo")
             self._auto_tune(delta_hz_func=delta_piezo, tolerance=100,
