@@ -1,6 +1,6 @@
 from pydm import Display
 
-from lcls_tools.superconducting import scLinac, scLinacUtils as utils
+from lcls_tools.superconducting import scLinac, sc_linac_utils as utils
 
 
 class MagnetScreen(Display):
