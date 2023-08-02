@@ -21,12 +21,15 @@ class PV(epics_pv):
     def __str__(self):
         return f"{self.pvname} PV Object"
     
-    def caget(self):
+    def caget(self, count=None, as_string=False, as_numpy=True,
+              use_monitor=True):
         attempt = 1
         while True:
             if attempt > 3:
                 raise PVInvalidError(f"{self} caget failed 3 times, aborting")
-            value = epics_caget(self.pvname)
+            value = epics_caget(self.pvname, as_string=as_string,
+                                count=count, as_numpy=as_numpy,
+                                use_monitor=use_monitor)
             if value is not None:
                 break
             attempt += 1
@@ -52,7 +55,8 @@ class PV(epics_pv):
             use_caget=True):
         
         if use_caget:
-            return self.caget()
+            return self.caget(as_string=as_string, as_numpy=as_numpy,
+                              use_monitor=use_monitor)
         
         else:
             self.connect()
@@ -63,7 +67,8 @@ class PV(epics_pv):
                 return value
             else:
                 print(f"{self} get failed, trying caget instead")
-                return self.caget()
+                return self.caget(as_string=as_string, as_numpy=as_numpy,
+                                  use_monitor=use_monitor)
     
     def put(self, value, wait=True, timeout=30.0,
             use_complete=False, callback=None, callback_data=None, retry=True,
