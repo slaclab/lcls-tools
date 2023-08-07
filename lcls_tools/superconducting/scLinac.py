@@ -1595,7 +1595,12 @@ class Cryomodule(utils.SCLinacObject):
         self.cte_prefix = "CTE:CM{cm}:".format(cm=self.name)
         self.cvt_prefix = "CVT:CM{cm}:".format(cm=self.name)
         self.cpv_prefix = "CPV:CM{cm}:".format(cm=self.name)
-        self.jt_prefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
+        
+        if not self.is_harmonic_linearizer:
+            self.jt_prefix = "CLIC:CM{cm}:3001:PVJT:".format(cm=self.name)
+        else:
+            name_map: Dict[str, str] = {"H1": "HL01", "H2": "HL02"}
+            self.jt_prefix = "CLIC:{cm}:3001:PVJT:".format(cm=name_map[self.name])
         
         self.ds_level_pv: str = "CLL:CM{cm}:2301:DS:LVL".format(cm=self.name)
         self.us_level_pv: str = "CLL:CM{cm}:2601:US:LVL".format(cm=self.name)
