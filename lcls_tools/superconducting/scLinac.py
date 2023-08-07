@@ -1142,7 +1142,7 @@ class Cavity(utils.SCLinacObject):
         self.setup_tuning(use_sela=use_sela)
         print(f"Tuning {self} to resonance in " + ("SELA" if use_sela else "chirp"))
         self._auto_tune(delta_hz_func=delta_detune,
-                        tolerance=(200 if self.cryomodule.is_harmonic_linearizer else 50),
+                        tolerance=(500 if self.cryomodule.is_harmonic_linearizer else 50),
                         reset_signed_steps=reset_signed_steps)
         
         if use_sela:
@@ -1154,7 +1154,7 @@ class Cavity(utils.SCLinacObject):
             
             print(f"Centering {self} piezo")
             self._auto_tune(delta_hz_func=delta_piezo, tolerance=100,
-                            reset_signed_steps=False, step_thresh=10)
+                            reset_signed_steps=False, stepper_tol_factor=10)
         
         self.tune_config_pv_obj.put(utils.TUNE_CONFIG_RESONANCE_VALUE)
     
@@ -1173,12 +1173,16 @@ class Cavity(utils.SCLinacObject):
         return self.detune_best_pv_obj.severity == EPICS_INVALID_VAL
     
     def _auto_tune(self, delta_hz_func: Callable, tolerance: int = 50,
-                   reset_signed_steps: bool = False, step_thresh: float = 1.5):
+                   reset_signed_steps: bool = False, stepper_tol_factor=None):
         if self.detune_invalid:
             raise utils.DetuneError(f"Detune for {self} is invalid")
         
         delta_hz = delta_hz_func()
         expected_steps: int = abs(int(delta_hz * self.microsteps_per_hz))
+        
+        if not stepper_tol_factor:
+            stepper_tol_factor = utils.stepper_tol_factor(expected_steps)
+        
         steps_moved: int = 0
         
         if reset_signed_steps:
@@ -1197,7 +1201,7 @@ class Cavity(utils.SCLinacObject):
                                    speed=utils.MAX_STEPPER_SPEED)
             steps_moved += abs(est_steps)
             
-            if steps_moved > expected_steps * step_thresh:
+            if steps_moved > expected_steps * stepper_tol_factor:
                 raise utils.DetuneError(f"{self} motor moved more steps than expected")
             
             # this should catch if the chirp range is wrong or if the cavity is off
