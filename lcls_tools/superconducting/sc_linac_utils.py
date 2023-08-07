@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from numpy import polyfit
+
 # Global list of superconducting linac objects
 L0B = ["01"]
 L1B = ["02", "03"]
@@ -54,7 +56,7 @@ CAVITY_SCALE_UPPER_LIMIT = 125
 CAVITY_SCALE_LOWER_LIMIT = 10
 
 CAVITY_SCALE_UPPER_LIMIT_HL = 25
-CAVITY_SCALE_LOWER_LIMIT_HL = 6
+CAVITY_SCALE_LOWER_LIMIT_HL = 5
 
 RF_MODE_SELAP = 0
 RF_MODE_SELA = 1
@@ -121,6 +123,23 @@ class SCLinacObject(ABC, object):
     
     def pv_addr(self, suffix: str):
         return self.pv_prefix + suffix
+
+
+def stepper_tol_factor(num_steps) -> float:
+    """
+    First attempt at making the stepper mover tolerance dependent on the
+    steps to move. We have empirically determined that 1.3GHz cavities move
+    around 50,000 steps around resonance and 50,000,000 steps for cold landing.
+    We want to allow triple the expected steps around resonance, and 1% of the
+    expected steps around cold landing. We also empirically determined that
+    this also works to (roughly) triple the steps around resonance for 3.9GHz
+    cavities, which are about an order of magnitude lower at resonance (while
+    the steps to cold landing are about the same due to both large dead zones
+    and large detunes). We are starting with a linear function and seeing how
+    that goes.
+    """
+    m, b = polyfit([50000, 50000000], [3, 1.01], 1)
+    return m * num_steps + b
 
 
 class PulseError(Exception):
