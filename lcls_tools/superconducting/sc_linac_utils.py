@@ -138,8 +138,22 @@ def stepper_tol_factor(num_steps) -> float:
     and large detunes). We are starting with a linear function and seeing how
     that goes.
     """
-    m, b = polyfit([50000, 50000000], [3, 1.01], 1)
-    return m * num_steps + b
+    
+    if num_steps <= 50000:
+        return 10
+    
+    step_tol_des = {50e3: 10, 100e3: 5, 1e6: 1.5,
+                    5e6 : 1.1, 10e6: 1.1, 50e6: 1.01}
+    ranges = [(50e3, 100e3), (100e3, 1e6), (1e6, 5e6), (5e6, 50e6)]
+    
+    for (start, end) in ranges:
+        if end >= num_steps > start:
+            x = [start, end]
+            y = [step_tol_des[start], step_tol_des[end]]
+            m, b = polyfit(x, y, 1)
+            return m * num_steps + b
+    
+    return 1.01
 
 
 class PulseError(Exception):
