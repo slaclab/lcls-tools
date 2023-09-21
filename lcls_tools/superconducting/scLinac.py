@@ -1227,7 +1227,6 @@ class Cavity(utils.SCLinacObject):
                 delta_hz_func=delta_piezo,
                 tolerance=100,
                 reset_signed_steps=False,
-                stepper_tol_factor=10,
             )
 
         self.tune_config_pv_obj.put(utils.TUNE_CONFIG_RESONANCE_VALUE)
@@ -1251,16 +1250,15 @@ class Cavity(utils.SCLinacObject):
         delta_hz_func: Callable,
         tolerance: int = 50,
         reset_signed_steps: bool = False,
-        stepper_tol_factor=None,
     ):
         if self.detune_invalid:
             raise utils.DetuneError(f"Detune for {self} is invalid")
 
         delta_hz = delta_hz_func()
         expected_steps: int = abs(int(delta_hz * self.microsteps_per_hz))
-        
+
         stepper_tol_factor = utils.stepper_tol_factor(expected_steps)
-        
+
         steps_moved: int = 0
 
         if reset_signed_steps:
