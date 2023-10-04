@@ -3,16 +3,16 @@ import unittest
 import numpy as np
 from image import Image
 
-FILE = 'test_image.npy'
+FILE = "test_image.npy"
+
 
 class ImageTest(unittest.TestCase):
-
     def setUp(self):
-        self.image_obj = Image(np.load(FILE)) 
+        self.image_obj = Image(np.load(FILE))
 
     def test_image(self):
         """Make sure image array not altered after initialization"""
-        test_img = np.load('test_image.npy')
+        test_img = np.load("test_image.npy")
         obj_img = self.image_obj.image
         self.assertEqual(np.array_equal(test_img, obj_img), True)
 
@@ -27,7 +27,7 @@ class ImageTest(unittest.TestCase):
     def test_n_col(self):
         """Test n_col"""
         self.assertEqual(self.image_obj.n_col, 1024)
-    
+
     def test_n_row(self):
         """Test n_row"""
         self.assertEqual(self.image_obj.n_row, 1392)
@@ -44,7 +44,6 @@ class ImageTest(unittest.TestCase):
         """Test max"""
         self.assertEqual(self.image_obj.max, 200)
 
-if __name__ == '__main__':
-    unittest.main()
 
-    
+if __name__ == "__main__":
+    unittest.main()

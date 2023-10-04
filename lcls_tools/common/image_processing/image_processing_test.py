@@ -4,15 +4,15 @@ import numpy as np
 import image_processing as ip
 from mat_image import MatImage
 
-FILE = 'test_image.mat'
-CAMERA = 'CAMR:LGUN:210'
+FILE = "test_image.mat"
+CAMERA = "CAMR:LGUN:210"
+
 
 class ImageProcessingTest(unittest.TestCase):
-    
     def setUp(self):
         """Use test image"""
         self.MI = MatImage()
-        self.MI.load_mat_image('test_image.mat')
+        self.MI.load_mat_image("test_image.mat")
 
     def test_fliplr(self):
         """Test that fliplr does the right thing"""
@@ -38,7 +38,7 @@ class ImageProcessingTest(unittest.TestCase):
         images = []
         while len(images) < 10:
             images.append(self.MI.image)
-       
+
         ave_image = ip.average_image(images)
         self.assertEqual(np.array_equal(ave_image, self.MI.image), True)
 
@@ -80,6 +80,6 @@ class ImageProcessingTest(unittest.TestCase):
         self.assertEqual(int(y0_y), 541)
         self.assertEqual(int(sigma_y), 127)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
-        

@@ -1,16 +1,17 @@
 import numpy as np
 
+
 class Image(object):
     def __init__(self, image):
         if not isinstance(image, np.ndarray):
-            raise TypeError('input must be ndarray')
+            raise TypeError("input must be ndarray")
         self._image = image
 
     @property
     def image(self):
         """Image, typically numpy array or 2darray"""
         return self._image
-    
+
     @property
     def std(self):
         """Std Deviation"""
@@ -25,7 +26,7 @@ class Image(object):
     def n_col(self):
         """Number of columns or x size"""
         return self._image.shape[0]
-    
+
     @property
     def n_row(self):
         """Number of rows or y size"""
