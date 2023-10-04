@@ -14,22 +14,22 @@ class WorkerSignals(QObject):
     finished = pyqtSignal(str)
     error = pyqtSignal(str)
     abort = pyqtSignal(bool)
-    
+
     def __init__(self, label: QLabel = None):
         super().__init__()
         if label:
             self.status.connect(label.setText)
             self.status.connect(partial(label.setStyleSheet, STATUS_STYLESHEET))
-            
+
             self.finished.connect(label.setText)
             self.finished.connect(partial(label.setStyleSheet, FINISHED_STYLESHEET))
-            
+
             self.error.connect(label.setText)
             self.error.connect(partial(label.setStyleSheet, ERROR_STYLESHEET))
-            
+
             self.abort.connect(label.setText)
             self.abort.connect(partial(label.setStyleSheet, ERROR_STYLESHEET))
-        
+
         self.status.connect(print)
         self.finished.connect(print)
         self.error.connect(print)
@@ -40,10 +40,10 @@ class WorkerSignals(QObject):
 @Slot()
 def showDisplay(display: QWidget):
     display.show()
-    
+
     # brings the display to the front
     display.raise_()
-    
+
     # gives the display focus
     display.activateWindow()
 
@@ -53,9 +53,14 @@ def make_error_popup(title, expert_edmbutton, exception, action_func):
     popup.setIcon(QMessageBox.Critical)
     popup.setWindowTitle(title)
     popup.setText(
-            '{error}\nPlease check expert screen and select from the options below'.format(error=exception))
-    popup.addButton('Abort', QMessageBox.RejectRole)
-    popup.addButton('Acknowledge manual completion and continue', QMessageBox.AcceptRole)
+        "{error}\nPlease check expert screen and select from the options below".format(
+            error=exception
+        )
+    )
+    popup.addButton("Abort", QMessageBox.RejectRole)
+    popup.addButton(
+        "Acknowledge manual completion and continue", QMessageBox.AcceptRole
+    )
     popup.addButton(expert_edmbutton, QMessageBox.ActionRole)
     if action_func:
         popup.buttonClicked.connect(partial(action_func, popup))
