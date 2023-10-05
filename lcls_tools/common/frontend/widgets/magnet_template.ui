@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>353</width>
+    <height>347</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" rowspan="2" colspan="2">
+    <widget class="QGroupBox" name="magnetGroupBox">
+     <property name="accessibleName">
+      <string>${magnetType}</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Interlock status</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMByteIndicator" name="interlockIndicator">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="accessibleName">
+             <string>${magnetType}</string>
+            </property>
+            <property name="channel" stdset="0">
+             <string/>
+            </property>
+            <property name="onColor" stdset="0">
+             <color>
+              <red>255</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+            </property>
+            <property name="offColor" stdset="0">
+             <color>
+              <red>0</red>
+              <green>255</green>
+              <blue>0</blue>
+             </color>
+            </property>
+            <property name="showLabels" stdset="0">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMLabel" name="interlockLabel">
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="accessibleName">
+             <string>${magnetType}</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="PyDMPushButton" name="resetButton">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="accessibleName">
+           <string>${magnetType}</string>
+          </property>
+          <property name="text">
+           <string>Reset powersupply</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>PS On/Off status</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMByteIndicator" name="powerIndicator">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="accessibleName">
+             <string>${magnetType}</string>
+            </property>
+            <property name="channel" stdset="0">
+             <string/>
+            </property>
+            <property name="offColor" stdset="0">
+             <color>
+              <red>252</red>
+              <green>1</green>
+              <blue>7</blue>
+             </color>
+            </property>
+            <property name="showLabels" stdset="0">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMLabel" name="powerLabel">
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="accessibleName">
+             <string>${magnetType}</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="PyDMPushButton" name="onButton">
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="accessibleName">
+             <string>${magnetType}</string>
+            </property>
+            <property name="text">
+             <string>Powersupply On</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMPushButton" name="offButton">
+            <property name="toolTip">
+             <string/>
+            </property>
+            <property name="text">
+             <string>Powersupply Off</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="PyDMPushButton" name="degaussButton">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="accessibleName">
+           <string>${magnetType}</string>
+          </property>
+          <property name="text">
+           <string>Degauss</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>BDES</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMLineEdit" name="bdesLineEdit">
+            <property name="toolTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMLabel" name="bactLabel">
+            <property name="toolTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>IDES</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMLineEdit" name="idesLineEdit">
+            <property name="toolTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PyDMLabel" name="iactLabel">
+            <property name="toolTip">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="PyDMEDMDisplayButton" name="expertButton">
+          <property name="toolTip">
+           <string/>
+          </property>
+          <property name="accessibleName">
+           <string>${magnetType}</string>
+          </property>
+          <property name="text">
+           <string>Open EDM expert screen</string>
+          </property>
+          <property name="filenames" stdset="0">
+           <stringlist>
+            <string>$TOOLS/edm/display/mgnt/mgnt_unit2.edl</string>
+           </stringlist>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PyDMLabel</class>
+   <extends>QLabel</extends>
+   <header>pydm.widgets.label</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMByteIndicator</class>
+   <extends>QWidget</extends>
+   <header>pydm.widgets.byte</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>pydm.widgets.line_edit</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMPushButton</class>
+   <extends>QPushButton</extends>
+   <header>pydm.widgets.pushbutton</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMRelatedDisplayButton</class>
+   <extends>QPushButton</extends>
+   <header>pydm.widgets.related_display_button</header>
+  </customwidget>
+  <customwidget>
+   <class>PyDMEDMDisplayButton</class>
+   <extends>PyDMRelatedDisplayButton</extends>
+   <header>edmbutton.edm_button</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
