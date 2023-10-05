@@ -1,4 +1,3 @@
-import sys
 import scipy.constants as sc
 import numpy as np
 from numpy.linalg import pinv
