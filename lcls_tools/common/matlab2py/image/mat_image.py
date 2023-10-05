@@ -5,10 +5,7 @@ import scipy.io as sio
 import matplotlib.pyplot as plt
 import os
 
-try:
-    from PIL import Image
-except ImportError:
-    from image import Image
+from lcls_tools.common.image_processing.image import Image
 
 
 class MatImage(object):
@@ -146,7 +143,7 @@ class MatImage(object):
         data = sio.loadmat(mat_file)["data"][0][0]
         self._mat_file = mat_file
         self._cam_name = str(data[0][0])
-        self._image_object = Image.fromarray(data[1])  # Create object
+        self._image_object = Image(data[1])  # Create object
         self._roi_x_n = data[2][0][0]
         self._roi_y_n = data[3][0][0]
         self._ts = data[4][0][0]
@@ -182,5 +179,5 @@ class MatImage(object):
                 "image is None. please call load_mat_image before trying to show image."
             )
 
-        plt.imshow(self._image_object, aspect="auto")
+        plt.imshow(self._image_object.image, aspect="auto")
         plt.show(block=False)
