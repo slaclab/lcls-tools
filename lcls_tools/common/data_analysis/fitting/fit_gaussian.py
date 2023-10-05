@@ -7,12 +7,10 @@
 
 from __future__ import division
 
-from pylab import array, plt, floor, show
+from pylab import array, plt, floor
 from numpy import argsort, power, exp, zeros
-from scipy.io import loadmat
 from scipy.optimize import curve_fit
 from operator import itemgetter
-from sys import argv, exit
 from time import time
 
 NUM_BUCKS = 10
