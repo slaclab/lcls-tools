@@ -1,3 +1,4 @@
+import os
 import scipy.io as sio
 import numpy as np
 
@@ -28,6 +29,10 @@ class CorPlotMatScan(object):
     """Unpack a correlation plot scan .mat file"""
 
     def __init__(self, mat_file):
+        if not os.path.isfile(mat_file):
+            raise FileNotFoundError(
+                f"Could not find {mat_file}, please provide a valid correlation matlab file."
+            )
         try:
             data = sio.loadmat(mat_file)["data"][0][0]
             self._file = mat_file
@@ -236,7 +241,3 @@ class CorPlotMatScan(object):
         config = data[idx]
 
         return config
-
-
-# from cor_plot_mat_scan import CorPlotMatScan as C
-# data = C('test_scan.mat')
