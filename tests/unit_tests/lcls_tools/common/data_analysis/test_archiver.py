@@ -7,6 +7,7 @@ from lcls_tools.common.data_analysis.archiver import (
 from datetime import datetime, timedelta
 import requests
 
+
 # Python compatibility. The first branch is for 3, the second for 2
 try:
     import unittest.mock as mock
@@ -323,6 +324,9 @@ class TestArchiver(unittest.TestCase):
         )
         return super().setUp()
 
+    def tearDown(self) -> None:
+        return super().tearDown()
+
     # Utility class to be used for mocking a response to requests.post
     class MockResponse(object):
         def __init__(self):
@@ -330,7 +334,7 @@ class TestArchiver(unittest.TestCase):
 
     @mock.patch("requests.post")
     @mock.patch("json.loads")
-    def testGetDataAtTimeMockedData(self, mockedLoads, mockedPost):
+    def test_get_data_at_time_mocked_data(self, mockedLoads, mockedPost):
         mockedLoads.return_value = self.jsonDict
         mockedPost.return_value = self.MockResponse()
 
@@ -339,16 +343,20 @@ class TestArchiver(unittest.TestCase):
             self.expectedSingleResult,
         )
 
-    def testGetDataAtTime(self):
+    def test_get_data_at_time(self):
         try:
             self.assertEqual(
                 self.archiver.getDataAtTime(self.pvList, self.time),
                 self.expectedSingleResult,
             )
         except requests.exceptions.Timeout:
-            self.skipTest("testGetDataAtTime connection timed out")
+            self.skipTest("test_get_data_at_time connection timed out")
+        except requests.exceptions.ConnectionError:
+            self.skipTest(
+                "test_get_data_at_time connection unsuccessful as network was unreachable."
+            )
 
-    def testGetDataWithTimeInterval(self):
+    def test_get_data_with_time_interval(self):
         try:
             self.assertEqual(
                 self.archiver.getDataWithTimeInterval(
@@ -361,9 +369,13 @@ class TestArchiver(unittest.TestCase):
             )
 
         except requests.exceptions.Timeout:
-            self.skipTest("testGetDataWithTimeInterval connection timed out")
+            self.skipTest("test_get_data_with_time_interval connection timed out")
+        except requests.exceptions.ConnectionError:
+            self.skipTest(
+                "test_get_data_with_time_interval connection unsuccessful as network was unreachable."
+            )
 
-    def testGetDataWithTimeIntervalMocked(self):
+    def test_get_data_with_time_interval_mocked(self):
         def side_effect(pvList, time):
             self.assertEqual(pvList, self.pvList)
 
@@ -463,7 +475,7 @@ class TestArchiver(unittest.TestCase):
             self.expectedDeltaResult,
         )
 
-    def testGetValuesOverTimeRange(self):
+    def test_get_values_over_time_range_without_timedelta(self):
         try:
             self.assertEqual(
                 self.archiver.getValuesOverTimeRange(
@@ -473,4 +485,27 @@ class TestArchiver(unittest.TestCase):
             )
 
         except requests.exceptions.Timeout:
-            self.skipTest("testGetValuesOverTimeRange connection timed out")
+            self.skipTest("test_get_values_over_time_range connection timed out")
+        except requests.exceptions.ConnectionError:
+            self.skipTest(
+                "test_get_values_over_time_range connection unsuccessful as network was unreachable."
+            )
+
+    def test_get_values_over_time_range_with_timedelta(self):
+        try:
+            self.assertEqual(
+                self.archiver.getValuesOverTimeRange(
+                    self.pvList,
+                    self.time - timedelta(days=10),
+                    self.time,
+                    timedelta(-1),
+                ),
+                self.expectedNoDeltaResult,
+            )
+
+        except requests.exceptions.Timeout:
+            self.skipTest("test_get_values_over_time_range connection timed out")
+        except requests.exceptions.ConnectionError:
+            self.skipTest(
+                "test_get_values_over_time_range connection unsuccessful as network was unreachable."
+            )
