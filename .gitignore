@@ -188,3 +188,6 @@ dkms.conf
 
 # Added by gedit
 *~
+
+# Added by vscode
+.vscode
