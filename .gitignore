@@ -128,9 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Matlab data files
-*.mat
-
 
 # Prerequisites
 *.d
