@@ -1,5 +1,6 @@
 import scipy.io as sio
 import numpy as np
+import os
 
 VAL = "val"
 UNITS = "egu"
@@ -42,6 +43,10 @@ TWISS_PV = "twissPV"
 
 class MatEmitScan(object):
     def __init__(self, mat_file):
+        if not os.path.isfile(mat_file):
+            raise FileNotFoundError(
+                f"Could not find {mat_file}, please provide a valid emittance matlab file."
+            )
         try:
             data = sio.loadmat(mat_file)["data"][0][0]
             self._fields = data.dtype.names
