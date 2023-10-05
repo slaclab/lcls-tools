@@ -6,10 +6,15 @@ from lcls_tools.common.matlab2py.image.mat_image import MatImage as MI
 
 class MatImageTest(unittest.TestCase):
     dataset_location = "tests/datasets/images/matlab/"
-    if not os.path.isdir(dataset_location):
-        raise FileNotFoundError(f"Could not find dataset files in {dataset_location}")
 
     def setUp(self) -> None:
+        try:
+            if not os.path.isdir(self.dataset_location):
+                raise FileNotFoundError(
+                    f"Could not find dataset files in {self.dataset_location}"
+                )
+        except FileNotFoundError:
+            self.skipTest("Invalid dataset location")
         self.mi = MI()
         self.camera = "CAMR:LGUN:210"
         self.test_file_name = "ProfMon-CAMR_LGUN_210-2019-03-15-151532.mat"

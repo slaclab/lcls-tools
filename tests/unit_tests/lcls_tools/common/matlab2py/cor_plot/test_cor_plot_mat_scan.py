@@ -45,14 +45,21 @@ TS_QE = 737728.26
 
 
 class CorPlotMatScanTest(unittest.TestCase):
-    dataset_location = "tests/datasets/scan/correlation/matlab"
-    if not os.path.isdir(dataset_location):
-        raise FileNotFoundError(f"Could not find dataset files in {dataset_location}")
+    dataset_location : str = "tests/datasets/scan/correlation/matlab"
 
     def setUp(self) -> None:
         self.file = os.path.join(self.dataset_location, "test_scan.mat")
         self.bad_file = os.path.join(self.dataset_location, "junk.mat")
         self.qe_file = os.path.join(self.dataset_location, "qe_scan.mat")
+        try:
+            if not os.path.isfile(self.file):
+                raise FileNotFoundError(f"Could not find {self.file}, aborting test.")
+            if not os.path.isfile(self.bad_file):
+                raise FileNotFoundError(f"Could not find {self.bad_file}, aborting test.")
+            if not os.path.isfile(self.qe_file):
+                raise FileNotFoundError(f"Could not find {self.qe_file}, aborting test.")
+        except FileNotFoundError:
+            self.skipTest("Invalid dataset location")
         return super().setUp()
 
     def test_init_mat_file_test(self):
