@@ -3,7 +3,12 @@ from numpy import ndarray
 import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt
-from image import Image
+import os
+
+try:
+    from PIL import Image
+except ImportError:
+    from image import Image
 
 
 class MatImage(object):
@@ -48,14 +53,16 @@ class MatImage(object):
     @property
     def image(self):
         if self._image_object:
-            return self._image_object.image
+            return np.asarray(self._image_object)
 
     @property
     def image_as_list(self):
         if not self._image_object:
             return []
 
-        return ndarray.tolist(self._image_object.image)
+        return ndarray.tolist(
+            np.asarray(self._image_object),
+        )
 
     @property
     def roi_x_n(self):
@@ -139,7 +146,7 @@ class MatImage(object):
         data = sio.loadmat(mat_file)["data"][0][0]
         self._mat_file = mat_file
         self._cam_name = str(data[0][0])
-        self._image_object = Image(data[1])  # Create object
+        self._image_object = Image.fromarray(data[1])  # Create object
         self._roi_x_n = data[2][0][0]
         self._roi_y_n = data[3][0][0]
         self._ts = data[4][0][0]
@@ -162,15 +169,18 @@ class MatImage(object):
 
     def load_mat_image(self, mat_file):
         """Converting super gross .mat image data structure to an object"""
+        if not os.path.isfile(mat_file):
+            raise FileNotFoundError(f"Could not find {mat_file}")
         try:
             self._unpack_mat_data(mat_file)
         except Exception as e:
-            print("error loading mat file: {0}".format(e))
+            print("error loading mat file {0}: {1}".format(mat_file, e))
 
     def show_image(self):
         if self._image_object is None:
-            print("you have not loaded an image")
-            return
+            raise AttributeError(
+                "image is None. please call load_mat_image before trying to show image."
+            )
 
-        plt.imshow(self._image_object.image, aspect="auto")
+        plt.imshow(self._image_object, aspect="auto")
         plt.show(block=False)
