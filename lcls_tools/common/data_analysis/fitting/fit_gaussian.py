@@ -24,7 +24,7 @@ DEBUG = False
 # shit, so it necessitates the error checking
 def get_bucket(val, step):
     bucket = int(floor(val / step))
-    return bucket if bucket < 10 else 9
+    return bucket if bucket < 10 else 9  # TODO: should this use NUM_BUCKS?
 
 
 def find_max(data, run):
