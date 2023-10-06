@@ -7,9 +7,10 @@ FILE = "test_image.npy"
 
 
 class ImageTest(unittest.TestCase):
-    data_location : str = "/tests/datasets/images/numpy/"
+    data_location: str = "/tests/datasets/images/numpy/"
+
     def setUp(self):
-        self.file = os.path.join(self.data_location, 'test_image.npy')
+        self.file = os.path.join(self.data_location, "test_image.npy")
         try:
             if not os.path.isfile(self.file):
                 raise FileNotFoundError(f"Could not find {self.file}, aborting test.")
@@ -50,4 +51,3 @@ class ImageTest(unittest.TestCase):
     def test_max(self):
         """Test max"""
         self.assertEqual(self.image_obj.max, 200)
-
