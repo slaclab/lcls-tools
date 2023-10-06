@@ -2,9 +2,8 @@
 
 import epics
 from epics import PV
-import magnet_constants as mc
+import lcls_tools.common.devices.magnet.magnet_constants as mc
 from inspect import getmembers
-from threading import Thread
 from time import sleep
 
 

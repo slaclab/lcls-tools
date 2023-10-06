@@ -1,7 +1,7 @@
 #!/usr/local/lcls/package/python/current/bin/python
 
 from epics import PV
-import profmon_constants as pc
+import lcls_tools.common.devices.profile_monitor.profmon_constants as pc
 from inspect import getmembers
 from time import sleep
 from threading import Thread
@@ -114,8 +114,8 @@ class ProfMon(object):
             print("{0}: {1}".format(self._prof_name, pc.ALREADY_EXTRACTED))
             return
 
-        if user_clbk:
-            self._extract_clbk = user_clbk
+        if usr_clbk:
+            self._extract_clbk = usr_clbk
 
         self._prof_get.add_callback(self._extracted, index=0)
         self._prof_set.put(pc.OUT)
@@ -149,9 +149,8 @@ class ProfMon(object):
                 self._images.append(image)
                 sleep(delay)
                 i += 1
-        if (
-            callback
-        ):  # Would want this to be pyqtSignal or Event notification type thing
+        if callback:
+            # Would want this to be pyqtSignal or Event notification type thing
             callback()
         self._gathering_data = False
         return  # No join, waste of a function
