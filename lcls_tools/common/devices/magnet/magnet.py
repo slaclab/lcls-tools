@@ -144,6 +144,11 @@ class YAMLMagnet:
         self._ctrl.put(mc.CTRL.index("RESET"))
 
 
+import lcls_tools.common.devices.magnet.magnet_constants as mc
+from inspect import getmembers
+from time import sleep
+
+
 def get_magnets():
     """Return MAD names of all magenets that have models"""
     return mc.MAGNETS.keys()

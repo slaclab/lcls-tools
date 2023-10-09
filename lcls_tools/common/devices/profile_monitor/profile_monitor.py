@@ -1,7 +1,7 @@
 #!/usr/local/lcls/package/python/current/bin/python
 
 from epics import PV
-import profmon_constants as pc
+import lcls_tools.common.devices.profile_monitor.profmon_constants as pc
 from inspect import getmembers
 from time import sleep
 from threading import Thread
@@ -10,29 +10,32 @@ from functools import partial
 
 # Implementation needs to be thought out, just a POC
 
+
 def get_profile_monitors():
     """Return MAD names of all profile monitors that have models"""
     return sorted(pc.PROFS.keys())
 
+
 class ProfMon(object):
     """Generic Profile Monitor Object Class that references profile monitor MAD name"""
-    def __init__(self, prof_name='OTR02'):
+
+    def __init__(self, prof_name="OTR02"):
         if prof_name not in pc.PROFS.keys():
-            raise ValueError('You have not specified a valid profile monitor')
+            raise ValueError("You have not specified a valid profile monitor")
         prof_dict = pc.PROFS[prof_name]
         self._prof_name = prof_name
-        self._prof_set = PV(prof_dict['set'])
-        self._prof_get = PV(prof_dict['get'])
-        self._prof_image = PV(prof_dict['image'])
-        self._prof_res = PV(prof_dict['res'])
-        self._x_size = PV(prof_dict['xsize'])
-        self._y_size = PV(prof_dict['ysize'])
-        self._rate = PV(prof_dict['rate'])
+        self._prof_set = PV(prof_dict["set"])
+        self._prof_get = PV(prof_dict["get"])
+        self._prof_image = PV(prof_dict["image"])
+        self._prof_res = PV(prof_dict["res"])
+        self._x_size = PV(prof_dict["xsize"])
+        self._y_size = PV(prof_dict["ysize"])
+        self._rate = PV(prof_dict["rate"])
         self._images = []
         self._data_thread = None
         self._gathering_data = False
-        self._get_vars = self._prof_get.get_ctrlvars()['enum_strs']
-        self._set_vars = self._prof_set.get_ctrlvars()['enum_strs']
+        self._get_vars = self._prof_get.get_ctrlvars()["enum_strs"]
+        self._set_vars = self._prof_set.get_ctrlvars()["enum_strs"]
         self._motion_state = self._get_vars[self._prof_get.get()]
         self._prof_get.add_callback(self._state_clbk, index=1)
         self._insert_clbk = None
@@ -46,7 +49,7 @@ class ProfMon(object):
     def prof_name(self):
         """Get the profile monitor MAD name"""
         return self._prof_name
-        
+
     @property
     def cur_image(self):
         """Get the current image array"""
@@ -85,42 +88,42 @@ class ProfMon(object):
     def insert(self, user_clbk=None):
         """Generic call to insert profile monitor, can specify callback to be run"""
         if self._motion_state == pc.IN:
-            print('{0}: {1}'.format(self._prof_name, pc.ALREADY_INSERTED))
+            print("{0}: {1}".format(self._prof_name, pc.ALREADY_INSERTED))
             return
 
         if user_clbk:
             self._insert_clbk = user_clbk
-        
+
         self._prof_get.add_callback(self._inserted, index=0)
         self._prof_set.put(pc.IN)
 
     def _inserted(self, pv_name=None, value=None, char_value=None, **kw):
         """Generic callback after profile monitor has been inserted, default"""
         if self._get_vars[value] == pc.IN:
-            print('{0}: {1}'.format(self._prof_name, pc.INSERTED))
+            print("{0}: {1}".format(self._prof_name, pc.INSERTED))
 
             if self._insert_clbk:
                 self._insert_clbk()
                 self._insert_clbk = None
 
             self._prof_get.remove_callback(index=0)
-    
+
     def extract(self, usr_clbk=None):
-        """Extract profile monitor command, can specify callback to be run"""        
+        """Extract profile monitor command, can specify callback to be run"""
         if self._motion_state == pc.OUT:
-            print('{0}: {1}'.format(self._prof_name, pc.ALREADY_EXTRACTED))
+            print("{0}: {1}".format(self._prof_name, pc.ALREADY_EXTRACTED))
             return
 
-        if user_clbk:
-            self._extract_clbk = user_clbk
+        if usr_clbk:
+            self._extract_clbk = usr_clbk
 
         self._prof_get.add_callback(self._extracted, index=0)
         self._prof_set.put(pc.OUT)
-        
+
     def _extracted(self, pv_name=None, value=None, char_value=None, **kw):
         """Generic Callback for profile monitor that has been extracted, default"""
         if self._get_vars[value] == pc.OUT:
-            print('{0}: {1}'.format(self._prof_name, pc.EXTRACTED))
+            print("{0}: {1}".format(self._prof_name, pc.EXTRACTED))
 
             if self._extract_clbk:
                 self._extract_clbk()
@@ -146,7 +149,8 @@ class ProfMon(object):
                 self._images.append(image)
                 sleep(delay)
                 i += 1
-        if callback:  # Would want this to be pyqtSignal or Event notification type thing
+        if callback:
+            # Would want this to be pyqtSignal or Event notification type thing
             callback()
         self._gathering_data = False
         return  # No join, waste of a function

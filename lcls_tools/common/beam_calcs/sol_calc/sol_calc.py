@@ -1,4 +1,3 @@
-import sys
 import scipy.constants as sc
 import numpy as np
 from numpy.linalg import pinv
@@ -22,6 +21,7 @@ from math import sin, cos, sqrt
 # if that becomes a need.  There is NO error checking currently, so if you call
 # a public function referencing a private class var that is None, you'll get an
 # error or None.  This will be fixed when I care enough to fix it
+
 
 class SolCalc(object):
     def __init__(self, l, e_gun, d):
@@ -55,7 +55,7 @@ class SolCalc(object):
     @property
     def y_stds(self):
         return self._y_stds
-    
+
     @property
     def b_vals(self):
         return self._b_vals
@@ -63,7 +63,7 @@ class SolCalc(object):
     @property
     def results(self):
         return self._results
-    
+
     @property
     def gun_energy(self):
         return self._e_gun
@@ -79,36 +79,36 @@ class SolCalc(object):
     def calc_p(self):
         """momentum calculation"""
         gamma = 1.0 + (self._e_gun / 0.511)
-        beta = sqrt(1.0 - (1/gamma)**2)
-        return beta*gamma*sc.m_e*sc.c
+        beta = sqrt(1.0 - (1 / gamma) ** 2)
+        return beta * gamma * sc.m_e * sc.c
 
     def calc_K(self, b, p):
         """Get the current K value"""
-        return (b * sc.e) / (2*p)
+        return (b * sc.e) / (2 * p)
 
     def calc_c(self):
         """c term"""
-        return cos(self._K*self._l)
+        return cos(self._K * self._l)
 
     def calc_s(self):
         """s term"""
-        return sin(self._K*self._l)
+        return sin(self._K * self._l)
 
     def x1(self):
         """first term, x"""
-        return self._c**2 - self._d*self._K*self._s*self._c
+        return self._c**2 - self._d * self._K * self._s * self._c
 
     def x2(self):
         """second term, x"""
-        return self._s*self._c*(1/self._K) + self._d*self._c**2
+        return self._s * self._c * (1 / self._K) + self._d * self._c**2
 
     def x3(self):
         """third term, x"""
-        return self._s*self._c - self._d*self._K*self._s**2
-    
+        return self._s * self._c - self._d * self._K * self._s**2
+
     def x4(self):
         """fourth term, x"""
-        return self._s**2*(1/self._K) + self._d*self._s*self._c
+        return self._s**2 * (1 / self._K) + self._d * self._s * self._c
 
     def x5(self):
         """Default"""
@@ -120,24 +120,24 @@ class SolCalc(object):
 
     def y1(self):
         """first term y"""
-        return -self._s*self._c + self._d*self._K*self._s**2
+        return -self._s * self._c + self._d * self._K * self._s**2
 
     def y2(self):
         """second term y"""
-        return -self._s**2*(1/self._K) - self._d*self._s*self._c
+        return -self._s**2 * (1 / self._K) - self._d * self._s * self._c
 
     def y3(self):
         """third term y"""
-        return (self._c**2 - self._d*self._K*self._s*self._c)
+        return self._c**2 - self._d * self._K * self._s * self._c
 
     def y4(self):
         """fourth term y"""
-        return (self._s*self._c*(1/self._K) + self._d*self._c**2)
+        return self._s * self._c * (1 / self._K) + self._d * self._c**2
 
     def y5(self):
         """Default"""
         return 0
-    
+
     def y6(self):
         """Default"""
         return 1
@@ -173,25 +173,17 @@ class SolCalc(object):
 
     def gen_x_arr(self):
         """The x array froma single measurement"""
-        arr = np.array([
-              self.x1(), 
-              self.x2(), 
-              self.x3(), 
-              self.x4(), 
-              self.x5(), 
-              self.x6()])
-        
-        return  arr
+        arr = np.array(
+            [self.x1(), self.x2(), self.x3(), self.x4(), self.x5(), self.x6()]
+        )
+
+        return arr
 
     def gen_y_arr(self):
         """The y array from single measurement"""
-        arr = np.array([
-              self.y1(), 
-              self.y2(), 
-              self.y3(), 
-              self.y4(), 
-              self.y5(), 
-              self.y6()])
+        arr = np.array(
+            [self.y1(), self.y2(), self.y3(), self.y4(), self.y5(), self.y6()]
+        )
 
         return arr
 
