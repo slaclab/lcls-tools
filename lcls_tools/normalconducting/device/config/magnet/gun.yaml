@@ -21,7 +21,8 @@ SOL2B:
       RESET : 10
   metadata:
     b_tolerance : 0.002 # in Tesla?
-    magnetic_length : 0.135 # in meters?
+    length : 0.135 # in meters?
+
 
 SOL1B:
   control_information:

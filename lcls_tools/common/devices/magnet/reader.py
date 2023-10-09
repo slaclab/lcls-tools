@@ -2,7 +2,11 @@ import os
 import yaml
 import pprint
 from typing import Union
-from lcls_tools.common.devices.magnet.magnet import YAMLMagnet
+from lcls_tools.common.devices.magnet.magnet import (
+    YAMLMagnet,
+    ControlInformationNotFoundError,
+    MetadataNotFoundError,
+)
 
 
 def _find_yaml_file(yaml_filename: str) -> str:
@@ -15,22 +19,34 @@ def _find_yaml_file(yaml_filename: str) -> str:
 
 
 def create_magnet(
-    yaml_filename: str = None, magnet_name: str = None
+    yaml_filename: str = None, name: str = None
 ) -> Union[None, YAMLMagnet]:
     if yaml_filename:
         try:
             location = _find_yaml_file(
                 yaml_filename=yaml_filename,
             )
-            with open(location, "r") as file:
-                magnet_config_data = yaml.safe_load(file)[magnet_name]
-                pprint.pprint(magnet_config_data)
-                return YAMLMagnet(name=magnet_name, **magnet_config_data)
+            with open(location, "r") as device_file:
+                if name:
+                    config_data = yaml.safe_load(device_file)[name]
+                    pprint.pprint(config_data)
+                    return YAMLMagnet(name=name, **config_data)
+                else:
+                    return {
+                        name: YAMLMagnet(name=name, **config_data)
+                        for name, config_data in yaml.safe_load(device_file).items()
+                    }
         except FileNotFoundError:
             print(f"Could not find yaml file: {yaml_filename}")
             return None
         except KeyError:
-            print(f"Could not find name {magnet_name} in {yaml_filename}")
+            print(f"Could not find name {name} in {yaml_filename}")
+            return None
+        except ControlInformationNotFoundError as cinfe:
+            print(cinfe)
+            return None
+        except MetadataNotFoundError as mnfe:
+            print(mnfe)
             return None
     else:
         print("Please provide a yaml file location to create a magnet.")

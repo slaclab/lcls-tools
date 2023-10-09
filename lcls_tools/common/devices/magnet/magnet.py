@@ -1,8 +1,5 @@
 #!/usr/local/lcls/package/python/current/bin/python
-
-import epics
 from epics import PV
-from dataclasses import dataclass, field
 from typing import Dict
 import lcls_tools.common.devices.magnet.magnet_constants as mc
 from inspect import getmembers
@@ -21,6 +18,16 @@ def check_state(f):
     return decorated
 
 
+class ControlInformationNotFoundError(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+
+class MetadataNotFoundError(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+
 class YAMLMagnet:
     name: str
     _bctrl: PV
@@ -30,26 +37,51 @@ class YAMLMagnet:
     _ctrl: PV
     _length: float = None
     _b_tolerance: float = None
+    _ctrl_options: Dict = None
+    _mandatory_fields: list = ["control_information", "metadata"]
     control_information: Dict = None
     metadata: Dict = None
 
     def __init__(self, name=None, **kwargs):
         self.name = name
-        [setattr(self, k, v) for k, v in kwargs.items()]
+        self._bctrl = None
+        if "control_information" in kwargs:
+            # extract and create metadata and control_information attributes from **kwargs.
+            [
+                setattr(self, k, v)
+                for k, v in kwargs.items()
+                if k in self._mandatory_fields
+            ]
+            self._make_pv_attributes()
+            self._set_control_options()
+        else:
+            raise ControlInformationNotFoundError(
+                f"Missing control information for magnet {self.name}, please check yaml file."
+            )
+        if "metadata" in kwargs:
+            self._make_metadata_attributes()
+        else:
+            raise MetadataNotFoundError(
+                f"Missing metadata for magnet {self.name}, please check yaml file."
+            )
+
+    def _set_control_options(self):
+        self._ctrl_options = self.control_information["ctrl_options"]
+
+    def _make_pv_attributes(self):
         # setup PVs and attributes
-        [setattr(self, k, PV(v)) for k, v in self.control_information["PVs"].items()]
+        [
+            setattr(self, "_" + k, PV(v))
+            for k, v in self.control_information["PVs"].items()
+        ]
+
+    def _make_metadata_attributes(self):
         # setup metadata and attributes
-        [setattr(self, k, v) for k, v in self.metadata.items()]
+        [setattr(self, "_" + k, v) for k, v in self.metadata.items()]
 
-    @_bctrl.setter
-    @check_state
-    def _bctrl(self, val):
-        """Set bctrl value"""
-        if not isinstance(val, float) or isinstance(val, int):
-            print("you need to provide an in or float")
-            return
-
-        self._bctrl.put(val)
+    @property
+    def bctrl(self):
+        return self._bctrl.get()
 
     @property
     def bact(self):
@@ -71,7 +103,7 @@ class YAMLMagnet:
         """Magnetic Length, should be from model"""
         return self._length
 
-    @_length.setter
+    @length.setter
     def length(self, length):
         """Set the magnetic length for a magnet"""
         if not isinstance(length, float):
@@ -89,7 +121,17 @@ class YAMLMagnet:
     def b_tolerance(self):
         return self._b_tolerance
 
-    @_b_tolerance.setter
+    @bctrl.setter
+    @check_state
+    def bctrl(self, val):
+        """Set bctrl value"""
+        if not isinstance(val, float) or isinstance(val, int):
+            print("you need to provide an in or float")
+            return
+
+        self._bctrl.put(val)
+
+    @b_tolerance.setter
     def tol(self, tol):
         """Set the magnetic length for a magnet"""
         if not isinstance(tol, float):
@@ -101,47 +143,47 @@ class YAMLMagnet:
     @check_state
     def trim(self):
         """Issue trim command"""
-        self._ctrl.put(mc.CTRL.index("TRIM"))
+        self._ctrl.put(self._ctrl_options["TRIM"])
 
     @check_state
     def perturb(self):
         """Issue perturb command"""
-        self._ctrl.put(mc.CTRL.index("PERTURB"))
+        self._ctrl.put(self._ctrl_options["PERTURB"])
 
     def con_to_des(self):
         """Issue con to des commands"""
-        self._ctrl.put(mc.CTRL.index("BCOM_TO_BDES"))
+        self._ctrl.put(self._ctrl_options["BCON_TO_BDES"])
 
     def save_bdes(self):
         """Save BDES"""
-        self._ctrl.put(mc.CTRL.index("SAVE_BDES"))
+        self._ctrl.put(self._ctrl_options["SAVE_BDES"])
 
     def load_bdes(self):
         """Load BDES"""
-        self._ctrl.put(mc.CTRL.index("LOAD_BDES"))
+        self._ctrl.put(self._ctrl_options["LOAD_BDES"])
 
     def undo_bdes(self):
         """Save BDES"""
-        self._ctrl.put(mc.CTRL.index("UNDO_BDES"))
+        self._ctrl.put(self._ctrl_options["UNDO_BDES"])
 
     @check_state
     def dac_zero(self):
         """DAC zero magnet"""
-        self._ctrl.put(mc.CTRL.index("DAC_ZERO"))
+        self._ctrl.put(self._ctrl_options["DAC_ZERO"])
 
     @check_state
     def calibrate(self):
         """Calibrate magnet"""
-        self._ctrl.put(mc.CTRL.index("CALIB"))
+        self._ctrl.put(self._ctrl_options["CALIB"])
 
     @check_state
     def standardize(self):
         """Standardize magnet"""
-        self._ctrl.put(mc.CTRL.index("STDZ"))
+        self._ctrl.put(self._ctrl_options["STDZ"])
 
     def reset(self):
         """Reset magnet"""
-        self._ctrl.put(mc.CTRL.index("RESET"))
+        self._ctrl.put(self._ctrl_options["RESET"])
 
 
 import lcls_tools.common.devices.magnet.magnet_constants as mc
