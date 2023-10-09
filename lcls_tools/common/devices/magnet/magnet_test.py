@@ -9,28 +9,20 @@ import inspect
 from magnet import Magnet, get_magnets
 import magnet_constants as mc
 
-ATTRS = [
-    '_bact', 
-    '_bcon', 
-    '_bctrl', 
-    '_bdes', 
-    '_ctrl'
-]
+ATTRS = ["_bact", "_bcon", "_bctrl", "_bdes", "_ctrl"]
 
-MAGS = [
-    'SOL1B', 
-    'SOL2B'
-]
+MAGS = ["SOL1B", "SOL2B"]
 
 MAGNET = {
-    'bctrl': 'test:BCTRL',
-    'bact': 'test:BACT',
-    'bdes': 'test:BDES',
-    'bcon': 'test:BCON',
-    'ctrl': 'test:CTRL',
-    'tol': 0.1,
-    'length': 0.1
+    "bctrl": "test:BCTRL",
+    "bact": "test:BACT",
+    "bdes": "test:BDES",
+    "bcon": "test:BCON",
+    "ctrl": "test:CTRL",
+    "tol": 0.1,
+    "length": 0.1,
 }
+
 
 class MagnetTest(unittest.TestCase):
     """All these tests rely on EPICS functioning as we expect,
@@ -40,7 +32,7 @@ class MagnetTest(unittest.TestCase):
     ########## Magnet Constants ##########
 
     def test_create_mag_dict(self):
-        self.assertEqual(mc.create_mag_dict('test', 0.1, 0.1), MAGNET)
+        self.assertEqual(mc.create_mag_dict("test", 0.1, 0.1), MAGNET)
 
     def test_Magnets(self):
         self.assertEqual(sorted(mc.MAGNETS.keys()), MAGS)
@@ -80,7 +72,7 @@ class MagnetTest(unittest.TestCase):
     def test_name(self):
         """Test we get expected default"""
         m = Magnet()
-        self.assertEqual(m.name, 'SOL1B')
+        self.assertEqual(m.name, "SOL1B")
 
     def test_find_pv_attrs(self):
         """Test we have correct attributes"""
@@ -91,7 +83,7 @@ class MagnetTest(unittest.TestCase):
         """Test tol float validation"""
         m = Magnet()
         self.assertEqual(m.tol, 0.05)
-        m.tol = 'a'
+        m.tol = "a"
         self.assertEqual(m.tol, 0.05)
         m.tol = 1
         self.assertEqual(m.tol, 0.05)
@@ -102,7 +94,7 @@ class MagnetTest(unittest.TestCase):
         """Test length float validation"""
         m = Magnet()
         self.assertEqual(m.length, 0.1)
-        m.length = 'a'
+        m.length = "a"
         self.assertEqual(m.length, 0.1)
         m.length = 1
         self.assertEqual(m.length, 0.1)
@@ -113,5 +105,6 @@ class MagnetTest(unittest.TestCase):
         """Test we have the same magnets as expected"""
         self.assertEqual(get_magnets(), MAGS)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
