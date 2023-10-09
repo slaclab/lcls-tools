@@ -128,9 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Matlab data files
-*.mat
-
 
 # Prerequisites
 *.d
@@ -191,3 +188,6 @@ dkms.conf
 
 # Added by gedit
 *~
+
+# Added by vscode
+.vscode
