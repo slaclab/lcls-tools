@@ -1,12 +1,11 @@
 import os
 import yaml
-import pprint
 from typing import Union
-from lcls_tools.common.devices.magnet.magnet import (
-    YAMLMagnet,
+from lcls_tools.common.devices.device import (
     ControlInformationNotFoundError,
     MetadataNotFoundError,
 )
+from lcls_tools.common.devices.magnet.magnet import YAMLMagnet
 
 
 def _find_yaml_file(yaml_filename: str) -> str:
@@ -20,7 +19,7 @@ def _find_yaml_file(yaml_filename: str) -> str:
 
 def create_magnet(
     yaml_filename: str = None, name: str = None
-) -> Union[None, YAMLMagnet]:
+) -> Union[None, dict, YAMLMagnet]:
     if yaml_filename:
         try:
             location = _find_yaml_file(
@@ -29,7 +28,6 @@ def create_magnet(
             with open(location, "r") as device_file:
                 if name:
                     config_data = yaml.safe_load(device_file)[name]
-                    pprint.pprint(config_data)
                     return YAMLMagnet(name=name, **config_data)
                 else:
                     return {
