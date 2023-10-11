@@ -5,22 +5,8 @@ import unittest
 import inspect
 
 # Local imports
-from lcls_tools.common.devices.magnet.magnet import Magnet, get_magnets
-import lcls_tools.common.devices.magnet.magnet_constants as mc
-
-ATTRS = ["_bact", "_bcon", "_bctrl", "_bdes", "_ctrl"]
-
-MAGS = ["SOL1B", "SOL2B"]
-
-MAGNET = {
-    "bctrl": "test:BCTRL",
-    "bact": "test:BACT",
-    "bdes": "test:BDES",
-    "bcon": "test:BCON",
-    "ctrl": "test:CTRL",
-    "tol": 0.1,
-    "length": 0.1,
-}
+from lcls_tools.common.devices.magnet.magnet import YAMLMagnet
+from lcls_tools.common.devices.magnet.reader import create_magnet
 
 
 class MagnetTest(unittest.TestCase):
@@ -28,78 +14,89 @@ class MagnetTest(unittest.TestCase):
     but we have not testing framework for EPICS code, fun!
     """
 
-    ########## Magnet Constants ##########
-
-    def test_create_mag_dict(self):
-        self.assertEqual(mc.create_mag_dict("test", 0.1, 0.1), MAGNET)
-
-    def test_Magnets(self):
-        self.assertEqual(sorted(mc.MAGNETS.keys()), MAGS)
+    def setUp(self) -> None:
+        self.magnet = create_magnet(
+            "./tests/datasets/devices/config/magnet/typical_magnet.yaml",
+            name="SOL1B",
+        )
+        return super().setUp()
 
     ########### Magnet object ###########
 
-    def test_properties(self):
+    def test_missing_mandatory_pv_raises_attribute_error(self):
+        with self.assertRaises(AttributeError):
+            self.bad_magnet = create_magnet(
+                "./tests/datasets/devices/config/magnet/missing_pv_magnet.yaml",
+                name="SOL2B",
+            )
+
+    def test_properties_exist(self):
         """Test that all the properties we expect exist"""
-        m = Magnet()
-        self.assertEqual(isinstance(type(m).name, property), True)
-        self.assertEqual(isinstance(type(m).bctrl, property), True)
-        self.assertEqual(isinstance(type(m).bact, property), True)
-        self.assertEqual(isinstance(type(m).bdes, property), True)
-        self.assertEqual(isinstance(type(m).ctrl_value, property), True)
-        self.assertEqual(isinstance(type(m).length, property), True)
-        self.assertEqual(isinstance(type(m).pv_props, property), True)
-        self.assertEqual(isinstance(type(m).bdes, property), True)
-        self.assertEqual(isinstance(type(m).tol, property), True)
+        # Assert that magnet has all auto-generated private attributes
+        for item in self.magnet._mandatory_pvs:
+            self.assertTrue(
+                hasattr(self.magnet, "_" + item),
+                msg=f"expected magnet to have attribute {item}",
+            )
+        for item in self.magnet.metadata:
+            self.assertTrue(
+                hasattr(self.magnet, "_" + item),
+                msg=f"expected magnet to have attribute {item}",
+            )
+        # Assert that magnet has public properties
+        for item in [
+            "bctrl",
+            "bact",
+            "ctrl_value",
+            "length",
+            "b_tolerance",
+        ]:
+            self.assertTrue(
+                hasattr(self.magnet, "bctrl"),
+                msg=f"expected magnet to have attribute {item}",
+            )
+
+        for item in self.magnet._mandatory_fields:
+            self.assertTrue(
+                hasattr(self.magnet, item),
+                msg=f"expected magnet to have attribute {item}",
+            )
 
     def test_methods(self):
         """Test that all the methods we expect exist"""
-        m = Magnet()
-        self.assertEqual(inspect.ismethod(m.trim), True)
-        self.assertEqual(inspect.ismethod(m.perturb), True)
-        self.assertEqual(inspect.ismethod(m.con_to_des), True)
-        self.assertEqual(inspect.ismethod(m.save_bdes), True)
-        self.assertEqual(inspect.ismethod(m.load_bdes), True)
-        self.assertEqual(inspect.ismethod(m.undo_bdes), True)
-        self.assertEqual(inspect.ismethod(m.dac_zero), True)
-        self.assertEqual(inspect.ismethod(m.calibrate), True)
-        self.assertEqual(inspect.ismethod(m.standardize), True)
-        self.assertEqual(inspect.ismethod(m.reset), True)
-        self.assertEqual(inspect.ismethod(m.find_pv_attrs), True)
-        self.assertEqual(inspect.ismethod(m.add_clbk), True)
-        self.assertEqual(inspect.ismethod(m.remove_clbk), True)
+        self.assertEqual(inspect.ismethod(self.magnet.trim), True)
+        self.assertEqual(inspect.ismethod(self.magnet.perturb), True)
+        self.assertEqual(inspect.ismethod(self.magnet.con_to_des), True)
+        self.assertEqual(inspect.ismethod(self.magnet.save_bdes), True)
+        self.assertEqual(inspect.ismethod(self.magnet.load_bdes), True)
+        self.assertEqual(inspect.ismethod(self.magnet.undo_bdes), True)
+        self.assertEqual(inspect.ismethod(self.magnet.dac_zero), True)
+        self.assertEqual(inspect.ismethod(self.magnet.calibrate), True)
+        self.assertEqual(inspect.ismethod(self.magnet.standardize), True)
+        self.assertEqual(inspect.ismethod(self.magnet.reset), True)
+        self.assertEqual(inspect.ismethod(self.magnet.add_callback_to_pv), True)
+        self.assertEqual(inspect.ismethod(self.magnet.remove_callback_from_pv), True)
 
     def test_name(self):
         """Test we get expected default"""
-        m = Magnet()
-        self.assertEqual(m.name, "SOL1B")
-
-    def test_find_pv_attrs(self):
-        """Test we have correct attributes"""
-        m = Magnet()
-        self.assertEqual(m.find_pv_attrs(), ATTRS)
+        self.assertEqual(self.magnet.name, "SOL1B")
 
     def test_tol(self):
         """Test tol float validation"""
-        m = Magnet()
-        self.assertEqual(m.tol, 0.05)
-        m.tol = "a"
-        self.assertEqual(m.tol, 0.05)
-        m.tol = 1
-        self.assertEqual(m.tol, 0.05)
-        m.tol = 0.1
-        self.assertEqual(m.tol, 0.1)
+        self.assertEqual(self.magnet.tol, 0.002)
+        self.magnet.tol = "a"
+        self.assertEqual(self.magnet.tol, 0.002)
+        self.magnet.tol = 1
+        self.assertEqual(self.magnet.tol, 0.002)
+        self.magnet.tol = 0.1
+        self.assertEqual(self.magnet.tol, 0.1)
 
     def test_length(self):
         """Test length float validation"""
-        m = Magnet()
-        self.assertEqual(m.length, 0.1)
-        m.length = "a"
-        self.assertEqual(m.length, 0.1)
-        m.length = 1
-        self.assertEqual(m.length, 0.1)
-        m.length = 0.05
-        self.assertEqual(m.length, 0.05)
-
-    def test_get_mangets(self):
-        """Test we have the same magnets as expected"""
-        self.assertEqual(get_magnets(), MAGS)
+        self.assertEqual(self.magnet.length, 0.1342)
+        self.magnet.length = "a"
+        self.assertEqual(self.magnet.length, 0.1342)
+        self.magnet.length = 1
+        self.assertEqual(self.magnet.length, 0.1342)
+        self.magnet.length = 0.05
+        self.assertEqual(self.magnet.length, 0.05)

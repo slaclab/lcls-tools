@@ -6,7 +6,6 @@ SOL2B:
       bact : 'SOLN:GUNB:823:BACT'
       bdes : 'SOLN:GUNB:823:BDES'
       bcon : 'SOLN:GUNB:823:BCON'
-      ctrl : 'SOLN:GUNB:823:CTRL'
     ctrl_options:
       READY : 0
       TRIM : 1
@@ -28,11 +27,11 @@ SOL1B:
   control_information:
     control_name: 'SOLN:GUNB:212'
     PVs:
-      bctrl : 'SOLN:GUNB:212:BCTRL'
-      bact : 'SOLN:GUNB:212:BACT'
-      bdes : 'SOLN:GUNB:212:BDES'
-      bcon : 'SOLN:GUNB:212:BCON'
-      ctrl : 'SOLN:GUNB:212:CTRL'
+      bctrl : 'QUAD:LI22:201:BCTRL'
+      bact : 'QUAD:LI22:201:BACT'
+      bdes : 'QUAD:LI22:201:BDES'
+      bcon : 'QUAD:LI22:201:BCON'
+      ctrl : 'QUAD:LI22:201:CTRL'
     ctrl_options:
       READY : 0
       TRIM : 1
