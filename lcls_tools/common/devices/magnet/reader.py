@@ -1,10 +1,7 @@
 import os
 import yaml
 from typing import Union
-from lcls_tools.common.devices.device import (
-    ControlInformationNotFoundError,
-    MetadataNotFoundError,
-)
+from lcls_tools.common.devices.device import MandatoryFieldNotFoundInYAMLError
 from lcls_tools.common.devices.magnet.magnet import YAMLMagnet
 
 
@@ -40,11 +37,8 @@ def create_magnet(
         except KeyError:
             print(f"Could not find name {name} in {yaml_filename}")
             return None
-        except ControlInformationNotFoundError as cinfe:
-            print(cinfe)
-            return None
-        except MetadataNotFoundError as mnfe:
-            print(mnfe)
+        except MandatoryFieldNotFoundInYAMLError as field_error:
+            print(field_error)
             return None
     else:
         print("Please provide a yaml file location to create a magnet.")
