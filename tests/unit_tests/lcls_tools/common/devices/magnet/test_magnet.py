@@ -1,15 +1,15 @@
 #!/usr/local/lcls/package/python/current/bin/python
 
 # Built in
-import unittest
+from unittest import TestCase
+from unittest.mock import Mock, patch
 import inspect
 
 # Local imports
-from lcls_tools.common.devices.magnet.magnet import YAMLMagnet
 from lcls_tools.common.devices.magnet.reader import create_magnet
 
 
-class MagnetTest(unittest.TestCase):
+class MagnetTest(TestCase):
     """All these tests rely on EPICS functioning as we expect,
     but we have not testing framework for EPICS code, fun!
     """
@@ -83,13 +83,13 @@ class MagnetTest(unittest.TestCase):
 
     def test_tol(self):
         """Test tol float validation"""
-        self.assertEqual(self.magnet.tol, 0.002)
-        self.magnet.tol = "a"
-        self.assertEqual(self.magnet.tol, 0.002)
-        self.magnet.tol = 1
-        self.assertEqual(self.magnet.tol, 0.002)
-        self.magnet.tol = 0.1
-        self.assertEqual(self.magnet.tol, 0.1)
+        self.assertEqual(self.magnet.b_tolerance, 0.002)
+        self.magnet.b_tolerance = "a"
+        self.assertEqual(self.magnet.b_tolerance, 0.002)
+        self.magnet.b_tolerance = 1
+        self.assertEqual(self.magnet.b_tolerance, 0.002)
+        self.magnet.b_tolerance = 0.1
+        self.assertEqual(self.magnet.b_tolerance, 0.1)
 
     def test_length(self):
         """Test length float validation"""
@@ -100,3 +100,23 @@ class MagnetTest(unittest.TestCase):
         self.assertEqual(self.magnet.length, 0.1342)
         self.magnet.length = 0.05
         self.assertEqual(self.magnet.length, 0.05)
+
+    @patch('epics.PV.get', new_callable=Mock)
+    def test_bact(self, mock_pv_get):
+        mock_pv_get.return_value = 0.1
+        self.assertEqual(self.magnet.bact, 0.1)
+        mock_pv_get.assert_called_once()
+
+    @patch('epics.PV.get', new_callable=Mock)
+    def test_bdes(self, mock_pv_get):
+        mock_pv_get.return_value = 0.5
+        self.assertEqual(self.magnet.bdes, 0.5)
+        mock_pv_get.assert_called_once()
+
+    @patch('epics.PV.get', new_callable=Mock)
+    def test_bctrl(self, mock_pv_get):
+        mock_pv_get.return_value = 0.5
+        self.assertEqual(self.magnet.bctrl, 0.5)
+        mock_pv_get.assert_called_once()
+    
+    

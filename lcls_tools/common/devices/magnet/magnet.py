@@ -1,6 +1,6 @@
 #!/usr/local/lcls/package/python/current/bin/python
 from epics import PV
-from typing import Dict
+from typing import Union
 import lcls_tools.common.devices.magnet.magnet_constants as mc
 from lcls_tools.common.devices.device import Device
 from inspect import getmembers
@@ -58,7 +58,7 @@ class YAMLMagnet(Device):
         [setattr(self, "_" + k, v) for k, v in self.metadata.items()]
     
     @property
-    def bctrl(self):
+    def bctrl(self) -> Union[float, int]:
         return self._bctrl.get()
 
     @property
@@ -96,7 +96,7 @@ class YAMLMagnet(Device):
 
     @bctrl.setter
     @check_state
-    def bctrl(self, val) -> None:
+    def bctrl(self, val : Union[float, int]) -> None:
         """Set bctrl value"""
         if not isinstance(val, float) or isinstance(val, int):
             print("you need to provide an int or float")
@@ -105,7 +105,7 @@ class YAMLMagnet(Device):
         self._bctrl.put(val)
 
     @b_tolerance.setter
-    def tol(self, tol) -> None:
+    def b_tolerance(self, tol : float) -> None:
         """Set the magnetic length for a magnet"""
         if not isinstance(tol, float):
             print("You must provide a float for magnet tol")
@@ -132,7 +132,7 @@ class YAMLMagnet(Device):
         self._ctrl.put(self._ctrl_options["SAVE_BDES"])
 
     def load_bdes(self) -> None:
-        """Load BDES"""
+        """Load BtolDES"""
         self._ctrl.put(self._ctrl_options["LOAD_BDES"])
 
     def undo_bdes(self) -> None:
