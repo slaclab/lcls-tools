@@ -1,6 +1,7 @@
 import csv
 import os
 import yaml
+from typing import Union, List, Dict
 
 
 class YAMLGenerator:
@@ -39,50 +40,57 @@ class YAMLGenerator:
             )
 
     def _construct_information_from_element(self, element):
-        return {"controls_information": {
-                    "control_name": element["Control System Name"],
-                },
-                "metadata": {
-                    "beam_path": element["Beampath"],
-                    "area": element["Area"],
-                    "sum_l_meters": element["SumL (m)"],
-                },
-            }
+        return {
+            "controls_information": {
+                "control_name": element["Control System Name"],
+            },
+            "metadata": {
+                "beam_path": element["Beampath"],
+                "area": element["Area"],
+                "sum_l_meters": element["SumL (m)"],
+            },
+        }
 
-    def extract_magnets(self, area: str = "GUNB") -> dict:
+    def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
         required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
-        magnet_elements = [
-            element
-            for element in self.elements
-            if element["Keyword"] in required_magnet_types and element["Area"] == area
-        ]
-        # Must have passed an area that does not exist!
-        if len(magnet_elements) < 1:
-            raise RuntimeError("Area provided not found in magnet list.")
-        # Fill in the dict that will become the yaml file
+        if not isinstance(area, list):
+            area = list(area)
         yaml_magnets = {}
-        for magnet in magnet_elements:
-            yaml_magnets.update({magnet["Element"]: {}})
-            magnet_yaml_template = self._construct_information_from_element(magnet)
-            yaml_magnets[magnet["Element"]].update(magnet_yaml_template)
-
+        for _area in area:
+            magnet_elements = [
+                element
+                for element in self.elements
+                if element["Keyword"] in required_magnet_types
+                and element["Area"] == _area
+            ]
+            # Must have passed an area that does not exist!
+            if len(magnet_elements) < 1:
+                raise RuntimeError("Area provided not found in magnet list.")
+            # Fill in the dict that will become the yaml file
+            for magnet in magnet_elements:
+                yaml_magnets.update({magnet["Element"]: {}})
+                magnet_yaml_template = self._construct_information_from_element(magnet)
+                yaml_magnets[magnet["Element"]].update(magnet_yaml_template)
         return yaml_magnets
 
-    def extract_screens(self, area : str = "HTR"):
-        required_screen_types = ["PROF"]
-        screen_elements = [
-            element
-            for element in self.elements
-            if element["Keyword"] in required_screen_types and element["Area"] == area
-        ]
-        # Must have passed an area that does not exist!
-        if len(screen_elements) < 1:
-            raise RuntimeError("Area provided not found in screen list.")
-        # Fill in the dict that will become the yaml file
+    def extract_screens(self, area: Union[str, List[str]] = ["HTR"]):
+        if not isinstance(area, list):
+            area = list(area)
         yaml_screens = {}
-        for screen in screen_elements:
-            yaml_screens.update({screen["Element"]: {}})
-            screen_yaml_template = self._construct_information_from_element(screen)
-            yaml_screens[screen["Element"]].update(screen_yaml_template)
-
+        for _area in area:
+            required_screen_types = ["PROF"]
+            screen_elements = [
+                element
+                for element in self.elements
+                if element["Keyword"] in required_screen_types
+                and element["Area"] == _area
+            ]
+            # Must have passed an area that does not exist!
+            if len(screen_elements) < 1:
+                raise RuntimeError("Area provided not found in screen list.")
+            # Fill in the dict that will become the yaml file
+            for screen in screen_elements:
+                yaml_screens.update({screen["Element"]: {}})
+                screen_yaml_template = self._construct_information_from_element(screen)
+                yaml_screens[screen["Element"]].update(screen_yaml_template)
         return yaml_screens
