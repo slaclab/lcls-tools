@@ -1,5 +1,5 @@
 from lcls_tools.common.devices.magnet.reader import create_magnet, _find_yaml_file
-from lcls_tools.common.devices.magnet.magnet import YAMLMagnet
+from lcls_tools.common.devices.magnet.magnet import Magnet
 import unittest
 import os
 
@@ -40,7 +40,7 @@ class TestMagnetReader(unittest.TestCase):
             "SOL1B",
         ]:
             self.assertIn(name, result, msg=f"expected {name} in {result}.")
-            self.assertIsInstance(result[name], YAMLMagnet)
+            self.assertIsInstance(result[name], Magnet)
 
     def test_create_magnet_with_config_and_name_creates_one_magnet(self):
         name = "SOL1B"
@@ -49,4 +49,4 @@ class TestMagnetReader(unittest.TestCase):
             name=name,
         )
         self.assertNotIsInstance(result, dict)
-        self.assertIsInstance(result, YAMLMagnet)
+        self.assertIsInstance(result, Magnet)
