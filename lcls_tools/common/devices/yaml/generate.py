@@ -1,7 +1,7 @@
 import csv
 import os
 import yaml
-from typing import Union, List, Dict
+from typing import Union, List, Dict, Optional
 
 
 class YAMLGenerator:
@@ -39,10 +39,13 @@ class YAMLGenerator:
                 "Did not generate elements, please look at lcls_elements.csv."
             )
 
-    def _construct_information_from_element(self, element):
+    def _construct_information_from_element(
+        self, element, pv_information: Optional[Dict[str, str]] = {}
+    ):
         return {
             "controls_information": {
                 "control_name": element["Control System Name"],
+                "PVs": pv_information,
             },
             "metadata": {
                 "beam_path": element["Beampath"],
@@ -68,8 +71,17 @@ class YAMLGenerator:
                 raise RuntimeError("Area provided not found in magnet list.")
             # Fill in the dict that will become the yaml file
             for magnet in magnet_elements:
+                pv_info = {
+                    "bact": magnet["Control System Name"] + ":BACT",
+                    "bctrl": magnet["Control System Name"] + ":BCTRL",
+                    "bcon": magnet["Control System Name"] + ":BCON",
+                    "bdes": magnet["Control System Name"] + ":BDES",
+                    "ctrl": magnet["Control System Name"] + ":CTRL",
+                }
                 yaml_magnets.update({magnet["Element"]: {}})
-                magnet_yaml_template = self._construct_information_from_element(magnet)
+                magnet_yaml_template = self._construct_information_from_element(
+                    magnet, pv_information=pv_info
+                )
                 yaml_magnets[magnet["Element"]].update(magnet_yaml_template)
         return yaml_magnets
 
