@@ -11,7 +11,7 @@ from pylab import array, plt, floor
 from numpy import argsort, power, exp, zeros
 from scipy.optimize import curve_fit
 from operator import itemgetter
-from time import time
+
 
 NUM_BUCKS = 10
 DEBUG = False
@@ -19,7 +19,7 @@ DEBUG = False
 
 # An unfortunate consequence of defining step as max/numbucks is that the
 # maximum point is in its own bucket (bucket 10), which would break a lot of
-# shit, so it necessitates the error checking
+# stuff, so it necessitates the error checking
 def get_bucket(val, step):
     bucket = int(floor(val / step))
     return bucket if bucket < 10 else 9  # TODO: should this use NUM_BUCKS?
@@ -80,7 +80,7 @@ def get_slope(x1, y1, x2, y2):
 # Idea to add a line instead of a really short, fat gaussian was all Ahemd.
 # Thanks, yo. You're great.
 def find_line(zero_runs, runs, xdata, ydata):
-    x1, y1, x2, y2, m, b = (0, 0, 0, 0, 0, 0)
+    x1, y1, x2, y2, m, _ = (0, 0, 0, 0, 0, 0)
 
     # This condition should only be possible if there are peaks on one or both
     # extremes, or if there is no peak
@@ -198,7 +198,6 @@ def get_runs(data, step):
 # A whole rigmarole to collapse multiple pedestals.
 # It assumes that the pedestal is the bucket with the most elements
 def adjust_data(data, step):
-    start = time()
     normalized_adjustment = 0
 
     bucket_count = zeros(NUM_BUCKS)

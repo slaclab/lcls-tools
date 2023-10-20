@@ -30,7 +30,7 @@ def create_mag_dict(base, tol, length):
 
 
 MAGNETS = {
-    #'SOL1B': create_mag_dict('SOLN:GUNB:212', 0.002, 0.1342),
+    # 'SOL1B': create_mag_dict('SOLN:GUNB:212', 0.002, 0.1342),
     "SOL2B": create_mag_dict("SOLN:GUNB:823", 0.002, 0.135),
     "SOL1B": create_mag_dict("QUAD:LI22:201", 0.05, 0.1),
 }

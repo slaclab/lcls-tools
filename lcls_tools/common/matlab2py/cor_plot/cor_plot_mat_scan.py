@@ -1,6 +1,5 @@
 import os
 import scipy.io as sio
-import numpy as np
 
 FIT = [
     "Gaussian",
@@ -211,10 +210,9 @@ class CorPlotMatScan(object):
 
         idx = self._fields.index(PROF)
         prof = data[idx]
-        names = prof.dtype.names
         prof_pvs = dict()
         for pv in prof:
-            if isinstance(pv[0][0][0], unicode):  # one sample
+            if isinstance(pv[0][0][0], bytes):  # one sample
                 prof_pvs[str(pv[0][0][0])] = pv
             else:  # Multiple samples
                 prof_pvs[str(pv[0][0][0][0])] = pv

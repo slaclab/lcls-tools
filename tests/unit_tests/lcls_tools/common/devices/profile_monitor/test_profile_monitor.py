@@ -1,5 +1,4 @@
 # Built in
-import sys
 import unittest
 import inspect
 

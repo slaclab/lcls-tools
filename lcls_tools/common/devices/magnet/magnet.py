@@ -1,10 +1,8 @@
 #!/usr/local/lcls/package/python/current/bin/python
 
-import epics
 from epics import PV
 import lcls_tools.common.devices.magnet.magnet_constants as mc
 from inspect import getmembers
-from time import sleep
 
 
 def get_magnets():

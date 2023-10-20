@@ -1,10 +1,8 @@
 import numpy as np
 import scipy.ndimage as snd
-from scipy.optimize import curve_fit
 from scipy import asarray
 import matplotlib.pyplot as plt
 import lcls_tools.common.data_analysis.fitting.fit_gaussian as fg
-from time import time
 
 
 def fliplr(image):
