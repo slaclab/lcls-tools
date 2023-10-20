@@ -119,7 +119,7 @@ class MagnetTest(TestCase):
 
     @patch("epics.PV.put", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.YAMLMagnet.ctrl",
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
     def test_set_bctrl_with_int_and_ready(self, mock_ctrl_option, mock_pv_put):
@@ -129,7 +129,7 @@ class MagnetTest(TestCase):
 
     @patch("epics.PV.put", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.YAMLMagnet.ctrl",
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
     def test_set_bctrl_with_string_and_ready(self, mock_ctrl_option, mock_pv_put):
@@ -139,7 +139,7 @@ class MagnetTest(TestCase):
 
     @patch("epics.PV.put", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.YAMLMagnet.ctrl",
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
     def test_set_bctrl_with_int_and_not_ready(self, mock_ctrl_option, mock_pv_put):
@@ -156,7 +156,7 @@ class MagnetTest(TestCase):
 
     @patch("epics.PV.put", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.YAMLMagnet.ctrl",
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
     def test_control_functions_call_pv_put_if_ready(
@@ -182,7 +182,7 @@ class MagnetTest(TestCase):
 
     @patch("epics.PV.put", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.YAMLMagnet.ctrl",
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
     def test_trim_does_nothing_if_not_ready(self, mock_ctrl_option, pv_put_mock):
