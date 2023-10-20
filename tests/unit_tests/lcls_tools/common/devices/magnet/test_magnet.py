@@ -45,12 +45,12 @@ class MagnetTest(TestCase):
         for item in [
             "bctrl",
             "bact",
-            "ctrl_value",
+            "ctrl",
             "length",
             "b_tolerance",
         ]:
             self.assertTrue(
-                hasattr(self.magnet, "bctrl"),
+                hasattr(self.magnet, item),
                 msg=f"expected magnet to have attribute {item}",
             )
 
