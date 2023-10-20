@@ -2,7 +2,7 @@ import os
 import yaml
 from typing import Union
 from lcls_tools.common.devices.device import MandatoryFieldNotFoundInYAMLError
-from lcls_tools.common.devices.magnet.magnet import YAMLMagnet
+from lcls_tools.common.devices.magnet.magnet import Magnet
 
 
 def _find_yaml_file(yaml_filename: str) -> str:
@@ -16,7 +16,7 @@ def _find_yaml_file(yaml_filename: str) -> str:
 
 def create_magnet(
     yaml_filename: str = None, name: str = None
-) -> Union[None, dict, YAMLMagnet]:
+) -> Union[None, dict, Magnet]:
     if yaml_filename:
         try:
             location = _find_yaml_file(
@@ -25,10 +25,10 @@ def create_magnet(
             with open(location, "r") as device_file:
                 if name:
                     config_data = yaml.safe_load(device_file)[name]
-                    return YAMLMagnet(name=name, **config_data)
+                    return Magnet(name=name, **config_data)
                 else:
                     return {
-                        name: YAMLMagnet(name=name, **config_data)
+                        name: Magnet(name=name, **config_data)
                         for name, config_data in yaml.safe_load(device_file).items()
                     }
         except FileNotFoundError:
