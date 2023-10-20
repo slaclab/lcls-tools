@@ -125,6 +125,7 @@ class TestDevice(unittest.TestCase):
         def mock_callback(message: str) -> None:
             print(f"callback: {message}")
 
+        # Add different callbacks to Device
         first_callback = lambda: mock_callback("first")
         second_callback = lambda: mock_callback("second")
         third_callback = lambda: mock_callback("third")
@@ -140,10 +141,13 @@ class TestDevice(unittest.TestCase):
             "bact",
             third_callback,
         )
+        # Retrieve the index of 2nd callback function
+        # Annoying because PV callback indexes start from 1.
         index = self.device._get_callback_index(
             mock_pv,
             second_callback,
         )
+        # Check that index is 2 because we asked for 2nd callback
         self.assertEqual(index, 2)
 
     def test_add_callback_to_pv_raises_with_bad_pv_arg(self):
@@ -201,8 +205,10 @@ class TestDevice(unittest.TestCase):
         mock_get_attribute.return_value = self.pv_obj
         self.assertEqual(len(self.pv_obj.callbacks), 0)
         self.device.add_callback_to_pv(pv="bact", function=mock_callback)
+        # Check we added the callback
         self.assertNotEqual(len(self.pv_obj.callbacks), 0)
         expected_callback_structure = {1: (mock_callback, {})}
+        # Check callbacks come back as expected
         self.assertEqual(self.pv_obj.callbacks, expected_callback_structure)
 
     def test_remove_callback_to_pv_raises_with_bad_pv_arg(self):
@@ -260,7 +266,10 @@ class TestDevice(unittest.TestCase):
         self.pv_obj.add_callback(mock_callback)
         self.assertEqual(len(self.pv_obj.callbacks), 1)
         expected_callback_structure = {1: (mock_callback, {})}
+        # Check that we have added the callback
         self.assertEqual(self.pv_obj.callbacks, expected_callback_structure)
+        # Check that we don't throw error when removing callback
         self.device.remove_callback_from_pv("bact", mock_callback)
+        # Check callback has been removed
         self.assertEqual(len(self.pv_obj.callbacks), 0)
         self.assertEqual(self.pv_obj.callbacks, {})
