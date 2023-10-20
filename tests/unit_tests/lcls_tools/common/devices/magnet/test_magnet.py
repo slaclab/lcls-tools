@@ -2,7 +2,7 @@
 
 # Built in
 from unittest import TestCase
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, patch, PropertyMock
 import inspect
 
 # Local imports
@@ -20,8 +20,6 @@ class MagnetTest(TestCase):
             name="SOL1B",
         )
         return super().setUp()
-
-    ########### Magnet object ###########
 
     def test_missing_mandatory_pv_raises_attribute_error(self):
         with self.assertRaises(AttributeError):
@@ -101,22 +99,117 @@ class MagnetTest(TestCase):
         self.magnet.length = 0.05
         self.assertEqual(self.magnet.length, 0.05)
 
-    @patch('epics.PV.get', new_callable=Mock)
+    @patch("epics.PV.get", new_callable=Mock)
     def test_bact(self, mock_pv_get):
         mock_pv_get.return_value = 0.1
         self.assertEqual(self.magnet.bact, 0.1)
         mock_pv_get.assert_called_once()
 
-    @patch('epics.PV.get', new_callable=Mock)
+    @patch("epics.PV.get", new_callable=Mock)
     def test_bdes(self, mock_pv_get):
         mock_pv_get.return_value = 0.5
         self.assertEqual(self.magnet.bdes, 0.5)
         mock_pv_get.assert_called_once()
 
-    @patch('epics.PV.get', new_callable=Mock)
-    def test_bctrl(self, mock_pv_get):
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_get_bctrl(self, mock_pv_get):
         mock_pv_get.return_value = 0.5
         self.assertEqual(self.magnet.bctrl, 0.5)
         mock_pv_get.assert_called_once()
-    
-    
+
+    @patch("epics.PV.put", new_callable=Mock)
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.YAMLMagnet.ctrl",
+        new_callable=PropertyMock,
+    )
+    def test_set_bctrl_with_int_and_ready(self, mock_ctrl_option, mock_pv_put):
+        mock_ctrl_option.return_value = "Ready"
+        self.magnet.bctrl = 3
+        mock_pv_put.assert_called_once_with(3)
+
+    @patch("epics.PV.put", new_callable=Mock)
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.YAMLMagnet.ctrl",
+        new_callable=PropertyMock,
+    )
+    def test_set_bctrl_with_string_and_ready(self, mock_ctrl_option, mock_pv_put):
+        mock_ctrl_option.return_value = "Ready"
+        self.magnet.bctrl = "string"
+        mock_pv_put.assert_not_called()
+
+    @patch("epics.PV.put", new_callable=Mock)
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.YAMLMagnet.ctrl",
+        new_callable=PropertyMock,
+    )
+    def test_set_bctrl_with_int_and_not_ready(self, mock_ctrl_option, mock_pv_put):
+        mock_ctrl_option.return_value = "Trim"
+        self.magnet.bctrl = 5
+        mock_pv_put.assert_not_called()
+
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_get_ctrl_calls_pv_get(self, pv_get_mock):
+        pv_get_mock.return_value = "Ready"
+        value = self.magnet.ctrl
+        self.assertEqual(value, "Ready")
+        pv_get_mock.assert_called_once_with(as_string=True)
+
+    @patch("epics.PV.put", new_callable=Mock)
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.YAMLMagnet.ctrl",
+        new_callable=PropertyMock,
+    )
+    def test_control_functions_call_pv_put_if_ready(
+        self, mock_ctrl_option, pv_put_mock
+    ):
+        mock_ctrl_option.return_value = "Ready"
+        options_and_getter_function = {
+            "TRIM": self.magnet.trim,
+            "PERTURB": self.magnet.perturb,
+            "BCON_TO_BDES": self.magnet.con_to_des,
+            "SAVE_BDES": self.magnet.save_bdes,
+            "LOAD_BDES": self.magnet.load_bdes,
+            "UNDO_BDES": self.magnet.undo_bdes,
+            "DAC_ZERO": self.magnet.dac_zero,
+            "CALIB": self.magnet.calibrate,
+            "STDZ": self.magnet.standardize,
+            "RESET": self.magnet.reset,
+        }
+        for option, func in options_and_getter_function.items():
+            func()
+            pv_put_mock.assert_called_once_with(self.magnet._ctrl_options[option])
+            pv_put_mock.reset_mock()
+
+    @patch("epics.PV.put", new_callable=Mock)
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.YAMLMagnet.ctrl",
+        new_callable=PropertyMock,
+    )
+    def test_trim_does_nothing_if_not_ready(self, mock_ctrl_option, pv_put_mock):
+        mock_ctrl_option.return_value = "Not Ready"
+        options_and_getter_function = {
+            "TRIM": self.magnet.trim,
+            "PERTURB": self.magnet.perturb,
+            "BCON_TO_BDES": self.magnet.con_to_des,
+            "SAVE_BDES": self.magnet.save_bdes,
+            "LOAD_BDES": self.magnet.load_bdes,
+            "UNDO_BDES": self.magnet.undo_bdes,
+            "DAC_ZERO": self.magnet.dac_zero,
+            "CALIB": self.magnet.calibrate,
+            "STDZ": self.magnet.standardize,
+            "RESET": self.magnet.reset,
+        }
+        options_requiring_state_check = [
+            "TRIM",
+            "PERTURB",
+            "DAC_ZERO",
+            "CALIB",
+            "STDZ",
+        ]
+        for option, func in options_and_getter_function.items():
+            func()
+            if option in options_requiring_state_check:
+                pv_put_mock.assert_not_called()
+            else:
+                pv_put_mock.assert_called_once_with(self.magnet._ctrl_options[option])
+            pv_put_mock.reset_mock()
