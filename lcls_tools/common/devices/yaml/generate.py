@@ -2,7 +2,7 @@ import csv
 import os
 import yaml
 from typing import Union, List, Dict, Optional
-
+import meme.names
 
 class YAMLGenerator:
     def __init__(
@@ -54,10 +54,22 @@ class YAMLGenerator:
             },
         }
 
+    def _construct_pv_list_from_control_system_name(name, search_list: Optional[List[str]]) -> Dict [str,str] :
+        # Use the control system name to get all PVs associated with device
+        pv_dict = {}
+        for search_term in search_list:
+            # End of the PV name is implied in search_term
+            pv_list = meme.names.list_pvs(name+"%"+search_term, sort_by="z")
+            if pv_list != list():
+                pv = pv_list[0]
+                handle = pv.split(':')[-1].lower()
+                pv_dict[handle] = pv 
+        return pv_dict
+
+
     def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
         required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
-        if not isinstance(area, list):
-            area = list(area)
+        if not isinstance(area, list):            area = list(area)
         yaml_magnets = {}
         for _area in area:
             magnet_elements = [
@@ -71,13 +83,15 @@ class YAMLGenerator:
                 raise RuntimeError("Area provided not found in magnet list.")
             # Fill in the dict that will become the yaml file
             for magnet in magnet_elements:
-                pv_info = {
-                    "bact": magnet["Control System Name"] + ":BACT",
-                    "bctrl": magnet["Control System Name"] + ":BCTRL",
-                    "bcon": magnet["Control System Name"] + ":BCON",
-                    "bdes": magnet["Control System Name"] + ":BDES",
-                    "ctrl": magnet["Control System Name"] + ":CTRL",
-                }
+                # pv_info = {
+                #     "bact": magnet["Control System Name"] + ":BACT",
+                #     "bctrl": magnet["Control System Name"] + ":BCTRL",
+                #     "bcon": magnet["Control System Name"] + ":BCON",
+                #     "bdes": magnet["Control System Name"] + ":BDES",
+                #     "ctrl": magnet["Control System Name"] + ":CTRL",
+                # }
+                pv_info = _construct_pv_list_from_control_system_name(magnet["Control System Name"], 
+                                                                      ["BACT", "BCTRL", "BCON", "BDES", "CTRL"])
                 yaml_magnets.update({magnet["Element"]: {}})
                 magnet_yaml_template = self._construct_information_from_element(
                     magnet, pv_information=pv_info
@@ -85,12 +99,18 @@ class YAMLGenerator:
                 yaml_magnets[magnet["Element"]].update(magnet_yaml_template)
         return yaml_magnets
 
+    def camera_type():
+        # Determine type of camera and PVs
+        # Is there a way to get the camera type w/o a list?
+        pass 
+
     def extract_screens(self, area: Union[str, List[str]] = ["HTR"]):
+        required_screen_types = ["PROF"]
+        possible_screen_pvs   = ["IMAGE", "Image:ArrayData", "RESOLUTION"]
         if not isinstance(area, list):
             area = list(area)
         yaml_screens = {}
         for _area in area:
-            required_screen_types = ["PROF"]
             screen_elements = [
                 element
                 for element in self.elements
@@ -103,6 +123,11 @@ class YAMLGenerator:
             # Fill in the dict that will become the yaml file
             for screen in screen_elements:
                 yaml_screens.update({screen["Element"]: {}})
+                # pv_info = {
+                #     "resolution": screen["Control System Name"] + ":RESOLUTION",
+                # }
+                pv_info = _construct_pv_list_from_control_system_name(screen["Control System Name"], 
+                                                                      possible_screen_pvs)
                 screen_yaml_template = self._construct_information_from_element(screen)
                 yaml_screens[screen["Element"]].update(screen_yaml_template)
         return yaml_screens
