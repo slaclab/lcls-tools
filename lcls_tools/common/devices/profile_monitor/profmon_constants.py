@@ -33,8 +33,7 @@ def create_profmon_dict(base):
 
     return profmon_dict
 
-
-# Because why would we ever be consistent in naming conventions
+# ROI_BITS, ROI_X/YBIN??? 
 def create_profmon2_dict(base):
     profmon_dict = {
         "set": base + ":PNEUMATIC",
