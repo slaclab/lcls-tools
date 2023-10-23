@@ -105,6 +105,6 @@ class PV(epics_pv):
             callback_data=callback_data,
         )
 
-        if retry and (status is not 1):
+        if retry and (status != 1):
             print(f"{self} put not successful, using caput")
             self.caput(value)

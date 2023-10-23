@@ -1,6 +1,4 @@
 # Built in
-import sys
-import unittest
 from unittest import mock, TestCase
 import inspect
 

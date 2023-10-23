@@ -1,6 +1,4 @@
-import scipy.ndimage as snd
 from numpy import ndarray
-import numpy as np
 import scipy.io as sio
 import matplotlib.pyplot as plt
 import os
