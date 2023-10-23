@@ -50,7 +50,7 @@ class MatImage(object):
     @property
     def image(self):
         if self._image_object:
-            return np.asarray(self._image_object)
+            return self._image_object.image
 
     @property
     def image_as_list(self):
@@ -58,7 +58,7 @@ class MatImage(object):
             return []
 
         return ndarray.tolist(
-            np.asarray(self._image_object),
+            self._image_object.image,
         )
 
     @property
@@ -140,7 +140,8 @@ class MatImage(object):
 
     def _unpack_mat_data(self, mat_file):
         """Please shoot me"""
-        data = sio.loadmat(mat_file)["data"][0][0]
+        file_contents = sio.loadmat(mat_file)
+        data = file_contents["data"][0][0]
         self._mat_file = mat_file
         self._cam_name = str(data[0][0])
         self._image_object = Image(data[1])  # Create object
@@ -171,7 +172,7 @@ class MatImage(object):
         try:
             self._unpack_mat_data(mat_file)
         except Exception as e:
-            print("error loading mat file {0}: {1}".format(mat_file, e))
+            print("Error loading mat file {0}: {1}".format(mat_file, e))
 
     def show_image(self):
         if self._image_object is None:
