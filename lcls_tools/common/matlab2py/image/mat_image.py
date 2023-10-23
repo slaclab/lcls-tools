@@ -1,4 +1,3 @@
-import scipy.ndimage as snd
 from numpy import ndarray
 import numpy as np
 import scipy.io as sio
