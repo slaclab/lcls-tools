@@ -2,7 +2,6 @@ import unittest
 from lcls_tools.common.data_analysis.archiver import (
     Archiver,
     ArchiverData,
-    ARCHIVER_URL_FORMATTER,
 )
 from datetime import datetime, timedelta
 import requests

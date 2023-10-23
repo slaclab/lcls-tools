@@ -24,8 +24,8 @@ from math import sin, cos, sqrt
 
 
 class SolCalc(object):
-    def __init__(self, l, e_gun, d):
-        self._l = l  # Leff
+    def __init__(self, l_eff, e_gun, d):
+        self._l = l_eff  # Leff
         self._e_gun = e_gun  # MeV
         self._d = d  # distance from sol exit and bpm
         self._K = None
@@ -189,6 +189,5 @@ class SolCalc(object):
 
     def calc_offsets(self):
         """Solve the problem"""
-        r = np.array(self._x_vals + self._y_vals)
         self._results = pinv(np.vstack((self._x_arrays, self._y_arrays)))
         return self._results

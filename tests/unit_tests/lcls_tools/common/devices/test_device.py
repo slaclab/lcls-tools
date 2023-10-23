@@ -126,9 +126,15 @@ class TestDevice(unittest.TestCase):
             print(f"callback: {message}")
 
         # Add different callbacks to Device
-        first_callback = lambda: mock_callback("first")
-        second_callback = lambda: mock_callback("second")
-        third_callback = lambda: mock_callback("third")
+        def first_callback():
+            mock_callback("first")
+
+        def second_callback():
+            mock_callback("second")
+
+        def third_callback():
+            mock_callback("third")
+
         self.device.add_callback_to_pv(
             "bact",
             first_callback,

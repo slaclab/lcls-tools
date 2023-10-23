@@ -1,6 +1,5 @@
 import os
 import unittest
-import numpy as np
 from lcls_tools.common.matlab2py.emit_scan.mat_emit_scan import MatEmitScan as MES
 
 
