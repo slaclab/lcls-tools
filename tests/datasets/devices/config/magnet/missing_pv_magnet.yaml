@@ -1,0 +1,49 @@
+SOL2B:
+  control_information:
+    control_name: 'SOLN:GUNB:823'
+    PVs:
+      bctrl : 'SOLN:GUNB:823:BCTRL'
+      bact : 'SOLN:GUNB:823:BACT'
+      bdes : 'SOLN:GUNB:823:BDES'
+      bcon : 'SOLN:GUNB:823:BCON'
+    ctrl_options:
+      READY : 0
+      TRIM : 1
+      PERTURB : 2
+      BCON_TO_BDES : 3
+      SAVE_BDES : 4
+      LOAD_BDES : 5
+      UNDO_BDES : 6
+      DAC_ZERO : 7
+      CALIB : 8
+      STDZ : 9
+      RESET : 10
+  metadata:
+    b_tolerance : 0.002 # in Tesla?
+    length : 0.135 # in meters?
+
+
+SOL1B:
+  control_information:
+    control_name: 'SOLN:GUNB:212'
+    PVs:
+      bctrl : 'QUAD:LI22:201:BCTRL'
+      bact : 'QUAD:LI22:201:BACT'
+      bdes : 'QUAD:LI22:201:BDES'
+      bcon : 'QUAD:LI22:201:BCON'
+      ctrl : 'QUAD:LI22:201:CTRL'
+    ctrl_options:
+      READY : 0
+      TRIM : 1
+      PERTURB : 2
+      BCON_TO_BDES : 3
+      SAVE_BDES : 4
+      LOAD_BDES : 5
+      UNDO_BDES : 6
+      DAC_ZERO : 7
+      CALIB : 8
+      STDZ : 9
+      RESET : 10
+  metadata:
+    b_tolerance : 0.002 # in Tesla?
+    length : 0.1342 # in meters?
