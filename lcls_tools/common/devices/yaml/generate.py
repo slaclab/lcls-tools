@@ -4,6 +4,7 @@ import yaml
 from typing import Union, List, Dict, Optional
 import meme.names
 
+
 class YAMLGenerator:
     def __init__(
         self,
@@ -54,22 +55,24 @@ class YAMLGenerator:
             },
         }
 
-    def _construct_pv_list_from_control_system_name(name, search_list: Optional[List[str]]) -> Dict [str,str] :
+    def _construct_pv_list_from_control_system_name(
+        name, search_list: Optional[List[str]]
+    ) -> Dict[str, str]:
         # Use the control system name to get all PVs associated with device
         pv_dict = {}
         for search_term in search_list:
             # End of the PV name is implied in search_term
-            pv_list = meme.names.list_pvs(name+"%"+search_term, sort_by="z")
+            pv_list = meme.names.list_pvs(name + "%" + search_term, sort_by="z")
             if pv_list != list():
                 pv = pv_list[0]
-                handle = pv.split(':')[-1].lower()
-                pv_dict[handle] = pv 
+                handle = pv.split(":")[-1].lower()
+                pv_dict[handle] = pv
         return pv_dict
-
 
     def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
         required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
-        if not isinstance(area, list):            area = list(area)
+        if not isinstance(area, list):
+            area = list(area)
         yaml_magnets = {}
         for _area in area:
             magnet_elements = [
@@ -90,8 +93,10 @@ class YAMLGenerator:
                 #     "bdes": magnet["Control System Name"] + ":BDES",
                 #     "ctrl": magnet["Control System Name"] + ":CTRL",
                 # }
-                pv_info = _construct_pv_list_from_control_system_name(magnet["Control System Name"], 
-                                                                      ["BACT", "BCTRL", "BCON", "BDES", "CTRL"])
+                pv_info = _construct_pv_list_from_control_system_name(
+                    magnet["Control System Name"],
+                    ["BACT", "BCTRL", "BCON", "BDES", "CTRL"],
+                )
                 yaml_magnets.update({magnet["Element"]: {}})
                 magnet_yaml_template = self._construct_information_from_element(
                     magnet, pv_information=pv_info
@@ -102,11 +107,11 @@ class YAMLGenerator:
     def camera_type():
         # Determine type of camera and PVs
         # Is there a way to get the camera type w/o a list?
-        pass 
+        pass
 
     def extract_screens(self, area: Union[str, List[str]] = ["HTR"]):
         required_screen_types = ["PROF"]
-        possible_screen_pvs   = ["IMAGE", "Image:ArrayData", "RESOLUTION"]
+        possible_screen_pvs = ["IMAGE", "Image:ArrayData", "RESOLUTION"]
         if not isinstance(area, list):
             area = list(area)
         yaml_screens = {}
@@ -126,8 +131,9 @@ class YAMLGenerator:
                 # pv_info = {
                 #     "resolution": screen["Control System Name"] + ":RESOLUTION",
                 # }
-                pv_info = _construct_pv_list_from_control_system_name(screen["Control System Name"], 
-                                                                      possible_screen_pvs)
+                pv_info = _construct_pv_list_from_control_system_name(
+                    screen["Control System Name"], possible_screen_pvs
+                )
                 screen_yaml_template = self._construct_information_from_element(screen)
                 yaml_screens[screen["Element"]].update(screen_yaml_template)
         return yaml_screens
