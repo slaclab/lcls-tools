@@ -1696,8 +1696,7 @@ class Cryomodule(utils.SCLinacObject):
         stepper_class=StepperTuner,
         piezo_class=Piezo,
     ):
-        # _type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack],
-        #        bool, Type[SSA], Type[StepperTuner], Type[Piezo],) -> None
+        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner], Type[Piezo],) -> None # noqa: E501
         """
         Parameters
         ----------
