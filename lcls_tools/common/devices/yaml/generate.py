@@ -63,7 +63,7 @@ class YAMLGenerator:
         for search_term in search_list:
             # End of the PV name is implied in search_term
             try:
-                pv_list = meme.names.list_pvs(name + "%" + search_term, sort_by="z")
+                pv_list = meme.names.list_pvs(name + ":" + search_term, sort_by="z")
                 if pv_list != list():
                     pv = pv_list[0]
                     handle = pv.split(":")[-1].lower()
