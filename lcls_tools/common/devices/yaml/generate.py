@@ -55,26 +55,32 @@ class YAMLGenerator:
             },
         }
 
-    def _construct_pv_list_from_control_system_name(
+    def _construct_pv_list_from_control_system_name(self,
         name, search_list: Optional[List[str]]
     ) -> Dict[str, str]:
         # Use the control system name to get all PVs associated with device
         pv_dict = {}
         for search_term in search_list:
             # End of the PV name is implied in search_term
-            pv_list = meme.names.list_pvs(name + "%" + search_term, sort_by="z")
-            if pv_list != list():
-                pv = pv_list[0]
-                handle = pv.split(":")[-1].lower()
-                pv_dict[handle] = pv
+            try:
+                pv_list = meme.names.list_pvs(name + "%" + search_term, sort_by="z")
+                if pv_list != list():
+                    pv = pv_list[0]
+                    handle = pv.split(":")[-1].lower()
+                    pv_dict[handle] = pv
+            except TimeoutError as toe:
+                print(f'Unable connect to MEME.name service when searching for {name + "%" + search_term}.')
+                print(toe)
         return pv_dict
 
     def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
         required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
         if not isinstance(area, list):
-            area = list(area)
+            machine_areas = [area]
+        else:
+            machine_areas = area
         yaml_magnets = {}
-        for _area in area:
+        for _area in machine_areas:
             magnet_elements = [
                 element
                 for element in self.elements
@@ -93,7 +99,7 @@ class YAMLGenerator:
                 #     "bdes": magnet["Control System Name"] + ":BDES",
                 #     "ctrl": magnet["Control System Name"] + ":CTRL",
                 # }
-                pv_info = _construct_pv_list_from_control_system_name(
+                pv_info = self._construct_pv_list_from_control_system_name(
                     magnet["Control System Name"],
                     ["BACT", "BCTRL", "BCON", "BDES", "CTRL"],
                 )
@@ -113,9 +119,11 @@ class YAMLGenerator:
         required_screen_types = ["PROF"]
         possible_screen_pvs = ["IMAGE", "Image:ArrayData", "RESOLUTION"]
         if not isinstance(area, list):
-            area = list(area)
+            machine_areas = list(area)
+        else:
+            machine_areas = area
         yaml_screens = {}
-        for _area in area:
+        for _area in machine_areas:
             screen_elements = [
                 element
                 for element in self.elements
@@ -131,7 +139,7 @@ class YAMLGenerator:
                 # pv_info = {
                 #     "resolution": screen["Control System Name"] + ":RESOLUTION",
                 # }
-                pv_info = _construct_pv_list_from_control_system_name(
+                pv_info = self._construct_pv_list_from_control_system_name(
                     screen["Control System Name"], possible_screen_pvs
                 )
                 screen_yaml_template = self._construct_information_from_element(screen)
