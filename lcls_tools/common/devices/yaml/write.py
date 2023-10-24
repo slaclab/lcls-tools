@@ -14,13 +14,15 @@ class YAMLWriter:
 
     def _constuct_yaml_contents(self, area: str) -> dict:
         file_contents = {}
-        file_contents["magnets"] = self.generator.extract_magnets(
+        magnets = self.generator.extract_magnets(
             area=area,
         )
-        file_contents["screens"] = self.generator.extract_screens(
+        screens = self.generator.extract_screens(
             area=area,
         )
-        return file_contents
+        if all([magnets, screens,]):
+            return file_contents
+        return None
 
     def write_yaml_file(self, area: Optional[str] = "GUNB") -> None:
         if area not in self.machine_areas:
@@ -31,5 +33,12 @@ class YAMLWriter:
         location = "lcls_tools/common/devices/yaml/"
         fullpath = os.path.join(location, filename)
         yaml_output = self._constuct_yaml_contents(area=area)
-        with open(fullpath, "w") as file:
-            yaml.safe_dump(yaml_output, file)
+        if yaml_output:
+            with open(fullpath, "w") as file:
+                yaml.safe_dump(yaml_output, file)
+
+
+if __name__ == "__main__":
+    writer = YAMLWriter()
+    areas = writer.machine_areas
+    [writer.write_yaml_file(area) for area in areas]
