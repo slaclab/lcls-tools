@@ -118,7 +118,8 @@ class YAMLGenerator:
             ]
         # Must have passed an area that does not exist!
         if len(magnet_elements) < 1:
-            raise RuntimeError("Area provided not found in magnet list.")
+            print(f"No magnets found in area {area}")
+            return
         # Fill in the dict that will become the yaml file
         for magnet in magnet_elements:
             if magnet["Control System Name"] != "":
@@ -157,7 +158,8 @@ class YAMLGenerator:
             ]
         # Must have passed an area that does not exist!
         if len(screen_elements) < 1:
-            raise RuntimeError("Area provided not found in screen list.")
+            print(f"No screens found in area {area}")
+            return
         # Fill in the dict that will become the yaml file
         yaml_screens = {}
         for screen in screen_elements:
