@@ -1,6 +1,5 @@
 import csv
 import os
-import yaml
 from typing import Union, List, Dict, Optional
 import meme.names
 
@@ -21,7 +20,6 @@ class YAMLGenerator:
             "Beampath",
             "SumL (m)",
         ]
-
         self.elements = None
         with open(csv_location, "r") as file:
             self.csv_reader = csv.DictReader(f=file)
@@ -39,6 +37,33 @@ class YAMLGenerator:
             raise RuntimeError(
                 "Did not generate elements, please look at lcls_elements.csv."
             )
+        self.areas = self.extract_areas()
+        self.beam_paths = self.extract_beampaths()
+
+    def extract_areas(self) -> list:
+        areas = []
+        [
+            areas.append(element["Area"])
+            for element in self.elements
+            if element["Area"] not in areas
+        ]
+        return areas
+
+    def get_areas(self) -> list:
+        return self.areas
+
+    def extract_beampaths(self) -> list:
+        beampaths = []
+        [
+            beampaths.append(beampath)
+            for element in self.elements
+            for beampath in element["Beampath"].split(',')
+            if beampath not in beampaths and beampath != ''
+        ]
+        return beampaths
+
+    def get_beam_paths(self) -> list:
+        return self.beam_paths
 
     def _construct_information_from_element(
         self, element, pv_information: Optional[Dict[str, str]] = {}
