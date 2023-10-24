@@ -1,6 +1,5 @@
 import csv
 import os
-import yaml
 from typing import Union, List, Dict, Optional
 import meme.names
 
@@ -21,7 +20,6 @@ class YAMLGenerator:
             "Beampath",
             "SumL (m)",
         ]
-
         self.elements = None
         with open(csv_location, "r") as file:
             self.csv_reader = csv.DictReader(f=file)
@@ -39,6 +37,33 @@ class YAMLGenerator:
             raise RuntimeError(
                 "Did not generate elements, please look at lcls_elements.csv."
             )
+        self.areas = self.extract_areas()
+        self.beam_paths = self.extract_beampaths()
+
+    def extract_areas(self) -> list:
+        areas = []
+        [
+            areas.append(element["Area"])
+            for element in self.elements
+            if element["Area"] not in areas
+        ]
+        return areas
+
+    def get_areas(self) -> list:
+        return self.areas
+
+    def extract_beampaths(self) -> list:
+        beampaths = []
+        [
+            beampaths.append(beampath)
+            for element in self.elements
+            for beampath in element["Beampath"].split(",")
+            if beampath not in beampaths and beampath != ""
+        ]
+        return beampaths
+
+    def get_beam_paths(self) -> list:
+        return self.beam_paths
 
     def _construct_information_from_element(
         self, element, pv_information: Optional[Dict[str, str]] = {}
@@ -58,6 +83,8 @@ class YAMLGenerator:
     def _construct_pv_list_from_control_system_name(
         self, name, search_list: Optional[List[str]]
     ) -> Dict[str, str]:
+        if name == "":
+            raise RuntimeError("No control system name provided for meme search.")
         # Use the control system name to get all PVs associated with device
         pv_dict = {}
         for search_term in search_list:
@@ -94,22 +121,19 @@ class YAMLGenerator:
                 raise RuntimeError("Area provided not found in magnet list.")
             # Fill in the dict that will become the yaml file
             for magnet in magnet_elements:
-                # pv_info = {
-                #     "bact": magnet["Control System Name"] + ":BACT",
-                #     "bctrl": magnet["Control System Name"] + ":BCTRL",
-                #     "bcon": magnet["Control System Name"] + ":BCON",
-                #     "bdes": magnet["Control System Name"] + ":BDES",
-                #     "ctrl": magnet["Control System Name"] + ":CTRL",
-                # }
-                pv_info = self._construct_pv_list_from_control_system_name(
-                    magnet["Control System Name"],
-                    ["BACT", "BCTRL", "BCON", "BDES", "CTRL"],
-                )
-                yaml_magnets.update({magnet["Element"]: {}})
-                magnet_yaml_template = self._construct_information_from_element(
-                    magnet, pv_information=pv_info
-                )
-                yaml_magnets[magnet["Element"]].update(magnet_yaml_template)
+                if magnet["Control System Name"] != "":
+                    try:
+                        pv_info = self._construct_pv_list_from_control_system_name(
+                            magnet["Control System Name"],
+                            ["BACT", "BCTRL", "BCON", "BDES", "CTRL"],
+                        )
+                    except RuntimeError as rte:
+                        print(rte)
+                    yaml_magnets.update({magnet["Element"]: {}})
+                    magnet_yaml_template = self._construct_information_from_element(
+                        magnet, pv_information=pv_info
+                    )
+                    yaml_magnets[magnet["Element"]].update(magnet_yaml_template)
         return yaml_magnets
 
     def camera_type():
@@ -137,15 +161,19 @@ class YAMLGenerator:
                 raise RuntimeError("Area provided not found in screen list.")
             # Fill in the dict that will become the yaml file
             for screen in screen_elements:
-                yaml_screens.update({screen["Element"]: {}})
-                # pv_info = {
-                #     "resolution": screen["Control System Name"] + ":RESOLUTION",
-                # }
-                pv_info = self._construct_pv_list_from_control_system_name(
-                    screen["Control System Name"], possible_screen_pvs
-                )
-                screen_yaml_template = self._construct_information_from_element(
-                    screen, pv_information=pv_info
-                )
-                yaml_screens[screen["Element"]].update(screen_yaml_template)
+                if screen["Control System Name"] != "":
+                    yaml_screens.update({screen["Element"]: {}})
+                    # pv_info = {
+                    #     "resolution": screen["Control System Name"] + ":RESOLUTION",
+                    # }
+                    try:
+                        pv_info = self._construct_pv_list_from_control_system_name(
+                            screen["Control System Name"], possible_screen_pvs
+                        )
+                    except RuntimeError as rte:
+                        print(rte)
+                    screen_yaml_template = self._construct_information_from_element(
+                        screen, pv_information=pv_info
+                    )
+                    yaml_screens[screen["Element"]].update(screen_yaml_template)
         return yaml_screens
