@@ -144,6 +144,8 @@ class YAMLGenerator:
                 pv_info = self._construct_pv_list_from_control_system_name(
                     screen["Control System Name"], possible_screen_pvs
                 )
-                screen_yaml_template = self._construct_information_from_element(screen)
+                screen_yaml_template = self._construct_information_from_element(
+                    screen, pv_information=pv_info
+                )
                 yaml_screens[screen["Element"]].update(screen_yaml_template)
         return yaml_screens
