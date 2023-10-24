@@ -55,8 +55,8 @@ class YAMLGenerator:
             },
         }
 
-    def _construct_pv_list_from_control_system_name(self,
-        name, search_list: Optional[List[str]]
+    def _construct_pv_list_from_control_system_name(
+        self, name, search_list: Optional[List[str]]
     ) -> Dict[str, str]:
         # Use the control system name to get all PVs associated with device
         pv_dict = {}
@@ -69,7 +69,9 @@ class YAMLGenerator:
                     handle = pv.split(":")[-1].lower()
                     pv_dict[handle] = pv
             except TimeoutError as toe:
-                print(f'Unable connect to MEME.name service when searching for {name + "%" + search_term}.')
+                print(
+                    f'Unable connect to MEME.name service when searching for {name + "%" + search_term}.'
+                )
                 print(toe)
         return pv_dict
 
