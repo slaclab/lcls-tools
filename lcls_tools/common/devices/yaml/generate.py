@@ -121,7 +121,7 @@ class YAMLGenerator:
         required_screen_types = ["PROF"]
         possible_screen_pvs = ["IMAGE", "Image:ArrayData", "RESOLUTION"]
         if not isinstance(area, list):
-            machine_areas = list(area)
+            machine_areas = [area]
         else:
             machine_areas = area
         yaml_screens = {}
