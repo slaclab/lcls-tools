@@ -144,7 +144,16 @@ class YAMLGenerator:
 
     def extract_screens(self, area: Union[str, List[str]] = ["HTR"]):
         required_screen_types = ["PROF"]
-        possible_screen_pvs = ["IMAGE", "Image:ArrayData", "RESOLUTION"]
+        possible_screen_pvs = [
+            "IMAGE",
+            "Image:ArrayData",
+            "RESOLUTION",
+            "Image:ArraySizeX_RBV",
+            "Image:ArraySizeY_RBV",
+            "N_OF_COL",
+            "N_OF_ROW",
+            "N_OF_BITS",
+        ]
         if not isinstance(area, list):
             machine_areas = [area]
         else:
