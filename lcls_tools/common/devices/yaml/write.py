@@ -14,13 +14,16 @@ class YAMLWriter:
 
     def _constuct_yaml_contents(self, area: str) -> dict:
         file_contents = {}
-        magnets = self.generator.extract_magnets(
+        if magnets := self.generator.extract_magnets(
             area=area,
-        )
-        screens = self.generator.extract_screens(
+        ):
+            file_contents['magnets'] = magnets
+        if screens := self.generator.extract_screens(
             area=area,
-        )
-        if all([magnets, screens,]):
+        ):
+            file_contents['screens'] = screens
+        
+        if file_contents:
             return file_contents
         return None
 
