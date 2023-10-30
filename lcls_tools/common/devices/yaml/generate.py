@@ -69,7 +69,7 @@ class YAMLGenerator:
     def _construct_information_from_element(
         self, element, pv_information: Optional[Dict[str, str]] = {}
     ):
-        sum_l_meters = float(element["SumL (m)"]) if element["SumL (m)"] else -1.0,
+        sum_l_meters = float(element["SumL (m)"]) if element["SumL (m)"] else -1.0
         return {
             "controls_information": {
                 "control_name": element["Control System Name"],
