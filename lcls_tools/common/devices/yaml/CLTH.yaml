@@ -1,0 +1,77 @@
+magnets:
+  Q50Q1:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTH:140:BACT
+        bcon: QUAD:CLTH:140:BCON
+        bctrl: QUAD:CLTH:140:BCTRL
+        bdes: QUAD:CLTH:140:BDES
+        ctrl: QUAD:CLTH:140:CTRL
+      control_name: QUAD:CLTH:140
+    metadata:
+      area: CLTH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 1035.479
+  Q50Q2:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTH:170:BACT
+        bcon: QUAD:CLTH:170:BCON
+        bctrl: QUAD:CLTH:170:BCTRL
+        bdes: QUAD:CLTH:170:BDES
+        ctrl: QUAD:CLTH:170:CTRL
+      control_name: QUAD:CLTH:170
+    metadata:
+      area: CLTH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 1041.751
+  XCBSYQ2:
+    controls_information:
+      PVs:
+        bact: XCOR:CLTH:168:BACT
+        bcon: XCOR:CLTH:168:BCON
+        bctrl: XCOR:CLTH:168:BCTRL
+        bdes: XCOR:CLTH:168:BDES
+        ctrl: XCOR:CLTH:168:CTRL
+      control_name: XCOR:CLTH:168
+    metadata:
+      area: CLTH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 1041.089
+  YCBSYQ1:
+    controls_information:
+      PVs:
+        bact: YCOR:CLTH:133:BACT
+        bcon: YCOR:CLTH:133:BCON
+        bctrl: YCOR:CLTH:133:BCTRL
+        bdes: YCOR:CLTH:133:BDES
+        ctrl: YCOR:CLTH:133:CTRL
+      control_name: YCOR:CLTH:133
+    metadata:
+      area: CLTH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 1033.913

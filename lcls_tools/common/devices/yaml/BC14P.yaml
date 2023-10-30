@@ -1,0 +1,56 @@
+magnets:
+  BCX141796:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI14:1796
+    metadata:
+      area: BC14P
+      beam_path:
+      - F2_POSI
+      sum_l_meters: 362.015
+  BCX141808:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI14:1808
+    metadata:
+      area: BC14P
+      beam_path:
+      - F2_POSI
+      sum_l_meters: 363.656
+  CQ141738:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI14:1738
+    metadata:
+      area: BC14P
+      beam_path:
+      - F2_POSI
+      sum_l_meters: 353.884
+  CQ141866:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI14:1866
+    metadata:
+      area: BC14P
+      beam_path:
+      - F2_POSI
+      sum_l_meters: 371.787
+  YC141820:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI14:1820
+    metadata:
+      area: BC14P
+      beam_path:
+      - F2_POSI
+      sum_l_meters: 364.131
+screens:
+  PR141803:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:LI14:1803
+    metadata:
+      area: BC14P
+      beam_path:
+      - F2_POSI
+      sum_l_meters: 363.016

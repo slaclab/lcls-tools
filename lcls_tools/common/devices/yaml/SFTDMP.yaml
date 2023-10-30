@@ -1,0 +1,9 @@
+magnets:
+  BXPM3:
+    controls_information:
+      PVs: {}
+      control_name: BEND:DMP1:830
+    metadata:
+      area: SFTDMP
+      beam_path: []
+      sum_l_meters: -1.0

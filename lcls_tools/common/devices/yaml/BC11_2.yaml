@@ -1,0 +1,112 @@
+magnets:
+  Q11401:
+    controls_information:
+      PVs: {}
+      control_name: LI11:QUAD:401
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 53.831
+  QM11358:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:358
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 47.341
+  QM11362:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:362
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 47.996
+  QM11393:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:393
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 52.917
+  XC11398:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:LI11:398
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 53.547
+  YC11365:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI11:365
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 48.402
+  YC11399:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI11:399
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 53.547
+screens:
+  PR11357:
+    controls_information:
+      PVs: {}
+      control_name: PROF:LI11:357
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 47.105
+  PR11375:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:LI11:375
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 50.557
+  TD11390:
+    controls_information:
+      PVs: {}
+      control_name: PROF:LI12:390
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 52.375

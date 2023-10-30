@@ -1,0 +1,272 @@
+magnets:
+  BCX10451:
+    controls_information:
+      PVs: {}
+      control_name: BEND:IN10:451
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 8.697
+  BCX10461:
+    controls_information:
+      PVs: {}
+      control_name: BEND:IN10:461
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 8.963
+  BCX10475:
+    controls_information:
+      PVs: {}
+      control_name: BEND:IN10:475
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 9.919
+  BCX10481:
+    controls_information:
+      PVs: {}
+      control_name: BEND:IN10:481
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 10.186
+  BX10661:
+    controls_information:
+      PVs: {}
+      control_name: BEND:IN10:661
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 16.852
+  BX10751:
+    controls_information:
+      PVs: {}
+      control_name: BEND:IN10:751
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 18.616
+  QB10731:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:731
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 17.734
+  QE10425:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:425
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 8.052
+  QE10441:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:441
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 8.453
+  QE10511:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:511
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 11.145
+  QE10525:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:525
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 11.535
+  QM10631:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:631
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 15.917
+  QM10651:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:651
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 16.473
+  QM10771:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:771
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 19.134
+  QM10781:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:781
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 19.539
+  XC10491:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:IN10:491
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 10.705
+  XC10521:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:IN10:521
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 11.345
+  XC10641:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:IN10:641
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 16.119
+  XC10721:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:IN10:721
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 17.515
+  XC10761:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:IN10:761
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 18.939
+  YC10492:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:IN10:492
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 10.705
+  YC10522:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:IN10:522
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 11.345
+  YC10642:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:IN10:642
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 16.119
+  YC10722:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:IN10:722
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 17.515
+  YC10762:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:IN10:762
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 18.939
+screens:
+  PR10571:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:IN10:571
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 14.237
+  PR10711:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:IN10:711
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 17.354

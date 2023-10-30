@@ -1,0 +1,141 @@
+magnets:
+  Q11201:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:201
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 29.111
+  Q11301:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:301
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 38.433
+  QA11132:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:132
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 22.851
+  QA11265:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:265
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 35.192
+  XC11104:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:LI11:104
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 20.344
+  XC11140:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:LI11:140
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 23.604
+  XC11202:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:LI11:202
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 29.517
+  XC11272:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:LI11:272
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 35.779
+  XC11304:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:LI11:304
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 39.082
+  YC11105:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI11:105
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 20.344
+  YC11141:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI11:141
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 23.604
+  YC11203:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI11:203
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 29.804
+  YC11273:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI11:273
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 35.779
+  YC11305:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI11:305
+    metadata:
+      area: L1F
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 39.082

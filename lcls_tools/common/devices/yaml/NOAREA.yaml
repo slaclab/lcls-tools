@@ -1,0 +1,26 @@
+magnets:
+  PM1:
+    controls_information:
+      PVs: {}
+      control_name: KICK:BSY0:66
+    metadata:
+      area: "\t- NO AREA -"
+      beam_path: []
+      sum_l_meters: 1086.862
+screens:
+  CAMR:FEE1:1561:
+    controls_information:
+      PVs: {}
+      control_name: CAMR:FEE1:1561
+    metadata:
+      area: "\t- NO AREA -"
+      beam_path: []
+      sum_l_meters: -1.0
+  P203180T:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:LI20:3180
+    metadata:
+      area: "\t- NO AREA -"
+      beam_path: []
+      sum_l_meters: -1.0

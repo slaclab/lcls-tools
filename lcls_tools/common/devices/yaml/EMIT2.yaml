@@ -1,0 +1,169 @@
+magnets:
+  QE201:
+    controls_information:
+      PVs:
+        bact: QUAD:EMIT2:150:BACT
+        bcon: QUAD:EMIT2:150:BCON
+        bctrl: QUAD:EMIT2:150:BCTRL
+        bdes: QUAD:EMIT2:150:BDES
+        ctrl: QUAD:EMIT2:150:CTRL
+      control_name: QUAD:EMIT2:150
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 368.187
+  QE202:
+    controls_information:
+      PVs:
+        bact: QUAD:EMIT2:300:BACT
+        bcon: QUAD:EMIT2:300:BCON
+        bctrl: QUAD:EMIT2:300:BCTRL
+        bdes: QUAD:EMIT2:300:BDES
+        ctrl: QUAD:EMIT2:300:CTRL
+      control_name: QUAD:EMIT2:300
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 373.201
+  QE203:
+    controls_information:
+      PVs:
+        bact: QUAD:EMIT2:800:BACT
+        bcon: QUAD:EMIT2:800:BCON
+        bctrl: QUAD:EMIT2:800:BCTRL
+        bdes: QUAD:EMIT2:800:BDES
+        ctrl: QUAD:EMIT2:800:CTRL
+      control_name: QUAD:EMIT2:800
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 392.11
+  QE204:
+    controls_information:
+      PVs:
+        bact: QUAD:EMIT2:900:BACT
+        bcon: QUAD:EMIT2:900:BCON
+        bctrl: QUAD:EMIT2:900:BCTRL
+        bdes: QUAD:EMIT2:900:BDES
+        ctrl: QUAD:EMIT2:900:CTRL
+      control_name: QUAD:EMIT2:900
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 395.218
+  XCE202:
+    controls_information:
+      PVs:
+        bact: XCOR:EMIT2:310:BACT
+        bcon: XCOR:EMIT2:310:BCON
+        bctrl: XCOR:EMIT2:310:BCTRL
+        bdes: XCOR:EMIT2:310:BDES
+        ctrl: XCOR:EMIT2:310:CTRL
+      control_name: XCOR:EMIT2:310
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 373.577
+  XCE204:
+    controls_information:
+      PVs:
+        bact: XCOR:EMIT2:912:BACT
+        bcon: XCOR:EMIT2:912:BCON
+        bctrl: XCOR:EMIT2:912:BCTRL
+        bdes: XCOR:EMIT2:912:BDES
+        ctrl: XCOR:EMIT2:912:CTRL
+      control_name: XCOR:EMIT2:912
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 395.594
+  YCE201:
+    controls_information:
+      PVs:
+        bact: YCOR:EMIT2:161:BACT
+        bcon: YCOR:EMIT2:161:BCON
+        bctrl: YCOR:EMIT2:161:BCTRL
+        bdes: YCOR:EMIT2:161:BDES
+        ctrl: YCOR:EMIT2:161:CTRL
+      control_name: YCOR:EMIT2:161
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 368.562
+  YCE203:
+    controls_information:
+      PVs:
+        bact: YCOR:EMIT2:811:BACT
+        bcon: YCOR:EMIT2:811:BCON
+        bctrl: YCOR:EMIT2:811:BCTRL
+        bdes: YCOR:EMIT2:811:BDES
+        ctrl: YCOR:EMIT2:811:CTRL
+      control_name: YCOR:EMIT2:811
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 392.485

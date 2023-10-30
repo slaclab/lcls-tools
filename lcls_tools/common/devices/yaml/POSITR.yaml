@@ -1,0 +1,289 @@
+magnets:
+  B202570:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2570
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202600:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2600
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202700:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2700
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202710:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2710
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202720:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2720
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202730:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2730
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202770:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2770
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202780:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2780
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202790:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2790
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202800:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2800
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202900:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2900
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202930:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2930
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202940:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2940
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202950:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2950
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  B202960:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2960
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202591T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2591
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202641T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2641
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202651T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2651
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202671T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2671
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202681T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2681
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202691T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2691
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202751T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2751
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202811T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2811
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202821T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2821
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202831T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2831
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202851T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2851
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202861T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2861
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Q202921T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2921
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  X202566T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:2566
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  X202626T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:2626
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  X202866T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:2866
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  X202936T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:2936
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Y202647T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:2647
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Y202677T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:2677
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Y202827T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:2827
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0
+  Y202857T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:2857
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: -1.0

@@ -1,0 +1,56 @@
+magnets:
+  BKRAPM1:
+    controls_information:
+      PVs: {}
+      control_name: KICK:BSYH:475
+    metadata:
+      area: BSYA
+      beam_path:
+      - CU_ALINE
+      sum_l_meters: 1103.271
+  BKRAPM2:
+    controls_information:
+      PVs: {}
+      control_name: KICK:BSYH:483
+    metadata:
+      area: BSYA
+      beam_path:
+      - CU_ALINE
+      sum_l_meters: 1104.921
+  BKRAPM3:
+    controls_information:
+      PVs: {}
+      control_name: KICK:BSYH:491
+    metadata:
+      area: BSYA
+      beam_path:
+      - CU_ALINE
+      sum_l_meters: 1106.571
+  BKRAPM4:
+    controls_information:
+      PVs: {}
+      control_name: KICK:BSYH:499
+    metadata:
+      area: BSYA
+      beam_path:
+      - CU_ALINE
+      sum_l_meters: 1108.221
+  BRAM1:
+    controls_information:
+      PVs: {}
+      control_name: BEND:BSYA:975
+    metadata:
+      area: BSYA
+      beam_path:
+      - CU_ALINE
+      - SC_DASEL
+      sum_l_meters: 1164.244
+  YCBSYA:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:BSYA:333
+    metadata:
+      area: BSYA
+      beam_path:
+      - CU_ALINE
+      sum_l_meters: 1114.68

@@ -1,0 +1,365 @@
+magnets:
+  BKRCUS:
+    controls_information:
+      PVs:
+        bact: KICK:CLTS:185:BACT
+        bcon: KICK:CLTS:185:BCON
+        bctrl: KICK:CLTS:185:BCTRL
+        bdes: KICK:CLTS:185:BDES
+        ctrl: KICK:CLTS:185:CTRL
+      control_name: KICK:CLTS:185
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1044.943
+  BLRCUS:
+    controls_information:
+      PVs:
+        bact: BEND:CLTS:280:BACT
+        bcon: BEND:CLTS:280:BCON
+        bctrl: BEND:CLTS:280:BCTRL
+        bdes: BEND:CLTS:280:BDES
+        ctrl: BEND:CLTS:280:CTRL
+      control_name: BEND:CLTS:280
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1062.12
+  BRCUS1:
+    controls_information:
+      PVs:
+        bact: BEND:CLTS:765:BACT
+        bcon: BEND:CLTS:765:BCON
+        bctrl: BEND:CLTS:765:BCTRL
+        bdes: BEND:CLTS:765:BDES
+        ctrl: BEND:CLTS:765:CTRL
+      control_name: BEND:CLTS:765
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1162.489
+  BRCUSDC1:
+    controls_information:
+      PVs:
+        bact: BEND:CLTS:180:BACT
+        bcon: BEND:CLTS:180:BCON
+        bctrl: BEND:CLTS:180:BCTRL
+        bdes: BEND:CLTS:180:BDES
+        ctrl: BEND:CLTS:180:CTRL
+      control_name: BEND:CLTS:180
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1043.926
+  BRCUSDC2:
+    controls_information:
+      PVs:
+        bact: BEND:CLTS:190:BACT
+        bcon: BEND:CLTS:190:BCON
+        bctrl: BEND:CLTS:190:BCTRL
+        bdes: BEND:CLTS:190:BDES
+        ctrl: BEND:CLTS:190:CTRL
+      control_name: BEND:CLTS:190
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1045.96
+  BYCUS1:
+    controls_information:
+      PVs:
+        bact: BEND:CLTS:505:BACT
+        bcon: BEND:CLTS:505:BCON
+        bctrl: BEND:CLTS:505:BCTRL
+        bdes: BEND:CLTS:505:BDES
+        ctrl: BEND:CLTS:505:CTRL
+      control_name: BEND:CLTS:505
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1110.623
+  BYCUS2:
+    controls_information:
+      PVs:
+        bact: BEND:CLTS:535:BACT
+        bcon: BEND:CLTS:535:BCON
+        bctrl: BEND:CLTS:535:BCTRL
+        bdes: BEND:CLTS:535:BDES
+        ctrl: BEND:CLTS:535:CTRL
+      control_name: BEND:CLTS:535
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1113.986
+  QCUS1:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTS:420:BACT
+        bcon: QUAD:CLTS:420:BCON
+        bctrl: QUAD:CLTS:420:BCTRL
+        bdes: QUAD:CLTS:420:BDES
+        ctrl: QUAD:CLTS:420:CTRL
+      control_name: QUAD:CLTS:420
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1092.151
+  QCUS10:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTS:620:BACT
+        bcon: QUAD:CLTS:620:BCON
+        bctrl: QUAD:CLTS:620:BCTRL
+        bdes: QUAD:CLTS:620:BDES
+        ctrl: QUAD:CLTS:620:CTRL
+      control_name: QUAD:CLTS:620
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1132.457
+  QCUS2:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTS:450:BACT
+        bcon: QUAD:CLTS:450:BCON
+        bctrl: QUAD:CLTS:450:BCTRL
+        bdes: QUAD:CLTS:450:BDES
+        ctrl: QUAD:CLTS:450:CTRL
+      control_name: QUAD:CLTS:450
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1097.548
+  QCUS3:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTS:470:BACT
+        bcon: QUAD:CLTS:470:BCON
+        bctrl: QUAD:CLTS:470:BCTRL
+        bdes: QUAD:CLTS:470:BDES
+        ctrl: QUAD:CLTS:470:CTRL
+      control_name: QUAD:CLTS:470
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1102.045
+  QCUS4:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTS:500:BACT
+        bcon: QUAD:CLTS:500:BCON
+        bctrl: QUAD:CLTS:500:BCTRL
+        bdes: QUAD:CLTS:500:BDES
+        ctrl: QUAD:CLTS:500:CTRL
+      control_name: QUAD:CLTS:500
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1109.101
+  QCUS5:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTS:510:BACT
+        bcon: QUAD:CLTS:510:BCON
+        bctrl: QUAD:CLTS:510:BCTRL
+        bdes: QUAD:CLTS:510:BDES
+        ctrl: QUAD:CLTS:510:CTRL
+      control_name: QUAD:CLTS:510
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1112.101
+  QCUS6:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTS:530:BACT
+        bcon: QUAD:CLTS:530:BCON
+        bctrl: QUAD:CLTS:530:BCTRL
+        bdes: QUAD:CLTS:530:BDES
+        ctrl: QUAD:CLTS:530:CTRL
+      control_name: QUAD:CLTS:530
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1112.508
+  QCUS7:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTS:540:BACT
+        bcon: QUAD:CLTS:540:BCON
+        bctrl: QUAD:CLTS:540:BCTRL
+        bdes: QUAD:CLTS:540:BDES
+        ctrl: QUAD:CLTS:540:CTRL
+      control_name: QUAD:CLTS:540
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1115.507
+  QCUS8:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTS:570:BACT
+        bcon: QUAD:CLTS:570:BCON
+        bctrl: QUAD:CLTS:570:BCTRL
+        bdes: QUAD:CLTS:570:BDES
+        ctrl: QUAD:CLTS:570:CTRL
+      control_name: QUAD:CLTS:570
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1122.564
+  QCUS9:
+    controls_information:
+      PVs:
+        bact: QUAD:CLTS:590:BACT
+        bcon: QUAD:CLTS:590:BCON
+        bctrl: QUAD:CLTS:590:BCTRL
+        bdes: QUAD:CLTS:590:BDES
+        ctrl: QUAD:CLTS:590:CTRL
+      control_name: QUAD:CLTS:590
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1127.061
+  XCCUS1:
+    controls_information:
+      PVs:
+        bact: XCOR:CLTS:426:BACT
+        bcon: XCOR:CLTS:426:BCON
+        bctrl: XCOR:CLTS:426:BCTRL
+        bdes: XCOR:CLTS:426:BDES
+        ctrl: XCOR:CLTS:426:CTRL
+      control_name: XCOR:CLTS:426
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1093.494
+  XCCUS10:
+    controls_information:
+      PVs:
+        bact: XCOR:CLTS:614:BACT
+        bcon: XCOR:CLTS:614:BCON
+        bctrl: XCOR:CLTS:614:BCTRL
+        bdes: XCOR:CLTS:614:BDES
+        ctrl: XCOR:CLTS:614:CTRL
+      control_name: XCOR:CLTS:614
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1131.115
+  XCCUS4:
+    controls_information:
+      PVs:
+        bact: XCOR:CLTS:504:BACT
+        bcon: XCOR:CLTS:504:BCON
+        bctrl: XCOR:CLTS:504:BCTRL
+        bdes: XCOR:CLTS:504:BDES
+        ctrl: XCOR:CLTS:504:CTRL
+      control_name: XCOR:CLTS:504
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1109.555
+  XCCUS7:
+    controls_information:
+      PVs:
+        bact: XCOR:CLTS:542:BACT
+        bcon: XCOR:CLTS:542:BCON
+        bctrl: XCOR:CLTS:542:BCTRL
+        bdes: XCOR:CLTS:542:BDES
+        ctrl: XCOR:CLTS:542:CTRL
+      control_name: XCOR:CLTS:542
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1115.961
+  YCCUS2:
+    controls_information:
+      PVs:
+        bact: YCOR:CLTS:453:BACT
+        bcon: YCOR:CLTS:453:BCON
+        bctrl: YCOR:CLTS:453:BCTRL
+        bdes: YCOR:CLTS:453:BDES
+        ctrl: YCOR:CLTS:453:CTRL
+      control_name: YCOR:CLTS:453
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1098.89
+  YCCUS3:
+    controls_information:
+      PVs:
+        bact: YCOR:CLTS:471:BACT
+        bcon: YCOR:CLTS:471:BCON
+        bctrl: YCOR:CLTS:471:BCTRL
+        bdes: YCOR:CLTS:471:BDES
+        ctrl: YCOR:CLTS:471:CTRL
+      control_name: YCOR:CLTS:471
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1102.605
+  YCCUS6:
+    controls_information:
+      PVs:
+        bact: YCOR:CLTS:533:BACT
+        bcon: YCOR:CLTS:533:BCON
+        bctrl: YCOR:CLTS:533:BCTRL
+        bdes: YCOR:CLTS:533:BDES
+        ctrl: YCOR:CLTS:533:CTRL
+      control_name: YCOR:CLTS:533
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1112.961
+  YCCUS8:
+    controls_information:
+      PVs:
+        bact: YCOR:CLTS:573:BACT
+        bcon: YCOR:CLTS:573:BCON
+        bctrl: YCOR:CLTS:573:BCTRL
+        bdes: YCOR:CLTS:573:BDES
+        ctrl: YCOR:CLTS:573:CTRL
+      control_name: YCOR:CLTS:573
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1123.124
+  YCCUS9:
+    controls_information:
+      PVs:
+        bact: YCOR:CLTS:597:BACT
+        bcon: YCOR:CLTS:597:BCON
+        bctrl: YCOR:CLTS:597:BCTRL
+        bdes: YCOR:CLTS:597:BDES
+        ctrl: YCOR:CLTS:597:CTRL
+      control_name: YCOR:CLTS:597
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1127.621

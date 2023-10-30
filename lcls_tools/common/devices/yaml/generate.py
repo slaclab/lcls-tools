@@ -103,7 +103,7 @@ class YAMLGenerator:
                     pv_dict[handle] = pv
             except TimeoutError as toe:
                 print(
-                    f'Unable connect to MEME.name service when searching for {name + "%" + search_term}.'
+                    f'Unable connect to MEME.name service when searching for {name + ":" + search_term}.'
                 )
                 print(toe)
         return pv_dict

@@ -1,0 +1,17 @@
+magnets:
+  XC29096:
+    controls_information:
+      PVs: {}
+      control_name: LI29:XCOR:96
+    metadata:
+      area: LI28
+      beam_path: []
+      sum_l_meters: -1.0
+  YC29096:
+    controls_information:
+      PVs: {}
+      control_name: LI29:YCOR:96
+    metadata:
+      area: LI28
+      beam_path: []
+      sum_l_meters: -1.0
