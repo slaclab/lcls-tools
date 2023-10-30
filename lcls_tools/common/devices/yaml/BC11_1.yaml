@@ -1,0 +1,132 @@
+magnets:
+  BCX11314:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI11:314
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 40.514
+  BCX11331:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI11:331
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 43.163
+  BCX11338:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI11:338
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 44.197
+  BCX11355:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI11:355
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 46.846
+  CQ11317:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:317
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 41.529
+  CQ11352:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:352
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 45.954
+  QM11312:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:312
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 40.015
+  SQ11340:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI11:340
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 45.677
+  YC11321:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI11:321
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 41.91
+screens:
+  PR11316:
+    controls_information:
+      PVs: {}
+      control_name: PROF:LI11:316
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 41.208
+  PR11334:
+    controls_information:
+      PVs: {}
+      control_name: PROF:LI11:334
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 43.563
+  PR11335:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:LI11:335
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 43.861
+  PR11342:
+    controls_information:
+      PVs: {}
+      control_name: PROF:LI11:342
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 44.899

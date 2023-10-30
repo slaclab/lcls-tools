@@ -1,0 +1,14 @@
+magnets:
+  SQ13B:
+    controls_information:
+      PVs:
+        bact: QUAD:BC1B:625:BACT
+        bcon: QUAD:BC1B:625:BCON
+        bctrl: QUAD:BC1B:625:BCTRL
+        bdes: QUAD:BC1B:625:BDES
+        ctrl: QUAD:BC1B:625:CTRL
+      control_name: QUAD:BC1B:625
+    metadata:
+      area: '*BC1B'
+      beam_path: []
+      sum_l_meters: 137.272

@@ -1,0 +1,47 @@
+magnets:
+  WIG1S:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LTUS:271
+    metadata:
+      area: '*LTUS'
+      beam_path: []
+      sum_l_meters: -1.0
+  WIG2S:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LTUS:273
+    metadata:
+      area: '*LTUS'
+      beam_path: []
+      sum_l_meters: -1.0
+  WIG3S:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LTUS:275
+    metadata:
+      area: '*LTUS'
+      beam_path: []
+      sum_l_meters: -1.0
+  YCWIGS:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LTUS:273
+    metadata:
+      area: '*LTUS'
+      beam_path: []
+      sum_l_meters: -1.0
+screens:
+  OTRDL18:
+    controls_information:
+      PVs:
+        arraydata: OTRS:LTUS:417:Image:ArrayData
+        arraysizex_rbv: OTRS:LTUS:417:Image:ArraySizeX_RBV
+        arraysizey_rbv: OTRS:LTUS:417:Image:ArraySizeY_RBV
+        n_of_bits: OTRS:LTUS:417:N_OF_BITS
+        resolution: OTRS:LTUS:417:RESOLUTION
+      control_name: OTRS:LTUS:417
+    metadata:
+      area: '*LTUS'
+      beam_path: []
+      sum_l_meters: -1.0

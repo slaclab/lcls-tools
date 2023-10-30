@@ -1,0 +1,31 @@
+magnets:
+  Q6E:
+    controls_information:
+      PVs: {}
+      control_name: LI20:LGPS:2251
+    metadata:
+      area: BC20
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 954.079
+  SQ1:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2086
+    metadata:
+      area: BC20
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 938.351
+  XC1996:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:1996
+    metadata:
+      area: BC20
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 933.421

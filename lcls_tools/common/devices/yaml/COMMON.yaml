@@ -1,0 +1,193 @@
+magnets:
+  B201990:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:1990
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  B203000:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:3000
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  B203200:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI20:3200
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  B203330:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:3330
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203011T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3011
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203031T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3031
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203041T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3041
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203051T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3051
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203091T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3091
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203111T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3111
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203141T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3141
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203151T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3151
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203161T:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI20:3161
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203181T:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI20:3181
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203261T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3261
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Q203311T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3311
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  X203026T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:3026
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  X203066T:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:LI20:3066
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  X203086T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:3086
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  X203116T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:3116
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Y203017T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:3017
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Y203057T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:3057
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Y203077T:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI20:3077
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0
+  Y203147T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:3147
+    metadata:
+      area: COMMON
+      beam_path: []
+      sum_l_meters: -1.0

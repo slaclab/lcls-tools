@@ -1,0 +1,21 @@
+screens:
+  IPWS1:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI20:3179
+    metadata:
+      area: EXPT20
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 994.813
+  IPWS3:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI20:3229
+    metadata:
+      area: EXPT20
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 997.053

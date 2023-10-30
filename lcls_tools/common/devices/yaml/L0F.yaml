@@ -1,0 +1,65 @@
+magnets:
+  QA10361:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:361
+    metadata:
+      area: L0F
+      beam_path: []
+      sum_l_meters: 4.412
+  QA10371:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:371
+    metadata:
+      area: L0F
+      beam_path: []
+      sum_l_meters: 4.741
+  XC10311:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:IN10:311
+    metadata:
+      area: L0F
+      beam_path: []
+      sum_l_meters: 1.94
+  XC10381:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:IN10:381
+    metadata:
+      area: L0F
+      beam_path: []
+      sum_l_meters: 5.256
+  XC10411:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:IN10:411
+    metadata:
+      area: L0F
+      beam_path: []
+      sum_l_meters: 7.56
+  YC10312:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:IN10:312
+    metadata:
+      area: L0F
+      beam_path: []
+      sum_l_meters: 1.94
+  YC10382:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:IN10:382
+    metadata:
+      area: L0F
+      beam_path: []
+      sum_l_meters: 5.256
+  YC10412:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:IN10:412
+    metadata:
+      area: L0F
+      beam_path: []
+      sum_l_meters: 7.56

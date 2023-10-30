@@ -1,0 +1,33 @@
+magnets:
+  WIG1H:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LTUH:255
+    metadata:
+      area: '*LTUH'
+      beam_path: []
+      sum_l_meters: 1258.424
+  WIG2H:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LTUH:256
+    metadata:
+      area: '*LTUH'
+      beam_path: []
+      sum_l_meters: 1258.916
+  WIG3H:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LTUH:257
+    metadata:
+      area: '*LTUH'
+      beam_path: []
+      sum_l_meters: 1259.409
+  YCWIGH:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LTUH:256
+    metadata:
+      area: '*LTUH'
+      beam_path: []
+      sum_l_meters: 1258.916
