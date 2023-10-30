@@ -2,6 +2,7 @@ import csv
 import os
 from typing import Union, List, Dict, Optional
 import meme.names
+import numpy as np
 
 
 class YAMLGenerator:
@@ -68,15 +69,18 @@ class YAMLGenerator:
     def _construct_information_from_element(
         self, element, pv_information: Optional[Dict[str, str]] = {}
     ):
+        sum_l_meters = float(element["SumL (m)"]) if element["SumL (m)"] else -1.0,
         return {
             "controls_information": {
                 "control_name": element["Control System Name"],
                 "PVs": pv_information,
             },
             "metadata": {
-                "beam_path": element["Beampath"],
+                "beam_path": [
+                    item.strip() for item in element["Beampath"].split(",") if item
+                ],
                 "area": element["Area"],
-                "sum_l_meters": element["SumL (m)"],
+                "sum_l_meters": np.format_float_positional(sum_l_meters, precision=3)
             },
         }
 
