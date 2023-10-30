@@ -1,52 +1,51 @@
-SOL2B:
-  control_information:
-    control_name: 'SOLN:GUNB:823'
-    PVs:
-      bctrl : 'SOLN:GUNB:823:BCTRL'
-      bact : 'SOLN:GUNB:823:BACT'
-      bdes : 'SOLN:GUNB:823:BDES'
-      bcon : 'SOLN:GUNB:823:BCON'
-      ctrl : 'SOLN:GUNB:823:CTRL'
-    ctrl_options:
-      READY : 0
-      TRIM : 1
-      PERTURB : 2
-      BCON_TO_BDES : 3
-      SAVE_BDES : 4
-      LOAD_BDES : 5
-      UNDO_BDES : 6
-      DAC_ZERO : 7
-      CALIB : 8
-      STDZ : 9
-      RESET : 10
-  metadata:
-    b_tolerance : 0.002 # in Tesla?
-    length : 0.135 # in meters?
-    area: 'GUN'
-
-
-SOL1B:
-  control_information:
-    control_name: 'SOLN:GUNB:212'
-    PVs:
-      bctrl : 'SOLN:GUNB:212:BCTRL'
-      bact : 'SOLN:GUNB:212:BACT'
-      bdes : 'SOLN:GUNB:212:BDES'
-      bcon : 'SOLN:GUNB:212:BCON'
-      ctrl : 'SOLN:GUNB:212:CTRL'
-    ctrl_options:
-      READY : 0
-      TRIM : 1
-      PERTURB : 2
-      BCON_TO_BDES : 3
-      SAVE_BDES : 4
-      LOAD_BDES : 5
-      UNDO_BDES : 6
-      DAC_ZERO : 7
-      CALIB : 8
-      STDZ : 9
-      RESET : 10
-  metadata:
-    b_tolerance : 0.002 # in Tesla?
-    length : 0.1342 # in meters?
-    area: 'GUN'
+magnets:
+  SOL2B:
+    control_information:
+      control_name: 'SOLN:GUNB:823'
+      PVs:
+        bctrl : 'SOLN:GUNB:823:BCTRL'
+        bact : 'SOLN:GUNB:823:BACT'
+        bdes : 'SOLN:GUNB:823:BDES'
+        bcon : 'SOLN:GUNB:823:BCON'
+        ctrl : 'SOLN:GUNB:823:CTRL'
+      ctrl_options:
+        READY : 0
+        TRIM : 1
+        PERTURB : 2
+        BCON_TO_BDES : 3
+        SAVE_BDES : 4
+        LOAD_BDES : 5
+        UNDO_BDES : 6
+        DAC_ZERO : 7
+        CALIB : 8
+        STDZ : 9
+        RESET : 10
+    metadata:
+      b_tolerance : 0.002 # in Tesla?
+      length : 0.135 # in meters?
+      area: 'GUN'
+  SOL1B:
+    control_information:
+      control_name: 'SOLN:GUNB:212'
+      PVs:
+        bctrl : 'SOLN:GUNB:212:BCTRL'
+        bact : 'SOLN:GUNB:212:BACT'
+        bdes : 'SOLN:GUNB:212:BDES'
+        bcon : 'SOLN:GUNB:212:BCON'
+        ctrl : 'SOLN:GUNB:212:CTRL'
+      ctrl_options:
+        READY : 0
+        TRIM : 1
+        PERTURB : 2
+        BCON_TO_BDES : 3
+        SAVE_BDES : 4
+        LOAD_BDES : 5
+        UNDO_BDES : 6
+        DAC_ZERO : 7
+        CALIB : 8
+        STDZ : 9
+        RESET : 10
+    metadata:
+      b_tolerance : 0.002 # in Tesla?
+      length : 0.1342 # in meters?
+      area: 'GUN'
