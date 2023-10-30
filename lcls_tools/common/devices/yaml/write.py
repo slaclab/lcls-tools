@@ -18,13 +18,13 @@ class YAMLWriter:
             area=area,
         )
         if magnets:
-            file_contents['magnets'] = magnets
+            file_contents["magnets"] = magnets
         screens = self.generator.extract_screens(
             area=area,
         )
         if screens:
-            file_contents['screens'] = screens
-        
+            file_contents["screens"] = screens
+
         if file_contents:
             return file_contents
         return None

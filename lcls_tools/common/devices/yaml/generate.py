@@ -80,7 +80,9 @@ class YAMLGenerator:
                     item.strip() for item in element["Beampath"].split(",") if item
                 ],
                 "area": element["Area"],
-                "sum_l_meters": float(np.format_float_positional(sum_l_meters, precision=3))
+                "sum_l_meters": float(
+                    np.format_float_positional(sum_l_meters, precision=3)
+                ),
             },
         }
 
