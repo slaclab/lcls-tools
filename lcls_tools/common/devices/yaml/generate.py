@@ -23,13 +23,14 @@ class YAMLGenerator:
         ]
         self.elements = None
         with open(csv_location, "r") as file:
+            # convert csv file into dictionary for filtering
             self.csv_reader = csv.DictReader(f=file)
 
             # make the elements from csv stripped out with only information we need
             def _is_required_field(pair: tuple):
                 key, _ = pair
                 return key in self._required_fields
-
+            # only store the required fields from lcls_elements, there are lots more!
             self.elements = [
                 dict(filter(_is_required_field, element.items()))
                 for element in self.csv_reader
@@ -38,8 +39,8 @@ class YAMLGenerator:
             raise RuntimeError(
                 "Did not generate elements, please look at lcls_elements.csv."
             )
-        self.areas = self.extract_areas()
-        self.beam_paths = self.extract_beampaths()
+        self._areas = self.extract_areas()
+        self._beam_paths = self.extract_beampaths()
 
     def extract_areas(self) -> list:
         areas = []
@@ -50,8 +51,9 @@ class YAMLGenerator:
         ]
         return areas
 
-    def get_areas(self) -> list:
-        return self.areas
+    @property
+    def areas(self) -> list:
+        return self._areas
 
     def extract_beampaths(self) -> list:
         beampaths = []
@@ -63,13 +65,18 @@ class YAMLGenerator:
         ]
         return beampaths
 
-    def get_beam_paths(self) -> list:
-        return self.beam_paths
+    @property
+    def beam_paths(self) -> list:
+        return self._beam_paths
 
     def _construct_information_from_element(
         self, element, pv_information: Optional[Dict[str, str]] = {}
     ):
-        sum_l_meters = float(element["SumL (m)"]) if element["SumL (m)"] else -1.0
+        """
+        Generates a dictionary with only the relevant information we want
+        from the Dict that lcls_elements.csv is loaded into.
+        """
+        sum_l_meters = float(element["SumL (m)"]) if element["SumL (m)"] else None
         return {
             "controls_information": {
                 "control_name": element["Control System Name"],
@@ -82,6 +89,8 @@ class YAMLGenerator:
                 "area": element["Area"],
                 "sum_l_meters": float(
                     np.format_float_positional(sum_l_meters, precision=3)
+                    if sum_l_meters
+                    else None
                 ),
             },
         }
@@ -97,10 +106,19 @@ class YAMLGenerator:
             # End of the PV name is implied in search_term
             try:
                 pv_list = meme.names.list_pvs(name + ":" + search_term, sort_by="z")
+                # We expect to have ZERO or ONE result returned from meme
                 if pv_list != list():
-                    pv = pv_list[0]
-                    handle = pv.split(":")[-1].lower()
-                    pv_dict[handle] = pv
+                    if len(pv_list) == 1:
+                        # get the pv out of the results
+                        pv = pv_list[0]
+                        # split by colon, grab the last part of the string as a handle
+                        handle = pv.split(":")[-1].lower()
+                        # add it to the dictionary of PVs
+                        pv_dict[handle] = pv
+                    else:
+                        raise RuntimeError(
+                            f"Did not return unique PV search result from MEME, please check MEME {name}:{search_list}"
+                        )
             except TimeoutError as toe:
                 print(
                     f'Unable connect to MEME.name service when searching for {name + ":" + search_term}.'
@@ -131,14 +149,17 @@ class YAMLGenerator:
             return
         # Fill in the dict that will become the yaml file
         for device in device_elements:
+            # We need a control-system-name
             if device["Control System Name"] != "":
                 try:
+                    # grab the pv information for this element using the search_list
                     pv_info = self._construct_pv_list_from_control_system_name(
                         device["Control System Name"],
                         pv_search_list,
                     )
                 except RuntimeError as rte:
                     print(rte)
+                # add device and information to the yaml-contents
                 yaml_devices.update(
                     {
                         device["Element"]: self._construct_information_from_element(
