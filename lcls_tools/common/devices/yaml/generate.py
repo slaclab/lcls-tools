@@ -108,40 +108,54 @@ class YAMLGenerator:
                 print(toe)
         return pv_dict
 
-    def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
-        required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
+    def extract_devices(
+        self,
+        area: Union[str, List[str]],
+        required_types=Optional[List[str]],
+        pv_search_list=Optional[List[str]],
+    ):
         if not isinstance(area, list):
             machine_areas = [area]
         else:
             machine_areas = area
-        yaml_magnets = {}
+        yaml_devices = {}
         for _area in machine_areas:
-            magnet_elements = [
+            device_elements = [
                 element
                 for element in self.elements
-                if element["Keyword"] in required_magnet_types
-                and element["Area"] == _area
+                if element["Keyword"] in required_types and element["Area"] == _area
             ]
-        # Must have passed an area that does not exist!
-        if len(magnet_elements) < 1:
-            print(f"No magnets found in area {area}")
+        # Must have passed an area that does not exist or we don't have that device in this area!
+        if len(device_elements) < 1:
+            print(f"No devices found in area {area}")
             return
         # Fill in the dict that will become the yaml file
-        for magnet in magnet_elements:
-            if magnet["Control System Name"] != "":
+        for device in device_elements:
+            if device["Control System Name"] != "":
                 try:
                     pv_info = self._construct_pv_list_from_control_system_name(
-                        magnet["Control System Name"],
-                        ["BACT", "BCTRL", "BCON", "BDES", "CTRL"],
+                        device["Control System Name"],
+                        pv_search_list,
                     )
                 except RuntimeError as rte:
                     print(rte)
-                yaml_magnets.update({magnet["Element"]: {}})
-                magnet_yaml_template = self._construct_information_from_element(
-                    magnet, pv_information=pv_info
+                yaml_devices.update(
+                    {
+                        device["Element"]: self._construct_information_from_element(
+                            device, pv_information=pv_info
+                        )
+                    }
                 )
-                yaml_magnets[magnet["Element"]].update(magnet_yaml_template)
-        return yaml_magnets
+        return yaml_devices
+
+    def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
+        required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
+        magnet_pv_search_list = ["BACT", "BCTRL", "BCON", "BDES", "CTRL"]
+        return self.extract_devices(
+            area=area,
+            required_types=required_magnet_types,
+            pv_search_list=magnet_pv_search_list,
+        )
 
     def camera_type():
         # Determine type of camera and PVs
@@ -160,34 +174,8 @@ class YAMLGenerator:
             "N_OF_ROW",
             "N_OF_BITS",
         ]
-        if not isinstance(area, list):
-            machine_areas = [area]
-        else:
-            machine_areas = area
-        for _area in machine_areas:
-            screen_elements = [
-                element
-                for element in self.elements
-                if element["Keyword"] in required_screen_types
-                and element["Area"] == _area
-            ]
-        # Must have passed an area that does not exist!
-        if len(screen_elements) < 1:
-            print(f"No screens found in area {area}")
-            return
-        # Fill in the dict that will become the yaml file
-        yaml_screens = {}
-        for screen in screen_elements:
-            if screen["Control System Name"] != "":
-                yaml_screens.update({screen["Element"]: {}})
-                try:
-                    pv_info = self._construct_pv_list_from_control_system_name(
-                        screen["Control System Name"], possible_screen_pvs
-                    )
-                except RuntimeError as rte:
-                    print(rte)
-                screen_yaml_template = self._construct_information_from_element(
-                    screen, pv_information=pv_info
-                )
-                yaml_screens[screen["Element"]].update(screen_yaml_template)
-        return yaml_screens
+        return self.extract_devices(
+            area=area,
+            required_types=required_screen_types,
+            pv_search_list=possible_screen_pvs,
+        )
