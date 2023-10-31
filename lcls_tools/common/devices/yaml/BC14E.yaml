@@ -1,0 +1,90 @@
+magnets:
+  BCX14720:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI14:720
+    metadata:
+      area: BC14E
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 398.543
+  BCX14796:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI14:796
+    metadata:
+      area: BC14E
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 408.963
+  BCX14808:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI14:808
+    metadata:
+      area: BC14E
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 410.604
+  BCX14883:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI14:883
+    metadata:
+      area: BC14E
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 421.025
+  CQ14738:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI14:738
+    metadata:
+      area: BC14E
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 400.832
+  CQ14866:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI14:866
+    metadata:
+      area: BC14E
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 418.735
+  YC14780:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI14:780
+    metadata:
+      area: BC14E
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 407.75
+  YC14820:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LI14:820
+    metadata:
+      area: BC14E
+      beam_path: []
+      sum_l_meters: -1.0
+screens:
+  PR14803:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:LI14:803
+    metadata:
+      area: BC14E
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 409.964

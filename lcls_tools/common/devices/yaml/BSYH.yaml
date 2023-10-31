@@ -1,0 +1,229 @@
+magnets:
+  Q4:
+    controls_information:
+      PVs:
+        bact: QUAD:BSYH:465:BACT
+        bcon: QUAD:BSYH:465:BCON
+        bctrl: QUAD:BSYH:465:BCTRL
+        bdes: QUAD:BSYH:465:BDES
+        ctrl: QUAD:BSYH:465:CTRL
+      control_name: QUAD:BSYH:465
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1101.313
+  Q5:
+    controls_information:
+      PVs:
+        bact: QUAD:BSYH:640:BACT
+        bcon: QUAD:BSYH:640:BCON
+        bctrl: QUAD:BSYH:640:BCTRL
+        bdes: QUAD:BSYH:640:BDES
+        ctrl: QUAD:BSYH:640:CTRL
+      control_name: QUAD:BSYH:640
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1136.23
+  Q50Q3:
+    controls_information:
+      PVs:
+        bact: QUAD:BSYH:445:BACT
+        bcon: QUAD:BSYH:445:BCON
+        bctrl: QUAD:BSYH:445:BCTRL
+        bdes: QUAD:BSYH:445:BDES
+        ctrl: QUAD:BSYH:445:CTRL
+      control_name: QUAD:BSYH:445
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1096.939
+  Q6:
+    controls_information:
+      PVs:
+        bact: QUAD:BSYH:735:BACT
+        bcon: QUAD:BSYH:735:BCON
+        bctrl: QUAD:BSYH:735:BCTRL
+        bdes: QUAD:BSYH:735:BDES
+        ctrl: QUAD:BSYH:735:CTRL
+      control_name: QUAD:BSYH:735
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1155.951
+  QA0:
+    controls_information:
+      PVs:
+        bact: QUAD:BSYH:910:BACT
+        bcon: QUAD:BSYH:910:BCON
+        bctrl: QUAD:BSYH:910:BCTRL
+        bdes: QUAD:BSYH:910:BDES
+        ctrl: QUAD:BSYH:910:CTRL
+      control_name: QUAD:BSYH:910
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1191.776
+  XCA0:
+    controls_information:
+      PVs:
+        bact: XCOR:BSYH:900:BACT
+        bcon: XCOR:BSYH:900:BCON
+        bctrl: XCOR:BSYH:900:BCTRL
+        bdes: XCOR:BSYH:900:BDES
+        ctrl: XCOR:BSYH:900:CTRL
+      control_name: XCOR:BSYH:900
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1189.176
+  XCAPM2:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:BSYH:485
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1105.552
+  XCBSYQ3:
+    controls_information:
+      PVs:
+        bact: XCOR:BSYH:452:BACT
+        bcon: XCOR:BSYH:452:BCON
+        bctrl: XCOR:BSYH:452:BCTRL
+        bdes: XCOR:BSYH:452:BDES
+        ctrl: XCOR:BSYH:452:CTRL
+      control_name: XCOR:BSYH:452
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1098.565
+  XCBSYQ5:
+    controls_information:
+      PVs:
+        bact: XCOR:BSYH:642:BACT
+        bcon: XCOR:BSYH:642:BCON
+        bctrl: XCOR:BSYH:642:BCTRL
+        bdes: XCOR:BSYH:642:BDES
+        ctrl: XCOR:BSYH:642:CTRL
+      control_name: XCOR:BSYH:642
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1136.96
+  YCA0:
+    controls_information:
+      PVs:
+        bact: YCOR:BSYH:901:BACT
+        bcon: YCOR:BSYH:901:BCON
+        bctrl: YCOR:BSYH:901:BCTRL
+        bdes: YCOR:BSYH:901:BDES
+        ctrl: YCOR:BSYH:901:CTRL
+      control_name: YCOR:BSYH:901
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1189.486
+  YCAPM2:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:BSYH:485
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1105.552
+  YCBSYQ4:
+    controls_information:
+      PVs:
+        bact: YCOR:BSYH:461:BACT
+        bcon: YCOR:BSYH:461:BCON
+        bctrl: YCOR:BSYH:461:BCTRL
+        bdes: YCOR:BSYH:461:BDES
+        ctrl: YCOR:BSYH:461:CTRL
+      control_name: YCOR:BSYH:461
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1100.583
+  YCBSYQ6:
+    controls_information:
+      PVs:
+        bact: YCOR:BSYH:739:BACT
+        bcon: YCOR:BSYH:739:BCON
+        bctrl: YCOR:BSYH:739:BCTRL
+        bdes: YCOR:BSYH:739:BDES
+        ctrl: YCOR:BSYH:739:CTRL
+      control_name: YCOR:BSYH:739
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1156.881

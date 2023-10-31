@@ -1,0 +1,181 @@
+magnets:
+  QBP30:
+    controls_information:
+      PVs:
+        bact: QUAD:SLTS:180:BACT
+        bcon: QUAD:SLTS:180:BCON
+        bctrl: QUAD:SLTS:180:BCTRL
+        bdes: QUAD:SLTS:180:BDES
+        ctrl: QUAD:SLTS:180:CTRL
+      control_name: QUAD:SLTS:180
+    metadata:
+      area: SLTS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3067.374
+  QBP31:
+    controls_information:
+      PVs:
+        bact: QUAD:SLTS:430:BACT
+        bcon: QUAD:SLTS:430:BCON
+        bctrl: QUAD:SLTS:430:BCTRL
+        bdes: QUAD:SLTS:430:BDES
+        ctrl: QUAD:SLTS:430:CTRL
+      control_name: QUAD:SLTS:430
+    metadata:
+      area: SLTS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3120.245
+  QBP32:
+    controls_information:
+      PVs:
+        bact: QUAD:SLTS:460:BACT
+        bcon: QUAD:SLTS:460:BCON
+        bctrl: QUAD:SLTS:460:BCTRL
+        bdes: QUAD:SLTS:460:BDES
+        ctrl: QUAD:SLTS:460:CTRL
+      control_name: QUAD:SLTS:460
+    metadata:
+      area: SLTS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3124.841
+  QBP36:
+    controls_information:
+      PVs:
+        bact: QUAD:SLTS:150:BACT
+        bcon: QUAD:SLTS:150:BCON
+        bctrl: QUAD:SLTS:150:BCTRL
+        bdes: QUAD:SLTS:150:BDES
+        ctrl: QUAD:SLTS:150:CTRL
+      control_name: QUAD:SLTS:150
+    metadata:
+      area: SLTS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3061.864
+  XCBP30:
+    controls_information:
+      PVs:
+        bact: XCOR:SLTS:182:BACT
+        bcon: XCOR:SLTS:182:BCON
+        bctrl: XCOR:SLTS:182:BCTRL
+        bdes: XCOR:SLTS:182:BDES
+        ctrl: XCOR:SLTS:182:CTRL
+      control_name: XCOR:SLTS:182
+    metadata:
+      area: SLTS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3068.639
+  XCBP31:
+    controls_information:
+      PVs:
+        bact: XCOR:SLTS:442:BACT
+        bcon: XCOR:SLTS:442:BCON
+        bctrl: XCOR:SLTS:442:BCTRL
+        bdes: XCOR:SLTS:442:BDES
+        ctrl: XCOR:SLTS:442:CTRL
+      control_name: XCOR:SLTS:442
+    metadata:
+      area: SLTS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3121.511
+  XCBP32:
+    controls_information:
+      PVs:
+        bact: XCOR:SLTS:468:BACT
+        bcon: XCOR:SLTS:468:BCON
+        bctrl: XCOR:SLTS:468:BCTRL
+        bdes: XCOR:SLTS:468:BDES
+        ctrl: XCOR:SLTS:468:CTRL
+      control_name: XCOR:SLTS:468
+    metadata:
+      area: SLTS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3126.716
+  YCBP30:
+    controls_information:
+      PVs:
+        bact: YCOR:SLTS:183:BACT
+        bcon: YCOR:SLTS:183:BCON
+        bctrl: YCOR:SLTS:183:BCTRL
+        bdes: YCOR:SLTS:183:BDES
+        ctrl: YCOR:SLTS:183:CTRL
+      control_name: YCOR:SLTS:183
+    metadata:
+      area: SLTS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3068.919
+  YCBP31:
+    controls_information:
+      PVs:
+        bact: YCOR:SLTS:443:BACT
+        bcon: YCOR:SLTS:443:BCON
+        bctrl: YCOR:SLTS:443:BCTRL
+        bdes: YCOR:SLTS:443:BDES
+        ctrl: YCOR:SLTS:443:CTRL
+      control_name: YCOR:SLTS:443
+    metadata:
+      area: SLTS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3121.79
+  YCBP32:
+    controls_information:
+      PVs:
+        bact: YCOR:SLTS:469:BACT
+        bcon: YCOR:SLTS:469:BCON
+        bctrl: YCOR:SLTS:469:BCTRL
+        bdes: YCOR:SLTS:469:BDES
+        ctrl: YCOR:SLTS:469:CTRL
+      control_name: YCOR:SLTS:469
+    metadata:
+      area: SLTS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3126.995

@@ -1,0 +1,903 @@
+magnets:
+  Q11501:
+    controls_information:
+      PVs: {}
+      control_name: LI11:QUAD:501
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 66.176
+  Q11601:
+    controls_information:
+      PVs: {}
+      control_name: LI11:QUAD:601
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 78.52
+  Q11701:
+    controls_information:
+      PVs: {}
+      control_name: LI11:QUAD:701
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 90.864
+  Q11801:
+    controls_information:
+      PVs: {}
+      control_name: LI11:QUAD:801
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 103.209
+  Q11901:
+    controls_information:
+      PVs: {}
+      control_name: LI11:QUAD:901
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 115.872
+  Q12201:
+    controls_information:
+      PVs: {}
+      control_name: LI12:QUAD:201
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 130.742
+  Q12301:
+    controls_information:
+      PVs: {}
+      control_name: LI12:QUAD:301
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 143.087
+  Q12401:
+    controls_information:
+      PVs: {}
+      control_name: LI12:QUAD:401
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 155.431
+  Q12501:
+    controls_information:
+      PVs: {}
+      control_name: LI12:QUAD:501
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 167.776
+  Q12601:
+    controls_information:
+      PVs: {}
+      control_name: LI12:QUAD:601
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 180.12
+  Q12701:
+    controls_information:
+      PVs: {}
+      control_name: LI12:QUAD:701
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 192.464
+  Q12801:
+    controls_information:
+      PVs: {}
+      control_name: LI12:QUAD:801
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 204.809
+  Q12901:
+    controls_information:
+      PVs: {}
+      control_name: LI12:QUAD:901
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 217.472
+  Q13201:
+    controls_information:
+      PVs: {}
+      control_name: LI13:QUAD:201
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 232.342
+  Q13301:
+    controls_information:
+      PVs: {}
+      control_name: LI13:QUAD:301
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 244.687
+  Q13401:
+    controls_information:
+      PVs: {}
+      control_name: LI13:QUAD:401
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 257.031
+  Q13501:
+    controls_information:
+      PVs: {}
+      control_name: LI13:QUAD:501
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 269.376
+  Q13601:
+    controls_information:
+      PVs: {}
+      control_name: LI13:QUAD:601
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 281.72
+  Q13701:
+    controls_information:
+      PVs: {}
+      control_name: LI13:QUAD:701
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 294.064
+  Q13801:
+    controls_information:
+      PVs: {}
+      control_name: LI13:QUAD:801
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 306.409
+  Q13901:
+    controls_information:
+      PVs: {}
+      control_name: LI13:QUAD:901
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 319.072
+  Q14201:
+    controls_information:
+      PVs: {}
+      control_name: LI14:QUAD:201
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 333.942
+  Q14301:
+    controls_information:
+      PVs: {}
+      control_name: LI14:QUAD:301
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 346.287
+  Q14401:
+    controls_information:
+      PVs: {}
+      control_name: LI14:QUAD:401
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 358.631
+  Q14501:
+    controls_information:
+      PVs: {}
+      control_name: LI14:QUAD:501
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 370.976
+  Q14601:
+    controls_information:
+      PVs: {}
+      control_name: LI14:QUAD:601
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 383.32
+  XC11402:
+    controls_information:
+      PVs: {}
+      control_name: LI11:XCOR:402
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 54.238
+  XC11502:
+    controls_information:
+      PVs: {}
+      control_name: LI11:XCOR:502
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 65.464
+  XC11602:
+    controls_information:
+      PVs: {}
+      control_name: LI11:XCOR:602
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 78.928
+  XC11702:
+    controls_information:
+      PVs: {}
+      control_name: LI11:XCOR:702
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 90.242
+  XC11802:
+    controls_information:
+      PVs: {}
+      control_name: LI11:XCOR:802
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 102.498
+  XC11900:
+    controls_information:
+      PVs: {}
+      control_name: LI11:XCOR:900
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 116.771
+  XC12202:
+    controls_information:
+      PVs: {}
+      control_name: LI12:XCOR:202
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 131.151
+  XC12302:
+    controls_information:
+      PVs: {}
+      control_name: LI12:XCOR:302
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 143.498
+  XC12402:
+    controls_information:
+      PVs: {}
+      control_name: LI12:XCOR:402
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 155.838
+  XC12502:
+    controls_information:
+      PVs: {}
+      control_name: LI12:XCOR:502
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 168.188
+  XC12602:
+    controls_information:
+      PVs: {}
+      control_name: LI12:XCOR:602
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 180.528
+  XC12702:
+    controls_information:
+      PVs: {}
+      control_name: LI12:XCOR:702
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 192.878
+  XC12802:
+    controls_information:
+      PVs: {}
+      control_name: LI12:XCOR:802
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 205.218
+  XC12900:
+    controls_information:
+      PVs: {}
+      control_name: LI12:XCOR:900
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 216.408
+  XC13202:
+    controls_information:
+      PVs: {}
+      control_name: LI13:XCOR:202
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 232.748
+  XC13302:
+    controls_information:
+      PVs: {}
+      control_name: LI13:XCOR:302
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 245.098
+  XC13402:
+    controls_information:
+      PVs: {}
+      control_name: LI13:XCOR:402
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 257.438
+  XC13502:
+    controls_information:
+      PVs: {}
+      control_name: LI13:XCOR:502
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 269.788
+  XC13602:
+    controls_information:
+      PVs: {}
+      control_name: LI13:XCOR:602
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 282.128
+  XC13702:
+    controls_information:
+      PVs: {}
+      control_name: LI13:XCOR:702
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 294.478
+  XC13802:
+    controls_information:
+      PVs: {}
+      control_name: LI13:XCOR:802
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 306.818
+  XC13900:
+    controls_information:
+      PVs: {}
+      control_name: LI13:XCOR:900
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 318.008
+  XC14202:
+    controls_information:
+      PVs: {}
+      control_name: LI14:XCOR:202
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 334.348
+  XC14302:
+    controls_information:
+      PVs: {}
+      control_name: LI14:XCOR:302
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 346.698
+  XC14402:
+    controls_information:
+      PVs: {}
+      control_name: LI14:XCOR:402
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 359.038
+  XC14502:
+    controls_information:
+      PVs: {}
+      control_name: LI14:XCOR:502
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 371.388
+  XC14602:
+    controls_information:
+      PVs: {}
+      control_name: LI14:XCOR:602
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 383.728
+  XC14702:
+    controls_information:
+      PVs: {}
+      control_name: LI14:XCOR:702
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 394.865
+  YC11403:
+    controls_information:
+      PVs: {}
+      control_name: LI11:YCOR:403
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 54.488
+  YC11503:
+    controls_information:
+      PVs: {}
+      control_name: LI11:YCOR:503
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 66.925
+  YC11603:
+    controls_information:
+      PVs: {}
+      control_name: LI11:YCOR:603
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 79.178
+  YC11703:
+    controls_information:
+      PVs: {}
+      control_name: LI11:YCOR:703
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 90.534
+  YC11803:
+    controls_information:
+      PVs: {}
+      control_name: LI11:YCOR:803
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 103.676
+  YC11900:
+    controls_information:
+      PVs: {}
+      control_name: LI11:YCOR:900
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 117.047
+  YC12203:
+    controls_information:
+      PVs: {}
+      control_name: LI12:YCOR:203
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 131.401
+  YC12303:
+    controls_information:
+      PVs: {}
+      control_name: LI12:YCOR:303
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 143.748
+  YC12403:
+    controls_information:
+      PVs: {}
+      control_name: LI12:YCOR:403
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 156.088
+  YC12503:
+    controls_information:
+      PVs: {}
+      control_name: LI12:YCOR:503
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 168.438
+  YC12603:
+    controls_information:
+      PVs: {}
+      control_name: LI12:YCOR:603
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 180.961
+  YC12703:
+    controls_information:
+      PVs: {}
+      control_name: LI12:YCOR:703
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 193.236
+  YC12803:
+    controls_information:
+      PVs: {}
+      control_name: LI12:YCOR:803
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 205.622
+  YC12900:
+    controls_information:
+      PVs: {}
+      control_name: LI12:YCOR:900
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 216.658
+  YC13203:
+    controls_information:
+      PVs: {}
+      control_name: LI13:YCOR:203
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 233.133
+  YC13303:
+    controls_information:
+      PVs: {}
+      control_name: LI13:YCOR:303
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 245.481
+  YC13403:
+    controls_information:
+      PVs: {}
+      control_name: LI13:YCOR:403
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 257.888
+  YC13503:
+    controls_information:
+      PVs: {}
+      control_name: LI13:YCOR:503
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 270.038
+  YC13603:
+    controls_information:
+      PVs: {}
+      control_name: LI13:YCOR:603
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 282.378
+  YC13703:
+    controls_information:
+      PVs: {}
+      control_name: LI13:YCOR:703
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 294.728
+  YC13803:
+    controls_information:
+      PVs: {}
+      control_name: LI13:YCOR:803
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 307.225
+  YC13900:
+    controls_information:
+      PVs: {}
+      control_name: LI13:YCOR:900
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 318.258
+  YC14203:
+    controls_information:
+      PVs: {}
+      control_name: LI14:YCOR:203
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 334.598
+  YC14303:
+    controls_information:
+      PVs: {}
+      control_name: LI14:YCOR:303
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 347.1
+  YC14403:
+    controls_information:
+      PVs: {}
+      control_name: LI14:YCOR:403
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 359.288
+  YC14503:
+    controls_information:
+      PVs: {}
+      control_name: LI14:YCOR:503
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 371.638
+  YC14603:
+    controls_information:
+      PVs: {}
+      control_name: LI14:YCOR:603
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 384.133
+  YC14703:
+    controls_information:
+      PVs: {}
+      control_name: LI14:YCOR:703
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 395.17
