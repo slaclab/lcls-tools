@@ -7,10 +7,13 @@ from typing import Optional
 class YAMLWriter:
     def __init__(self):
         self.generator = YAMLGenerator()
-        self.machine_areas = self.generator.areas
+
+    @property
+    def areas(self):
+        return self.generator.areas
 
     def _is_area(self, area: str):
-        return area in self._machine_areas
+        return area in self.generator.areas
 
     def _constuct_yaml_contents(self, area: str) -> dict:
         file_contents = {}
@@ -30,7 +33,7 @@ class YAMLWriter:
         return None
 
     def write_yaml_file(self, area: Optional[str] = "GUNB") -> None:
-        if area not in self.machine_areas:
+        if area not in self.generator.areas:
             raise RuntimeError(
                 f"Area {area} provided is not a known machine area.",
             )
@@ -45,5 +48,5 @@ class YAMLWriter:
 
 if __name__ == "__main__":
     writer = YAMLWriter()
-    areas = writer.machine_areas
+    areas = writer.areas
     [writer.write_yaml_file(area) for area in areas]
