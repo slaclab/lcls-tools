@@ -301,7 +301,7 @@ class MatEmitScan(object):
             for i, name in enumerate(names):
                 if name != UNITS:
                     if isinstance(val[0][i][0], bytes):
-                        temp2[name] = str(val[0][i][0])
+                        temp2[name] = str(val[0][i][0].decode("utf-8"))
                     else:
                         temp2[name] = val[0][i][0]
             temp1.append(temp2)
