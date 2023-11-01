@@ -1,0 +1,92 @@
+magnets:
+  B5D36:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:3330
+    metadata:
+      area: SPECT2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 1006.843
+  Q0D:
+    controls_information:
+      PVs: {}
+      control_name: LI20:LGPS:3204
+    metadata:
+      area: SPECT2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 997.885
+  Q1D:
+    controls_information:
+      PVs: {}
+      control_name: LI20:LGPS:3261
+    metadata:
+      area: SPECT2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 1000.109
+  Q2D:
+    controls_information:
+      PVs: {}
+      control_name: LI20:LGPS:3311
+    metadata:
+      area: SPECT2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 1002.334
+screens:
+  BETA1:
+    controls_information:
+      PVs: {}
+      control_name: LI20:PROF:3501
+    metadata:
+      area: SPECT2
+      beam_path: []
+      sum_l_meters: -1.0
+  BETA2:
+    controls_information:
+      PVs: {}
+      control_name: LI20:PROF:3488
+    metadata:
+      area: SPECT2
+      beam_path: []
+      sum_l_meters: -1.0
+  BETAL:
+    controls_information:
+      PVs: {}
+      control_name: LI20:PROF:3303
+    metadata:
+      area: SPECT2
+      beam_path: []
+      sum_l_meters: -1.0
+  CFAR:
+    controls_information:
+      PVs: {}
+      control_name: CMOS:LI20:3492
+    metadata:
+      area: SPECT2
+      beam_path: []
+      sum_l_meters: -1.0
+  ELANEX:
+    controls_information:
+      PVs: {}
+      control_name: LI20:PROF:3500
+    metadata:
+      area: SPECT2
+      beam_path: []
+      sum_l_meters: -1.0
+  WDSOTR:
+    controls_information:
+      PVs: {}
+      control_name: CAMR:LI20:3230
+    metadata:
+      area: SPECT2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 999.253

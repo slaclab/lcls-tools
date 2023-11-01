@@ -1,0 +1,85 @@
+magnets:
+  QX01:
+    controls_information:
+      PVs:
+        bact: QUAD:EXT:351:BACT
+        bcon: QUAD:EXT:351:BCON
+        bctrl: QUAD:EXT:351:BCTRL
+        bdes: QUAD:EXT:351:BDES
+        ctrl: QUAD:EXT:351:CTRL
+      control_name: QUAD:EXT:351
+    metadata:
+      area: EXT
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 659.492
+  QX02:
+    controls_information:
+      PVs:
+        bact: QUAD:EXT:748:BACT
+        bcon: QUAD:EXT:748:BCON
+        bctrl: QUAD:EXT:748:BCTRL
+        bdes: QUAD:EXT:748:BDES
+        ctrl: QUAD:EXT:748:CTRL
+      control_name: QUAD:EXT:748
+    metadata:
+      area: EXT
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 668.785
+  XCX01:
+    controls_information:
+      PVs:
+        bact: XCOR:EXT:368:BACT
+        bcon: XCOR:EXT:368:BCON
+        bctrl: XCOR:EXT:368:BCTRL
+        bdes: XCOR:EXT:368:BDES
+        ctrl: XCOR:EXT:368:CTRL
+      control_name: XCOR:EXT:368
+    metadata:
+      area: EXT
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 659.892
+  YCX02:
+    controls_information:
+      PVs:
+        bact: YCOR:EXT:762:BACT
+        bcon: YCOR:EXT:762:BCON
+        bctrl: YCOR:EXT:762:BCTRL
+        bdes: YCOR:EXT:762:BDES
+        ctrl: YCOR:EXT:762:CTRL
+      control_name: YCOR:EXT:762
+    metadata:
+      area: EXT
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 669.095

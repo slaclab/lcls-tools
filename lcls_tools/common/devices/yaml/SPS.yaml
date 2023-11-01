@@ -1,0 +1,487 @@
+magnets:
+  BKYSP1S:
+    controls_information:
+      PVs:
+        bact: KICK:SPS:385:BACT
+        bcon: KICK:SPS:385:BCON
+        bctrl: KICK:SPS:385:BCTRL
+        bdes: KICK:SPS:385:BDES
+        ctrl: KICK:SPS:385:CTRL
+      control_name: KICK:SPS:385
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2879.37
+  BKYSP2S:
+    controls_information:
+      PVs:
+        bact: KICK:SPS:390:BACT
+        bcon: KICK:SPS:390:BCON
+        bctrl: KICK:SPS:390:BCTRL
+        bdes: KICK:SPS:390:BDES
+        ctrl: KICK:SPS:390:CTRL
+      control_name: KICK:SPS:390
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2880.67
+  BKYSP3S:
+    controls_information:
+      PVs:
+        bact: KICK:SPS:395:BACT
+        bcon: KICK:SPS:395:BCON
+        bctrl: KICK:SPS:395:BCTRL
+        bdes: KICK:SPS:395:BDES
+        ctrl: KICK:SPS:395:CTRL
+      control_name: KICK:SPS:395
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2881.97
+  BLXSPS:
+    controls_information:
+      PVs:
+        bact: BEND:SPS:470:BACT
+        bcon: BEND:SPS:470:BCON
+        bctrl: BEND:SPS:470:BCTRL
+        bdes: BEND:SPS:470:BDES
+        ctrl: BEND:SPS:470:CTRL
+      control_name: BEND:SPS:470
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2900.67
+  BXSP1S:
+    controls_information:
+      PVs:
+        bact: BEND:SPS:610:BACT
+        bcon: BEND:SPS:610:BCON
+        bctrl: BEND:SPS:610:BCTRL
+        bdes: BEND:SPS:610:BDES
+        ctrl: BEND:SPS:610:CTRL
+      control_name: BEND:SPS:610
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2945.898
+  BXSP2S:
+    controls_information:
+      PVs:
+        bact: BEND:SPS:800:BACT
+        bcon: BEND:SPS:800:BCON
+        bctrl: BEND:SPS:800:BCTRL
+        bdes: BEND:SPS:800:BDES
+        ctrl: BEND:SPS:800:CTRL
+      control_name: BEND:SPS:800
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3003.644
+  BXSP3S:
+    controls_information:
+      PVs:
+        bact: BEND:SPS:950:BACT
+        bcon: BEND:SPS:950:BCON
+        bctrl: BEND:SPS:950:BCTRL
+        bdes: BEND:SPS:950:BDES
+        ctrl: BEND:SPS:950:CTRL
+      control_name: BEND:SPS:950
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3048.871
+  BYSP1S:
+    controls_information:
+      PVs:
+        bact: BEND:SPS:530:BACT
+        bcon: BEND:SPS:530:BCON
+        bctrl: BEND:SPS:530:BCTRL
+        bdes: BEND:SPS:530:BDES
+        ctrl: BEND:SPS:530:CTRL
+      control_name: BEND:SPS:530
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2920.429
+  BYSP2S:
+    controls_information:
+      PVs:
+        bact: BEND:SPS:560:BACT
+        bcon: BEND:SPS:560:BCON
+        bctrl: BEND:SPS:560:BCTRL
+        bdes: BEND:SPS:560:BDES
+        ctrl: BEND:SPS:560:CTRL
+      control_name: BEND:SPS:560
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2932.829
+  QSP1S:
+    controls_information:
+      PVs:
+        bact: QUAD:SPS:570:BACT
+        bcon: QUAD:SPS:570:BCON
+        bctrl: QUAD:SPS:570:BCTRL
+        bdes: QUAD:SPS:570:BDES
+        ctrl: QUAD:SPS:570:CTRL
+      control_name: QUAD:SPS:570
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2934.068
+  QSP2S:
+    controls_information:
+      PVs:
+        bact: QUAD:SPS:580:BACT
+        bcon: QUAD:SPS:580:BCON
+        bctrl: QUAD:SPS:580:BCTRL
+        bdes: QUAD:SPS:580:BDES
+        ctrl: QUAD:SPS:580:CTRL
+      control_name: QUAD:SPS:580
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2936.438
+  QSP3S:
+    controls_information:
+      PVs:
+        bact: QUAD:SPS:640:BACT
+        bcon: QUAD:SPS:640:BCON
+        bctrl: QUAD:SPS:640:BCTRL
+        bdes: QUAD:SPS:640:BDES
+        ctrl: QUAD:SPS:640:CTRL
+      control_name: QUAD:SPS:640
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2953.181
+  QSP4S:
+    controls_information:
+      PVs:
+        bact: QUAD:SPS:650:BACT
+        bcon: QUAD:SPS:650:BCON
+        bctrl: QUAD:SPS:650:BCTRL
+        bdes: QUAD:SPS:650:BDES
+        ctrl: QUAD:SPS:650:CTRL
+      control_name: QUAD:SPS:650
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2956.176
+  QSP5S:
+    controls_information:
+      PVs:
+        bact: QUAD:SPS:710:BACT
+        bcon: QUAD:SPS:710:BCON
+        bctrl: QUAD:SPS:710:BCTRL
+        bdes: QUAD:SPS:710:BDES
+        ctrl: QUAD:SPS:710:CTRL
+      control_name: QUAD:SPS:710
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2974.771
+  QSP6S:
+    controls_information:
+      PVs:
+        bact: QUAD:SPS:770:BACT
+        bcon: QUAD:SPS:770:BCON
+        bctrl: QUAD:SPS:770:BCTRL
+        bdes: QUAD:SPS:770:BDES
+        ctrl: QUAD:SPS:770:CTRL
+      control_name: QUAD:SPS:770
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2993.366
+  QSP7S:
+    controls_information:
+      PVs:
+        bact: QUAD:SPS:780:BACT
+        bcon: QUAD:SPS:780:BCON
+        bctrl: QUAD:SPS:780:BCTRL
+        bdes: QUAD:SPS:780:BDES
+        ctrl: QUAD:SPS:780:CTRL
+      control_name: QUAD:SPS:780
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2996.361
+  QSP8S:
+    controls_information:
+      PVs:
+        bact: QUAD:SPS:830:BACT
+        bcon: QUAD:SPS:830:BCON
+        bctrl: QUAD:SPS:830:BCTRL
+        bdes: QUAD:SPS:830:BDES
+        ctrl: QUAD:SPS:830:CTRL
+      control_name: QUAD:SPS:830
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3013.104
+  QSP9S:
+    controls_information:
+      PVs:
+        bact: QUAD:SPS:840:BACT
+        bcon: QUAD:SPS:840:BCON
+        bctrl: QUAD:SPS:840:BCTRL
+        bdes: QUAD:SPS:840:BDES
+        ctrl: QUAD:SPS:840:CTRL
+      control_name: QUAD:SPS:840
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3015.474
+  XCSP1S:
+    controls_information:
+      PVs:
+        bact: XCOR:SPS:578:BACT
+        bcon: XCOR:SPS:578:BCON
+        bctrl: XCOR:SPS:578:BCTRL
+        bdes: XCOR:SPS:578:BDES
+        ctrl: XCOR:SPS:578:CTRL
+      control_name: XCOR:SPS:578
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2935.619
+  XCSP3S:
+    controls_information:
+      PVs:
+        bact: XCOR:SPS:634:BACT
+        bcon: XCOR:SPS:634:BCON
+        bctrl: XCOR:SPS:634:BCTRL
+        bdes: XCOR:SPS:634:BDES
+        ctrl: XCOR:SPS:634:CTRL
+      control_name: XCOR:SPS:634
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2952.383
+  XCSP5S:
+    controls_information:
+      PVs:
+        bact: XCOR:SPS:706:BACT
+        bcon: XCOR:SPS:706:BCON
+        bctrl: XCOR:SPS:706:BCTRL
+        bdes: XCOR:SPS:706:BDES
+        ctrl: XCOR:SPS:706:CTRL
+      control_name: XCOR:SPS:706
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2974.277
+  XCSP7S:
+    controls_information:
+      PVs:
+        bact: XCOR:SPS:776:BACT
+        bcon: XCOR:SPS:776:BCON
+        bctrl: XCOR:SPS:776:BCTRL
+        bdes: XCOR:SPS:776:BDES
+        ctrl: XCOR:SPS:776:CTRL
+      control_name: XCOR:SPS:776
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2995.563
+  XCSP9S:
+    controls_information:
+      PVs:
+        bact: XCOR:SPS:836:BACT
+        bcon: XCOR:SPS:836:BCON
+        bctrl: XCOR:SPS:836:BCTRL
+        bdes: XCOR:SPS:836:BDES
+        ctrl: XCOR:SPS:836:CTRL
+      control_name: XCOR:SPS:836
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3014.575
+  YCSP2S:
+    controls_information:
+      PVs:
+        bact: YCOR:SPS:587:BACT
+        bcon: YCOR:SPS:587:BCON
+        bctrl: YCOR:SPS:587:BCTRL
+        bdes: YCOR:SPS:587:BDES
+        ctrl: YCOR:SPS:587:CTRL
+      control_name: YCOR:SPS:587
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2937.887
+  YCSP4S:
+    controls_information:
+      PVs:
+        bact: YCOR:SPS:643:BACT
+        bcon: YCOR:SPS:643:BCON
+        bctrl: YCOR:SPS:643:BCTRL
+        bdes: YCOR:SPS:643:BDES
+        ctrl: YCOR:SPS:643:CTRL
+      control_name: YCOR:SPS:643
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2955.428
+  YCSP6S:
+    controls_information:
+      PVs:
+        bact: YCOR:SPS:767:BACT
+        bcon: YCOR:SPS:767:BCON
+        bctrl: YCOR:SPS:767:BCTRL
+        bdes: YCOR:SPS:767:BDES
+        ctrl: YCOR:SPS:767:CTRL
+      control_name: YCOR:SPS:767
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2992.872
+  YCSP8S:
+    controls_information:
+      PVs:
+        bact: YCOR:SPS:827:BACT
+        bcon: YCOR:SPS:827:BCON
+        bctrl: YCOR:SPS:827:BCTRL
+        bdes: YCOR:SPS:827:BDES
+        ctrl: YCOR:SPS:827:CTRL
+      control_name: YCOR:SPS:827
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3012.306

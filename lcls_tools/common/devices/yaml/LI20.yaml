@@ -1,0 +1,17 @@
+magnets:
+  Q4EL:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:7240
+    metadata:
+      area: LI20
+      beam_path: []
+      sum_l_meters: -1.0
+  QS0:
+    controls_information:
+      PVs: {}
+      control_name: LI20:LGPS:3204
+    metadata:
+      area: LI20
+      beam_path: []
+      sum_l_meters: -1.0

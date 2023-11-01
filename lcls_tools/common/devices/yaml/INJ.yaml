@@ -1,0 +1,92 @@
+magnets:
+  CQ10121:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:121
+    metadata:
+      area: INJ
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 0.197
+  SOL10111:
+    controls_information:
+      PVs: {}
+      control_name: SOLN:IN10:111
+    metadata:
+      area: INJ
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 0.0
+  SOL10121:
+    controls_information:
+      PVs: {}
+      control_name: SOLN:IN10:121
+    metadata:
+      area: INJ
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 0.197
+  SQ10122:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:IN10:122
+    metadata:
+      area: INJ
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 0.197
+  XC10121:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:IN10:121
+    metadata:
+      area: INJ
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 0.197
+  XC10221:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:IN10:221
+    metadata:
+      area: INJ
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 0.708
+  YC10122:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:IN10:122
+    metadata:
+      area: INJ
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 0.197
+  YC10222:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:IN10:222
+    metadata:
+      area: INJ
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 0.708
+screens:
+  PR10241:
+    controls_information:
+      PVs: {}
+      control_name: YAGS:IN10:241
+    metadata:
+      area: INJ
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 0.942

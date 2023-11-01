@@ -1,0 +1,23 @@
+magnets:
+  Q14901:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI14:901
+    metadata:
+      area: BC14_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 422.869
+  QM14891:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI14:891
+    metadata:
+      area: BC14_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 422.207
