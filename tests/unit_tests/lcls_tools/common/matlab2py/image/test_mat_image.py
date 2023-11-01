@@ -48,18 +48,19 @@ class MatImageTest(unittest.TestCase):
 
     def test_load_mat_image_exception(self):
         junk_datafile = os.path.join(self.dataset_location, "junk.mat")
-        self.assertRaises(Exception, self.mi.load_mat_image(junk_datafile))
+        with self.assertRaises(Exception):
+            self.mi._unpack_mat_data(junk_datafile)
 
     def test_load_mat_image(self):
         self.mi.load_mat_image(self.file)
         self.assertEqual(self.mi.mat_file, self.file)
         self.assertEqual(self.mi.camera_name, self.camera)
         self.assertEqual(isinstance(self.mi.image, np.ndarray), True)
-        self.assertEqual(isinstance(self.mi.image_as_list, list), True)
+        self.assertIsInstance(self.mi.image_as_list, list)
         self.assertEqual(self.mi.roi_x_n, 1392)
         self.assertEqual(self.mi.roi_y_n, 1024)
-        self.assertEqual(round(self.mi.timestamp, 1), 737450.7)
-        self.assertEqual(self.mi.pulse_id, 33164)
+        self.assertEqual(round(self.mi.timestamp, 1), 737499.6)
+        self.assertEqual(self.mi.pulse_id, 66868)
         self.assertEqual(self.mi.columns, 1392)
         self.assertEqual(self.mi.rows, 1040)
         self.assertEqual(self.mi.bit_depth, 12)

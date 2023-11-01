@@ -3,7 +3,7 @@ import unittest
 from lcls_tools.common.matlab2py.emit_scan.mat_emit_scan import MatEmitScan as MES
 
 
-ITERS = 10
+ITERS = 3
 TYPE = "scan"
 PROF_NAME = "YAGS:GUNB:753"
 QUAD_NAME = "SOLN:GUNB:212"
@@ -11,14 +11,14 @@ QUAD_VAL = 0.08
 TIMESTAMP = 737730.0
 CHARGE = 0.0007
 ENERGY = 0.0008
-EMIT_X = 2.28
-BETA_X = 96.1
-ALPHA_X = -66.5
-BMAG_X = 1207.3
-EMIT_Y = 2.63
-BETA_Y = 136.9
-ALPHA_Y = -94.6
-BMAG_Y = 1716.6
+EMIT_X = 6.41
+BETA_X = 159.5
+ALPHA_X = -110.8
+BMAG_X = 2009.8
+EMIT_Y = 6.22
+BETA_Y = 171.3
+ALPHA_Y = -119.1
+BMAG_Y = 2155.9
 
 
 class MatEmitScanTest(unittest.TestCase):
@@ -45,7 +45,7 @@ class MatEmitScanTest(unittest.TestCase):
         self.assertEqual(mes.scan_type, TYPE)
         self.assertEqual(mes.name, PROF_NAME)
         self.assertEqual(mes.quad_name, QUAD_NAME)
-        self.assertEqual(round(mes.quad_val[9], 2), QUAD_VAL)
+        self.assertEqual(round(mes.quad_vals[2], 2), QUAD_VAL)
         self.assertEqual(len(mes.use), ITERS)
         self.assertEqual(round(mes.timestamp), TIMESTAMP)
         self.assertEqual(round(mes.charge, 4), CHARGE)

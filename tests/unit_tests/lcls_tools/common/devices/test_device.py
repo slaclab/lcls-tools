@@ -88,7 +88,7 @@ class TestDevice(unittest.TestCase):
         # start with empty dictionary check
         self.assertEqual(result, dict())
 
-        def dummy_callback():
+        def dummy_callback():  # pragma: no cover
             print("test callback")
 
         # add some callback function to the pv
@@ -105,7 +105,7 @@ class TestDevice(unittest.TestCase):
     def test_get_callback_index_with_no_callbacks_for_pv(self):
         mock_pv = self.pv_obj
 
-        def mock_callback():
+        def mock_callback():  # pragma: no cover
             print("mock callback")
 
         index = self.device._get_callback_index(mock_pv, mock_callback)
@@ -122,17 +122,17 @@ class TestDevice(unittest.TestCase):
         mock_pv = self.pv_obj
         mock_get_attribute.return_value = mock_pv
 
-        def mock_callback(message: str) -> None:
+        def mock_callback(message: str) -> None:  # pragma: no cover
             print(f"callback: {message}")
 
         # Add different callbacks to Device
-        def first_callback():
+        def first_callback():  # pragma: no cover
             mock_callback("first")
 
-        def second_callback():
+        def second_callback():  # pragma: no cover
             mock_callback("second")
 
-        def third_callback():
+        def third_callback():  # pragma: no cover
             mock_callback("third")
 
         self.device.add_callback_to_pv(
@@ -159,7 +159,7 @@ class TestDevice(unittest.TestCase):
     def test_add_callback_to_pv_raises_with_bad_pv_arg(self):
         with self.assertRaises(ApplyDeviceCallbackError):
 
-            def mock_callback():
+            def mock_callback():  # pragma: no cover
                 pass
 
             self.device.add_callback_to_pv(
@@ -175,7 +175,7 @@ class TestDevice(unittest.TestCase):
             )
 
     def test_add_callback_raises_when_pv_does_not_exist(self):
-        def mock_callback():
+        def mock_callback():  # pragma: no cover
             pass
 
         with self.assertRaises(ApplyDeviceCallbackError):
@@ -189,7 +189,7 @@ class TestDevice(unittest.TestCase):
         self,
         mock_get_attribute: MagicMock,
     ) -> None:
-        def mock_callback():
+        def mock_callback():  # pragma: no cover
             pass
 
         mock_get_attribute.return_value = self.pv_obj
@@ -205,7 +205,7 @@ class TestDevice(unittest.TestCase):
         self,
         mock_get_attribute: MagicMock,
     ) -> None:
-        def mock_callback():
+        def mock_callback():  # pragma: no cover
             pass
 
         mock_get_attribute.return_value = self.pv_obj
@@ -220,7 +220,7 @@ class TestDevice(unittest.TestCase):
     def test_remove_callback_to_pv_raises_with_bad_pv_arg(self):
         with self.assertRaises(RemoveDeviceCallbackError):
 
-            def mock_callback():
+            def mock_callback():  # pragma: no cover
                 pass
 
             self.device.remove_callback_from_pv(
@@ -236,7 +236,7 @@ class TestDevice(unittest.TestCase):
             )
 
     def test_remove_callback_raises_when_pv_does_not_exist(self):
-        def mock_callback():
+        def mock_callback():  # pragma: no cover
             pass
 
         with self.assertRaises(RemoveDeviceCallbackError):
@@ -250,7 +250,7 @@ class TestDevice(unittest.TestCase):
         self,
         mock_get_attribute: MagicMock,
     ) -> None:
-        def mock_callback():
+        def mock_callback():  # pragma: no cover
             pass
 
         mock_get_attribute.return_value = self.pv_obj
@@ -265,7 +265,7 @@ class TestDevice(unittest.TestCase):
         self,
         mock_get_attribute: MagicMock,
     ) -> None:
-        def mock_callback():
+        def mock_callback():  # pragma: no cover
             pass
 
         mock_get_attribute.return_value = self.pv_obj
