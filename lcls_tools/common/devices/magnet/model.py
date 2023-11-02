@@ -109,7 +109,7 @@ class Magnet(Device):
         if not (isinstance(val, float) or isinstance(val, int)):
             print("you need to provide an int or float")
             return
-        self.controls_information.PVs.bctrl.put(val)
+        self.controls_information.PVs.bctrl.put(value=val)
 
     @property
     def bact(self) -> float:
@@ -120,6 +120,10 @@ class Magnet(Device):
     def bdes(self) -> float:
         """Get BDES value"""
         return self.controls_information.PVs.bdes.get()
+
+    @bdes.setter
+    def bdes(self, bval) -> None:
+        self.controls_information.PVs.bdes.put(value=bval)
 
     @property
     def ctrl(self) -> str:
