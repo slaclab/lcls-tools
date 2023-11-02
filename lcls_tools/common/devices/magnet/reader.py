@@ -4,23 +4,26 @@ from typing import Union
 from pydantic import ValidationError
 from lcls_tools.common.devices.magnet.model import Magnet, MagnetCollection
 
+DEFAULT_YAML_LOCATION = '../yaml/'
 
-def _find_yaml_file(yaml_filename: str) -> str:
-    if os.path.isfile(yaml_filename):
-        return os.path.abspath(yaml_filename)
+def _find_yaml_file(area: str) -> str:
+    filename = area + '.yaml'
+    path = os.path.join(DEFAULT_YAML_LOCATION, filename)
+    if os.path.isfile(path):
+        return os.path.abspath(path)
     else:
         raise FileNotFoundError(
-            f"No such file {yaml_filename}",
+            f"No such file {path}, please choose another area.",
         )
 
 
 def create_magnet(
-    yaml_filename: str = None, name: str = None
+    area: str = None, name: str = None
 ) -> Union[None, Magnet, MagnetCollection]:
-    if yaml_filename:
+    if area:
         try:
             location = _find_yaml_file(
-                yaml_filename=yaml_filename,
+                area=area,
             )
             with open(location, "r") as device_file:
                 config_data = yaml.safe_load(device_file)
@@ -31,14 +34,14 @@ def create_magnet(
                 else:
                     return MagnetCollection(**config_data)
         except FileNotFoundError:
-            print(f"Could not find yaml file: {yaml_filename}")
+            print(f"Could not find yaml file: {location}")
             return None
         except KeyError:
-            print(f"Could not find name {name} in {yaml_filename}")
+            print(f"Could not find name {name} in {location}")
             return None
         except ValidationError as field_error:
             print(field_error)
             return None
     else:
-        print("Please provide a yaml file location to create a magnet.")
+        print("Please provide a machine area to create a magnet from.")
         return None
