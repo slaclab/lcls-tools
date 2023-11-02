@@ -9,7 +9,6 @@ DEFAULT_YAML_LOCATION = './lcls_tools/common/devices/yaml/'
 def _find_yaml_file(area: str) -> str:
     filename = area + '.yaml'
     path = os.path.join(DEFAULT_YAML_LOCATION, filename)
-    print(path)
     if os.path.isfile(path):
         return os.path.abspath(path)
     else:
