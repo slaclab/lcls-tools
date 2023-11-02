@@ -34,10 +34,10 @@ def create_magnet(
                 else:
                     return MagnetCollection(**config_data)
         except FileNotFoundError:
-            print(f"Could not find yaml file: {location}")
+            print(f"Could not find yaml file for area: {area}")
             return None
         except KeyError:
-            print(f"Could not find name {name} in {location}")
+            print(f"Could not find name {name} in file for area: {area}")
             return None
         except ValidationError as field_error:
             print(field_error)
