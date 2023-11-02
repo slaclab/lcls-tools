@@ -183,3 +183,17 @@ class Magnet(Device):
 
 class MagnetCollection(BaseModel):
     magnets: Dict[str, SerializeAsAny[Magnet]]
+
+
+
+    def set_bdes(self, magnet_dict: Dict[str, float]):
+        if not magnet_dict:
+            return
+
+        for magnet, bval in magnet_dict.items():
+            try:
+                self.magnets[magnet].bdes = bval
+            except KeyError:
+                print('You tried to set a magnet that does not exist.',
+                      f'{magnet} was not set to {bval}.')
+
