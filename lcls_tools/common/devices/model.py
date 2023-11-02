@@ -19,11 +19,17 @@ class ControlInformation(BaseModel):
     control_name: str
     PVs: PVSet
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
 
 class Metadata(BaseModel):
     area: str
     beam_path: List[str]
     sum_l_meters: float
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 
 class MandatoryFieldNotFoundInYAMLError(Exception):
@@ -51,7 +57,7 @@ class Device(BaseModel):
 
     @property
     def area(self):
-        self.metadata.area
+        return self.metadata.area
 
     @property
     def sum_l_meters(self):

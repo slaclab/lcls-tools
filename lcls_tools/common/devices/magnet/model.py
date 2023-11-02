@@ -42,10 +42,16 @@ class MagnetControlInformation(ControlInformation):
         "RESET": 10,
     }
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
 
 class MagnetMetadata(Metadata):
     length: Optional[PositiveFloat] = None
     b_tolerance: Optional[PositiveFloat] = None
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 
 class Magnet(Device):
