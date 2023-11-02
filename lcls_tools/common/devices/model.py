@@ -1,9 +1,10 @@
-from pydantic import BaseModel, SerializeAsAny
+from pydantic import BaseModel, SerializeAsAny, ConfigDict
 from typing import List, Union, Callable, Optional
 from epics import PV
 
 
 class PVSet(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid", frozen=True)
     ...
 
 

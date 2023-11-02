@@ -2,7 +2,6 @@ from pydantic import (
     BaseModel,
     PositiveFloat,
     SerializeAsAny,
-    ConfigDict,
     field_validator,
 )
 from typing import Dict, Optional, Union
@@ -16,11 +15,6 @@ from epics import PV
 
 
 class MagnetPVSet(PVSet):
-    model_config = ConfigDict(
-        arbitrary_types_allowed=True,
-        extra="forbid",
-        frozen=True
-    )
     bctrl: PV
     bact: PV
     bdes: PV
