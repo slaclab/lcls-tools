@@ -1,23 +1,50 @@
-from pydantic import BaseModel, PositiveFloat, field_validator, SerializeAsAny
-from typing import Dict, List, Optional, Union
+from pydantic import (
+    BaseModel,
+    PositiveFloat,
+    SerializeAsAny,
+    ConfigDict,
+    PrivateAttr,
+)
+from typing import Dict, Optional, Union
+from lcls_tools.common.devices.model import (
+    Device,
+    ControlInformation,
+    Metadata,
+    PVSet,
+)
 from epics import PV
 
 
-class MagnetPVSet(BaseModel):
+class MagnetPVSet(PVSet):
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid",
+    )
     bctrl: str
     bact: str
     bdes: str
     bcon: str
     ctrl: str
+    _bctrl: PrivateAttr(PV)
+    _bact: PrivateAttr(PV)
+    _bdes: PrivateAttr(PV)
+    _bcon: PrivateAttr(PV)
+    _ctrl: PrivateAttr(PV)
 
-    @field_validator("*", mode="before")
-    def validate_pv_fields(cls, v: str):
-        if v:
-            return v
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._bctrl = PV(self.bctrl)
+        self._bact = PV(self.bact)
+        self._bdes = PV(self.bdes)
+        self._bcon = PV(self.bcon)
+        self._ctrl = PV(self.ctrl)
+
+    # @field_validator("*", mode="before")
+    # def validate_pv_fields(cls, v: str):
+    #     return PV(v)
 
 
-class ControlInformation(BaseModel):
-    control_name: str
+class MagnetControlInformation(ControlInformation):
     PVs: SerializeAsAny[MagnetPVSet]
     ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = {
         "READY": 0,
@@ -34,32 +61,21 @@ class ControlInformation(BaseModel):
     }
 
 
-class Metadata(BaseModel):
-    area: str
-    beam_path: List[str]
-    sum_l_meters: float
+class MagnetMetadata(Metadata):
     length: Optional[PositiveFloat] = None
     b_tolerance: Optional[PositiveFloat] = None
 
 
-class Magnet(BaseModel):
-    controls_information: SerializeAsAny[ControlInformation]
-    metadata: SerializeAsAny[Metadata]
+class Magnet(Device):
+    controls_information: SerializeAsAny[MagnetControlInformation]
+    metadata: SerializeAsAny[MagnetMetadata]
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._make_pv_attributes()
 
     @property
     def ctrl_options(self):
         return self.controls_information.ctrl_options
-
-    def _make_pv_attributes(self):
-        # setup PVs and private attributes
-        [
-            setattr(self, "_" + handle, PV(pv))
-            for handle, pv in self.controls_information.PVs
-        ]
 
     """ Decorators """
 
@@ -78,13 +94,25 @@ class Magnet(BaseModel):
     def b_tolerance(self):
         return self.metadata.b_tolerance
 
+    @b_tolerance.setter
+    def b_tolerance(self, value):
+        if not isinstance(value, float):
+            return
+        self.metadata.b_tolerance = value
+
     @property
     def length(self):
         return self.metadata.length
 
+    @length.setter
+    def length(self, value):
+        if not isinstance(value, float):
+            return
+        self.metadata.length = value
+
     @property
     def bctrl(self) -> Union[float, int]:
-        return self._bctrl.get()
+        return self.controls_information.PVs._bact.get()
 
     @bctrl.setter
     @check_state
@@ -93,67 +121,72 @@ class Magnet(BaseModel):
         if not (isinstance(val, float) or isinstance(val, int)):
             print("you need to provide an int or float")
             return
-        self._bctrl.put(val)
+        self.controls_information.PVs._bctrl.put(val)
 
     @property
     def bact(self) -> float:
         """Get the BACT value"""
-        return self._bact.get()
+        return self.controls_information.PVs._bact.get()
 
     @property
     def bdes(self) -> float:
         """Get BDES value"""
-        return self._bdes.get()
+        return self.controls_information.PVs._bdes.get()
 
     @property
     def ctrl(self) -> str:
         """Get the current action on magnet"""
-        return self._ctrl.get(as_string=True)
+        return self.controls_information.PVs._ctrl.get(as_string=True)
+
+    @property
+    def bcon(self) -> float:
+        """Get the configuration strength of magnet"""
+        return self.controls_information.PVs._bcon.get()
 
     @check_state
     def trim(self) -> None:
         """Issue trim command"""
-        self._ctrl.put(self._ctrl_options["TRIM"])
+        self.controls_information.PVs._ctrl.put(self.ctrl_options["TRIM"])
 
     @check_state
     def perturb(self) -> None:
         """Issue perturb command"""
-        self._ctrl.put(self._ctrl_options["PERTURB"])
+        self.controls_information.PVs._ctrl.put(self.ctrl_options["PERTURB"])
 
     def con_to_des(self) -> None:
         """Issue con to des commands"""
-        self._ctrl.put(self._ctrl_options["BCON_TO_BDES"])
+        self.controls_information.PVs._ctrl.put(self.ctrl_options["BCON_TO_BDES"])
 
     def save_bdes(self) -> None:
         """Save BDES"""
-        self._ctrl.put(self._ctrl_options["SAVE_BDES"])
+        self.controls_information.PVs._ctrl.put(self.ctrl_options["SAVE_BDES"])
 
     def load_bdes(self) -> None:
         """Load BtolDES"""
-        self._ctrl.put(self._ctrl_options["LOAD_BDES"])
+        self.controls_information.PVs._ctrl.put(self.ctrl_options["LOAD_BDES"])
 
     def undo_bdes(self) -> None:
         """Save BDES"""
-        self._ctrl.put(self._ctrl_options["UNDO_BDES"])
+        self.controls_information.PVs._ctrl.put(self.ctrl_options["UNDO_BDES"])
 
     @check_state
     def dac_zero(self) -> None:
         """DAC zero magnet"""
-        self._ctrl.put(self._ctrl_options["DAC_ZERO"])
+        self.controls_information.PVs._ctrl.put(self.ctrl_options["DAC_ZERO"])
 
     @check_state
     def calibrate(self) -> None:
         """Calibrate magnet"""
-        self._ctrl.put(self._ctrl_options["CALIB"])
+        self.controls_information.PVs._ctrl.put(self.ctrl_options["CALIB"])
 
     @check_state
     def standardize(self) -> None:
         """Standardize magnet"""
-        self._ctrl.put(self._ctrl_options["STDZ"])
+        self.controls_information.PVs._ctrl.put(self.ctrl_options["STDZ"])
 
     def reset(self) -> None:
         """Reset magnet"""
-        self._ctrl.put(self._ctrl_options["RESET"])
+        self.controls_information.PVs._ctrl.put(self.ctrl_options["RESET"])
 
 
 class MagnetCollection(BaseModel):

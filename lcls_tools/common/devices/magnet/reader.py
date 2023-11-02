@@ -1,8 +1,8 @@
 import os
 import yaml
 from typing import Union
-from lcls_tools.common.devices.device import MandatoryFieldNotFoundInYAMLError
-from lcls_tools.common.devices.magnet.magnet import Magnet
+from pydantic import ValidationError
+from lcls_tools.common.devices.magnet.model import Magnet, MagnetCollection
 
 
 def _find_yaml_file(yaml_filename: str) -> str:
@@ -16,28 +16,27 @@ def _find_yaml_file(yaml_filename: str) -> str:
 
 def create_magnet(
     yaml_filename: str = None, name: str = None
-) -> Union[None, dict, Magnet]:
+) -> Union[None, Magnet, MagnetCollection]:
     if yaml_filename:
         try:
             location = _find_yaml_file(
                 yaml_filename=yaml_filename,
             )
             with open(location, "r") as device_file:
+                config_data = yaml.safe_load(device_file)
                 if name:
-                    config_data = yaml.safe_load(device_file)[name]
-                    return Magnet(name=name, **config_data)
+                    magnet_data = config_data["magnets"][name]
+                    magnet_data.update({"name": name})
+                    return Magnet(**magnet_data)
                 else:
-                    return {
-                        name: Magnet(name=name, **config_data)
-                        for name, config_data in yaml.safe_load(device_file).items()
-                    }
+                    return MagnetCollection(**config_data)
         except FileNotFoundError:
             print(f"Could not find yaml file: {yaml_filename}")
             return None
         except KeyError:
             print(f"Could not find name {name} in {yaml_filename}")
             return None
-        except MandatoryFieldNotFoundInYAMLError as field_error:
+        except ValidationError as field_error:
             print(field_error)
             return None
     else:
