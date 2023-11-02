@@ -4,11 +4,18 @@ from epics import PV
 
 
 class PVSet(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid", frozen=True)
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid",
+        frozen=True,
+    )
     ...
 
 
 class ControlInformation(BaseModel):
+    model_config = ConfigDict(
+        frozen=True,
+    )
     control_name: str
     PVs: PVSet
 
