@@ -184,8 +184,6 @@ class Magnet(Device):
 class MagnetCollection(BaseModel):
     magnets: Dict[str, SerializeAsAny[Magnet]]
 
-
-
     def set_bdes(self, magnet_dict: Dict[str, float]):
         if not magnet_dict:
             return
@@ -193,7 +191,15 @@ class MagnetCollection(BaseModel):
         for magnet, bval in magnet_dict.items():
             try:
                 self.magnets[magnet].bdes = bval
+                self.magnets[magnet].trim()
+                #TODO: settle time, and check bact is equal to bdes
             except KeyError:
                 print('You tried to set a magnet that does not exist.',
                       f'{magnet} was not set to {bval}.')
+        
+    def scan(self, scan_settings: [Dict[str, float]], function: Optional [callable]):
+        for setting in scan_settings:
+            self.set_bdes(setting)
+            function()
+
 
