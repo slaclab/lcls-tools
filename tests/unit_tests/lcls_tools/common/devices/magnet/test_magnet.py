@@ -16,18 +16,11 @@ class MagnetTest(TestCase):
 
     def setUp(self) -> None:
         self.magnet = create_magnet(
-            "./lcls_tools/common/devices/yaml/GUNB.yaml",
+            area="GUNB",
             # "./tests/datasets/devices/config/magnet/typical_magnet.yaml",
             name="SOL1B",
         )
         return super().setUp()
-
-    # def test_missing_mandatory_pv_raises_attribute_error(self):
-    #     with self.assertRaises(AttributeError):
-    #         self.bad_magnet = create_magnet(
-    #             "./tests/datasets/devices/config/magnet/missing_pv_magnet.yaml",
-    #             name="SOL2B",
-    #         )
 
     def test_properties_exist(self):
         """Test that all the properties we expect exist"""
@@ -114,17 +107,17 @@ class MagnetTest(TestCase):
 
     @patch("epics.PV.put", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.model.Magnet.ctrl",
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
     def test_set_bctrl_with_int_and_ready(self, mock_ctrl_option, mock_pv_put):
         mock_ctrl_option.return_value = "Ready"
         self.magnet.bctrl = 3
-        mock_pv_put.assert_called_once_with(3)
+        mock_pv_put.assert_called_once_with(value=3)
 
     @patch("epics.PV.put", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.model.Magnet.ctrl",
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
     def test_set_bctrl_with_string_and_ready(self, mock_ctrl_option, mock_pv_put):
@@ -134,7 +127,7 @@ class MagnetTest(TestCase):
 
     @patch("epics.PV.put", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.model.Magnet.ctrl",
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
     def test_set_bctrl_with_int_and_not_ready(self, mock_ctrl_option, mock_pv_put):
@@ -151,7 +144,7 @@ class MagnetTest(TestCase):
 
     @patch("epics.PV.put", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.model.Magnet.ctrl",
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
     def test_control_functions_call_pv_put_if_ready(
@@ -177,7 +170,7 @@ class MagnetTest(TestCase):
 
     @patch("epics.PV.put", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.model.Magnet.ctrl",
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
     def test_trim_does_nothing_if_not_ready(self, mock_ctrl_option, pv_put_mock):
