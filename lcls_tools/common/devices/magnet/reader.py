@@ -2,12 +2,13 @@ import os
 import yaml
 from typing import Union
 from pydantic import ValidationError
-from lcls_tools.common.devices.magnet.model import Magnet, MagnetCollection
+from lcls_tools.common.devices.magnet.magnet import Magnet, MagnetCollection
 
-DEFAULT_YAML_LOCATION = './lcls_tools/common/devices/yaml/'
+DEFAULT_YAML_LOCATION = "./lcls_tools/common/devices/yaml/"
+
 
 def _find_yaml_file(area: str) -> str:
-    filename = area + '.yaml'
+    filename = area + ".yaml"
     path = os.path.join(DEFAULT_YAML_LOCATION, filename)
     if os.path.isfile(path):
         return os.path.abspath(path)

@@ -1,5 +1,35 @@
-from typing import Callable, Union
+from pydantic import BaseModel, SerializeAsAny, ConfigDict
+from typing import List, Union, Callable, Optional
 from epics import PV
+
+
+class PVSet(BaseModel):
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        extra="forbid",
+        frozen=True,
+    )
+    ...
+
+
+class ControlInformation(BaseModel):
+    model_config = ConfigDict(
+        frozen=True,
+    )
+    control_name: str
+    PVs: PVSet
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
+class Metadata(BaseModel):
+    area: str
+    beam_path: List[str]
+    sum_l_meters: float
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 
 class MandatoryFieldNotFoundInYAMLError(Exception):
@@ -17,30 +47,25 @@ class RemoveDeviceCallbackError(Exception):
         super().__init__(message)
 
 
-class Device:
-    _name: str
-    control_information: dict = None
-    metadata: dict = None
-    _mandatory_fields: list = [
-        "control_information",
-        "metadata",
-    ]
+class Device(BaseModel):
+    name: Optional[str] = None
+    controls_information: SerializeAsAny[ControlInformation]
+    metadata: SerializeAsAny[Metadata]
 
-    def __init__(self, name: str = None, config: dict = None):
-        self._name = name
-        try:
-            # extract and create metadata and control_information attributes from **kwargs.
-            for field in self._mandatory_fields:
-                setattr(self, field, config[field])
-        except KeyError as ke:
-            missing_field = ke.args[0]
-            raise MandatoryFieldNotFoundInYAMLError(
-                f"Missing {missing_field} for device {self.name}, please check yaml file."
-            )
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     @property
-    def name(self):
-        return self._name
+    def area(self):
+        return self.metadata.area
+
+    @property
+    def sum_l_meters(self):
+        return self.metadata.sum_l_meters
+
+    @property
+    def beam_path(self):
+        return self.metadata.beam_path
 
     def get_callbacks(self, pv: str) -> Union[None, dict]:
         pv_obj = self._get_pv_object_from_str(pv)
