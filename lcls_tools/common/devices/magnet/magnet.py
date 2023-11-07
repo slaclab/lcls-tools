@@ -4,7 +4,12 @@ from pydantic import (
     SerializeAsAny,
     field_validator,
 )
-from typing import Dict, Optional, Union
+from typing import (
+    Dict,
+    List,
+    Optional,
+    Union,
+)
 from lcls_tools.common.devices.device import (
     Device,
     ControlInformation,
@@ -202,7 +207,7 @@ class MagnetCollection(BaseModel):
                     f"{magnet} was not set to {bval}.",
                 )
 
-    def scan(self, scan_settings: [Dict[str, float]], function: Optional[callable]):
+    def scan(self, scan_settings: List[Dict[str, float]], function: Optional[callable] = None):
         for setting in scan_settings:
             self.set_bdes(setting)
-            function()
+            function() if function else None
