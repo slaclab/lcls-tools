@@ -207,7 +207,9 @@ class MagnetCollection(BaseModel):
                     f"{magnet} was not set to {bval}.",
                 )
 
-    def scan(self, scan_settings: List[Dict[str, float]], function: Optional[callable] = None):
+    def scan(
+        self, scan_settings: List[Dict[str, float]], function: Optional[callable] = None
+    ):
         for setting in scan_settings:
             self.set_bdes(setting)
             function() if function else None
