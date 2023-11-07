@@ -30,6 +30,7 @@ def create_magnet(
                 config_data = yaml.safe_load(device_file)
                 if name:
                     magnet_data = config_data["magnets"][name]
+                    # this data is not available from YAML directly in this form, so we add it here.
                     magnet_data.update({"name": name})
                     return Magnet(**magnet_data)
                 else:
