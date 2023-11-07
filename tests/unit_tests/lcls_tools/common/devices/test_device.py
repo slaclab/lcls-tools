@@ -6,7 +6,6 @@ from lcls_tools.common.devices.device import (
     Device,
     ApplyDeviceCallbackError,
     RemoveDeviceCallbackError,
-    MandatoryFieldNotFoundInYAMLError,
 )
 from epics import PV
 import yaml
@@ -28,16 +27,12 @@ class TestDevice(unittest.TestCase):
     def test_config_with_no_control_information_field_raises(self):
         name_of_device_with_missing_data = "DEVICE_2"
         with self.assertRaises(ValidationError):
-            Device(
-                config=self.config_data[name_of_device_with_missing_data],
-            )
+            Device(**self.config_data[name_of_device_with_missing_data])
 
     def test_config_with_no_metadata_field_raises(self):
         name_of_device_with_missing_data = "DEVICE_3"
         with self.assertRaises(ValidationError):
-            Device(
-                config=self.config_data[name_of_device_with_missing_data],
-            )
+            Device(**self.config_data[name_of_device_with_missing_data])
 
     def test_name_property_assigned_after_init(self):
         self.assertEqual(self.device.name, self.device_name)

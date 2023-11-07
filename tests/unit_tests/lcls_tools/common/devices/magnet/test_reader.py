@@ -1,6 +1,7 @@
 from lcls_tools.common.devices.magnet.reader import create_magnet, _find_yaml_file
 from lcls_tools.common.devices.magnet.magnet import Magnet, MagnetCollection
 import unittest
+from unittest.mock import patch, MagicMock
 import os
 
 
@@ -24,10 +25,20 @@ class TestMagnetReader(unittest.TestCase):
     def test_magnet_name_not_in_file_when_creating_magnet_returns_none(self):
         self.assertIsNone(create_magnet(area="GUNB", name="BAD-MAGNET-NAME"))
 
-    def test_config_with_no_control_information_returns_none(self):
-        self.assertIsNone(create_magnet(area="GUNX", name="SOL2B"))
+    @patch(
+        "lcls_tools.common.devices.magnet.reader._find_yaml_file",
+        new_callable=MagicMock(),
+    )
+    def test_config_with_no_control_information_returns_none(self, mock_find_yaml):
+        mock_find_yaml.return_value = self.bad_config
+        self.assertIsNone(create_magnet(area="GUNX", name="CQ02B"))
 
-    def test_config_with_no_metadata_returns_none(self):
+    @patch(
+        "lcls_tools.common.devices.magnet.reader._find_yaml_file",
+        new_callable=MagicMock(),
+    )
+    def test_config_with_no_metadata_returns_none(self, mock_find_yaml):
+        mock_find_yaml.return_value = self.bad_config
         self.assertIsNone(create_magnet(area="GUNX", name="SOL1B"))
 
     def test_create_magnet_with_only_config_creates_all_magnets(self):
