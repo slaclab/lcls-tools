@@ -88,6 +88,7 @@ class Magnet(Device):
 
     @property
     def b_tolerance(self):
+        """Returns the field tolerance in kG or kGm"""
         return self.metadata.b_tolerance
 
     @b_tolerance.setter
@@ -98,6 +99,7 @@ class Magnet(Device):
 
     @property
     def length(self):
+        """Returns the effective length in meters"""
         return self.metadata.length
 
     @length.setter
