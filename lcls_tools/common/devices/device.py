@@ -32,11 +32,6 @@ class Metadata(BaseModel):
         super().__init__(**kwargs)
 
 
-class MandatoryFieldNotFoundInYAMLError(Exception):
-    def __init__(self, message: str):
-        super().__init__(message)
-
-
 class ApplyDeviceCallbackError(Exception):
     def __init__(self, message: str) -> None:
         super().__init__(message)
