@@ -5,3 +5,4 @@ matplotlib
 pyepics
 pyyaml
 requests
+pydantic

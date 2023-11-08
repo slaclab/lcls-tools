@@ -30,6 +30,7 @@ class YAMLGenerator:
             def _is_required_field(pair: tuple):
                 key, _ = pair
                 return key in self._required_fields
+
             # only store the required fields from lcls_elements, there are lots more!
             self.elements = [
                 dict(filter(_is_required_field, element.items()))
@@ -177,11 +178,6 @@ class YAMLGenerator:
             required_types=required_magnet_types,
             pv_search_list=magnet_pv_search_list,
         )
-
-    def camera_type():
-        # Determine type of camera and PVs
-        # Is there a way to get the camera type w/o a list?
-        pass
 
     def extract_screens(self, area: Union[str, List[str]] = ["HTR"]):
         required_screen_types = ["PROF"]

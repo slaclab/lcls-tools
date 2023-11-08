@@ -1,11 +1,11 @@
 import os
 import unittest
 from unittest.mock import MagicMock, patch
+from pydantic import ValidationError
 from lcls_tools.common.devices.device import (
     Device,
     ApplyDeviceCallbackError,
     RemoveDeviceCallbackError,
-    MandatoryFieldNotFoundInYAMLError,
 )
 from epics import PV
 import yaml
@@ -18,36 +18,21 @@ class TestDevice(unittest.TestCase):
         with open(self.config_filename, "r") as file:
             self.device_name = "DEVICE_1"
             self.config_data = yaml.safe_load(file)
-            self.device = Device(
-                name=self.device_name, config=self.config_data[self.device_name]
-            )
+            device_data = self.config_data[self.device_name]
+            device_data.update({"name": self.device_name})
+            self.device = Device(**device_data)
         self.pv_obj = PV("SOLN:GUNB:212:BACT")
         return super().setUp()
 
     def test_config_with_no_control_information_field_raises(self):
         name_of_device_with_missing_data = "DEVICE_2"
-        with self.assertRaises(MandatoryFieldNotFoundInYAMLError):
-            Device(
-                name=name_of_device_with_missing_data,
-                config=self.config_data[name_of_device_with_missing_data],
-            )
+        with self.assertRaises(ValidationError):
+            Device(**self.config_data[name_of_device_with_missing_data])
 
     def test_config_with_no_metadata_field_raises(self):
         name_of_device_with_missing_data = "DEVICE_3"
-        with self.assertRaises(MandatoryFieldNotFoundInYAMLError):
-            Device(
-                name=name_of_device_with_missing_data,
-                config=self.config_data[name_of_device_with_missing_data],
-            )
-
-    def test_properties_exist(self):
-        """Test that all the properties we expect exist"""
-        # Assert that device has all auto-generated private attributes
-        for item in self.device._mandatory_fields:
-            self.assertTrue(
-                hasattr(self.device, item),
-                msg=f"expected device to have attribute {item}",
-            )
+        with self.assertRaises(ValidationError):
+            Device(**self.config_data[name_of_device_with_missing_data])
 
     def test_name_property_assigned_after_init(self):
         self.assertEqual(self.device.name, self.device_name)
