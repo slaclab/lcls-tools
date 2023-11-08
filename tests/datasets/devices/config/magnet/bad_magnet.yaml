@@ -1,27 +1,49 @@
-SOL2B:
-  metadata:
-    b_tolerance : 0.002 # in Tesla?
-    length : 0.135 # in meters?
+magnets:
+  CQ01B:
+    controls_information:
+      PVs:
+        bact: QUAD:GUNB:212:1:BACT
+        bcon: QUAD:GUNB:212:1:BCON
+        bctrl: QUAD:GUNB:212:1:BCTRL
+        bdes: QUAD:GUNB:212:1:BDES
+        ctrl: QUAD:GUNB:212:1:CTRL
+      control_name: QUAD:GUNB:212:1
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.247
+  CQ02B:
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.57
+  SOL1B:
+    controls_information:
+      PVs:
+        bact: SOLN:GUNB:212:BACT
+        bcon: SOLN:GUNB:212:BCON
+        bctrl: SOLN:GUNB:212:BCTRL
+        bdes: SOLN:GUNB:212:BDES
+        ctrl: SOLN:GUNB:212:CTRL
+      control_name: SOLN:GUNB:212
 
 
-SOL1B:
-  control_information:
-    control_name: 'SOLN:GUNB:212'
-    PVs:
-      bctrl : 'QUAD:LI22:201:BCTRL'
-      bact : 'QUAD:LI22:201:BACT'
-      bdes : 'QUAD:LI22:201:BDES'
-      bcon : 'QUAD:LI22:201:BCON'
-      ctrl : 'QUAD:LI22:201:CTRL'
-    ctrl_options:
-      READY : 0
-      TRIM : 1
-      PERTURB : 2
-      BCON_TO_BDES : 3
-      SAVE_BDES : 4
-      LOAD_BDES : 5
-      UNDO_BDES : 6
-      DAC_ZERO : 7
-      CALIB : 8
-      STDZ : 9
-      RESET : 10
+

@@ -1,6 +1,7 @@
 from lcls_tools.common.devices.magnet.reader import create_magnet, _find_yaml_file
-from lcls_tools.common.devices.magnet.magnet import Magnet
+from lcls_tools.common.devices.magnet.magnet import Magnet, MagnetCollection
 import unittest
+from unittest.mock import patch, MagicMock
 import os
 
 
@@ -13,40 +14,48 @@ class TestMagnetReader(unittest.TestCase):
 
     def test_bad_file_location_raises_when_finding(self):
         with self.assertRaises(FileNotFoundError):
-            _find_yaml_file(yaml_filename="bad-filename.yaml")
+            _find_yaml_file(area="bad-area")
 
     def test_bad_file_location_when_creating_magnet_returns_none(self):
-        self.assertIsNone(create_magnet(yaml_filename="bad-filename.yml"))
+        self.assertIsNone(create_magnet("bad-area"))
 
     def test_no_file_location_when_creating_magnet_returns_none(self):
-        self.assertIsNone(create_magnet(yaml_filename=None))
+        self.assertIsNone(create_magnet())
 
     def test_magnet_name_not_in_file_when_creating_magnet_returns_none(self):
-        self.assertIsNone(
-            create_magnet(yaml_filename=self.typical_config, name="BAD-MAGNET-NAME")
-        )
+        self.assertIsNone(create_magnet(area="GUNB", name="BAD-MAGNET-NAME"))
 
-    def test_config_with_no_control_information_returns_none(self):
-        self.assertIsNone(create_magnet(self.bad_config, "SOL2B"))
+    @patch(
+        "lcls_tools.common.devices.magnet.reader._find_yaml_file",
+        new_callable=MagicMock(),
+    )
+    def test_config_with_no_control_information_returns_none(self, mock_find_yaml):
+        mock_find_yaml.return_value = self.bad_config
+        self.assertIsNone(create_magnet(area="GUNX", name="CQ02B"))
 
-    def test_config_with_no_metadata_returns_none(self):
-        self.assertIsNone(create_magnet(self.bad_config, "SOL1B"))
+    @patch(
+        "lcls_tools.common.devices.magnet.reader._find_yaml_file",
+        new_callable=MagicMock(),
+    )
+    def test_config_with_no_metadata_returns_none(self, mock_find_yaml):
+        mock_find_yaml.return_value = self.bad_config
+        self.assertIsNone(create_magnet(area="GUNX", name="SOL1B"))
 
     def test_create_magnet_with_only_config_creates_all_magnets(self):
-        result = create_magnet(yaml_filename=self.typical_config)
-        self.assertIsInstance(result, dict)
+        result = create_magnet(area="GUNB")
+        self.assertIsInstance(result, MagnetCollection)
         for name in [
             "SOL2B",
             "SOL1B",
         ]:
-            self.assertIn(name, result, msg=f"expected {name} in {result}.")
-            self.assertIsInstance(result[name], Magnet)
+            self.assertIn(name, result.magnets, msg=f"expected {name} in {result}.")
+            self.assertIsInstance(result.magnets[name], Magnet)
 
     def test_create_magnet_with_config_and_name_creates_one_magnet(self):
         name = "SOL1B"
         result = create_magnet(
-            yaml_filename=self.typical_config,
+            area="GUNB",
             name=name,
         )
-        self.assertNotIsInstance(result, dict)
+        self.assertNotIsInstance(result, MagnetCollection)
         self.assertIsInstance(result, Magnet)

@@ -1,45 +1,49 @@
 import os
 import yaml
 from typing import Union
-from lcls_tools.common.devices.device import MandatoryFieldNotFoundInYAMLError
-from lcls_tools.common.devices.magnet.magnet import Magnet
+from pydantic import ValidationError
+from lcls_tools.common.devices.magnet.magnet import Magnet, MagnetCollection
+
+DEFAULT_YAML_LOCATION = "./lcls_tools/common/devices/yaml/"
 
 
-def _find_yaml_file(yaml_filename: str) -> str:
-    if os.path.isfile(yaml_filename):
-        return os.path.abspath(yaml_filename)
+def _find_yaml_file(area: str) -> str:
+    filename = area + ".yaml"
+    path = os.path.join(DEFAULT_YAML_LOCATION, filename)
+    if os.path.isfile(path):
+        return os.path.abspath(path)
     else:
         raise FileNotFoundError(
-            f"No such file {yaml_filename}",
+            f"No such file {path}, please choose another area.",
         )
 
 
 def create_magnet(
-    yaml_filename: str = None, name: str = None
-) -> Union[None, dict, Magnet]:
-    if yaml_filename:
+    area: str = None, name: str = None
+) -> Union[None, Magnet, MagnetCollection]:
+    if area:
         try:
             location = _find_yaml_file(
-                yaml_filename=yaml_filename,
+                area=area,
             )
             with open(location, "r") as device_file:
+                config_data = yaml.safe_load(device_file)
                 if name:
-                    config_data = yaml.safe_load(device_file)[name]
-                    return Magnet(name=name, **config_data)
+                    magnet_data = config_data["magnets"][name]
+                    # this data is not available from YAML directly in this form, so we add it here.
+                    magnet_data.update({"name": name})
+                    return Magnet(**magnet_data)
                 else:
-                    return {
-                        name: Magnet(name=name, **config_data)
-                        for name, config_data in yaml.safe_load(device_file).items()
-                    }
+                    return MagnetCollection(**config_data)
         except FileNotFoundError:
-            print(f"Could not find yaml file: {yaml_filename}")
+            print(f"Could not find yaml file for area: {area}")
             return None
         except KeyError:
-            print(f"Could not find name {name} in {yaml_filename}")
+            print(f"Could not find name {name} in file for area: {area}")
             return None
-        except MandatoryFieldNotFoundInYAMLError as field_error:
+        except ValidationError as field_error:
             print(field_error)
             return None
     else:
-        print("Please provide a yaml file location to create a magnet.")
+        print("Please provide a machine area to create a magnet from.")
         return None
