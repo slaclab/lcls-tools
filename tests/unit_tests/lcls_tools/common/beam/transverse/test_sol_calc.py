@@ -1,5 +1,5 @@
 import unittest
-from lcls_tools.common.beam_calcs.sol_calc.sol_calc import SolCalc
+from lcls_tools.common.beam.transverse.sol_calc import SolCalc
 
 
 class SolCorrectionTest(unittest.TestCase):
