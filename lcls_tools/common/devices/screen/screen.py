@@ -127,8 +127,7 @@ class Screen(Device):
         threaded = True,
     ):
         if threaded:
-            thread = Thread(target=self._threaded_take_images, args=[num_to_capture])
-            thread.start()
+            self._threaded_take_images,(num_to_capture)
         else:
             return asyncio.run(
                 self._save_images(
@@ -145,13 +144,14 @@ class Screen(Device):
         captures = []
         last_updated_at = self.image_timestamp
         while len(captures) != num_collect:
-            print('...')
+            print(f'collecting images: {len(captures)} / {num_collect}')
             # wait until we have new data,
             # async sleep so GUIs do not hang
             if self.image_timestamp != last_updated_at:
                 capture = self.image
                 last_updated_at = self.image_timestamp
                 captures.append(capture)
+        print('collection done, writing out.')
         self._write_image_to_hdf5(
                 images=captures,
                 filename=filename,
@@ -159,6 +159,7 @@ class Screen(Device):
             )
         self._last_save_filepath = filename
         self.saving_images = False
+        print('save images finished.')
 
 
     async def _collect_images(self, num_to_collect):
@@ -180,7 +181,7 @@ class Screen(Device):
     async def _save_images(
         self,
         num_to_capture: int = 1,
-        async_save: bool = True,
+        async_save: bool = False,
         extra_metadata: Optional[Dict[str, Any]] = None,
     ) -> str:
         """
