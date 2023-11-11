@@ -6,6 +6,7 @@ from typing import (
     Optional,
     Union,
 )
+from threading import Thread
 
 from pydantic import (
     BaseModel,
@@ -123,14 +124,42 @@ class Screen(Device):
         num_to_capture: int = 1,
         async_save: bool = True,
         extra_metadata: Optional[Dict[str, Any]] = None,
+        threaded = True,
     ):
-        return asyncio.run(
-            self._save_images(
-                num_to_capture=num_to_capture,
-                async_save=async_save,
-                extra_metadata=extra_metadata,
+        if threaded:
+            thread = Thread(target=self._threaded_take_images, args=[num_to_capture])
+            thread.start()
+        else:
+            return asyncio.run(
+                self._save_images(
+                    num_to_capture=num_to_capture,
+                    async_save=async_save,
+                    extra_metadata=extra_metadata,
+                )
             )
-        )
+    
+
+    def _threaded_take_images(self, num_collect):
+        self.saving_images = True
+        filename = self._generate_new_filename()
+        captures = []
+        last_updated_at = self.image_timestamp
+        while len(captures) != num_collect:
+            print('...')
+            # wait until we have new data,
+            # async sleep so GUIs do not hang
+            if self.image_timestamp != last_updated_at:
+                capture = self.image
+                last_updated_at = self.image_timestamp
+                captures.append(capture)
+        self._write_image_to_hdf5(
+                images=captures,
+                filename=filename,
+                extra_metadata=None,
+            )
+        self._last_save_filepath = filename
+        self.saving_images = False
+
 
     async def _collect_images(self, num_to_collect):
         captures = []
