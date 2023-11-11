@@ -148,6 +148,7 @@ class Screen(Device):
             # wait until we have new data,
             # async sleep so GUIs do not hang
             if self.image_timestamp != last_updated_at:
+                print('NEW IMAGE!')
                 capture = self.image
                 last_updated_at = self.image_timestamp
                 captures.append(capture)
