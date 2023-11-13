@@ -79,9 +79,9 @@ class Screen(Device):
     @property
     def image(self):
         if self.use_arraydata:
-            return self.controls_information.PVs.arraydata.get(as_numpy=True)
+            return self.controls_information.PVs.arraydata.get(as_numpy=True).reshape(self.n_rows, self.n_columns)
         else:
-            return self.controls_information.PVs.image.get(as_numpy=True)
+            return self.controls_information.PVs.image.get(as_numpy=True).reshape(self.n_rows, self.n_columns)
 
     @property
     def image_timestamp(self):
