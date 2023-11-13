@@ -187,7 +187,7 @@ class Screen(Device):
     async def _save_images(
         self,
         num_to_capture: int = 1,
-        async_save: bool = False,
+        async_save: bool = True,
         extra_metadata: Optional[Dict[str, Any]] = None,
     ) -> str:
         """
@@ -197,8 +197,18 @@ class Screen(Device):
         The full path to the file is returned but can be retrieved as a memeber too.
         """
         filename = self._generate_new_filename()
-        captures = await self._collect_images(num_to_capture)
-
+        captures = []
+        while len(captures) != num_to_capture:
+            print(f"collecting images: {len(captures)} / {num_to_capture}")
+            capture = self.image
+            # wait until we have new data,
+            # async sleep so GUIs do not hang
+            if self.image_timestamp != last_updated_at:
+                print("NEW IMAGE!")
+                last_updated_at = self.image_timestamp
+                captures.append(capture)
+            else:
+                await asyncio.sleep(0.1)
         # All images captured, save out to hdf5
         if async_save:
             # capture written to file in co-routine
