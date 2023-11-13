@@ -79,9 +79,13 @@ class Screen(Device):
     @property
     def image(self):
         if self.use_arraydata:
-            return self.controls_information.PVs.arraydata.get(as_numpy=True).reshape(self.n_rows, self.n_columns)
+            return self.controls_information.PVs.arraydata.get(as_numpy=True).reshape(
+                self.n_rows, self.n_columns
+            )
         else:
-            return self.controls_information.PVs.image.get(as_numpy=True).reshape(self.n_rows, self.n_columns)
+            return self.controls_information.PVs.image.get(as_numpy=True).reshape(
+                self.n_rows, self.n_columns
+            )
 
     @property
     def image_timestamp(self):
@@ -122,30 +126,22 @@ class Screen(Device):
         filename = str(stamp) + "_tst" + extension
         path = str(os.path.join(self._root_hdf5_location, filename)).replace(":", "_")
         path = path.strip()
-        print("****", path)
         return path
 
     def save_images(
         self,
         num_to_capture: int = 1,
-        async_save: bool = True,
         extra_metadata: Optional[Dict[str, Any]] = None,
         threaded=True,
     ):
         if threaded:
-            work = Thread(target=self._threaded_take_images, args=[num_to_capture])
+            work = Thread(target=self._take_images, args=[num_to_capture])
             work.start()
             work.join()
         else:
-            return asyncio.run(
-                self._save_images(
-                    num_to_capture=num_to_capture,
-                    async_save=async_save,
-                    extra_metadata=extra_metadata,
-                )
-            )
+            self._take_images(num_collect=num_to_capture)
 
-    def _threaded_take_images(self, num_collect):
+    def _take_images(self, num_collect):
         self.saving_images = True
         filename = self._generate_new_filename()
         captures = []
@@ -168,86 +164,6 @@ class Screen(Device):
         self._last_save_filepath = filename
         self.saving_images = False
         print("save images finished.")
-
-    async def _collect_images(self, num_to_collect):
-        captures = []
-        last_updated_at = self.image_timestamp
-        while len(captures) != num_to_collect:
-            # wait until we have new data,
-            # async sleep so GUIs do not hang
-            if self.image_timestamp == last_updated_at:
-                print("*******")
-                await asyncio.sleep(1)
-            else:
-                capture = self.image
-                last_updated_at = self.image_timestamp
-                captures.append(capture)
-        return captures
-
-    async def _save_images(
-        self,
-        num_to_capture: int = 1,
-        async_save: bool = True,
-        extra_metadata: Optional[Dict[str, Any]] = None,
-    ) -> str:
-        """
-        Collects and saves images from the camera associated with the screen.
-        Images are saved in a single HDF5 file, each Capture being one image.
-        Metadata can be saved as part of the file by setting the metadata flag.
-        The full path to the file is returned but can be retrieved as a memeber too.
-        """
-        filename = self._generate_new_filename()
-        captures = []
-        last_updated_at = self.image_timestamp
-        while len(captures) != num_to_capture:
-            print(f"collecting images: {len(captures)} / {num_to_capture}")
-            capture = self.image
-            # wait until we have new data,
-            # async sleep so GUIs do not hang
-            if self.image_timestamp != last_updated_at:
-                print("NEW IMAGE!")
-                last_updated_at = self.image_timestamp
-                captures.append(capture)
-            else:
-                await asyncio.sleep(0.1)
-        # All images captured, save out to hdf5
-        if async_save:
-            # capture written to file in co-routine
-            # so we can take the next capture
-            await self._async_write_image_to_hdf5(
-                images=captures,
-                filename=filename,
-                extra_metadata=extra_metadata,
-            )
-        else:
-            self._write_image_to_hdf5(
-                images=captures,
-                filename=filename,
-                extra_metadata=extra_metadata,
-            )
-        self._last_save_filepath = filename
-        self.saving_images = False
-        return filename
-
-    async def _async_write_image_to_hdf5(
-        self,
-        images: np.ndarray,
-        filename: str,
-        extra_metadata: Optional[Dict] = None,
-    ):
-        with h5py.File(filename, "a") as f:
-            capture_num = 0
-            for image in images:
-                dset = f.create_dataset(name=str(capture_num), data=image, dtype="f")
-                [dset.attrs.update({key: value}) for key, value in self.metadata]
-                if extra_metadata:
-                    # may need to check for duplicate keys here, don't want to overwrite class-metadata.
-                    [
-                        dset.attrs.update({key: value})
-                        for key, value in extra_metadata.items()
-                    ]
-                capture_num += 1
-        return
 
     def _write_image_to_hdf5(
         self,
