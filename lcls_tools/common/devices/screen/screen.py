@@ -198,6 +198,7 @@ class Screen(Device):
         """
         filename = self._generate_new_filename()
         captures = []
+        last_updated_at = self.image_timestamp
         while len(captures) != num_to_capture:
             print(f"collecting images: {len(captures)} / {num_to_capture}")
             capture = self.image
