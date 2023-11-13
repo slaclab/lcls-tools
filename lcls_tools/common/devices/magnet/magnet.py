@@ -194,6 +194,14 @@ class Magnet(Device):
 class MagnetCollection(BaseModel):
     magnets: Dict[str, SerializeAsAny[Magnet]]
 
+    @field_validator("magnets", mode="before")
+    def validate_magnets(cls, v):
+        for name, magnet in v.items():
+            magnet = dict(magnet)
+            magnet.update({"name": name})
+            v.update({name: magnet})
+        return v
+
     def set_bdes(self, magnet_dict: Dict[str, float]):
         if not magnet_dict:
             return
