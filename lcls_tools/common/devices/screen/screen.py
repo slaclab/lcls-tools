@@ -136,8 +136,7 @@ class Screen(Device):
     ):
         if threaded:
             work = Thread(target=self._take_images, args=[num_to_capture])
-            work.start()
-            work.join()
+            work.run()
         else:
             self._take_images(num_collect=num_to_capture)
 
