@@ -29,19 +29,24 @@ class TestScreen(unittest.TestCase):
         mock_timestamp.side_effect = [
             t0 + timedelta(seconds=i) for i in range(0, num_capture * 10)
         ]
-        self.screen.save_images(num_to_capture=num_capture)
+        self.screen.save_images(num_to_capture=num_capture, threaded=True)
+        while self.screen.saving_images:
+            pass
         self.assertTrue(
             os.path.exists(self.screen.last_save_filepath),
             msg=f"expected file to exist: {self.screen._last_save_filepath}",
         )
         # Open the file we have saved and check the contents
         with h5py.File(self.screen.last_save_filepath, "r") as f:
-            # check we have the correct number of datasets
-            dataset_keys = list(f.keys())
-            self.assertEqual(len(dataset_keys), num_capture)
+            # check we have the correct number of
+            self.assertEqual(len(f), num_capture)
             # check metadata is stored as attributes in HDF5.
             for dataset in f:
                 self.assertSequenceEqual(
                     list(f[dataset].attrs.keys()),
                     list(self.screen.metadata.model_dump().keys()),
+                )
+                # check dataset content for shape
+                self.assertTrue(
+                    np.array_equal(np.zeros(shape=(2000, 2000)), f[dataset])
                 )
