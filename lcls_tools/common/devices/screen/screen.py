@@ -1,4 +1,5 @@
 import asyncio
+import datetime
 import os
 from typing import (
     Any,
@@ -66,7 +67,9 @@ class Screen(Device):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # check if we use :Image:ArrayData or :IMAGE for waveforms.
-        self.use_arraydata = self.controls_information.PVs.arraydata is not None
+        self.use_arraydata = (self.controls_information.PVs.arraydata is not None) and (
+            self.controls_information.PVs.arraydata.connected()
+        )
         self._root_hdf5_location: Optional[str] = os.path.join(
             "/home/matt", "hdf5_test"
         )
@@ -115,28 +118,29 @@ class Screen(Device):
         return self._last_save_filepath
 
     def _generate_new_filename(self, extension: Optional[str] = ".h5") -> str:
-        stamp = self.image_timestamp
+        stamp = datetime.datetime.now()
         filename = str(stamp) + "_tst" + extension
-        return str(os.path.join(self._root_hdf5_location, filename)).replace(":", "_")
+        path = str(os.path.join(self._root_hdf5_location, filename)).replace(":", "_")
+        print("****", path)
+        return path
 
     def save_images(
         self,
         num_to_capture: int = 1,
         async_save: bool = True,
         extra_metadata: Optional[Dict[str, Any]] = None,
-        threaded = True,
+        threaded=True,
     ):
-        if threaded:
-            self._threaded_take_images,(num_to_capture)
-        else:
-            return asyncio.run(
-                self._save_images(
-                    num_to_capture=num_to_capture,
-                    async_save=async_save,
-                    extra_metadata=extra_metadata,
-                )
-            )
-    
+        # if threaded:
+        self._threaded_take_images(num_to_capture)
+        # else:
+        #     return asyncio.run(
+        #         self._save_images(
+        #             num_to_capture=num_to_capture,
+        #             async_save=async_save,
+        #             extra_metadata=extra_metadata,
+        #         )
+        #     )
 
     def _threaded_take_images(self, num_collect):
         self.saving_images = True
@@ -144,24 +148,23 @@ class Screen(Device):
         captures = []
         last_updated_at = self.image_timestamp
         while len(captures) != num_collect:
-            print(f'collecting images: {len(captures)} / {num_collect}')
+            print(f"collecting images: {len(captures)} / {num_collect}")
+            capture = self.image
             # wait until we have new data,
             # async sleep so GUIs do not hang
             if self.image_timestamp != last_updated_at:
-                print('NEW IMAGE!')
-                capture = self.image
+                print("NEW IMAGE!")
                 last_updated_at = self.image_timestamp
                 captures.append(capture)
-        print('collection done, writing out.')
+        print("collection done, writing out.")
         self._write_image_to_hdf5(
-                images=captures,
-                filename=filename,
-                extra_metadata=None,
-            )
+            images=captures,
+            filename=filename,
+            extra_metadata=None,
+        )
         self._last_save_filepath = filename
         self.saving_images = False
-        print('save images finished.')
-
+        print("save images finished.")
 
     async def _collect_images(self, num_to_collect):
         captures = []
@@ -170,14 +173,13 @@ class Screen(Device):
             # wait until we have new data,
             # async sleep so GUIs do not hang
             if self.image_timestamp == last_updated_at:
-                print('*******')
+                print("*******")
                 await asyncio.sleep(1)
             else:
                 capture = self.image
                 last_updated_at = self.image_timestamp
                 captures.append(capture)
         return captures
-
 
     async def _save_images(
         self,
@@ -193,7 +195,6 @@ class Screen(Device):
         """
         filename = self._generate_new_filename()
         captures = await self._collect_images(num_to_capture)
-        
 
         # All images captured, save out to hdf5
         if async_save:
