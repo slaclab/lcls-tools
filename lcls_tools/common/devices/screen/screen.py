@@ -121,6 +121,7 @@ class Screen(Device):
         stamp = datetime.datetime.now()
         filename = str(stamp) + "_tst" + extension
         path = str(os.path.join(self._root_hdf5_location, filename)).replace(":", "_")
+        path = path.strip()
         print("****", path)
         return path
 
