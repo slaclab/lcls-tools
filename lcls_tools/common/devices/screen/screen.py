@@ -131,16 +131,18 @@ class Screen(Device):
         extra_metadata: Optional[Dict[str, Any]] = None,
         threaded=True,
     ):
-        # if threaded:
-        self._threaded_take_images(num_to_capture)
-        # else:
-        #     return asyncio.run(
-        #         self._save_images(
-        #             num_to_capture=num_to_capture,
-        #             async_save=async_save,
-        #             extra_metadata=extra_metadata,
-        #         )
-        #     )
+        if threaded:
+            work = Thread(target=self._threaded_take_images, args=[num_to_capture])
+            work.start()
+            work.join()
+        else:
+            return asyncio.run(
+                self._save_images(
+                    num_to_capture=num_to_capture,
+                    async_save=async_save,
+                    extra_metadata=extra_metadata,
+                )
+            )
 
     def _threaded_take_images(self, num_collect):
         self.saving_images = True
