@@ -1,4 +1,3 @@
-import asyncio
 import datetime
 import os
 from typing import (
@@ -122,8 +121,8 @@ class Screen(Device):
         return self._last_save_filepath
 
     def _generate_new_filename(self, extension: Optional[str] = ".h5") -> str:
-        stamp = datetime.datetime.now().isoformat(sep='_')
-        stamp_str = stamp.replace('.', '_').replace('-', '_').replace(':', '_')
+        stamp = datetime.datetime.now().isoformat()
+        stamp_str = stamp.replace(".", "_").replace("-", "_").replace(":", "_")
         filename = stamp_str + "_" + self.name + extension
         path = str(os.path.join(self._root_hdf5_location, filename))
         return path
@@ -188,10 +187,10 @@ class Screen(Device):
 class ScreenCollection(BaseModel):
     screens: Dict[str, SerializeAsAny[Screen]]
 
-    @field_validator('screens', mode='before')
+    @field_validator("screens", mode="before")
     def validate_screens(cls, v):
         for name, screen in v.items():
             screen = dict(screen)
-            screen.update({'name' : name})
-            v.update({name : screen})
+            screen.update({"name": name})
+            v.update({name: screen})
         return v
