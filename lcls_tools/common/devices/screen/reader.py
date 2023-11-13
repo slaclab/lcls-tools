@@ -32,7 +32,7 @@ def create_screen(
                 if name:
                     screen_data = config_data["screens"][name]
                     # this data is not available from YAML directly in this form, so we add it here.
-                    screen_data.update({"name": name})
+                    screen_data.update({"name" : name})
                     return Screen(**screen_data)
                 else:
                     return ScreenCollection(**config_data)

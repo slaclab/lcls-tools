@@ -123,9 +123,10 @@ class Screen(Device):
 
     def _generate_new_filename(self, extension: Optional[str] = ".h5") -> str:
         stamp = datetime.datetime.now()
-        filename = str(stamp) + "_tst" + extension
-        path = str(os.path.join(self._root_hdf5_location, filename)).replace(":", "_")
-        path = path.replace(' ', '')
+        replacements = {':' : '_', '.' : '_', ' ' : '' }
+        filename = str(stamp) + "_" + self.name + extension
+        path = str(os.path.join(self._root_hdf5_location, filename))
+        path = [path.replace(key, replacement) for key, replacement in replacements.items()][-1]
         return path
 
     def save_images(
@@ -136,7 +137,9 @@ class Screen(Device):
     ):
         if threaded:
             work = Thread(target=self._take_images, args=[num_to_capture])
-            work.run()
+            # normally we join after start, but that blocked the pyqt main thread
+            # so we do not join here. If it breaks, look here first..
+            work.start()
         else:
             self._take_images(num_collect=num_to_capture)
 
@@ -146,15 +149,12 @@ class Screen(Device):
         captures = []
         last_updated_at = self.image_timestamp
         while len(captures) != num_collect:
-            print(f"collecting images: {len(captures)} / {num_collect}")
             capture = self.image
             # wait until we have new data,
             # async sleep so GUIs do not hang
             if self.image_timestamp != last_updated_at:
-                print("NEW IMAGE!")
                 last_updated_at = self.image_timestamp
                 captures.append(capture)
-        print("collection done, writing out.")
         self._write_image_to_hdf5(
             images=captures,
             filename=filename,
@@ -163,6 +163,7 @@ class Screen(Device):
         self._last_save_filepath = filename
         self.saving_images = False
         print("save images finished.")
+        return
 
     def _write_image_to_hdf5(
         self,
@@ -187,3 +188,11 @@ class Screen(Device):
 
 class ScreenCollection(BaseModel):
     screens: Dict[str, SerializeAsAny[Screen]]
+
+    @field_validator('screens', mode='before')
+    def validate_screens(cls, v):
+        for name, screen in v.items():
+            screen = dict(screen)
+            screen.update({'name' : name})
+            v.update({name : screen})
+        return v
