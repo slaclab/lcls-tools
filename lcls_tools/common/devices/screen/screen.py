@@ -122,11 +122,10 @@ class Screen(Device):
         return self._last_save_filepath
 
     def _generate_new_filename(self, extension: Optional[str] = ".h5") -> str:
-        stamp = datetime.datetime.now()
-        replacements = {':' : '_', '.' : '_', ' ' : '' }
-        filename = str(stamp) + "_" + self.name + extension
+        stamp = datetime.datetime.now().isoformat(sep='_')
+        stamp_str = stamp.replace('.', '_').replace('-', '_').replace(':', '_')
+        filename = stamp_str + "_" + self.name + extension
         path = str(os.path.join(self._root_hdf5_location, filename))
-        path = [path.replace(key, replacement) for key, replacement in replacements.items()][-1]
         return path
 
     def save_images(
