@@ -134,29 +134,31 @@ class Screen(Device):
         threaded=True,
     ):
         if threaded:
-            work = Thread(target=self._take_images, args=[num_to_capture])
+            work = Thread(
+                target=self._take_images, args=[num_to_capture, extra_metadata]
+            )
             # normally we join after start, but that blocked the pyqt main thread
             # so we do not join here. If it breaks, look here first..
             work.start()
         else:
             self._take_images(num_collect=num_to_capture)
 
-    def _take_images(self, num_collect):
+    def _take_images(
+        self, num_collect: int = 1, extra_metadata: Optional[Dict[str, Any]] = None
+    ):
         self.saving_images = True
         filename = self._generate_new_filename()
         captures = []
         last_updated_at = self.image_timestamp
         while len(captures) != num_collect:
-            capture = self.image
-            # wait until we have new data,
-            # async sleep so GUIs do not hang
             if self.image_timestamp != last_updated_at:
+                capture = self.image
                 last_updated_at = self.image_timestamp
                 captures.append(capture)
         self._write_image_to_hdf5(
             images=captures,
             filename=filename,
-            extra_metadata=None,
+            extra_metadata=extra_metadata,
         )
         self._last_save_filepath = filename
         self.saving_images = False
@@ -167,17 +169,22 @@ class Screen(Device):
         self,
         images: np.ndarray,
         filename: str,
-        extra_metadata: Optional[Dict] = None,
+        extra_metadata: Optional[Dict[str, Any]] = None,
     ):
         with h5py.File(filename, "a") as f:
             capture_num = 0
             for image in images:
-                dset = f.create_dataset(name=str(capture_num), data=image, dtype="f")
+                # todo, check type-representation of images, are we sure they are unsigned-shorts??
+                dset = f.create_dataset(
+                    name=str(capture_num), data=image, dtype=np.ushort
+                )
                 [dset.attrs.update({key: value}) for key, value in self.metadata]
                 if extra_metadata:
                     # may need to check for duplicate keys here, don't want to overwrite class-metadata.
                     [
                         dset.attrs.update({key: value})
+                        if key not in extra_metadata
+                        else dset.attrs.update({"user_" + key: value})
                         for key, value in extra_metadata.items()
                     ]
                 capture_num += 1
