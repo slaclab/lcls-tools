@@ -1,0 +1,58 @@
+magnets:
+  BYKIK:
+    controls_information:
+      PVs: {}
+      control_name: KICK:LTU1:330
+    metadata:
+      area: LTU
+      beam_path: []
+      sum_l_meters: null
+  XCUM4:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:LTU1:878
+    metadata:
+      area: LTU
+      beam_path: []
+      sum_l_meters: null
+  YCQT22:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LTU1:393
+    metadata:
+      area: LTU
+      beam_path: []
+      sum_l_meters: null
+  YCUM3:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:LTU1:857
+    metadata:
+      area: LTU
+      beam_path: []
+      sum_l_meters: null
+screens:
+  PRXL1:
+    controls_information:
+      PVs: {}
+      control_name: YAGS:LTU1:844
+    metadata:
+      area: LTU
+      beam_path: []
+      sum_l_meters: null
+  PRXL2:
+    controls_information:
+      PVs: {}
+      control_name: YAGS:LTU1:853
+    metadata:
+      area: LTU
+      beam_path: []
+      sum_l_meters: null
+  PRXL3:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:LTU1:858
+    metadata:
+      area: LTU
+      beam_path: []
+      sum_l_meters: null

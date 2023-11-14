@@ -234,10 +234,10 @@ screens:
   OTR11B:
     controls_information:
       PVs:
-        arraydata: PROF:BC1B:470:Image:ArrayData
-        arraysizex_rbv: PROF:BC1B:470:Image:ArraySizeX_RBV
-        arraysizey_rbv: PROF:BC1B:470:Image:ArraySizeY_RBV
-        n_of_bits: PROF:BC1B:470:N_OF_BITS
+        image: PROF:BC1B:470:Image:ArrayData
+        n_bits: PROF:BC1B:470:N_OF_BITS
+        n_col: PROF:BC1B:470:Image:ArraySizeY_RBV
+        n_row: PROF:BC1B:470:Image:ArraySizeX_RBV
         resolution: PROF:BC1B:470:RESOLUTION
       control_name: PROF:BC1B:470
     metadata:

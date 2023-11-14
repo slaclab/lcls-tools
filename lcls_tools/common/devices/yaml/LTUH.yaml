@@ -1775,10 +1775,10 @@ screens:
   YAGPSI:
     controls_information:
       PVs:
-        arraydata: YAGS:LTUH:743:Image:ArrayData
-        arraysizex_rbv: YAGS:LTUH:743:Image:ArraySizeX_RBV
-        arraysizey_rbv: YAGS:LTUH:743:Image:ArraySizeY_RBV
-        n_of_bits: YAGS:LTUH:743:N_OF_BITS
+        image: YAGS:LTUH:743:Image:ArrayData
+        n_bits: YAGS:LTUH:743:N_OF_BITS
+        n_col: YAGS:LTUH:743:Image:ArraySizeY_RBV
+        n_row: YAGS:LTUH:743:Image:ArraySizeX_RBV
         resolution: YAGS:LTUH:743:RESOLUTION
       control_name: YAGS:LTUH:743
     metadata:

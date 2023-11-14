@@ -11,7 +11,7 @@ magnets:
     metadata:
       area: UNDH
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   BCXCB22:
     controls_information:
       PVs: {}
@@ -19,7 +19,7 @@ magnets:
     metadata:
       area: UNDH
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   BCXCB23:
     controls_information:
       PVs:
@@ -32,7 +32,7 @@ magnets:
     metadata:
       area: UNDH
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   BCXCB24:
     controls_information:
       PVs:
@@ -45,7 +45,7 @@ magnets:
     metadata:
       area: UNDH
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   BCXCBX11:
     controls_information:
       PVs:
@@ -899,7 +899,7 @@ magnets:
     metadata:
       area: UNDH
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   XCHX13:
     controls_information:
       PVs:
@@ -1537,7 +1537,7 @@ magnets:
     metadata:
       area: UNDH
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   YCHX13:
     controls_information:
       PVs:
@@ -2202,7 +2202,7 @@ screens:
     metadata:
       area: UNDH
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   YAGCBX42:
     controls_information:
       PVs: {}

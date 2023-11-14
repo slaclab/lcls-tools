@@ -61,7 +61,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      sum_l_meters: 0.0
+      sum_l_meters: null
   SQ01:
     controls_information:
       PVs:
@@ -172,9 +172,9 @@ screens:
     controls_information:
       PVs:
         image: YAGS:IN20:211:IMAGE
-        n_of_bits: YAGS:IN20:211:N_OF_BITS
-        n_of_col: YAGS:IN20:211:N_OF_COL
-        n_of_row: YAGS:IN20:211:N_OF_ROW
+        n_bits: YAGS:IN20:211:N_OF_BITS
+        n_col: YAGS:IN20:211:N_OF_COL
+        n_row: YAGS:IN20:211:N_OF_ROW
         resolution: YAGS:IN20:211:RESOLUTION
       control_name: YAGS:IN20:211
     metadata:

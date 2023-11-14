@@ -619,10 +619,10 @@ screens:
   OTR0H04:
     controls_information:
       PVs:
-        arraydata: OTRS:HTR:330:Image:ArrayData
-        arraysizex_rbv: OTRS:HTR:330:Image:ArraySizeX_RBV
-        arraysizey_rbv: OTRS:HTR:330:Image:ArraySizeY_RBV
-        n_of_bits: OTRS:HTR:330:N_OF_BITS
+        image: OTRS:HTR:330:Image:ArrayData
+        n_bits: OTRS:HTR:330:N_OF_BITS
+        n_col: OTRS:HTR:330:Image:ArraySizeY_RBV
+        n_row: OTRS:HTR:330:Image:ArraySizeX_RBV
         resolution: OTRS:HTR:330:RESOLUTION
       control_name: OTRS:HTR:330
     metadata:
@@ -641,10 +641,10 @@ screens:
   YAGH1:
     controls_information:
       PVs:
-        arraydata: YAGS:HTR:625:Image:ArrayData
-        arraysizex_rbv: YAGS:HTR:625:Image:ArraySizeX_RBV
-        arraysizey_rbv: YAGS:HTR:625:Image:ArraySizeY_RBV
-        n_of_bits: YAGS:HTR:625:N_OF_BITS
+        image: YAGS:HTR:625:Image:ArrayData
+        n_bits: YAGS:HTR:625:N_OF_BITS
+        n_col: YAGS:HTR:625:Image:ArraySizeY_RBV
+        n_row: YAGS:HTR:625:Image:ArraySizeX_RBV
         resolution: YAGS:HTR:625:RESOLUTION
       control_name: YAGS:HTR:625
     metadata:
@@ -663,10 +663,10 @@ screens:
   YAGH2:
     controls_information:
       PVs:
-        arraydata: YAGS:HTR:675:Image:ArrayData
-        arraysizex_rbv: YAGS:HTR:675:Image:ArraySizeX_RBV
-        arraysizey_rbv: YAGS:HTR:675:Image:ArraySizeY_RBV
-        n_of_bits: YAGS:HTR:675:N_OF_BITS
+        image: YAGS:HTR:675:Image:ArrayData
+        n_bits: YAGS:HTR:675:N_OF_BITS
+        n_col: YAGS:HTR:675:Image:ArraySizeY_RBV
+        n_row: YAGS:HTR:675:Image:ArraySizeX_RBV
         resolution: YAGS:HTR:675:RESOLUTION
       control_name: YAGS:HTR:675
     metadata:

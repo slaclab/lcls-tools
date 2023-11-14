@@ -507,10 +507,10 @@ screens:
   OTRC006:
     controls_information:
       PVs:
-        arraydata: PROF:COL0:535:Image:ArrayData
-        arraysizex_rbv: PROF:COL0:535:Image:ArraySizeX_RBV
-        arraysizey_rbv: PROF:COL0:535:Image:ArraySizeY_RBV
-        n_of_bits: PROF:COL0:535:N_OF_BITS
+        image: PROF:COL0:535:Image:ArrayData
+        n_bits: PROF:COL0:535:N_OF_BITS
+        n_col: PROF:COL0:535:Image:ArraySizeY_RBV
+        n_row: PROF:COL0:535:Image:ArraySizeX_RBV
         resolution: PROF:COL0:535:RESOLUTION
       control_name: PROF:COL0:535
     metadata:

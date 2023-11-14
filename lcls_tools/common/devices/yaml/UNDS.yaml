@@ -1638,9 +1638,9 @@ screens:
     controls_information:
       PVs:
         image: YAGS:UNDS:3575:IMAGE
-        n_of_bits: YAGS:UNDS:3575:N_OF_BITS
-        n_of_col: YAGS:UNDS:3575:N_OF_COL
-        n_of_row: YAGS:UNDS:3575:N_OF_ROW
+        n_bits: YAGS:UNDS:3575:N_OF_BITS
+        n_col: YAGS:UNDS:3575:N_OF_COL
+        n_row: YAGS:UNDS:3575:N_OF_ROW
         resolution: YAGS:UNDS:3575:RESOLUTION
       control_name: YAGS:UNDS:3575
     metadata:
@@ -1657,9 +1657,9 @@ screens:
     controls_information:
       PVs:
         image: YAGS:UNDS:3795:IMAGE
-        n_of_bits: YAGS:UNDS:3795:N_OF_BITS
-        n_of_col: YAGS:UNDS:3795:N_OF_COL
-        n_of_row: YAGS:UNDS:3795:N_OF_ROW
+        n_bits: YAGS:UNDS:3795:N_OF_BITS
+        n_col: YAGS:UNDS:3795:N_OF_COL
+        n_row: YAGS:UNDS:3795:N_OF_ROW
         resolution: YAGS:UNDS:3795:RESOLUTION
       control_name: YAGS:UNDS:3795
     metadata:

@@ -25,7 +25,7 @@ magnets:
     metadata:
       area: SPEC
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   QS01:
     controls_information:
       PVs:
@@ -124,9 +124,9 @@ screens:
     controls_information:
       PVs:
         image: YAGS:IN20:921:IMAGE
-        n_of_bits: YAGS:IN20:921:N_OF_BITS
-        n_of_col: YAGS:IN20:921:N_OF_COL
-        n_of_row: YAGS:IN20:921:N_OF_ROW
+        n_bits: YAGS:IN20:921:N_OF_BITS
+        n_col: YAGS:IN20:921:N_OF_COL
+        n_row: YAGS:IN20:921:N_OF_ROW
         resolution: YAGS:IN20:921:RESOLUTION
       control_name: YAGS:IN20:921
     metadata:
@@ -138,9 +138,9 @@ screens:
     controls_information:
       PVs:
         image: YAGS:IN20:995:IMAGE
-        n_of_bits: YAGS:IN20:995:N_OF_BITS
-        n_of_col: YAGS:IN20:995:N_OF_COL
-        n_of_row: YAGS:IN20:995:N_OF_ROW
+        n_bits: YAGS:IN20:995:N_OF_BITS
+        n_col: YAGS:IN20:995:N_OF_COL
+        n_row: YAGS:IN20:995:N_OF_ROW
         resolution: YAGS:IN20:995:RESOLUTION
       control_name: YAGS:IN20:995
     metadata:
