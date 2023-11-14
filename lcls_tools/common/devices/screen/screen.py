@@ -66,9 +66,10 @@ class Screen(Device):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # check if we use :Image:ArrayData or :IMAGE for waveforms.
-        self.use_arraydata = (self.controls_information.PVs.arraydata is not None) and (
-            self.controls_information.PVs.arraydata.connected()
-        )
+        if self.controls_information.PVs.arraydata is not None:
+            if self.controls_information.PVs.arraydata.connected:
+                self.use_arraydata = True
+
         self._root_hdf5_location: Optional[str] = os.path.join(
             "/home/matt", "hdf5_test"
         )
