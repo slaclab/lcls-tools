@@ -8,19 +8,20 @@ from typing import (
 )
 from threading import Thread
 
-from pydantic import (
-    BaseModel,
-    SerializeAsAny,
-    field_validator,
-)
 from lcls_tools.common.devices.device import (
     Device,
     ControlInformation,
     Metadata,
     PVSet,
 )
+
 from epics import PV
 import h5py
+from pydantic import (
+    BaseModel,
+    SerializeAsAny,
+    field_validator,
+)
 import numpy as np
 
 
@@ -31,14 +32,10 @@ class ScreenPVSet(PVSet):
     use the ones that are set to be PV-typed after
     initialisation.
     """
-
-    arraydata: Optional[Union[PV, None]] = None
-    arraysizex_rbv: Optional[Union[PV, None]] = None
-    arraysizey_rbv: Optional[Union[PV, None]] = None
     image: Optional[Union[PV, None]] = None
-    n_of_col: Optional[Union[PV, None]] = None
-    n_of_row: Optional[Union[PV, None]] = None
-    n_of_bits: PV
+    n_col: Optional[Union[PV, None]] = None
+    n_row: Optional[Union[PV, None]] = None
+    n_bits: PV
     resolution: PV
 
     def __init__(self, **kwargs):
@@ -60,16 +57,10 @@ class ScreenControlInformation(ControlInformation):
 class Screen(Device):
     controls_information: SerializeAsAny[ScreenControlInformation]
     metadata: SerializeAsAny[Metadata]
-    use_arraydata: Optional[bool] = False
     saving_images: Optional[bool] = False
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # check if we use :Image:ArrayData or :IMAGE for waveforms.
-        if self.controls_information.PVs.arraydata is not None:
-            if self.controls_information.PVs.arraydata.connected:
-                self.use_arraydata = True
-
         self._root_hdf5_location: Optional[str] = os.path.join(
             "/home/matt", "hdf5_test"
         )
@@ -78,40 +69,26 @@ class Screen(Device):
 
     @property
     def image(self):
-        if self.use_arraydata:
-            return self.controls_information.PVs.arraydata.get(as_numpy=True).reshape(
-                self.n_rows, self.n_columns
-            )
-        else:
-            return self.controls_information.PVs.image.get(as_numpy=True).reshape(
-                self.n_rows, self.n_columns
-            )
+        return self.controls_information.PVs.image.get(as_numpy=True).reshape(
+            self.n_rows, self.n_columns
+        )
 
     @property
     def image_timestamp(self):
         """get last timestamp for last PV activity"""
-        if self.use_arraydata:
-            return self.controls_information.PVs.arraydata.timestamp
-        else:
-            return self.controls_information.PVs.image.timestamp
+        return self.controls_information.PVs.image.timestamp
 
     @property
     def n_columns(self):
-        if self.use_arraydata:
-            return self.controls_information.PVs.arraysizey_rbv.get()
-        else:
-            return self.controls_information.PVs.n_of_col.get()
+        return self.controls_information.PVs.n_col.get()
 
     @property
     def n_rows(self):
-        if self.use_arraydata:
-            return self.controls_information.PVs.arraysizex_rbv.get()
-        else:
-            return self.controls_information.PVs.n_of_row.get()
+        return self.controls_information.PVs.n_row.get()
 
     @property
     def n_bits(self):
-        return self.controls_information.PVs.n_of_bits.get()
+        return self.controls_information.PVs.n_bits.get()
 
     @property
     def resolution(self):

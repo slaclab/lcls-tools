@@ -88,11 +88,10 @@ class YAMLGenerator:
                     item.strip() for item in element["Beampath"].split(",") if item
                 ],
                 "area": element["Area"],
-                "sum_l_meters": float(
-                    np.format_float_positional(sum_l_meters, precision=3)
+                "sum_l_meters": float(np.format_float_positional(sum_l_meters, precision=3))
                     if sum_l_meters
                     else None
-                ),
+                ,
             },
         }
 
@@ -151,7 +150,7 @@ class YAMLGenerator:
             ]
         # Must have passed an area that does not exist or we don't have that device in this area!
         if len(device_elements) < 1:
-            print(f"No devices found in area {area}")
+            print(f"No devices of types {required_types} found in area {area}")
             return
         # Fill in the dict that will become the yaml file
         for device in device_elements:
@@ -200,7 +199,7 @@ class YAMLGenerator:
             "Image:ArraySizeY_RBV": "n_col",
             "N_OF_COL": "n_col",
             "N_OF_ROW": "n_row",
-            "N_OF_BITS": None,
+            "N_OF_BITS": "n_bits",
         }
         return self.extract_devices(
             area=area,
