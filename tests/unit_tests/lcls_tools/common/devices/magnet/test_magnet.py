@@ -246,14 +246,18 @@ class MagnetCollectionTest(TestCase):
     def test_magnet_collection_creation(self):
         self.assertIsInstance(self.magnet_collection, MagnetCollection)
 
-
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled", new_callable=Mock,
+        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled",
+        new_callable=Mock,
     )
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.Magnet.bdes", new_callable=PropertyMock,
+        "lcls_tools.common.devices.magnet.magnet.Magnet.bdes",
+        new_callable=PropertyMock,
     )
-    @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock,)
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.Magnet.trim",
+        new_callable=Mock,
+    )
     def test_set_bdes_with_no_args(self, mock_trim, mock_bdes, mock_bact_settle):
         with self.assertRaises(TypeError):
             self.magnet_collection.set_bdes()
@@ -262,9 +266,9 @@ class MagnetCollectionTest(TestCase):
         mock_trim.assert_not_called()
         mock_bact_settle.assert_not_called()
 
-
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled", new_callable=Mock,
+        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled",
+        new_callable=Mock,
     )
     @patch("epics.PV.put", new_callable=Mock)
     @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock)
@@ -278,13 +282,15 @@ class MagnetCollectionTest(TestCase):
         mock_trim.assert_called_once()
         mock_bact_settled.assert_called_once_with()
 
-
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled", new_callable=Mock,
+        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled",
+        new_callable=Mock,
     )
     @patch("epics.PV.put", new_callable=Mock)
     @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock)
-    def test_set_bdes_with_bad_magnet_name(self, mock_trim, mock_bdes_put, mock_bact_settled):
+    def test_set_bdes_with_bad_magnet_name(
+        self, mock_trim, mock_bdes_put, mock_bact_settled
+    ):
         bdes_settings = {
             "BAD-MAG": 0.3,
         }
@@ -293,10 +299,9 @@ class MagnetCollectionTest(TestCase):
         mock_trim.assert_not_called()
         mock_bact_settled.assert_not_called()
 
-
-
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled", new_callable=Mock,
+        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled",
+        new_callable=Mock,
     )
     @patch("epics.PV.put", new_callable=Mock)
     @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock)
@@ -318,9 +323,9 @@ class MagnetCollectionTest(TestCase):
         self.assertEqual(mock_trim.call_count, 3)
         self.assertEqual(mock_bact_settle.call_count, 3)
 
-
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled", new_callable=Mock,
+        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled",
+        new_callable=Mock,
     )
     @patch("epics.PV.put", new_callable=Mock)
     @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock)
