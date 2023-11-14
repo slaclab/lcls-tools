@@ -5,6 +5,8 @@ from unittest import TestCase
 from unittest.mock import Mock, patch, PropertyMock
 import inspect
 
+from matplotlib.widgets import ToolLineHandles
+
 # Local imports
 from lcls_tools.common.devices.magnet.reader import create_magnet
 from lcls_tools.common.devices.magnet.magnet import MagnetCollection
@@ -208,6 +210,33 @@ class MagnetTest(TestCase):
             else:
                 pv_put_mock.assert_called_once_with(self.magnet.ctrl_options[option])
             pv_put_mock.reset_mock()
+
+
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.Magnet.bdes",
+        new_callable=PropertyMock,
+    )
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.Magnet.bact",
+        new_callable=PropertyMock,
+    )
+    def test_bact_is_settled(self, mock_bact, mock_bdes):
+        mock_bact.return_value = 0.001
+        mock_bdes.return_value = 0.0009
+        self.assertTrue(self.magnet.is_bact_settled(b_tolerance=0.0002))
+
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.Magnet.bdes",
+        new_callable=PropertyMock,
+    )
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.Magnet.bact",
+        new_callable=PropertyMock,
+    )
+    def test_bact_is_not_settled(self, mock_bact, mock_bdes):
+        mock_bact.return_value = 0.001
+        mock_bdes.return_value = 0.01
+        self.assertFalse(self.magnet.is_bact_settled(b_tolerance=0.001))
 
 
 class MagnetCollectionTest(TestCase):

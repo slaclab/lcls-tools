@@ -144,6 +144,9 @@ class Magnet(Device):
     def bcon(self) -> float:
         """Get the configuration strength of magnet"""
         return self.controls_information.PVs.bcon.get()
+    
+    def is_bact_settled(self, b_tolerance : Optional[float] = 0.0) -> bool:
+        return abs(self.bdes) - abs(self.bact) < b_tolerance
 
     @check_state
     def trim(self) -> None:
@@ -210,7 +213,8 @@ class MagnetCollection(BaseModel):
             try:
                 self.magnets[magnet].bdes = bval
                 self.magnets[magnet].trim()
-                # TODO: settle time, and check bact is equal to bdes
+                while not self.magnets[magnet].is_bact_settled():
+                    continue
             except KeyError:
                 print(
                     "You tried to set a magnet that does not exist.",
