@@ -135,13 +135,20 @@ class Screen(Device):
     ):
         if threaded:
             work = Thread(
-                target=self._take_images, args=[num_to_capture, extra_metadata]
+                target=self._take_images,
+                args=[
+                    num_to_capture,
+                    extra_metadata,
+                ],
             )
             # normally we join after start, but that blocked the pyqt main thread
             # so we do not join here. If it breaks, look here first..
             work.start()
         else:
-            self._take_images(num_collect=num_to_capture)
+            self._take_images(
+                num_collect=num_to_capture,
+                extra_metadata=extra_metadata,
+            )
 
     def _take_images(
         self, num_collect: int = 1, extra_metadata: Optional[Dict[str, Any]] = None
@@ -180,13 +187,16 @@ class Screen(Device):
                 )
                 [dset.attrs.update({key: value}) for key, value in self.metadata]
                 if extra_metadata:
-                    # may need to check for duplicate keys here, don't want to overwrite class-metadata.
+                    # dset.attrs acts as a dictionary here
+                    # we update with original key if it isn't in our normal screen metadata
+                    # otherwise, prepend user_ to the key to retain all information.
                     [
                         dset.attrs.update({key: value})
-                        if key not in extra_metadata
+                        if key not in self.metadata
                         else dset.attrs.update({"user_" + key: value})
                         for key, value in extra_metadata.items()
                     ]
+
                 capture_num += 1
         return
 
