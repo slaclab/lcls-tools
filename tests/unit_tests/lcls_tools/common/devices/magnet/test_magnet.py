@@ -211,7 +211,6 @@ class MagnetTest(TestCase):
                 pv_put_mock.assert_called_once_with(self.magnet.ctrl_options[option])
             pv_put_mock.reset_mock()
 
-
     @patch(
         "lcls_tools.common.devices.magnet.magnet.Magnet.bdes",
         new_callable=PropertyMock,
@@ -247,42 +246,61 @@ class MagnetCollectionTest(TestCase):
     def test_magnet_collection_creation(self):
         self.assertIsInstance(self.magnet_collection, MagnetCollection)
 
+
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.Magnet.bdes", new_callable=PropertyMock
+        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled", new_callable=Mock,
     )
-    @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock)
-    def test_set_bdes_with_no_args(self, mock_trim, mock_bdes):
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.Magnet.bdes", new_callable=PropertyMock,
+    )
+    @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock,)
+    def test_set_bdes_with_no_args(self, mock_trim, mock_bdes, mock_bact_settle):
         with self.assertRaises(TypeError):
             self.magnet_collection.set_bdes()
         self.magnet_collection.set_bdes(magnet_dict={})
         mock_bdes.assert_not_called()
         mock_trim.assert_not_called()
+        mock_bact_settle.assert_not_called()
 
+
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled", new_callable=Mock,
+    )
     @patch("epics.PV.put", new_callable=Mock)
     @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock)
-    def test_set_bdes_with_args(self, mock_trim, mock_bdes_put):
+    def test_set_bdes_with_args(self, mock_trim, mock_bdes_put, mock_bact_settled):
         bdes_settings = {
             "SOL1B": 0.1,
         }
+        mock_bact_settled.return_value = True
         self.magnet_collection.set_bdes(magnet_dict=bdes_settings)
         mock_bdes_put.assert_called_once_with(value=0.1)
         mock_trim.assert_called_once()
+        mock_bact_settled.assert_called_once_with()
 
+
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled", new_callable=Mock,
+    )
     @patch("epics.PV.put", new_callable=Mock)
     @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock)
-    def test_set_bdes_with_bad_magnet_name(self, mock_trim, mock_bdes_put):
+    def test_set_bdes_with_bad_magnet_name(self, mock_trim, mock_bdes_put, mock_bact_settled):
         bdes_settings = {
             "BAD-MAG": 0.3,
         }
         self.magnet_collection.set_bdes(magnet_dict=bdes_settings)
         mock_bdes_put.assert_not_called()
         mock_trim.assert_not_called()
+        mock_bact_settled.assert_not_called()
+
+
 
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.MagnetCollection.set_bdes",
-        new_callable=Mock,
+        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled", new_callable=Mock,
     )
-    def test_scan_with_no_callable(self, mock_set_bdes):
+    @patch("epics.PV.put", new_callable=Mock)
+    @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock)
+    def test_scan_with_no_callable(self, mock_trim, mock_put, mock_bact_settle):
         settings = [
             {
                 "SOL1B": 0.1,
@@ -294,14 +312,19 @@ class MagnetCollectionTest(TestCase):
                 "SOL1B": 0.2,
             },
         ]
+        mock_bact_settle.return_value = True
         self.magnet_collection.scan(scan_settings=settings)
-        self.assertEqual(mock_set_bdes.call_count, 3)
+        self.assertEqual(mock_put.call_count, 3)
+        self.assertEqual(mock_trim.call_count, 3)
+        self.assertEqual(mock_bact_settle.call_count, 3)
+
 
     @patch(
-        "lcls_tools.common.devices.magnet.magnet.MagnetCollection.set_bdes",
-        new_callable=Mock,
+        "lcls_tools.common.devices.magnet.magnet.Magnet.is_bact_settled", new_callable=Mock,
     )
-    def test_scan_with_callable(self, mock_set_bdes):
+    @patch("epics.PV.put", new_callable=Mock)
+    @patch("lcls_tools.common.devices.magnet.magnet.Magnet.trim", new_callable=Mock)
+    def test_scan_with_callable(self, mock_trim, mock_put, mock_bact_settle):
         mock_daq_function = Mock()
         settings = [
             {
@@ -314,6 +337,9 @@ class MagnetCollectionTest(TestCase):
                 "SOL1B": 0.2,
             },
         ]
+        mock_bact_settle.return_value = True
         self.magnet_collection.scan(scan_settings=settings, function=mock_daq_function)
-        self.assertEqual(mock_set_bdes.call_count, 3)
+        self.assertEqual(mock_put.call_count, 3)
+        self.assertEqual(mock_trim.call_count, 3)
+        self.assertEqual(mock_bact_settle.call_count, 3)
         self.assertEqual(mock_daq_function.call_count, 3)

@@ -144,8 +144,8 @@ class Magnet(Device):
     def bcon(self) -> float:
         """Get the configuration strength of magnet"""
         return self.controls_information.PVs.bcon.get()
-    
-    def is_bact_settled(self, b_tolerance : Optional[float] = 0.0) -> bool:
+
+    def is_bact_settled(self, b_tolerance: Optional[float] = 0.0) -> bool:
         return abs(self.bdes) - abs(self.bact) < b_tolerance
 
     @check_state
