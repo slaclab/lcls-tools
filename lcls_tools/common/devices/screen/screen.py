@@ -61,9 +61,7 @@ class Screen(Device):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._root_hdf5_location: Optional[str] = os.path.join(
-            "/home/matt", "hdf5_test"
-        )
+        self._root_hdf5_location: Optional[str] = "."
         self._last_save_filepath: Optional[str] = ""
         self.saving_images = False
 
@@ -77,6 +75,18 @@ class Screen(Device):
     def image_timestamp(self):
         """get last timestamp for last PV activity"""
         return self.controls_information.PVs.image.timestamp
+
+    @property
+    def hdf_save_location(self):
+        return self._root_hdf5_location
+
+    @hdf_save_location.setter
+    def hdf_save_location(self, path: str):
+        if not os.path.isdir(path):
+            raise AttributeError(
+                f"Could not set {self.name} HDF5 save location. Please provide an existing directory."
+            )
+        self._root_hdf5_location = path
 
     @property
     def n_columns(self):
@@ -189,3 +199,11 @@ class ScreenCollection(BaseModel):
             screen.update({"name": name})
             v.update({name: screen})
         return v
+
+    def set_hdf_save_location(self, location : str):
+        if not os.path.isdir(location):
+            raise AttributeError(
+                f"Could not set {location} HDF5 save location. Please provide an existing directory."
+            )
+        for _, screen in self.screens.items():
+            screen.hdf_save_location = location
