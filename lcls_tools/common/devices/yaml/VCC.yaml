@@ -3,9 +3,9 @@ screens:
     controls_information:
       PVs:
         image: CAMR:IN20:186:IMAGE
-        n_of_bits: CAMR:IN20:186:N_OF_BITS
-        n_of_col: CAMR:IN20:186:N_OF_COL
-        n_of_row: CAMR:IN20:186:N_OF_ROW
+        n_bits: CAMR:IN20:186:N_OF_BITS
+        n_col: CAMR:IN20:186:N_OF_COL
+        n_row: CAMR:IN20:186:N_OF_ROW
         resolution: CAMR:IN20:186:RESOLUTION
       control_name: CAMR:IN20:186
     metadata:
@@ -18,10 +18,10 @@ screens:
   VCCB:
     controls_information:
       PVs:
-        arraydata: CAMR:LGUN:950:Image:ArrayData
-        arraysizex_rbv: CAMR:LGUN:950:Image:ArraySizeX_RBV
-        arraysizey_rbv: CAMR:LGUN:950:Image:ArraySizeY_RBV
-        n_of_bits: CAMR:LGUN:950:N_OF_BITS
+        image: CAMR:LGUN:950:Image:ArrayData
+        n_col: CAMR:LGUN:950:Image:ArraySizeX_RBV
+        n_row: CAMR:LGUN:950:Image:ArraySizeY_RBV
+        n_bits: CAMR:LGUN:950:N_OF_BITS
         resolution: CAMR:LGUN:95:RESOLUTION
       control_name: CAMR:LGUN:950
     metadata:
