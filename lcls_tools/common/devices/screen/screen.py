@@ -200,7 +200,7 @@ class ScreenCollection(BaseModel):
             v.update({name: screen})
         return v
 
-    def set_hdf_save_location(self, location : str):
+    def set_hdf_save_location(self, location: str):
         if not os.path.isdir(location):
             raise AttributeError(
                 f"Could not set {location} HDF5 save location. Please provide an existing directory."
