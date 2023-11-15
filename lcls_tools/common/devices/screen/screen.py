@@ -139,6 +139,7 @@ class Screen(Device):
         num_to_capture: int = 1,
         extra_metadata: Optional[Dict[str, Any]] = None,
         threaded=True,
+        timeout_in_seconds: int = 10,
     ):
         """
         Collect and saves images to HDF5.
@@ -154,6 +155,7 @@ class Screen(Device):
                 args=[
                     num_to_capture,
                     extra_metadata,
+                    timeout_in_seconds,
                 ],
             )
             # normally we join after start, but that blocked the pyqt main thread
@@ -163,6 +165,7 @@ class Screen(Device):
             self._take_images(
                 num_collect=num_to_capture,
                 extra_metadata=extra_metadata,
+                timeout=timeout_in_seconds,
             )
 
     def _take_images(
