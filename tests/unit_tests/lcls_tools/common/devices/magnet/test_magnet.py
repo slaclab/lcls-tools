@@ -5,8 +5,6 @@ from unittest import TestCase
 from unittest.mock import Mock, patch, PropertyMock
 import inspect
 
-from matplotlib.widgets import ToolLineHandles
-
 # Local imports
 from lcls_tools.common.devices.magnet.reader import create_magnet
 from lcls_tools.common.devices.magnet.magnet import MagnetCollection

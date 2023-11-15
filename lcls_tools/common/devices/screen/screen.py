@@ -32,9 +32,10 @@ class ScreenPVSet(PVSet):
     use the ones that are set to be PV-typed after
     initialisation.
     """
-    image: Optional[Union[PV, None]] = None
-    n_col: Optional[Union[PV, None]] = None
-    n_row: Optional[Union[PV, None]] = None
+
+    image: PV
+    n_col: PV
+    n_row: PV
     n_bits: PV
     resolution: PV
 
