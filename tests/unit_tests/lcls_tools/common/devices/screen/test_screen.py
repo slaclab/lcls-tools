@@ -32,7 +32,7 @@ class TestScreen(unittest.TestCase):
         ]
         for is_threaded in [True, False]:
             self.screen.save_images(num_to_capture=num_capture, threaded=is_threaded)
-            while self.screen.saving_images:
+            while self.screen.is_saving_images:
                 time.sleep(1)
             self.assertTrue(
                 os.path.exists(self.screen.last_save_filepath),
@@ -40,7 +40,7 @@ class TestScreen(unittest.TestCase):
             )
             # Open the file we have saved and check the contents
             with h5py.File(self.screen.last_save_filepath, "r") as f:
-                # check we have the correct number of
+                # check we have the correct number of images
                 self.assertEqual(len(f), num_capture)
                 # check metadata is stored as attributes in HDF5.
                 for dataset in f:
@@ -81,7 +81,7 @@ class TestScreen(unittest.TestCase):
                 threaded=is_threaded,
                 extra_metadata=user_metadata_for_scan,
             )
-            while self.screen.saving_images:
+            while self.screen.is_saving_images:
                 time.sleep(1)
             self.assertTrue(
                 os.path.exists(self.screen.last_save_filepath),
@@ -89,7 +89,7 @@ class TestScreen(unittest.TestCase):
             )
             # Open the file we have saved and check the contents
             with h5py.File(self.screen.last_save_filepath, "r") as f:
-                # check we have the correct number of
+                # check we have the correct number of images
                 self.assertEqual(len(f), num_capture)
                 user_metadata_for_scan.update(**self.screen.metadata.model_dump())
                 # check metadata is stored as attributes in HDF5.
