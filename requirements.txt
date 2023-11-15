@@ -6,3 +6,4 @@ pyepics
 pyyaml
 requests
 pydantic
+h5py

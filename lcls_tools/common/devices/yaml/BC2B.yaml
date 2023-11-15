@@ -192,10 +192,10 @@ screens:
   OTR21B:
     controls_information:
       PVs:
-        arraydata: PROF:BC2B:545:Image:ArrayData
-        arraysizex_rbv: PROF:BC2B:545:Image:ArraySizeX_RBV
-        arraysizey_rbv: PROF:BC2B:545:Image:ArraySizeY_RBV
-        n_of_bits: PROF:BC2B:545:N_OF_BITS
+        image: PROF:BC2B:545:Image:ArrayData
+        n_bits: PROF:BC2B:545:N_OF_BITS
+        n_col: PROF:BC2B:545:Image:ArraySizeY_RBV
+        n_row: PROF:BC2B:545:Image:ArraySizeX_RBV
         resolution: PROF:BC2B:545:RESOLUTION
       control_name: PROF:BC2B:545
     metadata:

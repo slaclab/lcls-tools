@@ -495,9 +495,9 @@ screens:
     controls_information:
       PVs:
         image: OTRS:IN20:541:IMAGE
-        n_of_bits: OTRS:IN20:541:N_OF_BITS
-        n_of_col: OTRS:IN20:541:N_OF_COL
-        n_of_row: OTRS:IN20:541:N_OF_ROW
+        n_bits: OTRS:IN20:541:N_OF_BITS
+        n_col: OTRS:IN20:541:N_OF_COL
+        n_row: OTRS:IN20:541:N_OF_ROW
         resolution: OTRS:IN20:541:RESOLUTION
       control_name: OTRS:IN20:541
     metadata:
@@ -515,9 +515,9 @@ screens:
     controls_information:
       PVs:
         image: OTRS:IN20:571:IMAGE
-        n_of_bits: OTRS:IN20:571:N_OF_BITS
-        n_of_col: OTRS:IN20:571:N_OF_COL
-        n_of_row: OTRS:IN20:571:N_OF_ROW
+        n_bits: OTRS:IN20:571:N_OF_BITS
+        n_col: OTRS:IN20:571:N_OF_COL
+        n_row: OTRS:IN20:571:N_OF_ROW
         resolution: OTRS:IN20:571:RESOLUTION
       control_name: OTRS:IN20:571
     metadata:
@@ -535,9 +535,9 @@ screens:
     controls_information:
       PVs:
         image: OTRS:IN20:621:IMAGE
-        n_of_bits: OTRS:IN20:621:N_OF_BITS
-        n_of_col: OTRS:IN20:621:N_OF_COL
-        n_of_row: OTRS:IN20:621:N_OF_ROW
+        n_bits: OTRS:IN20:621:N_OF_BITS
+        n_col: OTRS:IN20:621:N_OF_COL
+        n_row: OTRS:IN20:621:N_OF_ROW
         resolution: OTRS:IN20:621:RESOLUTION
       control_name: OTRS:IN20:621
     metadata:
@@ -555,9 +555,9 @@ screens:
     controls_information:
       PVs:
         image: OTRS:IN20:711:IMAGE
-        n_of_bits: OTRS:IN20:711:N_OF_BITS
-        n_of_col: OTRS:IN20:711:N_OF_COL
-        n_of_row: OTRS:IN20:711:N_OF_ROW
+        n_bits: OTRS:IN20:711:N_OF_BITS
+        n_col: OTRS:IN20:711:N_OF_COL
+        n_row: OTRS:IN20:711:N_OF_ROW
         resolution: OTRS:IN20:711:RESOLUTION
       control_name: OTRS:IN20:711
     metadata:
@@ -574,9 +574,9 @@ screens:
     controls_information:
       PVs:
         image: OTRS:IN20:465:IMAGE
-        n_of_bits: OTRS:IN20:465:N_OF_BITS
-        n_of_col: OTRS:IN20:465:N_OF_COL
-        n_of_row: OTRS:IN20:465:N_OF_ROW
+        n_bits: OTRS:IN20:465:N_OF_BITS
+        n_col: OTRS:IN20:465:N_OF_COL
+        n_row: OTRS:IN20:465:N_OF_ROW
         resolution: OTRS:IN20:465:RESOLUTION
       control_name: OTRS:IN20:465
     metadata:
@@ -594,9 +594,9 @@ screens:
     controls_information:
       PVs:
         image: OTRS:IN20:471:IMAGE
-        n_of_bits: OTRS:IN20:471:N_OF_BITS
-        n_of_col: OTRS:IN20:471:N_OF_COL
-        n_of_row: OTRS:IN20:471:N_OF_ROW
+        n_bits: OTRS:IN20:471:N_OF_BITS
+        n_col: OTRS:IN20:471:N_OF_COL
+        n_row: OTRS:IN20:471:N_OF_ROW
         resolution: OTRS:IN20:471:RESOLUTION
       control_name: OTRS:IN20:471
     metadata:
@@ -617,4 +617,4 @@ screens:
     metadata:
       area: DL1
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null

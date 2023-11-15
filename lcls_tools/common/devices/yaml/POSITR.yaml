@@ -6,7 +6,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202600:
     controls_information:
       PVs: {}
@@ -14,7 +14,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202700:
     controls_information:
       PVs: {}
@@ -22,7 +22,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202710:
     controls_information:
       PVs: {}
@@ -30,7 +30,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202720:
     controls_information:
       PVs: {}
@@ -38,7 +38,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202730:
     controls_information:
       PVs: {}
@@ -46,7 +46,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202770:
     controls_information:
       PVs: {}
@@ -54,7 +54,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202780:
     controls_information:
       PVs: {}
@@ -62,7 +62,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202790:
     controls_information:
       PVs: {}
@@ -70,7 +70,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202800:
     controls_information:
       PVs: {}
@@ -78,7 +78,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202900:
     controls_information:
       PVs: {}
@@ -86,7 +86,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202930:
     controls_information:
       PVs: {}
@@ -94,7 +94,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202940:
     controls_information:
       PVs: {}
@@ -102,7 +102,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202950:
     controls_information:
       PVs: {}
@@ -110,7 +110,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   B202960:
     controls_information:
       PVs: {}
@@ -118,7 +118,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202591T:
     controls_information:
       PVs: {}
@@ -126,7 +126,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202641T:
     controls_information:
       PVs: {}
@@ -134,7 +134,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202651T:
     controls_information:
       PVs: {}
@@ -142,7 +142,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202671T:
     controls_information:
       PVs: {}
@@ -150,7 +150,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202681T:
     controls_information:
       PVs: {}
@@ -158,7 +158,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202691T:
     controls_information:
       PVs: {}
@@ -166,7 +166,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202751T:
     controls_information:
       PVs: {}
@@ -174,7 +174,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202811T:
     controls_information:
       PVs: {}
@@ -182,7 +182,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202821T:
     controls_information:
       PVs: {}
@@ -190,7 +190,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202831T:
     controls_information:
       PVs: {}
@@ -198,7 +198,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202851T:
     controls_information:
       PVs: {}
@@ -206,7 +206,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202861T:
     controls_information:
       PVs: {}
@@ -214,7 +214,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Q202921T:
     controls_information:
       PVs: {}
@@ -222,7 +222,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   X202566T:
     controls_information:
       PVs: {}
@@ -230,7 +230,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   X202626T:
     controls_information:
       PVs: {}
@@ -238,7 +238,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   X202866T:
     controls_information:
       PVs: {}
@@ -246,7 +246,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   X202936T:
     controls_information:
       PVs: {}
@@ -254,7 +254,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Y202647T:
     controls_information:
       PVs: {}
@@ -262,7 +262,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Y202677T:
     controls_information:
       PVs: {}
@@ -270,7 +270,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Y202827T:
     controls_information:
       PVs: {}
@@ -278,7 +278,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   Y202857T:
     controls_information:
       PVs: {}
@@ -286,4 +286,4 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null

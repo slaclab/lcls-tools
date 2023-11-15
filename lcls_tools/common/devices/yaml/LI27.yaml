@@ -6,7 +6,7 @@ magnets:
     metadata:
       area: LI27
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   YC29090:
     controls_information:
       PVs: {}
@@ -14,4 +14,4 @@ magnets:
     metadata:
       area: LI27
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null

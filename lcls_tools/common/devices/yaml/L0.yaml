@@ -224,9 +224,9 @@ screens:
     controls_information:
       PVs:
         image: YAGS:IN20:241:IMAGE
-        n_of_bits: YAGS:IN20:241:N_OF_BITS
-        n_of_col: YAGS:IN20:241:N_OF_COL
-        n_of_row: YAGS:IN20:241:N_OF_ROW
+        n_bits: YAGS:IN20:241:N_OF_BITS
+        n_col: YAGS:IN20:241:N_OF_COL
+        n_row: YAGS:IN20:241:N_OF_ROW
         resolution: YAGS:IN20:241:RESOLUTION
       control_name: YAGS:IN20:241
     metadata:
@@ -244,9 +244,9 @@ screens:
     controls_information:
       PVs:
         image: YAGS:IN20:351:IMAGE
-        n_of_bits: YAGS:IN20:351:N_OF_BITS
-        n_of_col: YAGS:IN20:351:N_OF_COL
-        n_of_row: YAGS:IN20:351:N_OF_ROW
+        n_bits: YAGS:IN20:351:N_OF_BITS
+        n_col: YAGS:IN20:351:N_OF_COL
+        n_row: YAGS:IN20:351:N_OF_ROW
         resolution: YAGS:IN20:351:RESOLUTION
       control_name: YAGS:IN20:351
     metadata:

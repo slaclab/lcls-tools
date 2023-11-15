@@ -1,0 +1,33 @@
+screens:
+  VCC:
+    controls_information:
+      PVs:
+        image: CAMR:IN20:186:IMAGE
+        n_bits: CAMR:IN20:186:N_OF_BITS
+        n_col: CAMR:IN20:186:N_OF_COL
+        n_row: CAMR:IN20:186:N_OF_ROW
+        resolution: CAMR:IN20:186:RESOLUTION
+      control_name: CAMR:IN20:186
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_HXR
+      - CU_SXR
+      sum_l_meters: 0.0
+
+  VCCB:
+    controls_information:
+      PVs:
+        image: CAMR:LGUN:950:Image:ArrayData
+        n_col: CAMR:LGUN:950:Image:ArraySizeX_RBV
+        n_row: CAMR:LGUN:950:Image:ArraySizeY_RBV
+        n_bits: CAMR:LGUN:950:N_OF_BITS
+        resolution: CAMR:LGUN:95:RESOLUTION
+      control_name: CAMR:LGUN:950
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_DIAG0
+      - SC_HXR
+      - SC_SXR
+      sum_l_meters: 0.0

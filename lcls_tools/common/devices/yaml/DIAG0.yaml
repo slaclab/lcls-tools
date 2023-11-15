@@ -381,10 +381,10 @@ screens:
   OTRDG02:
     controls_information:
       PVs:
-        arraydata: OTRS:DIAG0:420:Image:ArrayData
-        arraysizex_rbv: OTRS:DIAG0:420:Image:ArraySizeX_RBV
-        arraysizey_rbv: OTRS:DIAG0:420:Image:ArraySizeY_RBV
-        n_of_bits: OTRS:DIAG0:420:N_OF_BITS
+        image: OTRS:DIAG0:420:Image:ArrayData
+        n_bits: OTRS:DIAG0:420:N_OF_BITS
+        n_col: OTRS:DIAG0:420:Image:ArraySizeY_RBV
+        n_row: OTRS:DIAG0:420:Image:ArraySizeX_RBV
         resolution: OTRS:DIAG0:420:RESOLUTION
       control_name: OTRS:DIAG0:420
     metadata:
@@ -395,10 +395,10 @@ screens:
   OTRDG04:
     controls_information:
       PVs:
-        arraydata: OTRS:DIAG0:525:Image:ArrayData
-        arraysizex_rbv: OTRS:DIAG0:525:Image:ArraySizeX_RBV
-        arraysizey_rbv: OTRS:DIAG0:525:Image:ArraySizeY_RBV
-        n_of_bits: OTRS:DIAG0:525:N_OF_BITS
+        image: OTRS:DIAG0:525:Image:ArrayData
+        n_bits: OTRS:DIAG0:525:N_OF_BITS
+        n_col: OTRS:DIAG0:525:Image:ArraySizeY_RBV
+        n_row: OTRS:DIAG0:525:Image:ArraySizeX_RBV
         resolution: OTRS:DIAG0:525:RESOLUTION
       control_name: OTRS:DIAG0:525
     metadata:
