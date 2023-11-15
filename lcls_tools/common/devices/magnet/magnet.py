@@ -110,7 +110,7 @@ class Magnet(Device):
 
     @property
     def bctrl(self) -> Union[float, int]:
-        return self.controls_information.PVs.bact.get()
+        return self.controls_information.PVs.bctrl.get()
 
     @bctrl.setter
     @check_state
@@ -193,6 +193,16 @@ class Magnet(Device):
         """Reset magnet"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["RESET"])
 
+    def switch_off(self) -> None:
+        self.bdes = 0
+        self.trim()
+
+    def switch_on(self) -> None:
+        raise NotImplementedError
+
+    def degauss(self, trim_to_zero: Optional[bool] = True):
+        raise NotImplementedError
+
 
 class MagnetCollection(BaseModel):
     magnets: Dict[str, SerializeAsAny[Magnet]]
@@ -227,3 +237,51 @@ class MagnetCollection(BaseModel):
         for setting in scan_settings:
             self.set_bdes(setting)
             function() if function else None
+
+    def switch_off(self, magnets: Optional[Union[str, List]]):
+        magnets_to_switch_off = magnets
+        if isinstance(magnets, str):
+            magnets_to_switch_off = [magnets]
+        for magnet in magnets_to_switch_off:
+            try:
+                self.magnets[magnet].switch_off()
+            except KeyError as ke:
+                print(
+                    "Could not find ",
+                    magnet,
+                    " in magnet collection, unable to switch off.",
+                )
+
+    def switch_on(self, magnets: Optional[Union[str, List]]):
+        magnets_to_switch_on = magnets
+        if isinstance(magnets, str):
+            magnets_to_switch_on = [magnets]
+        for magnet in magnets_to_switch_on:
+            try:
+                self.magnets[magnet].switch_on()
+            except KeyError as ke:
+                print(
+                    "Could not find ",
+                    magnet,
+                    " in magnet collection, unable to switch on.",
+                )
+
+    def degauss(
+        self,
+        magnets: Optional[Union[str, List]],
+        trim_to_zero: Optional[bool] = True,
+    ):
+        magnets_to_degauss = magnets
+        if isinstance(magnets, str):
+            magnets_to_degauss = [magnets]
+        for magnet in magnets_to_degauss:
+            try:
+                self.magnets[magnet].degauss(
+                    trim_to_zero=trim_to_zero,
+                )
+            except KeyError as ke:
+                print(
+                    "Could not find ",
+                    magnet,
+                    " in magnet collection, unable to degauss.",
+                )
