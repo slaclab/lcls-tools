@@ -43,8 +43,8 @@ class ScreenPVSet(PVSet):
 
     @field_validator("*", mode="before")
     def validate_pv_fields(cls, v: str):
-        if v:
-            return PV(v)
+        """Convert each PV string from YAML into a PV object"""
+        return PV(v)
 
 
 class ScreenControlInformation(ControlInformation):
@@ -57,16 +57,20 @@ class ScreenControlInformation(ControlInformation):
 class Screen(Device):
     controls_information: SerializeAsAny[ScreenControlInformation]
     metadata: SerializeAsAny[Metadata]
-    saving_images: Optional[bool] = False
+    _saving_images: Optional[bool] = False
+    _root_hdf5_location: Optional[str] = "."
+    _last_save_filepath: Optional[str] = ""
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._root_hdf5_location: Optional[str] = "."
-        self._last_save_filepath: Optional[str] = ""
-        self.saving_images = False
 
     @property
-    def image(self):
+    def image(self) -> np.ndarray:
+        """
+        The current image from EPICS
+        reshaped to the dimensions of
+        the camera associated with this screen
+        """
         return self.controls_information.PVs.image.get(as_numpy=True).reshape(
             self.n_rows, self.n_columns
         )
@@ -77,11 +81,13 @@ class Screen(Device):
         return self.controls_information.PVs.image.timestamp
 
     @property
-    def hdf_save_location(self):
+    def hdf_save_location(self) -> str:
+        """The location where any HDF5 file for images is saved for this screen"""
         return self._root_hdf5_location
 
     @hdf_save_location.setter
     def hdf_save_location(self, path: str):
+        """Set the save location of any HDF5 files for images of this screen"""
         if not os.path.isdir(path):
             raise AttributeError(
                 f"Could not set {self.name} HDF5 save location. Please provide an existing directory."
@@ -89,26 +95,39 @@ class Screen(Device):
         self._root_hdf5_location = path
 
     @property
+    def is_saving_images(self):
+        return self._saving_images
+
+    @property
     def n_columns(self):
+        """The number of columns in the screen image"""
         return self.controls_information.PVs.n_col.get()
 
     @property
     def n_rows(self):
+        """The number of rows in the screen image"""
         return self.controls_information.PVs.n_row.get()
 
     @property
     def n_bits(self):
+        """The number of bits to represent each pixel in the image"""
         return self.controls_information.PVs.n_bits.get()
 
     @property
     def resolution(self):
+        """The conversion factor of pixels to mm"""
         return self.controls_information.PVs.resolution.get()
 
     @property
     def last_save_filepath(self):
+        """Location and filename for the last file saved by this screen (set in save_images())"""
         return self._last_save_filepath
 
     def _generate_new_filename(self, extension: Optional[str] = ".h5") -> str:
+        """
+        Make a new filename for the HDF5 image file
+        Should be of the form: <save-location>/<timestamp>_<screen_name>.h5
+        """
         stamp = datetime.datetime.now().isoformat()
         stamp_str = stamp.replace(".", "_").replace("-", "_").replace(":", "_")
         filename = stamp_str + "_" + self.name + extension
@@ -121,6 +140,14 @@ class Screen(Device):
         extra_metadata: Optional[Dict[str, Any]] = None,
         threaded=True,
     ):
+        """
+        Collect and saves images to HDF5.
+        Option for threading which spawns a child process
+        in a way that dependant GUIs/Code do not hang.
+        The extra_metadata dictionary will be attached
+        to the metadata for each image in HDF5 .
+
+        """
         if threaded:
             work = Thread(
                 target=self._take_images,
@@ -139,24 +166,49 @@ class Screen(Device):
             )
 
     def _take_images(
-        self, num_collect: int = 1, extra_metadata: Optional[Dict[str, Any]] = None
+        self,
+        num_collect: int = 1,
+        extra_metadata: Optional[Dict[str, Any]] = None,
+        timeout: Optional[int] = 20,
     ):
-        self.saving_images = True
+        """
+        Performs the work for collecting images and saving to HDF5 file.
+        This procedure will collect all images and then save them all to file.
+
+        If, for any image, we cannot collect within the time provided as timeout,
+        we will stop collecting and save out what was collected before the failure.
+        """
+        self._saving_images = True
         filename = self._generate_new_filename()
         captures = []
         last_updated_at = self.image_timestamp
+        acquisition_start = datetime.datetime.now()
         while len(captures) != num_collect:
+            if datetime.datetime.now() - acquisition_start > datetime.timedelta(
+                seconds=timeout
+            ):
+                print(
+                    "Could not save capture ",
+                    len(captures) + 1,
+                    " out of ",
+                    num_collect,
+                    " due to timeout. Exiting image collection for ",
+                    self.name,
+                    ". Saving out to HDF5 will happen now.",
+                )
+                break
             if self.image_timestamp != last_updated_at:
                 capture = self.image
                 last_updated_at = self.image_timestamp
                 captures.append(capture)
+                acquisition_start = datetime.datetime.now()
         self._write_image_to_hdf5(
             images=captures,
             filename=filename,
             extra_metadata=extra_metadata,
         )
         self._last_save_filepath = filename
-        self.saving_images = False
+        self._saving_images = False
         print("save images finished.")
         return
 
@@ -166,6 +218,10 @@ class Screen(Device):
         filename: str,
         extra_metadata: Optional[Dict[str, Any]] = None,
     ):
+        """
+        Saves a set of images to the hdf_save_location with the filename provided.
+        Any metadata provided as extra_metadata will be attached to each dataset in the HDF5 file.
+        """
         with h5py.File(filename, "a") as f:
             capture_num = 0
             for image in images:
@@ -194,6 +250,10 @@ class ScreenCollection(BaseModel):
 
     @field_validator("screens", mode="before")
     def validate_screens(cls, v):
+        """
+        Add name field to data that will be passed to Screen class
+        and then use that dictionary to create each Screen.
+        """
         for name, screen in v.items():
             screen = dict(screen)
             screen.update({"name": name})
@@ -201,6 +261,7 @@ class ScreenCollection(BaseModel):
         return v
 
     def set_hdf_save_location(self, location: str):
+        """Sets the HDF5 save location all of the screens in the collection."""
         if not os.path.isdir(location):
             raise AttributeError(
                 f"Could not set {location} HDF5 save location. Please provide an existing directory."
