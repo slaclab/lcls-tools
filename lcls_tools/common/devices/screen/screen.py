@@ -172,7 +172,7 @@ class Screen(Device):
         self,
         num_collect: int = 1,
         extra_metadata: Optional[Dict[str, Any]] = None,
-        timeout: Optional[int] = 20,
+        timeout: Optional[int] = 10,
     ):
         """
         Performs the work for collecting images and saving to HDF5 file.
