@@ -1,0 +1,191 @@
+magnets:
+  CQ01:
+    controls_information:
+      PVs:
+        bact: QUAD:IN20:121:BACT
+        bcon: QUAD:IN20:121:BCON
+        bctrl: QUAD:IN20:121:BCTRL
+        bdes: QUAD:IN20:121:BDES
+        ctrl: QUAD:IN20:121:CTRL
+      control_name: QUAD:IN20:121
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_ALINE
+      - CU_GSPEC
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 0.196
+  SOL1:
+    controls_information:
+      PVs:
+        bact: SOLN:IN20:121:BACT
+        bcon: SOLN:IN20:121:BCON
+        bctrl: SOLN:IN20:121:BCTRL
+        bdes: SOLN:IN20:121:BDES
+        ctrl: SOLN:IN20:121:CTRL
+      control_name: SOLN:IN20:121
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_ALINE
+      - CU_GSPEC
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 0.196
+  SOL1BK:
+    controls_information:
+      PVs:
+        bact: SOLN:IN20:111:BACT
+        bcon: SOLN:IN20:111:BCON
+        bctrl: SOLN:IN20:111:BCTRL
+        bdes: SOLN:IN20:111:BDES
+        ctrl: SOLN:IN20:111:CTRL
+      control_name: SOLN:IN20:111
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_ALINE
+      - CU_GSPEC
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: null
+  SQ01:
+    controls_information:
+      PVs:
+        bact: QUAD:IN20:122:BACT
+        bcon: QUAD:IN20:122:BCON
+        bctrl: QUAD:IN20:122:BCTRL
+        bdes: QUAD:IN20:122:BDES
+        ctrl: QUAD:IN20:122:CTRL
+      control_name: QUAD:IN20:122
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_ALINE
+      - CU_GSPEC
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 0.196
+  XC00:
+    controls_information:
+      PVs:
+        bact: XCOR:IN20:121:BACT
+        bcon: XCOR:IN20:121:BCON
+        bctrl: XCOR:IN20:121:BCTRL
+        bdes: XCOR:IN20:121:BDES
+        ctrl: XCOR:IN20:121:CTRL
+      control_name: XCOR:IN20:121
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_ALINE
+      - CU_GSPEC
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 0.196
+  XC01:
+    controls_information:
+      PVs:
+        bact: XCOR:IN20:221:BACT
+        bcon: XCOR:IN20:221:BCON
+        bctrl: XCOR:IN20:221:BCTRL
+        bdes: XCOR:IN20:221:BDES
+        ctrl: XCOR:IN20:221:CTRL
+      control_name: XCOR:IN20:221
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_ALINE
+      - CU_GSPEC
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 0.834
+  YC00:
+    controls_information:
+      PVs:
+        bact: YCOR:IN20:122:BACT
+        bcon: YCOR:IN20:122:BCON
+        bctrl: YCOR:IN20:122:BCTRL
+        bdes: YCOR:IN20:122:BDES
+        ctrl: YCOR:IN20:122:CTRL
+      control_name: YCOR:IN20:122
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_ALINE
+      - CU_GSPEC
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 0.196
+  YC01:
+    controls_information:
+      PVs:
+        bact: YCOR:IN20:222:BACT
+        bcon: YCOR:IN20:222:BCON
+        bctrl: YCOR:IN20:222:BCTRL
+        bdes: YCOR:IN20:222:BDES
+        ctrl: YCOR:IN20:222:CTRL
+      control_name: YCOR:IN20:222
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_ALINE
+      - CU_GSPEC
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 0.834
+screens:
+  YAG01:
+    controls_information:
+      PVs:
+        image: YAGS:IN20:211:IMAGE
+        n_bits: YAGS:IN20:211:N_OF_BITS
+        n_col: YAGS:IN20:211:N_OF_COL
+        n_row: YAGS:IN20:211:N_OF_ROW
+        resolution: YAGS:IN20:211:RESOLUTION
+      control_name: YAGS:IN20:211
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_ALINE
+      - CU_GSPEC
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 0.614

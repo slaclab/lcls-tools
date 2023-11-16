@@ -1,0 +1,1261 @@
+magnets:
+  QCM16:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:1685:BACT
+        bcon: QUAD:L3B:1685:BCON
+        bctrl: QUAD:L3B:1685:BCTRL
+        bdes: QUAD:L3B:1685:BDES
+        ctrl: QUAD:L3B:1685:CTRL
+      control_name: QUAD:L3B:1685
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 412.526
+  QCM17:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:1785:BACT
+        bcon: QUAD:L3B:1785:BCON
+        bctrl: QUAD:L3B:1785:BCTRL
+        bdes: QUAD:L3B:1785:BDES
+        ctrl: QUAD:L3B:1785:CTRL
+      control_name: QUAD:L3B:1785
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 424.746
+  QCM18:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:1885:BACT
+        bcon: QUAD:L3B:1885:BCON
+        bctrl: QUAD:L3B:1885:BCTRL
+        bdes: QUAD:L3B:1885:BDES
+        ctrl: QUAD:L3B:1885:CTRL
+      control_name: QUAD:L3B:1885
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 436.966
+  QCM19:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:1985:BACT
+        bcon: QUAD:L3B:1985:BCON
+        bctrl: QUAD:L3B:1985:BCTRL
+        bdes: QUAD:L3B:1985:BDES
+        ctrl: QUAD:L3B:1985:CTRL
+      control_name: QUAD:L3B:1985
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 449.187
+  QCM20:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:2085:BACT
+        bcon: QUAD:L3B:2085:BCON
+        bctrl: QUAD:L3B:2085:BCTRL
+        bdes: QUAD:L3B:2085:BDES
+        ctrl: QUAD:L3B:2085:CTRL
+      control_name: QUAD:L3B:2085
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 461.407
+  QCM21:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:2185:BACT
+        bcon: QUAD:L3B:2185:BCON
+        bctrl: QUAD:L3B:2185:BCTRL
+        bdes: QUAD:L3B:2185:BDES
+        ctrl: QUAD:L3B:2185:CTRL
+      control_name: QUAD:L3B:2185
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 473.628
+  QCM22:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:2285:BACT
+        bcon: QUAD:L3B:2285:BCON
+        bctrl: QUAD:L3B:2285:BCTRL
+        bdes: QUAD:L3B:2285:BDES
+        ctrl: QUAD:L3B:2285:CTRL
+      control_name: QUAD:L3B:2285
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 485.848
+  QCM23:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:2385:BACT
+        bcon: QUAD:L3B:2385:BCON
+        bctrl: QUAD:L3B:2385:BCTRL
+        bdes: QUAD:L3B:2385:BDES
+        ctrl: QUAD:L3B:2385:CTRL
+      control_name: QUAD:L3B:2385
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 498.068
+  QCM24:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:2485:BACT
+        bcon: QUAD:L3B:2485:BCON
+        bctrl: QUAD:L3B:2485:BCTRL
+        bdes: QUAD:L3B:2485:BDES
+        ctrl: QUAD:L3B:2485:CTRL
+      control_name: QUAD:L3B:2485
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 510.289
+  QCM25:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:2585:BACT
+        bcon: QUAD:L3B:2585:BCON
+        bctrl: QUAD:L3B:2585:BCTRL
+        bdes: QUAD:L3B:2585:BDES
+        ctrl: QUAD:L3B:2585:CTRL
+      control_name: QUAD:L3B:2585
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 522.509
+  QCM26:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:2685:BACT
+        bcon: QUAD:L3B:2685:BCON
+        bctrl: QUAD:L3B:2685:BCTRL
+        bdes: QUAD:L3B:2685:BDES
+        ctrl: QUAD:L3B:2685:CTRL
+      control_name: QUAD:L3B:2685
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 537.279
+  QCM27:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:2785:BACT
+        bcon: QUAD:L3B:2785:BCON
+        bctrl: QUAD:L3B:2785:BCTRL
+        bdes: QUAD:L3B:2785:BDES
+        ctrl: QUAD:L3B:2785:CTRL
+      control_name: QUAD:L3B:2785
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 549.499
+  QCM28:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:2885:BACT
+        bcon: QUAD:L3B:2885:BCON
+        bctrl: QUAD:L3B:2885:BCTRL
+        bdes: QUAD:L3B:2885:BDES
+        ctrl: QUAD:L3B:2885:CTRL
+      control_name: QUAD:L3B:2885
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 561.72
+  QCM29:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:2985:BACT
+        bcon: QUAD:L3B:2985:BCON
+        bctrl: QUAD:L3B:2985:BCTRL
+        bdes: QUAD:L3B:2985:BDES
+        ctrl: QUAD:L3B:2985:CTRL
+      control_name: QUAD:L3B:2985
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 573.94
+  QCM30:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:3085:BACT
+        bcon: QUAD:L3B:3085:BCON
+        bctrl: QUAD:L3B:3085:BCTRL
+        bdes: QUAD:L3B:3085:BDES
+        ctrl: QUAD:L3B:3085:CTRL
+      control_name: QUAD:L3B:3085
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 586.16
+  QCM31:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:3185:BACT
+        bcon: QUAD:L3B:3185:BCON
+        bctrl: QUAD:L3B:3185:BCTRL
+        bdes: QUAD:L3B:3185:BDES
+        ctrl: QUAD:L3B:3185:CTRL
+      control_name: QUAD:L3B:3185
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 598.381
+  QCM32:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:3285:BACT
+        bcon: QUAD:L3B:3285:BCON
+        bctrl: QUAD:L3B:3285:BCTRL
+        bdes: QUAD:L3B:3285:BDES
+        ctrl: QUAD:L3B:3285:CTRL
+      control_name: QUAD:L3B:3285
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 610.601
+  QCM33:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:3385:BACT
+        bcon: QUAD:L3B:3385:BCON
+        bctrl: QUAD:L3B:3385:BCTRL
+        bdes: QUAD:L3B:3385:BDES
+        ctrl: QUAD:L3B:3385:CTRL
+      control_name: QUAD:L3B:3385
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 622.822
+  QCM34:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:3485:BACT
+        bcon: QUAD:L3B:3485:BCON
+        bctrl: QUAD:L3B:3485:BCTRL
+        bdes: QUAD:L3B:3485:BDES
+        ctrl: QUAD:L3B:3485:CTRL
+      control_name: QUAD:L3B:3485
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 635.042
+  QCM35:
+    controls_information:
+      PVs:
+        bact: QUAD:L3B:3585:BACT
+        bcon: QUAD:L3B:3585:BCON
+        bctrl: QUAD:L3B:3585:BCTRL
+        bdes: QUAD:L3B:3585:BDES
+        ctrl: QUAD:L3B:3585:CTRL
+      control_name: QUAD:L3B:3585
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 647.262
+  XCM16:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:1685:BACT
+        bcon: XCOR:L3B:1685:BCON
+        bctrl: XCOR:L3B:1685:BCTRL
+        bdes: XCOR:L3B:1685:BDES
+        ctrl: XCOR:L3B:1685:CTRL
+      control_name: XCOR:L3B:1685
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 412.526
+  XCM17:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:1785:BACT
+        bcon: XCOR:L3B:1785:BCON
+        bctrl: XCOR:L3B:1785:BCTRL
+        bdes: XCOR:L3B:1785:BDES
+        ctrl: XCOR:L3B:1785:CTRL
+      control_name: XCOR:L3B:1785
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 424.746
+  XCM18:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:1885:BACT
+        bcon: XCOR:L3B:1885:BCON
+        bctrl: XCOR:L3B:1885:BCTRL
+        bdes: XCOR:L3B:1885:BDES
+        ctrl: XCOR:L3B:1885:CTRL
+      control_name: XCOR:L3B:1885
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 436.966
+  XCM19:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:1985:BACT
+        bcon: XCOR:L3B:1985:BCON
+        bctrl: XCOR:L3B:1985:BCTRL
+        bdes: XCOR:L3B:1985:BDES
+        ctrl: XCOR:L3B:1985:CTRL
+      control_name: XCOR:L3B:1985
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 449.187
+  XCM20:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:2085:BACT
+        bcon: XCOR:L3B:2085:BCON
+        bctrl: XCOR:L3B:2085:BCTRL
+        bdes: XCOR:L3B:2085:BDES
+        ctrl: XCOR:L3B:2085:CTRL
+      control_name: XCOR:L3B:2085
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 461.407
+  XCM21:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:2185:BACT
+        bcon: XCOR:L3B:2185:BCON
+        bctrl: XCOR:L3B:2185:BCTRL
+        bdes: XCOR:L3B:2185:BDES
+        ctrl: XCOR:L3B:2185:CTRL
+      control_name: XCOR:L3B:2185
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 473.628
+  XCM22:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:2285:BACT
+        bcon: XCOR:L3B:2285:BCON
+        bctrl: XCOR:L3B:2285:BCTRL
+        bdes: XCOR:L3B:2285:BDES
+        ctrl: XCOR:L3B:2285:CTRL
+      control_name: XCOR:L3B:2285
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 485.848
+  XCM23:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:2385:BACT
+        bcon: XCOR:L3B:2385:BCON
+        bctrl: XCOR:L3B:2385:BCTRL
+        bdes: XCOR:L3B:2385:BDES
+        ctrl: XCOR:L3B:2385:CTRL
+      control_name: XCOR:L3B:2385
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 498.068
+  XCM24:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:2485:BACT
+        bcon: XCOR:L3B:2485:BCON
+        bctrl: XCOR:L3B:2485:BCTRL
+        bdes: XCOR:L3B:2485:BDES
+        ctrl: XCOR:L3B:2485:CTRL
+      control_name: XCOR:L3B:2485
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 510.289
+  XCM25:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:2585:BACT
+        bcon: XCOR:L3B:2585:BCON
+        bctrl: XCOR:L3B:2585:BCTRL
+        bdes: XCOR:L3B:2585:BDES
+        ctrl: XCOR:L3B:2585:CTRL
+      control_name: XCOR:L3B:2585
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 522.509
+  XCM26:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:2685:BACT
+        bcon: XCOR:L3B:2685:BCON
+        bctrl: XCOR:L3B:2685:BCTRL
+        bdes: XCOR:L3B:2685:BDES
+        ctrl: XCOR:L3B:2685:CTRL
+      control_name: XCOR:L3B:2685
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 537.279
+  XCM27:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:2785:BACT
+        bcon: XCOR:L3B:2785:BCON
+        bctrl: XCOR:L3B:2785:BCTRL
+        bdes: XCOR:L3B:2785:BDES
+        ctrl: XCOR:L3B:2785:CTRL
+      control_name: XCOR:L3B:2785
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 549.499
+  XCM28:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:2885:BACT
+        bcon: XCOR:L3B:2885:BCON
+        bctrl: XCOR:L3B:2885:BCTRL
+        bdes: XCOR:L3B:2885:BDES
+        ctrl: XCOR:L3B:2885:CTRL
+      control_name: XCOR:L3B:2885
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 561.72
+  XCM29:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:2985:BACT
+        bcon: XCOR:L3B:2985:BCON
+        bctrl: XCOR:L3B:2985:BCTRL
+        bdes: XCOR:L3B:2985:BDES
+        ctrl: XCOR:L3B:2985:CTRL
+      control_name: XCOR:L3B:2985
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 573.94
+  XCM30:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:3085:BACT
+        bcon: XCOR:L3B:3085:BCON
+        bctrl: XCOR:L3B:3085:BCTRL
+        bdes: XCOR:L3B:3085:BDES
+        ctrl: XCOR:L3B:3085:CTRL
+      control_name: XCOR:L3B:3085
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 586.16
+  XCM31:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:3185:BACT
+        bcon: XCOR:L3B:3185:BCON
+        bctrl: XCOR:L3B:3185:BCTRL
+        bdes: XCOR:L3B:3185:BDES
+        ctrl: XCOR:L3B:3185:CTRL
+      control_name: XCOR:L3B:3185
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 598.381
+  XCM32:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:3285:BACT
+        bcon: XCOR:L3B:3285:BCON
+        bctrl: XCOR:L3B:3285:BCTRL
+        bdes: XCOR:L3B:3285:BDES
+        ctrl: XCOR:L3B:3285:CTRL
+      control_name: XCOR:L3B:3285
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 610.601
+  XCM33:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:3385:BACT
+        bcon: XCOR:L3B:3385:BCON
+        bctrl: XCOR:L3B:3385:BCTRL
+        bdes: XCOR:L3B:3385:BDES
+        ctrl: XCOR:L3B:3385:CTRL
+      control_name: XCOR:L3B:3385
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 622.822
+  XCM34:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:3485:BACT
+        bcon: XCOR:L3B:3485:BCON
+        bctrl: XCOR:L3B:3485:BCTRL
+        bdes: XCOR:L3B:3485:BDES
+        ctrl: XCOR:L3B:3485:CTRL
+      control_name: XCOR:L3B:3485
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 635.042
+  XCM35:
+    controls_information:
+      PVs:
+        bact: XCOR:L3B:3585:BACT
+        bcon: XCOR:L3B:3585:BCON
+        bctrl: XCOR:L3B:3585:BCTRL
+        bdes: XCOR:L3B:3585:BDES
+        ctrl: XCOR:L3B:3585:CTRL
+      control_name: XCOR:L3B:3585
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 647.262
+  YCM16:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:1685:BACT
+        bcon: YCOR:L3B:1685:BCON
+        bctrl: YCOR:L3B:1685:BCTRL
+        bdes: YCOR:L3B:1685:BDES
+        ctrl: YCOR:L3B:1685:CTRL
+      control_name: YCOR:L3B:1685
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 412.526
+  YCM17:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:1785:BACT
+        bcon: YCOR:L3B:1785:BCON
+        bctrl: YCOR:L3B:1785:BCTRL
+        bdes: YCOR:L3B:1785:BDES
+        ctrl: YCOR:L3B:1785:CTRL
+      control_name: YCOR:L3B:1785
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 424.746
+  YCM18:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:1885:BACT
+        bcon: YCOR:L3B:1885:BCON
+        bctrl: YCOR:L3B:1885:BCTRL
+        bdes: YCOR:L3B:1885:BDES
+        ctrl: YCOR:L3B:1885:CTRL
+      control_name: YCOR:L3B:1885
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 436.966
+  YCM19:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:1985:BACT
+        bcon: YCOR:L3B:1985:BCON
+        bctrl: YCOR:L3B:1985:BCTRL
+        bdes: YCOR:L3B:1985:BDES
+        ctrl: YCOR:L3B:1985:CTRL
+      control_name: YCOR:L3B:1985
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 449.187
+  YCM20:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:2085:BACT
+        bcon: YCOR:L3B:2085:BCON
+        bctrl: YCOR:L3B:2085:BCTRL
+        bdes: YCOR:L3B:2085:BDES
+        ctrl: YCOR:L3B:2085:CTRL
+      control_name: YCOR:L3B:2085
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 461.407
+  YCM21:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:2185:BACT
+        bcon: YCOR:L3B:2185:BCON
+        bctrl: YCOR:L3B:2185:BCTRL
+        bdes: YCOR:L3B:2185:BDES
+        ctrl: YCOR:L3B:2185:CTRL
+      control_name: YCOR:L3B:2185
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 473.628
+  YCM22:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:2285:BACT
+        bcon: YCOR:L3B:2285:BCON
+        bctrl: YCOR:L3B:2285:BCTRL
+        bdes: YCOR:L3B:2285:BDES
+        ctrl: YCOR:L3B:2285:CTRL
+      control_name: YCOR:L3B:2285
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 485.848
+  YCM23:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:2385:BACT
+        bcon: YCOR:L3B:2385:BCON
+        bctrl: YCOR:L3B:2385:BCTRL
+        bdes: YCOR:L3B:2385:BDES
+        ctrl: YCOR:L3B:2385:CTRL
+      control_name: YCOR:L3B:2385
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 498.068
+  YCM24:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:2485:BACT
+        bcon: YCOR:L3B:2485:BCON
+        bctrl: YCOR:L3B:2485:BCTRL
+        bdes: YCOR:L3B:2485:BDES
+        ctrl: YCOR:L3B:2485:CTRL
+      control_name: YCOR:L3B:2485
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 510.289
+  YCM25:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:2585:BACT
+        bcon: YCOR:L3B:2585:BCON
+        bctrl: YCOR:L3B:2585:BCTRL
+        bdes: YCOR:L3B:2585:BDES
+        ctrl: YCOR:L3B:2585:CTRL
+      control_name: YCOR:L3B:2585
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 522.509
+  YCM26:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:2685:BACT
+        bcon: YCOR:L3B:2685:BCON
+        bctrl: YCOR:L3B:2685:BCTRL
+        bdes: YCOR:L3B:2685:BDES
+        ctrl: YCOR:L3B:2685:CTRL
+      control_name: YCOR:L3B:2685
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 537.279
+  YCM27:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:2785:BACT
+        bcon: YCOR:L3B:2785:BCON
+        bctrl: YCOR:L3B:2785:BCTRL
+        bdes: YCOR:L3B:2785:BDES
+        ctrl: YCOR:L3B:2785:CTRL
+      control_name: YCOR:L3B:2785
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 549.499
+  YCM28:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:2885:BACT
+        bcon: YCOR:L3B:2885:BCON
+        bctrl: YCOR:L3B:2885:BCTRL
+        bdes: YCOR:L3B:2885:BDES
+        ctrl: YCOR:L3B:2885:CTRL
+      control_name: YCOR:L3B:2885
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 561.72
+  YCM29:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:2985:BACT
+        bcon: YCOR:L3B:2985:BCON
+        bctrl: YCOR:L3B:2985:BCTRL
+        bdes: YCOR:L3B:2985:BDES
+        ctrl: YCOR:L3B:2985:CTRL
+      control_name: YCOR:L3B:2985
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 573.94
+  YCM30:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:3085:BACT
+        bcon: YCOR:L3B:3085:BCON
+        bctrl: YCOR:L3B:3085:BCTRL
+        bdes: YCOR:L3B:3085:BDES
+        ctrl: YCOR:L3B:3085:CTRL
+      control_name: YCOR:L3B:3085
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 586.16
+  YCM31:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:3185:BACT
+        bcon: YCOR:L3B:3185:BCON
+        bctrl: YCOR:L3B:3185:BCTRL
+        bdes: YCOR:L3B:3185:BDES
+        ctrl: YCOR:L3B:3185:CTRL
+      control_name: YCOR:L3B:3185
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 598.381
+  YCM32:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:3285:BACT
+        bcon: YCOR:L3B:3285:BCON
+        bctrl: YCOR:L3B:3285:BCTRL
+        bdes: YCOR:L3B:3285:BDES
+        ctrl: YCOR:L3B:3285:CTRL
+      control_name: YCOR:L3B:3285
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 610.601
+  YCM33:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:3385:BACT
+        bcon: YCOR:L3B:3385:BCON
+        bctrl: YCOR:L3B:3385:BCTRL
+        bdes: YCOR:L3B:3385:BDES
+        ctrl: YCOR:L3B:3385:CTRL
+      control_name: YCOR:L3B:3385
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 622.822
+  YCM34:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:3485:BACT
+        bcon: YCOR:L3B:3485:BCON
+        bctrl: YCOR:L3B:3485:BCTRL
+        bdes: YCOR:L3B:3485:BDES
+        ctrl: YCOR:L3B:3485:CTRL
+      control_name: YCOR:L3B:3485
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 635.042
+  YCM35:
+    controls_information:
+      PVs:
+        bact: YCOR:L3B:3585:BACT
+        bcon: YCOR:L3B:3585:BCON
+        bctrl: YCOR:L3B:3585:BCTRL
+        bdes: YCOR:L3B:3585:BDES
+        ctrl: YCOR:L3B:3585:CTRL
+      control_name: YCOR:L3B:3585
+    metadata:
+      area: L3B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 647.262

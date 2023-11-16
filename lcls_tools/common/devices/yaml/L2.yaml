@@ -1,0 +1,1644 @@
+magnets:
+  BKX21957:
+    controls_information:
+      PVs:
+        bact: KICK:LI21:957:BACT
+        bcon: KICK:LI21:957:BCON
+        bctrl: KICK:LI21:957:BCTRL
+        bdes: KICK:LI21:957:BDES
+        ctrl: KICK:LI21:957:CTRL
+      control_name: KICK:LI21:957
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 117.373
+  BKX22957:
+    controls_information:
+      PVs: {}
+      control_name: KICK:LI22:957
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 218.973
+  BKY21929:
+    controls_information:
+      PVs:
+        bact: KICK:LI21:929:BACT
+        bcon: KICK:LI21:929:BCON
+        bctrl: KICK:LI21:929:BCTRL
+        bdes: KICK:LI21:929:BDES
+        ctrl: KICK:LI21:929:CTRL
+      control_name: KICK:LI21:929
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 116.829
+  BKY22929:
+    controls_information:
+      PVs: {}
+      control_name: KICK:LI22:929
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 218.429
+  Q21401:
+    controls_information:
+      PVs:
+        bact: QUAD:LI21:401:BACT
+        bcon: QUAD:LI21:401:BCON
+        bctrl: QUAD:LI21:401:BCTRL
+        bdes: QUAD:LI21:401:BDES
+        ctrl: QUAD:LI21:401:CTRL
+      control_name: QUAD:LI21:401
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 54.273
+  Q21501:
+    controls_information:
+      PVs:
+        bact: QUAD:LI21:501:BACT
+        bcon: QUAD:LI21:501:BCON
+        bctrl: QUAD:LI21:501:BCTRL
+        bdes: QUAD:LI21:501:BDES
+        ctrl: QUAD:LI21:501:CTRL
+      control_name: QUAD:LI21:501
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 66.618
+  Q21601:
+    controls_information:
+      PVs:
+        bact: QUAD:LI21:601:BACT
+        bcon: QUAD:LI21:601:BCON
+        bctrl: QUAD:LI21:601:BCTRL
+        bdes: QUAD:LI21:601:BDES
+        ctrl: QUAD:LI21:601:CTRL
+      control_name: QUAD:LI21:601
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 78.962
+  Q21701:
+    controls_information:
+      PVs:
+        bact: QUAD:LI21:701:BACT
+        bcon: QUAD:LI21:701:BCON
+        bctrl: QUAD:LI21:701:BCTRL
+        bdes: QUAD:LI21:701:BDES
+        ctrl: QUAD:LI21:701:CTRL
+      control_name: QUAD:LI21:701
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 91.307
+  Q21801:
+    controls_information:
+      PVs:
+        bact: QUAD:LI21:801:BACT
+        bcon: QUAD:LI21:801:BCON
+        bctrl: QUAD:LI21:801:BCTRL
+        bdes: QUAD:LI21:801:BDES
+        ctrl: QUAD:LI21:801:CTRL
+      control_name: QUAD:LI21:801
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 103.651
+  Q21901:
+    controls_information:
+      PVs:
+        bact: QUAD:LI21:901:BACT
+        bcon: QUAD:LI21:901:BCON
+        bctrl: QUAD:LI21:901:BCTRL
+        bdes: QUAD:LI21:901:BDES
+        ctrl: QUAD:LI21:901:CTRL
+      control_name: QUAD:LI21:901
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 116.315
+  Q22201:
+    controls_information:
+      PVs:
+        bact: QUAD:LI22:201:BACT
+        bcon: QUAD:LI22:201:BCON
+        bctrl: QUAD:LI22:201:BCTRL
+        bdes: QUAD:LI22:201:BDES
+        ctrl: QUAD:LI22:201:CTRL
+      control_name: QUAD:LI22:201
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 131.185
+  Q22301:
+    controls_information:
+      PVs:
+        bact: QUAD:LI22:301:BACT
+        bcon: QUAD:LI22:301:BCON
+        bctrl: QUAD:LI22:301:BCTRL
+        bdes: QUAD:LI22:301:BDES
+        ctrl: QUAD:LI22:301:CTRL
+      control_name: QUAD:LI22:301
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 143.529
+  Q22401:
+    controls_information:
+      PVs:
+        bact: QUAD:LI22:401:BACT
+        bcon: QUAD:LI22:401:BCON
+        bctrl: QUAD:LI22:401:BCTRL
+        bdes: QUAD:LI22:401:BDES
+        ctrl: QUAD:LI22:401:CTRL
+      control_name: QUAD:LI22:401
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 155.873
+  Q22501:
+    controls_information:
+      PVs:
+        bact: QUAD:LI22:501:BACT
+        bcon: QUAD:LI22:501:BCON
+        bctrl: QUAD:LI22:501:BCTRL
+        bdes: QUAD:LI22:501:BDES
+        ctrl: QUAD:LI22:501:CTRL
+      control_name: QUAD:LI22:501
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 168.218
+  Q22601:
+    controls_information:
+      PVs:
+        bact: QUAD:LI22:601:BACT
+        bcon: QUAD:LI22:601:BCON
+        bctrl: QUAD:LI22:601:BCTRL
+        bdes: QUAD:LI22:601:BDES
+        ctrl: QUAD:LI22:601:CTRL
+      control_name: QUAD:LI22:601
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 180.562
+  Q22701:
+    controls_information:
+      PVs:
+        bact: QUAD:LI22:701:BACT
+        bcon: QUAD:LI22:701:BCON
+        bctrl: QUAD:LI22:701:BCTRL
+        bdes: QUAD:LI22:701:BDES
+        ctrl: QUAD:LI22:701:CTRL
+      control_name: QUAD:LI22:701
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 192.907
+  Q22801:
+    controls_information:
+      PVs:
+        bact: QUAD:LI22:801:BACT
+        bcon: QUAD:LI22:801:BCON
+        bctrl: QUAD:LI22:801:BCTRL
+        bdes: QUAD:LI22:801:BDES
+        ctrl: QUAD:LI22:801:CTRL
+      control_name: QUAD:LI22:801
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 205.251
+  Q22901:
+    controls_information:
+      PVs:
+        bact: QUAD:LI22:901:BACT
+        bcon: QUAD:LI22:901:BCON
+        bctrl: QUAD:LI22:901:BCTRL
+        bdes: QUAD:LI22:901:BDES
+        ctrl: QUAD:LI22:901:CTRL
+      control_name: QUAD:LI22:901
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 217.915
+  Q23201:
+    controls_information:
+      PVs:
+        bact: QUAD:LI23:201:BACT
+        bcon: QUAD:LI23:201:BCON
+        bctrl: QUAD:LI23:201:BCTRL
+        bdes: QUAD:LI23:201:BDES
+        ctrl: QUAD:LI23:201:CTRL
+      control_name: QUAD:LI23:201
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 232.785
+  Q23301:
+    controls_information:
+      PVs:
+        bact: QUAD:LI23:301:BACT
+        bcon: QUAD:LI23:301:BCON
+        bctrl: QUAD:LI23:301:BCTRL
+        bdes: QUAD:LI23:301:BDES
+        ctrl: QUAD:LI23:301:CTRL
+      control_name: QUAD:LI23:301
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 245.129
+  Q23401:
+    controls_information:
+      PVs:
+        bact: QUAD:LI23:401:BACT
+        bcon: QUAD:LI23:401:BCON
+        bctrl: QUAD:LI23:401:BCTRL
+        bdes: QUAD:LI23:401:BDES
+        ctrl: QUAD:LI23:401:CTRL
+      control_name: QUAD:LI23:401
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 257.473
+  Q23501:
+    controls_information:
+      PVs:
+        bact: QUAD:LI23:501:BACT
+        bcon: QUAD:LI23:501:BCON
+        bctrl: QUAD:LI23:501:BCTRL
+        bdes: QUAD:LI23:501:BDES
+        ctrl: QUAD:LI23:501:CTRL
+      control_name: QUAD:LI23:501
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 269.818
+  Q23601:
+    controls_information:
+      PVs:
+        bact: QUAD:LI23:601:BACT
+        bcon: QUAD:LI23:601:BCON
+        bctrl: QUAD:LI23:601:BCTRL
+        bdes: QUAD:LI23:601:BDES
+        ctrl: QUAD:LI23:601:CTRL
+      control_name: QUAD:LI23:601
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 282.162
+  Q23701:
+    controls_information:
+      PVs:
+        bact: QUAD:LI23:701:BACT
+        bcon: QUAD:LI23:701:BCON
+        bctrl: QUAD:LI23:701:BCTRL
+        bdes: QUAD:LI23:701:BDES
+        ctrl: QUAD:LI23:701:CTRL
+      control_name: QUAD:LI23:701
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 294.507
+  Q23801:
+    controls_information:
+      PVs:
+        bact: QUAD:LI23:801:BACT
+        bcon: QUAD:LI23:801:BCON
+        bctrl: QUAD:LI23:801:BCTRL
+        bdes: QUAD:LI23:801:BDES
+        ctrl: QUAD:LI23:801:CTRL
+      control_name: QUAD:LI23:801
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 306.851
+  Q23901:
+    controls_information:
+      PVs:
+        bact: QUAD:LI23:901:BACT
+        bcon: QUAD:LI23:901:BCON
+        bctrl: QUAD:LI23:901:BCTRL
+        bdes: QUAD:LI23:901:BDES
+        ctrl: QUAD:LI23:901:CTRL
+      control_name: QUAD:LI23:901
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 319.515
+  Q24201:
+    controls_information:
+      PVs:
+        bact: QUAD:LI24:201:BACT
+        bcon: QUAD:LI24:201:BCON
+        bctrl: QUAD:LI24:201:BCTRL
+        bdes: QUAD:LI24:201:BDES
+        ctrl: QUAD:LI24:201:CTRL
+      control_name: QUAD:LI24:201
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 334.385
+  Q24301:
+    controls_information:
+      PVs:
+        bact: QUAD:LI24:301:BACT
+        bcon: QUAD:LI24:301:BCON
+        bctrl: QUAD:LI24:301:BCTRL
+        bdes: QUAD:LI24:301:BDES
+        ctrl: QUAD:LI24:301:CTRL
+      control_name: QUAD:LI24:301
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 346.729
+  Q24401:
+    controls_information:
+      PVs:
+        bact: QUAD:LI24:401:BACT
+        bcon: QUAD:LI24:401:BCON
+        bctrl: QUAD:LI24:401:BCTRL
+        bdes: QUAD:LI24:401:BDES
+        ctrl: QUAD:LI24:401:CTRL
+      control_name: QUAD:LI24:401
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 359.073
+  Q24501:
+    controls_information:
+      PVs:
+        bact: QUAD:LI24:501:BACT
+        bcon: QUAD:LI24:501:BCON
+        bctrl: QUAD:LI24:501:BCTRL
+        bdes: QUAD:LI24:501:BDES
+        ctrl: QUAD:LI24:501:CTRL
+      control_name: QUAD:LI24:501
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 371.418
+  Q24601:
+    controls_information:
+      PVs:
+        bact: QUAD:LI24:601:BACT
+        bcon: QUAD:LI24:601:BCON
+        bctrl: QUAD:LI24:601:BCTRL
+        bdes: QUAD:LI24:601:BDES
+        ctrl: QUAD:LI24:601:CTRL
+      control_name: QUAD:LI24:601
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 383.762
+  XC21402:
+    controls_information:
+      PVs:
+        bact: XCOR:LI21:402:BACT
+        bcon: XCOR:LI21:402:BCON
+        bctrl: XCOR:LI21:402:BCTRL
+        bdes: XCOR:LI21:402:BDES
+        ctrl: XCOR:LI21:402:CTRL
+      control_name: XCOR:LI21:402
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 54.681
+  XC21502:
+    controls_information:
+      PVs:
+        bact: XCOR:LI21:502:BACT
+        bcon: XCOR:LI21:502:BCON
+        bctrl: XCOR:LI21:502:BCTRL
+        bdes: XCOR:LI21:502:BDES
+        ctrl: XCOR:LI21:502:CTRL
+      control_name: XCOR:LI21:502
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 67.031
+  XC21602:
+    controls_information:
+      PVs:
+        bact: XCOR:LI21:602:BACT
+        bcon: XCOR:LI21:602:BCON
+        bctrl: XCOR:LI21:602:BCTRL
+        bdes: XCOR:LI21:602:BDES
+        ctrl: XCOR:LI21:602:CTRL
+      control_name: XCOR:LI21:602
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 79.371
+  XC21702:
+    controls_information:
+      PVs:
+        bact: XCOR:LI21:702:BACT
+        bcon: XCOR:LI21:702:BCON
+        bctrl: XCOR:LI21:702:BCTRL
+        bdes: XCOR:LI21:702:BDES
+        ctrl: XCOR:LI21:702:CTRL
+      control_name: XCOR:LI21:702
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 91.721
+  XC21802:
+    controls_information:
+      PVs:
+        bact: XCOR:LI21:802:BACT
+        bcon: XCOR:LI21:802:BCON
+        bctrl: XCOR:LI21:802:BCTRL
+        bdes: XCOR:LI21:802:BDES
+        ctrl: XCOR:LI21:802:CTRL
+      control_name: XCOR:LI21:802
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 104.061
+  XC21900:
+    controls_information:
+      PVs:
+        bact: XCOR:LI21:900:BACT
+        bcon: XCOR:LI21:900:BCON
+        bctrl: XCOR:LI21:900:BCTRL
+        bdes: XCOR:LI21:900:BDES
+        ctrl: XCOR:LI21:900:CTRL
+      control_name: XCOR:LI21:900
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 115.251
+  XC22202:
+    controls_information:
+      PVs:
+        bact: XCOR:LI22:202:BACT
+        bcon: XCOR:LI22:202:BCON
+        bctrl: XCOR:LI22:202:BCTRL
+        bdes: XCOR:LI22:202:BDES
+        ctrl: XCOR:LI22:202:CTRL
+      control_name: XCOR:LI22:202
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 131.591
+  XC22302:
+    controls_information:
+      PVs:
+        bact: XCOR:LI22:302:BACT
+        bcon: XCOR:LI22:302:BCON
+        bctrl: XCOR:LI22:302:BCTRL
+        bdes: XCOR:LI22:302:BDES
+        ctrl: XCOR:LI22:302:CTRL
+      control_name: XCOR:LI22:302
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 143.941
+  XC22402:
+    controls_information:
+      PVs:
+        bact: XCOR:LI22:402:BACT
+        bcon: XCOR:LI22:402:BCON
+        bctrl: XCOR:LI22:402:BCTRL
+        bdes: XCOR:LI22:402:BDES
+        ctrl: XCOR:LI22:402:CTRL
+      control_name: XCOR:LI22:402
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 156.281
+  XC22502:
+    controls_information:
+      PVs:
+        bact: XCOR:LI22:502:BACT
+        bcon: XCOR:LI22:502:BCON
+        bctrl: XCOR:LI22:502:BCTRL
+        bdes: XCOR:LI22:502:BDES
+        ctrl: XCOR:LI22:502:CTRL
+      control_name: XCOR:LI22:502
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 168.631
+  XC22602:
+    controls_information:
+      PVs:
+        bact: XCOR:LI22:602:BACT
+        bcon: XCOR:LI22:602:BCON
+        bctrl: XCOR:LI22:602:BCTRL
+        bdes: XCOR:LI22:602:BDES
+        ctrl: XCOR:LI22:602:CTRL
+      control_name: XCOR:LI22:602
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 180.971
+  XC22702:
+    controls_information:
+      PVs:
+        bact: XCOR:LI22:702:BACT
+        bcon: XCOR:LI22:702:BCON
+        bctrl: XCOR:LI22:702:BCTRL
+        bdes: XCOR:LI22:702:BDES
+        ctrl: XCOR:LI22:702:CTRL
+      control_name: XCOR:LI22:702
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 193.321
+  XC22802:
+    controls_information:
+      PVs:
+        bact: XCOR:LI22:802:BACT
+        bcon: XCOR:LI22:802:BCON
+        bctrl: XCOR:LI22:802:BCTRL
+        bdes: XCOR:LI22:802:BDES
+        ctrl: XCOR:LI22:802:CTRL
+      control_name: XCOR:LI22:802
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 205.661
+  XC22900:
+    controls_information:
+      PVs:
+        bact: XCOR:LI22:900:BACT
+        bcon: XCOR:LI22:900:BCON
+        bctrl: XCOR:LI22:900:BCTRL
+        bdes: XCOR:LI22:900:BDES
+        ctrl: XCOR:LI22:900:CTRL
+      control_name: XCOR:LI22:900
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 216.851
+  XC23202:
+    controls_information:
+      PVs:
+        bact: XCOR:LI23:202:BACT
+        bcon: XCOR:LI23:202:BCON
+        bctrl: XCOR:LI23:202:BCTRL
+        bdes: XCOR:LI23:202:BDES
+        ctrl: XCOR:LI23:202:CTRL
+      control_name: XCOR:LI23:202
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 233.191
+  XC23302:
+    controls_information:
+      PVs:
+        bact: XCOR:LI23:302:BACT
+        bcon: XCOR:LI23:302:BCON
+        bctrl: XCOR:LI23:302:BCTRL
+        bdes: XCOR:LI23:302:BDES
+        ctrl: XCOR:LI23:302:CTRL
+      control_name: XCOR:LI23:302
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 245.541
+  XC23402:
+    controls_information:
+      PVs:
+        bact: XCOR:LI23:402:BACT
+        bcon: XCOR:LI23:402:BCON
+        bctrl: XCOR:LI23:402:BCTRL
+        bdes: XCOR:LI23:402:BDES
+        ctrl: XCOR:LI23:402:CTRL
+      control_name: XCOR:LI23:402
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 257.881
+  XC23502:
+    controls_information:
+      PVs:
+        bact: XCOR:LI23:502:BACT
+        bcon: XCOR:LI23:502:BCON
+        bctrl: XCOR:LI23:502:BCTRL
+        bdes: XCOR:LI23:502:BDES
+        ctrl: XCOR:LI23:502:CTRL
+      control_name: XCOR:LI23:502
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 270.231
+  XC23602:
+    controls_information:
+      PVs:
+        bact: XCOR:LI23:602:BACT
+        bcon: XCOR:LI23:602:BCON
+        bctrl: XCOR:LI23:602:BCTRL
+        bdes: XCOR:LI23:602:BDES
+        ctrl: XCOR:LI23:602:CTRL
+      control_name: XCOR:LI23:602
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 282.571
+  XC23702:
+    controls_information:
+      PVs:
+        bact: XCOR:LI23:702:BACT
+        bcon: XCOR:LI23:702:BCON
+        bctrl: XCOR:LI23:702:BCTRL
+        bdes: XCOR:LI23:702:BDES
+        ctrl: XCOR:LI23:702:CTRL
+      control_name: XCOR:LI23:702
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 294.921
+  XC23802:
+    controls_information:
+      PVs:
+        bact: XCOR:LI23:802:BACT
+        bcon: XCOR:LI23:802:BCON
+        bctrl: XCOR:LI23:802:BCTRL
+        bdes: XCOR:LI23:802:BDES
+        ctrl: XCOR:LI23:802:CTRL
+      control_name: XCOR:LI23:802
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 307.261
+  XC23900:
+    controls_information:
+      PVs:
+        bact: XCOR:LI23:900:BACT
+        bcon: XCOR:LI23:900:BCON
+        bctrl: XCOR:LI23:900:BCTRL
+        bdes: XCOR:LI23:900:BDES
+        ctrl: XCOR:LI23:900:CTRL
+      control_name: XCOR:LI23:900
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 318.451
+  XC24202:
+    controls_information:
+      PVs:
+        bact: XCOR:LI24:202:BACT
+        bcon: XCOR:LI24:202:BCON
+        bctrl: XCOR:LI24:202:BCTRL
+        bdes: XCOR:LI24:202:BDES
+        ctrl: XCOR:LI24:202:CTRL
+      control_name: XCOR:LI24:202
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 334.837
+  XC24302:
+    controls_information:
+      PVs:
+        bact: XCOR:LI24:302:BACT
+        bcon: XCOR:LI24:302:BCON
+        bctrl: XCOR:LI24:302:BCTRL
+        bdes: XCOR:LI24:302:BDES
+        ctrl: XCOR:LI24:302:CTRL
+      control_name: XCOR:LI24:302
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 347.141
+  XC24402:
+    controls_information:
+      PVs:
+        bact: XCOR:LI24:402:BACT
+        bcon: XCOR:LI24:402:BCON
+        bctrl: XCOR:LI24:402:BCTRL
+        bdes: XCOR:LI24:402:BDES
+        ctrl: XCOR:LI24:402:CTRL
+      control_name: XCOR:LI24:402
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 359.481
+  XC24502:
+    controls_information:
+      PVs:
+        bact: XCOR:LI24:502:BACT
+        bcon: XCOR:LI24:502:BCON
+        bctrl: XCOR:LI24:502:BCTRL
+        bdes: XCOR:LI24:502:BDES
+        ctrl: XCOR:LI24:502:CTRL
+      control_name: XCOR:LI24:502
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 371.831
+  XC24602:
+    controls_information:
+      PVs:
+        bact: XCOR:LI24:602:BACT
+        bcon: XCOR:LI24:602:BCON
+        bctrl: XCOR:LI24:602:BCTRL
+        bdes: XCOR:LI24:602:BDES
+        ctrl: XCOR:LI24:602:CTRL
+      control_name: XCOR:LI24:602
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 384.171
+  XC24702:
+    controls_information:
+      PVs:
+        bact: XCOR:LI24:702:BACT
+        bcon: XCOR:LI24:702:BCON
+        bctrl: XCOR:LI24:702:BCTRL
+        bdes: XCOR:LI24:702:BDES
+        ctrl: XCOR:LI24:702:CTRL
+      control_name: XCOR:LI24:702
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 395.307
+  YC21403:
+    controls_information:
+      PVs:
+        bact: YCOR:LI21:403:BACT
+        bcon: YCOR:LI21:403:BCON
+        bctrl: YCOR:LI21:403:BCTRL
+        bdes: YCOR:LI21:403:BDES
+        ctrl: YCOR:LI21:403:CTRL
+      control_name: YCOR:LI21:403
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 55.051
+  YC21503:
+    controls_information:
+      PVs:
+        bact: YCOR:LI21:503:BACT
+        bcon: YCOR:LI21:503:BCON
+        bctrl: YCOR:LI21:503:BCTRL
+        bdes: YCOR:LI21:503:BDES
+        ctrl: YCOR:LI21:503:CTRL
+      control_name: YCOR:LI21:503
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 67.408
+  YC21603:
+    controls_information:
+      PVs:
+        bact: YCOR:LI21:603:BACT
+        bcon: YCOR:LI21:603:BCON
+        bctrl: YCOR:LI21:603:BCTRL
+        bdes: YCOR:LI21:603:BDES
+        ctrl: YCOR:LI21:603:CTRL
+      control_name: YCOR:LI21:603
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 79.759
+  YC21703:
+    controls_information:
+      PVs:
+        bact: YCOR:LI21:703:BACT
+        bcon: YCOR:LI21:703:BCON
+        bctrl: YCOR:LI21:703:BCTRL
+        bdes: YCOR:LI21:703:BDES
+        ctrl: YCOR:LI21:703:CTRL
+      control_name: YCOR:LI21:703
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 91.971
+  YC21803:
+    controls_information:
+      PVs:
+        bact: YCOR:LI21:803:BACT
+        bcon: YCOR:LI21:803:BCON
+        bctrl: YCOR:LI21:803:BCTRL
+        bdes: YCOR:LI21:803:BDES
+        ctrl: YCOR:LI21:803:CTRL
+      control_name: YCOR:LI21:803
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 104.311
+  YC21900:
+    controls_information:
+      PVs:
+        bact: YCOR:LI21:900:BACT
+        bcon: YCOR:LI21:900:BCON
+        bctrl: YCOR:LI21:900:BCTRL
+        bdes: YCOR:LI21:900:BDES
+        ctrl: YCOR:LI21:900:CTRL
+      control_name: YCOR:LI21:900
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 115.501
+  YC22203:
+    controls_information:
+      PVs:
+        bact: YCOR:LI22:203:BACT
+        bcon: YCOR:LI22:203:BCON
+        bctrl: YCOR:LI22:203:BCTRL
+        bdes: YCOR:LI22:203:BDES
+        ctrl: YCOR:LI22:203:CTRL
+      control_name: YCOR:LI22:203
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 131.969
+  YC22303:
+    controls_information:
+      PVs:
+        bact: YCOR:LI22:303:BACT
+        bcon: YCOR:LI22:303:BCON
+        bctrl: YCOR:LI22:303:BCTRL
+        bdes: YCOR:LI22:303:BDES
+        ctrl: YCOR:LI22:303:CTRL
+      control_name: YCOR:LI22:303
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 144.191
+  YC22403:
+    controls_information:
+      PVs:
+        bact: YCOR:LI22:403:BACT
+        bcon: YCOR:LI22:403:BCON
+        bctrl: YCOR:LI22:403:BCTRL
+        bdes: YCOR:LI22:403:BDES
+        ctrl: YCOR:LI22:403:CTRL
+      control_name: YCOR:LI22:403
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 156.531
+  YC22503:
+    controls_information:
+      PVs:
+        bact: YCOR:LI22:503:BACT
+        bcon: YCOR:LI22:503:BCON
+        bctrl: YCOR:LI22:503:BCTRL
+        bdes: YCOR:LI22:503:BDES
+        ctrl: YCOR:LI22:503:CTRL
+      control_name: YCOR:LI22:503
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 168.881
+  YC22603:
+    controls_information:
+      PVs:
+        bact: YCOR:LI22:603:BACT
+        bcon: YCOR:LI22:603:BCON
+        bctrl: YCOR:LI22:603:BCTRL
+        bdes: YCOR:LI22:603:BDES
+        ctrl: YCOR:LI22:603:CTRL
+      control_name: YCOR:LI22:603
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 181.35
+  YC22703:
+    controls_information:
+      PVs:
+        bact: YCOR:LI22:703:BACT
+        bcon: YCOR:LI22:703:BCON
+        bctrl: YCOR:LI22:703:BCTRL
+        bdes: YCOR:LI22:703:BDES
+        ctrl: YCOR:LI22:703:CTRL
+      control_name: YCOR:LI22:703
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 193.704
+  YC22803:
+    controls_information:
+      PVs:
+        bact: YCOR:LI22:803:BACT
+        bcon: YCOR:LI22:803:BCON
+        bctrl: YCOR:LI22:803:BCTRL
+        bdes: YCOR:LI22:803:BDES
+        ctrl: YCOR:LI22:803:CTRL
+      control_name: YCOR:LI22:803
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 206.058
+  YC22900:
+    controls_information:
+      PVs:
+        bact: YCOR:LI22:900:BACT
+        bcon: YCOR:LI22:900:BCON
+        bctrl: YCOR:LI22:900:BCTRL
+        bdes: YCOR:LI22:900:BDES
+        ctrl: YCOR:LI22:900:CTRL
+      control_name: YCOR:LI22:900
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 217.101
+  YC23203:
+    controls_information:
+      PVs:
+        bact: YCOR:LI23:203:BACT
+        bcon: YCOR:LI23:203:BCON
+        bctrl: YCOR:LI23:203:BCTRL
+        bdes: YCOR:LI23:203:BDES
+        ctrl: YCOR:LI23:203:CTRL
+      control_name: YCOR:LI23:203
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 233.441
+  YC23303:
+    controls_information:
+      PVs:
+        bact: YCOR:LI23:303:BACT
+        bcon: YCOR:LI23:303:BCON
+        bctrl: YCOR:LI23:303:BCTRL
+        bdes: YCOR:LI23:303:BDES
+        ctrl: YCOR:LI23:303:CTRL
+      control_name: YCOR:LI23:303
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 245.913
+  YC23403:
+    controls_information:
+      PVs:
+        bact: YCOR:LI23:403:BACT
+        bcon: YCOR:LI23:403:BCON
+        bctrl: YCOR:LI23:403:BCTRL
+        bdes: YCOR:LI23:403:BDES
+        ctrl: YCOR:LI23:403:CTRL
+      control_name: YCOR:LI23:403
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 258.258
+  YC23503:
+    controls_information:
+      PVs:
+        bact: YCOR:LI23:503:BACT
+        bcon: YCOR:LI23:503:BCON
+        bctrl: YCOR:LI23:503:BCTRL
+        bdes: YCOR:LI23:503:BDES
+        ctrl: YCOR:LI23:503:CTRL
+      control_name: YCOR:LI23:503
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 270.481
+  YC23603:
+    controls_information:
+      PVs:
+        bact: YCOR:LI23:603:BACT
+        bcon: YCOR:LI23:603:BCON
+        bctrl: YCOR:LI23:603:BCTRL
+        bdes: YCOR:LI23:603:BDES
+        ctrl: YCOR:LI23:603:CTRL
+      control_name: YCOR:LI23:603
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 282.821
+  YC23703:
+    controls_information:
+      PVs:
+        bact: YCOR:LI23:703:BACT
+        bcon: YCOR:LI23:703:BCON
+        bctrl: YCOR:LI23:703:BCTRL
+        bdes: YCOR:LI23:703:BDES
+        ctrl: YCOR:LI23:703:CTRL
+      control_name: YCOR:LI23:703
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 295.288
+  YC23803:
+    controls_information:
+      PVs:
+        bact: YCOR:LI23:803:BACT
+        bcon: YCOR:LI23:803:BCON
+        bctrl: YCOR:LI23:803:BCTRL
+        bdes: YCOR:LI23:803:BDES
+        ctrl: YCOR:LI23:803:CTRL
+      control_name: YCOR:LI23:803
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 307.667
+  YC23900:
+    controls_information:
+      PVs:
+        bact: YCOR:LI23:900:BACT
+        bcon: YCOR:LI23:900:BCON
+        bctrl: YCOR:LI23:900:BCTRL
+        bdes: YCOR:LI23:900:BDES
+        ctrl: YCOR:LI23:900:CTRL
+      control_name: YCOR:LI23:900
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 318.701
+  YC24203:
+    controls_information:
+      PVs:
+        bact: YCOR:LI24:203:BACT
+        bcon: YCOR:LI24:203:BCON
+        bctrl: YCOR:LI24:203:BCTRL
+        bdes: YCOR:LI24:203:BDES
+        ctrl: YCOR:LI24:203:CTRL
+      control_name: YCOR:LI24:203
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 335.118
+  YC24303:
+    controls_information:
+      PVs:
+        bact: YCOR:LI24:303:BACT
+        bcon: YCOR:LI24:303:BCON
+        bctrl: YCOR:LI24:303:BCTRL
+        bdes: YCOR:LI24:303:BDES
+        ctrl: YCOR:LI24:303:CTRL
+      control_name: YCOR:LI24:303
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 347.391
+  YC24403:
+    controls_information:
+      PVs:
+        bact: YCOR:LI24:403:BACT
+        bcon: YCOR:LI24:403:BCON
+        bctrl: YCOR:LI24:403:BCTRL
+        bdes: YCOR:LI24:403:BDES
+        ctrl: YCOR:LI24:403:CTRL
+      control_name: YCOR:LI24:403
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 359.785
+  YC24503:
+    controls_information:
+      PVs:
+        bact: YCOR:LI24:503:BACT
+        bcon: YCOR:LI24:503:BCON
+        bctrl: YCOR:LI24:503:BCTRL
+        bdes: YCOR:LI24:503:BDES
+        ctrl: YCOR:LI24:503:CTRL
+      control_name: YCOR:LI24:503
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 372.135
+  YC24603:
+    controls_information:
+      PVs:
+        bact: YCOR:LI24:603:BACT
+        bcon: YCOR:LI24:603:BCON
+        bctrl: YCOR:LI24:603:BCTRL
+        bdes: YCOR:LI24:603:BDES
+        ctrl: YCOR:LI24:603:CTRL
+      control_name: YCOR:LI24:603
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 384.475
+  YC24703:
+    controls_information:
+      PVs:
+        bact: YCOR:LI24:703:BACT
+        bcon: YCOR:LI24:703:BCON
+        bctrl: YCOR:LI24:703:BCTRL
+        bdes: YCOR:LI24:703:BDES
+        ctrl: YCOR:LI24:703:CTRL
+      control_name: YCOR:LI24:703
+    metadata:
+      area: L2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 395.612

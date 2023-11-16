@@ -1,0 +1,9 @@
+setuptools
+numpy
+scipy
+matplotlib
+pyepics
+pyyaml
+requests
+pydantic
+h5py

@@ -1,0 +1,38 @@
+DEVICE_1:
+  controls_information:
+    control_name: 'DEV:001'
+    PVs: {}
+  metadata:
+    read_tolerance: 0.0002
+    safe_level: 0.15
+    area: L1B
+    beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+    sum_l_meters: 0.0 
+
+DEVICE_2:
+  metadata:
+    read_tolerance: 0.023
+    safe_level: 1000
+    area: L2B
+    beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+    sum_l_meters: 0.0 
+
+DEVICE_3:
+  controls_information:
+    control_name: 'DEV:003'
+    PVs:
+      ctrl: 'DEV:003:CTRL'
+      set: 'DEV:003:SET'
+      read: 'DEV:003:READ'

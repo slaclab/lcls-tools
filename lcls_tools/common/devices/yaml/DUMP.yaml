@@ -1,0 +1,17 @@
+magnets:
+  XCUE1:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:DMP1:201
+    metadata:
+      area: DUMP
+      beam_path: []
+      sum_l_meters: null
+  YCUE2:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:DMP1:298
+    metadata:
+      area: DUMP
+      beam_path: []
+      sum_l_meters: null

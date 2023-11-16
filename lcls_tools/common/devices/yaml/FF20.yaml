@@ -1,0 +1,39 @@
+magnets:
+  Q0FF:
+    controls_information:
+      PVs: {}
+      control_name: LI20:LGPS:3151
+    metadata:
+      area: FF20
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 991.828
+  Q1FF:
+    controls_information:
+      PVs: {}
+      control_name: LI20:LGPS:3141
+    metadata:
+      area: FF20
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 990.25
+  Q2FF:
+    controls_information:
+      PVs: {}
+      control_name: LI20:LGPS:3091
+    metadata:
+      area: FF20
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 988.671
+  SQ2:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:3015
+    metadata:
+      area: FF20
+      beam_path: []
+      sum_l_meters: null

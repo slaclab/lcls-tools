@@ -1,0 +1,1674 @@
+magnets:
+  BCXSS1:
+    controls_information:
+      PVs:
+        bact: BEND:UNDS:3510:BACT
+        bcon: BEND:UNDS:3510:BCON
+        bctrl: BEND:UNDS:3510:BCTRL
+        bdes: BEND:UNDS:3510:BDES
+        ctrl: BEND:UNDS:3510:CTRL
+      control_name: BEND:UNDS:3510
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3657.705
+  BCXSS2:
+    controls_information:
+      PVs:
+        bact: BEND:UNDS:3530:BACT
+        bcon: BEND:UNDS:3530:BCON
+        bctrl: BEND:UNDS:3530:BCTRL
+        bdes: BEND:UNDS:3530:BDES
+        ctrl: BEND:UNDS:3530:CTRL
+      control_name: BEND:UNDS:3530
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3658.898
+  BCXSS3:
+    controls_information:
+      PVs:
+        bact: BEND:UNDS:3550:BACT
+        bcon: BEND:UNDS:3550:BCON
+        bctrl: BEND:UNDS:3550:BCTRL
+        bdes: BEND:UNDS:3550:BDES
+        ctrl: BEND:UNDS:3550:CTRL
+      control_name: BEND:UNDS:3550
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3659.418
+  BCXSS4:
+    controls_information:
+      PVs:
+        bact: BEND:UNDS:3570:BACT
+        bcon: BEND:UNDS:3570:BCON
+        bctrl: BEND:UNDS:3570:BCTRL
+        bdes: BEND:UNDS:3570:BDES
+        ctrl: BEND:UNDS:3570:CTRL
+      control_name: BEND:UNDS:3570
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3660.611
+  QSXH16:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:1680:BACT
+        bcon: QUAD:UNDS:1680:BCON
+        bctrl: QUAD:UNDS:1680:BCTRL
+        bdes: QUAD:UNDS:1680:BDES
+        ctrl: QUAD:UNDS:1680:CTRL
+      control_name: QUAD:UNDS:1680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3577.758
+  QSXH19:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:1980:BACT
+        bcon: QUAD:UNDS:1980:BCON
+        bctrl: QUAD:UNDS:1980:BCTRL
+        bdes: QUAD:UNDS:1980:BDES
+        ctrl: QUAD:UNDS:1980:CTRL
+      control_name: QUAD:UNDS:1980
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3590.958
+  QSXH21:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:2180:BACT
+        bcon: QUAD:UNDS:2180:BCON
+        bctrl: QUAD:UNDS:2180:BCTRL
+        bdes: QUAD:UNDS:2180:BDES
+        ctrl: QUAD:UNDS:2180:CTRL
+      control_name: QUAD:UNDS:2180
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3599.758
+  QSXH24:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:2480:BACT
+        bcon: QUAD:UNDS:2480:BCON
+        bctrl: QUAD:UNDS:2480:BCTRL
+        bdes: QUAD:UNDS:2480:BDES
+        ctrl: QUAD:UNDS:2480:CTRL
+      control_name: QUAD:UNDS:2480
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3612.958
+  QSXH26:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:2680:BACT
+        bcon: QUAD:UNDS:2680:BCON
+        bctrl: QUAD:UNDS:2680:BCTRL
+        bdes: QUAD:UNDS:2680:BDES
+        ctrl: QUAD:UNDS:2680:CTRL
+      control_name: QUAD:UNDS:2680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3621.758
+  QSXH27:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:2780:BACT
+        bcon: QUAD:UNDS:2780:BCON
+        bctrl: QUAD:UNDS:2780:BCTRL
+        bdes: QUAD:UNDS:2780:BDES
+        ctrl: QUAD:UNDS:2780:CTRL
+      control_name: QUAD:UNDS:2780
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3626.158
+  QSXH28:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:2880:BACT
+        bcon: QUAD:UNDS:2880:BCON
+        bctrl: QUAD:UNDS:2880:BCTRL
+        bdes: QUAD:UNDS:2880:BDES
+        ctrl: QUAD:UNDS:2880:CTRL
+      control_name: QUAD:UNDS:2880
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3630.558
+  QSXH29:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:2980:BACT
+        bcon: QUAD:UNDS:2980:BCON
+        bctrl: QUAD:UNDS:2980:BCTRL
+        bdes: QUAD:UNDS:2980:BDES
+        ctrl: QUAD:UNDS:2980:CTRL
+      control_name: QUAD:UNDS:2980
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3634.958
+  QSXH30:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:3080:BACT
+        bcon: QUAD:UNDS:3080:BCON
+        bctrl: QUAD:UNDS:3080:BCTRL
+        bdes: QUAD:UNDS:3080:BDES
+        ctrl: QUAD:UNDS:3080:CTRL
+      control_name: QUAD:UNDS:3080
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3639.358
+  QSXH31:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:3180:BACT
+        bcon: QUAD:UNDS:3180:BCON
+        bctrl: QUAD:UNDS:3180:BCTRL
+        bdes: QUAD:UNDS:3180:BDES
+        ctrl: QUAD:UNDS:3180:CTRL
+      control_name: QUAD:UNDS:3180
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3643.758
+  QSXH32:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:3280:BACT
+        bcon: QUAD:UNDS:3280:BCON
+        bctrl: QUAD:UNDS:3280:BCTRL
+        bdes: QUAD:UNDS:3280:BDES
+        ctrl: QUAD:UNDS:3280:CTRL
+      control_name: QUAD:UNDS:3280
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3648.158
+  QSXH33:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:3380:BACT
+        bcon: QUAD:UNDS:3380:BCON
+        bctrl: QUAD:UNDS:3380:BCTRL
+        bdes: QUAD:UNDS:3380:BDES
+        ctrl: QUAD:UNDS:3380:CTRL
+      control_name: QUAD:UNDS:3380
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3652.558
+  QSXH34:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:3480:BACT
+        bcon: QUAD:UNDS:3480:BCON
+        bctrl: QUAD:UNDS:3480:BCTRL
+        bdes: QUAD:UNDS:3480:BDES
+        ctrl: QUAD:UNDS:3480:CTRL
+      control_name: QUAD:UNDS:3480
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3656.958
+  QSXH35:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:3580:BACT
+        bcon: QUAD:UNDS:3580:BCON
+        bctrl: QUAD:UNDS:3580:BCTRL
+        bdes: QUAD:UNDS:3580:BDES
+        ctrl: QUAD:UNDS:3580:CTRL
+      control_name: QUAD:UNDS:3580
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3661.358
+  QSXH36:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:3680:BACT
+        bcon: QUAD:UNDS:3680:BCON
+        bctrl: QUAD:UNDS:3680:BCTRL
+        bdes: QUAD:UNDS:3680:BDES
+        ctrl: QUAD:UNDS:3680:CTRL
+      control_name: QUAD:UNDS:3680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3665.758
+  QSXH37:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:3780:BACT
+        bcon: QUAD:UNDS:3780:BCON
+        bctrl: QUAD:UNDS:3780:BCTRL
+        bdes: QUAD:UNDS:3780:BDES
+        ctrl: QUAD:UNDS:3780:CTRL
+      control_name: QUAD:UNDS:3780
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3670.158
+  QSXH38:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:3880:BACT
+        bcon: QUAD:UNDS:3880:BCON
+        bctrl: QUAD:UNDS:3880:BCTRL
+        bdes: QUAD:UNDS:3880:BDES
+        ctrl: QUAD:UNDS:3880:CTRL
+      control_name: QUAD:UNDS:3880
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3674.558
+  QSXH39:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:3980:BACT
+        bcon: QUAD:UNDS:3980:BCON
+        bctrl: QUAD:UNDS:3980:BCTRL
+        bdes: QUAD:UNDS:3980:BDES
+        ctrl: QUAD:UNDS:3980:CTRL
+      control_name: QUAD:UNDS:3980
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3678.958
+  QSXH40:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:4080:BACT
+        bcon: QUAD:UNDS:4080:BCON
+        bctrl: QUAD:UNDS:4080:BCTRL
+        bdes: QUAD:UNDS:4080:BDES
+        ctrl: QUAD:UNDS:4080:CTRL
+      control_name: QUAD:UNDS:4080
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3683.358
+  QSXH41:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:4180:BACT
+        bcon: QUAD:UNDS:4180:BCON
+        bctrl: QUAD:UNDS:4180:BCTRL
+        bdes: QUAD:UNDS:4180:BDES
+        ctrl: QUAD:UNDS:4180:CTRL
+      control_name: QUAD:UNDS:4180
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3687.758
+  QSXH42:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:4280:BACT
+        bcon: QUAD:UNDS:4280:BCON
+        bctrl: QUAD:UNDS:4280:BCTRL
+        bdes: QUAD:UNDS:4280:BDES
+        ctrl: QUAD:UNDS:4280:CTRL
+      control_name: QUAD:UNDS:4280
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3692.158
+  QSXH43:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:4380:BACT
+        bcon: QUAD:UNDS:4380:BCON
+        bctrl: QUAD:UNDS:4380:BCTRL
+        bdes: QUAD:UNDS:4380:BDES
+        ctrl: QUAD:UNDS:4380:CTRL
+      control_name: QUAD:UNDS:4380
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3696.558
+  QSXH44:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:4480:BACT
+        bcon: QUAD:UNDS:4480:BCON
+        bctrl: QUAD:UNDS:4480:BCTRL
+        bdes: QUAD:UNDS:4480:BDES
+        ctrl: QUAD:UNDS:4480:CTRL
+      control_name: QUAD:UNDS:4480
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3700.958
+  QSXH45:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:4580:BACT
+        bcon: QUAD:UNDS:4580:BCON
+        bctrl: QUAD:UNDS:4580:BCTRL
+        bdes: QUAD:UNDS:4580:BDES
+        ctrl: QUAD:UNDS:4580:CTRL
+      control_name: QUAD:UNDS:4580
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3705.358
+  QSXH46:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:4680:BACT
+        bcon: QUAD:UNDS:4680:BCON
+        bctrl: QUAD:UNDS:4680:BCTRL
+        bdes: QUAD:UNDS:4680:BDES
+        ctrl: QUAD:UNDS:4680:CTRL
+      control_name: QUAD:UNDS:4680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3709.758
+  QSXH47:
+    controls_information:
+      PVs:
+        bact: QUAD:UNDS:4780:BACT
+        bcon: QUAD:UNDS:4780:BCON
+        bctrl: QUAD:UNDS:4780:BCTRL
+        bdes: QUAD:UNDS:4780:BDES
+        ctrl: QUAD:UNDS:4780:CTRL
+      control_name: QUAD:UNDS:4780
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3714.158
+  XCPEPX1:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:4982:BACT
+        bcon: XCOR:UNDS:4982:BCON
+        bctrl: XCOR:UNDS:4982:BCTRL
+        bdes: XCOR:UNDS:4982:BDES
+        ctrl: XCOR:UNDS:4982:CTRL
+      control_name: XCOR:UNDS:4982
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3722.572
+  XCPEPX2:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:5002:BACT
+        bcon: XCOR:UNDS:5002:BCON
+        bctrl: XCOR:UNDS:5002:BCTRL
+        bdes: XCOR:UNDS:5002:BDES
+        ctrl: XCOR:UNDS:5002:CTRL
+      control_name: XCOR:UNDS:5002
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3723.522
+  XCPEPX3:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:5022:BACT
+        bcon: XCOR:UNDS:5022:BCON
+        bctrl: XCOR:UNDS:5022:BCTRL
+        bdes: XCOR:UNDS:5022:BDES
+        ctrl: XCOR:UNDS:5022:CTRL
+      control_name: XCOR:UNDS:5022
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3724.622
+  XCPEPX4:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:5038:BACT
+        bcon: XCOR:UNDS:5038:BCON
+        bctrl: XCOR:UNDS:5038:BCTRL
+        bdes: XCOR:UNDS:5038:BDES
+        ctrl: XCOR:UNDS:5038:CTRL
+      control_name: XCOR:UNDS:5038
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3725.572
+  XCSX16:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:1680:BACT
+        bcon: XCOR:UNDS:1680:BCON
+        bctrl: XCOR:UNDS:1680:BCTRL
+        bdes: XCOR:UNDS:1680:BDES
+        ctrl: XCOR:UNDS:1680:CTRL
+      control_name: XCOR:UNDS:1680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3577.758
+  XCSX19:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:1980:BACT
+        bcon: XCOR:UNDS:1980:BCON
+        bctrl: XCOR:UNDS:1980:BCTRL
+        bdes: XCOR:UNDS:1980:BDES
+        ctrl: XCOR:UNDS:1980:CTRL
+      control_name: XCOR:UNDS:1980
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3590.958
+  XCSX21:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:2180:BACT
+        bcon: XCOR:UNDS:2180:BCON
+        bctrl: XCOR:UNDS:2180:BCTRL
+        bdes: XCOR:UNDS:2180:BDES
+        ctrl: XCOR:UNDS:2180:CTRL
+      control_name: XCOR:UNDS:2180
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3599.758
+  XCSX24:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:2480:BACT
+        bcon: XCOR:UNDS:2480:BCON
+        bctrl: XCOR:UNDS:2480:BCTRL
+        bdes: XCOR:UNDS:2480:BDES
+        ctrl: XCOR:UNDS:2480:CTRL
+      control_name: XCOR:UNDS:2480
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3612.958
+  XCSX26:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:2680:BACT
+        bcon: XCOR:UNDS:2680:BCON
+        bctrl: XCOR:UNDS:2680:BCTRL
+        bdes: XCOR:UNDS:2680:BDES
+        ctrl: XCOR:UNDS:2680:CTRL
+      control_name: XCOR:UNDS:2680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3621.758
+  XCSX27:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:2780:BACT
+        bcon: XCOR:UNDS:2780:BCON
+        bctrl: XCOR:UNDS:2780:BCTRL
+        bdes: XCOR:UNDS:2780:BDES
+        ctrl: XCOR:UNDS:2780:CTRL
+      control_name: XCOR:UNDS:2780
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3626.158
+  XCSX28:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:2880:BACT
+        bcon: XCOR:UNDS:2880:BCON
+        bctrl: XCOR:UNDS:2880:BCTRL
+        bdes: XCOR:UNDS:2880:BDES
+        ctrl: XCOR:UNDS:2880:CTRL
+      control_name: XCOR:UNDS:2880
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3630.558
+  XCSX29:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:2980:BACT
+        bcon: XCOR:UNDS:2980:BCON
+        bctrl: XCOR:UNDS:2980:BCTRL
+        bdes: XCOR:UNDS:2980:BDES
+        ctrl: XCOR:UNDS:2980:CTRL
+      control_name: XCOR:UNDS:2980
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3634.958
+  XCSX30:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:3080:BACT
+        bcon: XCOR:UNDS:3080:BCON
+        bctrl: XCOR:UNDS:3080:BCTRL
+        bdes: XCOR:UNDS:3080:BDES
+        ctrl: XCOR:UNDS:3080:CTRL
+      control_name: XCOR:UNDS:3080
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3639.358
+  XCSX31:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:3180:BACT
+        bcon: XCOR:UNDS:3180:BCON
+        bctrl: XCOR:UNDS:3180:BCTRL
+        bdes: XCOR:UNDS:3180:BDES
+        ctrl: XCOR:UNDS:3180:CTRL
+      control_name: XCOR:UNDS:3180
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3643.758
+  XCSX32:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:3280:BACT
+        bcon: XCOR:UNDS:3280:BCON
+        bctrl: XCOR:UNDS:3280:BCTRL
+        bdes: XCOR:UNDS:3280:BDES
+        ctrl: XCOR:UNDS:3280:CTRL
+      control_name: XCOR:UNDS:3280
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3648.158
+  XCSX33:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:3380:BACT
+        bcon: XCOR:UNDS:3380:BCON
+        bctrl: XCOR:UNDS:3380:BCTRL
+        bdes: XCOR:UNDS:3380:BDES
+        ctrl: XCOR:UNDS:3380:CTRL
+      control_name: XCOR:UNDS:3380
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3652.558
+  XCSX34:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:3480:BACT
+        bcon: XCOR:UNDS:3480:BCON
+        bctrl: XCOR:UNDS:3480:BCTRL
+        bdes: XCOR:UNDS:3480:BDES
+        ctrl: XCOR:UNDS:3480:CTRL
+      control_name: XCOR:UNDS:3480
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3656.958
+  XCSX35:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:3580:BACT
+        bcon: XCOR:UNDS:3580:BCON
+        bctrl: XCOR:UNDS:3580:BCTRL
+        bdes: XCOR:UNDS:3580:BDES
+        ctrl: XCOR:UNDS:3580:CTRL
+      control_name: XCOR:UNDS:3580
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3661.358
+  XCSX36:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:3680:BACT
+        bcon: XCOR:UNDS:3680:BCON
+        bctrl: XCOR:UNDS:3680:BCTRL
+        bdes: XCOR:UNDS:3680:BDES
+        ctrl: XCOR:UNDS:3680:CTRL
+      control_name: XCOR:UNDS:3680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3665.758
+  XCSX37:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:3780:BACT
+        bcon: XCOR:UNDS:3780:BCON
+        bctrl: XCOR:UNDS:3780:BCTRL
+        bdes: XCOR:UNDS:3780:BDES
+        ctrl: XCOR:UNDS:3780:CTRL
+      control_name: XCOR:UNDS:3780
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3670.158
+  XCSX38:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:3880:BACT
+        bcon: XCOR:UNDS:3880:BCON
+        bctrl: XCOR:UNDS:3880:BCTRL
+        bdes: XCOR:UNDS:3880:BDES
+        ctrl: XCOR:UNDS:3880:CTRL
+      control_name: XCOR:UNDS:3880
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3674.558
+  XCSX39:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:3980:BACT
+        bcon: XCOR:UNDS:3980:BCON
+        bctrl: XCOR:UNDS:3980:BCTRL
+        bdes: XCOR:UNDS:3980:BDES
+        ctrl: XCOR:UNDS:3980:CTRL
+      control_name: XCOR:UNDS:3980
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3678.958
+  XCSX40:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:4080:BACT
+        bcon: XCOR:UNDS:4080:BCON
+        bctrl: XCOR:UNDS:4080:BCTRL
+        bdes: XCOR:UNDS:4080:BDES
+        ctrl: XCOR:UNDS:4080:CTRL
+      control_name: XCOR:UNDS:4080
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3683.358
+  XCSX41:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:4180:BACT
+        bcon: XCOR:UNDS:4180:BCON
+        bctrl: XCOR:UNDS:4180:BCTRL
+        bdes: XCOR:UNDS:4180:BDES
+        ctrl: XCOR:UNDS:4180:CTRL
+      control_name: XCOR:UNDS:4180
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3687.758
+  XCSX42:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:4280:BACT
+        bcon: XCOR:UNDS:4280:BCON
+        bctrl: XCOR:UNDS:4280:BCTRL
+        bdes: XCOR:UNDS:4280:BDES
+        ctrl: XCOR:UNDS:4280:CTRL
+      control_name: XCOR:UNDS:4280
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3692.158
+  XCSX43:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:4380:BACT
+        bcon: XCOR:UNDS:4380:BCON
+        bctrl: XCOR:UNDS:4380:BCTRL
+        bdes: XCOR:UNDS:4380:BDES
+        ctrl: XCOR:UNDS:4380:CTRL
+      control_name: XCOR:UNDS:4380
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3696.558
+  XCSX44:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:4480:BACT
+        bcon: XCOR:UNDS:4480:BCON
+        bctrl: XCOR:UNDS:4480:BCTRL
+        bdes: XCOR:UNDS:4480:BDES
+        ctrl: XCOR:UNDS:4480:CTRL
+      control_name: XCOR:UNDS:4480
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3700.958
+  XCSX45:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:4580:BACT
+        bcon: XCOR:UNDS:4580:BCON
+        bctrl: XCOR:UNDS:4580:BCTRL
+        bdes: XCOR:UNDS:4580:BDES
+        ctrl: XCOR:UNDS:4580:CTRL
+      control_name: XCOR:UNDS:4580
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3705.358
+  XCSX46:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:4680:BACT
+        bcon: XCOR:UNDS:4680:BCON
+        bctrl: XCOR:UNDS:4680:BCTRL
+        bdes: XCOR:UNDS:4680:BDES
+        ctrl: XCOR:UNDS:4680:CTRL
+      control_name: XCOR:UNDS:4680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3709.758
+  XCSX47:
+    controls_information:
+      PVs:
+        bact: XCOR:UNDS:4780:BACT
+        bcon: XCOR:UNDS:4780:BCON
+        bctrl: XCOR:UNDS:4780:BCTRL
+        bdes: XCOR:UNDS:4780:BDES
+        ctrl: XCOR:UNDS:4780:CTRL
+      control_name: XCOR:UNDS:4780
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3714.158
+  YCSX16:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:1680:BACT
+        bcon: YCOR:UNDS:1680:BCON
+        bctrl: YCOR:UNDS:1680:BCTRL
+        bdes: YCOR:UNDS:1680:BDES
+        ctrl: YCOR:UNDS:1680:CTRL
+      control_name: YCOR:UNDS:1680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3577.758
+  YCSX19:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:1980:BACT
+        bcon: YCOR:UNDS:1980:BCON
+        bctrl: YCOR:UNDS:1980:BCTRL
+        bdes: YCOR:UNDS:1980:BDES
+        ctrl: YCOR:UNDS:1980:CTRL
+      control_name: YCOR:UNDS:1980
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3590.958
+  YCSX21:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:2180:BACT
+        bcon: YCOR:UNDS:2180:BCON
+        bctrl: YCOR:UNDS:2180:BCTRL
+        bdes: YCOR:UNDS:2180:BDES
+        ctrl: YCOR:UNDS:2180:CTRL
+      control_name: YCOR:UNDS:2180
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3599.758
+  YCSX24:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:2480:BACT
+        bcon: YCOR:UNDS:2480:BCON
+        bctrl: YCOR:UNDS:2480:BCTRL
+        bdes: YCOR:UNDS:2480:BDES
+        ctrl: YCOR:UNDS:2480:CTRL
+      control_name: YCOR:UNDS:2480
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3612.958
+  YCSX26:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:2680:BACT
+        bcon: YCOR:UNDS:2680:BCON
+        bctrl: YCOR:UNDS:2680:BCTRL
+        bdes: YCOR:UNDS:2680:BDES
+        ctrl: YCOR:UNDS:2680:CTRL
+      control_name: YCOR:UNDS:2680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3621.758
+  YCSX27:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:2780:BACT
+        bcon: YCOR:UNDS:2780:BCON
+        bctrl: YCOR:UNDS:2780:BCTRL
+        bdes: YCOR:UNDS:2780:BDES
+        ctrl: YCOR:UNDS:2780:CTRL
+      control_name: YCOR:UNDS:2780
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3626.158
+  YCSX28:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:2880:BACT
+        bcon: YCOR:UNDS:2880:BCON
+        bctrl: YCOR:UNDS:2880:BCTRL
+        bdes: YCOR:UNDS:2880:BDES
+        ctrl: YCOR:UNDS:2880:CTRL
+      control_name: YCOR:UNDS:2880
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3630.558
+  YCSX29:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:2980:BACT
+        bcon: YCOR:UNDS:2980:BCON
+        bctrl: YCOR:UNDS:2980:BCTRL
+        bdes: YCOR:UNDS:2980:BDES
+        ctrl: YCOR:UNDS:2980:CTRL
+      control_name: YCOR:UNDS:2980
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3634.958
+  YCSX30:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:3080:BACT
+        bcon: YCOR:UNDS:3080:BCON
+        bctrl: YCOR:UNDS:3080:BCTRL
+        bdes: YCOR:UNDS:3080:BDES
+        ctrl: YCOR:UNDS:3080:CTRL
+      control_name: YCOR:UNDS:3080
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3639.358
+  YCSX31:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:3180:BACT
+        bcon: YCOR:UNDS:3180:BCON
+        bctrl: YCOR:UNDS:3180:BCTRL
+        bdes: YCOR:UNDS:3180:BDES
+        ctrl: YCOR:UNDS:3180:CTRL
+      control_name: YCOR:UNDS:3180
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3643.758
+  YCSX32:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:3280:BACT
+        bcon: YCOR:UNDS:3280:BCON
+        bctrl: YCOR:UNDS:3280:BCTRL
+        bdes: YCOR:UNDS:3280:BDES
+        ctrl: YCOR:UNDS:3280:CTRL
+      control_name: YCOR:UNDS:3280
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3648.158
+  YCSX33:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:3380:BACT
+        bcon: YCOR:UNDS:3380:BCON
+        bctrl: YCOR:UNDS:3380:BCTRL
+        bdes: YCOR:UNDS:3380:BDES
+        ctrl: YCOR:UNDS:3380:CTRL
+      control_name: YCOR:UNDS:3380
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3652.558
+  YCSX34:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:3480:BACT
+        bcon: YCOR:UNDS:3480:BCON
+        bctrl: YCOR:UNDS:3480:BCTRL
+        bdes: YCOR:UNDS:3480:BDES
+        ctrl: YCOR:UNDS:3480:CTRL
+      control_name: YCOR:UNDS:3480
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3656.958
+  YCSX35:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:3580:BACT
+        bcon: YCOR:UNDS:3580:BCON
+        bctrl: YCOR:UNDS:3580:BCTRL
+        bdes: YCOR:UNDS:3580:BDES
+        ctrl: YCOR:UNDS:3580:CTRL
+      control_name: YCOR:UNDS:3580
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3661.358
+  YCSX36:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:3680:BACT
+        bcon: YCOR:UNDS:3680:BCON
+        bctrl: YCOR:UNDS:3680:BCTRL
+        bdes: YCOR:UNDS:3680:BDES
+        ctrl: YCOR:UNDS:3680:CTRL
+      control_name: YCOR:UNDS:3680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3665.758
+  YCSX37:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:3780:BACT
+        bcon: YCOR:UNDS:3780:BCON
+        bctrl: YCOR:UNDS:3780:BCTRL
+        bdes: YCOR:UNDS:3780:BDES
+        ctrl: YCOR:UNDS:3780:CTRL
+      control_name: YCOR:UNDS:3780
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3670.158
+  YCSX38:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:3880:BACT
+        bcon: YCOR:UNDS:3880:BCON
+        bctrl: YCOR:UNDS:3880:BCTRL
+        bdes: YCOR:UNDS:3880:BDES
+        ctrl: YCOR:UNDS:3880:CTRL
+      control_name: YCOR:UNDS:3880
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3674.558
+  YCSX39:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:3980:BACT
+        bcon: YCOR:UNDS:3980:BCON
+        bctrl: YCOR:UNDS:3980:BCTRL
+        bdes: YCOR:UNDS:3980:BDES
+        ctrl: YCOR:UNDS:3980:CTRL
+      control_name: YCOR:UNDS:3980
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3678.958
+  YCSX40:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:4080:BACT
+        bcon: YCOR:UNDS:4080:BCON
+        bctrl: YCOR:UNDS:4080:BCTRL
+        bdes: YCOR:UNDS:4080:BDES
+        ctrl: YCOR:UNDS:4080:CTRL
+      control_name: YCOR:UNDS:4080
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3683.358
+  YCSX41:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:4180:BACT
+        bcon: YCOR:UNDS:4180:BCON
+        bctrl: YCOR:UNDS:4180:BCTRL
+        bdes: YCOR:UNDS:4180:BDES
+        ctrl: YCOR:UNDS:4180:CTRL
+      control_name: YCOR:UNDS:4180
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3687.758
+  YCSX42:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:4280:BACT
+        bcon: YCOR:UNDS:4280:BCON
+        bctrl: YCOR:UNDS:4280:BCTRL
+        bdes: YCOR:UNDS:4280:BDES
+        ctrl: YCOR:UNDS:4280:CTRL
+      control_name: YCOR:UNDS:4280
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3692.158
+  YCSX43:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:4380:BACT
+        bcon: YCOR:UNDS:4380:BCON
+        bctrl: YCOR:UNDS:4380:BCTRL
+        bdes: YCOR:UNDS:4380:BDES
+        ctrl: YCOR:UNDS:4380:CTRL
+      control_name: YCOR:UNDS:4380
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3696.558
+  YCSX44:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:4480:BACT
+        bcon: YCOR:UNDS:4480:BCON
+        bctrl: YCOR:UNDS:4480:BCTRL
+        bdes: YCOR:UNDS:4480:BDES
+        ctrl: YCOR:UNDS:4480:CTRL
+      control_name: YCOR:UNDS:4480
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3700.958
+  YCSX45:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:4580:BACT
+        bcon: YCOR:UNDS:4580:BCON
+        bctrl: YCOR:UNDS:4580:BCTRL
+        bdes: YCOR:UNDS:4580:BDES
+        ctrl: YCOR:UNDS:4580:CTRL
+      control_name: YCOR:UNDS:4580
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3705.358
+  YCSX46:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:4680:BACT
+        bcon: YCOR:UNDS:4680:BCON
+        bctrl: YCOR:UNDS:4680:BCTRL
+        bdes: YCOR:UNDS:4680:BDES
+        ctrl: YCOR:UNDS:4680:CTRL
+      control_name: YCOR:UNDS:4680
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3709.758
+  YCSX47:
+    controls_information:
+      PVs:
+        bact: YCOR:UNDS:4780:BACT
+        bcon: YCOR:UNDS:4780:BCON
+        bctrl: YCOR:UNDS:4780:BCTRL
+        bdes: YCOR:UNDS:4780:BDES
+        ctrl: YCOR:UNDS:4780:CTRL
+      control_name: YCOR:UNDS:4780
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3714.158
+screens:
+  BOD10:
+    controls_information:
+      PVs:
+        image: YAGS:UNDS:3575:IMAGE
+        n_bits: YAGS:UNDS:3575:N_OF_BITS
+        n_col: YAGS:UNDS:3575:N_OF_COL
+        n_row: YAGS:UNDS:3575:N_OF_ROW
+        resolution: YAGS:UNDS:3575:RESOLUTION
+      control_name: YAGS:UNDS:3575
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3661.222
+  BOD12:
+    controls_information:
+      PVs:
+        image: YAGS:UNDS:3795:IMAGE
+        n_bits: YAGS:UNDS:3795:N_OF_BITS
+        n_col: YAGS:UNDS:3795:N_OF_COL
+        n_row: YAGS:UNDS:3795:N_OF_ROW
+        resolution: YAGS:UNDS:3795:RESOLUTION
+      control_name: YAGS:UNDS:3795
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3670.392

@@ -1,0 +1,212 @@
+magnets:
+  BCX21:
+    controls_information:
+      PVs:
+        bact: BEND:BC2B:200:BACT
+        bcon: BEND:BC2B:200:BCON
+        bctrl: BEND:BC2B:200:BCTRL
+        bdes: BEND:BC2B:200:BDES
+        ctrl: BEND:BC2B:200:CTRL
+      control_name: BEND:BC2B:200
+    metadata:
+      area: BC2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 343.668
+  BCX22:
+    controls_information:
+      PVs:
+        bact: BEND:BC2B:500:BACT
+        bcon: BEND:BC2B:500:BCON
+        bctrl: BEND:BC2B:500:BCTRL
+        bdes: BEND:BC2B:500:BDES
+        ctrl: BEND:BC2B:500:CTRL
+      control_name: BEND:BC2B:500
+    metadata:
+      area: BC2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 354.089
+  BCX23:
+    controls_information:
+      PVs:
+        bact: BEND:BC2B:600:BACT
+        bcon: BEND:BC2B:600:BCON
+        bctrl: BEND:BC2B:600:BCTRL
+        bdes: BEND:BC2B:600:BDES
+        ctrl: BEND:BC2B:600:CTRL
+      control_name: BEND:BC2B:600
+    metadata:
+      area: BC2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 356.388
+  BCX24:
+    controls_information:
+      PVs:
+        bact: BEND:BC2B:900:BACT
+        bcon: BEND:BC2B:900:BCON
+        bctrl: BEND:BC2B:900:BCTRL
+        bdes: BEND:BC2B:900:BDES
+        ctrl: BEND:BC2B:900:CTRL
+      control_name: BEND:BC2B:900
+    metadata:
+      area: BC2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 366.808
+  CQ21B:
+    controls_information:
+      PVs:
+        bact: QUAD:BC2B:250:BACT
+        bcon: QUAD:BC2B:250:BCON
+        bctrl: QUAD:BC2B:250:BCTRL
+        bdes: QUAD:BC2B:250:BDES
+        ctrl: QUAD:BC2B:250:CTRL
+      control_name: QUAD:BC2B:250
+    metadata:
+      area: BC2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 345.955
+  CQ22B:
+    controls_information:
+      PVs:
+        bact: QUAD:BC2B:850:BACT
+        bcon: QUAD:BC2B:850:BCON
+        bctrl: QUAD:BC2B:850:BCTRL
+        bdes: QUAD:BC2B:850:BDES
+        ctrl: QUAD:BC2B:850:CTRL
+      control_name: QUAD:BC2B:850
+    metadata:
+      area: BC2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 364.522
+  Q2C01:
+    controls_information:
+      PVs:
+        bact: QUAD:BC2B:150:BACT
+        bcon: QUAD:BC2B:150:BCON
+        bctrl: QUAD:BC2B:150:BCTRL
+        bdes: QUAD:BC2B:150:BDES
+        ctrl: QUAD:BC2B:150:CTRL
+      control_name: QUAD:BC2B:150
+    metadata:
+      area: BC2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 342.84
+  XC2C00:
+    controls_information:
+      PVs:
+        bact: XCOR:BC2B:126:BACT
+        bcon: XCOR:BC2B:126:BCON
+        bctrl: XCOR:BC2B:126:BCTRL
+        bdes: XCOR:BC2B:126:BDES
+        ctrl: XCOR:BC2B:126:CTRL
+      control_name: XCOR:BC2B:126
+    metadata:
+      area: BC2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 342.126
+  YC2C00:
+    controls_information:
+      PVs:
+        bact: YCOR:BC2B:137:BACT
+        bcon: YCOR:BC2B:137:BCON
+        bctrl: YCOR:BC2B:137:BCTRL
+        bdes: YCOR:BC2B:137:BDES
+        ctrl: YCOR:BC2B:137:CTRL
+      control_name: YCOR:BC2B:137
+    metadata:
+      area: BC2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 342.465
+screens:
+  OTR21B:
+    controls_information:
+      PVs:
+        image: PROF:BC2B:545:Image:ArrayData
+        n_bits: PROF:BC2B:545:N_OF_BITS
+        n_col: PROF:BC2B:545:Image:ArraySizeY_RBV
+        n_row: PROF:BC2B:545:Image:ArraySizeX_RBV
+        resolution: PROF:BC2B:545:RESOLUTION
+      control_name: PROF:BC2B:545
+    metadata:
+      area: BC2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 355.091

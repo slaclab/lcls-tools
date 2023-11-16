@@ -1,0 +1,400 @@
+magnets:
+  BKRDAS1:
+    controls_information:
+      PVs:
+        bact: KICK:DASEL:105:BACT
+        bcon: KICK:DASEL:105:BCON
+        bctrl: KICK:DASEL:105:BCTRL
+        bdes: KICK:DASEL:105:BDES
+        ctrl: KICK:DASEL:105:CTRL
+      control_name: KICK:DASEL:105
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2921.87
+  BKRDAS2:
+    controls_information:
+      PVs:
+        bact: KICK:DASEL:110:BACT
+        bcon: KICK:DASEL:110:BCON
+        bctrl: KICK:DASEL:110:BCTRL
+        bdes: KICK:DASEL:110:BDES
+        ctrl: KICK:DASEL:110:CTRL
+      control_name: KICK:DASEL:110
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2923.17
+  BKRDAS3:
+    controls_information:
+      PVs:
+        bact: KICK:DASEL:115:BACT
+        bcon: KICK:DASEL:115:BCON
+        bctrl: KICK:DASEL:115:BCTRL
+        bdes: KICK:DASEL:115:BDES
+        ctrl: KICK:DASEL:115:CTRL
+      control_name: KICK:DASEL:115
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2924.47
+  BKRDAS4:
+    controls_information:
+      PVs:
+        bact: KICK:DASEL:120:BACT
+        bcon: KICK:DASEL:120:BCON
+        bctrl: KICK:DASEL:120:BCTRL
+        bdes: KICK:DASEL:120:BDES
+        ctrl: KICK:DASEL:120:CTRL
+      control_name: KICK:DASEL:120
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2925.77
+  BKRDAS5:
+    controls_information:
+      PVs:
+        bact: KICK:DASEL:122:BACT
+        bcon: KICK:DASEL:122:BCON
+        bctrl: KICK:DASEL:122:BCTRL
+        bdes: KICK:DASEL:122:BDES
+        ctrl: KICK:DASEL:122:CTRL
+      control_name: KICK:DASEL:122
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2927.07
+  BKRDAS6:
+    controls_information:
+      PVs:
+        bact: KICK:DASEL:125:BACT
+        bcon: KICK:DASEL:125:BCON
+        bctrl: KICK:DASEL:125:BCTRL
+        bdes: KICK:DASEL:125:BDES
+        ctrl: KICK:DASEL:125:CTRL
+      control_name: KICK:DASEL:125
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2928.37
+  BLRDAS:
+    controls_information:
+      PVs:
+        bact: BEND:DASEL:210:BACT
+        bcon: BEND:DASEL:210:BCON
+        bctrl: BEND:DASEL:210:BCTRL
+        bdes: BEND:DASEL:210:BDES
+        ctrl: BEND:DASEL:210:CTRL
+      control_name: BEND:DASEL:210
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2951.805
+  BRDAS1:
+    controls_information:
+      PVs:
+        bact: BEND:DASEL:415:BACT
+        bcon: BEND:DASEL:415:BCON
+        bctrl: BEND:DASEL:415:BCTRL
+        bdes: BEND:DASEL:415:BDES
+        ctrl: BEND:DASEL:415:CTRL
+      control_name: BEND:DASEL:415
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3008.128
+  BRDAS2:
+    controls_information:
+      PVs: {}
+      control_name: BEND:DASEL:995
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3166.694
+  QDAS11:
+    controls_information:
+      PVs:
+        bact: QUAD:DASEL:434:BACT
+        bcon: QUAD:DASEL:434:BCON
+        bctrl: QUAD:DASEL:434:BCTRL
+        bdes: QUAD:DASEL:434:BDES
+        ctrl: QUAD:DASEL:434:CTRL
+      control_name: QUAD:DASEL:434
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3012.928
+  QDAS12:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:DASEL:489
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3027.852
+  QDAS13:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:DASEL:557
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3046.605
+  QDAS14:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:DASEL:625
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3065.157
+  QDAS15:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:DASEL:690
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3083.41
+  QDAS16:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:DASEL:758
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3101.663
+  QDAS17:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:DASEL:822
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3119.115
+  QDAS18A:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:DASEL:880
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3134.78
+  QDAS18B:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:DASEL:882
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3135.04
+  QDAS19:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:DASEL:910
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3144.144
+  QDAS1A:
+    controls_information:
+      PVs:
+        bact: QUAD:DASEL:304:BACT
+        bcon: QUAD:DASEL:304:BCON
+        bctrl: QUAD:DASEL:304:BCTRL
+        bdes: QUAD:DASEL:304:BDES
+        ctrl: QUAD:DASEL:304:CTRL
+      control_name: QUAD:DASEL:304
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2977.336
+  QDAS1B:
+    controls_information:
+      PVs:
+        bact: QUAD:DASEL:300:BACT
+        bcon: QUAD:DASEL:300:BCON
+        bctrl: QUAD:DASEL:300:BCTRL
+        bdes: QUAD:DASEL:300:BDES
+        ctrl: QUAD:DASEL:300:CTRL
+      control_name: QUAD:DASEL:300
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2977.076
+  QDAS2A:
+    controls_information:
+      PVs:
+        bact: QUAD:DASEL:312:BACT
+        bcon: QUAD:DASEL:312:BCON
+        bctrl: QUAD:DASEL:312:BCTRL
+        bdes: QUAD:DASEL:312:BDES
+        ctrl: QUAD:DASEL:312:CTRL
+      control_name: QUAD:DASEL:312
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2979.36
+  QDAS2B:
+    controls_information:
+      PVs:
+        bact: QUAD:DASEL:314:BACT
+        bcon: QUAD:DASEL:314:BCON
+        bctrl: QUAD:DASEL:314:BCTRL
+        bdes: QUAD:DASEL:314:BDES
+        ctrl: QUAD:DASEL:314:CTRL
+      control_name: QUAD:DASEL:314
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2979.621
+  RCDAS11:
+    controls_information:
+      PVs:
+        bact: XCOR:DASEL:422:BACT
+        bcon: XCOR:DASEL:422:BCON
+        bctrl: XCOR:DASEL:422:BCTRL
+        bdes: XCOR:DASEL:422:BDES
+        ctrl: XCOR:DASEL:422:CTRL
+      control_name: XCOR:DASEL:422
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3009.428
+  RCDAS19:
+    controls_information:
+      PVs:
+        bact: XCOR:DASEL:998:BACT
+        bcon: XCOR:DASEL:998:BCON
+        bctrl: XCOR:DASEL:998:BCTRL
+        bdes: XCOR:DASEL:998:BDES
+        ctrl: XCOR:DASEL:998:CTRL
+      control_name: XCOR:DASEL:998
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3167.694
+  XCDAS1:
+    controls_information:
+      PVs:
+        bact: XCOR:DASEL:294:BACT
+        bcon: XCOR:DASEL:294:BCON
+        bctrl: XCOR:DASEL:294:BCTRL
+        bdes: XCOR:DASEL:294:BDES
+        ctrl: XCOR:DASEL:294:CTRL
+      control_name: XCOR:DASEL:294
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2974.752
+  XCDAS14:
+    controls_information:
+      PVs:
+        bact: XCOR:DASEL:622:BACT
+        bcon: XCOR:DASEL:622:BCON
+        bctrl: XCOR:DASEL:622:BCTRL
+        bdes: XCOR:DASEL:622:BDES
+        ctrl: XCOR:DASEL:622:CTRL
+      control_name: XCOR:DASEL:622
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3064.595
+  YCDAS1:
+    controls_information:
+      PVs:
+        bact: YCOR:DASEL:297:BACT
+        bcon: YCOR:DASEL:297:BCON
+        bctrl: YCOR:DASEL:297:BCTRL
+        bdes: YCOR:DASEL:297:BDES
+        ctrl: YCOR:DASEL:297:CTRL
+      control_name: YCOR:DASEL:297
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2975.252
+  YCDAS17:
+    controls_information:
+      PVs:
+        bact: YCOR:DASEL:821:BACT
+        bcon: YCOR:DASEL:821:BCON
+        bctrl: YCOR:DASEL:821:BCTRL
+        bdes: YCOR:DASEL:821:BDES
+        ctrl: YCOR:DASEL:821:CTRL
+      control_name: YCOR:DASEL:821
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3118.553
+screens:
+  PRDAS12:
+    controls_information:
+      PVs:
+        image: PROF:DASEL:440:Image:ArrayData
+        n_bits: PROF:DASEL:440:N_OF_BITS
+        n_col: PROF:DASEL:440:Image:ArraySizeY_RBV
+        n_row: PROF:DASEL:440:Image:ArraySizeX_RBV
+        resolution: PROF:DASEL:440:RESOLUTION
+      control_name: PROF:DASEL:440
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3014.49
+  PRDAS14:
+    controls_information:
+      PVs:
+        image: PROF:DASEL:655:Image:ArrayData
+        n_bits: PROF:DASEL:655:N_OF_BITS
+        n_col: PROF:DASEL:655:Image:ArraySizeY_RBV
+        n_row: PROF:DASEL:655:Image:ArraySizeX_RBV
+        resolution: PROF:DASEL:655:RESOLUTION
+      control_name: PROF:DASEL:655
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3073.484
+  PRDAS17:
+    controls_information:
+      PVs:
+        image: PROF:DASEL:818:Image:ArrayData
+        n_bits: PROF:DASEL:818:N_OF_BITS
+        n_col: PROF:DASEL:818:Image:ArraySizeY_RBV
+        n_row: PROF:DASEL:818:Image:ArraySizeX_RBV
+        resolution: PROF:DASEL:818:RESOLUTION
+      control_name: PROF:DASEL:818
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3118.053

@@ -1,0 +1,251 @@
+magnets:
+  BYD1B:
+    controls_information:
+      PVs:
+        bact: BEND:DMPS:400:BACT
+        bcon: BEND:DMPS:400:BCON
+        bctrl: BEND:DMPS:400:BCTRL
+        bdes: BEND:DMPS:400:BDES
+        ctrl: BEND:DMPS:400:CTRL
+      control_name: BEND:DMPS:400
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3746.094
+  BYD2B:
+    controls_information:
+      PVs:
+        bact: BEND:DMPS:410:BACT
+        bcon: BEND:DMPS:410:BCON
+        bctrl: BEND:DMPS:410:BCTRL
+        bdes: BEND:DMPS:410:BDES
+        ctrl: BEND:DMPS:410:CTRL
+      control_name: BEND:DMPS:410
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3747.794
+  BYD3B:
+    controls_information:
+      PVs:
+        bact: BEND:DMPS:420:BACT
+        bcon: BEND:DMPS:420:BCON
+        bctrl: BEND:DMPS:420:BCTRL
+        bdes: BEND:DMPS:420:BDES
+        ctrl: BEND:DMPS:420:CTRL
+      control_name: BEND:DMPS:420
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3749.494
+  BYDSS:
+    controls_information:
+      PVs:
+        bact: BEND:DMPS:395:BACT
+        bcon: BEND:DMPS:395:BCON
+        bctrl: BEND:DMPS:395:BCTRL
+        bdes: BEND:DMPS:395:BDES
+        ctrl: BEND:DMPS:395:CTRL
+      control_name: BEND:DMPS:395
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3744.802
+  QDMP1B:
+    controls_information:
+      PVs:
+        bact: QUAD:DMPS:500:BACT
+        bcon: QUAD:DMPS:500:BCON
+        bctrl: QUAD:DMPS:500:BCTRL
+        bdes: QUAD:DMPS:500:BDES
+        ctrl: QUAD:DMPS:500:CTRL
+      control_name: QUAD:DMPS:500
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3761.951
+  QDMP2B:
+    controls_information:
+      PVs:
+        bact: QUAD:DMPS:600:BACT
+        bcon: QUAD:DMPS:600:BCON
+        bctrl: QUAD:DMPS:600:BCTRL
+        bdes: QUAD:DMPS:600:BDES
+        ctrl: QUAD:DMPS:600:CTRL
+      control_name: QUAD:DMPS:600
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3763.001
+  QUE1B:
+    controls_information:
+      PVs:
+        bact: QUAD:DMPS:300:BACT
+        bcon: QUAD:DMPS:300:BCON
+        bctrl: QUAD:DMPS:300:BCTRL
+        bdes: QUAD:DMPS:300:BDES
+        ctrl: QUAD:DMPS:300:CTRL
+      control_name: QUAD:DMPS:300
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3733.799
+  QUE2B:
+    controls_information:
+      PVs:
+        bact: QUAD:DMPS:380:BACT
+        bcon: QUAD:DMPS:380:BCON
+        bctrl: QUAD:DMPS:380:BCTRL
+        bdes: QUAD:DMPS:380:BDES
+        ctrl: QUAD:DMPS:380:CTRL
+      control_name: QUAD:DMPS:380
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3741.589
+  XCD3B:
+    controls_information:
+      PVs:
+        bact: XCOR:DMPS:392:BACT
+        bcon: XCOR:DMPS:392:BCON
+        bctrl: XCOR:DMPS:392:BCTRL
+        bdes: XCOR:DMPS:392:BDES
+        ctrl: XCOR:DMPS:392:CTRL
+      control_name: XCOR:DMPS:392
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3743.997
+  XCDDB:
+    controls_information:
+      PVs:
+        bact: XCOR:DMPS:602:BACT
+        bcon: XCOR:DMPS:602:BCON
+        bctrl: XCOR:DMPS:602:BCTRL
+        bdes: XCOR:DMPS:602:BDES
+        ctrl: XCOR:DMPS:602:CTRL
+      control_name: XCOR:DMPS:602
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3763.691
+  XCUE2B:
+    controls_information:
+      PVs:
+        bact: XCOR:DMPS:298:BACT
+        bcon: XCOR:DMPS:298:BCON
+        bctrl: XCOR:DMPS:298:BCTRL
+        bdes: XCOR:DMPS:298:BDES
+        ctrl: XCOR:DMPS:298:CTRL
+      control_name: XCOR:DMPS:298
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3732.969
+  YCD3B:
+    controls_information:
+      PVs:
+        bact: YCOR:DMPS:391:BACT
+        bcon: YCOR:DMPS:391:BCON
+        bctrl: YCOR:DMPS:391:BCTRL
+        bdes: YCOR:DMPS:391:BDES
+        ctrl: YCOR:DMPS:391:CTRL
+      control_name: YCOR:DMPS:391
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3743.653
+  YCDDB:
+    controls_information:
+      PVs:
+        bact: YCOR:DMPS:440:BACT
+        bcon: YCOR:DMPS:440:BCON
+        bctrl: YCOR:DMPS:440:BCTRL
+        bdes: YCOR:DMPS:440:BDES
+        ctrl: YCOR:DMPS:440:CTRL
+      control_name: YCOR:DMPS:440
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3761.001
+  YCUE1B:
+    controls_information:
+      PVs:
+        bact: YCOR:DMPS:201:BACT
+        bcon: YCOR:DMPS:201:BCON
+        bctrl: YCOR:DMPS:201:BCTRL
+        bdes: YCOR:DMPS:201:BDES
+        ctrl: YCOR:DMPS:201:CTRL
+      control_name: YCOR:DMPS:201
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3731.228
+screens:
+  OTRDMPB:
+    controls_information:
+      PVs:
+        image: OTRS:DMPS:695:Image:ArrayData
+        n_bits: OTRS:DMPS:695:N_OF_BITS
+        n_col: OTRS:DMPS:695:Image:ArraySizeY_RBV
+        n_row: OTRS:DMPS:695:Image:ArraySizeX_RBV
+        resolution: OTRS:DMPS:695:RESOLUTION
+      control_name: OTRS:DMPS:695
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3771.399

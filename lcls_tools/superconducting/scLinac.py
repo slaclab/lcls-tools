@@ -10,7 +10,7 @@ from typing import Callable, Dict, List, Type, Optional
 from numpy import sign
 
 import lcls_tools.superconducting.sc_linac_utils as utils
-from lcls_tools.common.pyepics_tools.pyepics_utils import EPICS_INVALID_VAL, PV
+from lcls_tools.common.controls.pyepics.utils import EPICS_INVALID_VAL, PV
 
 
 class SSA(utils.SCLinacObject):
@@ -1696,7 +1696,7 @@ class Cryomodule(utils.SCLinacObject):
         stepper_class=StepperTuner,
         piezo_class=Piezo,
     ):
-        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner], Type[Piezo]) -> None
+        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner], Type[Piezo],) -> None # noqa: E501
         """
         Parameters
         ----------

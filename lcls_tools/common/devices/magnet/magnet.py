@@ -1,40 +1,81 @@
-#!/usr/local/lcls/package/python/current/bin/python
-
-import epics
+from pydantic import (
+    BaseModel,
+    PositiveFloat,
+    SerializeAsAny,
+    field_validator,
+)
+from typing import (
+    Dict,
+    List,
+    Optional,
+    Union,
+)
+from lcls_tools.common.devices.device import (
+    Device,
+    ControlInformation,
+    Metadata,
+    PVSet,
+)
 from epics import PV
-import lcls_tools.common.devices.magnet.magnet_constants as mc
-from inspect import getmembers
-from time import sleep
 
 
-def get_magnets():
-    """Return MAD names of all magenets that have models"""
-    return mc.MAGNETS.keys()
+class MagnetPVSet(PVSet):
+    bctrl: PV
+    bact: PV
+    bdes: PV
+    bcon: PV
+    ctrl: PV
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    @field_validator("*", mode="before")
+    def validate_pv_fields(cls, v: str):
+        return PV(v)
 
 
-class Magnet(object):
-    """Magnet control"""
+class MagnetControlInformation(ControlInformation):
+    PVs: SerializeAsAny[MagnetPVSet]
+    ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = {
+        "READY": 0,
+        "TRIM": 1,
+        "PERTURB": 2,
+        "BCON_TO_BDES": 3,
+        "SAVE_BDES": 4,
+        "LOAD_BDES": 5,
+        "UNDO_BDES": 6,
+        "DAC_ZERO": 7,
+        "CALIB": 8,
+        "STDZ": 9,
+        "RESET": 10,
+    }
 
-    def __init__(self, name="SOL1B"):
-        if name not in mc.MAGNETS.keys():
-            raise ValueError("You have not specified a valid magnet")
-        mag_dict = mc.MAGNETS[name]
-        self._name = name
-        self._bctrl = PV(mag_dict["bctrl"])
-        self._bact = PV(mag_dict["bact"])
-        self._bdes = PV(mag_dict["bdes"])
-        self._bcon = PV(mag_dict["bcon"])
-        self._ctrl = PV(mag_dict["ctrl"])
-        self._tol = mag_dict["tol"]
-        self._length = mag_dict["length"]
-        self._ctrl_vars = self._ctrl.get_ctrlvars()["enum_strs"]
-        self._pv_attrs = self.find_pv_attrs()
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
+class MagnetMetadata(Metadata):
+    length: Optional[PositiveFloat] = None
+    b_tolerance: Optional[PositiveFloat] = None
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
+class Magnet(Device):
+    controls_information: SerializeAsAny[MagnetControlInformation]
+    metadata: SerializeAsAny[MagnetMetadata]
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    """ Decorators """
 
     def check_state(f):
         """Decorator to only allow transitions in 'Ready' state"""
 
         def decorated(self, *args, **kwargs):
-            if self.ctrl_value != "Ready":
+            if self.ctrl != "Ready":
                 print("Unable to perform action, magnet not in Ready state")
                 return
             return f(self, *args, **kwargs)
@@ -42,157 +83,147 @@ class Magnet(object):
         return decorated
 
     @property
-    def name(self):
-        """Get the magnet name"""
-        return self._name
+    def ctrl_options(self):
+        return self.controls_information.ctrl_options
 
     @property
-    def bctrl(self):
-        """Get BCTRL value"""
-        return self._bctrl.get()
+    def b_tolerance(self):
+        """Returns the field tolerance in kG or kGm"""
+        return self.metadata.b_tolerance
 
-    @bctrl.setter
-    @check_state
-    def bctrl(self, val):
-        """Set bctrl value"""
-        if not isinstance(val, float) or isinstance(val, int):
-            print("you need to provide an in or float")
+    @b_tolerance.setter
+    def b_tolerance(self, value):
+        if not isinstance(value, float):
             return
-
-        self._bctrl.put(val)
-
-    @property
-    def bact(self):
-        """Get the BACT value"""
-        return self._bact.get()
-
-    @property
-    def bdes(self):
-        """Get BDES value"""
-        return self._bdes.get()
-
-    @property
-    def ctrl_value(self):
-        """Get the current action on magnet"""
-        return self._ctrl_vars[self._ctrl.get()]
+        self.metadata.b_tolerance = value
 
     @property
     def length(self):
-        """Magnetic Length, should be from model"""
-        return self._length
+        """Returns the effective length in meters"""
+        return self.metadata.length
 
     @length.setter
-    def length(self, length):
-        """Set the magnetic length for a magnet"""
-        if not isinstance(length, float):
-            print("You must provide a float for magnet length")
+    def length(self, value):
+        if not isinstance(value, float):
             return
-
-        self._length = length
-
-    @property
-    def pv_props(self):
-        """All the properties that are PV objects/can have callbacks"""
-        return self._pv_props
+        self.metadata.length = value
 
     @property
-    def tol(self):
-        return self._tol
+    def bctrl(self) -> Union[float, int]:
+        return self.controls_information.PVs.bact.get()
 
-    @tol.setter
-    def tol(self, tol):
-        """Set the magnetic length for a magnet"""
-        if not isinstance(tol, float):
-            print("You must provide a float for magnet tol")
-            return False
+    @bctrl.setter
+    @check_state
+    def bctrl(self, val: Union[float, int]) -> None:
+        """Set bctrl value"""
+        if not (isinstance(val, float) or isinstance(val, int)):
+            print("you need to provide an int or float")
+            return
+        self.controls_information.PVs.bctrl.put(value=val)
 
-        self._tol = tol
+    @property
+    def bact(self) -> float:
+        """Get the BACT value"""
+        return self.controls_information.PVs.bact.get()
+
+    @property
+    def bdes(self) -> float:
+        """Get BDES value"""
+        return self.controls_information.PVs.bdes.get()
+
+    @bdes.setter
+    def bdes(self, bval) -> None:
+        self.controls_information.PVs.bdes.put(value=bval)
+
+    @property
+    def ctrl(self) -> str:
+        """Get the current action on magnet"""
+        return self.controls_information.PVs.ctrl.get(as_string=True)
+
+    @property
+    def bcon(self) -> float:
+        """Get the configuration strength of magnet"""
+        return self.controls_information.PVs.bcon.get()
+
+    def is_bact_settled(self, b_tolerance: Optional[float] = 0.0) -> bool:
+        return abs(self.bdes) - abs(self.bact) < b_tolerance
 
     @check_state
-    def trim(self):
+    def trim(self) -> None:
         """Issue trim command"""
-        self._ctrl.put(mc.CTRL.index("TRIM"))
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["TRIM"])
 
     @check_state
-    def perturb(self):
+    def perturb(self) -> None:
         """Issue perturb command"""
-        self._ctrl.put(mc.CTRL.index("PERTURB"))
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["PERTURB"])
 
-    def con_to_des(self):
+    def con_to_des(self) -> None:
         """Issue con to des commands"""
-        self._ctrl.put(mc.CTRL.index("BCOM_TO_BDES"))
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["BCON_TO_BDES"])
 
-    def save_bdes(self):
+    def save_bdes(self) -> None:
         """Save BDES"""
-        self._ctrl.put(mc.CTRL.index("SAVE_BDES"))
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["SAVE_BDES"])
 
-    def load_bdes(self):
-        """Load BDES"""
-        self._ctrl.put(mc.CTRL.index("LOAD_BDES"))
+    def load_bdes(self) -> None:
+        """Load BtolDES"""
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["LOAD_BDES"])
 
-    def undo_bdes(self):
+    def undo_bdes(self) -> None:
         """Save BDES"""
-        self._ctrl.put(mc.CTRL.index("UNDO_BDES"))
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["UNDO_BDES"])
 
     @check_state
-    def dac_zero(self):
+    def dac_zero(self) -> None:
         """DAC zero magnet"""
-        self._ctrl.put(mc.CTRL.index("DAC_ZERO"))
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["DAC_ZERO"])
 
     @check_state
-    def calibrate(self):
+    def calibrate(self) -> None:
         """Calibrate magnet"""
-        self._ctrl.put(mc.CTRL.index("CALIB"))
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["CALIB"])
 
     @check_state
-    def standardize(self):
+    def standardize(self) -> None:
         """Standardize magnet"""
-        self._ctrl.put(mc.CTRL.index("STDZ"))
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["STDZ"])
 
-    def reset(self):
+    def reset(self) -> None:
         """Reset magnet"""
-        self._ctrl.put(mc.CTRL.index("RESET"))
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["RESET"])
 
-    def find_pv_attrs(self):
-        """Get all the PV object attributes"""
-        pv_attrs = []
-        for mem in getmembers(self):
-            if len(mem) > 1 and isinstance(mem[1], PV):
-                pv_attrs.append(mem[0])
 
-        return pv_attrs
+class MagnetCollection(BaseModel):
+    magnets: Dict[str, SerializeAsAny[Magnet]]
 
-    ################## Actions #################
+    @field_validator("magnets", mode="before")
+    def validate_magnets(cls, v):
+        for name, magnet in v.items():
+            magnet = dict(magnet)
+            magnet.update({"name": name})
+            v.update({name: magnet})
+        return v
 
-    def add_clbk(self, fn, attr="_bact"):
-        """Add a callback function to a given attribute"""
-        if attr not in self._pv_attrs:
-            print("this attribute is not a pv object, ignored")
+    def set_bdes(self, magnet_dict: Dict[str, float]):
+        if not magnet_dict:
             return
 
-        fns = [val[0] for val in getattr(self, attr).callbacks.values()]
+        for magnet, bval in magnet_dict.items():
+            try:
+                self.magnets[magnet].bdes = bval
+                self.magnets[magnet].trim()
+                while not self.magnets[magnet].is_bact_settled():
+                    continue
+            except KeyError:
+                print(
+                    "You tried to set a magnet that does not exist.",
+                    f"{magnet} was not set to {bval}.",
+                )
 
-        if fn in fns:
-            print("this is a duplicate callback assignment, ignored")
-            return
-
-        print("adding callback {0}".format(fn))
-        getattr(self, attr).add_callback(fn, with_ctrlvars=False)
-
-    def remove_clbk(self, fn, attr="_bact"):
-        """Add a callback function to a given attribute"""
-        if attr not in self._pv_attrs:
-            print("this attribute is not a pv object, ignored")
-            return
-
-        index = None
-        for k, v in getattr(self, attr).callbacks.items():
-            if v[0] == fn:
-                index = k
-
-        if not index:
-            print("function not found in callbacks, ignored")
-            return
-
-        print("remvong callback {0}".format(fn))
-        getattr(self, attr).remove_callback(index=index)
+    def scan(
+        self, scan_settings: List[Dict[str, float]], function: Optional[callable] = None
+    ):
+        for setting in scan_settings:
+            self.set_bdes(setting)
+            function() if function else None

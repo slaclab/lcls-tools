@@ -1,0 +1,29 @@
+magnets:
+  BKXRASD:
+    controls_information:
+      PVs:
+        bact: XCOR:SLTD:628:BACT
+        bcon: XCOR:SLTD:628:BCON
+        bctrl: XCOR:SLTD:628:BCTRL
+        bdes: XCOR:SLTD:628:BDES
+        ctrl: XCOR:SLTD:628:CTRL
+      control_name: XCOR:SLTD:628
+    metadata:
+      area: SLTD
+      beam_path:
+      - SC_BSYD
+      sum_l_meters: 3158.709
+  BKYRASD:
+    controls_information:
+      PVs:
+        bact: YCOR:SLTD:631:BACT
+        bcon: YCOR:SLTD:631:BCON
+        bctrl: YCOR:SLTD:631:BCTRL
+        bdes: YCOR:SLTD:631:BDES
+        ctrl: YCOR:SLTD:631:CTRL
+      control_name: YCOR:SLTD:631
+    metadata:
+      area: SLTD
+      beam_path:
+      - SC_BSYD
+      sum_l_meters: 3159.209

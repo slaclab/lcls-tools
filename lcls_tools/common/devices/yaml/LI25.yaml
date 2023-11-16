@@ -1,0 +1,9 @@
+screens:
+  OTR22:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:LI25:342
+    metadata:
+      area: LI25
+      beam_path: []
+      sum_l_meters: null

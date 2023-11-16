@@ -1,0 +1,407 @@
+magnets:
+  BKY170:
+    controls_information:
+      PVs: {}
+      control_name: LI20:KICK:170
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 878.374
+  BLX57172:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7172
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 905.682
+  BLY57174:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7174
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 908.038
+  BX57205:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7205
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 933.686
+  BX57215:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7215
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 938.131
+  BX57225:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7225
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 942.576
+  BX57235:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7235
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 947.021
+  BX57245:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7245
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 951.466
+  BX57255:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7255
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 955.911
+  BX57265:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7265
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 960.356
+  BX57275:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7275
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 964.801
+  BY57202:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:7202
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 930.099
+  Q57186:
+    controls_information:
+      PVs: {}
+      control_name: LI19:QUAD:7186
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 920.334
+  Q57190:
+    controls_information:
+      PVs: {}
+      control_name: LI19:QUAD:7190
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 922.862
+  Q57204:
+    controls_information:
+      PVs: {}
+      control_name: LI19:QUAD:7204
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 931.463
+  Q57210:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:7210
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 935.908
+  Q57220:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:7220
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 940.353
+  Q57230:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:7230
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 944.798
+  Q57250:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:7250
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 953.688
+  Q57260:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:7260
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 958.133
+  Q57270:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:7270
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 962.578
+  Q57280:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:7280
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 967.023
+  XC57175:
+    controls_information:
+      PVs: {}
+      control_name: LI19:XCOR:7175
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 910.028
+  XC57185:
+    controls_information:
+      PVs: {}
+      control_name: LI19:XCOR:7185
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 919.338
+  XC57205:
+    controls_information:
+      PVs: {}
+      control_name: LI19:XCOR:7205
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 933.686
+  XC57215:
+    controls_information:
+      PVs: {}
+      control_name: LI19:XCOR:7215
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 938.131
+  XC57225:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:7225
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 942.576
+  XC57235:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:7235
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 947.021
+  XC57245:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:7245
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 951.466
+  XC57255:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:7255
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 955.911
+  XC57265:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:7265
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 960.356
+  XC57275:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:7275
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 964.801
+  XC57282:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:7282
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 968.344
+  YC57183:
+    controls_information:
+      PVs: {}
+      control_name: LI19:YCOR:7183
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 918.239
+  YC57184:
+    controls_information:
+      PVs: {}
+      control_name: LI19:YCOR:7184
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 918.64
+  YC57210:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:7210
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 935.908
+  YC57220:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:7220
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 940.353
+  YC57230:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:7230
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 944.798
+  YC57240:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:7240
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 949.243
+  YC57250:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:7250
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 953.688
+  YC57260:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:7260
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 958.133
+  YC57270:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:7270
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 962.578
+  YC57280:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:7280
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 967.023
+  YC57282:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:7282
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 968.128
+screens:
+  PR57185:
+    controls_information:
+      PVs: {}
+      control_name: EP01:PROF:185
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 919.713

@@ -1,0 +1,408 @@
+magnets:
+  BKRDG0:
+    controls_information:
+      PVs:
+        bact: KICK:DIAG0:110:BACT
+        bcon: KICK:DIAG0:110:BCON
+        bctrl: KICK:DIAG0:110:BCTRL
+        bdes: KICK:DIAG0:110:BDES
+        ctrl: KICK:DIAG0:110:CTRL
+      control_name: KICK:DIAG0:110
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 42.73
+  BLRDG0:
+    controls_information:
+      PVs:
+        bact: BEND:DIAG0:155:BACT
+        bcon: BEND:DIAG0:155:BCON
+        bctrl: BEND:DIAG0:155:BCTRL
+        bdes: BEND:DIAG0:155:BDES
+        ctrl: BEND:DIAG0:155:CTRL
+      control_name: BEND:DIAG0:155
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 44.73
+  BXDG0:
+    controls_information:
+      PVs:
+        bact: BEND:DIAG0:260:BACT
+        bcon: BEND:DIAG0:260:BCON
+        bctrl: BEND:DIAG0:260:BCTRL
+        bdes: BEND:DIAG0:260:BDES
+        ctrl: BEND:DIAG0:260:CTRL
+      control_name: BEND:DIAG0:260
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 49.486
+  BYDG0:
+    controls_information:
+      PVs:
+        bact: BEND:DIAG0:510:BACT
+        bcon: BEND:DIAG0:510:BCON
+        bctrl: BEND:DIAG0:510:BCTRL
+        bdes: BEND:DIAG0:510:BDES
+        ctrl: BEND:DIAG0:510:CTRL
+      control_name: BEND:DIAG0:510
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 60.964
+  QDG001:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:190:BACT
+        bcon: QUAD:DIAG0:190:BCON
+        bctrl: QUAD:DIAG0:190:BCTRL
+        bdes: QUAD:DIAG0:190:BDES
+        ctrl: QUAD:DIAG0:190:CTRL
+      control_name: QUAD:DIAG0:190
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 46.232
+  QDG002:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:210:BACT
+        bcon: QUAD:DIAG0:210:BCON
+        bctrl: QUAD:DIAG0:210:BCTRL
+        bdes: QUAD:DIAG0:210:BDES
+        ctrl: QUAD:DIAG0:210:CTRL
+      control_name: QUAD:DIAG0:210
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 47.094
+  QDG003:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:230:BACT
+        bcon: QUAD:DIAG0:230:BCON
+        bctrl: QUAD:DIAG0:230:BCTRL
+        bdes: QUAD:DIAG0:230:BDES
+        ctrl: QUAD:DIAG0:230:CTRL
+      control_name: QUAD:DIAG0:230
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 47.956
+  QDG004:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:270:BACT
+        bcon: QUAD:DIAG0:270:BCON
+        bctrl: QUAD:DIAG0:270:BCTRL
+        bdes: QUAD:DIAG0:270:BDES
+        ctrl: QUAD:DIAG0:270:CTRL
+      control_name: QUAD:DIAG0:270
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 50.114
+  QDG005:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:285:BACT
+        bcon: QUAD:DIAG0:285:BCON
+        bctrl: QUAD:DIAG0:285:BCTRL
+        bdes: QUAD:DIAG0:285:BDES
+        ctrl: QUAD:DIAG0:285:CTRL
+      control_name: QUAD:DIAG0:285
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 50.763
+  QDG006:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:300:BACT
+        bcon: QUAD:DIAG0:300:BCON
+        bctrl: QUAD:DIAG0:300:BCTRL
+        bdes: QUAD:DIAG0:300:BDES
+        ctrl: QUAD:DIAG0:300:CTRL
+      control_name: QUAD:DIAG0:300
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 51.463
+  QDG007:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:360:BACT
+        bcon: QUAD:DIAG0:360:BCON
+        bctrl: QUAD:DIAG0:360:BCTRL
+        bdes: QUAD:DIAG0:360:BDES
+        ctrl: QUAD:DIAG0:360:CTRL
+      control_name: QUAD:DIAG0:360
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 54.063
+  QDG008:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:370:BACT
+        bcon: QUAD:DIAG0:370:BCON
+        bctrl: QUAD:DIAG0:370:BCTRL
+        bdes: QUAD:DIAG0:370:BDES
+        ctrl: QUAD:DIAG0:370:CTRL
+      control_name: QUAD:DIAG0:370
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 54.763
+  QDG009:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:390:BACT
+        bcon: QUAD:DIAG0:390:BCON
+        bctrl: QUAD:DIAG0:390:BCTRL
+        bdes: QUAD:DIAG0:390:BDES
+        ctrl: QUAD:DIAG0:390:CTRL
+      control_name: QUAD:DIAG0:390
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 55.463
+  QDG010:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:455:BACT
+        bcon: QUAD:DIAG0:455:BCON
+        bctrl: QUAD:DIAG0:455:BCTRL
+        bdes: QUAD:DIAG0:455:BDES
+        ctrl: QUAD:DIAG0:455:CTRL
+      control_name: QUAD:DIAG0:455
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 58.533
+  QDG011:
+    controls_information:
+      PVs:
+        bact: QUAD:DIAG0:470:BACT
+        bcon: QUAD:DIAG0:470:BCON
+        bctrl: QUAD:DIAG0:470:BCTRL
+        bdes: QUAD:DIAG0:470:BDES
+        ctrl: QUAD:DIAG0:470:CTRL
+      control_name: QUAD:DIAG0:470
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 59.233
+  XCDG001:
+    controls_information:
+      PVs:
+        bact: XCOR:DIAG0:178:BACT
+        bcon: XCOR:DIAG0:178:BCON
+        bctrl: XCOR:DIAG0:178:BCTRL
+        bdes: XCOR:DIAG0:178:BDES
+        ctrl: XCOR:DIAG0:178:CTRL
+      control_name: XCOR:DIAG0:178
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 45.883
+  XCDG002:
+    controls_information:
+      PVs:
+        bact: XCOR:DIAG0:218:BACT
+        bcon: XCOR:DIAG0:218:BCON
+        bctrl: XCOR:DIAG0:218:BCTRL
+        bdes: XCOR:DIAG0:218:BDES
+        ctrl: XCOR:DIAG0:218:CTRL
+      control_name: XCOR:DIAG0:218
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 47.607
+  XCDG003:
+    controls_information:
+      PVs:
+        bact: XCOR:DIAG0:280:BACT
+        bcon: XCOR:DIAG0:280:BCON
+        bctrl: XCOR:DIAG0:280:BCTRL
+        bdes: XCOR:DIAG0:280:BDES
+        ctrl: XCOR:DIAG0:280:CTRL
+      control_name: XCOR:DIAG0:280
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 50.439
+  XCDG005:
+    controls_information:
+      PVs:
+        bact: XCOR:DIAG0:290:BACT
+        bcon: XCOR:DIAG0:290:BCON
+        bctrl: XCOR:DIAG0:290:BCTRL
+        bdes: XCOR:DIAG0:290:BDES
+        ctrl: XCOR:DIAG0:290:CTRL
+      control_name: XCOR:DIAG0:290
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 51.113
+  XCDG008:
+    controls_information:
+      PVs:
+        bact: XCOR:DIAG0:380:BACT
+        bcon: XCOR:DIAG0:380:BCON
+        bctrl: XCOR:DIAG0:380:BCTRL
+        bdes: XCOR:DIAG0:380:BDES
+        ctrl: XCOR:DIAG0:380:CTRL
+      control_name: XCOR:DIAG0:380
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 55.113
+  XCDG010:
+    controls_information:
+      PVs:
+        bact: XCOR:DIAG0:460:BACT
+        bcon: XCOR:DIAG0:460:BCON
+        bctrl: XCOR:DIAG0:460:BCTRL
+        bdes: XCOR:DIAG0:460:BDES
+        ctrl: XCOR:DIAG0:460:CTRL
+      control_name: XCOR:DIAG0:460
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 58.883
+  YCDG001:
+    controls_information:
+      PVs:
+        bact: YCOR:DIAG0:199:BACT
+        bcon: YCOR:DIAG0:199:BCON
+        bctrl: YCOR:DIAG0:199:BCTRL
+        bdes: YCOR:DIAG0:199:BDES
+        ctrl: YCOR:DIAG0:199:CTRL
+      control_name: YCOR:DIAG0:199
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 46.745
+  YCDG002:
+    controls_information:
+      PVs:
+        bact: YCOR:DIAG0:247:BACT
+        bcon: YCOR:DIAG0:247:BCON
+        bctrl: YCOR:DIAG0:247:BCTRL
+        bdes: YCOR:DIAG0:247:BDES
+        ctrl: YCOR:DIAG0:247:CTRL
+      control_name: YCOR:DIAG0:247
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 48.832
+  YCDG003:
+    controls_information:
+      PVs:
+        bact: YCOR:DIAG0:280:BACT
+        bcon: YCOR:DIAG0:280:BCON
+        bctrl: YCOR:DIAG0:280:BCTRL
+        bdes: YCOR:DIAG0:280:BDES
+        ctrl: YCOR:DIAG0:280:CTRL
+      control_name: YCOR:DIAG0:280
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 50.439
+  YCDG005:
+    controls_information:
+      PVs:
+        bact: YCOR:DIAG0:290:BACT
+        bcon: YCOR:DIAG0:290:BCON
+        bctrl: YCOR:DIAG0:290:BCTRL
+        bdes: YCOR:DIAG0:290:BDES
+        ctrl: YCOR:DIAG0:290:CTRL
+      control_name: YCOR:DIAG0:290
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 51.113
+  YCDG008:
+    controls_information:
+      PVs:
+        bact: YCOR:DIAG0:380:BACT
+        bcon: YCOR:DIAG0:380:BCON
+        bctrl: YCOR:DIAG0:380:BCTRL
+        bdes: YCOR:DIAG0:380:BDES
+        ctrl: YCOR:DIAG0:380:CTRL
+      control_name: YCOR:DIAG0:380
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 55.113
+  YCDG010:
+    controls_information:
+      PVs:
+        bact: YCOR:DIAG0:460:BACT
+        bcon: YCOR:DIAG0:460:BCON
+        bctrl: YCOR:DIAG0:460:BCTRL
+        bdes: YCOR:DIAG0:460:BDES
+        ctrl: YCOR:DIAG0:460:CTRL
+      control_name: YCOR:DIAG0:460
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 58.883
+screens:
+  OTRDG02:
+    controls_information:
+      PVs:
+        image: OTRS:DIAG0:420:Image:ArrayData
+        n_bits: OTRS:DIAG0:420:N_OF_BITS
+        n_col: OTRS:DIAG0:420:Image:ArraySizeY_RBV
+        n_row: OTRS:DIAG0:420:Image:ArraySizeX_RBV
+        resolution: OTRS:DIAG0:420:RESOLUTION
+      control_name: OTRS:DIAG0:420
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 56.813
+  OTRDG04:
+    controls_information:
+      PVs:
+        image: OTRS:DIAG0:525:Image:ArrayData
+        n_bits: OTRS:DIAG0:525:N_OF_BITS
+        n_col: OTRS:DIAG0:525:Image:ArraySizeY_RBV
+        n_row: OTRS:DIAG0:525:Image:ArraySizeX_RBV
+        resolution: OTRS:DIAG0:525:RESOLUTION
+      control_name: OTRS:DIAG0:525
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 61.871

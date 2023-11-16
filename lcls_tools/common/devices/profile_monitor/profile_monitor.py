@@ -2,11 +2,10 @@
 
 from epics import PV
 import lcls_tools.common.devices.profile_monitor.profmon_constants as pc
-from inspect import getmembers
 from time import sleep
 from threading import Thread
 from numpy import array_equal
-from functools import partial
+
 
 # Implementation needs to be thought out, just a POC
 

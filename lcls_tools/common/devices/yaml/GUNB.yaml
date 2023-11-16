@@ -1,0 +1,393 @@
+magnets:
+  CQ01B:
+    controls_information:
+      PVs:
+        bact: QUAD:GUNB:212:1:BACT
+        bcon: QUAD:GUNB:212:1:BCON
+        bctrl: QUAD:GUNB:212:1:BCTRL
+        bdes: QUAD:GUNB:212:1:BDES
+        ctrl: QUAD:GUNB:212:1:CTRL
+      control_name: QUAD:GUNB:212:1
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.247
+  CQ02B:
+    controls_information:
+      PVs:
+        bact: QUAD:GUNB:823:1:BACT
+        bcon: QUAD:GUNB:823:1:BCON
+        bctrl: QUAD:GUNB:823:1:BCTRL
+        bdes: QUAD:GUNB:823:1:BDES
+        ctrl: QUAD:GUNB:823:1:CTRL
+      control_name: QUAD:GUNB:823:1
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.57
+  SOL1B:
+    controls_information:
+      PVs:
+        bact: SOLN:GUNB:212:BACT
+        bcon: SOLN:GUNB:212:BCON
+        bctrl: SOLN:GUNB:212:BCTRL
+        bdes: SOLN:GUNB:212:BDES
+        ctrl: SOLN:GUNB:212:CTRL
+      control_name: SOLN:GUNB:212
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.247
+  SOL1BKB:
+    controls_information:
+      PVs:
+        bact: SOLN:GUNB:100:BACT
+        bcon: SOLN:GUNB:100:BCON
+        bctrl: SOLN:GUNB:100:BCTRL
+        bdes: SOLN:GUNB:100:BDES
+        ctrl: SOLN:GUNB:100:CTRL
+      control_name: SOLN:GUNB:100
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: -0.072
+  SOL2B:
+    controls_information:
+      PVs:
+        bact: SOLN:GUNB:823:BACT
+        bcon: SOLN:GUNB:823:BCON
+        bctrl: SOLN:GUNB:823:BCTRL
+        bdes: SOLN:GUNB:823:BDES
+        ctrl: SOLN:GUNB:823:CTRL
+      control_name: SOLN:GUNB:823
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.646
+  SQ01B:
+    controls_information:
+      PVs:
+        bact: QUAD:GUNB:212:2:BACT
+        bcon: QUAD:GUNB:212:2:BCON
+        bctrl: QUAD:GUNB:212:2:BCTRL
+        bdes: QUAD:GUNB:212:2:BDES
+        ctrl: QUAD:GUNB:212:2:CTRL
+      control_name: QUAD:GUNB:212:2
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.247
+  SQ02B:
+    controls_information:
+      PVs:
+        bact: QUAD:GUNB:823:2:BACT
+        bcon: QUAD:GUNB:823:2:BCON
+        bctrl: QUAD:GUNB:823:2:BCTRL
+        bdes: QUAD:GUNB:823:2:BDES
+        ctrl: QUAD:GUNB:823:2:CTRL
+      control_name: QUAD:GUNB:823:2
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.646
+  XC01B:
+    controls_information:
+      PVs:
+        bact: XCOR:GUNB:293:BACT
+        bcon: XCOR:GUNB:293:BCON
+        bctrl: XCOR:GUNB:293:BCTRL
+        bdes: XCOR:GUNB:293:BDES
+        ctrl: XCOR:GUNB:293:CTRL
+      control_name: XCOR:GUNB:293
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.484
+  XC02B:
+    controls_information:
+      PVs:
+        bact: XCOR:GUNB:388:BACT
+        bcon: XCOR:GUNB:388:BCON
+        bctrl: XCOR:GUNB:388:BCTRL
+        bdes: XCOR:GUNB:388:BDES
+        ctrl: XCOR:GUNB:388:CTRL
+      control_name: XCOR:GUNB:388
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.67
+  XC03B:
+    controls_information:
+      PVs:
+        bact: XCOR:GUNB:513:BACT
+        bcon: XCOR:GUNB:513:BCON
+        bctrl: XCOR:GUNB:513:BCTRL
+        bdes: XCOR:GUNB:513:BDES
+        ctrl: XCOR:GUNB:513:CTRL
+      control_name: XCOR:GUNB:513
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.964
+  XC04B:
+    controls_information:
+      PVs:
+        bact: XCOR:GUNB:713:BACT
+        bcon: XCOR:GUNB:713:BCON
+        bctrl: XCOR:GUNB:713:BCTRL
+        bdes: XCOR:GUNB:713:BDES
+        ctrl: XCOR:GUNB:713:CTRL
+      control_name: XCOR:GUNB:713
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.369
+  XC05B:
+    controls_information:
+      PVs:
+        bact: XCOR:GUNB:927:BACT
+        bcon: XCOR:GUNB:927:BCON
+        bctrl: XCOR:GUNB:927:BCTRL
+        bdes: XCOR:GUNB:927:BDES
+        ctrl: XCOR:GUNB:927:CTRL
+      control_name: XCOR:GUNB:927
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.889
+  YC01B:
+    controls_information:
+      PVs:
+        bact: YCOR:GUNB:293:BACT
+        bcon: YCOR:GUNB:293:BCON
+        bctrl: YCOR:GUNB:293:BCTRL
+        bdes: YCOR:GUNB:293:BDES
+        ctrl: YCOR:GUNB:293:CTRL
+      control_name: YCOR:GUNB:293
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.484
+  YC02B:
+    controls_information:
+      PVs:
+        bact: YCOR:GUNB:388:BACT
+        bcon: YCOR:GUNB:388:BCON
+        bctrl: YCOR:GUNB:388:BCTRL
+        bdes: YCOR:GUNB:388:BDES
+        ctrl: YCOR:GUNB:388:CTRL
+      control_name: YCOR:GUNB:388
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.67
+  YC03B:
+    controls_information:
+      PVs:
+        bact: YCOR:GUNB:513:BACT
+        bcon: YCOR:GUNB:513:BCON
+        bctrl: YCOR:GUNB:513:BCTRL
+        bdes: YCOR:GUNB:513:BDES
+        ctrl: YCOR:GUNB:513:CTRL
+      control_name: YCOR:GUNB:513
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.964
+  YC04B:
+    controls_information:
+      PVs:
+        bact: YCOR:GUNB:713:BACT
+        bcon: YCOR:GUNB:713:BCON
+        bctrl: YCOR:GUNB:713:BCTRL
+        bdes: YCOR:GUNB:713:BDES
+        ctrl: YCOR:GUNB:713:CTRL
+      control_name: YCOR:GUNB:713
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.369
+  YC05B:
+    controls_information:
+      PVs:
+        bact: YCOR:GUNB:927:BACT
+        bcon: YCOR:GUNB:927:BCON
+        bctrl: YCOR:GUNB:927:BCTRL
+        bdes: YCOR:GUNB:927:BDES
+        ctrl: YCOR:GUNB:927:CTRL
+      control_name: YCOR:GUNB:927
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.889
+screens:
+  YAG01B:
+    controls_information:
+      PVs: {}
+      control_name: MOVR:GUNB:753
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.49

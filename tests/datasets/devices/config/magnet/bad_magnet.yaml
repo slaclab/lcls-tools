@@ -1,0 +1,49 @@
+magnets:
+  CQ01B:
+    controls_information:
+      PVs:
+        bact: QUAD:GUNB:212:1:BACT
+        bcon: QUAD:GUNB:212:1:BCON
+        bctrl: QUAD:GUNB:212:1:BCTRL
+        bdes: QUAD:GUNB:212:1:BDES
+        ctrl: QUAD:GUNB:212:1:CTRL
+      control_name: QUAD:GUNB:212:1
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.247
+  CQ02B:
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.57
+  SOL1B:
+    controls_information:
+      PVs:
+        bact: SOLN:GUNB:212:BACT
+        bcon: SOLN:GUNB:212:BCON
+        bctrl: SOLN:GUNB:212:BCTRL
+        bdes: SOLN:GUNB:212:BDES
+        ctrl: SOLN:GUNB:212:CTRL
+      control_name: SOLN:GUNB:212
+
+
+

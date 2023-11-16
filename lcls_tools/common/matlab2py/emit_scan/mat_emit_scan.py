@@ -1,5 +1,4 @@
 import scipy.io as sio
-import numpy as np
 import os
 
 VAL = "val"
@@ -301,8 +300,8 @@ class MatEmitScan(object):
             temp2 = dict()
             for i, name in enumerate(names):
                 if name != UNITS:
-                    if isinstance(val[0][i][0], unicode):
-                        temp2[name] = str(val[0][i][0])
+                    if isinstance(val[0][i][0], bytes):
+                        temp2[name] = str(val[0][i][0].decode("utf-8"))
                     else:
                         temp2[name] = val[0][i][0]
             temp1.append(temp2)

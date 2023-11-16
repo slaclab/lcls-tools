@@ -1,6 +1,5 @@
 # Built in
-import sys
-import unittest
+from unittest import mock, TestCase
 import inspect
 
 # Local imports
@@ -34,7 +33,7 @@ PROF2 = {
 PROFS = ["OTR02", "YAG01B", "YAG01"]
 
 
-class ProfileMonitorTest(unittest.TestCase):
+class ProfileMonitorTest(TestCase):
     ############ Constants ############
 
     def test_create_profmon_dict(self):
@@ -50,9 +49,12 @@ class ProfileMonitorTest(unittest.TestCase):
         self.assertEqual(get_profile_monitors(), sorted(PROFS))
 
     ############# Object ##############
-
-    def test_properties(self):
+    @mock.patch("epics.PV.get", new_callable=mock.Mock)
+    @mock.patch("epics.PV.get_ctrlvars", new_callable=mock.Mock)
+    def test_properties(self, mock_get_ctrl_vars, mock_pv_get):
         """Test that all the properties we expect exist"""
+        mock_get_ctrl_vars.return_value = {"enum_strs": ["IN"]}
+        mock_pv_get.return_value = 0
         p = ProfMon()
         self.assertEqual(isinstance(type(p).prof_name, property), True)
         self.assertEqual(isinstance(type(p).cur_image, property), True)
@@ -63,8 +65,12 @@ class ProfileMonitorTest(unittest.TestCase):
         self.assertEqual(isinstance(type(p).motion_state, property), True)
         self.assertEqual(isinstance(type(p).state, property), True)
 
-    def test_methods(self):
+    @mock.patch("epics.PV.get", new_callable=mock.Mock)
+    @mock.patch("epics.PV.get_ctrlvars", new_callable=mock.Mock)
+    def test_methods(self, mock_get_ctrl_vars, mock_pv_get):
         """Test that all the methods we expect exist"""
+        mock_get_ctrl_vars.return_value = {"enum_strs": ["IN"]}
+        mock_pv_get.return_value = 0
         p = ProfMon()
         self.assertEqual(inspect.ismethod(p.insert), True)
         self.assertEqual(inspect.ismethod(p._inserted), True)
@@ -73,8 +79,12 @@ class ProfileMonitorTest(unittest.TestCase):
         self.assertEqual(inspect.ismethod(p.acquire_images), True)
         self.assertEqual(inspect.ismethod(p._collect_image_data), True)
 
-    def test_name(self):
+    @mock.patch("epics.PV.get", new_callable=mock.Mock)
+    @mock.patch("epics.PV.get_ctrlvars", new_callable=mock.Mock)
+    def test_name(self, mock_get_ctrl_vars, mock_pv_get):
         """Test that we get default name and can hand name in init arg"""
+        mock_get_ctrl_vars.return_value = {"enum_strs": ["IN"]}
+        mock_pv_get.return_value = 0
         p = ProfMon()
         self.assertEqual(p.prof_name, "OTR02")
         p = ProfMon("YAG01")
