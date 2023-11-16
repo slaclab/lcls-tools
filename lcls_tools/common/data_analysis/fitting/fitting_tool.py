@@ -15,33 +15,52 @@ import statistics
 
 
 class FittingTool:
-    def __init__(self,data:np.array):
+    def __init__(self,data:np.array,**kwargs)->dict:
         '''tool takes in the data points for some distribution, for now just one distrbution at a time'''
-        self.distribution = data
-        self.linspace = np.arange(len(data))
+        self.y= data
+        self.x = np.arange(len(data))
+        #self.initial_guess = kwargs['initial_guess']
 
-        #do some statistical analysis to get 
-        self.p0 = self.get_stats(self.distribution,self.linspace)
-        self.method = self.guess_method()
+        self.initial_params = self.guess_params(self.y)
 
 
-    def get_stats(self,distribution,linspace):
-        offset = np.min(distribution)
-        amp = np.max(distribution) - offset
-        num = len(distribution)
-        outcomes = distribution*linspace
-        mu = np.sum(outcomes)/num
-        sigma =np.sqrt(sum((distribution*(linspace-mu)**2)/num))
 
-        pearsons_coefficient = self.check_skewness(outcomes,mu,sigma)
-        kurtosis = self.check_kurtosis()
-        ##useful for initial guess probably not completely correct
+    def guess_params(self,y:np.array,initial_guess:dict={})->dict:
+        
+        initial_params = {}
 
-        return [amp,mu,sigma,offset]
+        offset = initial_guess.pop("offset", np.mean(y[-10:]))
+        amplitude = initial_guess.pop("amplitude", y.max() - offset)
+        mu  = initial_guess.pop("mu",np.argmax(y))
+        sigma = initial_guess.pop("sigma", y.shape[0] / 5)
+        initial_params['gaussian'] = [amplitude,mu,sigma,offset]
 
-    def guess_method(self):
-        ''' Perform statistics on data set '''
-        return self.gaussian
+        ### super gaussian extension
+        power = 2
+        initial_params['super_gaussian'] = [amplitude,mu,sigma,power,offset]
+
+        ### for double gaussian
+        ### will make new helper functions for peaks and widths
+        amplitude2 = amplitude/3
+        nu  = mu/2
+        rho = sigma/2
+        initial_params['double_gaussian'] = [amplitude,mu,sigma,amplitude2,nu,rho,offset]
+
+        return initial_params
+
+    def get_fit(self,best_fit:bool=True)->dict:
+        '''Return fit parameters to data y such that y = method(x,parameters)'''
+        fits = {}
+
+        for key,val in self.initial_params.items():
+            method = getattr(self,key)
+            fit_params = curve_fit(method,self.x,self.y,val)[0]
+
+            y_fitted = method(self.x,*fit_params)
+            rmse = self.calculate_rms_deviation(self.y,y_fitted)
+            fits[key] = fit_params 
+        return fits
+
 
     def check_skewness(self,outcomes,mu,sigma):
         '''Checks for skewness in dataset, neg if mean<median<mode, pos if opposite'''
@@ -80,7 +99,7 @@ class FittingTool:
         truncated_x = np.clip(x,lower_bound,upper_bound)
         return truncated_x
 
-    def calculate_rms_deviation(x:np.array,fit_x:np.array):
+    def calculate_rms_deviation(self,x:np.array,fit_x:np.array):
         rms_deviation = np.sqrt(np.power(sum(x-fit_x),2)/len(x))
         return rms_deviation 
     
@@ -89,10 +108,6 @@ class FittingTool:
         rms_deviation = np.sqrt(np.power(sum(x-mean),2)/len(x))
         return rms_deviation 
 
-    def get_fit(self):
-        '''Return fit parameters to data y such that y = method(x,parameters)'''
-        return curve_fit(self.method,self.linspace,self.distribution,self.p0)[0]
-
     @staticmethod
     def gaussian(x,amp,mu,sig,offset):
         '''Gaussian Function'''
@@ -100,16 +115,20 @@ class FittingTool:
         return amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0))) + offset
     
     @staticmethod
-    def super_gaussian(x,amp,mu,sig,P):
+    def gaussian_with_linear_background(x,amp,mu,sig,offset,slope):
+        return amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0))) + offset + slope*x
+
+    @staticmethod
+    def super_gaussian(x,amp,mu,sig,P,offset):
         '''Super Gaussian Function'''
         '''Degree of P related to flatness of curve at peak'''
-        return amp * np.exp((-abs(x - mu)**P )/ (2 * sig ** P))
+        return amp * np.exp((-abs(x - mu)**P )/ (2 * sig ** P)) + offset 
     
     @staticmethod
-    def double_gaussian( x, amp, mu, sig , amp2, nu, rho):
+    def double_gaussian( x, amp, mu, sig , amp2, nu, rho, offset):
         return ( amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0))) +
-                amp2 * np.exp(-np.power(x - nu, 2.0) / (2 * np.power(rho, 2.0))) )
-   
+                amp2 * np.exp(-np.power(x - nu, 2.0) / (2 * np.power(rho, 2.0))) ) + offset
+    
     @staticmethod
     def two_dim_gaussian(x, y, A, x0, y0, sigma_x, sigma_y):
         '''2-D Gaussian Function'''
