@@ -232,10 +232,11 @@ class Magnet(Device):
         """Reset magnet"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["RESET"])
 
-    @check_options(["TURN_OFF", "TRIM"])
+    @check_options("TURN_OFF")
     def turn_off(self) -> None:
         self.controls_information.PVs.ctrl.put(self.ctrl_options["TURN_OFF"])
 
+    @check_options("TURN_ON")
     def turn_on(self) -> None:
         self.controls_information.PVs.ctrl.put(self.ctrl_options["TURN_ON"])
 
