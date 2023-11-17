@@ -1,5 +1,5 @@
-from tkinter.tix import CheckList
-from matplotlib.bezier import check_if_parallel
+from datetime import datetime, timedelta
+from functools import wraps
 from pydantic import (
     BaseModel,
     PositiveFloat,
@@ -31,33 +31,30 @@ class MagnetPVSet(PVSet):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    @field_validator("ctrl", mode="before")
-    def validate_pv_fields(cls, v: str):
+    @field_validator("*", mode="before")
+    def validate_pv_fields(cls, v: str) -> PV:
         return PV(v)
 
-    @field_validator("bdes", mode='before')
-    def validate_bdes_field(cls, v : str):
-        # v = 'bdes'
-        options = self.ctrl.get_ctrlvars()
-        if 'TRIM' in options:
-            return PV(v)
-        else:
-            return None
 
 class MagnetControlInformation(ControlInformation):
     PVs: SerializeAsAny[MagnetPVSet]
     ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = {
         "READY": 0,
-        "TRIM": 1,
-        "PERTURB": 2,
-        "BCON_TO_BDES": 3,
-        "SAVE_BDES": 4,
-        "LOAD_BDES": 5,
-        "UNDO_BDES": 6,
+        "PERTURB_SLIDE": 1,
+        "TRIM": 2,
+        "CALIB": 3,
+        "STDZ": 4,
+        "DEGAUSS": 5,
+        "PERTURB": 6,
         "DAC_ZERO": 7,
-        "CALIB": 8,
-        "STDZ": 9,
-        "RESET": 10,
+        "RESET": 8,
+        "TURN_ON": 9,
+        "TURN_OFF": 10,
+        "SAVE_BDES": 11,
+        "LOAD_BDES": 12,
+        "UNDO_BDES": 13,
+        "BACT_TO_BDES": 14,
+        "BCON_TO_BDES": 15,
     }
 
     def __init__(self, **kwargs):
@@ -92,13 +89,27 @@ class Magnet(Device):
 
         return decorated
 
-    def check_options(option_to_check, f):
-        def decorated(self, *args, **kwargs):
-            if option_to_check not in self.ctrl.get_ctrlvars():
-                print(f'unable to perform process {option_to_check} with this magnet')
-                return
-            return f(self, *args, **kwargs)
-        return decorated
+    def check_options(options_to_check: Union[str, List]):
+        def decorator(function):
+            @wraps(function)
+            def decorated(self, *args, **kwargs):
+                # convert single value to list.
+                if isinstance(options_to_check, str):
+                    options = [options_to_check]
+                for option in options:
+                    if (
+                        option
+                        not in self.controls_information.PVs.ctrl.get_ctrlvars()[
+                            "enum_strs"
+                        ]
+                    ):
+                        print(f"unable to perform process {option} with this magnet")
+                        return
+                return function(self, *args, **kwargs)
+
+            return decorated
+
+        return decorator
 
     @property
     def ctrl_options(self):
@@ -150,13 +161,8 @@ class Magnet(Device):
         return self.controls_information.PVs.bdes.get()
 
     @bdes.setter
-    @check_options('TRIM')
     def bdes(self, bval) -> None:
         self.controls_information.PVs.bdes.put(value=bval)
-    
-    @check_options('TURN_OFF')
-    def switch_off(self):
-        pass
 
     @property
     def ctrl(self) -> str:
@@ -171,60 +177,71 @@ class Magnet(Device):
     def is_bact_settled(self, b_tolerance: Optional[float] = 0.0) -> bool:
         return abs(self.bdes) - abs(self.bact) < b_tolerance
 
+    @check_options("TRIM")
     @check_state
     def trim(self) -> None:
         """Issue trim command"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["TRIM"])
 
+    @check_options("PERTURB")
     @check_state
     def perturb(self) -> None:
         """Issue perturb command"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["PERTURB"])
 
+    @check_options("BCON_TO_BDES")
     def con_to_des(self) -> None:
         """Issue con to des commands"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["BCON_TO_BDES"])
 
+    @check_options("SAVE_BDES")
     def save_bdes(self) -> None:
         """Save BDES"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["SAVE_BDES"])
 
+    @check_options("LOAD_BDES")
     def load_bdes(self) -> None:
         """Load BtolDES"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["LOAD_BDES"])
 
+    @check_options("UNDO_BDES")
     def undo_bdes(self) -> None:
         """Save BDES"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["UNDO_BDES"])
 
+    @check_options("DAC_ZERO")
     @check_state
     def dac_zero(self) -> None:
         """DAC zero magnet"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["DAC_ZERO"])
 
+    @check_options("CALIB")
     @check_state
     def calibrate(self) -> None:
         """Calibrate magnet"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["CALIB"])
 
+    @check_options("STDZ")
     @check_state
     def standardize(self) -> None:
         """Standardize magnet"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["STDZ"])
 
+    @check_options("RESET")
     def reset(self) -> None:
         """Reset magnet"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["RESET"])
 
-    def switch_off(self) -> None:
-        self.bdes = 0
-        self.trim()
+    @check_options(["TURN_OFF", "TRIM"])
+    def turn_off(self) -> None:
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["TURN_OFF"])
 
-    def switch_on(self) -> None:
-        raise NotImplementedError
+    def turn_on(self) -> None:
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["TURN_ON"])
 
-    def degauss(self, trim_to_zero: Optional[bool] = True):
-        raise NotImplementedError
+    @check_options("DEGAUSS")
+    def degauss(self):
+        self.controls_information.PVs.ctrl.put(self.ctrl_options["DEGAUSS"])
 
 
 class MagnetCollection(BaseModel):
@@ -238,7 +255,11 @@ class MagnetCollection(BaseModel):
             v.update({name: magnet})
         return v
 
-    def set_bdes(self, magnet_dict: Dict[str, float]):
+    def set_bdes(
+        self,
+        magnet_dict: Dict[str, float],
+        settle_timeout_in_seconds: int = 5,
+    ):
         if not magnet_dict:
             return
 
@@ -246,7 +267,21 @@ class MagnetCollection(BaseModel):
             try:
                 self.magnets[magnet].bdes = bval
                 self.magnets[magnet].trim()
+                time_when_trim_started = datetime.now()
                 while not self.magnets[magnet].is_bact_settled():
+                    if datetime.now() - time_when_trim_started > timedelta(
+                        seconds=settle_timeout_in_seconds
+                    ):
+                        print(
+                            "Took more than ",
+                            settle_timeout_in_seconds,
+                            " seconds for ",
+                            self.name,
+                            ":BACT to reach ",
+                            self.name,
+                            ":BDES.",
+                        )
+                        break
                     continue
             except KeyError:
                 print(
@@ -255,34 +290,48 @@ class MagnetCollection(BaseModel):
                 )
 
     def scan(
-        self, scan_settings: List[Dict[str, float]], function: Optional[callable] = None
+        self,
+        scan_settings: List[Dict[str, float]],
+        function: Optional[callable] = None,
     ):
         for setting in scan_settings:
             self.set_bdes(setting)
             function() if function else None
 
-    def switch_off(self, magnets: Optional[Union[str, List]]):
-        magnets_to_switch_off = magnets
-        if isinstance(magnets, str):
-            magnets_to_switch_off = [magnets]
-        for magnet in magnets_to_switch_off:
+    def switch_off(
+        self,
+        magnets: Optional[Union[str, List]] = None,
+    ):
+        magnets_to_turn_off = magnets
+        if magnets_to_turn_off:
+            if isinstance(magnets, str):
+                magnets_to_turn_off = [magnets]
+        else:
+            magnets_to_turn_off = list(self.magnets.keys())
+        for magnet in magnets_to_turn_off:
             try:
-                self.magnets[magnet].switch_off()
-            except KeyError as ke:
+                self.magnets[magnet].turn_off()
+            except KeyError:
                 print(
                     "Could not find ",
                     magnet,
                     " in magnet collection, unable to switch off.",
                 )
 
-    def switch_on(self, magnets: Optional[Union[str, List]]):
-        magnets_to_switch_on = magnets
-        if isinstance(magnets, str):
-            magnets_to_switch_on = [magnets]
-        for magnet in magnets_to_switch_on:
+    def switch_on(
+        self,
+        magnets: Optional[Union[str, List]] = None,
+    ):
+        magnets_to_turn_on = magnets
+        if magnets_to_turn_on:
+            if isinstance(magnets, str):
+                magnets_to_turn_on = [magnets]
+        else:
+            magnets_to_turn_on = list(self.magnets.keys())
+        for magnet in magnets_to_turn_on:
             try:
-                self.magnets[magnet].switch_on()
-            except KeyError as ke:
+                self.magnets[magnet].turn_on()
+            except KeyError:
                 print(
                     "Could not find ",
                     magnet,
@@ -291,18 +340,18 @@ class MagnetCollection(BaseModel):
 
     def degauss(
         self,
-        magnets: Optional[Union[str, List]],
-        trim_to_zero: Optional[bool] = True,
+        magnets: Optional[Union[str, List]] = None,
     ):
         magnets_to_degauss = magnets
-        if isinstance(magnets, str):
-            magnets_to_degauss = [magnets]
+        if magnets_to_degauss:
+            if isinstance(magnets, str):
+                magnets_to_degauss = [magnets]
+        else:
+            magnets_to_degauss = list(self.magnets.keys())
         for magnet in magnets_to_degauss:
             try:
-                self.magnets[magnet].degauss(
-                    trim_to_zero=trim_to_zero,
-                )
-            except KeyError as ke:
+                self.magnets[magnet].degauss()
+            except KeyError:
                 print(
                     "Could not find ",
                     magnet,

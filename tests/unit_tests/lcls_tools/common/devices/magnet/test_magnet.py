@@ -154,8 +154,9 @@ class MagnetTest(TestCase):
         "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
+    @patch("epics.PV.get_ctrlvars", new_callable=Mock)
     def test_control_functions_call_pv_put_if_ready(
-        self, mock_ctrl_option, pv_put_mock
+        self, mock_ctrl_vars, mock_ctrl_option, pv_put_mock
     ):
         mock_ctrl_option.return_value = "Ready"
         options_and_getter_function = {
@@ -170,6 +171,9 @@ class MagnetTest(TestCase):
             "STDZ": self.magnet.standardize,
             "RESET": self.magnet.reset,
         }
+        mock_ctrl_vars.return_value = {
+            "enum_strs": tuple(options_and_getter_function.keys()),
+        }
         for option, func in options_and_getter_function.items():
             func()
             pv_put_mock.assert_called_once_with(self.magnet.ctrl_options[option])
@@ -180,7 +184,10 @@ class MagnetTest(TestCase):
         "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
-    def test_trim_does_nothing_if_not_ready(self, mock_ctrl_option, pv_put_mock):
+    @patch("epics.PV.get_ctrlvars", new_callable=Mock)
+    def test_control_functions_that_do_nothing_if_not_ready(
+        self, mock_ctrl_vars, mock_ctrl_option, pv_put_mock
+    ):
         mock_ctrl_option.return_value = "Not Ready"
         options_and_getter_function = {
             "TRIM": self.magnet.trim,
@@ -193,6 +200,9 @@ class MagnetTest(TestCase):
             "CALIB": self.magnet.calibrate,
             "STDZ": self.magnet.standardize,
             "RESET": self.magnet.reset,
+        }
+        mock_ctrl_vars.return_value = {
+            "enum_strs": tuple(options_and_getter_function.keys()),
         }
         options_requiring_state_check = [
             "TRIM",
