@@ -1,3 +1,5 @@
+from tkinter.tix import CheckList
+from matplotlib.bezier import check_if_parallel
 from pydantic import (
     BaseModel,
     PositiveFloat,
@@ -20,19 +22,27 @@ from epics import PV
 
 
 class MagnetPVSet(PVSet):
-    bctrl: PV
-    bact: PV
-    bdes: PV
-    bcon: PV
+    bctrl: Optional[Union[PV, None]] = None
+    bact: Optional[Union[PV, None]] = None
+    bdes: Optional[Union[PV, None]] = None
+    bcon: Optional[Union[PV, None]] = None
     ctrl: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    @field_validator("*", mode="before")
+    @field_validator("ctrl", mode="before")
     def validate_pv_fields(cls, v: str):
         return PV(v)
 
+    @field_validator("bdes", mode='before')
+    def validate_bdes_field(cls, v : str):
+        # v = 'bdes'
+        options = self.ctrl.get_ctrlvars()
+        if 'TRIM' in options:
+            return PV(v)
+        else:
+            return None
 
 class MagnetControlInformation(ControlInformation):
     PVs: SerializeAsAny[MagnetPVSet]
@@ -80,6 +90,14 @@ class Magnet(Device):
                 return
             return f(self, *args, **kwargs)
 
+        return decorated
+
+    def check_options(option_to_check, f):
+        def decorated(self, *args, **kwargs):
+            if option_to_check not in self.ctrl.get_ctrlvars():
+                print(f'unable to perform process {option_to_check} with this magnet')
+                return
+            return f(self, *args, **kwargs)
         return decorated
 
     @property
@@ -132,8 +150,13 @@ class Magnet(Device):
         return self.controls_information.PVs.bdes.get()
 
     @bdes.setter
+    @check_options('TRIM')
     def bdes(self, bval) -> None:
         self.controls_information.PVs.bdes.put(value=bval)
+    
+    @check_options('TURN_OFF')
+    def switch_off(self):
+        pass
 
     @property
     def ctrl(self) -> str:
