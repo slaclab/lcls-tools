@@ -96,7 +96,7 @@ magnets:
     metadata:
       area: L3F_2
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   XC19900:
     controls_information:
       PVs: {}
@@ -144,7 +144,7 @@ magnets:
     metadata:
       area: L3F_2
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   YC19900:
     controls_information:
       PVs: {}

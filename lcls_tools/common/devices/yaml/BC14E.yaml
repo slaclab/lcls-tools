@@ -76,7 +76,7 @@ magnets:
     metadata:
       area: BC14E
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
 screens:
   PR14803:
     controls_information:

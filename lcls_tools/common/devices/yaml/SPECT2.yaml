@@ -47,7 +47,7 @@ screens:
     metadata:
       area: SPECT2
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   BETA2:
     controls_information:
       PVs: {}
@@ -55,7 +55,7 @@ screens:
     metadata:
       area: SPECT2
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   BETAL:
     controls_information:
       PVs: {}
@@ -63,7 +63,7 @@ screens:
     metadata:
       area: SPECT2
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   CFAR:
     controls_information:
       PVs: {}
@@ -71,7 +71,7 @@ screens:
     metadata:
       area: SPECT2
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   ELANEX:
     controls_information:
       PVs: {}
@@ -79,7 +79,7 @@ screens:
     metadata:
       area: SPECT2
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null
   WDSOTR:
     controls_information:
       PVs: {}

@@ -16,4 +16,4 @@ screens:
     metadata:
       area: SFTS
       beam_path: []
-      sum_l_meters: -1.0
+      sum_l_meters: null

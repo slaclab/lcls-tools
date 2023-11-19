@@ -90,20 +90,20 @@ class YAMLGenerator:
                 "area": element["Area"],
                 "sum_l_meters": float(
                     np.format_float_positional(sum_l_meters, precision=3)
-                    if sum_l_meters
-                    else None
-                ),
+                )
+                if sum_l_meters
+                else None,
             },
         }
 
     def _construct_pv_list_from_control_system_name(
-        self, name, search_list: Optional[List[str]]
+        self, name, search_with_handles: Optional[Dict[str, str]]
     ) -> Dict[str, str]:
         if name == "":
             raise RuntimeError("No control system name provided for meme search.")
         # Use the control system name to get all PVs associated with device
         pv_dict = {}
-        for search_term in search_list:
+        for search_term, handle in search_with_handles.items():
             # End of the PV name is implied in search_term
             try:
                 pv_list = meme.names.list_pvs(name + ":" + search_term, sort_by="z")
@@ -112,13 +112,18 @@ class YAMLGenerator:
                     if len(pv_list) == 1:
                         # get the pv out of the results
                         pv = pv_list[0]
-                        # split by colon, grab the last part of the string as a handle
-                        handle = pv.split(":")[-1].lower()
+                        if not handle:
+                            # if the user has not provided their own handle then
+                            # split by colon, grab the last part of the string as a handle
+                            name_in_yaml = pv.split(":")[-1].lower()
+                        else:
+                            # user has provided their own handle.
+                            name_in_yaml = handle
                         # add it to the dictionary of PVs
-                        pv_dict[handle] = pv
+                        pv_dict[name_in_yaml] = pv
                     else:
                         raise RuntimeError(
-                            f"Did not return unique PV search result from MEME, please check MEME {name}:{search_list}"
+                            f"Did not return unique PV search result from MEME, please check MEME {name}:{search_term}"
                         )
             except TimeoutError as toe:
                 print(
@@ -131,7 +136,7 @@ class YAMLGenerator:
         self,
         area: Union[str, List[str]],
         required_types=Optional[List[str]],
-        pv_search_list=Optional[List[str]],
+        pv_search_terms=Optional[List[str]],
     ):
         if not isinstance(area, list):
             machine_areas = [area]
@@ -146,7 +151,7 @@ class YAMLGenerator:
             ]
         # Must have passed an area that does not exist or we don't have that device in this area!
         if len(device_elements) < 1:
-            print(f"No devices found in area {area}")
+            print(f"No devices of types {required_types} found in area {area}")
             return
         # Fill in the dict that will become the yaml file
         for device in device_elements:
@@ -155,8 +160,8 @@ class YAMLGenerator:
                 try:
                     # grab the pv information for this element using the search_list
                     pv_info = self._construct_pv_list_from_control_system_name(
-                        device["Control System Name"],
-                        pv_search_list,
+                        name=device["Control System Name"],
+                        search_with_handles=pv_search_terms,
                     )
                 except RuntimeError as rte:
                     print(rte)
@@ -172,27 +177,33 @@ class YAMLGenerator:
 
     def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
         required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
-        magnet_pv_search_list = ["BACT", "BCTRL", "BCON", "BDES", "CTRL"]
+        magnet_pv_search_list = {
+            "BACT": None,
+            "BCTRL": None,
+            "BCON": None,
+            "BDES": None,
+            "CTRL": None,
+        }
         return self.extract_devices(
             area=area,
             required_types=required_magnet_types,
-            pv_search_list=magnet_pv_search_list,
+            pv_search_terms=magnet_pv_search_list,
         )
 
     def extract_screens(self, area: Union[str, List[str]] = ["HTR"]):
         required_screen_types = ["PROF"]
-        possible_screen_pvs = [
-            "IMAGE",
-            "Image:ArrayData",
-            "RESOLUTION",
-            "Image:ArraySizeX_RBV",
-            "Image:ArraySizeY_RBV",
-            "N_OF_COL",
-            "N_OF_ROW",
-            "N_OF_BITS",
-        ]
+        possible_screen_pvs = {
+            "IMAGE": "image",
+            "Image:ArrayData": "image",
+            "RESOLUTION": None,
+            "Image:ArraySizeX_RBV": "n_row",
+            "Image:ArraySizeY_RBV": "n_col",
+            "N_OF_COL": "n_col",
+            "N_OF_ROW": "n_row",
+            "N_OF_BITS": "n_bits",
+        }
         return self.extract_devices(
             area=area,
             required_types=required_screen_types,
-            pv_search_list=possible_screen_pvs,
+            pv_search_terms=possible_screen_pvs,
         )

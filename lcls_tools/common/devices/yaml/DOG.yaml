@@ -906,10 +906,10 @@ screens:
   OTRDOG:
     controls_information:
       PVs:
-        arraydata: PROF:DOG:195:Image:ArrayData
-        arraysizex_rbv: PROF:DOG:195:Image:ArraySizeX_RBV
-        arraysizey_rbv: PROF:DOG:195:Image:ArraySizeY_RBV
-        n_of_bits: PROF:DOG:195:N_OF_BITS
+        image: PROF:DOG:195:Image:ArrayData
+        n_bits: PROF:DOG:195:N_OF_BITS
+        n_col: PROF:DOG:195:Image:ArraySizeY_RBV
+        n_row: PROF:DOG:195:Image:ArraySizeX_RBV
         resolution: PROF:DOG:195:RESOLUTION
       control_name: PROF:DOG:195
     metadata:

@@ -232,9 +232,9 @@ screens:
     controls_information:
       PVs:
         image: OTRS:LI24:807:IMAGE
-        n_of_bits: OTRS:LI24:807:N_OF_BITS
-        n_of_col: OTRS:LI24:807:N_OF_COL
-        n_of_row: OTRS:LI24:807:N_OF_ROW
+        n_bits: OTRS:LI24:807:N_OF_BITS
+        n_col: OTRS:LI24:807:N_OF_COL
+        n_row: OTRS:LI24:807:N_OF_ROW
         resolution: OTRS:LI24:807:RESOLUTION
       control_name: OTRS:LI24:807
     metadata:

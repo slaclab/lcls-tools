@@ -237,10 +237,10 @@ screens:
   OTRDMPB:
     controls_information:
       PVs:
-        arraydata: OTRS:DMPS:695:Image:ArrayData
-        arraysizex_rbv: OTRS:DMPS:695:Image:ArraySizeX_RBV
-        arraysizey_rbv: OTRS:DMPS:695:Image:ArraySizeY_RBV
-        n_of_bits: OTRS:DMPS:695:N_OF_BITS
+        image: OTRS:DMPS:695:Image:ArrayData
+        n_bits: OTRS:DMPS:695:N_OF_BITS
+        n_col: OTRS:DMPS:695:Image:ArraySizeY_RBV
+        n_row: OTRS:DMPS:695:Image:ArraySizeX_RBV
         resolution: OTRS:DMPS:695:RESOLUTION
       control_name: OTRS:DMPS:695
     metadata:
