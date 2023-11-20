@@ -38,27 +38,14 @@ class MagnetPVSet(PVSet):
 
 class MagnetControlInformation(ControlInformation):
     PVs: SerializeAsAny[MagnetPVSet]
-    ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = {
-        "READY": 0,
-        "PERTURB_SLIDE": 1,
-        "TRIM": 2,
-        "CALIB": 3,
-        "STDZ": 4,
-        "DEGAUSS": 5,
-        "PERTURB": 6,
-        "DAC_ZERO": 7,
-        "RESET": 8,
-        "TURN_ON": 9,
-        "TURN_OFF": 10,
-        "SAVE_BDES": 11,
-        "LOAD_BDES": 12,
-        "UNDO_BDES": 13,
-        "BACT_TO_BDES": 14,
-        "BCON_TO_BDES": 15,
-    }
+    ctrl_options: SerializeAsAny[Optional[Dict[str, int]]]
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        options = self.PVs.ctrl.get_ctrlvars()['enum_strs']
+        for i, option in enumerate(options):
+            print('option: ', option, ' index: ', i)
+            self.ctrl_options[option] = i
 
 
 class MagnetMetadata(Metadata):
@@ -99,9 +86,7 @@ class Magnet(Device):
                 for option in options:
                     if (
                         option
-                        not in self.controls_information.PVs.ctrl.get_ctrlvars()[
-                            "enum_strs"
-                        ]
+                        not in self.controls_information.ctrl_options
                     ):
                         print(
                             f"unable to perform process {option} with this magnet {self.name}"
