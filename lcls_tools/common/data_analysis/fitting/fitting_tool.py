@@ -1,10 +1,10 @@
-import pylab
 import numpy as np
 from scipy.optimize import curve_fit
-from scipy.ndimage import gaussian_filter
-from scipy.special import erf
 import statistics
 
+
+# from scipy.ndimage import gaussian_filter
+# from scipy.special import erf
 # from lmfit import Model
 # want functions for gaussian
 # truncated gaussian
@@ -23,7 +23,6 @@ class FittingTool:
         self.initial_params = self.guess_params(self.y)
 
     def guess_params(self, y: np.array, initial_guess: dict = {}) -> dict:
-
         initial_params = {}
 
         offset = initial_guess.pop("offset", np.mean(y[-10:]))
@@ -32,12 +31,12 @@ class FittingTool:
         sigma = initial_guess.pop("sigma", y.shape[0] / 5)
         initial_params["gaussian"] = [amplitude, mu, sigma, offset]
 
-        ### super gaussian extension
+        # super gaussian extension
         power = 2
         initial_params["super_gaussian"] = [amplitude, mu, sigma, power, offset]
 
-        ### for double gaussian
-        ### will make new helper functions for peaks and widths
+        #  for double gaussian
+        #  will make new helper functions for peaks and widths
         amplitude2 = amplitude / 3
         nu = mu / 2
         rho = sigma / 2
@@ -53,7 +52,7 @@ class FittingTool:
 
         return initial_params
 
-    def get_fit(self, best_fit: bool = True) -> dict:
+    def get_fit(self, best_fit: bool = False) -> dict:
         """Return fit parameters to data y such that y = method(x,parameters)"""
         fits = {}
 
@@ -63,7 +62,10 @@ class FittingTool:
 
             y_fitted = method(self.x, *fit_params)
             rmse = self.calculate_rms_deviation(self.y, y_fitted)
+            print(method)
+            print(rmse)
             fits[key] = fit_params
+        print("returning only best fit: ", best_fit)
         return fits
 
     def check_skewness(self, outcomes, mu, sigma):
@@ -145,4 +147,4 @@ class FittingTool:
             -((x - x0) ** 2) / (2 * sigma_x**2) - (y - y0) ** 2 / (2 * sigma_y**2)
         )
 
-    ####fit batch images
+    # fit batch images
