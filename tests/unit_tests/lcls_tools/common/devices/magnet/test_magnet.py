@@ -21,6 +21,28 @@ class MagnetTest(TestCase):
             # "./tests/datasets/devices/config/magnet/typical_magnet.yaml",
             name="SOL1B",
         )
+        self.options_and_getter_function = {
+            "TRIM": self.magnet.trim,
+            "PERTURB": self.magnet.perturb,
+            "BCON_TO_BDES": self.magnet.con_to_des,
+            "SAVE_BDES": self.magnet.save_bdes,
+            "LOAD_BDES": self.magnet.load_bdes,
+            "UNDO_BDES": self.magnet.undo_bdes,
+            "DAC_ZERO": self.magnet.dac_zero,
+            "CALIB": self.magnet.calibrate,
+            "STDZ": self.magnet.standardize,
+            "RESET": self.magnet.reset,
+            "TURN_OFF": self.magnet.turn_off,
+            "TURN_ON": self.magnet.turn_on,
+            "DEGAUSS": self.magnet.degauss,
+        }
+        self.options_requiring_state_check = [
+            "TRIM",
+            "PERTURB",
+            "DAC_ZERO",
+            "CALIB",
+            "STDZ",
+        ]
         return super().setUp()
 
     def test_properties_exist(self):
@@ -159,22 +181,10 @@ class MagnetTest(TestCase):
         self, mock_ctrl_vars, mock_ctrl_option, pv_put_mock
     ):
         mock_ctrl_option.return_value = "Ready"
-        options_and_getter_function = {
-            "TRIM": self.magnet.trim,
-            "PERTURB": self.magnet.perturb,
-            "BCON_TO_BDES": self.magnet.con_to_des,
-            "SAVE_BDES": self.magnet.save_bdes,
-            "LOAD_BDES": self.magnet.load_bdes,
-            "UNDO_BDES": self.magnet.undo_bdes,
-            "DAC_ZERO": self.magnet.dac_zero,
-            "CALIB": self.magnet.calibrate,
-            "STDZ": self.magnet.standardize,
-            "RESET": self.magnet.reset,
-        }
         mock_ctrl_vars.return_value = {
-            "enum_strs": tuple(options_and_getter_function.keys()),
+            "enum_strs": tuple(self.options_and_getter_function.keys()),
         }
-        for option, func in options_and_getter_function.items():
+        for option, func in self.options_and_getter_function.items():
             func()
             pv_put_mock.assert_called_once_with(self.magnet.ctrl_options[option])
             pv_put_mock.reset_mock()
@@ -189,31 +199,13 @@ class MagnetTest(TestCase):
         self, mock_ctrl_vars, mock_ctrl_option, pv_put_mock
     ):
         mock_ctrl_option.return_value = "Not Ready"
-        options_and_getter_function = {
-            "TRIM": self.magnet.trim,
-            "PERTURB": self.magnet.perturb,
-            "BCON_TO_BDES": self.magnet.con_to_des,
-            "SAVE_BDES": self.magnet.save_bdes,
-            "LOAD_BDES": self.magnet.load_bdes,
-            "UNDO_BDES": self.magnet.undo_bdes,
-            "DAC_ZERO": self.magnet.dac_zero,
-            "CALIB": self.magnet.calibrate,
-            "STDZ": self.magnet.standardize,
-            "RESET": self.magnet.reset,
-        }
         mock_ctrl_vars.return_value = {
-            "enum_strs": tuple(options_and_getter_function.keys()),
+            "enum_strs": tuple(self.options_and_getter_function.keys()),
         }
-        options_requiring_state_check = [
-            "TRIM",
-            "PERTURB",
-            "DAC_ZERO",
-            "CALIB",
-            "STDZ",
-        ]
-        for option, func in options_and_getter_function.items():
+
+        for option, func in self.options_and_getter_function.items():
             func()
-            if option in options_requiring_state_check:
+            if option in self.options_requiring_state_check:
                 pv_put_mock.assert_not_called()
             else:
                 pv_put_mock.assert_called_once_with(self.magnet.ctrl_options[option])
@@ -244,6 +236,24 @@ class MagnetTest(TestCase):
         mock_bact.return_value = 0.001
         mock_bdes.return_value = 0.01
         self.assertFalse(self.magnet.is_bact_settled(b_tolerance=0.001))
+
+    @patch("epics.PV.put", new_callable=Mock)
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
+        new_callable=PropertyMock,
+    )
+    @patch("epics.PV.get_ctrlvars", new_callable=Mock)
+    def test_nothing_happens_if_ctrl_option_is_not_available(
+        self, mock_ctrl_options, mock_ctrl, mock_put
+    ):
+        mock_ctrl_options.return_value = {
+            "enum_strs": tuple("Ready"),
+        }
+        mock_ctrl.return_value = "Ready"
+        for _, function in self.options_and_getter_function.items():
+            function()
+            mock_put.assert_not_called()
+            mock_put.reset_mock()
 
 
 class MagnetCollectionTest(TestCase):
