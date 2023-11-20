@@ -103,7 +103,9 @@ class Magnet(Device):
                             "enum_strs"
                         ]
                     ):
-                        print(f"unable to perform process {option} with this magnet")
+                        print(
+                            f"unable to perform process {option} with this magnet {self.name}"
+                        )
                         return
                 return function(self, *args, **kwargs)
 
