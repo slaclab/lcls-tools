@@ -22,10 +22,10 @@ from epics import PV
 
 
 class MagnetPVSet(PVSet):
-    bctrl: Optional[Union[PV, None]] = None
-    bact: Optional[Union[PV, None]] = None
-    bdes: Optional[Union[PV, None]] = None
-    bcon: Optional[Union[PV, None]] = None
+    bctrl: PV
+    bact: PV
+    bdes: PV
+    bcon: PV
     ctrl: PV
 
     def __init__(self, **kwargs):
@@ -44,8 +44,7 @@ class MagnetControlInformation(ControlInformation):
         super().__init__(**kwargs)
         # Get possible options for magnet ctrl PV
         options = self.PVs.ctrl.get_ctrlvars()["enum_strs"]
-        for i, option in enumerate(options):
-            self._ctrl_options[option] = i
+        [self._ctrl_options.update({option: i}) for i, option in enumerate(options)]
 
     @property
     def ctrl_options(self):
@@ -81,6 +80,8 @@ class Magnet(Device):
         return decorated
 
     def check_options(options_to_check: Union[str, List]):
+        """Decorator to only allow :CTRL to be set if that option exists for the magnet"""
+
         def decorator(function):
             @wraps(function)
             def decorated(self, *args, **kwargs):
