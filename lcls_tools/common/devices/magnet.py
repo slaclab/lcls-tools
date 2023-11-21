@@ -190,7 +190,7 @@ class Magnet(Device):
 
     @check_options("LOAD_BDES")
     def load_bdes(self) -> None:
-        """Load BtolDES"""
+        """Load BDES"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["LOAD_BDES"])
 
     @check_options("UNDO_BDES")
@@ -213,7 +213,7 @@ class Magnet(Device):
     @check_options("STDZ")
     @check_state
     def standardize(self) -> None:
-        """Standardize magnet"""
+        """Standardize magnet, when Degaussing is not available due to power supply."""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["STDZ"])
 
     @check_options("RESET")
