@@ -241,6 +241,7 @@ class MagnetCollection(BaseModel):
     def validate_magnets(cls, v):
         for name, magnet in v.items():
             magnet = dict(magnet)
+            # Set name field for magnet
             magnet.update({"name": name})
             v.update({name: magnet})
         return v
