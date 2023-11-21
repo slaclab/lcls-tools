@@ -16,11 +16,39 @@ class MagnetTest(TestCase):
     """
 
     def setUp(self) -> None:
+        # Set up some mocks that are needed for all test-cases.
+        self.options_and_getter_function = {
+            "TRIM": None,
+            "PERTURB": None,
+            "BCON_TO_BDES": None,
+            "SAVE_BDES": None,
+            "LOAD_BDES": None,
+            "UNDO_BDES": None,
+            "DAC_ZERO": None,
+            "CALIB": None,
+            "STDZ": None,
+            "RESET": None,
+            "TURN_OFF": None,
+            "TURN_ON": None,
+            "DEGAUSS": None,
+        }
+        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=Mock)
+        self.mock_ctrl_options = self.ctrl_options_patch.start()
+        self.mock_ctrl_options.return_value = {
+            "enum_strs": tuple(self.options_and_getter_function.keys())
+        }
         self.magnet = create_magnet(
             area="GUNB",
-            # "./tests/datasets/devices/config/magnet/typical_magnet.yaml",
             name="SOL1B",
         )
+        # Set up some variables that are used by several test-cases
+        self.options_requiring_state_check = [
+            "TRIM",
+            "PERTURB",
+            "DAC_ZERO",
+            "CALIB",
+            "STDZ",
+        ]
         self.options_and_getter_function = {
             "TRIM": self.magnet.trim,
             "PERTURB": self.magnet.perturb,
@@ -36,14 +64,12 @@ class MagnetTest(TestCase):
             "TURN_ON": self.magnet.turn_on,
             "DEGAUSS": self.magnet.degauss,
         }
-        self.options_requiring_state_check = [
-            "TRIM",
-            "PERTURB",
-            "DAC_ZERO",
-            "CALIB",
-            "STDZ",
-        ]
         return super().setUp()
+
+    def tearDown(self) -> None:
+        # Stop the shared patches after each test-case is complete.
+        self.ctrl_options_patch.stop()
+        return super().tearDown()
 
     def test_properties_exist(self):
         """Test that all the properties we expect exist"""
@@ -83,6 +109,9 @@ class MagnetTest(TestCase):
         self.assertEqual(inspect.ismethod(self.magnet.calibrate), True)
         self.assertEqual(inspect.ismethod(self.magnet.standardize), True)
         self.assertEqual(inspect.ismethod(self.magnet.reset), True)
+        self.assertEqual(inspect.ismethod(self.magnet.turn_off), True)
+        self.assertEqual(inspect.ismethod(self.magnet.turn_on), True)
+        self.assertEqual(inspect.ismethod(self.magnet.degauss), True)
         self.assertEqual(inspect.ismethod(self.magnet.add_callback_to_pv), True)
         self.assertEqual(inspect.ismethod(self.magnet.remove_callback_from_pv), True)
 
@@ -176,12 +205,11 @@ class MagnetTest(TestCase):
         "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
-    @patch("epics.PV.get_ctrlvars", new_callable=Mock)
     def test_control_functions_call_pv_put_if_ready(
-        self, mock_ctrl_vars, mock_ctrl_option, pv_put_mock
+        self, mock_ctrl_option, pv_put_mock
     ):
         mock_ctrl_option.return_value = "Ready"
-        mock_ctrl_vars.return_value = {
+        self.mock_ctrl_options.return_value = {
             "enum_strs": tuple(self.options_and_getter_function.keys()),
         }
         for option, func in self.options_and_getter_function.items():
@@ -194,12 +222,11 @@ class MagnetTest(TestCase):
         "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
-    @patch("epics.PV.get_ctrlvars", new_callable=Mock)
     def test_control_functions_that_do_nothing_if_not_ready(
-        self, mock_ctrl_vars, mock_ctrl_option, pv_put_mock
+        self, mock_ctrl, pv_put_mock
     ):
-        mock_ctrl_option.return_value = "Not Ready"
-        mock_ctrl_vars.return_value = {
+        mock_ctrl.return_value = "Not Ready"
+        self.mock_ctrl_options.return_value = {
             "enum_strs": tuple(self.options_and_getter_function.keys()),
         }
 
@@ -242,7 +269,10 @@ class MagnetTest(TestCase):
         "lcls_tools.common.devices.magnet.magnet.Magnet.ctrl",
         new_callable=PropertyMock,
     )
-    @patch("epics.PV.get_ctrlvars", new_callable=Mock)
+    @patch(
+        "lcls_tools.common.devices.magnet.magnet.MagnetControlInformation.ctrl_options",
+        new_callable=PropertyMock,
+    )
     def test_nothing_happens_if_ctrl_option_is_not_available(
         self, mock_ctrl_options, mock_ctrl, mock_put
     ):
@@ -258,6 +288,24 @@ class MagnetTest(TestCase):
 
 class MagnetCollectionTest(TestCase):
     def setUp(self) -> None:
+        self.options = [
+            "TRIM",
+            "PERTURB",
+            "BCON_TO_BDES",
+            "SAVE_BDES",
+            "LOAD_BDES",
+            "UNDO_BDES",
+            "DAC_ZERO",
+            "CALIB",
+            "STDZ",
+            "RESET",
+            "TURN_OFF",
+            "TURN_ON",
+            "DEGAUSS",
+        ]
+        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=Mock)
+        self.mock_ctrl_options = self.ctrl_options_patch.start()
+        self.mock_ctrl_options.return_value = {"enum_strs": tuple(self.options)}
         self.magnet_collection = create_magnet(area="GUNB")
         return super().setUp()
 
