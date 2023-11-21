@@ -238,7 +238,7 @@ class MagnetCollection(BaseModel):
     magnets: Dict[str, SerializeAsAny[Magnet]]
 
     @field_validator("magnets", mode="before")
-    def validate_magnets(cls, v):
+    def validate_magnets(cls, v) -> Dict[str, Magnet]:
         for name, magnet in v.items():
             magnet = dict(magnet)
             # Set name field for magnet
@@ -255,7 +255,7 @@ class MagnetCollection(BaseModel):
         self,
         magnet_dict: Dict[str, float],
         settle_timeout_in_seconds: int = 5,
-    ):
+    ) -> None:
         if not magnet_dict:
             return
 
@@ -289,7 +289,7 @@ class MagnetCollection(BaseModel):
         self,
         scan_settings: List[Dict[str, float]],
         function: Optional[callable] = None,
-    ):
+    ) -> None:
         for setting in scan_settings:
             self.set_bdes(setting)
             function() if function else None
@@ -297,7 +297,7 @@ class MagnetCollection(BaseModel):
     def turn_off(
         self,
         magnets: Optional[Union[str, List]] = None,
-    ):
+    ) -> None:
         magnets_to_turn_off = magnets
         if magnets_to_turn_off:
             if isinstance(magnets, str):
@@ -317,7 +317,7 @@ class MagnetCollection(BaseModel):
     def turn_on(
         self,
         magnets: Optional[Union[str, List]] = None,
-    ):
+    ) -> None:
         magnets_to_turn_on = magnets
         if magnets_to_turn_on:
             if isinstance(magnets, str):
@@ -337,7 +337,7 @@ class MagnetCollection(BaseModel):
     def degauss(
         self,
         magnets: Optional[Union[str, List]] = None,
-    ):
+    ) -> None:
         magnets_to_degauss = magnets
         if magnets_to_degauss:
             if isinstance(magnets, str):
