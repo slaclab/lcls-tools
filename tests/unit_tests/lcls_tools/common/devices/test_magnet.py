@@ -572,7 +572,7 @@ class MagnetCollectionTest(TestCase):
         mock_turn_on.assert_not_called()
 
     @patch("lcls_tools.common.devices.magnet.Magnet.turn_on", new_callable=Mock)
-    def test_turn_on_single_magnet(self, mock_turn_on):
+    def test_degauss_single_magnet(self, mock_turn_on):
         magnet_name = "SOL1B"
         self.magnet_collection.turn_on(magnet_name)
         mock_turn_on.assert_called_once()
