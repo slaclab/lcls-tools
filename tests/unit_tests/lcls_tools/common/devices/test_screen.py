@@ -3,7 +3,7 @@ import os
 import time
 import unittest
 from unittest.mock import PropertyMock, patch
-from lcls_tools.common.devices.screen.reader import create_screen
+from lcls_tools.common.devices.reader import create_screen
 import h5py
 import numpy as np
 
@@ -15,11 +15,11 @@ class TestScreen(unittest.TestCase):
         return super().setUp()
 
     @patch(
-        "lcls_tools.common.devices.screen.screen.Screen.image",
+        "lcls_tools.common.devices.screen.Screen.image",
         new_callable=PropertyMock,
     )
     @patch(
-        "lcls_tools.common.devices.screen.screen.Screen.image_timestamp",
+        "lcls_tools.common.devices.screen.Screen.image_timestamp",
         new_callable=PropertyMock,
     )
     def test_hdf5_saving(self, mock_timestamp, mock_image):
@@ -54,11 +54,11 @@ class TestScreen(unittest.TestCase):
                     )
 
     @patch(
-        "lcls_tools.common.devices.screen.screen.Screen.image",
+        "lcls_tools.common.devices.screen.Screen.image",
         new_callable=PropertyMock,
     )
     @patch(
-        "lcls_tools.common.devices.screen.screen.Screen.image_timestamp",
+        "lcls_tools.common.devices.screen.Screen.image_timestamp",
         new_callable=PropertyMock,
     )
     def test_hdf5_with_user_metadata(self, mock_timestamp, mock_image):
