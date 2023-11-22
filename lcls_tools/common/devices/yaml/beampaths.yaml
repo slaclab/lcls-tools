@@ -58,10 +58,40 @@ SC_DASEL:
   - BSYA_2
 
 CU: &CU
-  - GUNA
+  - GUN
+  - L0
+  - DL1_1
+  - DL1_2
+  - L1
+  - BC1
+  - L2
+  - BC2
+  - L3
+  - CLTH_0
+  - CLTH_1
+
 CU_HXR: 
   - *CU
+  - CLTH_2
+  - BSYH_1
+  - BSYH_2
+  - LTUH
+  - UNDH
+  - DMPH_1
+  - DMPH_2
+
 CU_SXR:
   - *CU
+  - CLTS
+  - BSYS
+  - LTUS
+  - UNDS
+  - DMPS_1
+  - DMPS_2
+
 CU_ALINE:
   - *CU
+  - CLTH_2
+  - BSYH_1
+  - BSYA_1
+  - BSYA_2
