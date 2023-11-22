@@ -195,7 +195,7 @@ class Magnet(Device):
 
     @check_options("UNDO_BDES")
     def undo_bdes(self) -> None:
-        """Save BDES"""
+        """Undo BDES"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["UNDO_BDES"])
 
     @check_options("DAC_ZERO")
@@ -223,14 +223,17 @@ class Magnet(Device):
 
     @check_options("TURN_OFF")
     def turn_off(self) -> None:
+        """Turn off magnet"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["TURN_OFF"])
 
     @check_options("TURN_ON")
     def turn_on(self) -> None:
+        """Turn on magnet"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["TURN_ON"])
 
     @check_options("DEGAUSS")
     def degauss(self):
+        """Degauss magnet"""
         self.controls_information.PVs.ctrl.put(self.ctrl_options["DEGAUSS"])
 
 
@@ -250,6 +253,17 @@ class MagnetCollection(BaseModel):
         if not isinstance(time_to_check, datetime):
             raise TypeError("Please provide a datetime object for comparison.")
         return (datetime.now() - time_to_check).seconds
+
+    def _make_magnet_names_list_from_args(
+        self, args: Union[str, List[str], None]
+    ) -> List[str]:
+        magnet_names = args
+        if magnet_names:
+            if isinstance(magnet_names, str):
+                magnet_names = [args]
+        else:
+            magnet_names = list(self.magnets.keys())
+        return magnet_names
 
     def set_bdes(
         self,
@@ -298,12 +312,7 @@ class MagnetCollection(BaseModel):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
-        magnets_to_turn_off = magnets
-        if magnets_to_turn_off:
-            if isinstance(magnets, str):
-                magnets_to_turn_off = [magnets]
-        else:
-            magnets_to_turn_off = list(self.magnets.keys())
+        magnets_to_turn_off = self._make_magnet_names_list_from_args(magnets)
         for magnet in magnets_to_turn_off:
             try:
                 self.magnets[magnet].turn_off()
@@ -318,12 +327,7 @@ class MagnetCollection(BaseModel):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
-        magnets_to_turn_on = magnets
-        if magnets_to_turn_on:
-            if isinstance(magnets, str):
-                magnets_to_turn_on = [magnets]
-        else:
-            magnets_to_turn_on = list(self.magnets.keys())
+        magnets_to_turn_on = self._make_magnet_names_list_from_args(magnets)
         for magnet in magnets_to_turn_on:
             try:
                 self.magnets[magnet].turn_on()
@@ -338,7 +342,7 @@ class MagnetCollection(BaseModel):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
-        magnets_to_degauss = magnets
+        magnets_to_degauss = self._make_magnet_names_list_from_args(magnets)
         if magnets_to_degauss:
             if isinstance(magnets, str):
                 magnets_to_degauss = [magnets]

@@ -12,10 +12,6 @@ from lcls_tools.common.devices.magnet import MagnetCollection
 
 
 class MagnetTest(TestCase):
-    """All these tests rely on EPICS functioning as we expect,
-    but we have not testing framework for EPICS code, fun!
-    """
-
     def setUp(self) -> None:
         # Set up some mocks that are needed for all test-cases.
         self.options_and_getter_function = {
@@ -33,11 +29,13 @@ class MagnetTest(TestCase):
             "TURN_ON": None,
             "DEGAUSS": None,
         }
+        # set up patch so that each magnet is constructured with ALL ctrl options
         self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=Mock)
         self.mock_ctrl_options = self.ctrl_options_patch.start()
         self.mock_ctrl_options.return_value = {
             "enum_strs": tuple(self.options_and_getter_function.keys())
         }
+        # create the SOL1B magnet with all possible ctrl options
         self.magnet = create_magnet(
             area="GUNB",
             name="SOL1B",
@@ -289,6 +287,8 @@ class MagnetTest(TestCase):
     def test_nothing_happens_if_ctrl_option_is_not_available(
         self, mock_ctrl_options, mock_ctrl, mock_put
     ) -> None:
+        # we now replace to all-test-case-mock that has ALL ctrl options
+        # to only have 'Ready' options
         mock_ctrl_options.return_value = {
             "enum_strs": tuple("Ready"),
         }
@@ -480,7 +480,7 @@ class MagnetCollectionTest(TestCase):
         # make sure that magnet_collection.seconds_since()
         # always returns > settle_timeout for set_bdes()
         mock_timer_count.side_effect = [6 for i in range(2)]
-        # Make sure bact never settles to bde
+        # Make sure bact never settles to bdes
         mock_bact_settle.return_value = False
         settings = {
             "SOL1B": 0.1,
@@ -509,7 +509,7 @@ class MagnetCollectionTest(TestCase):
         # make sure that magnet_collection.seconds_since()
         # always returns > settle_timeout for set_bdes()
         mock_timer_count.side_effect = [i + 4 for i in range(10)]
-        # Make sure bact never settles to bde
+        # Make sure bact never settles to bdes
         mock_bact_settle.return_value = False
         settings = {
             "SOL1B": 0.1,
