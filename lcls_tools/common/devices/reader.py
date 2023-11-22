@@ -39,9 +39,7 @@ def _device_data(
         except FileNotFoundError:
             print(f"Could not find yaml file for area: {area}")
             return None
-        except ValidationError as field_error:
-            print(field_error)
-            return None
+
     else:
         print("Please provide a machine area to create a magnet from.")
         return None
@@ -64,6 +62,9 @@ def create_magnet(
             return Magnet(**magnet_data)
         except KeyError:
             print(f'Magnet {name} does not exist in {area}.')
+        except ValidationError as field_error:
+            print(field_error)
+            return None
     else:
         return MagnetCollection(**device_data)
 
@@ -83,6 +84,9 @@ def create_screen(
             return Screen(**screen_data)
         except KeyError:
             print(f'Screen {name} does not exist in {area}.')
+        except ValidationError as field_error:
+            print(field_error)
+            return None
     else:
         return ScreenCollection(**device_data)
 
