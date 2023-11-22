@@ -1,5 +1,5 @@
-from lcls_tools.common.devices.magnet.reader import create_magnet, _find_yaml_file
-from lcls_tools.common.devices.magnet.magnet import Magnet, MagnetCollection
+from lcls_tools.common.devices.reader import create_magnet, _find_yaml_file
+from lcls_tools.common.devices.magnet import Magnet, MagnetCollection
 import unittest
 from unittest.mock import patch, MagicMock
 import os
@@ -26,7 +26,7 @@ class TestMagnetReader(unittest.TestCase):
         self.assertIsNone(create_magnet(area="GUNB", name="BAD-MAGNET-NAME"))
 
     @patch(
-        "lcls_tools.common.devices.magnet.reader._find_yaml_file",
+        "lcls_tools.common.devices.reader._find_yaml_file",
         new_callable=MagicMock(),
     )
     def test_config_with_no_control_information_returns_none(self, mock_find_yaml):
@@ -34,7 +34,7 @@ class TestMagnetReader(unittest.TestCase):
         self.assertIsNone(create_magnet(area="GUNX", name="CQ02B"))
 
     @patch(
-        "lcls_tools.common.devices.magnet.reader._find_yaml_file",
+        "lcls_tools.common.devices.reader._find_yaml_file",
         new_callable=MagicMock(),
     )
     def test_config_with_no_metadata_returns_none(self, mock_find_yaml):

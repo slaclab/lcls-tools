@@ -1,7 +1,7 @@
 #!/usr/local/lcls/package/python/current/bin/python
 
 from epics import PV
-import lcls_tools.common.devices.profile_monitor.profmon_constants as pc
+import lcls_tools.common.devices.profmon_constants as pc
 from time import sleep
 from threading import Thread
 from numpy import array_equal
