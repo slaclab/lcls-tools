@@ -1,0 +1,22 @@
+SC: &SC
+  - GUNB
+
+SC_SXR: 
+  - *SC
+SC_HXR: 
+  - *SC
+SC_BSYD: 
+  - *SC
+SC_DIAG0: 
+  - *SC
+SC_DASEL: 
+  - *SC
+
+CU: &CU
+  - GUNA
+CU_HXR: 
+  - *CU
+CU_SXR:
+  - *CU
+CU_ALINE:
+  - *CU
