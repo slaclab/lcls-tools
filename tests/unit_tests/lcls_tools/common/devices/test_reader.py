@@ -13,9 +13,7 @@ class TestMagnetReader(unittest.TestCase):
         # set up patch so that each magnet is constructured with ALL ctrl options
         self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=MagicMock)
         self.mock_ctrl_options = self.ctrl_options_patch.start()
-        self.mock_ctrl_options.return_value = {
-            "enum_strs": tuple("READY")
-        }
+        self.mock_ctrl_options.return_value = {"enum_strs": tuple("READY")}
         return super().setUp()
 
     def test_bad_file_location_raises_when_finding(self):

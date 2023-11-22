@@ -1,6 +1,5 @@
 import os
 import yaml
-import numpy as np
 from typing import Union, Optional, Any, Dict
 from pydantic import ValidationError
 from lcls_tools.common.devices.screen import Screen, ScreenCollection
@@ -35,7 +34,7 @@ def _device_data(
             with open(location, "r") as device_file:
                 device_data = yaml.safe_load(device_file)
                 return device_data
-       
+
         except FileNotFoundError:
             print(f"Could not find yaml file for area: {area}")
             return None
@@ -43,15 +42,17 @@ def _device_data(
     else:
         print("Please provide a machine area to create a magnet from.")
         return None
-    
+
+
 def create_beampath():
     raise NotImplementedError
+
 
 def create_magnet(
     area: str = None, name: str = None
 ) -> Union[None, Magnet, MagnetCollection]:
     device_data = _device_data(area=area)
-    if not device_data: 
+    if not device_data:
         return None
 
     if name:
@@ -61,7 +62,7 @@ def create_magnet(
             magnet_data.update({"name": name})
             return Magnet(**magnet_data)
         except KeyError:
-            print(f'Magnet {name} does not exist in {area}.')
+            print(f"Magnet {name} does not exist in {area}.")
         except ValidationError as field_error:
             print(field_error)
             return None
@@ -73,8 +74,8 @@ def create_screen(
     area: str = None, name: str = None
 ) -> Union[None, Screen, ScreenCollection]:
     device_data = _device_data(area=area)
-    if not device_data: 
-       return None
+    if not device_data:
+        return None
 
     if name:
         try:
@@ -83,11 +84,9 @@ def create_screen(
             screen_data.update({"name": name})
             return Screen(**screen_data)
         except KeyError:
-            print(f'Screen {name} does not exist in {area}.')
+            print(f"Screen {name} does not exist in {area}.")
         except ValidationError as field_error:
             print(field_error)
             return None
     else:
         return ScreenCollection(**device_data)
-
-
