@@ -7,3 +7,6 @@ pyyaml
 requests
 pydantic
 h5py
+sphinx
+sphinx_rtd_theme
+myst_parser
