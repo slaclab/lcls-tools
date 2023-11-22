@@ -2,7 +2,7 @@ import os
 import yaml
 from typing import Union
 from pydantic import ValidationError
-from lcls_tools.common.devices.magnet.magnet import Magnet, MagnetCollection
+from lcls_tools.common.devices.magnet import Magnet, MagnetCollection
 
 DEFAULT_YAML_LOCATION = "./lcls_tools/common/devices/yaml/"
 
