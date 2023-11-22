@@ -1,16 +1,61 @@
 SC: &SC
   - GUNB
+  - L0B
+  - HTR
+  - COL0
+  - L1B
+  - BC1B
+  - COL1
+  - L2B
+  - BC2B
+  - EMIT2
+  - L3B
+  - EXT
+  - DOG
+  - BYP
+
 
 SC_SXR: 
   - *SC
+  - SPD_1 
+  - SPS
+  - SLTS
+  - BSYS
+  - LTUS
+  - UNDS
+  - DMPS_1
+  - DMPS_2
+
 SC_HXR: 
   - *SC
+  - SPH
+  - SLTH
+  - BSYH_1
+  - BSYH_2
+  - LTUH
+  - UNDH
+  - DMPH_1
+  - DMPH_2
+
 SC_BSYD: 
   - *SC
+  - SPD_1
+  - SPD_2
+  - SPD_3
+  - SLTD
+
 SC_DIAG0: 
-  - *SC
+  - GUNB
+  - L0B
+  - HTR
+  - DIAG0
+
 SC_DASEL: 
   - *SC
+  - SPD_1
+  - SPD_2
+  - DASEL
+  - BSYA_2
 
 CU: &CU
   - GUNA
