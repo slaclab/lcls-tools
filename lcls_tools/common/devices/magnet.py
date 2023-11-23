@@ -15,6 +15,7 @@ from typing import (
 from lcls_tools.common.devices.device import (
     Device,
     ControlInformation,
+    DeviceCollection,
     Metadata,
     PVSet,
 )
@@ -237,17 +238,15 @@ class Magnet(Device):
         self.controls_information.PVs.ctrl.put(self.ctrl_options["DEGAUSS"])
 
 
-class MagnetCollection(BaseModel):
-    magnets: Dict[str, SerializeAsAny[Magnet]]
+class MagnetCollection(DeviceCollection):
+    devices: Dict[str, SerializeAsAny[Magnet]]
 
-    @field_validator("magnets", mode="before")
-    def validate_magnets(cls, v) -> Dict[str, Magnet]:
-        for name, magnet in v.items():
-            magnet = dict(magnet)
-            # Set name field for magnet
-            magnet.update({"name": name})
-            v.update({name: magnet})
-        return v
+    def __init__(self, *args, **kwargs):
+        super().__init__(**kwargs)
+
+    @property
+    def magnets(self):
+        return self.devices
 
     def seconds_since(self, time_to_check: datetime) -> int:
         if not isinstance(time_to_check, datetime):
@@ -262,7 +261,7 @@ class MagnetCollection(BaseModel):
             if isinstance(magnet_names, str):
                 magnet_names = [args]
         else:
-            magnet_names = list(self.magnets.keys())
+            magnet_names = list(self.devices.keys())
         return magnet_names
 
     def set_bdes(
@@ -275,10 +274,10 @@ class MagnetCollection(BaseModel):
 
         for magnet, bval in magnet_dict.items():
             try:
-                self.magnets[magnet].bdes = bval
-                self.magnets[magnet].trim()
+                self.devices[magnet].bdes = bval
+                self.devices[magnet].trim()
                 time_when_trim_started = datetime.now()
-                while not self.magnets[magnet].is_bact_settled():
+                while not self.devices[magnet].is_bact_settled():
                     if (
                         self.seconds_since(time_when_trim_started)
                         > settle_timeout_in_seconds
@@ -315,7 +314,7 @@ class MagnetCollection(BaseModel):
         magnets_to_turn_off = self._make_magnet_names_list_from_args(magnets)
         for magnet in magnets_to_turn_off:
             try:
-                self.magnets[magnet].turn_off()
+                self.devices[magnet].turn_off()
             except KeyError:
                 print(
                     "Could not find ",
@@ -330,7 +329,7 @@ class MagnetCollection(BaseModel):
         magnets_to_turn_on = self._make_magnet_names_list_from_args(magnets)
         for magnet in magnets_to_turn_on:
             try:
-                self.magnets[magnet].turn_on()
+                self.devices[magnet].turn_on()
             except KeyError:
                 print(
                     "Could not find ",
@@ -347,10 +346,10 @@ class MagnetCollection(BaseModel):
             if isinstance(magnets, str):
                 magnets_to_degauss = [magnets]
         else:
-            magnets_to_degauss = list(self.magnets.keys())
+            magnets_to_degauss = list(self.devices.keys())
         for magnet in magnets_to_degauss:
             try:
-                self.magnets[magnet].degauss()
+                self.devices[magnet].degauss()
             except KeyError:
                 print(
                     "Could not find ",

@@ -54,10 +54,11 @@ def create_magnet(
     device_data = _device_data(area=area)
     if not device_data:
         return None
-
+    device_data.update({"devices": device_data["magnets"]})
+    device_data.pop("magnets")
     if name:
         try:
-            magnet_data = device_data["magnets"][name]
+            magnet_data = device_data["devices"][name]
             # this data is not available from YAML directly in this form, so we add it here.
             magnet_data.update({"name": name})
             return Magnet(**magnet_data)
@@ -76,10 +77,11 @@ def create_screen(
     device_data = _device_data(area=area)
     if not device_data:
         return None
-
+    device_data.update({"devices": device_data["screens"]})
+    device_data.pop("screens")
     if name:
         try:
-            screen_data = device_data["screens"][name]
+            screen_data = device_data["devices"][name]
             # this data is not available from YAML directly in this form, so we add it here.
             screen_data.update({"name": name})
             return Screen(**screen_data)
