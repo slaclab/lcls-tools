@@ -1,5 +1,5 @@
-from lcls_tools.common.devices.magnet.reader import create_magnet, _find_yaml_file
-from lcls_tools.common.devices.magnet.magnet import Magnet, MagnetCollection
+from lcls_tools.common.devices.reader import create_magnet, _find_yaml_file
+from lcls_tools.common.devices.magnet import Magnet, MagnetCollection
 import unittest
 from unittest.mock import patch, MagicMock
 import os
@@ -10,6 +10,10 @@ class TestMagnetReader(unittest.TestCase):
         self.config_location = "./tests/datasets/devices/config/magnet/"
         self.typical_config = os.path.join(self.config_location, "typical_magnet.yaml")
         self.bad_config = os.path.join(self.config_location, "bad_magnet.yaml")
+        # set up patch so that each magnet is constructured with ALL ctrl options
+        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=MagicMock)
+        self.mock_ctrl_options = self.ctrl_options_patch.start()
+        self.mock_ctrl_options.return_value = {"enum_strs": tuple("READY")}
         return super().setUp()
 
     def test_bad_file_location_raises_when_finding(self):
@@ -26,7 +30,7 @@ class TestMagnetReader(unittest.TestCase):
         self.assertIsNone(create_magnet(area="GUNB", name="BAD-MAGNET-NAME"))
 
     @patch(
-        "lcls_tools.common.devices.magnet.reader._find_yaml_file",
+        "lcls_tools.common.devices.reader._find_yaml_file",
         new_callable=MagicMock(),
     )
     def test_config_with_no_control_information_returns_none(self, mock_find_yaml):
@@ -34,7 +38,7 @@ class TestMagnetReader(unittest.TestCase):
         self.assertIsNone(create_magnet(area="GUNX", name="CQ02B"))
 
     @patch(
-        "lcls_tools.common.devices.magnet.reader._find_yaml_file",
+        "lcls_tools.common.devices.reader._find_yaml_file",
         new_callable=MagicMock(),
     )
     def test_config_with_no_metadata_returns_none(self, mock_find_yaml):
