@@ -4,6 +4,8 @@ from typing import Union, Optional, Any, Dict
 from pydantic import ValidationError
 from lcls_tools.common.devices.screen import Screen, ScreenCollection
 from lcls_tools.common.devices.magnet import Magnet, MagnetCollection
+from lcls_tools.common.devices.area import Area
+from lcls_tools.common.devices.beampath import Beampath
 
 DEFAULT_YAML_LOCATION = "./lcls_tools/common/devices/yaml/"
 
@@ -42,10 +44,6 @@ def _device_data(
     else:
         print("Please provide a machine area to create a magnet from.")
         return None
-
-
-def create_beampath():
-    raise NotImplementedError
 
 
 def create_magnet(
@@ -92,3 +90,60 @@ def create_screen(
             return None
     else:
         return ScreenCollection(**device_data)
+
+
+def create_area(area: str = None) -> Union[None, Area]:
+    yaml_data = _device_data(area=area)
+    if not yaml_data:
+        return None
+    try:
+        return Area(**yaml_data)
+    except ValidationError as field_error:
+        print(field_error)
+        return None
+
+
+def _flatten(nested_list):
+    if nested_list == []:
+        # empty list, no need to flatten
+        return nested_list
+    if isinstance(nested_list[0], list):
+        # first element is a list, so call flatten again
+        # and append the result to the result of flatten for the rest of the list
+        return _flatten(nested_list[0]) + _flatten(nested_list[1:])
+    # we know 0-1 is flattened, flatten 1 -> -1
+    return nested_list[:1] + _flatten(nested_list[1:])
+
+
+def create_beampath(beampath: str = None) -> Union[None, Beampath]:
+    # load beampath yaml file to get all areas in beampath
+    # create Area class for each area
+    # add them to dict with key as Area name and value as Area object.
+    beampath_definition_file = os.path.join(DEFAULT_YAML_LOCATION, "beampaths.yaml")
+    beampath_definitions = {}
+    areas = {}
+    with open(beampath_definition_file, "r") as file:
+        beampath_definitions = yaml.safe_load(file)
+    try:
+        areas_to_create = _flatten(beampath_definitions[beampath])
+    except KeyError:
+        print(
+            "Beampath: ", beampath, " does not exist. Please try a different beampath."
+        )
+    try:
+        for area in areas_to_create:
+            created_area = create_area(area=area)
+            if created_area:
+                areas[area] = created_area
+        print(areas)
+        return Beampath(**{"areas": areas})
+    except KeyError as ke:
+        print(
+            "Area: ",
+            ke.args[0],
+            " does not exist in ",
+            beampath,
+            ". Please try a different beampath.",
+        )
+
+    pass
