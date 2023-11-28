@@ -1,5 +1,5 @@
 from pydantic import BaseModel, SerializeAsAny, ConfigDict, field_validator
-from typing import List, Union, Callable, Optional, Dict
+from typing import List, Union, Callable, Dict
 from epics import PV
 
 
