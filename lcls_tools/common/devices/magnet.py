@@ -1,7 +1,6 @@
 from datetime import datetime
 from functools import wraps
 from pydantic import (
-    BaseModel,
     PositiveFloat,
     SerializeAsAny,
     field_validator,
@@ -29,8 +28,8 @@ class MagnetPVSet(PVSet):
     bcon: PV
     ctrl: PV
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, *args, **kwargs):
+        super(MagnetPVSet, self).__init__(*args, **kwargs)
 
     @field_validator("*", mode="before")
     def validate_pv_fields(cls, v: str) -> PV:
@@ -41,11 +40,13 @@ class MagnetControlInformation(ControlInformation):
     PVs: SerializeAsAny[MagnetPVSet]
     _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        # Get possible options for magnet ctrl PV
-        options = self.PVs.ctrl.get_ctrlvars()["enum_strs"]
-        [self._ctrl_options.update({option: i}) for i, option in enumerate(options)]
+    def __init__(self, *args, **kwargs):
+        super(MagnetControlInformation, self).__init__(*args, **kwargs)
+        # Get possible options for magnet ctrl PV, empty dict by default.
+        #if self.PVs.ctrl.connected:
+        options = self.PVs.ctrl.get_ctrlvars()
+        if 'enum_strs' in options:
+            [self._ctrl_options.update({option: i}) for i, option in enumerate(options["enum_strs"])]
 
     @property
     def ctrl_options(self):
@@ -56,16 +57,16 @@ class MagnetMetadata(Metadata):
     length: Optional[PositiveFloat] = None
     b_tolerance: Optional[PositiveFloat] = None
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, *args, **kwargs):
+        super(MagnetMetadata, self).__init__(*args, **kwargs)
 
 
 class Magnet(Device):
     controls_information: SerializeAsAny[MagnetControlInformation]
     metadata: SerializeAsAny[MagnetMetadata]
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, *args, **kwargs):
+        super(Magnet, self).__init__(*args, **kwargs)
 
     """ Decorators """
 
@@ -242,7 +243,7 @@ class MagnetCollection(DeviceCollection):
     devices: Dict[str, SerializeAsAny[Magnet]]
 
     def __init__(self, *args, **kwargs):
-        super().__init__(**kwargs)
+        super(MagnetCollection, self).__init__(*args, **kwargs)
 
     @property
     def magnets(self):
