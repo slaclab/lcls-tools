@@ -43,10 +43,13 @@ class MagnetControlInformation(ControlInformation):
     def __init__(self, *args, **kwargs):
         super(MagnetControlInformation, self).__init__(*args, **kwargs)
         # Get possible options for magnet ctrl PV, empty dict by default.
-        #if self.PVs.ctrl.connected:
+        # if self.PVs.ctrl.connected:
         options = self.PVs.ctrl.get_ctrlvars()
-        if 'enum_strs' in options:
-            [self._ctrl_options.update({option: i}) for i, option in enumerate(options["enum_strs"])]
+        if "enum_strs" in options:
+            [
+                self._ctrl_options.update({option: i})
+                for i, option in enumerate(options["enum_strs"])
+            ]
 
     @property
     def ctrl_options(self):
