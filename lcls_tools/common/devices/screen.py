@@ -18,6 +18,7 @@ from lcls_tools.common.devices.device import (
 from epics import PV
 import h5py
 from pydantic import (
+    Field,
     SerializeAsAny,
     field_validator,
 )
@@ -249,13 +250,13 @@ class Screen(Device):
 
 
 class ScreenCollection(DeviceCollection):
-    devices: Dict[str, SerializeAsAny[Screen]]
+    devices: Dict[str, SerializeAsAny[Screen]] = Field(alias="screens")
 
     def __init__(self, *args, **kwargs):
-        super().__init__(**kwargs)
+        super(ScreenCollection, self).__init__(*args, **kwargs)
 
     @property
-    def screens(self):
+    def screens(self) -> Dict[str, SerializeAsAny[Screen]]:
         return self.devices
 
     def set_hdf_save_location(self, location: str):

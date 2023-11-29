@@ -1,6 +1,7 @@
 from datetime import datetime
 from functools import wraps
 from pydantic import (
+    Field,
     PositiveFloat,
     SerializeAsAny,
     field_validator,
@@ -43,9 +44,8 @@ class MagnetControlInformation(ControlInformation):
     def __init__(self, *args, **kwargs):
         super(MagnetControlInformation, self).__init__(*args, **kwargs)
         # Get possible options for magnet ctrl PV, empty dict by default.
-        # if self.PVs.ctrl.connected:
-        options = self.PVs.ctrl.get_ctrlvars()
-        if "enum_strs" in options:
+        options = self.PVs.ctrl.get_ctrlvars(timeout=1)
+        if options:
             [
                 self._ctrl_options.update({option: i})
                 for i, option in enumerate(options["enum_strs"])
@@ -243,13 +243,13 @@ class Magnet(Device):
 
 
 class MagnetCollection(DeviceCollection):
-    devices: Dict[str, SerializeAsAny[Magnet]]
+    devices: Dict[str, SerializeAsAny[Magnet]] = Field(alias="magnets")
 
     def __init__(self, *args, **kwargs):
         super(MagnetCollection, self).__init__(*args, **kwargs)
 
     @property
-    def magnets(self):
+    def magnets(self) -> Dict[str, SerializeAsAny[Magnet]]:
         return self.devices
 
     def seconds_since(self, time_to_check: datetime) -> int:
