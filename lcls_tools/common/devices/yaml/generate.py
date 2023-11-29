@@ -91,7 +91,7 @@ class YAMLGenerator:
                 "sum_l_meters": float(
                     np.format_float_positional(sum_l_meters, precision=3)
                 )
-                if sum_l_meters
+                if not isinstance(sum_l_meters, None)
                 else None,
             },
         }
