@@ -17,31 +17,30 @@ SC: &SC
 
 SC_SXR: 
   - *SC
-  - SPD_1 
   - SPS
   - SLTS
   - BSYS
   - LTUS
   - UNDS
-  - DMPS_1
-  - DMPS_2
+  - DMPS
+  - FEES
 
 SC_HXR: 
   - *SC
   - SPH
   - SLTH
-  - BSYH_1
-  - BSYH_2
+  - BSYH1
+  - BSYH2
   - LTUH
   - UNDH
-  - DMPH_1
-  - DMPH_2
+  - DMPH
+  - FEEH
 
 SC_BSYD: 
   - *SC
-  - SPD_1
-  - SPD_2
-  - SPD_3
+  - SPD1
+  - SPD2
+  - SPD3
   - SLTD
 
 SC_DIAG0: 
@@ -52,33 +51,30 @@ SC_DIAG0:
 
 SC_DASEL: 
   - *SC
-  - SPD_1
-  - SPD_2
+  - SPD1
+  - SPD2
   - DASEL
-  - BSYA_2
+  - BSYA2
 
 CU: &CU
   - GUN
   - L0
-  - DL1_1
-  - DL1_2
+  - DL1
   - L1
   - BC1
   - L2
   - BC2
   - L3
-  - CLTH_0
-  - CLTH_1
 
 CU_HXR: 
   - *CU
-  - CLTH_2
-  - BSYH_1
-  - BSYH_2
+  - CLTH1
+  - CLTH2
+  - BSYH1
+  - BSYH2
   - LTUH
   - UNDH
-  - DMPH_1
-  - DMPH_2
+  - DMPH
 
 CU_SXR:
   - *CU
@@ -86,12 +82,12 @@ CU_SXR:
   - BSYS
   - LTUS
   - UNDS
-  - DMPS_1
-  - DMPS_2
+  - DMPS
 
 CU_ALINE:
   - *CU
-  - CLTH_2
-  - BSYH_1
-  - BSYA_1
-  - BSYA_2
+  - CLTH1
+  - CLTH2
+  - BSYH1
+  - BSYA1
+  - BSYA2
