@@ -21,16 +21,14 @@ class Area(BaseModel):
     screens: Optional[Union[SerializeAsAny[ScreenCollection], None]] = None
 
     @field_validator("magnets", mode="before")
-    def validate_magnet_collection(cls, v: Dict[str, Any]):
-        device_data = {}
-        device_data["devices"] = v
-        return MagnetCollection(**device_data)
+    def validate_magnets(cls, v: Dict[str, Any]):
+        if v:
+            return MagnetCollection(**{"magnets": {**v}})
 
     @field_validator("screens", mode="before")
-    def validate_screen_collection(cls, v: Dict[str, Any]):
-        device_data = {}
-        device_data["devices"] = v
-        return ScreenCollection(**device_data)
+    def validate_screens(cls, v: Dict[str, Any]):
+        if v:
+            return ScreenCollection(**{"screens": {**v}})
 
     def __init__(self, *args, **kwargs):
         super(Area, self).__init__(*args, **kwargs)
