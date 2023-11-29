@@ -147,7 +147,7 @@ class DeviceCollection(BaseModel):
     devices: Dict[str, SerializeAsAny[Device]] = None
 
     @field_validator("devices", mode="before")
-    def validate_screens(cls, v):
+    def validate_devices(cls, v):
         """
         Add name field to data that will be passed to Device class
         and then use that dictionary to create each Device.
@@ -159,7 +159,8 @@ class DeviceCollection(BaseModel):
         return v
 
     def __init__(self, *args, **kwargs):
-        super().__init__(**kwargs)
+        super(DeviceCollection, self).__init__(*args, **kwargs)
 
-    def get_devices(self):
+    @property
+    def device_names(self):
         return list(self.devices.keys())
