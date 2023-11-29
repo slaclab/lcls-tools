@@ -27,6 +27,8 @@ def _find_yaml_file(area: str = None, beampath: Optional[str] = None) -> str:
 
 def _device_data(
     area: str = None,
+    device_type: str = None,
+    name: str = None,
 ) -> Union[None, Dict[str, Any]]:
     if area:
         try:
@@ -35,33 +37,45 @@ def _device_data(
             )
             with open(location, "r") as device_file:
                 device_data = yaml.safe_load(device_file)
+                if device_type:
+                    if name:
+                        return device_data[device_type][name]
+                    return {device_type: device_data[device_type]}
                 return device_data
-
         except FileNotFoundError:
             print(f"Could not find yaml file for area: {area}")
             return None
+        except KeyError as ke:
+            if ke.args[0] == device_type:
+                print("Device type ", device_type, " not supported.")
+                return None
+            if ke.args[0] == name:
+                print(
+                    "No device of type: ",
+                    device_type,
+                    " with name ",
+                    name,
+                    " not in definition for ",
+                    area,
+                )
+                return None
 
     else:
-        print("Please provide a machine area to create a magnet from.")
+        print("Please provide a machine area to create a ", device_type, " from.")
         return None
 
 
 def create_magnet(
     area: str = None, name: str = None
 ) -> Union[None, Magnet, MagnetCollection]:
-    device_data = _device_data(area=area)
+    device_data = _device_data(area=area, device_type="magnets", name=name)
     if not device_data:
         return None
-    device_data.update({"devices": device_data["magnets"]})
-    device_data.pop("magnets")
     if name:
         try:
-            magnet_data = device_data["devices"][name]
             # this data is not available from YAML directly in this form, so we add it here.
-            magnet_data.update({"name": name})
-            return Magnet(**magnet_data)
-        except KeyError:
-            print(f"Magnet {name} does not exist in {area}.")
+            device_data.update({"name": name})
+            return Magnet(**device_data)
         except ValidationError as field_error:
             print(field_error)
             return None
@@ -72,19 +86,14 @@ def create_magnet(
 def create_screen(
     area: str = None, name: str = None
 ) -> Union[None, Screen, ScreenCollection]:
-    device_data = _device_data(area=area)
+    device_data = _device_data(area=area, device_type="screens", name=name)
     if not device_data:
         return None
-    device_data.update({"devices": device_data["screens"]})
-    device_data.pop("screens")
     if name:
         try:
-            screen_data = device_data["devices"][name]
             # this data is not available from YAML directly in this form, so we add it here.
-            screen_data.update({"name": name})
-            return Screen(**screen_data)
-        except KeyError:
-            print(f"Screen {name} does not exist in {area}.")
+            device_data.update({"name": name})
+            return Screen(**device_data)
         except ValidationError as field_error:
             print(field_error)
             return None
@@ -97,9 +106,10 @@ def create_area(area: str = None) -> Union[None, Area]:
     if not yaml_data:
         return None
     try:
+        print(yaml_data)
         return Area(**yaml_data)
     except ValidationError as field_error:
-        print(field_error)
+        print("Error trying to create area", area, " : ", field_error)
         return None
 
 
@@ -130,6 +140,7 @@ def create_beampath(beampath: str = None) -> Union[None, Beampath]:
         print(
             "Beampath: ", beampath, " does not exist. Please try a different beampath."
         )
+        return None
     try:
         for area in areas_to_create:
             created_area = create_area(area=area)
@@ -145,5 +156,4 @@ def create_beampath(beampath: str = None) -> Union[None, Beampath]:
             beampath,
             ". Please try a different beampath.",
         )
-
-    pass
+        return None
