@@ -1,5 +1,13 @@
 from lcls_tools.common.devices.reader import create_beampath
 
-CU_SXR = create_beampath(beampath="CU_SXR")
-CU_HXR = create_beampath(beampath="CU_HXR")
-CU_ALINE = create_beampath(beampath="CU_ALINE")
+
+def CU_SXR():
+    return create_beampath(beampath="CU_SXR")
+
+
+def CU_HXR():
+    return create_beampath(beampath="CU_HXR")
+
+
+def CU_ALINE():
+    return create_beampath(beampath="CU_ALINE")
