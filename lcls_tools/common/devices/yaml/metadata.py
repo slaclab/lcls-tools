@@ -8,7 +8,9 @@ def get_magnet_metadata(magnet_names: List[str] = []):
     #  mag-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    raise NotImplementedError
+    if magnet_names:
+        raise NotImplementedError
+    return {}
 
 
 def get_screen_metadata(screen_names: List[str] = []):
@@ -18,4 +20,6 @@ def get_screen_metadata(screen_names: List[str] = []):
     #  scr-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    raise NotImplementedError
+    if screen_names:
+        raise NotImplementedError
+    return {}

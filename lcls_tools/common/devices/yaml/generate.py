@@ -3,6 +3,14 @@ import os
 from typing import Any, Union, List, Dict, Optional
 import meme.names
 import numpy as np
+from lcls_tools.common.devices.yaml.metadata import (
+    get_magnet_metadata,
+    get_screen_metadata,
+)
+from lcls_tools.common.devices.yaml.controls_information import (
+    get_magnet_controls_information,
+    get_screen_controls_information,
+)
 
 
 class YAMLGenerator:
@@ -237,9 +245,9 @@ class YAMLGenerator:
             "CTRL": None,
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-        additional_metadata_data = {}
+        additional_metadata_data = get_magnet_metadata()
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-        additional_controls_data = {}
+        additional_controls_data = get_magnet_controls_information()
         basic_magnet_data = self.extract_devices(
             area=area,
             required_types=required_magnet_types,
@@ -273,9 +281,9 @@ class YAMLGenerator:
             "N_OF_BITS": "n_bits",
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-        additional_metadata_data = {}
+        additional_metadata_data = get_screen_metadata()
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-        additional_controls_data = {}
+        additional_controls_data = get_screen_controls_information()
         basic_screen_data = self.extract_devices(
             area=area,
             required_types=required_screen_types,
