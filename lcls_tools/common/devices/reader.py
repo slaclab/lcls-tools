@@ -10,7 +10,10 @@ from lcls_tools.common.devices.beampath import Beampath
 DEFAULT_YAML_LOCATION = "./lcls_tools/common/devices/yaml/"
 
 
-def _find_yaml_file(area: str = None, beampath: Optional[str] = None) -> str:
+def _find_yaml_file(
+    area: str = None,
+    beampath: Optional[str] = None,
+) -> str:
     if area:
         filename = area + ".yaml"
     if beampath:
