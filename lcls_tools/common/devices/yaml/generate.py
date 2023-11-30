@@ -290,12 +290,15 @@ class YAMLGenerator:
             required_types=required_screen_types,
             pv_search_terms=possible_screen_pvs,
         )
-        screen_with_additional_metadata = self.add_to_device_metadata(
-            device_data=basic_screen_data,
-            additional_metadata=additional_metadata_data,
-        )
-        complete_screen_data = self.add_to_device_controls_information(
-            device_data=screen_with_additional_metadata,
-            additional_controls_information=additional_controls_data,
-        )
-        return complete_screen_data
+        if basic_screen_data:
+            screen_with_additional_metadata = self.add_to_device_metadata(
+                device_data=basic_screen_data,
+                additional_metadata=additional_metadata_data,
+            )
+            complete_screen_data = self.add_to_device_controls_information(
+                device_data=screen_with_additional_metadata,
+                additional_controls_information=additional_controls_data,
+            )
+            return complete_screen_data
+        else:
+            return {}
