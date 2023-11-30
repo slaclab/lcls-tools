@@ -232,6 +232,7 @@ class YAMLGenerator:
                 )
             except KeyError:
                 print("No additional controls information found for ", device)
+        return device_data
 
     def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
         required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
