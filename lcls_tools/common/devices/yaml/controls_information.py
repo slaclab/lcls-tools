@@ -9,7 +9,9 @@ def get_magnet_controls_information(magnet_names: List[str] = []):
     #  ...
     # }
     if magnet_names:
-        raise NotImplementedError('No method of getting additional controls_information for magnets.')
+        raise NotImplementedError(
+            "No method of getting additional controls_information for magnets."
+        )
     return {}
 
 
@@ -23,5 +25,7 @@ def get_screen_controls_information(screen_names: List[str] = []):
 
     # Stuff like Device-Position mappings for motor/ladder-based screens
     if screen_names:
-        raise NotImplementedError('No method of getting additional controls_information for screens.')
+        raise NotImplementedError(
+            "No method of getting additional controls_information for screens."
+        )
     return {}
