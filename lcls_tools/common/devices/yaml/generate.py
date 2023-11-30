@@ -212,7 +212,9 @@ class YAMLGenerator:
         required_wire_types = ["WIRE"]
         possible_wire_pvs = {
             "MOTR_INIT": "ready_state", 
-            "MOTR_RETRACT": "retract_state",
+            "MOTR_RETRACT": "retract",
+            "MOTR_HOMED_STS": "homed_status", 
+            "":,
             "MOTR_ERROR": "error", 
             "XWIRESIZE": "xsize",
             "YWIRESIZE": "ysize", 

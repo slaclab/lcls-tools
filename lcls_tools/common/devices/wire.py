@@ -116,6 +116,10 @@ class Wire(Device):
         return self.controls_information.ctrl_options
 
     @property
+    def homed_status(self):
+        return self.controls_information.homed_status.get()
+
+    @property
     def xsize(self):
         """Returns the x wire thickenss in um"""
         #Try to grab from PV first, then if fails, get from yaml
@@ -134,6 +138,7 @@ class Wire(Device):
             return self.metadata.PVs.ysize.get()
         except:
             print(EPICS_ERROR_MESSAGE)
+            #TODO: Returning wire size from yaml file instead
             return
 
     @property
@@ -143,18 +148,19 @@ class Wire(Device):
             return self.metadata.PVs.usize.get()
         except:
             print(EPICS_ERROR_MESSAGE)
+            #TODO: Returning wire size from yaml file instead
             return
 
     #TODO: Initialize should happen before wire moves
     #but that doesn't need to be available to users
 
     #TODO: use this to set x/y/u wires positions?
-    #Something like xpos.setter??
-    @length.setter
-    def length(self, value):
+    #Something like position.setter??
+    @position.setter
+    def position(self, value):
         if not isinstance(value, float):
             return
-        self.metadata.length = value
+        self.metadata.position = value
 
     @property 
     def motr(self) -> Union[float, int]:
