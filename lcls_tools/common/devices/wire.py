@@ -20,6 +20,7 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
+EPICS_ERROR_MESSAGE = "Not able to connect to the control system."
 
 class WirePVSet(PVSet):
     motr: PV # the rest of the PVs are all related to the motor
@@ -27,6 +28,9 @@ class WirePVSet(PVSet):
     velo: PV # velocity
     rbv: PV
     rmp: PV  # retracted motor position?
+    xsize: PV
+    ysize: PV
+    zsize: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -54,6 +58,9 @@ class WireControlInformation(ControlInformation):
 class WireMetadata(Metadata):
     thickness: Optional[PositiveFloat] = None
     speed: Optional[PositiveFloat] = None
+    xsize: Optional[PositiveFloat] = None
+    ysize: Optional[PositiveFloat] = None
+    usize: Optional[PositiveFloat] = None
     #TODO: Add wire material and sum_l here?
     #TODO: Add LBLM and BPM infomration here? 
     #TODO: Add info on locations for X, Y, U wires
@@ -109,9 +116,34 @@ class Wire(Device):
         return self.controls_information.ctrl_options
 
     @property
-    def thickness(self):
-        """Returns the wire thickenss in um"""
-        return self.metadata.thickness
+    def xsize(self):
+        """Returns the x wire thickenss in um"""
+        #Try to grab from PV first, then if fails, get from yaml
+        #Make sure to print statement saying if yaml values used
+        try:
+            return self.metadata.PVs.xsize.get()
+        except:
+            print(EPICS_ERROR_MESSAGE)
+            #TODO: Returning wire size from yaml file instead
+            return 
+
+    @property    
+    def ysize(self):
+        """Returns the y wire thickness in um"""
+        try:
+            return self.metadata.PVs.ysize.get()
+        except:
+            print(EPICS_ERROR_MESSAGE)
+            return
+
+    @property
+    def usize(self):
+        """Returns the u wire thickness in um"""
+        try:
+            return self.metadata.PVs.usize.get()
+        except:
+            print(EPICS_ERROR_MESSAGE)
+            return
 
     #TODO: Initialize should happen before wire moves
     #but that doesn't need to be available to users
@@ -124,7 +156,7 @@ class Wire(Device):
             return
         self.metadata.length = value
 
-    @property #TODO: double check this works
+    @property 
     def motr(self) -> Union[float, int]:
         return self.controls_information.PVs.motr.get()
 

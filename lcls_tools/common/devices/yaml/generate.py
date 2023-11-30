@@ -207,3 +207,16 @@ class YAMLGenerator:
             required_types=required_screen_types,
             pv_search_terms=possible_screen_pvs,
         )
+    
+    def extract_wires(self, area: Union[str, List[str]] = ["EMIT2"]):
+        required_wire_types = ["WIRE"]
+        possible_wire_pvs = {
+            "MOTR_INIT": "ready_state", 
+            "MOTR_RETRACT": "retract_state",
+            "MOTR_ERROR": "error", 
+            "XWIRESIZE": "xsize",
+            "YWIRESIZE": "ysize", 
+            "UWIRESIZE": "usize",
+
+
+        }
