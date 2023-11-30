@@ -149,7 +149,6 @@ def create_beampath(beampath: str = None) -> Union[None, Beampath]:
             created_area = create_area(area=area)
             if created_area:
                 areas[area] = created_area
-        print(areas)
         return Beampath(**{"areas": areas})
     except KeyError as ke:
         print(
