@@ -244,6 +244,8 @@ class YAMLGenerator:
             "BCON": None,
             "BDES": None,
             "CTRL": None,
+            "BMIN": None,
+            "BMAX": None,
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_metadata_data = get_magnet_metadata()
