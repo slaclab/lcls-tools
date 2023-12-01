@@ -28,6 +28,8 @@ class MagnetPVSet(PVSet):
     bdes: PV
     bcon: PV
     ctrl: PV
+    bmin : PV
+    bmax: PV
 
     def __init__(self, *args, **kwargs):
         super(MagnetPVSet, self).__init__(*args, **kwargs)
@@ -113,6 +115,16 @@ class Magnet(Device):
     def b_tolerance(self):
         """Returns the field tolerance in kG or kGm"""
         return self.metadata.b_tolerance
+
+    @property
+    def bmin(self):
+        """ Returns the minimum strength available"""
+        self.controls_information.PVs.bmin.get()
+
+    @property
+    def bmax(self):
+        """ Returns the minimum strength available"""
+        self.controls_information.PVs.bmax.get()
 
     @b_tolerance.setter
     def b_tolerance(self, value):
