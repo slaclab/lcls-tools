@@ -6,6 +6,8 @@ magnets:
         bcon: BEND:SPD:719:BCON
         bctrl: BEND:SPD:719:BCTRL
         bdes: BEND:SPD:719:BDES
+        bmax: BEND:SPD:719:BMAX
+        bmin: BEND:SPD:719:BMIN
         ctrl: BEND:SPD:719:CTRL
       control_name: BEND:SPD:719
     metadata:
@@ -13,6 +15,7 @@ magnets:
       beam_path:
       - SC_BSYD
       sum_l_meters: 2978.345
+      type: BEND
   BYSP2D:
     controls_information:
       PVs:
@@ -20,6 +23,8 @@ magnets:
         bcon: BEND:SPD:960:BCON
         bctrl: BEND:SPD:960:BCTRL
         bdes: BEND:SPD:960:BDES
+        bmax: BEND:SPD:960:BMAX
+        bmin: BEND:SPD:960:BMIN
         ctrl: BEND:SPD:960:CTRL
       control_name: BEND:SPD:960
     metadata:
@@ -27,6 +32,7 @@ magnets:
       beam_path:
       - SC_BSYD
       sum_l_meters: 3052.345
+      type: BEND
   QSP1:
     controls_information:
       PVs:
@@ -34,6 +40,8 @@ magnets:
         bcon: QUAD:SPD:330:BCON
         bctrl: QUAD:SPD:330:BCTRL
         bdes: QUAD:SPD:330:BDES
+        bmax: QUAD:SPD:330:BMAX
+        bmin: QUAD:SPD:330:BMIN
         ctrl: QUAD:SPD:330:CTRL
       control_name: QUAD:SPD:330
     metadata:
@@ -47,6 +55,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2859.252
+      type: QUAD
   QSP1D:
     controls_information:
       PVs:
@@ -54,6 +63,8 @@ magnets:
         bcon: QUAD:SPD:690:BCON
         bctrl: QUAD:SPD:690:BCTRL
         bdes: QUAD:SPD:690:BDES
+        bmax: QUAD:SPD:690:BMAX
+        bmin: QUAD:SPD:690:BMIN
         ctrl: QUAD:SPD:690:CTRL
       control_name: QUAD:SPD:690
     metadata:
@@ -61,6 +72,7 @@ magnets:
       beam_path:
       - SC_BSYD
       sum_l_meters: 2969.625
+      type: QUAD
   QSP2:
     controls_information:
       PVs:
@@ -68,6 +80,8 @@ magnets:
         bcon: QUAD:SPD:340:BCON
         bctrl: QUAD:SPD:340:BCTRL
         bdes: QUAD:SPD:340:BDES
+        bmax: QUAD:SPD:340:BMAX
+        bmin: QUAD:SPD:340:BMIN
         ctrl: QUAD:SPD:340:CTRL
       control_name: QUAD:SPD:340
     metadata:
@@ -81,6 +95,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2861.315
+      type: QUAD
   QSP2D:
     controls_information:
       PVs:
@@ -88,6 +103,8 @@ magnets:
         bcon: QUAD:SPD:700:BCON
         bctrl: QUAD:SPD:700:BCTRL
         bdes: QUAD:SPD:700:BDES
+        bmax: QUAD:SPD:700:BMAX
+        bmin: QUAD:SPD:700:BMIN
         ctrl: QUAD:SPD:700:CTRL
       control_name: QUAD:SPD:700
     metadata:
@@ -95,6 +112,7 @@ magnets:
       beam_path:
       - SC_BSYD
       sum_l_meters: 2973.205
+      type: QUAD
   XCSP1:
     controls_information:
       PVs:
@@ -102,6 +120,8 @@ magnets:
         bcon: XCOR:SPD:334:BCON
         bctrl: XCOR:SPD:334:BCTRL
         bdes: XCOR:SPD:334:BDES
+        bmax: XCOR:SPD:334:BMAX
+        bmin: XCOR:SPD:334:BMIN
         ctrl: XCOR:SPD:334:CTRL
       control_name: XCOR:SPD:334
     metadata:
@@ -115,6 +135,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2859.974
+      type: XCOR
   XCSP1D:
     controls_information:
       PVs:
@@ -122,6 +143,8 @@ magnets:
         bcon: XCOR:SPD:688:BCON
         bctrl: XCOR:SPD:688:BCTRL
         bdes: XCOR:SPD:688:BDES
+        bmax: XCOR:SPD:688:BMAX
+        bmin: XCOR:SPD:688:BMIN
         ctrl: XCOR:SPD:688:CTRL
       control_name: XCOR:SPD:688
     metadata:
@@ -129,6 +152,7 @@ magnets:
       beam_path:
       - SC_BSYD
       sum_l_meters: 2968.675
+      type: XCOR
   XCSP3D:
     controls_information:
       PVs:
@@ -136,6 +160,8 @@ magnets:
         bcon: XCOR:SPD:964:BCON
         bctrl: XCOR:SPD:964:BCTRL
         bdes: XCOR:SPD:964:BDES
+        bmax: XCOR:SPD:964:BMAX
+        bmin: XCOR:SPD:964:BMIN
         ctrl: XCOR:SPD:964:CTRL
       control_name: XCOR:SPD:964
     metadata:
@@ -143,6 +169,7 @@ magnets:
       beam_path:
       - SC_BSYD
       sum_l_meters: 3053.345
+      type: XCOR
   YCSP2:
     controls_information:
       PVs:
@@ -150,6 +177,8 @@ magnets:
         bcon: YCOR:SPD:343:BCON
         bctrl: YCOR:SPD:343:BCTRL
         bdes: YCOR:SPD:343:BDES
+        bmax: YCOR:SPD:343:BMAX
+        bmin: YCOR:SPD:343:BMIN
         ctrl: YCOR:SPD:343:CTRL
       control_name: YCOR:SPD:343
     metadata:
@@ -163,6 +192,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2861.875
+      type: YCOR
   YCSP2D:
     controls_information:
       PVs:
@@ -170,6 +200,8 @@ magnets:
         bcon: YCOR:SPD:703:BCON
         bctrl: YCOR:SPD:703:BCTRL
         bdes: YCOR:SPD:703:BDES
+        bmax: YCOR:SPD:703:BMAX
+        bmin: YCOR:SPD:703:BMIN
         ctrl: YCOR:SPD:703:CTRL
       control_name: YCOR:SPD:703
     metadata:
@@ -177,6 +209,7 @@ magnets:
       beam_path:
       - SC_BSYD
       sum_l_meters: 2973.765
+      type: YCOR
   YCSP4D:
     controls_information:
       PVs:
@@ -184,6 +217,8 @@ magnets:
         bcon: YCOR:SPD:965:BCON
         bctrl: YCOR:SPD:965:BCTRL
         bdes: YCOR:SPD:965:BDES
+        bmax: YCOR:SPD:965:BMAX
+        bmin: YCOR:SPD:965:BMIN
         ctrl: YCOR:SPD:965:CTRL
       control_name: YCOR:SPD:965
     metadata:
@@ -191,3 +226,4 @@ magnets:
       beam_path:
       - SC_BSYD
       sum_l_meters: 3053.845
+      type: YCOR

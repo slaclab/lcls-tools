@@ -9,6 +9,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 398.543
+      type: BEND
   BCX14796:
     controls_information:
       PVs: {}
@@ -19,6 +20,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 408.963
+      type: BEND
   BCX14808:
     controls_information:
       PVs: {}
@@ -29,6 +31,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 410.604
+      type: BEND
   BCX14883:
     controls_information:
       PVs: {}
@@ -39,6 +42,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 421.025
+      type: BEND
   CQ14738:
     controls_information:
       PVs: {}
@@ -49,6 +53,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 400.832
+      type: QUAD
   CQ14866:
     controls_information:
       PVs: {}
@@ -59,6 +64,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 418.735
+      type: QUAD
   YC14780:
     controls_information:
       PVs: {}
@@ -69,6 +75,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 407.75
+      type: YCOR
   YC14820:
     controls_information:
       PVs: {}
@@ -77,6 +84,7 @@ magnets:
       area: BC14E
       beam_path: []
       sum_l_meters: null
+      type: YCOR
 screens:
   PR14803:
     controls_information:
@@ -88,3 +96,4 @@ screens:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 409.964
+      type: PROF

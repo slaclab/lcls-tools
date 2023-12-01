@@ -7,3 +7,4 @@ screens:
       area: LI25
       beam_path: []
       sum_l_meters: null
+      type: PROF

@@ -6,6 +6,8 @@ magnets:
         bcon: QUAD:LI25:201:BCON
         bctrl: QUAD:LI25:201:BCTRL
         bdes: QUAD:LI25:201:BDES
+        bmax: QUAD:LI25:201:BMAX
+        bmin: QUAD:LI25:201:BMIN
         ctrl: QUAD:LI25:201:CTRL
       control_name: QUAD:LI25:201
     metadata:
@@ -18,6 +20,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 435.999
+      type: QUAD
   Q25301:
     controls_information:
       PVs:
@@ -25,6 +28,8 @@ magnets:
         bcon: QUAD:LI25:301:BCON
         bctrl: QUAD:LI25:301:BCTRL
         bdes: QUAD:LI25:301:BDES
+        bmax: QUAD:LI25:301:BMAX
+        bmin: QUAD:LI25:301:BMIN
         ctrl: QUAD:LI25:301:CTRL
       control_name: QUAD:LI25:301
     metadata:
@@ -37,6 +42,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 448.343
+      type: QUAD
   Q25401:
     controls_information:
       PVs:
@@ -44,6 +50,8 @@ magnets:
         bcon: QUAD:LI25:401:BCON
         bctrl: QUAD:LI25:401:BCTRL
         bdes: QUAD:LI25:401:BDES
+        bmax: QUAD:LI25:401:BMAX
+        bmin: QUAD:LI25:401:BMIN
         ctrl: QUAD:LI25:401:CTRL
       control_name: QUAD:LI25:401
     metadata:
@@ -56,6 +64,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 460.687
+      type: QUAD
   Q25501:
     controls_information:
       PVs:
@@ -63,6 +72,8 @@ magnets:
         bcon: QUAD:LI25:501:BCON
         bctrl: QUAD:LI25:501:BCTRL
         bdes: QUAD:LI25:501:BDES
+        bmax: QUAD:LI25:501:BMAX
+        bmin: QUAD:LI25:501:BMIN
         ctrl: QUAD:LI25:501:CTRL
       control_name: QUAD:LI25:501
     metadata:
@@ -75,6 +86,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 473.032
+      type: QUAD
   Q25601:
     controls_information:
       PVs:
@@ -82,6 +94,8 @@ magnets:
         bcon: QUAD:LI25:601:BCON
         bctrl: QUAD:LI25:601:BCTRL
         bdes: QUAD:LI25:601:BDES
+        bmax: QUAD:LI25:601:BMAX
+        bmin: QUAD:LI25:601:BMIN
         ctrl: QUAD:LI25:601:CTRL
       control_name: QUAD:LI25:601
     metadata:
@@ -94,6 +108,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 485.376
+      type: QUAD
   Q25701:
     controls_information:
       PVs:
@@ -101,6 +116,8 @@ magnets:
         bcon: QUAD:LI25:701:BCON
         bctrl: QUAD:LI25:701:BCTRL
         bdes: QUAD:LI25:701:BDES
+        bmax: QUAD:LI25:701:BMAX
+        bmin: QUAD:LI25:701:BMIN
         ctrl: QUAD:LI25:701:CTRL
       control_name: QUAD:LI25:701
     metadata:
@@ -113,6 +130,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 497.721
+      type: QUAD
   Q25801:
     controls_information:
       PVs:
@@ -120,6 +138,8 @@ magnets:
         bcon: QUAD:LI25:801:BCON
         bctrl: QUAD:LI25:801:BCTRL
         bdes: QUAD:LI25:801:BDES
+        bmax: QUAD:LI25:801:BMAX
+        bmin: QUAD:LI25:801:BMIN
         ctrl: QUAD:LI25:801:CTRL
       control_name: QUAD:LI25:801
     metadata:
@@ -132,6 +152,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 510.065
+      type: QUAD
   Q25901:
     controls_information:
       PVs:
@@ -139,6 +160,8 @@ magnets:
         bcon: QUAD:LI25:901:BCON
         bctrl: QUAD:LI25:901:BCTRL
         bdes: QUAD:LI25:901:BDES
+        bmax: QUAD:LI25:901:BMAX
+        bmin: QUAD:LI25:901:BMIN
         ctrl: QUAD:LI25:901:CTRL
       control_name: QUAD:LI25:901
     metadata:
@@ -151,6 +174,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 522.65
+      type: QUAD
   Q26201:
     controls_information:
       PVs:
@@ -158,6 +182,8 @@ magnets:
         bcon: QUAD:LI26:201:BCON
         bctrl: QUAD:LI26:201:BCTRL
         bdes: QUAD:LI26:201:BDES
+        bmax: QUAD:LI26:201:BMAX
+        bmin: QUAD:LI26:201:BMIN
         ctrl: QUAD:LI26:201:CTRL
       control_name: QUAD:LI26:201
     metadata:
@@ -170,6 +196,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 537.599
+      type: QUAD
   Q26301:
     controls_information:
       PVs:
@@ -177,6 +204,8 @@ magnets:
         bcon: QUAD:LI26:301:BCON
         bctrl: QUAD:LI26:301:BCTRL
         bdes: QUAD:LI26:301:BDES
+        bmax: QUAD:LI26:301:BMAX
+        bmin: QUAD:LI26:301:BMIN
         ctrl: QUAD:LI26:301:CTRL
       control_name: QUAD:LI26:301
     metadata:
@@ -189,6 +218,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 549.943
+      type: QUAD
   Q26401:
     controls_information:
       PVs:
@@ -196,6 +226,8 @@ magnets:
         bcon: QUAD:LI26:401:BCON
         bctrl: QUAD:LI26:401:BCTRL
         bdes: QUAD:LI26:401:BDES
+        bmax: QUAD:LI26:401:BMAX
+        bmin: QUAD:LI26:401:BMIN
         ctrl: QUAD:LI26:401:CTRL
       control_name: QUAD:LI26:401
     metadata:
@@ -208,6 +240,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 562.287
+      type: QUAD
   Q26501:
     controls_information:
       PVs:
@@ -215,6 +248,8 @@ magnets:
         bcon: QUAD:LI26:501:BCON
         bctrl: QUAD:LI26:501:BCTRL
         bdes: QUAD:LI26:501:BDES
+        bmax: QUAD:LI26:501:BMAX
+        bmin: QUAD:LI26:501:BMIN
         ctrl: QUAD:LI26:501:CTRL
       control_name: QUAD:LI26:501
     metadata:
@@ -227,6 +262,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 574.632
+      type: QUAD
   Q26601:
     controls_information:
       PVs:
@@ -234,6 +270,8 @@ magnets:
         bcon: QUAD:LI26:601:BCON
         bctrl: QUAD:LI26:601:BCTRL
         bdes: QUAD:LI26:601:BDES
+        bmax: QUAD:LI26:601:BMAX
+        bmin: QUAD:LI26:601:BMIN
         ctrl: QUAD:LI26:601:CTRL
       control_name: QUAD:LI26:601
     metadata:
@@ -246,6 +284,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 586.976
+      type: QUAD
   Q26701:
     controls_information:
       PVs:
@@ -253,6 +292,8 @@ magnets:
         bcon: QUAD:LI26:701:BCON
         bctrl: QUAD:LI26:701:BCTRL
         bdes: QUAD:LI26:701:BDES
+        bmax: QUAD:LI26:701:BMAX
+        bmin: QUAD:LI26:701:BMIN
         ctrl: QUAD:LI26:701:CTRL
       control_name: QUAD:LI26:701
     metadata:
@@ -265,6 +306,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 599.321
+      type: QUAD
   Q26801:
     controls_information:
       PVs:
@@ -272,6 +314,8 @@ magnets:
         bcon: QUAD:LI26:801:BCON
         bctrl: QUAD:LI26:801:BCTRL
         bdes: QUAD:LI26:801:BDES
+        bmax: QUAD:LI26:801:BMAX
+        bmin: QUAD:LI26:801:BMIN
         ctrl: QUAD:LI26:801:CTRL
       control_name: QUAD:LI26:801
     metadata:
@@ -284,6 +328,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 611.665
+      type: QUAD
   Q26901:
     controls_information:
       PVs:
@@ -291,6 +336,8 @@ magnets:
         bcon: QUAD:LI26:901:BCON
         bctrl: QUAD:LI26:901:BCTRL
         bdes: QUAD:LI26:901:BDES
+        bmax: QUAD:LI26:901:BMAX
+        bmin: QUAD:LI26:901:BMIN
         ctrl: QUAD:LI26:901:CTRL
       control_name: QUAD:LI26:901
     metadata:
@@ -303,6 +350,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 624.25
+      type: QUAD
   Q27201:
     controls_information:
       PVs:
@@ -310,6 +358,8 @@ magnets:
         bcon: QUAD:LI27:201:BCON
         bctrl: QUAD:LI27:201:BCTRL
         bdes: QUAD:LI27:201:BDES
+        bmax: QUAD:LI27:201:BMAX
+        bmin: QUAD:LI27:201:BMIN
         ctrl: QUAD:LI27:201:CTRL
       control_name: QUAD:LI27:201
     metadata:
@@ -322,6 +372,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 639.199
+      type: QUAD
   Q27301:
     controls_information:
       PVs:
@@ -329,6 +380,8 @@ magnets:
         bcon: QUAD:LI27:301:BCON
         bctrl: QUAD:LI27:301:BCTRL
         bdes: QUAD:LI27:301:BDES
+        bmax: QUAD:LI27:301:BMAX
+        bmin: QUAD:LI27:301:BMIN
         ctrl: QUAD:LI27:301:CTRL
       control_name: QUAD:LI27:301
     metadata:
@@ -341,6 +394,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 651.543
+      type: QUAD
   Q27401:
     controls_information:
       PVs:
@@ -348,6 +402,8 @@ magnets:
         bcon: QUAD:LI27:401:BCON
         bctrl: QUAD:LI27:401:BCTRL
         bdes: QUAD:LI27:401:BDES
+        bmax: QUAD:LI27:401:BMAX
+        bmin: QUAD:LI27:401:BMIN
         ctrl: QUAD:LI27:401:CTRL
       control_name: QUAD:LI27:401
     metadata:
@@ -360,6 +416,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 663.887
+      type: QUAD
   Q27501:
     controls_information:
       PVs:
@@ -367,6 +424,8 @@ magnets:
         bcon: QUAD:LI27:501:BCON
         bctrl: QUAD:LI27:501:BCTRL
         bdes: QUAD:LI27:501:BDES
+        bmax: QUAD:LI27:501:BMAX
+        bmin: QUAD:LI27:501:BMIN
         ctrl: QUAD:LI27:501:CTRL
       control_name: QUAD:LI27:501
     metadata:
@@ -379,6 +438,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 676.232
+      type: QUAD
   Q27601:
     controls_information:
       PVs:
@@ -386,6 +446,8 @@ magnets:
         bcon: QUAD:LI27:601:BCON
         bctrl: QUAD:LI27:601:BCTRL
         bdes: QUAD:LI27:601:BDES
+        bmax: QUAD:LI27:601:BMAX
+        bmin: QUAD:LI27:601:BMIN
         ctrl: QUAD:LI27:601:CTRL
       control_name: QUAD:LI27:601
     metadata:
@@ -398,6 +460,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 688.576
+      type: QUAD
   Q27701:
     controls_information:
       PVs:
@@ -405,6 +468,8 @@ magnets:
         bcon: QUAD:LI27:701:BCON
         bctrl: QUAD:LI27:701:BCTRL
         bdes: QUAD:LI27:701:BDES
+        bmax: QUAD:LI27:701:BMAX
+        bmin: QUAD:LI27:701:BMIN
         ctrl: QUAD:LI27:701:CTRL
       control_name: QUAD:LI27:701
     metadata:
@@ -417,6 +482,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 700.921
+      type: QUAD
   Q27801:
     controls_information:
       PVs:
@@ -424,6 +490,8 @@ magnets:
         bcon: QUAD:LI27:801:BCON
         bctrl: QUAD:LI27:801:BCTRL
         bdes: QUAD:LI27:801:BDES
+        bmax: QUAD:LI27:801:BMAX
+        bmin: QUAD:LI27:801:BMIN
         ctrl: QUAD:LI27:801:CTRL
       control_name: QUAD:LI27:801
     metadata:
@@ -436,6 +504,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 713.265
+      type: QUAD
   Q27901:
     controls_information:
       PVs:
@@ -443,6 +512,8 @@ magnets:
         bcon: QUAD:LI27:901:BCON
         bctrl: QUAD:LI27:901:BCTRL
         bdes: QUAD:LI27:901:BDES
+        bmax: QUAD:LI27:901:BMAX
+        bmin: QUAD:LI27:901:BMIN
         ctrl: QUAD:LI27:901:CTRL
       control_name: QUAD:LI27:901
     metadata:
@@ -455,6 +526,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 725.85
+      type: QUAD
   Q28201:
     controls_information:
       PVs:
@@ -462,6 +534,8 @@ magnets:
         bcon: QUAD:LI28:201:BCON
         bctrl: QUAD:LI28:201:BCTRL
         bdes: QUAD:LI28:201:BDES
+        bmax: QUAD:LI28:201:BMAX
+        bmin: QUAD:LI28:201:BMIN
         ctrl: QUAD:LI28:201:CTRL
       control_name: QUAD:LI28:201
     metadata:
@@ -474,6 +548,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 740.799
+      type: QUAD
   Q28301:
     controls_information:
       PVs:
@@ -481,6 +556,8 @@ magnets:
         bcon: QUAD:LI28:301:BCON
         bctrl: QUAD:LI28:301:BCTRL
         bdes: QUAD:LI28:301:BDES
+        bmax: QUAD:LI28:301:BMAX
+        bmin: QUAD:LI28:301:BMIN
         ctrl: QUAD:LI28:301:CTRL
       control_name: QUAD:LI28:301
     metadata:
@@ -493,6 +570,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 753.143
+      type: QUAD
   Q28401:
     controls_information:
       PVs:
@@ -500,6 +578,8 @@ magnets:
         bcon: QUAD:LI28:401:BCON
         bctrl: QUAD:LI28:401:BCTRL
         bdes: QUAD:LI28:401:BDES
+        bmax: QUAD:LI28:401:BMAX
+        bmin: QUAD:LI28:401:BMIN
         ctrl: QUAD:LI28:401:CTRL
       control_name: QUAD:LI28:401
     metadata:
@@ -512,6 +592,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 765.487
+      type: QUAD
   Q28501:
     controls_information:
       PVs:
@@ -519,6 +600,8 @@ magnets:
         bcon: QUAD:LI28:501:BCON
         bctrl: QUAD:LI28:501:BCTRL
         bdes: QUAD:LI28:501:BDES
+        bmax: QUAD:LI28:501:BMAX
+        bmin: QUAD:LI28:501:BMIN
         ctrl: QUAD:LI28:501:CTRL
       control_name: QUAD:LI28:501
     metadata:
@@ -531,6 +614,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 777.832
+      type: QUAD
   Q28601:
     controls_information:
       PVs:
@@ -538,6 +622,8 @@ magnets:
         bcon: QUAD:LI28:601:BCON
         bctrl: QUAD:LI28:601:BCTRL
         bdes: QUAD:LI28:601:BDES
+        bmax: QUAD:LI28:601:BMAX
+        bmin: QUAD:LI28:601:BMIN
         ctrl: QUAD:LI28:601:CTRL
       control_name: QUAD:LI28:601
     metadata:
@@ -550,6 +636,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 790.176
+      type: QUAD
   Q28701:
     controls_information:
       PVs:
@@ -557,6 +644,8 @@ magnets:
         bcon: QUAD:LI28:701:BCON
         bctrl: QUAD:LI28:701:BCTRL
         bdes: QUAD:LI28:701:BDES
+        bmax: QUAD:LI28:701:BMAX
+        bmin: QUAD:LI28:701:BMIN
         ctrl: QUAD:LI28:701:CTRL
       control_name: QUAD:LI28:701
     metadata:
@@ -569,6 +658,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 802.521
+      type: QUAD
   Q28801:
     controls_information:
       PVs:
@@ -576,6 +666,8 @@ magnets:
         bcon: QUAD:LI28:801:BCON
         bctrl: QUAD:LI28:801:BCTRL
         bdes: QUAD:LI28:801:BDES
+        bmax: QUAD:LI28:801:BMAX
+        bmin: QUAD:LI28:801:BMIN
         ctrl: QUAD:LI28:801:CTRL
       control_name: QUAD:LI28:801
     metadata:
@@ -588,6 +680,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 814.865
+      type: QUAD
   Q28901:
     controls_information:
       PVs:
@@ -595,6 +688,8 @@ magnets:
         bcon: QUAD:LI28:901:BCON
         bctrl: QUAD:LI28:901:BCTRL
         bdes: QUAD:LI28:901:BDES
+        bmax: QUAD:LI28:901:BMAX
+        bmin: QUAD:LI28:901:BMIN
         ctrl: QUAD:LI28:901:CTRL
       control_name: QUAD:LI28:901
     metadata:
@@ -607,6 +702,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 827.45
+      type: QUAD
   Q29201:
     controls_information:
       PVs:
@@ -614,6 +710,8 @@ magnets:
         bcon: QUAD:LI29:201:BCON
         bctrl: QUAD:LI29:201:BCTRL
         bdes: QUAD:LI29:201:BDES
+        bmax: QUAD:LI29:201:BMAX
+        bmin: QUAD:LI29:201:BMIN
         ctrl: QUAD:LI29:201:CTRL
       control_name: QUAD:LI29:201
     metadata:
@@ -626,6 +724,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 842.399
+      type: QUAD
   Q29301:
     controls_information:
       PVs:
@@ -633,6 +732,8 @@ magnets:
         bcon: QUAD:LI29:301:BCON
         bctrl: QUAD:LI29:301:BCTRL
         bdes: QUAD:LI29:301:BDES
+        bmax: QUAD:LI29:301:BMAX
+        bmin: QUAD:LI29:301:BMIN
         ctrl: QUAD:LI29:301:CTRL
       control_name: QUAD:LI29:301
     metadata:
@@ -645,6 +746,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 854.743
+      type: QUAD
   Q29401:
     controls_information:
       PVs:
@@ -652,6 +754,8 @@ magnets:
         bcon: QUAD:LI29:401:BCON
         bctrl: QUAD:LI29:401:BCTRL
         bdes: QUAD:LI29:401:BDES
+        bmax: QUAD:LI29:401:BMAX
+        bmin: QUAD:LI29:401:BMIN
         ctrl: QUAD:LI29:401:CTRL
       control_name: QUAD:LI29:401
     metadata:
@@ -664,6 +768,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 867.087
+      type: QUAD
   Q29501:
     controls_information:
       PVs:
@@ -671,6 +776,8 @@ magnets:
         bcon: QUAD:LI29:501:BCON
         bctrl: QUAD:LI29:501:BCTRL
         bdes: QUAD:LI29:501:BDES
+        bmax: QUAD:LI29:501:BMAX
+        bmin: QUAD:LI29:501:BMIN
         ctrl: QUAD:LI29:501:CTRL
       control_name: QUAD:LI29:501
     metadata:
@@ -683,6 +790,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 879.432
+      type: QUAD
   Q29601:
     controls_information:
       PVs:
@@ -690,6 +798,8 @@ magnets:
         bcon: QUAD:LI29:601:BCON
         bctrl: QUAD:LI29:601:BCTRL
         bdes: QUAD:LI29:601:BDES
+        bmax: QUAD:LI29:601:BMAX
+        bmin: QUAD:LI29:601:BMIN
         ctrl: QUAD:LI29:601:CTRL
       control_name: QUAD:LI29:601
     metadata:
@@ -702,6 +812,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 891.776
+      type: QUAD
   Q29701:
     controls_information:
       PVs:
@@ -709,6 +820,8 @@ magnets:
         bcon: QUAD:LI29:701:BCON
         bctrl: QUAD:LI29:701:BCTRL
         bdes: QUAD:LI29:701:BDES
+        bmax: QUAD:LI29:701:BMAX
+        bmin: QUAD:LI29:701:BMIN
         ctrl: QUAD:LI29:701:CTRL
       control_name: QUAD:LI29:701
     metadata:
@@ -721,6 +834,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 904.121
+      type: QUAD
   Q29801:
     controls_information:
       PVs:
@@ -728,6 +842,8 @@ magnets:
         bcon: QUAD:LI29:801:BCON
         bctrl: QUAD:LI29:801:BCTRL
         bdes: QUAD:LI29:801:BDES
+        bmax: QUAD:LI29:801:BMAX
+        bmin: QUAD:LI29:801:BMIN
         ctrl: QUAD:LI29:801:CTRL
       control_name: QUAD:LI29:801
     metadata:
@@ -740,6 +856,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 916.465
+      type: QUAD
   Q29901:
     controls_information:
       PVs:
@@ -747,6 +864,8 @@ magnets:
         bcon: QUAD:LI29:901:BCON
         bctrl: QUAD:LI29:901:BCTRL
         bdes: QUAD:LI29:901:BDES
+        bmax: QUAD:LI29:901:BMAX
+        bmin: QUAD:LI29:901:BMIN
         ctrl: QUAD:LI29:901:CTRL
       control_name: QUAD:LI29:901
     metadata:
@@ -759,6 +878,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 929.129
+      type: QUAD
   Q30201:
     controls_information:
       PVs:
@@ -766,6 +886,8 @@ magnets:
         bcon: QUAD:LI30:201:BCON
         bctrl: QUAD:LI30:201:BCTRL
         bdes: QUAD:LI30:201:BDES
+        bmax: QUAD:LI30:201:BMAX
+        bmin: QUAD:LI30:201:BMIN
         ctrl: QUAD:LI30:201:CTRL
       control_name: QUAD:LI30:201
     metadata:
@@ -778,6 +900,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 943.999
+      type: QUAD
   Q30301:
     controls_information:
       PVs:
@@ -785,6 +908,8 @@ magnets:
         bcon: QUAD:LI30:301:BCON
         bctrl: QUAD:LI30:301:BCTRL
         bdes: QUAD:LI30:301:BDES
+        bmax: QUAD:LI30:301:BMAX
+        bmin: QUAD:LI30:301:BMIN
         ctrl: QUAD:LI30:301:CTRL
       control_name: QUAD:LI30:301
     metadata:
@@ -797,6 +922,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 956.343
+      type: QUAD
   Q30401:
     controls_information:
       PVs:
@@ -804,6 +930,8 @@ magnets:
         bcon: QUAD:LI30:401:BCON
         bctrl: QUAD:LI30:401:BCTRL
         bdes: QUAD:LI30:401:BDES
+        bmax: QUAD:LI30:401:BMAX
+        bmin: QUAD:LI30:401:BMIN
         ctrl: QUAD:LI30:401:CTRL
       control_name: QUAD:LI30:401
     metadata:
@@ -816,6 +944,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 968.687
+      type: QUAD
   Q30501:
     controls_information:
       PVs:
@@ -823,6 +952,8 @@ magnets:
         bcon: QUAD:LI30:501:BCON
         bctrl: QUAD:LI30:501:BCTRL
         bdes: QUAD:LI30:501:BDES
+        bmax: QUAD:LI30:501:BMAX
+        bmin: QUAD:LI30:501:BMIN
         ctrl: QUAD:LI30:501:CTRL
       control_name: QUAD:LI30:501
     metadata:
@@ -835,6 +966,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 981.032
+      type: QUAD
   Q30601:
     controls_information:
       PVs:
@@ -842,6 +974,8 @@ magnets:
         bcon: QUAD:LI30:601:BCON
         bctrl: QUAD:LI30:601:BCTRL
         bdes: QUAD:LI30:601:BDES
+        bmax: QUAD:LI30:601:BMAX
+        bmin: QUAD:LI30:601:BMIN
         ctrl: QUAD:LI30:601:CTRL
       control_name: QUAD:LI30:601
     metadata:
@@ -854,6 +988,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 993.175
+      type: QUAD
   Q30701:
     controls_information:
       PVs:
@@ -861,6 +996,8 @@ magnets:
         bcon: QUAD:LI30:701:BCON
         bctrl: QUAD:LI30:701:BCTRL
         bdes: QUAD:LI30:701:BDES
+        bmax: QUAD:LI30:701:BMAX
+        bmin: QUAD:LI30:701:BMIN
         ctrl: QUAD:LI30:701:CTRL
       control_name: QUAD:LI30:701
     metadata:
@@ -873,6 +1010,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1005.535
+      type: QUAD
   Q30801:
     controls_information:
       PVs:
@@ -880,6 +1018,8 @@ magnets:
         bcon: QUAD:LI30:801:BCON
         bctrl: QUAD:LI30:801:BCTRL
         bdes: QUAD:LI30:801:BDES
+        bmax: QUAD:LI30:801:BMAX
+        bmin: QUAD:LI30:801:BMIN
         ctrl: QUAD:LI30:801:CTRL
       control_name: QUAD:LI30:801
     metadata:
@@ -892,6 +1032,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1017.865
+      type: QUAD
   XC24900:
     controls_information:
       PVs:
@@ -899,6 +1040,8 @@ magnets:
         bcon: XCOR:LI24:900:BCON
         bctrl: XCOR:LI24:900:BCTRL
         bdes: XCOR:LI24:900:BDES
+        bmax: XCOR:LI24:900:BMAX
+        bmin: XCOR:LI24:900:BMIN
         ctrl: XCOR:LI24:900:CTRL
       control_name: XCOR:LI24:900
     metadata:
@@ -911,6 +1054,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 424.06
+      type: XCOR
   XC25202:
     controls_information:
       PVs:
@@ -918,6 +1062,8 @@ magnets:
         bcon: XCOR:LI25:202:BCON
         bctrl: XCOR:LI25:202:BCTRL
         bdes: XCOR:LI25:202:BDES
+        bmax: XCOR:LI25:202:BMAX
+        bmin: XCOR:LI25:202:BMIN
         ctrl: XCOR:LI25:202:CTRL
       control_name: XCOR:LI25:202
     metadata:
@@ -930,6 +1076,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 436.532
+      type: XCOR
   XC25302:
     controls_information:
       PVs:
@@ -937,6 +1084,8 @@ magnets:
         bcon: XCOR:LI25:302:BCON
         bctrl: XCOR:LI25:302:BCTRL
         bdes: XCOR:LI25:302:BDES
+        bmax: XCOR:LI25:302:BMAX
+        bmin: XCOR:LI25:302:BMIN
         ctrl: XCOR:LI25:302:CTRL
       control_name: XCOR:LI25:302
     metadata:
@@ -949,6 +1098,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 448.755
+      type: XCOR
   XC25402:
     controls_information:
       PVs:
@@ -956,6 +1106,8 @@ magnets:
         bcon: XCOR:LI25:402:BCON
         bctrl: XCOR:LI25:402:BCTRL
         bdes: XCOR:LI25:402:BDES
+        bmax: XCOR:LI25:402:BMAX
+        bmin: XCOR:LI25:402:BMIN
         ctrl: XCOR:LI25:402:CTRL
       control_name: XCOR:LI25:402
     metadata:
@@ -968,6 +1120,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 461.095
+      type: XCOR
   XC25502:
     controls_information:
       PVs:
@@ -975,6 +1128,8 @@ magnets:
         bcon: XCOR:LI25:502:BCON
         bctrl: XCOR:LI25:502:BCTRL
         bdes: XCOR:LI25:502:BDES
+        bmax: XCOR:LI25:502:BMAX
+        bmin: XCOR:LI25:502:BMIN
         ctrl: XCOR:LI25:502:CTRL
       control_name: XCOR:LI25:502
     metadata:
@@ -987,6 +1142,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 473.439
+      type: XCOR
   XC25602:
     controls_information:
       PVs:
@@ -994,6 +1150,8 @@ magnets:
         bcon: XCOR:LI25:602:BCON
         bctrl: XCOR:LI25:602:BCTRL
         bdes: XCOR:LI25:602:BDES
+        bmax: XCOR:LI25:602:BMAX
+        bmin: XCOR:LI25:602:BMIN
         ctrl: XCOR:LI25:602:CTRL
       control_name: XCOR:LI25:602
     metadata:
@@ -1006,6 +1164,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 485.785
+      type: XCOR
   XC25702:
     controls_information:
       PVs:
@@ -1013,6 +1172,8 @@ magnets:
         bcon: XCOR:LI25:702:BCON
         bctrl: XCOR:LI25:702:BCTRL
         bdes: XCOR:LI25:702:BDES
+        bmax: XCOR:LI25:702:BMAX
+        bmin: XCOR:LI25:702:BMIN
         ctrl: XCOR:LI25:702:CTRL
       control_name: XCOR:LI25:702
     metadata:
@@ -1025,6 +1186,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 498.135
+      type: XCOR
   XC25802:
     controls_information:
       PVs:
@@ -1032,6 +1194,8 @@ magnets:
         bcon: XCOR:LI25:802:BCON
         bctrl: XCOR:LI25:802:BCTRL
         bdes: XCOR:LI25:802:BDES
+        bmax: XCOR:LI25:802:BMAX
+        bmin: XCOR:LI25:802:BMIN
         ctrl: XCOR:LI25:802:CTRL
       control_name: XCOR:LI25:802
     metadata:
@@ -1044,6 +1208,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 510.475
+      type: XCOR
   XC25900:
     controls_information:
       PVs:
@@ -1051,6 +1216,8 @@ magnets:
         bcon: XCOR:LI25:900:BCON
         bctrl: XCOR:LI25:900:BCTRL
         bdes: XCOR:LI25:900:BDES
+        bmax: XCOR:LI25:900:BMAX
+        bmin: XCOR:LI25:900:BMIN
         ctrl: XCOR:LI25:900:CTRL
       control_name: XCOR:LI25:900
     metadata:
@@ -1063,6 +1230,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 521.665
+      type: XCOR
   XC26202:
     controls_information:
       PVs:
@@ -1070,6 +1238,8 @@ magnets:
         bcon: XCOR:LI26:202:BCON
         bctrl: XCOR:LI26:202:BCTRL
         bdes: XCOR:LI26:202:BDES
+        bmax: XCOR:LI26:202:BMAX
+        bmin: XCOR:LI26:202:BMIN
         ctrl: XCOR:LI26:202:CTRL
       control_name: XCOR:LI26:202
     metadata:
@@ -1082,6 +1252,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 538.005
+      type: XCOR
   XC26302:
     controls_information:
       PVs:
@@ -1089,6 +1260,8 @@ magnets:
         bcon: XCOR:LI26:302:BCON
         bctrl: XCOR:LI26:302:BCTRL
         bdes: XCOR:LI26:302:BDES
+        bmax: XCOR:LI26:302:BMAX
+        bmin: XCOR:LI26:302:BMIN
         ctrl: XCOR:LI26:302:CTRL
       control_name: XCOR:LI26:302
     metadata:
@@ -1101,6 +1274,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 550.355
+      type: XCOR
   XC26402:
     controls_information:
       PVs:
@@ -1108,6 +1282,8 @@ magnets:
         bcon: XCOR:LI26:402:BCON
         bctrl: XCOR:LI26:402:BCTRL
         bdes: XCOR:LI26:402:BDES
+        bmax: XCOR:LI26:402:BMAX
+        bmin: XCOR:LI26:402:BMIN
         ctrl: XCOR:LI26:402:CTRL
       control_name: XCOR:LI26:402
     metadata:
@@ -1120,6 +1296,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 562.695
+      type: XCOR
   XC26502:
     controls_information:
       PVs:
@@ -1127,6 +1304,8 @@ magnets:
         bcon: XCOR:LI26:502:BCON
         bctrl: XCOR:LI26:502:BCTRL
         bdes: XCOR:LI26:502:BDES
+        bmax: XCOR:LI26:502:BMAX
+        bmin: XCOR:LI26:502:BMIN
         ctrl: XCOR:LI26:502:CTRL
       control_name: XCOR:LI26:502
     metadata:
@@ -1139,6 +1318,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 575.045
+      type: XCOR
   XC26602:
     controls_information:
       PVs:
@@ -1146,6 +1326,8 @@ magnets:
         bcon: XCOR:LI26:602:BCON
         bctrl: XCOR:LI26:602:BCTRL
         bdes: XCOR:LI26:602:BDES
+        bmax: XCOR:LI26:602:BMAX
+        bmin: XCOR:LI26:602:BMIN
         ctrl: XCOR:LI26:602:CTRL
       control_name: XCOR:LI26:602
     metadata:
@@ -1158,6 +1340,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 587.385
+      type: XCOR
   XC26702:
     controls_information:
       PVs:
@@ -1165,6 +1348,8 @@ magnets:
         bcon: XCOR:LI26:702:BCON
         bctrl: XCOR:LI26:702:BCTRL
         bdes: XCOR:LI26:702:BDES
+        bmax: XCOR:LI26:702:BMAX
+        bmin: XCOR:LI26:702:BMIN
         ctrl: XCOR:LI26:702:CTRL
       control_name: XCOR:LI26:702
     metadata:
@@ -1177,6 +1362,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 599.735
+      type: XCOR
   XC26802:
     controls_information:
       PVs:
@@ -1184,6 +1370,8 @@ magnets:
         bcon: XCOR:LI26:802:BCON
         bctrl: XCOR:LI26:802:BCTRL
         bdes: XCOR:LI26:802:BDES
+        bmax: XCOR:LI26:802:BMAX
+        bmin: XCOR:LI26:802:BMIN
         ctrl: XCOR:LI26:802:CTRL
       control_name: XCOR:LI26:802
     metadata:
@@ -1196,6 +1384,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 612.075
+      type: XCOR
   XC26900:
     controls_information:
       PVs:
@@ -1203,6 +1392,8 @@ magnets:
         bcon: XCOR:LI26:900:BCON
         bctrl: XCOR:LI26:900:BCTRL
         bdes: XCOR:LI26:900:BDES
+        bmax: XCOR:LI26:900:BMAX
+        bmin: XCOR:LI26:900:BMIN
         ctrl: XCOR:LI26:900:CTRL
       control_name: XCOR:LI26:900
     metadata:
@@ -1215,6 +1406,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 623.265
+      type: XCOR
   XC27202:
     controls_information:
       PVs:
@@ -1222,6 +1414,8 @@ magnets:
         bcon: XCOR:LI27:202:BCON
         bctrl: XCOR:LI27:202:BCTRL
         bdes: XCOR:LI27:202:BDES
+        bmax: XCOR:LI27:202:BMAX
+        bmin: XCOR:LI27:202:BMIN
         ctrl: XCOR:LI27:202:CTRL
       control_name: XCOR:LI27:202
     metadata:
@@ -1234,6 +1428,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 639.605
+      type: XCOR
   XC27302:
     controls_information:
       PVs:
@@ -1241,6 +1436,8 @@ magnets:
         bcon: XCOR:LI27:302:BCON
         bctrl: XCOR:LI27:302:BCTRL
         bdes: XCOR:LI27:302:BDES
+        bmax: XCOR:LI27:302:BMAX
+        bmin: XCOR:LI27:302:BMIN
         ctrl: XCOR:LI27:302:CTRL
       control_name: XCOR:LI27:302
     metadata:
@@ -1253,6 +1450,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 651.955
+      type: XCOR
   XC27402:
     controls_information:
       PVs:
@@ -1260,6 +1458,8 @@ magnets:
         bcon: XCOR:LI27:402:BCON
         bctrl: XCOR:LI27:402:BCTRL
         bdes: XCOR:LI27:402:BDES
+        bmax: XCOR:LI27:402:BMAX
+        bmin: XCOR:LI27:402:BMIN
         ctrl: XCOR:LI27:402:CTRL
       control_name: XCOR:LI27:402
     metadata:
@@ -1272,6 +1472,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 664.295
+      type: XCOR
   XC27502:
     controls_information:
       PVs:
@@ -1279,6 +1480,8 @@ magnets:
         bcon: XCOR:LI27:502:BCON
         bctrl: XCOR:LI27:502:BCTRL
         bdes: XCOR:LI27:502:BDES
+        bmax: XCOR:LI27:502:BMAX
+        bmin: XCOR:LI27:502:BMIN
         ctrl: XCOR:LI27:502:CTRL
       control_name: XCOR:LI27:502
     metadata:
@@ -1291,6 +1494,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 676.645
+      type: XCOR
   XC27602:
     controls_information:
       PVs:
@@ -1298,6 +1502,8 @@ magnets:
         bcon: XCOR:LI27:602:BCON
         bctrl: XCOR:LI27:602:BCTRL
         bdes: XCOR:LI27:602:BDES
+        bmax: XCOR:LI27:602:BMAX
+        bmin: XCOR:LI27:602:BMIN
         ctrl: XCOR:LI27:602:CTRL
       control_name: XCOR:LI27:602
     metadata:
@@ -1310,6 +1516,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 688.985
+      type: XCOR
   XC27702:
     controls_information:
       PVs:
@@ -1317,6 +1524,8 @@ magnets:
         bcon: XCOR:LI27:702:BCON
         bctrl: XCOR:LI27:702:BCTRL
         bdes: XCOR:LI27:702:BDES
+        bmax: XCOR:LI27:702:BMAX
+        bmin: XCOR:LI27:702:BMIN
         ctrl: XCOR:LI27:702:CTRL
       control_name: XCOR:LI27:702
     metadata:
@@ -1329,6 +1538,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 701.335
+      type: XCOR
   XC27802:
     controls_information:
       PVs:
@@ -1336,6 +1546,8 @@ magnets:
         bcon: XCOR:LI27:802:BCON
         bctrl: XCOR:LI27:802:BCTRL
         bdes: XCOR:LI27:802:BDES
+        bmax: XCOR:LI27:802:BMAX
+        bmin: XCOR:LI27:802:BMIN
         ctrl: XCOR:LI27:802:CTRL
       control_name: XCOR:LI27:802
     metadata:
@@ -1348,6 +1560,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 713.675
+      type: XCOR
   XC27900:
     controls_information:
       PVs:
@@ -1355,6 +1568,8 @@ magnets:
         bcon: XCOR:LI27:900:BCON
         bctrl: XCOR:LI27:900:BCTRL
         bdes: XCOR:LI27:900:BDES
+        bmax: XCOR:LI27:900:BMAX
+        bmin: XCOR:LI27:900:BMIN
         ctrl: XCOR:LI27:900:CTRL
       control_name: XCOR:LI27:900
     metadata:
@@ -1367,6 +1582,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 724.719
+      type: XCOR
   XC28202:
     controls_information:
       PVs:
@@ -1374,6 +1590,8 @@ magnets:
         bcon: XCOR:LI28:202:BCON
         bctrl: XCOR:LI28:202:BCTRL
         bdes: XCOR:LI28:202:BDES
+        bmax: XCOR:LI28:202:BMAX
+        bmin: XCOR:LI28:202:BMIN
         ctrl: XCOR:LI28:202:CTRL
       control_name: XCOR:LI28:202
     metadata:
@@ -1386,6 +1604,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 741.205
+      type: XCOR
   XC28302:
     controls_information:
       PVs:
@@ -1393,6 +1612,8 @@ magnets:
         bcon: XCOR:LI28:302:BCON
         bctrl: XCOR:LI28:302:BCTRL
         bdes: XCOR:LI28:302:BDES
+        bmax: XCOR:LI28:302:BMAX
+        bmin: XCOR:LI28:302:BMIN
         ctrl: XCOR:LI28:302:CTRL
       control_name: XCOR:LI28:302
     metadata:
@@ -1405,6 +1626,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 753.555
+      type: XCOR
   XC28402:
     controls_information:
       PVs:
@@ -1412,6 +1634,8 @@ magnets:
         bcon: XCOR:LI28:402:BCON
         bctrl: XCOR:LI28:402:BCTRL
         bdes: XCOR:LI28:402:BDES
+        bmax: XCOR:LI28:402:BMAX
+        bmin: XCOR:LI28:402:BMIN
         ctrl: XCOR:LI28:402:CTRL
       control_name: XCOR:LI28:402
     metadata:
@@ -1424,6 +1648,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 765.948
+      type: XCOR
   XC28502:
     controls_information:
       PVs:
@@ -1431,6 +1656,8 @@ magnets:
         bcon: XCOR:LI28:502:BCON
         bctrl: XCOR:LI28:502:BCTRL
         bdes: XCOR:LI28:502:BDES
+        bmax: XCOR:LI28:502:BMAX
+        bmin: XCOR:LI28:502:BMIN
         ctrl: XCOR:LI28:502:CTRL
       control_name: XCOR:LI28:502
     metadata:
@@ -1443,6 +1670,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 778.308
+      type: XCOR
   XC28602:
     controls_information:
       PVs:
@@ -1450,6 +1678,8 @@ magnets:
         bcon: XCOR:LI28:602:BCON
         bctrl: XCOR:LI28:602:BCTRL
         bdes: XCOR:LI28:602:BDES
+        bmax: XCOR:LI28:602:BMAX
+        bmin: XCOR:LI28:602:BMIN
         ctrl: XCOR:LI28:602:CTRL
       control_name: XCOR:LI28:602
     metadata:
@@ -1462,6 +1692,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 790.585
+      type: XCOR
   XC28702:
     controls_information:
       PVs:
@@ -1469,6 +1700,8 @@ magnets:
         bcon: XCOR:LI28:702:BCON
         bctrl: XCOR:LI28:702:BCTRL
         bdes: XCOR:LI28:702:BDES
+        bmax: XCOR:LI28:702:BMAX
+        bmin: XCOR:LI28:702:BMIN
         ctrl: XCOR:LI28:702:CTRL
       control_name: XCOR:LI28:702
     metadata:
@@ -1481,6 +1714,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 802.935
+      type: XCOR
   XC28802:
     controls_information:
       PVs:
@@ -1488,6 +1722,8 @@ magnets:
         bcon: XCOR:LI28:802:BCON
         bctrl: XCOR:LI28:802:BCTRL
         bdes: XCOR:LI28:802:BDES
+        bmax: XCOR:LI28:802:BMAX
+        bmin: XCOR:LI28:802:BMIN
         ctrl: XCOR:LI28:802:CTRL
       control_name: XCOR:LI28:802
     metadata:
@@ -1500,6 +1736,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 815.275
+      type: XCOR
   XC28900:
     controls_information:
       PVs:
@@ -1507,6 +1744,8 @@ magnets:
         bcon: XCOR:LI28:900:BCON
         bctrl: XCOR:LI28:900:BCTRL
         bdes: XCOR:LI28:900:BDES
+        bmax: XCOR:LI28:900:BMAX
+        bmin: XCOR:LI28:900:BMIN
         ctrl: XCOR:LI28:900:CTRL
       control_name: XCOR:LI28:900
     metadata:
@@ -1519,6 +1758,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 826.465
+      type: XCOR
   XC29202:
     controls_information:
       PVs:
@@ -1526,6 +1766,8 @@ magnets:
         bcon: XCOR:LI29:202:BCON
         bctrl: XCOR:LI29:202:BCTRL
         bdes: XCOR:LI29:202:BDES
+        bmax: XCOR:LI29:202:BMAX
+        bmin: XCOR:LI29:202:BMIN
         ctrl: XCOR:LI29:202:CTRL
       control_name: XCOR:LI29:202
     metadata:
@@ -1538,6 +1780,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 842.805
+      type: XCOR
   XC29302:
     controls_information:
       PVs:
@@ -1545,6 +1788,8 @@ magnets:
         bcon: XCOR:LI29:302:BCON
         bctrl: XCOR:LI29:302:BCTRL
         bdes: XCOR:LI29:302:BDES
+        bmax: XCOR:LI29:302:BMAX
+        bmin: XCOR:LI29:302:BMIN
         ctrl: XCOR:LI29:302:CTRL
       control_name: XCOR:LI29:302
     metadata:
@@ -1557,6 +1802,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 855.155
+      type: XCOR
   XC29402:
     controls_information:
       PVs:
@@ -1564,6 +1810,8 @@ magnets:
         bcon: XCOR:LI29:402:BCON
         bctrl: XCOR:LI29:402:BCTRL
         bdes: XCOR:LI29:402:BDES
+        bmax: XCOR:LI29:402:BMAX
+        bmin: XCOR:LI29:402:BMIN
         ctrl: XCOR:LI29:402:CTRL
       control_name: XCOR:LI29:402
     metadata:
@@ -1576,6 +1824,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 867.495
+      type: XCOR
   XC29502:
     controls_information:
       PVs:
@@ -1583,6 +1832,8 @@ magnets:
         bcon: XCOR:LI29:502:BCON
         bctrl: XCOR:LI29:502:BCTRL
         bdes: XCOR:LI29:502:BDES
+        bmax: XCOR:LI29:502:BMAX
+        bmin: XCOR:LI29:502:BMIN
         ctrl: XCOR:LI29:502:CTRL
       control_name: XCOR:LI29:502
     metadata:
@@ -1595,6 +1846,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 879.892
+      type: XCOR
   XC29602:
     controls_information:
       PVs:
@@ -1602,6 +1854,8 @@ magnets:
         bcon: XCOR:LI29:602:BCON
         bctrl: XCOR:LI29:602:BCTRL
         bdes: XCOR:LI29:602:BDES
+        bmax: XCOR:LI29:602:BMAX
+        bmin: XCOR:LI29:602:BMIN
         ctrl: XCOR:LI29:602:CTRL
       control_name: XCOR:LI29:602
     metadata:
@@ -1614,6 +1868,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 892.306
+      type: XCOR
   XC29702:
     controls_information:
       PVs:
@@ -1621,6 +1876,8 @@ magnets:
         bcon: XCOR:LI29:702:BCON
         bctrl: XCOR:LI29:702:BCTRL
         bdes: XCOR:LI29:702:BDES
+        bmax: XCOR:LI29:702:BMAX
+        bmin: XCOR:LI29:702:BMIN
         ctrl: XCOR:LI29:702:CTRL
       control_name: XCOR:LI29:702
     metadata:
@@ -1633,6 +1890,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 904.535
+      type: XCOR
   XC29802:
     controls_information:
       PVs:
@@ -1640,6 +1898,8 @@ magnets:
         bcon: XCOR:LI29:802:BCON
         bctrl: XCOR:LI29:802:BCTRL
         bdes: XCOR:LI29:802:BDES
+        bmax: XCOR:LI29:802:BMAX
+        bmin: XCOR:LI29:802:BMIN
         ctrl: XCOR:LI29:802:CTRL
       control_name: XCOR:LI29:802
     metadata:
@@ -1652,6 +1912,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 916.935
+      type: XCOR
   XC29900:
     controls_information:
       PVs:
@@ -1659,6 +1920,8 @@ magnets:
         bcon: XCOR:LI29:900:BCON
         bctrl: XCOR:LI29:900:BCTRL
         bdes: XCOR:LI29:900:BDES
+        bmax: XCOR:LI29:900:BMAX
+        bmin: XCOR:LI29:900:BMIN
         ctrl: XCOR:LI29:900:CTRL
       control_name: XCOR:LI29:900
     metadata:
@@ -1671,6 +1934,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 928.134
+      type: XCOR
   XC30202:
     controls_information:
       PVs:
@@ -1678,6 +1942,8 @@ magnets:
         bcon: XCOR:LI30:202:BCON
         bctrl: XCOR:LI30:202:BCTRL
         bdes: XCOR:LI30:202:BDES
+        bmax: XCOR:LI30:202:BMAX
+        bmin: XCOR:LI30:202:BMIN
         ctrl: XCOR:LI30:202:CTRL
       control_name: XCOR:LI30:202
     metadata:
@@ -1690,6 +1956,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 944.58
+      type: XCOR
   XC30302:
     controls_information:
       PVs:
@@ -1697,6 +1964,8 @@ magnets:
         bcon: XCOR:LI30:302:BCON
         bctrl: XCOR:LI30:302:BCTRL
         bdes: XCOR:LI30:302:BDES
+        bmax: XCOR:LI30:302:BMAX
+        bmin: XCOR:LI30:302:BMIN
         ctrl: XCOR:LI30:302:CTRL
       control_name: XCOR:LI30:302
     metadata:
@@ -1709,6 +1978,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 956.822
+      type: XCOR
   XC30402:
     controls_information:
       PVs:
@@ -1716,6 +1986,8 @@ magnets:
         bcon: XCOR:LI30:402:BCON
         bctrl: XCOR:LI30:402:BCTRL
         bdes: XCOR:LI30:402:BDES
+        bmax: XCOR:LI30:402:BMAX
+        bmin: XCOR:LI30:402:BMIN
         ctrl: XCOR:LI30:402:CTRL
       control_name: XCOR:LI30:402
     metadata:
@@ -1728,6 +2000,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 969.153
+      type: XCOR
   XC30502:
     controls_information:
       PVs:
@@ -1735,6 +2008,8 @@ magnets:
         bcon: XCOR:LI30:502:BCON
         bctrl: XCOR:LI30:502:BCTRL
         bdes: XCOR:LI30:502:BDES
+        bmax: XCOR:LI30:502:BMAX
+        bmin: XCOR:LI30:502:BMIN
         ctrl: XCOR:LI30:502:CTRL
       control_name: XCOR:LI30:502
     metadata:
@@ -1747,6 +2022,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 981.485
+      type: XCOR
   XC30602:
     controls_information:
       PVs:
@@ -1754,6 +2030,8 @@ magnets:
         bcon: XCOR:LI30:602:BCON
         bctrl: XCOR:LI30:602:BCTRL
         bdes: XCOR:LI30:602:BDES
+        bmax: XCOR:LI30:602:BMAX
+        bmin: XCOR:LI30:602:BMIN
         ctrl: XCOR:LI30:602:CTRL
       control_name: XCOR:LI30:602
     metadata:
@@ -1766,6 +2044,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 993.851
+      type: XCOR
   XC30702:
     controls_information:
       PVs:
@@ -1773,6 +2052,8 @@ magnets:
         bcon: XCOR:LI30:702:BCON
         bctrl: XCOR:LI30:702:BCTRL
         bdes: XCOR:LI30:702:BDES
+        bmax: XCOR:LI30:702:BMAX
+        bmin: XCOR:LI30:702:BMIN
         ctrl: XCOR:LI30:702:CTRL
       control_name: XCOR:LI30:702
     metadata:
@@ -1785,6 +2066,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1006.182
+      type: XCOR
   XC30802:
     controls_information:
       PVs:
@@ -1792,6 +2074,8 @@ magnets:
         bcon: XCOR:LI30:802:BCON
         bctrl: XCOR:LI30:802:BCTRL
         bdes: XCOR:LI30:802:BDES
+        bmax: XCOR:LI30:802:BMAX
+        bmin: XCOR:LI30:802:BMIN
         ctrl: XCOR:LI30:802:CTRL
       control_name: XCOR:LI30:802
     metadata:
@@ -1804,6 +2088,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1018.531
+      type: XCOR
   XC30900:
     controls_information:
       PVs:
@@ -1811,6 +2096,8 @@ magnets:
         bcon: XCOR:LI30:900:BCON
         bctrl: XCOR:LI30:900:BCTRL
         bdes: XCOR:LI30:900:BDES
+        bmax: XCOR:LI30:900:BMAX
+        bmin: XCOR:LI30:900:BMIN
         ctrl: XCOR:LI30:900:CTRL
       control_name: XCOR:LI30:900
     metadata:
@@ -1823,6 +2110,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1026.463
+      type: XCOR
   YC24900:
     controls_information:
       PVs:
@@ -1830,6 +2118,8 @@ magnets:
         bcon: YCOR:LI24:900:BCON
         bctrl: YCOR:LI24:900:BCTRL
         bdes: YCOR:LI24:900:BDES
+        bmax: YCOR:LI24:900:BMAX
+        bmin: YCOR:LI24:900:BMIN
         ctrl: YCOR:LI24:900:CTRL
       control_name: YCOR:LI24:900
     metadata:
@@ -1842,6 +2132,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 424.385
+      type: YCOR
   YC25203:
     controls_information:
       PVs:
@@ -1849,6 +2140,8 @@ magnets:
         bcon: YCOR:LI25:203:BCON
         bctrl: YCOR:LI25:203:BCTRL
         bdes: YCOR:LI25:203:BDES
+        bmax: YCOR:LI25:203:BMAX
+        bmin: YCOR:LI25:203:BMIN
         ctrl: YCOR:LI25:203:CTRL
       control_name: YCOR:LI25:203
     metadata:
@@ -1861,6 +2154,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 436.85
+      type: YCOR
   YC25303:
     controls_information:
       PVs:
@@ -1868,6 +2162,8 @@ magnets:
         bcon: YCOR:LI25:303:BCON
         bctrl: YCOR:LI25:303:BCTRL
         bdes: YCOR:LI25:303:BDES
+        bmax: YCOR:LI25:303:BMAX
+        bmin: YCOR:LI25:303:BMIN
         ctrl: YCOR:LI25:303:CTRL
       control_name: YCOR:LI25:303
     metadata:
@@ -1880,6 +2176,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 449.105
+      type: YCOR
   YC25403:
     controls_information:
       PVs:
@@ -1887,6 +2184,8 @@ magnets:
         bcon: YCOR:LI25:403:BCON
         bctrl: YCOR:LI25:403:BCTRL
         bdes: YCOR:LI25:403:BDES
+        bmax: YCOR:LI25:403:BMAX
+        bmin: YCOR:LI25:403:BMIN
         ctrl: YCOR:LI25:403:CTRL
       control_name: YCOR:LI25:403
     metadata:
@@ -1899,6 +2198,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 461.345
+      type: YCOR
   YC25503:
     controls_information:
       PVs:
@@ -1906,6 +2206,8 @@ magnets:
         bcon: YCOR:LI25:503:BCON
         bctrl: YCOR:LI25:503:BCTRL
         bdes: YCOR:LI25:503:BDES
+        bmax: YCOR:LI25:503:BMAX
+        bmin: YCOR:LI25:503:BMIN
         ctrl: YCOR:LI25:503:CTRL
       control_name: YCOR:LI25:503
     metadata:
@@ -1918,6 +2220,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 473.689
+      type: YCOR
   YC25603:
     controls_information:
       PVs:
@@ -1925,6 +2228,8 @@ magnets:
         bcon: YCOR:LI25:603:BCON
         bctrl: YCOR:LI25:603:BCTRL
         bdes: YCOR:LI25:603:BDES
+        bmax: YCOR:LI25:603:BMAX
+        bmin: YCOR:LI25:603:BMIN
         ctrl: YCOR:LI25:603:CTRL
       control_name: YCOR:LI25:603
     metadata:
@@ -1937,6 +2242,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 486.167
+      type: YCOR
   YC25703:
     controls_information:
       PVs:
@@ -1944,6 +2250,8 @@ magnets:
         bcon: YCOR:LI25:703:BCON
         bctrl: YCOR:LI25:703:BCTRL
         bdes: YCOR:LI25:703:BDES
+        bmax: YCOR:LI25:703:BMAX
+        bmin: YCOR:LI25:703:BMIN
         ctrl: YCOR:LI25:703:CTRL
       control_name: YCOR:LI25:703
     metadata:
@@ -1956,6 +2264,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 498.385
+      type: YCOR
   YC25803:
     controls_information:
       PVs:
@@ -1963,6 +2272,8 @@ magnets:
         bcon: YCOR:LI25:803:BCON
         bctrl: YCOR:LI25:803:BCTRL
         bdes: YCOR:LI25:803:BDES
+        bmax: YCOR:LI25:803:BMAX
+        bmin: YCOR:LI25:803:BMIN
         ctrl: YCOR:LI25:803:CTRL
       control_name: YCOR:LI25:803
     metadata:
@@ -1975,6 +2286,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 510.725
+      type: YCOR
   YC25900:
     controls_information:
       PVs:
@@ -1982,6 +2294,8 @@ magnets:
         bcon: YCOR:LI25:900:BCON
         bctrl: YCOR:LI25:900:BCTRL
         bdes: YCOR:LI25:900:BDES
+        bmax: YCOR:LI25:900:BMAX
+        bmin: YCOR:LI25:900:BMIN
         ctrl: YCOR:LI25:900:CTRL
       control_name: YCOR:LI25:900
     metadata:
@@ -1994,6 +2308,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 521.915
+      type: YCOR
   YC26203:
     controls_information:
       PVs:
@@ -2001,6 +2316,8 @@ magnets:
         bcon: YCOR:LI26:203:BCON
         bctrl: YCOR:LI26:203:BCTRL
         bdes: YCOR:LI26:203:BDES
+        bmax: YCOR:LI26:203:BMAX
+        bmin: YCOR:LI26:203:BMIN
         ctrl: YCOR:LI26:203:CTRL
       control_name: YCOR:LI26:203
     metadata:
@@ -2013,6 +2330,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 538.377
+      type: YCOR
   YC26303:
     controls_information:
       PVs:
@@ -2020,6 +2338,8 @@ magnets:
         bcon: YCOR:LI26:303:BCON
         bctrl: YCOR:LI26:303:BCTRL
         bdes: YCOR:LI26:303:BDES
+        bmax: YCOR:LI26:303:BMAX
+        bmin: YCOR:LI26:303:BMIN
         ctrl: YCOR:LI26:303:CTRL
       control_name: YCOR:LI26:303
     metadata:
@@ -2032,6 +2352,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 550.605
+      type: YCOR
   YC26403:
     controls_information:
       PVs:
@@ -2039,6 +2360,8 @@ magnets:
         bcon: YCOR:LI26:403:BCON
         bctrl: YCOR:LI26:403:BCTRL
         bdes: YCOR:LI26:403:BDES
+        bmax: YCOR:LI26:403:BMAX
+        bmin: YCOR:LI26:403:BMIN
         ctrl: YCOR:LI26:403:CTRL
       control_name: YCOR:LI26:403
     metadata:
@@ -2051,6 +2374,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 562.945
+      type: YCOR
   YC26503:
     controls_information:
       PVs:
@@ -2058,6 +2382,8 @@ magnets:
         bcon: YCOR:LI26:503:BCON
         bctrl: YCOR:LI26:503:BCTRL
         bdes: YCOR:LI26:503:BDES
+        bmax: YCOR:LI26:503:BMAX
+        bmin: YCOR:LI26:503:BMIN
         ctrl: YCOR:LI26:503:CTRL
       control_name: YCOR:LI26:503
     metadata:
@@ -2070,6 +2396,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 575.295
+      type: YCOR
   YC26603:
     controls_information:
       PVs:
@@ -2077,6 +2404,8 @@ magnets:
         bcon: YCOR:LI26:603:BCON
         bctrl: YCOR:LI26:603:BCTRL
         bdes: YCOR:LI26:603:BDES
+        bmax: YCOR:LI26:603:BMAX
+        bmin: YCOR:LI26:603:BMIN
         ctrl: YCOR:LI26:603:CTRL
       control_name: YCOR:LI26:603
     metadata:
@@ -2089,6 +2418,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 587.795
+      type: YCOR
   YC26703:
     controls_information:
       PVs:
@@ -2096,6 +2426,8 @@ magnets:
         bcon: YCOR:LI26:703:BCON
         bctrl: YCOR:LI26:703:BCTRL
         bdes: YCOR:LI26:703:BDES
+        bmax: YCOR:LI26:703:BMAX
+        bmin: YCOR:LI26:703:BMIN
         ctrl: YCOR:LI26:703:CTRL
       control_name: YCOR:LI26:703
     metadata:
@@ -2108,6 +2440,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 599.985
+      type: YCOR
   YC26803:
     controls_information:
       PVs:
@@ -2115,6 +2448,8 @@ magnets:
         bcon: YCOR:LI26:803:BCON
         bctrl: YCOR:LI26:803:BCTRL
         bdes: YCOR:LI26:803:BDES
+        bmax: YCOR:LI26:803:BMAX
+        bmin: YCOR:LI26:803:BMIN
         ctrl: YCOR:LI26:803:CTRL
       control_name: YCOR:LI26:803
     metadata:
@@ -2127,6 +2462,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 612.456
+      type: YCOR
   YC26900:
     controls_information:
       PVs:
@@ -2134,6 +2470,8 @@ magnets:
         bcon: YCOR:LI26:900:BCON
         bctrl: YCOR:LI26:900:BCTRL
         bdes: YCOR:LI26:900:BDES
+        bmax: YCOR:LI26:900:BMAX
+        bmin: YCOR:LI26:900:BMIN
         ctrl: YCOR:LI26:900:CTRL
       control_name: YCOR:LI26:900
     metadata:
@@ -2146,6 +2484,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 623.515
+      type: YCOR
   YC27203:
     controls_information:
       PVs:
@@ -2153,6 +2492,8 @@ magnets:
         bcon: YCOR:LI27:203:BCON
         bctrl: YCOR:LI27:203:BCTRL
         bdes: YCOR:LI27:203:BDES
+        bmax: YCOR:LI27:203:BMAX
+        bmin: YCOR:LI27:203:BMIN
         ctrl: YCOR:LI27:203:CTRL
       control_name: YCOR:LI27:203
     metadata:
@@ -2165,6 +2506,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 639.855
+      type: YCOR
   YC27303:
     controls_information:
       PVs:
@@ -2172,6 +2514,8 @@ magnets:
         bcon: YCOR:LI27:303:BCON
         bctrl: YCOR:LI27:303:BCTRL
         bdes: YCOR:LI27:303:BDES
+        bmax: YCOR:LI27:303:BMAX
+        bmin: YCOR:LI27:303:BMIN
         ctrl: YCOR:LI27:303:CTRL
       control_name: YCOR:LI27:303
     metadata:
@@ -2184,6 +2528,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 652.324
+      type: YCOR
   YC27403:
     controls_information:
       PVs:
@@ -2191,6 +2536,8 @@ magnets:
         bcon: YCOR:LI27:403:BCON
         bctrl: YCOR:LI27:403:BCTRL
         bdes: YCOR:LI27:403:BDES
+        bmax: YCOR:LI27:403:BMAX
+        bmin: YCOR:LI27:403:BMIN
         ctrl: YCOR:LI27:403:CTRL
       control_name: YCOR:LI27:403
     metadata:
@@ -2203,6 +2550,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 664.545
+      type: YCOR
   YC27503:
     controls_information:
       PVs:
@@ -2210,6 +2558,8 @@ magnets:
         bcon: YCOR:LI27:503:BCON
         bctrl: YCOR:LI27:503:BCTRL
         bdes: YCOR:LI27:503:BDES
+        bmax: YCOR:LI27:503:BMAX
+        bmin: YCOR:LI27:503:BMIN
         ctrl: YCOR:LI27:503:CTRL
       control_name: YCOR:LI27:503
     metadata:
@@ -2222,6 +2572,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 677.013
+      type: YCOR
   YC27603:
     controls_information:
       PVs:
@@ -2229,6 +2580,8 @@ magnets:
         bcon: YCOR:LI27:603:BCON
         bctrl: YCOR:LI27:603:BCTRL
         bdes: YCOR:LI27:603:BDES
+        bmax: YCOR:LI27:603:BMAX
+        bmin: YCOR:LI27:603:BMIN
         ctrl: YCOR:LI27:603:CTRL
       control_name: YCOR:LI27:603
     metadata:
@@ -2241,6 +2594,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 689.235
+      type: YCOR
   YC27703:
     controls_information:
       PVs:
@@ -2248,6 +2602,8 @@ magnets:
         bcon: YCOR:LI27:703:BCON
         bctrl: YCOR:LI27:703:BCTRL
         bdes: YCOR:LI27:703:BDES
+        bmax: YCOR:LI27:703:BMAX
+        bmin: YCOR:LI27:703:BMIN
         ctrl: YCOR:LI27:703:CTRL
       control_name: YCOR:LI27:703
     metadata:
@@ -2260,6 +2616,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 701.686
+      type: YCOR
   YC27803:
     controls_information:
       PVs:
@@ -2267,6 +2624,8 @@ magnets:
         bcon: YCOR:LI27:803:BCON
         bctrl: YCOR:LI27:803:BCTRL
         bdes: YCOR:LI27:803:BDES
+        bmax: YCOR:LI27:803:BMAX
+        bmin: YCOR:LI27:803:BMIN
         ctrl: YCOR:LI27:803:CTRL
       control_name: YCOR:LI27:803
     metadata:
@@ -2279,6 +2638,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 713.925
+      type: YCOR
   YC27900:
     controls_information:
       PVs:
@@ -2286,6 +2646,8 @@ magnets:
         bcon: YCOR:LI27:900:BCON
         bctrl: YCOR:LI27:900:BCTRL
         bdes: YCOR:LI27:900:BDES
+        bmax: YCOR:LI27:900:BMAX
+        bmin: YCOR:LI27:900:BMIN
         ctrl: YCOR:LI27:900:CTRL
       control_name: YCOR:LI27:900
     metadata:
@@ -2298,6 +2660,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 725.115
+      type: YCOR
   YC28203:
     controls_information:
       PVs:
@@ -2305,6 +2668,8 @@ magnets:
         bcon: YCOR:LI28:203:BCON
         bctrl: YCOR:LI28:203:BCTRL
         bdes: YCOR:LI28:203:BDES
+        bmax: YCOR:LI28:203:BMAX
+        bmin: YCOR:LI28:203:BMIN
         ctrl: YCOR:LI28:203:CTRL
       control_name: YCOR:LI28:203
     metadata:
@@ -2317,6 +2682,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 741.455
+      type: YCOR
   YC28303:
     controls_information:
       PVs:
@@ -2324,6 +2690,8 @@ magnets:
         bcon: YCOR:LI28:303:BCON
         bctrl: YCOR:LI28:303:BCTRL
         bdes: YCOR:LI28:303:BDES
+        bmax: YCOR:LI28:303:BMAX
+        bmin: YCOR:LI28:303:BMIN
         ctrl: YCOR:LI28:303:CTRL
       control_name: YCOR:LI28:303
     metadata:
@@ -2336,6 +2704,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 753.805
+      type: YCOR
   YC28403:
     controls_information:
       PVs:
@@ -2343,6 +2712,8 @@ magnets:
         bcon: YCOR:LI28:403:BCON
         bctrl: YCOR:LI28:403:BCTRL
         bdes: YCOR:LI28:403:BDES
+        bmax: YCOR:LI28:403:BMAX
+        bmin: YCOR:LI28:403:BMIN
         ctrl: YCOR:LI28:403:CTRL
       control_name: YCOR:LI28:403
     metadata:
@@ -2355,6 +2726,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 766.24
+      type: YCOR
   YC28503:
     controls_information:
       PVs:
@@ -2362,6 +2734,8 @@ magnets:
         bcon: YCOR:LI28:503:BCON
         bctrl: YCOR:LI28:503:BCTRL
         bdes: YCOR:LI28:503:BDES
+        bmax: YCOR:LI28:503:BMAX
+        bmin: YCOR:LI28:503:BMIN
         ctrl: YCOR:LI28:503:CTRL
       control_name: YCOR:LI28:503
     metadata:
@@ -2374,6 +2748,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 778.619
+      type: YCOR
   YC28603:
     controls_information:
       PVs:
@@ -2381,6 +2756,8 @@ magnets:
         bcon: YCOR:LI28:603:BCON
         bctrl: YCOR:LI28:603:BCTRL
         bdes: YCOR:LI28:603:BDES
+        bmax: YCOR:LI28:603:BMAX
+        bmin: YCOR:LI28:603:BMIN
         ctrl: YCOR:LI28:603:CTRL
       control_name: YCOR:LI28:603
     metadata:
@@ -2393,6 +2770,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 790.945
+      type: YCOR
   YC28703:
     controls_information:
       PVs:
@@ -2400,6 +2778,8 @@ magnets:
         bcon: YCOR:LI28:703:BCON
         bctrl: YCOR:LI28:703:BCTRL
         bdes: YCOR:LI28:703:BDES
+        bmax: YCOR:LI28:703:BMAX
+        bmin: YCOR:LI28:703:BMIN
         ctrl: YCOR:LI28:703:CTRL
       control_name: YCOR:LI28:703
     metadata:
@@ -2412,6 +2792,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 803.34
+      type: YCOR
   YC28803:
     controls_information:
       PVs:
@@ -2419,6 +2800,8 @@ magnets:
         bcon: YCOR:LI28:803:BCON
         bctrl: YCOR:LI28:803:BCTRL
         bdes: YCOR:LI28:803:BDES
+        bmax: YCOR:LI28:803:BMAX
+        bmin: YCOR:LI28:803:BMIN
         ctrl: YCOR:LI28:803:CTRL
       control_name: YCOR:LI28:803
     metadata:
@@ -2431,6 +2814,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 815.525
+      type: YCOR
   YC28900:
     controls_information:
       PVs:
@@ -2438,6 +2822,8 @@ magnets:
         bcon: YCOR:LI28:900:BCON
         bctrl: YCOR:LI28:900:BCTRL
         bdes: YCOR:LI28:900:BDES
+        bmax: YCOR:LI28:900:BMAX
+        bmin: YCOR:LI28:900:BMIN
         ctrl: YCOR:LI28:900:CTRL
       control_name: YCOR:LI28:900
     metadata:
@@ -2450,6 +2836,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 826.715
+      type: YCOR
   YC29203:
     controls_information:
       PVs:
@@ -2457,6 +2844,8 @@ magnets:
         bcon: YCOR:LI29:203:BCON
         bctrl: YCOR:LI29:203:BCTRL
         bdes: YCOR:LI29:203:BDES
+        bmax: YCOR:LI29:203:BMAX
+        bmin: YCOR:LI29:203:BMIN
         ctrl: YCOR:LI29:203:CTRL
       control_name: YCOR:LI29:203
     metadata:
@@ -2469,6 +2858,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 843.157
+      type: YCOR
   YC29303:
     controls_information:
       PVs:
@@ -2476,6 +2866,8 @@ magnets:
         bcon: YCOR:LI29:303:BCON
         bctrl: YCOR:LI29:303:BCTRL
         bdes: YCOR:LI29:303:BDES
+        bmax: YCOR:LI29:303:BMAX
+        bmin: YCOR:LI29:303:BMIN
         ctrl: YCOR:LI29:303:CTRL
       control_name: YCOR:LI29:303
     metadata:
@@ -2488,6 +2880,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 855.515
+      type: YCOR
   YC29403:
     controls_information:
       PVs:
@@ -2495,6 +2888,8 @@ magnets:
         bcon: YCOR:LI29:403:BCON
         bctrl: YCOR:LI29:403:BCTRL
         bdes: YCOR:LI29:403:BDES
+        bmax: YCOR:LI29:403:BMAX
+        bmin: YCOR:LI29:403:BMIN
         ctrl: YCOR:LI29:403:CTRL
       control_name: YCOR:LI29:403
     metadata:
@@ -2507,6 +2902,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 867.745
+      type: YCOR
   YC29503:
     controls_information:
       PVs:
@@ -2514,6 +2910,8 @@ magnets:
         bcon: YCOR:LI29:503:BCON
         bctrl: YCOR:LI29:503:BCTRL
         bdes: YCOR:LI29:503:BDES
+        bmax: YCOR:LI29:503:BMAX
+        bmin: YCOR:LI29:503:BMIN
         ctrl: YCOR:LI29:503:CTRL
       control_name: YCOR:LI29:503
     metadata:
@@ -2526,6 +2924,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 880.168
+      type: YCOR
   YC29603:
     controls_information:
       PVs:
@@ -2533,6 +2932,8 @@ magnets:
         bcon: YCOR:LI29:603:BCON
         bctrl: YCOR:LI29:603:BCTRL
         bdes: YCOR:LI29:603:BDES
+        bmax: YCOR:LI29:603:BMAX
+        bmin: YCOR:LI29:603:BMIN
         ctrl: YCOR:LI29:603:CTRL
       control_name: YCOR:LI29:603
     metadata:
@@ -2545,6 +2946,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 892.678
+      type: YCOR
   YC29703:
     controls_information:
       PVs:
@@ -2552,6 +2954,8 @@ magnets:
         bcon: YCOR:LI29:703:BCON
         bctrl: YCOR:LI29:703:BCTRL
         bdes: YCOR:LI29:703:BDES
+        bmax: YCOR:LI29:703:BMAX
+        bmin: YCOR:LI29:703:BMIN
         ctrl: YCOR:LI29:703:CTRL
       control_name: YCOR:LI29:703
     metadata:
@@ -2564,6 +2968,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 904.933
+      type: YCOR
   YC29803:
     controls_information:
       PVs:
@@ -2571,6 +2976,8 @@ magnets:
         bcon: YCOR:LI29:803:BCON
         bctrl: YCOR:LI29:803:BCTRL
         bdes: YCOR:LI29:803:BDES
+        bmax: YCOR:LI29:803:BMAX
+        bmin: YCOR:LI29:803:BMIN
         ctrl: YCOR:LI29:803:CTRL
       control_name: YCOR:LI29:803
     metadata:
@@ -2583,6 +2990,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 917.214
+      type: YCOR
   YC29900:
     controls_information:
       PVs:
@@ -2590,6 +2998,8 @@ magnets:
         bcon: YCOR:LI29:900:BCON
         bctrl: YCOR:LI29:900:BCTRL
         bdes: YCOR:LI29:900:BDES
+        bmax: YCOR:LI29:900:BMAX
+        bmin: YCOR:LI29:900:BMIN
         ctrl: YCOR:LI29:900:CTRL
       control_name: YCOR:LI29:900
     metadata:
@@ -2602,6 +3012,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 928.414
+      type: YCOR
   YC30203:
     controls_information:
       PVs:
@@ -2609,6 +3020,8 @@ magnets:
         bcon: YCOR:LI30:203:BCON
         bctrl: YCOR:LI30:203:BCTRL
         bdes: YCOR:LI30:203:BDES
+        bmax: YCOR:LI30:203:BMAX
+        bmin: YCOR:LI30:203:BMIN
         ctrl: YCOR:LI30:203:CTRL
       control_name: YCOR:LI30:203
     metadata:
@@ -2621,6 +3034,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 944.91
+      type: YCOR
   YC30303:
     controls_information:
       PVs:
@@ -2628,6 +3042,8 @@ magnets:
         bcon: YCOR:LI30:303:BCON
         bctrl: YCOR:LI30:303:BCTRL
         bdes: YCOR:LI30:303:BDES
+        bmax: YCOR:LI30:303:BMAX
+        bmin: YCOR:LI30:303:BMIN
         ctrl: YCOR:LI30:303:CTRL
       control_name: YCOR:LI30:303
     metadata:
@@ -2640,6 +3056,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 957.152
+      type: YCOR
   YC30403:
     controls_information:
       PVs:
@@ -2647,6 +3064,8 @@ magnets:
         bcon: YCOR:LI30:403:BCON
         bctrl: YCOR:LI30:403:BCTRL
         bdes: YCOR:LI30:403:BDES
+        bmax: YCOR:LI30:403:BMAX
+        bmin: YCOR:LI30:403:BMIN
         ctrl: YCOR:LI30:403:CTRL
       control_name: YCOR:LI30:403
     metadata:
@@ -2659,6 +3078,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 969.432
+      type: YCOR
   YC30503:
     controls_information:
       PVs:
@@ -2666,6 +3086,8 @@ magnets:
         bcon: YCOR:LI30:503:BCON
         bctrl: YCOR:LI30:503:BCTRL
         bdes: YCOR:LI30:503:BDES
+        bmax: YCOR:LI30:503:BMAX
+        bmin: YCOR:LI30:503:BMIN
         ctrl: YCOR:LI30:503:CTRL
       control_name: YCOR:LI30:503
     metadata:
@@ -2678,6 +3100,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 981.777
+      type: YCOR
   YC30603:
     controls_information:
       PVs:
@@ -2685,6 +3108,8 @@ magnets:
         bcon: YCOR:LI30:603:BCON
         bctrl: YCOR:LI30:603:BCTRL
         bdes: YCOR:LI30:603:BDES
+        bmax: YCOR:LI30:603:BMAX
+        bmin: YCOR:LI30:603:BMIN
         ctrl: YCOR:LI30:603:CTRL
       control_name: YCOR:LI30:603
     metadata:
@@ -2697,6 +3122,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 994.651
+      type: YCOR
   YC30703:
     controls_information:
       PVs:
@@ -2704,6 +3130,8 @@ magnets:
         bcon: YCOR:LI30:703:BCON
         bctrl: YCOR:LI30:703:BCTRL
         bdes: YCOR:LI30:703:BDES
+        bmax: YCOR:LI30:703:BMAX
+        bmin: YCOR:LI30:703:BMIN
         ctrl: YCOR:LI30:703:CTRL
       control_name: YCOR:LI30:703
     metadata:
@@ -2716,6 +3144,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1006.988
+      type: YCOR
   YC30803:
     controls_information:
       PVs:
@@ -2723,6 +3152,8 @@ magnets:
         bcon: YCOR:LI30:803:BCON
         bctrl: YCOR:LI30:803:BCTRL
         bdes: YCOR:LI30:803:BDES
+        bmax: YCOR:LI30:803:BMAX
+        bmin: YCOR:LI30:803:BMIN
         ctrl: YCOR:LI30:803:CTRL
       control_name: YCOR:LI30:803
     metadata:
@@ -2735,6 +3166,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1018.912
+      type: YCOR
   YC30900:
     controls_information:
       PVs:
@@ -2742,6 +3174,8 @@ magnets:
         bcon: YCOR:LI30:900:BCON
         bctrl: YCOR:LI30:900:BCTRL
         bdes: YCOR:LI30:900:BDES
+        bmax: YCOR:LI30:900:BMAX
+        bmin: YCOR:LI30:900:BMIN
         ctrl: YCOR:LI30:900:CTRL
       control_name: YCOR:LI30:900
     metadata:
@@ -2754,6 +3188,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1024.996
+      type: YCOR
 screens:
   OTR_TCAV:
     controls_information:
@@ -2769,6 +3204,7 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 523.207
+      type: PROF
   P30013:
     controls_information:
       PVs: {}
@@ -2783,6 +3219,7 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 929.435
+      type: PROF
   P30014:
     controls_information:
       PVs: {}
@@ -2797,6 +3234,7 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 929.638
+      type: PROF
   P30143:
     controls_information:
       PVs: {}
@@ -2811,6 +3249,7 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 943.17
+      type: PROF
   P30144:
     controls_information:
       PVs: {}
@@ -2825,6 +3264,7 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 943.373
+      type: PROF
   P30443:
     controls_information:
       PVs: {}
@@ -2839,6 +3279,7 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 980.2
+      type: PROF
   P30444:
     controls_information:
       PVs: {}
@@ -2853,6 +3294,7 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 980.403
+      type: PROF
   P30543:
     controls_information:
       PVs: {}
@@ -2867,6 +3309,7 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 992.546
+      type: PROF
   P30544:
     controls_information:
       PVs: {}
@@ -2881,3 +3324,4 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 992.757
+      type: PROF

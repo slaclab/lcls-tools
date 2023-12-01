@@ -6,6 +6,8 @@ magnets:
         bcon: QUAD:CLTH:140:BCON
         bctrl: QUAD:CLTH:140:BCTRL
         bdes: QUAD:CLTH:140:BDES
+        bmax: QUAD:CLTH:140:BMAX
+        bmin: QUAD:CLTH:140:BMIN
         ctrl: QUAD:CLTH:140:CTRL
       control_name: QUAD:CLTH:140
     metadata:
@@ -18,6 +20,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1035.479
+      type: QUAD
   Q50Q2:
     controls_information:
       PVs:
@@ -25,6 +28,8 @@ magnets:
         bcon: QUAD:CLTH:170:BCON
         bctrl: QUAD:CLTH:170:BCTRL
         bdes: QUAD:CLTH:170:BDES
+        bmax: QUAD:CLTH:170:BMAX
+        bmin: QUAD:CLTH:170:BMIN
         ctrl: QUAD:CLTH:170:CTRL
       control_name: QUAD:CLTH:170
     metadata:
@@ -37,6 +42,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1041.751
+      type: QUAD
   XCBSYQ2:
     controls_information:
       PVs:
@@ -44,6 +50,8 @@ magnets:
         bcon: XCOR:CLTH:168:BCON
         bctrl: XCOR:CLTH:168:BCTRL
         bdes: XCOR:CLTH:168:BDES
+        bmax: XCOR:CLTH:168:BMAX
+        bmin: XCOR:CLTH:168:BMIN
         ctrl: XCOR:CLTH:168:CTRL
       control_name: XCOR:CLTH:168
     metadata:
@@ -56,6 +64,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1041.089
+      type: XCOR
   YCBSYQ1:
     controls_information:
       PVs:
@@ -63,6 +72,8 @@ magnets:
         bcon: YCOR:CLTH:133:BCON
         bctrl: YCOR:CLTH:133:BCTRL
         bdes: YCOR:CLTH:133:BDES
+        bmax: YCOR:CLTH:133:BMAX
+        bmin: YCOR:CLTH:133:BMIN
         ctrl: YCOR:CLTH:133:CTRL
       control_name: YCOR:CLTH:133
     metadata:
@@ -75,3 +86,4 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 1033.913
+      type: YCOR

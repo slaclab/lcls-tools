@@ -6,6 +6,8 @@ magnets:
         bcon: QUAD:EMIT2:150:BCON
         bctrl: QUAD:EMIT2:150:BCTRL
         bdes: QUAD:EMIT2:150:BDES
+        bmax: QUAD:EMIT2:150:BMAX
+        bmin: QUAD:EMIT2:150:BMIN
         ctrl: QUAD:EMIT2:150:CTRL
       control_name: QUAD:EMIT2:150
     metadata:
@@ -20,6 +22,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 368.187
+      type: QUAD
   QE202:
     controls_information:
       PVs:
@@ -27,6 +30,8 @@ magnets:
         bcon: QUAD:EMIT2:300:BCON
         bctrl: QUAD:EMIT2:300:BCTRL
         bdes: QUAD:EMIT2:300:BDES
+        bmax: QUAD:EMIT2:300:BMAX
+        bmin: QUAD:EMIT2:300:BMIN
         ctrl: QUAD:EMIT2:300:CTRL
       control_name: QUAD:EMIT2:300
     metadata:
@@ -41,6 +46,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 373.201
+      type: QUAD
   QE203:
     controls_information:
       PVs:
@@ -48,6 +54,8 @@ magnets:
         bcon: QUAD:EMIT2:800:BCON
         bctrl: QUAD:EMIT2:800:BCTRL
         bdes: QUAD:EMIT2:800:BDES
+        bmax: QUAD:EMIT2:800:BMAX
+        bmin: QUAD:EMIT2:800:BMIN
         ctrl: QUAD:EMIT2:800:CTRL
       control_name: QUAD:EMIT2:800
     metadata:
@@ -62,6 +70,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 392.11
+      type: QUAD
   QE204:
     controls_information:
       PVs:
@@ -69,6 +78,8 @@ magnets:
         bcon: QUAD:EMIT2:900:BCON
         bctrl: QUAD:EMIT2:900:BCTRL
         bdes: QUAD:EMIT2:900:BDES
+        bmax: QUAD:EMIT2:900:BMAX
+        bmin: QUAD:EMIT2:900:BMIN
         ctrl: QUAD:EMIT2:900:CTRL
       control_name: QUAD:EMIT2:900
     metadata:
@@ -83,6 +94,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 395.218
+      type: QUAD
   XCE202:
     controls_information:
       PVs:
@@ -90,6 +102,8 @@ magnets:
         bcon: XCOR:EMIT2:310:BCON
         bctrl: XCOR:EMIT2:310:BCTRL
         bdes: XCOR:EMIT2:310:BDES
+        bmax: XCOR:EMIT2:310:BMAX
+        bmin: XCOR:EMIT2:310:BMIN
         ctrl: XCOR:EMIT2:310:CTRL
       control_name: XCOR:EMIT2:310
     metadata:
@@ -104,6 +118,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 373.577
+      type: XCOR
   XCE204:
     controls_information:
       PVs:
@@ -111,6 +126,8 @@ magnets:
         bcon: XCOR:EMIT2:912:BCON
         bctrl: XCOR:EMIT2:912:BCTRL
         bdes: XCOR:EMIT2:912:BDES
+        bmax: XCOR:EMIT2:912:BMAX
+        bmin: XCOR:EMIT2:912:BMIN
         ctrl: XCOR:EMIT2:912:CTRL
       control_name: XCOR:EMIT2:912
     metadata:
@@ -125,6 +142,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 395.594
+      type: XCOR
   YCE201:
     controls_information:
       PVs:
@@ -132,6 +150,8 @@ magnets:
         bcon: YCOR:EMIT2:161:BCON
         bctrl: YCOR:EMIT2:161:BCTRL
         bdes: YCOR:EMIT2:161:BDES
+        bmax: YCOR:EMIT2:161:BMAX
+        bmin: YCOR:EMIT2:161:BMIN
         ctrl: YCOR:EMIT2:161:CTRL
       control_name: YCOR:EMIT2:161
     metadata:
@@ -146,6 +166,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 368.562
+      type: YCOR
   YCE203:
     controls_information:
       PVs:
@@ -153,6 +174,8 @@ magnets:
         bcon: YCOR:EMIT2:811:BCON
         bctrl: YCOR:EMIT2:811:BCTRL
         bdes: YCOR:EMIT2:811:BDES
+        bmax: YCOR:EMIT2:811:BMAX
+        bmin: YCOR:EMIT2:811:BMIN
         ctrl: YCOR:EMIT2:811:CTRL
       control_name: YCOR:EMIT2:811
     metadata:
@@ -167,3 +190,4 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 392.485
+      type: YCOR

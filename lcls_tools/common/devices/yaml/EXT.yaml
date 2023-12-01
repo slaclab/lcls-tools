@@ -6,6 +6,8 @@ magnets:
         bcon: QUAD:EXT:351:BCON
         bctrl: QUAD:EXT:351:BCTRL
         bdes: QUAD:EXT:351:BDES
+        bmax: QUAD:EXT:351:BMAX
+        bmin: QUAD:EXT:351:BMIN
         ctrl: QUAD:EXT:351:CTRL
       control_name: QUAD:EXT:351
     metadata:
@@ -20,6 +22,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 659.492
+      type: QUAD
   QX02:
     controls_information:
       PVs:
@@ -27,6 +30,8 @@ magnets:
         bcon: QUAD:EXT:748:BCON
         bctrl: QUAD:EXT:748:BCTRL
         bdes: QUAD:EXT:748:BDES
+        bmax: QUAD:EXT:748:BMAX
+        bmin: QUAD:EXT:748:BMIN
         ctrl: QUAD:EXT:748:CTRL
       control_name: QUAD:EXT:748
     metadata:
@@ -41,6 +46,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 668.785
+      type: QUAD
   XCX01:
     controls_information:
       PVs:
@@ -48,6 +54,8 @@ magnets:
         bcon: XCOR:EXT:368:BCON
         bctrl: XCOR:EXT:368:BCTRL
         bdes: XCOR:EXT:368:BDES
+        bmax: XCOR:EXT:368:BMAX
+        bmin: XCOR:EXT:368:BMIN
         ctrl: XCOR:EXT:368:CTRL
       control_name: XCOR:EXT:368
     metadata:
@@ -62,6 +70,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 659.892
+      type: XCOR
   YCX02:
     controls_information:
       PVs:
@@ -69,6 +78,8 @@ magnets:
         bcon: YCOR:EXT:762:BCON
         bctrl: YCOR:EXT:762:BCTRL
         bdes: YCOR:EXT:762:BDES
+        bmax: YCOR:EXT:762:BMAX
+        bmin: YCOR:EXT:762:BMIN
         ctrl: YCOR:EXT:762:CTRL
       control_name: YCOR:EXT:762
     metadata:
@@ -83,3 +94,4 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 669.095
+      type: YCOR

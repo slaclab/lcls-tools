@@ -6,6 +6,8 @@ magnets:
         bcon: KICK:CLTS:185:BCON
         bctrl: KICK:CLTS:185:BCTRL
         bdes: KICK:CLTS:185:BDES
+        bmax: KICK:CLTS:185:BMAX
+        bmin: KICK:CLTS:185:BMIN
         ctrl: KICK:CLTS:185:CTRL
       control_name: KICK:CLTS:185
     metadata:
@@ -13,6 +15,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1044.943
+      type: BEND
   BLRCUS:
     controls_information:
       PVs:
@@ -20,6 +23,8 @@ magnets:
         bcon: BEND:CLTS:280:BCON
         bctrl: BEND:CLTS:280:BCTRL
         bdes: BEND:CLTS:280:BDES
+        bmax: BEND:CLTS:280:BMAX
+        bmin: BEND:CLTS:280:BMIN
         ctrl: BEND:CLTS:280:CTRL
       control_name: BEND:CLTS:280
     metadata:
@@ -27,6 +32,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1062.12
+      type: BEND
   BRCUS1:
     controls_information:
       PVs:
@@ -34,6 +40,8 @@ magnets:
         bcon: BEND:CLTS:765:BCON
         bctrl: BEND:CLTS:765:BCTRL
         bdes: BEND:CLTS:765:BDES
+        bmax: BEND:CLTS:765:BMAX
+        bmin: BEND:CLTS:765:BMIN
         ctrl: BEND:CLTS:765:CTRL
       control_name: BEND:CLTS:765
     metadata:
@@ -41,6 +49,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1162.489
+      type: BEND
   BRCUSDC1:
     controls_information:
       PVs:
@@ -48,6 +57,8 @@ magnets:
         bcon: BEND:CLTS:180:BCON
         bctrl: BEND:CLTS:180:BCTRL
         bdes: BEND:CLTS:180:BDES
+        bmax: BEND:CLTS:180:BMAX
+        bmin: BEND:CLTS:180:BMIN
         ctrl: BEND:CLTS:180:CTRL
       control_name: BEND:CLTS:180
     metadata:
@@ -55,6 +66,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1043.926
+      type: BEND
   BRCUSDC2:
     controls_information:
       PVs:
@@ -62,6 +74,8 @@ magnets:
         bcon: BEND:CLTS:190:BCON
         bctrl: BEND:CLTS:190:BCTRL
         bdes: BEND:CLTS:190:BDES
+        bmax: BEND:CLTS:190:BMAX
+        bmin: BEND:CLTS:190:BMIN
         ctrl: BEND:CLTS:190:CTRL
       control_name: BEND:CLTS:190
     metadata:
@@ -69,6 +83,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1045.96
+      type: BEND
   BYCUS1:
     controls_information:
       PVs:
@@ -76,6 +91,8 @@ magnets:
         bcon: BEND:CLTS:505:BCON
         bctrl: BEND:CLTS:505:BCTRL
         bdes: BEND:CLTS:505:BDES
+        bmax: BEND:CLTS:505:BMAX
+        bmin: BEND:CLTS:505:BMIN
         ctrl: BEND:CLTS:505:CTRL
       control_name: BEND:CLTS:505
     metadata:
@@ -83,6 +100,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1110.623
+      type: BEND
   BYCUS2:
     controls_information:
       PVs:
@@ -90,6 +108,8 @@ magnets:
         bcon: BEND:CLTS:535:BCON
         bctrl: BEND:CLTS:535:BCTRL
         bdes: BEND:CLTS:535:BDES
+        bmax: BEND:CLTS:535:BMAX
+        bmin: BEND:CLTS:535:BMIN
         ctrl: BEND:CLTS:535:CTRL
       control_name: BEND:CLTS:535
     metadata:
@@ -97,6 +117,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1113.986
+      type: BEND
   QCUS1:
     controls_information:
       PVs:
@@ -104,6 +125,8 @@ magnets:
         bcon: QUAD:CLTS:420:BCON
         bctrl: QUAD:CLTS:420:BCTRL
         bdes: QUAD:CLTS:420:BDES
+        bmax: QUAD:CLTS:420:BMAX
+        bmin: QUAD:CLTS:420:BMIN
         ctrl: QUAD:CLTS:420:CTRL
       control_name: QUAD:CLTS:420
     metadata:
@@ -111,6 +134,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1092.151
+      type: QUAD
   QCUS10:
     controls_information:
       PVs:
@@ -118,6 +142,8 @@ magnets:
         bcon: QUAD:CLTS:620:BCON
         bctrl: QUAD:CLTS:620:BCTRL
         bdes: QUAD:CLTS:620:BDES
+        bmax: QUAD:CLTS:620:BMAX
+        bmin: QUAD:CLTS:620:BMIN
         ctrl: QUAD:CLTS:620:CTRL
       control_name: QUAD:CLTS:620
     metadata:
@@ -125,6 +151,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1132.457
+      type: QUAD
   QCUS2:
     controls_information:
       PVs:
@@ -132,6 +159,8 @@ magnets:
         bcon: QUAD:CLTS:450:BCON
         bctrl: QUAD:CLTS:450:BCTRL
         bdes: QUAD:CLTS:450:BDES
+        bmax: QUAD:CLTS:450:BMAX
+        bmin: QUAD:CLTS:450:BMIN
         ctrl: QUAD:CLTS:450:CTRL
       control_name: QUAD:CLTS:450
     metadata:
@@ -139,6 +168,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1097.548
+      type: QUAD
   QCUS3:
     controls_information:
       PVs:
@@ -146,6 +176,8 @@ magnets:
         bcon: QUAD:CLTS:470:BCON
         bctrl: QUAD:CLTS:470:BCTRL
         bdes: QUAD:CLTS:470:BDES
+        bmax: QUAD:CLTS:470:BMAX
+        bmin: QUAD:CLTS:470:BMIN
         ctrl: QUAD:CLTS:470:CTRL
       control_name: QUAD:CLTS:470
     metadata:
@@ -153,6 +185,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1102.045
+      type: QUAD
   QCUS4:
     controls_information:
       PVs:
@@ -160,6 +193,8 @@ magnets:
         bcon: QUAD:CLTS:500:BCON
         bctrl: QUAD:CLTS:500:BCTRL
         bdes: QUAD:CLTS:500:BDES
+        bmax: QUAD:CLTS:500:BMAX
+        bmin: QUAD:CLTS:500:BMIN
         ctrl: QUAD:CLTS:500:CTRL
       control_name: QUAD:CLTS:500
     metadata:
@@ -167,6 +202,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1109.101
+      type: QUAD
   QCUS5:
     controls_information:
       PVs:
@@ -174,6 +210,8 @@ magnets:
         bcon: QUAD:CLTS:510:BCON
         bctrl: QUAD:CLTS:510:BCTRL
         bdes: QUAD:CLTS:510:BDES
+        bmax: QUAD:CLTS:510:BMAX
+        bmin: QUAD:CLTS:510:BMIN
         ctrl: QUAD:CLTS:510:CTRL
       control_name: QUAD:CLTS:510
     metadata:
@@ -181,6 +219,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1112.101
+      type: QUAD
   QCUS6:
     controls_information:
       PVs:
@@ -188,6 +227,8 @@ magnets:
         bcon: QUAD:CLTS:530:BCON
         bctrl: QUAD:CLTS:530:BCTRL
         bdes: QUAD:CLTS:530:BDES
+        bmax: QUAD:CLTS:530:BMAX
+        bmin: QUAD:CLTS:530:BMIN
         ctrl: QUAD:CLTS:530:CTRL
       control_name: QUAD:CLTS:530
     metadata:
@@ -195,6 +236,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1112.508
+      type: QUAD
   QCUS7:
     controls_information:
       PVs:
@@ -202,6 +244,8 @@ magnets:
         bcon: QUAD:CLTS:540:BCON
         bctrl: QUAD:CLTS:540:BCTRL
         bdes: QUAD:CLTS:540:BDES
+        bmax: QUAD:CLTS:540:BMAX
+        bmin: QUAD:CLTS:540:BMIN
         ctrl: QUAD:CLTS:540:CTRL
       control_name: QUAD:CLTS:540
     metadata:
@@ -209,6 +253,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1115.507
+      type: QUAD
   QCUS8:
     controls_information:
       PVs:
@@ -216,6 +261,8 @@ magnets:
         bcon: QUAD:CLTS:570:BCON
         bctrl: QUAD:CLTS:570:BCTRL
         bdes: QUAD:CLTS:570:BDES
+        bmax: QUAD:CLTS:570:BMAX
+        bmin: QUAD:CLTS:570:BMIN
         ctrl: QUAD:CLTS:570:CTRL
       control_name: QUAD:CLTS:570
     metadata:
@@ -223,6 +270,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1122.564
+      type: QUAD
   QCUS9:
     controls_information:
       PVs:
@@ -230,6 +278,8 @@ magnets:
         bcon: QUAD:CLTS:590:BCON
         bctrl: QUAD:CLTS:590:BCTRL
         bdes: QUAD:CLTS:590:BDES
+        bmax: QUAD:CLTS:590:BMAX
+        bmin: QUAD:CLTS:590:BMIN
         ctrl: QUAD:CLTS:590:CTRL
       control_name: QUAD:CLTS:590
     metadata:
@@ -237,6 +287,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1127.061
+      type: QUAD
   XCCUS1:
     controls_information:
       PVs:
@@ -244,6 +295,8 @@ magnets:
         bcon: XCOR:CLTS:426:BCON
         bctrl: XCOR:CLTS:426:BCTRL
         bdes: XCOR:CLTS:426:BDES
+        bmax: XCOR:CLTS:426:BMAX
+        bmin: XCOR:CLTS:426:BMIN
         ctrl: XCOR:CLTS:426:CTRL
       control_name: XCOR:CLTS:426
     metadata:
@@ -251,6 +304,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1093.494
+      type: XCOR
   XCCUS10:
     controls_information:
       PVs:
@@ -258,6 +312,8 @@ magnets:
         bcon: XCOR:CLTS:614:BCON
         bctrl: XCOR:CLTS:614:BCTRL
         bdes: XCOR:CLTS:614:BDES
+        bmax: XCOR:CLTS:614:BMAX
+        bmin: XCOR:CLTS:614:BMIN
         ctrl: XCOR:CLTS:614:CTRL
       control_name: XCOR:CLTS:614
     metadata:
@@ -265,6 +321,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1131.115
+      type: XCOR
   XCCUS4:
     controls_information:
       PVs:
@@ -272,6 +329,8 @@ magnets:
         bcon: XCOR:CLTS:504:BCON
         bctrl: XCOR:CLTS:504:BCTRL
         bdes: XCOR:CLTS:504:BDES
+        bmax: XCOR:CLTS:504:BMAX
+        bmin: XCOR:CLTS:504:BMIN
         ctrl: XCOR:CLTS:504:CTRL
       control_name: XCOR:CLTS:504
     metadata:
@@ -279,6 +338,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1109.555
+      type: XCOR
   XCCUS7:
     controls_information:
       PVs:
@@ -286,6 +346,8 @@ magnets:
         bcon: XCOR:CLTS:542:BCON
         bctrl: XCOR:CLTS:542:BCTRL
         bdes: XCOR:CLTS:542:BDES
+        bmax: XCOR:CLTS:542:BMAX
+        bmin: XCOR:CLTS:542:BMIN
         ctrl: XCOR:CLTS:542:CTRL
       control_name: XCOR:CLTS:542
     metadata:
@@ -293,6 +355,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1115.961
+      type: XCOR
   YCCUS2:
     controls_information:
       PVs:
@@ -300,6 +363,8 @@ magnets:
         bcon: YCOR:CLTS:453:BCON
         bctrl: YCOR:CLTS:453:BCTRL
         bdes: YCOR:CLTS:453:BDES
+        bmax: YCOR:CLTS:453:BMAX
+        bmin: YCOR:CLTS:453:BMIN
         ctrl: YCOR:CLTS:453:CTRL
       control_name: YCOR:CLTS:453
     metadata:
@@ -307,6 +372,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1098.89
+      type: YCOR
   YCCUS3:
     controls_information:
       PVs:
@@ -314,6 +380,8 @@ magnets:
         bcon: YCOR:CLTS:471:BCON
         bctrl: YCOR:CLTS:471:BCTRL
         bdes: YCOR:CLTS:471:BDES
+        bmax: YCOR:CLTS:471:BMAX
+        bmin: YCOR:CLTS:471:BMIN
         ctrl: YCOR:CLTS:471:CTRL
       control_name: YCOR:CLTS:471
     metadata:
@@ -321,6 +389,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1102.605
+      type: YCOR
   YCCUS6:
     controls_information:
       PVs:
@@ -328,6 +397,8 @@ magnets:
         bcon: YCOR:CLTS:533:BCON
         bctrl: YCOR:CLTS:533:BCTRL
         bdes: YCOR:CLTS:533:BDES
+        bmax: YCOR:CLTS:533:BMAX
+        bmin: YCOR:CLTS:533:BMIN
         ctrl: YCOR:CLTS:533:CTRL
       control_name: YCOR:CLTS:533
     metadata:
@@ -335,6 +406,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1112.961
+      type: YCOR
   YCCUS8:
     controls_information:
       PVs:
@@ -342,6 +414,8 @@ magnets:
         bcon: YCOR:CLTS:573:BCON
         bctrl: YCOR:CLTS:573:BCTRL
         bdes: YCOR:CLTS:573:BDES
+        bmax: YCOR:CLTS:573:BMAX
+        bmin: YCOR:CLTS:573:BMIN
         ctrl: YCOR:CLTS:573:CTRL
       control_name: YCOR:CLTS:573
     metadata:
@@ -349,6 +423,7 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1123.124
+      type: YCOR
   YCCUS9:
     controls_information:
       PVs:
@@ -356,6 +431,8 @@ magnets:
         bcon: YCOR:CLTS:597:BCON
         bctrl: YCOR:CLTS:597:BCTRL
         bdes: YCOR:CLTS:597:BDES
+        bmax: YCOR:CLTS:597:BMAX
+        bmin: YCOR:CLTS:597:BMIN
         ctrl: YCOR:CLTS:597:CTRL
       control_name: YCOR:CLTS:597
     metadata:
@@ -363,3 +440,4 @@ magnets:
       beam_path:
       - CU_SXR
       sum_l_meters: 1127.621
+      type: YCOR

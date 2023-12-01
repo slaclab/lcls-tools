@@ -1,0 +1,70 @@
+magnets:
+  XCDGTCX:
+    controls_information:
+      PVs:
+        bact: XCOR:DIAG0:340:BACT
+        bcon: XCOR:DIAG0:340:BCON
+        bctrl: XCOR:DIAG0:340:BCTRL
+        bdes: XCOR:DIAG0:340:BDES
+        bmax: XCOR:DIAG0:340:BMAX
+        bmin: XCOR:DIAG0:340:BMIN
+        ctrl: XCOR:DIAG0:340:CTRL
+      control_name: XCOR:DIAG0:340
+    metadata:
+      area: '*DIAG0'
+      beam_path: []
+      sum_l_meters: 53.313
+      type: XCOR
+  XCDGTCY:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:DIAG0:320
+    metadata:
+      area: '*DIAG0'
+      beam_path: []
+      sum_l_meters: 52.213
+      type: XCOR
+  YCDGTCX:
+    controls_information:
+      PVs:
+        bact: YCOR:DIAG0:340:BACT
+        bcon: YCOR:DIAG0:340:BCON
+        bctrl: YCOR:DIAG0:340:BCTRL
+        bdes: YCOR:DIAG0:340:BDES
+        bmax: YCOR:DIAG0:340:BMAX
+        bmin: YCOR:DIAG0:340:BMIN
+        ctrl: YCOR:DIAG0:340:CTRL
+      control_name: YCOR:DIAG0:340
+    metadata:
+      area: '*DIAG0'
+      beam_path: []
+      sum_l_meters: 53.313
+      type: YCOR
+  YCDGTCY:
+    controls_information:
+      PVs: {}
+      control_name: YCOR:DIAG0:320
+    metadata:
+      area: '*DIAG0'
+      beam_path: []
+      sum_l_meters: 52.213
+      type: YCOR
+screens:
+  OTRDG01:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:DIAG0:396
+    metadata:
+      area: '*DIAG0'
+      beam_path: []
+      sum_l_meters: 55.813
+      type: PROF
+  OTRDG03:
+    controls_information:
+      PVs: {}
+      control_name: OTRS:DIAG0:440
+    metadata:
+      area: '*DIAG0'
+      beam_path: []
+      sum_l_meters: 57.813
+      type: PROF

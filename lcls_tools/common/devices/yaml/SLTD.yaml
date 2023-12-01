@@ -6,6 +6,8 @@ magnets:
         bcon: XCOR:SLTD:628:BCON
         bctrl: XCOR:SLTD:628:BCTRL
         bdes: XCOR:SLTD:628:BDES
+        bmax: XCOR:SLTD:628:BMAX
+        bmin: XCOR:SLTD:628:BMIN
         ctrl: XCOR:SLTD:628:CTRL
       control_name: XCOR:SLTD:628
     metadata:
@@ -13,6 +15,7 @@ magnets:
       beam_path:
       - SC_BSYD
       sum_l_meters: 3158.709
+      type: XCOR
   BKYRASD:
     controls_information:
       PVs:
@@ -20,6 +23,8 @@ magnets:
         bcon: YCOR:SLTD:631:BCON
         bctrl: YCOR:SLTD:631:BCTRL
         bdes: YCOR:SLTD:631:BDES
+        bmax: YCOR:SLTD:631:BMAX
+        bmin: YCOR:SLTD:631:BMIN
         ctrl: YCOR:SLTD:631:CTRL
       control_name: YCOR:SLTD:631
     metadata:
@@ -27,3 +32,4 @@ magnets:
       beam_path:
       - SC_BSYD
       sum_l_meters: 3159.209
+      type: YCOR
