@@ -10,6 +10,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 395.664
+      type: QUAD
   QM14715:
     controls_information:
       PVs: {}
@@ -21,3 +22,4 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 397.705
+      type: QUAD

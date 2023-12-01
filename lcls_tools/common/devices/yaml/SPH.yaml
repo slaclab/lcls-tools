@@ -6,6 +6,8 @@ magnets:
         bcon: KICK:SPH:110:BCON
         bctrl: KICK:SPH:110:BCTRL
         bdes: KICK:SPH:110:BDES
+        bmax: KICK:SPH:110:BMAX
+        bmin: KICK:SPH:110:BMIN
         ctrl: KICK:SPH:110:CTRL
       control_name: KICK:SPH:110
     metadata:
@@ -13,6 +15,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2792.194
+      type: BEND
   BKYSP2H:
     controls_information:
       PVs:
@@ -20,6 +23,8 @@ magnets:
         bcon: KICK:SPH:115:BCON
         bctrl: KICK:SPH:115:BCTRL
         bdes: KICK:SPH:115:BDES
+        bmax: KICK:SPH:115:BMAX
+        bmin: KICK:SPH:115:BMIN
         ctrl: KICK:SPH:115:CTRL
       control_name: KICK:SPH:115
     metadata:
@@ -27,6 +32,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2793.494
+      type: BEND
   BKYSP3H:
     controls_information:
       PVs:
@@ -34,6 +40,8 @@ magnets:
         bcon: KICK:SPH:120:BCON
         bctrl: KICK:SPH:120:BCTRL
         bdes: KICK:SPH:120:BDES
+        bmax: KICK:SPH:120:BMAX
+        bmin: KICK:SPH:120:BMIN
         ctrl: KICK:SPH:120:CTRL
       control_name: KICK:SPH:120
     metadata:
@@ -41,6 +49,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2794.794
+      type: BEND
   BLXSPH:
     controls_information:
       PVs:
@@ -48,6 +57,8 @@ magnets:
         bcon: BEND:SPH:170:BCON
         bctrl: BEND:SPH:170:BCTRL
         bdes: BEND:SPH:170:BDES
+        bmax: BEND:SPH:170:BMAX
+        bmin: BEND:SPH:170:BMIN
         ctrl: BEND:SPH:170:CTRL
       control_name: BEND:SPH:170
     metadata:
@@ -55,6 +66,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2813.494
+      type: BEND
   BRSP1H:
     controls_information:
       PVs:
@@ -62,6 +74,8 @@ magnets:
         bcon: BEND:SPH:370:BCON
         bctrl: BEND:SPH:370:BCTRL
         bdes: BEND:SPH:370:BDES
+        bmax: BEND:SPH:370:BMAX
+        bmin: BEND:SPH:370:BMIN
         ctrl: BEND:SPH:370:CTRL
       control_name: BEND:SPH:370
     metadata:
@@ -69,6 +83,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2872.334
+      type: BEND
   BYSP1H:
     controls_information:
       PVs:
@@ -76,6 +91,8 @@ magnets:
         bcon: BEND:SPH:270:BCON
         bctrl: BEND:SPH:270:BCTRL
         bdes: BEND:SPH:270:BDES
+        bmax: BEND:SPH:270:BMAX
+        bmin: BEND:SPH:270:BMIN
         ctrl: BEND:SPH:270:CTRL
       control_name: BEND:SPH:270
     metadata:
@@ -83,6 +100,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2845.85
+      type: BEND
   BYSP2H:
     controls_information:
       PVs:
@@ -90,6 +108,8 @@ magnets:
         bcon: BEND:SPH:310:BCON
         bctrl: BEND:SPH:310:BCTRL
         bdes: BEND:SPH:310:BDES
+        bmax: BEND:SPH:310:BMAX
+        bmin: BEND:SPH:310:BMIN
         ctrl: BEND:SPH:310:CTRL
       control_name: BEND:SPH:310
     metadata:
@@ -97,6 +117,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2856.45
+      type: BEND
   QSP10H:
     controls_information:
       PVs:
@@ -104,6 +125,8 @@ magnets:
         bcon: QUAD:SPH:920:BCON
         bctrl: QUAD:SPH:920:BCTRL
         bdes: QUAD:SPH:920:BDES
+        bmax: QUAD:SPH:920:BMAX
+        bmin: QUAD:SPH:920:BMIN
         ctrl: QUAD:SPH:920:CTRL
       control_name: QUAD:SPH:920
     metadata:
@@ -111,6 +134,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3037.415
+      type: QUAD
   QSP11H:
     controls_information:
       PVs:
@@ -118,6 +142,8 @@ magnets:
         bcon: QUAD:SPH:940:BCON
         bctrl: QUAD:SPH:940:BCTRL
         bdes: QUAD:SPH:940:BDES
+        bmax: QUAD:SPH:940:BMAX
+        bmin: QUAD:SPH:940:BMIN
         ctrl: QUAD:SPH:940:CTRL
       control_name: QUAD:SPH:940
     metadata:
@@ -125,6 +151,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3046.498
+      type: QUAD
   QSP1H:
     controls_information:
       PVs:
@@ -132,6 +159,8 @@ magnets:
         bcon: QUAD:SPH:320:BCON
         bctrl: QUAD:SPH:320:BCTRL
         bdes: QUAD:SPH:320:BDES
+        bmax: QUAD:SPH:320:BMAX
+        bmin: QUAD:SPH:320:BMIN
         ctrl: QUAD:SPH:320:CTRL
       control_name: QUAD:SPH:320
     metadata:
@@ -139,6 +168,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2857.41
+      type: QUAD
   QSP2H:
     controls_information:
       PVs:
@@ -146,6 +176,8 @@ magnets:
         bcon: QUAD:SPH:345:BCON
         bctrl: QUAD:SPH:345:BCTRL
         bdes: QUAD:SPH:345:BDES
+        bmax: QUAD:SPH:345:BMAX
+        bmin: QUAD:SPH:345:BMIN
         ctrl: QUAD:SPH:345:CTRL
       control_name: QUAD:SPH:345
     metadata:
@@ -153,6 +185,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2862.256
+      type: QUAD
   QSP3H:
     controls_information:
       PVs:
@@ -160,6 +193,8 @@ magnets:
         bcon: QUAD:SPH:420:BCON
         bctrl: QUAD:SPH:420:BCTRL
         bdes: QUAD:SPH:420:BDES
+        bmax: QUAD:SPH:420:BMAX
+        bmin: QUAD:SPH:420:BMIN
         ctrl: QUAD:SPH:420:CTRL
       control_name: QUAD:SPH:420
     metadata:
@@ -167,6 +202,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2887.579
+      type: QUAD
   QSP4H:
     controls_information:
       PVs:
@@ -174,6 +210,8 @@ magnets:
         bcon: QUAD:SPH:450:BCON
         bctrl: QUAD:SPH:450:BCTRL
         bdes: QUAD:SPH:450:BDES
+        bmax: QUAD:SPH:450:BMAX
+        bmin: QUAD:SPH:450:BMIN
         ctrl: QUAD:SPH:450:CTRL
       control_name: QUAD:SPH:450
     metadata:
@@ -181,6 +219,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2896.662
+      type: QUAD
   QSP5H:
     controls_information:
       PVs:
@@ -188,6 +227,8 @@ magnets:
         bcon: QUAD:SPH:520:BCON
         bctrl: QUAD:SPH:520:BCTRL
         bdes: QUAD:SPH:520:BDES
+        bmax: QUAD:SPH:520:BMAX
+        bmin: QUAD:SPH:520:BMIN
         ctrl: QUAD:SPH:520:CTRL
       control_name: QUAD:SPH:520
     metadata:
@@ -195,6 +236,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2918.721
+      type: QUAD
   QSP6H:
     controls_information:
       PVs:
@@ -202,6 +244,8 @@ magnets:
         bcon: QUAD:SPH:600:BCON
         bctrl: QUAD:SPH:600:BCTRL
         bdes: QUAD:SPH:600:BDES
+        bmax: QUAD:SPH:600:BMAX
+        bmin: QUAD:SPH:600:BMIN
         ctrl: QUAD:SPH:600:CTRL
       control_name: QUAD:SPH:600
     metadata:
@@ -209,6 +253,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2942.78
+      type: QUAD
   QSP7H:
     controls_information:
       PVs:
@@ -216,6 +261,8 @@ magnets:
         bcon: QUAD:SPH:675:BCON
         bctrl: QUAD:SPH:675:BCTRL
         bdes: QUAD:SPH:675:BDES
+        bmax: QUAD:SPH:675:BMAX
+        bmin: QUAD:SPH:675:BMIN
         ctrl: QUAD:SPH:675:CTRL
       control_name: QUAD:SPH:675
     metadata:
@@ -223,6 +270,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2967.038
+      type: QUAD
   QSP8H:
     controls_information:
       PVs:
@@ -230,6 +278,8 @@ magnets:
         bcon: QUAD:SPH:760:BCON
         bctrl: QUAD:SPH:760:BCTRL
         bdes: QUAD:SPH:760:BDES
+        bmax: QUAD:SPH:760:BMAX
+        bmin: QUAD:SPH:760:BMIN
         ctrl: QUAD:SPH:760:CTRL
       control_name: QUAD:SPH:760
     metadata:
@@ -237,6 +287,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2991.297
+      type: QUAD
   QSP9H:
     controls_information:
       PVs:
@@ -244,6 +295,8 @@ magnets:
         bcon: QUAD:SPH:840:BCON
         bctrl: QUAD:SPH:840:BCTRL
         bdes: QUAD:SPH:840:BDES
+        bmax: QUAD:SPH:840:BMAX
+        bmin: QUAD:SPH:840:BMIN
         ctrl: QUAD:SPH:840:CTRL
       control_name: QUAD:SPH:840
     metadata:
@@ -251,6 +304,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3015.356
+      type: QUAD
   XCSP11H:
     controls_information:
       PVs:
@@ -258,6 +312,8 @@ magnets:
         bcon: XCOR:SPH:938:BCON
         bctrl: XCOR:SPH:938:BCTRL
         bdes: XCOR:SPH:938:BDES
+        bmax: XCOR:SPH:938:BMAX
+        bmin: XCOR:SPH:938:BMIN
         ctrl: XCOR:SPH:938:CTRL
       control_name: XCOR:SPH:938
     metadata:
@@ -265,6 +321,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3044.7
+      type: XCOR
   XCSP1H:
     controls_information:
       PVs:
@@ -272,6 +329,8 @@ magnets:
         bcon: XCOR:SPH:324:BCON
         bctrl: XCOR:SPH:324:BCTRL
         bdes: XCOR:SPH:324:BDES
+        bmax: XCOR:SPH:324:BMAX
+        bmin: XCOR:SPH:324:BMIN
         ctrl: XCOR:SPH:324:CTRL
       control_name: XCOR:SPH:324
     metadata:
@@ -279,6 +338,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2858.879
+      type: XCOR
   XCSP3H:
     controls_information:
       PVs:
@@ -286,6 +346,8 @@ magnets:
         bcon: XCOR:SPH:414:BCON
         bctrl: XCOR:SPH:414:BCTRL
         bdes: XCOR:SPH:414:BDES
+        bmax: XCOR:SPH:414:BMAX
+        bmin: XCOR:SPH:414:BMIN
         ctrl: XCOR:SPH:414:CTRL
       control_name: XCOR:SPH:414
     metadata:
@@ -293,6 +355,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2886.619
+      type: XCOR
   XCSP5H:
     controls_information:
       PVs:
@@ -300,6 +363,8 @@ magnets:
         bcon: XCOR:SPH:516:BCON
         bctrl: XCOR:SPH:516:BCTRL
         bdes: XCOR:SPH:516:BDES
+        bmax: XCOR:SPH:516:BMAX
+        bmin: XCOR:SPH:516:BMIN
         ctrl: XCOR:SPH:516:CTRL
       control_name: XCOR:SPH:516
     metadata:
@@ -307,6 +372,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2918.227
+      type: XCOR
   XCSP7H:
     controls_information:
       PVs:
@@ -314,6 +380,8 @@ magnets:
         bcon: XCOR:SPH:684:BCON
         bctrl: XCOR:SPH:684:BCTRL
         bdes: XCOR:SPH:684:BDES
+        bmax: XCOR:SPH:684:BMAX
+        bmin: XCOR:SPH:684:BMIN
         ctrl: XCOR:SPH:684:CTRL
       control_name: XCOR:SPH:684
     metadata:
@@ -321,6 +389,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2967.492
+      type: XCOR
   XCSP9H:
     controls_information:
       PVs:
@@ -328,6 +397,8 @@ magnets:
         bcon: XCOR:SPH:844:BCON
         bctrl: XCOR:SPH:844:BCTRL
         bdes: XCOR:SPH:844:BDES
+        bmax: XCOR:SPH:844:BMAX
+        bmin: XCOR:SPH:844:BMIN
         ctrl: XCOR:SPH:844:CTRL
       control_name: XCOR:SPH:844
     metadata:
@@ -335,6 +406,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3016.579
+      type: XCOR
   YCSP10H:
     controls_information:
       PVs:
@@ -342,6 +414,8 @@ magnets:
         bcon: YCOR:SPH:917:BCON
         bctrl: YCOR:SPH:917:BCTRL
         bdes: YCOR:SPH:917:BDES
+        bmax: YCOR:SPH:917:BMAX
+        bmin: YCOR:SPH:917:BMIN
         ctrl: YCOR:SPH:917:CTRL
       control_name: YCOR:SPH:917
     metadata:
@@ -349,6 +423,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3036.952
+      type: YCOR
   YCSP2H:
     controls_information:
       PVs:
@@ -356,6 +431,8 @@ magnets:
         bcon: YCOR:SPH:346:BCON
         bctrl: YCOR:SPH:346:BCTRL
         bdes: YCOR:SPH:346:BDES
+        bmax: YCOR:SPH:346:BMAX
+        bmin: YCOR:SPH:346:BMIN
         ctrl: YCOR:SPH:346:CTRL
       control_name: YCOR:SPH:346
     metadata:
@@ -363,6 +440,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2862.709
+      type: YCOR
   YCSP4H:
     controls_information:
       PVs:
@@ -370,6 +448,8 @@ magnets:
         bcon: YCOR:SPH:447:BCON
         bctrl: YCOR:SPH:447:BCTRL
         bdes: YCOR:SPH:447:BDES
+        bmax: YCOR:SPH:447:BMAX
+        bmin: YCOR:SPH:447:BMIN
         ctrl: YCOR:SPH:447:CTRL
       control_name: YCOR:SPH:447
     metadata:
@@ -377,6 +457,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2896.169
+      type: YCOR
   YCSP6H:
     controls_information:
       PVs:
@@ -384,6 +465,8 @@ magnets:
         bcon: YCOR:SPH:597:BCON
         bctrl: YCOR:SPH:597:BCTRL
         bdes: YCOR:SPH:597:BDES
+        bmax: YCOR:SPH:597:BMAX
+        bmin: YCOR:SPH:597:BMIN
         ctrl: YCOR:SPH:597:CTRL
       control_name: YCOR:SPH:597
     metadata:
@@ -391,6 +474,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2942.286
+      type: YCOR
   YCSP8H:
     controls_information:
       PVs:
@@ -398,6 +482,8 @@ magnets:
         bcon: YCOR:SPH:757:BCON
         bctrl: YCOR:SPH:757:BCTRL
         bdes: YCOR:SPH:757:BDES
+        bmax: YCOR:SPH:757:BMAX
+        bmin: YCOR:SPH:757:BMIN
         ctrl: YCOR:SPH:757:CTRL
       control_name: YCOR:SPH:757
     metadata:
@@ -405,3 +491,4 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 2990.804
+      type: YCOR

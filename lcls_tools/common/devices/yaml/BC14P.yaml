@@ -8,6 +8,7 @@ magnets:
       beam_path:
       - F2_POSI
       sum_l_meters: 362.015
+      type: BEND
   BCX141808:
     controls_information:
       PVs: {}
@@ -17,6 +18,7 @@ magnets:
       beam_path:
       - F2_POSI
       sum_l_meters: 363.656
+      type: BEND
   CQ141738:
     controls_information:
       PVs: {}
@@ -26,6 +28,7 @@ magnets:
       beam_path:
       - F2_POSI
       sum_l_meters: 353.884
+      type: QUAD
   CQ141866:
     controls_information:
       PVs: {}
@@ -35,6 +38,7 @@ magnets:
       beam_path:
       - F2_POSI
       sum_l_meters: 371.787
+      type: QUAD
   YC141820:
     controls_information:
       PVs: {}
@@ -44,6 +48,7 @@ magnets:
       beam_path:
       - F2_POSI
       sum_l_meters: 364.131
+      type: YCOR
 screens:
   PR141803:
     controls_information:
@@ -54,3 +59,4 @@ screens:
       beam_path:
       - F2_POSI
       sum_l_meters: 363.016
+      type: PROF

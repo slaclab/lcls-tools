@@ -10,6 +10,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 435.56
+      type: QUAD
   Q15301:
     controls_information:
       PVs: {}
@@ -21,6 +22,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 447.905
+      type: QUAD
   Q15401:
     controls_information:
       PVs: {}
@@ -32,6 +34,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 460.249
+      type: QUAD
   Q15501:
     controls_information:
       PVs: {}
@@ -43,6 +46,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 472.594
+      type: QUAD
   Q15601:
     controls_information:
       PVs: {}
@@ -54,6 +58,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 484.938
+      type: QUAD
   Q15701:
     controls_information:
       PVs: {}
@@ -65,6 +70,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 497.282
+      type: QUAD
   Q15801:
     controls_information:
       PVs: {}
@@ -76,6 +82,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 509.627
+      type: QUAD
   Q15901:
     controls_information:
       PVs: {}
@@ -87,6 +94,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 522.29
+      type: QUAD
   Q16201:
     controls_information:
       PVs: {}
@@ -98,6 +106,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 537.16
+      type: QUAD
   Q16301:
     controls_information:
       PVs: {}
@@ -109,6 +118,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 549.505
+      type: QUAD
   Q16401:
     controls_information:
       PVs: {}
@@ -120,6 +130,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 561.849
+      type: QUAD
   Q16501:
     controls_information:
       PVs: {}
@@ -131,6 +142,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 574.194
+      type: QUAD
   Q16601:
     controls_information:
       PVs: {}
@@ -142,6 +154,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 586.538
+      type: QUAD
   Q16701:
     controls_information:
       PVs: {}
@@ -153,6 +166,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 598.882
+      type: QUAD
   Q16801:
     controls_information:
       PVs: {}
@@ -164,6 +178,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 611.227
+      type: QUAD
   Q16901:
     controls_information:
       PVs: {}
@@ -175,6 +190,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 623.89
+      type: QUAD
   Q17201:
     controls_information:
       PVs: {}
@@ -186,6 +202,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 638.76
+      type: QUAD
   Q17301:
     controls_information:
       PVs: {}
@@ -197,6 +214,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 651.105
+      type: QUAD
   Q17401:
     controls_information:
       PVs: {}
@@ -208,6 +226,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 663.449
+      type: QUAD
   Q17501:
     controls_information:
       PVs: {}
@@ -219,6 +238,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 675.794
+      type: QUAD
   Q17601:
     controls_information:
       PVs: {}
@@ -230,6 +250,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 688.138
+      type: QUAD
   Q17701:
     controls_information:
       PVs: {}
@@ -241,6 +262,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 700.482
+      type: QUAD
   Q17801:
     controls_information:
       PVs: {}
@@ -252,6 +274,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 712.827
+      type: QUAD
   Q17901:
     controls_information:
       PVs: {}
@@ -263,6 +286,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 725.49
+      type: QUAD
   Q18201:
     controls_information:
       PVs: {}
@@ -274,6 +298,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 740.36
+      type: QUAD
   Q18301:
     controls_information:
       PVs: {}
@@ -285,6 +310,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 752.705
+      type: QUAD
   Q18401:
     controls_information:
       PVs: {}
@@ -296,6 +322,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 765.049
+      type: QUAD
   Q18501:
     controls_information:
       PVs: {}
@@ -307,6 +334,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 777.394
+      type: QUAD
   Q18601:
     controls_information:
       PVs: {}
@@ -318,6 +346,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 789.738
+      type: QUAD
   Q18701:
     controls_information:
       PVs: {}
@@ -329,6 +358,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 802.082
+      type: QUAD
   Q18801:
     controls_information:
       PVs: {}
@@ -340,6 +370,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 814.427
+      type: QUAD
   Q18901:
     controls_information:
       PVs: {}
@@ -351,6 +382,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 827.09
+      type: QUAD
   Q19201:
     controls_information:
       PVs: {}
@@ -362,6 +394,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 841.96
+      type: QUAD
   Q19301:
     controls_information:
       PVs: {}
@@ -373,6 +406,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 854.305
+      type: QUAD
   Q19401:
     controls_information:
       PVs: {}
@@ -384,6 +418,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 866.649
+      type: QUAD
   XC14900:
     controls_information:
       PVs: {}
@@ -395,6 +430,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 423.626
+      type: XCOR
   XC15202:
     controls_information:
       PVs: {}
@@ -406,6 +442,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 435.966
+      type: XCOR
   XC15302:
     controls_information:
       PVs: {}
@@ -417,6 +454,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 448.316
+      type: XCOR
   XC15402:
     controls_information:
       PVs: {}
@@ -428,6 +466,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 460.656
+      type: XCOR
   XC15502:
     controls_information:
       PVs: {}
@@ -439,6 +478,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 473.006
+      type: XCOR
   XC15602:
     controls_information:
       PVs: {}
@@ -450,6 +490,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 485.346
+      type: XCOR
   XC15702:
     controls_information:
       PVs: {}
@@ -461,6 +502,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 497.696
+      type: XCOR
   XC15802:
     controls_information:
       PVs: {}
@@ -472,6 +514,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 510.036
+      type: XCOR
   XC15900:
     controls_information:
       PVs: {}
@@ -483,6 +526,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 521.226
+      type: XCOR
   XC16202:
     controls_information:
       PVs: {}
@@ -494,6 +538,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 537.566
+      type: XCOR
   XC16302:
     controls_information:
       PVs: {}
@@ -505,6 +550,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 549.916
+      type: XCOR
   XC16402:
     controls_information:
       PVs: {}
@@ -516,6 +562,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 562.256
+      type: XCOR
   XC16502:
     controls_information:
       PVs: {}
@@ -527,6 +574,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 574.606
+      type: XCOR
   XC16602:
     controls_information:
       PVs: {}
@@ -538,6 +586,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 586.946
+      type: XCOR
   XC16702:
     controls_information:
       PVs: {}
@@ -549,6 +598,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 599.296
+      type: XCOR
   XC16802:
     controls_information:
       PVs: {}
@@ -560,6 +610,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 611.636
+      type: XCOR
   XC16900:
     controls_information:
       PVs: {}
@@ -571,6 +622,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 622.826
+      type: XCOR
   XC17202:
     controls_information:
       PVs: {}
@@ -582,6 +634,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 639.166
+      type: XCOR
   XC17302:
     controls_information:
       PVs: {}
@@ -593,6 +646,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 651.516
+      type: XCOR
   XC17402:
     controls_information:
       PVs: {}
@@ -604,6 +658,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 663.856
+      type: XCOR
   XC17502:
     controls_information:
       PVs: {}
@@ -615,6 +670,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 676.206
+      type: XCOR
   XC17602:
     controls_information:
       PVs: {}
@@ -626,6 +682,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 688.546
+      type: XCOR
   XC17702:
     controls_information:
       PVs: {}
@@ -637,6 +694,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 700.896
+      type: XCOR
   XC17802:
     controls_information:
       PVs: {}
@@ -648,6 +706,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 713.236
+      type: XCOR
   XC17900:
     controls_information:
       PVs: {}
@@ -659,6 +718,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 724.325
+      type: XCOR
   XC18202:
     controls_information:
       PVs: {}
@@ -670,6 +730,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 740.766
+      type: XCOR
   XC18302:
     controls_information:
       PVs: {}
@@ -681,6 +742,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 753.116
+      type: XCOR
   XC18402:
     controls_information:
       PVs: {}
@@ -692,6 +754,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 765.456
+      type: XCOR
   XC18502:
     controls_information:
       PVs: {}
@@ -703,6 +766,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 777.806
+      type: XCOR
   XC18602:
     controls_information:
       PVs: {}
@@ -714,6 +778,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 790.146
+      type: XCOR
   XC18702:
     controls_information:
       PVs: {}
@@ -725,6 +790,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 802.496
+      type: XCOR
   XC18802:
     controls_information:
       PVs: {}
@@ -736,6 +802,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 814.836
+      type: XCOR
   XC18900:
     controls_information:
       PVs: {}
@@ -747,6 +814,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 825.912
+      type: XCOR
   XC19202:
     controls_information:
       PVs: {}
@@ -758,6 +826,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 842.366
+      type: XCOR
   XC19302:
     controls_information:
       PVs: {}
@@ -769,6 +838,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 854.716
+      type: XCOR
   XC19402:
     controls_information:
       PVs: {}
@@ -780,6 +850,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 867.056
+      type: XCOR
   YC14900:
     controls_information:
       PVs: {}
@@ -791,6 +862,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 423.876
+      type: YCOR
   YC15203:
     controls_information:
       PVs: {}
@@ -802,6 +874,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 436.216
+      type: YCOR
   YC15303:
     controls_information:
       PVs: {}
@@ -813,6 +886,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 448.721
+      type: YCOR
   YC15403:
     controls_information:
       PVs: {}
@@ -824,6 +898,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 460.906
+      type: YCOR
   YC15503:
     controls_information:
       PVs: {}
@@ -835,6 +910,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 473.4
+      type: YCOR
   YC15603:
     controls_information:
       PVs: {}
@@ -846,6 +922,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 485.596
+      type: YCOR
   YC15703:
     controls_information:
       PVs: {}
@@ -857,6 +934,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 497.946
+      type: YCOR
   YC15803:
     controls_information:
       PVs: {}
@@ -868,6 +946,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 510.478
+      type: YCOR
   YC15900:
     controls_information:
       PVs: {}
@@ -879,6 +958,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 521.476
+      type: YCOR
   YC16203:
     controls_information:
       PVs: {}
@@ -890,6 +970,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 537.932
+      type: YCOR
   YC16303:
     controls_information:
       PVs: {}
@@ -901,6 +982,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 550.166
+      type: YCOR
   YC16403:
     controls_information:
       PVs: {}
@@ -912,6 +994,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 562.624
+      type: YCOR
   YC16503:
     controls_information:
       PVs: {}
@@ -923,6 +1006,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 574.971
+      type: YCOR
   YC16603:
     controls_information:
       PVs: {}
@@ -934,6 +1018,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 587.36
+      type: YCOR
   YC16703:
     controls_information:
       PVs: {}
@@ -945,6 +1030,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 599.686
+      type: YCOR
   YC16803:
     controls_information:
       PVs: {}
@@ -956,6 +1042,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 611.886
+      type: YCOR
   YC16900:
     controls_information:
       PVs: {}
@@ -967,6 +1054,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 623.076
+      type: YCOR
   YC17203:
     controls_information:
       PVs: {}
@@ -978,6 +1066,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 639.548
+      type: YCOR
   YC17303:
     controls_information:
       PVs: {}
@@ -989,6 +1078,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 651.766
+      type: YCOR
   YC17403:
     controls_information:
       PVs: {}
@@ -1000,6 +1090,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 664.106
+      type: YCOR
   YC17503:
     controls_information:
       PVs: {}
@@ -1011,6 +1102,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 676.59
+      type: YCOR
   YC17603:
     controls_information:
       PVs: {}
@@ -1022,6 +1114,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 688.941
+      type: YCOR
   YC17703:
     controls_information:
       PVs: {}
@@ -1033,6 +1126,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 701.146
+      type: YCOR
   YC17803:
     controls_information:
       PVs: {}
@@ -1044,6 +1138,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 713.486
+      type: YCOR
   YC17900:
     controls_information:
       PVs: {}
@@ -1055,6 +1150,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 724.676
+      type: YCOR
   YC18203:
     controls_information:
       PVs: {}
@@ -1066,6 +1162,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 741.154
+      type: YCOR
   YC18303:
     controls_information:
       PVs: {}
@@ -1077,6 +1174,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 753.366
+      type: YCOR
   YC18403:
     controls_information:
       PVs: {}
@@ -1088,6 +1186,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 765.706
+      type: YCOR
   YC18503:
     controls_information:
       PVs: {}
@@ -1099,6 +1198,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 778.216
+      type: YCOR
   YC18603:
     controls_information:
       PVs: {}
@@ -1110,6 +1210,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 790.535
+      type: YCOR
   YC18703:
     controls_information:
       PVs: {}
@@ -1121,6 +1222,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 802.876
+      type: YCOR
   YC18803:
     controls_information:
       PVs: {}
@@ -1132,6 +1234,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 815.249
+      type: YCOR
   YC18900:
     controls_information:
       PVs: {}
@@ -1143,6 +1246,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 826.276
+      type: YCOR
   YC19203:
     controls_information:
       PVs: {}
@@ -1154,6 +1258,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 842.726
+      type: YCOR
   YC19303:
     controls_information:
       PVs: {}
@@ -1165,6 +1270,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 855.086
+      type: YCOR
   YC19403:
     controls_information:
       PVs: {}
@@ -1176,6 +1282,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 867.446
+      type: YCOR
   YC57145:
     controls_information:
       PVs: {}
@@ -1187,6 +1294,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 877.457
+      type: YCOR
   YC57146:
     controls_information:
       PVs: {}
@@ -1198,6 +1306,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 877.778
+      type: YCOR
 screens:
   PR15944:
     controls_information:
@@ -1210,3 +1319,4 @@ screens:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 522.844
+      type: PROF

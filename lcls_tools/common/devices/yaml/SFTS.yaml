@@ -8,6 +8,7 @@ magnets:
       beam_path:
       - SC_SFTS
       sum_l_meters: 3759.142
+      type: BEND
 screens:
   YAGXRAYB:
     controls_information:
@@ -17,3 +18,4 @@ screens:
       area: SFTS
       beam_path: []
       sum_l_meters: null
+      type: PROF

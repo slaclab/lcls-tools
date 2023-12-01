@@ -7,6 +7,7 @@ magnets:
       area: L0F
       beam_path: []
       sum_l_meters: 4.412
+      type: QUAD
   QA10371:
     controls_information:
       PVs: {}
@@ -15,6 +16,7 @@ magnets:
       area: L0F
       beam_path: []
       sum_l_meters: 4.741
+      type: QUAD
   XC10311:
     controls_information:
       PVs: {}
@@ -23,6 +25,7 @@ magnets:
       area: L0F
       beam_path: []
       sum_l_meters: 1.94
+      type: XCOR
   XC10381:
     controls_information:
       PVs: {}
@@ -31,6 +34,7 @@ magnets:
       area: L0F
       beam_path: []
       sum_l_meters: 5.256
+      type: XCOR
   XC10411:
     controls_information:
       PVs: {}
@@ -39,6 +43,7 @@ magnets:
       area: L0F
       beam_path: []
       sum_l_meters: 7.56
+      type: XCOR
   YC10312:
     controls_information:
       PVs: {}
@@ -47,6 +52,7 @@ magnets:
       area: L0F
       beam_path: []
       sum_l_meters: 1.94
+      type: YCOR
   YC10382:
     controls_information:
       PVs: {}
@@ -55,6 +61,7 @@ magnets:
       area: L0F
       beam_path: []
       sum_l_meters: 5.256
+      type: YCOR
   YC10412:
     controls_information:
       PVs: {}
@@ -63,3 +70,4 @@ magnets:
       area: L0F
       beam_path: []
       sum_l_meters: 7.56
+      type: YCOR
