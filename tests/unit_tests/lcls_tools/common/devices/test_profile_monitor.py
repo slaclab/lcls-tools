@@ -3,8 +3,8 @@ from unittest import mock, TestCase
 import inspect
 
 # Local imports
-import lcls_tools.common.devices.profile_monitor.profmon_constants as pc
-from lcls_tools.common.devices.profile_monitor.profile_monitor import (
+import lcls_tools.common.devices.profmon_constants as pc
+from lcls_tools.common.devices.profile_monitor import (
     ProfMon,
     get_profile_monitors,
 )
