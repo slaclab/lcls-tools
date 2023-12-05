@@ -1,7 +1,6 @@
 import numpy as np
 from scipy.optimize import curve_fit
 import statistics
-import pprint
 from sklearn.metrics import mean_squared_error
 
 # from scipy.ndimage import gaussian_filter
