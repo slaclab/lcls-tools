@@ -6,6 +6,7 @@ from sklearn.metrics import mean_squared_error
 # from scipy.ndimage import gaussian_filter
 # from scipy.special import erf
 
+
 class FittingTool:
     def __init__(self, data: np.array, **kwargs):
         """tool takes in the data points for some distribution"""
