@@ -1,8 +1,7 @@
 from lcls_tools.common.data_analysis.fitting_tool import FittingTool
 import numpy as np
-import matplotlib.pyplot as plt
 import unittest
-import pprint
+
 
 
 class TestFitTool(unittest.TestCase):
