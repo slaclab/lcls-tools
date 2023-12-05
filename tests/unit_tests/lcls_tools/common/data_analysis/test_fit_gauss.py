@@ -3,18 +3,7 @@ import numpy as np
 import unittest
 
 
-
 class TestFitTool(unittest.TestCase):
-    '''
-    def setUp(self) -> None:
-        """Add objects that you want to use/setup per-test-case"""
-        return super().setUp()
-
-    def tearDown(self) -> None:
-        """Add instructions for removing objects after each test case"""
-        return super().tearDown()
-    '''
-
     def gaussian(self, x, amp, mu, sig, offset):
         return amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0))) + offset
 
@@ -77,6 +66,3 @@ class TestFitTool(unittest.TestCase):
             self.assertIn("rmse", val)
             if key == "double_gaussian":
                 self.assertLessEqual(val["rmse"], 0.8)
-
-    def test_best_fit_case(self):
-        pass

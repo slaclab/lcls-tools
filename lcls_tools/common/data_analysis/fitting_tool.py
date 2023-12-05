@@ -6,7 +6,6 @@ from sklearn.metrics import mean_squared_error
 # from scipy.ndimage import gaussian_filter
 # from scipy.special import erf
 
-
 class FittingTool:
     def __init__(self, data: np.array, **kwargs):
         """tool takes in the data points for some distribution"""
@@ -239,5 +238,3 @@ class FittingTool:
         return A * np.exp(
             -((x - x0) ** 2) / (2 * sigma_x**2) - (y - y0) ** 2 / (2 * sigma_y**2)
         )
-
-    # fit batch images
