@@ -7,3 +7,4 @@ pyyaml
 requests
 pydantic
 h5py
+sklearn

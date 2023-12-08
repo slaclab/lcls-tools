@@ -99,20 +99,7 @@ class FittingTool:
             print("Type Error")
             print("param names list ", param_names)
             print("param vals list ", param_list)
-        """
-        i = 0
-        # verify len of param list here
-        while i <= len(param_list):
-            i = i+1
-            print(i)
-            if param_names[i] == 'x':
-                param_names.pop('x')
-                i = i-1
-                print(i, 'pop x')
-            else:
-               print(i)
-               packed_dict[param_names[i]] = param_list[i]
-        """
+   
         params_dict = {}
         params_dict["params"] = packed_dict
         return params_dict
@@ -166,25 +153,26 @@ class FittingTool:
         """how fast tails approaching zero, more outliers with higher kurtosis"""
         """positive excess - tails approach zero slower"""
         """negative excess - tails approach zero faster"""
+        print("This function is not implemented")
         # do later
-        return 0
+        raise NotImplementedError
 
     def find_peaks(self):
         print("This function is not implemented")
-        raise ValueError
+        raise NotImplementedError
 
     def find_widths(self):
         print("This function is not implemented")
-        raise ValueError
+        raise NotImplementedError
 
     def find_runs(self):
         print("This function is not implemented")
-        raise ValueError
+        raise NotImplementedError
 
     def find_moments(self):
         """mean, sigma, skewness, kurtosis"""
         print("This function is not implemented")
-        raise ValueError
+        raise NotImplementedError
 
     def truncate_distribution(x, lower_bound: float = None, upper_bound: float = None):
         if lower_bound is None:
