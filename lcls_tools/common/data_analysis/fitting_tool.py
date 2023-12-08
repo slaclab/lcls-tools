@@ -99,7 +99,7 @@ class FittingTool:
             print("Type Error")
             print("param names list ", param_names)
             print("param vals list ", param_list)
-   
+
         params_dict = {}
         params_dict["params"] = packed_dict
         return params_dict
