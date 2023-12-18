@@ -1,6 +1,6 @@
 import os
 import unittest
-from lcls_tools.common.matlab2py.cor_plot.cor_plot_mat_scan import (
+from lcls_tools.common.matlab2py.cor_plot_mat_scan import (
     CorPlotMatScan as CPMS,
 )
 

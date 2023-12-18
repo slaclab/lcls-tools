@@ -1,6 +1,6 @@
 import os
 import unittest
-from lcls_tools.common.matlab2py.emit_scan.mat_emit_scan import MatEmitScan as MES
+from lcls_tools.common.matlab2py.mat_emit_scan import MatEmitScan as MES
 
 
 ITERS = 3

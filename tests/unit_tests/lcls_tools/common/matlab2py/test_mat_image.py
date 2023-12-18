@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 import os
-from lcls_tools.common.matlab2py.image.mat_image import MatImage as MI
+from lcls_tools.common.matlab2py.mat_image import MatImage as MI
 
 
 class MatImageTest(unittest.TestCase):
