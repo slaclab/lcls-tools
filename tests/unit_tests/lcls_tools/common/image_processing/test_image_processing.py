@@ -2,7 +2,7 @@ import unittest
 import os
 import numpy as np
 import lcls_tools.common.image_processing as ip
-from lcls_tools.common.matlab2py.image.mat_image import MatImage
+from lcls_tools.common.matlab2py.mat_image import MatImage
 
 CAMERA = "CAMR:LGUN:210"
 
