@@ -184,7 +184,7 @@ class CorPlotMatScan(object):
     def _unpack_beam(self, data):
         """Unpack beam, returns dict with iteration number as key.
         The value is a list of samples, each sample being a dict with
-        the appropriate key for the data (provided by dtype names).  
+        the appropriate key for the data (provided by dtype names).
         The business logic of extracting these is in @property calls"""
         if BEAM not in self._fields:
             return None, None

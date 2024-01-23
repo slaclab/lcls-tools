@@ -285,7 +285,7 @@ class MatEmitScan(object):
         return temp
 
     def _unpack_twiss_pv(self, data):
-        """All the twiss parameters from the emittance scan.  
+        """All the twiss parameters from the emittance scan.
         7 vals corresponding to each fit method"""
         if TWISS_PV not in self._fields:
             return None
