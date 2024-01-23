@@ -12,9 +12,7 @@ Welcome to lcls-tools's documentation!
 
    devices.rst
    image_processing.rst
-   mat_cor_plot.rst
-   mat_emit_scan.rst
-   
+   matlab2py.rst 
    
 
 Indices and tables
