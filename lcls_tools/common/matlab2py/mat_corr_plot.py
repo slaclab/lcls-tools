@@ -56,7 +56,7 @@ class CorPlotMatScan(object):
 
     @property
     def fields(self):
-        """Data fields (keys) Henrik felt like populating for given scan, depends
+        """Data fields (keys) populated for given scan, depends
         on what boxes are checked for measurements"""
         return self._fields
 
@@ -111,7 +111,7 @@ class CorPlotMatScan(object):
 
     @property
     def config(self):
-        """Random collection of data already available from above properties, lame"""
+        """Collection of measurment properties"""
         return self._config
 
     @property
@@ -160,8 +160,8 @@ class CorPlotMatScan(object):
         return ctrl_list
 
     def _unpack_read_pv(self, data):
-        """Create a list of dictionaries for all the readback pvs
-        Each val and time key is a 2 d array for each data point as each point
+        """Create a list of dictionaries for all the readback pvs.
+        Each val and time key is a 2d array for each data point as each point
         has a number of readings"""
         if READ not in self._fields:
             return None
@@ -184,8 +184,8 @@ class CorPlotMatScan(object):
     def _unpack_beam(self, data):
         """Unpack beam, returns dict with iteration number as key.
         The value is a list of samples, each sample being a dict with
-        the appropriate key for the data (provided by dtype names).  I'm leaving
-        the business logic of extracting these to @property calls"""
+        the appropriate key for the data (provided by dtype names).  
+        The business logic of extracting these is in @property calls"""
         if BEAM not in self._fields:
             return None, None
 
@@ -201,8 +201,7 @@ class CorPlotMatScan(object):
         return beams, names
 
     def _unpack_prof(self, data):
-        """Unpack profile monitor pvs and data.  Not super clean
-        reformatting, but it's just a list of PV data lists.  The PV
+        """Unpack profile monitor pvs and data. A list of PV data.  The PV
         data list contains a list of iterations, each iteration contains
         samples"""
         if PROF not in self._fields:
@@ -230,8 +229,7 @@ class CorPlotMatScan(object):
         return ts
 
     def _unpack_config(self, data):
-        """As far as I can tell this is not useful except for ctrl pv,
-        but we get that with control dict"""
+        """Config data, some of which is in the control dict"""
         if CONFIG not in self._fields:
             return None
 

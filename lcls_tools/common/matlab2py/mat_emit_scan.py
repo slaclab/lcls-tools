@@ -129,7 +129,7 @@ class MatEmitScan(object):
 
     @property
     def timestamp(self):
-        """Dumb matlab timestamp convention, use datetime.fromordinal"""
+        """Matlab timestamp convention, use datetime.fromordinal"""
         if self._ts:
             return self._ts[0][0]
 
@@ -181,8 +181,7 @@ class MatEmitScan(object):
 
     @property
     def orbit(self):
-        """Not sure how this is concocted, no usefuly bpm names to
-        indicate measurement locations"""
+        """No bpm names to indicate measurement locations"""
         return self._orbit
 
     @property
@@ -251,7 +250,7 @@ class MatEmitScan(object):
     def _unpack_beam(self, data):
         """Unpacks to a list of lists.  Each list is an iteration which contains
         all the data for each fit.  Each fit is a dictionary with all the associated types of data.
-        Also, since beam_std is a duplicate of beam except for stats I just throw the stats in the
+        Also, since beam_std is a duplicate of beam except for stats, they are added to the
         dictionary"""
         if BEAM not in self._fields:
             return None
@@ -286,8 +285,8 @@ class MatEmitScan(object):
         return temp
 
     def _unpack_twiss_pv(self, data):
-        """The other important piece.  All the twiss parameters from the
-        emittance scan.  7 vals corresponding to each fit method"""
+        """All the twiss parameters from the emittance scan.  
+        7 vals corresponding to each fit method"""
         if TWISS_PV not in self._fields:
             return None
 
