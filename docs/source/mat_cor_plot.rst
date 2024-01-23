@@ -1,3 +1,6 @@
+Cor Plot Mat Scan
+=======
+
 This utility can take a cor plot .mat file and turn it into a python data object.  The goal is to present the data from a cor plot in a meaningful way.This utility has a couple of test files that are used for testing, but we can use them for examples.  All examples are run from this directory.  Current example is using Python2.7
 
 Example: 'test_scan.mat'

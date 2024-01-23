@@ -12,8 +12,8 @@ Welcome to lcls-tools's documentation!
 
    devices.rst
    image_processing.rst
-   cor_plot.rst
-   emit_scan.rst
+   mat_cor_plot.rst
+   mat_emit_scan.rst
    
    
 
