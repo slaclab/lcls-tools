@@ -12,6 +12,9 @@ Welcome to lcls-tools's documentation!
 
    devices.rst
    image_processing.rst
+   cor_plot.rst
+   emit_scan.rst
+   
    
 
 Indices and tables

@@ -1,8 +1,5 @@
 import numpy as np
 import scipy.ndimage as snd
-from scipy import asarray
-import matplotlib.pyplot as plt
-import lcls_tools.common.data_analysis.fitting.fit_gaussian as fg
 
 
 def fliplr(image):
@@ -46,22 +43,3 @@ def y_projection(image, subtract_baseline=True):
         return proj - min(proj)
 
     return proj
-
-
-def gauss_func(x, a, x0, sigma):
-    return a * np.exp(-((x - x0) ** 2) / (2 * sigma**2))
-
-
-def gauss_fit(projection, plot=False):
-    x = asarray(range(len(projection)))
-    data, _, step = fg.process_data(projection)
-    guess = fg.get_guess(x, data, step, False, num_peaks=1)[0]
-    x0_x, a_x, sigma_x = fg.get_fit(data, x, guess)[2:]
-
-    if plot:
-        plt.plot(x, projection, label="data")
-        plt.plot(x, gauss_func(x, a_x, x0_x, sigma_x), label="fit")
-        plt.legend()
-        plt.show()
-
-    return x, a_x, x0_x, sigma_x

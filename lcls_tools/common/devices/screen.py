@@ -77,7 +77,7 @@ class Screen(Device):
 
     @property
     def image_timestamp(self):
-        """get last timestamp for last PV activity"""
+        """Get last timestamp for last PV activity"""
         return self.controls_information.PVs.image.timestamp
 
     @property
@@ -122,6 +122,10 @@ class Screen(Device):
     def last_save_filepath(self):
         """Location and filename for the last file saved by this screen (set in save_images())"""
         return self._last_save_filepath
+
+    def _inserted_check():
+        """Check if the screen is inserted"""
+        return NotImplementedError
 
     def _generate_new_filename(self, extension: Optional[str] = ".h5") -> str:
         """

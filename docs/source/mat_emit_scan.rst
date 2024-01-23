@@ -1,3 +1,6 @@
+Loading Matlab Emittance Scans
+================
+
 This utility can take an emittance scan .mat file and turn it into a python data object. The goal is to present the data from an emittance scan in a meaningful way.  This utility has a test file that is used for testing, but we can use it for examples. All examples are run from this directory. Current example is using Python2.7
 
 Example: 'test_scan.mat'
