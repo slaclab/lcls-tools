@@ -10,6 +10,10 @@ class TestMagnetReader(unittest.TestCase):
         self.config_location = "./tests/datasets/devices/config/magnet/"
         self.typical_config = os.path.join(self.config_location, "typical_magnet.yaml")
         self.bad_config = os.path.join(self.config_location, "bad_magnet.yaml")
+        # set up patch so that each magnet is constructured with ALL ctrl options
+        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=MagicMock)
+        self.mock_ctrl_options = self.ctrl_options_patch.start()
+        self.mock_ctrl_options.return_value = {"enum_strs": tuple("READY")}
         return super().setUp()
 
     def test_bad_file_location_raises_when_finding(self):
