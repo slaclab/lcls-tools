@@ -28,7 +28,7 @@ class MagnetPVSet(PVSet):
     bdes: PV
     bcon: PV
     ctrl: PV
-    bmin : PV
+    bmin: PV
     bmax: PV
 
     def __init__(self, *args, **kwargs):
@@ -118,12 +118,12 @@ class Magnet(Device):
 
     @property
     def bmin(self):
-        """ Returns the minimum strength available"""
+        """Returns the minimum strength available"""
         self.controls_information.PVs.bmin.get()
 
     @property
     def bmax(self):
-        """ Returns the minimum strength available"""
+        """Returns the minimum strength available"""
         self.controls_information.PVs.bmax.get()
 
     @b_tolerance.setter
