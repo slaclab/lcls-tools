@@ -10,6 +10,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 53.831
+      type: QUAD
   QM11358:
     controls_information:
       PVs: {}
@@ -21,6 +22,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 47.341
+      type: QUAD
   QM11362:
     controls_information:
       PVs: {}
@@ -32,6 +34,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 47.996
+      type: QUAD
   QM11393:
     controls_information:
       PVs: {}
@@ -43,6 +46,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 52.917
+      type: QUAD
   XC11398:
     controls_information:
       PVs: {}
@@ -54,6 +58,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 53.547
+      type: XCOR
   YC11365:
     controls_information:
       PVs: {}
@@ -65,6 +70,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 48.402
+      type: YCOR
   YC11399:
     controls_information:
       PVs: {}
@@ -76,6 +82,7 @@ magnets:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 53.547
+      type: YCOR
 screens:
   PR11357:
     controls_information:
@@ -88,6 +95,7 @@ screens:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 47.105
+      type: PROF
   PR11375:
     controls_information:
       PVs: {}
@@ -99,6 +107,7 @@ screens:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 50.557
+      type: PROF
   TD11390:
     controls_information:
       PVs: {}
@@ -110,3 +119,4 @@ screens:
       - F2_POSI
       - F2_SCAV
       sum_l_meters: 52.375
+      type: PROF

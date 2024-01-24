@@ -9,6 +9,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 0.197
+      type: QUAD
   SOL10111:
     controls_information:
       PVs: {}
@@ -18,7 +19,8 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      sum_l_meters: null
+      sum_l_meters: 0.0
+      type: SOLE
   SOL10121:
     controls_information:
       PVs: {}
@@ -29,6 +31,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 0.197
+      type: SOLE
   SQ10122:
     controls_information:
       PVs: {}
@@ -39,6 +42,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 0.197
+      type: QUAD
   XC10121:
     controls_information:
       PVs: {}
@@ -49,6 +53,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 0.197
+      type: XCOR
   XC10221:
     controls_information:
       PVs: {}
@@ -59,6 +64,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 0.708
+      type: XCOR
   YC10122:
     controls_information:
       PVs: {}
@@ -69,6 +75,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 0.197
+      type: YCOR
   YC10222:
     controls_information:
       PVs: {}
@@ -79,6 +86,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 0.708
+      type: YCOR
 screens:
   PR10241:
     controls_information:
@@ -90,3 +98,4 @@ screens:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 0.942
+      type: PROF

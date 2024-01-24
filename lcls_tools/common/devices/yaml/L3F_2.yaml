@@ -9,6 +9,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 878.994
+      type: QUAD
   Q19601:
     controls_information:
       PVs: {}
@@ -19,6 +20,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 891.338
+      type: QUAD
   Q19701:
     controls_information:
       PVs: {}
@@ -29,6 +31,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 903.682
+      type: QUAD
   Q19801:
     controls_information:
       PVs: {}
@@ -39,6 +42,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 916.027
+      type: QUAD
   Q19851:
     controls_information:
       PVs: {}
@@ -49,6 +53,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 922.411
+      type: QUAD
   Q19871:
     controls_information:
       PVs: {}
@@ -59,6 +64,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 924.604
+      type: QUAD
   XC19502:
     controls_information:
       PVs: {}
@@ -69,6 +75,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 879.406
+      type: XCOR
   XC19602:
     controls_information:
       PVs: {}
@@ -79,6 +86,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 891.746
+      type: XCOR
   XC19700:
     controls_information:
       PVs: {}
@@ -89,6 +97,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 902.856
+      type: XCOR
   XC19802:
     controls_information:
       PVs: {}
@@ -97,6 +106,7 @@ magnets:
       area: L3F_2
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   XC19900:
     controls_information:
       PVs: {}
@@ -107,6 +117,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 923.192
+      type: XCOR
   YC19503:
     controls_information:
       PVs: {}
@@ -117,6 +128,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 879.81
+      type: YCOR
   YC19603:
     controls_information:
       PVs: {}
@@ -127,6 +139,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 892.132
+      type: YCOR
   YC19700:
     controls_information:
       PVs: {}
@@ -137,6 +150,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 901.393
+      type: YCOR
   YC19803:
     controls_information:
       PVs: {}
@@ -145,6 +159,7 @@ magnets:
       area: L3F_2
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   YC19900:
     controls_information:
       PVs: {}
@@ -155,3 +170,4 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 923.535
+      type: YCOR

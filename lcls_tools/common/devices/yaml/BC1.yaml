@@ -6,6 +6,8 @@ magnets:
         bcon: BEND:LI21:215:BCON
         bctrl: BEND:LI21:215:BCTRL
         bdes: BEND:LI21:215:BDES
+        bmax: BEND:LI21:215:BMAX
+        bmin: BEND:LI21:215:BMIN
         ctrl: BEND:LI21:215:CTRL
       control_name: BEND:LI21:215
     metadata:
@@ -18,6 +20,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 31.488
+      type: BEND
   BX12:
     controls_information:
       PVs:
@@ -25,6 +28,8 @@ magnets:
         bcon: BEND:LI21:231:BCON
         bctrl: BEND:LI21:231:BCTRL
         bdes: BEND:LI21:231:BDES
+        bmax: BEND:LI21:231:BMAX
+        bmin: BEND:LI21:231:BMIN
         ctrl: BEND:LI21:231:CTRL
       control_name: BEND:LI21:231
     metadata:
@@ -37,6 +42,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 34.137
+      type: BEND
   BX13:
     controls_information:
       PVs:
@@ -44,6 +50,8 @@ magnets:
         bcon: BEND:LI21:241:BCON
         bctrl: BEND:LI21:241:BCTRL
         bdes: BEND:LI21:241:BDES
+        bmax: BEND:LI21:241:BMAX
+        bmin: BEND:LI21:241:BMIN
         ctrl: BEND:LI21:241:CTRL
       control_name: BEND:LI21:241
     metadata:
@@ -56,6 +64,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 35.171
+      type: BEND
   BX14:
     controls_information:
       PVs:
@@ -63,6 +72,8 @@ magnets:
         bcon: BEND:LI21:261:BCON
         bctrl: BEND:LI21:261:BCTRL
         bdes: BEND:LI21:261:BDES
+        bmax: BEND:LI21:261:BMAX
+        bmin: BEND:LI21:261:BMIN
         ctrl: BEND:LI21:261:CTRL
       control_name: BEND:LI21:261
     metadata:
@@ -75,6 +86,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 37.82
+      type: BEND
   CQ11:
     controls_information:
       PVs:
@@ -82,6 +94,8 @@ magnets:
         bcon: QUAD:LI21:221:BCON
         bctrl: QUAD:LI21:221:BCTRL
         bdes: QUAD:LI21:221:BDES
+        bmax: QUAD:LI21:221:BMAX
+        bmin: QUAD:LI21:221:BMIN
         ctrl: QUAD:LI21:221:CTRL
       control_name: QUAD:LI21:221
     metadata:
@@ -94,6 +108,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 31.89
+      type: QUAD
   CQ12:
     controls_information:
       PVs:
@@ -101,6 +116,8 @@ magnets:
         bcon: QUAD:LI21:251:BCON
         bctrl: QUAD:LI21:251:BCTRL
         bdes: QUAD:LI21:251:BDES
+        bmax: QUAD:LI21:251:BMAX
+        bmin: QUAD:LI21:251:BMIN
         ctrl: QUAD:LI21:251:CTRL
       control_name: QUAD:LI21:251
     metadata:
@@ -113,6 +130,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 37.418
+      type: QUAD
   Q21201:
     controls_information:
       PVs:
@@ -120,6 +138,8 @@ magnets:
         bcon: QUAD:LI21:201:BCON
         bctrl: QUAD:LI21:201:BCTRL
         bdes: QUAD:LI21:201:BDES
+        bmax: QUAD:LI21:201:BMAX
+        bmin: QUAD:LI21:201:BMIN
         ctrl: QUAD:LI21:201:CTRL
       control_name: QUAD:LI21:201
     metadata:
@@ -132,6 +152,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 30.732
+      type: QUAD
   Q21301:
     controls_information:
       PVs:
@@ -139,6 +160,8 @@ magnets:
         bcon: QUAD:LI21:301:BCON
         bctrl: QUAD:LI21:301:BCTRL
         bdes: QUAD:LI21:301:BDES
+        bmax: QUAD:LI21:301:BMAX
+        bmin: QUAD:LI21:301:BMIN
         ctrl: QUAD:LI21:301:CTRL
       control_name: QUAD:LI21:301
     metadata:
@@ -151,6 +174,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 43.182
+      type: QUAD
   QM11:
     controls_information:
       PVs:
@@ -158,6 +182,8 @@ magnets:
         bcon: QUAD:LI21:211:BCON
         bctrl: QUAD:LI21:211:BCTRL
         bdes: QUAD:LI21:211:BDES
+        bmax: QUAD:LI21:211:BMAX
+        bmin: QUAD:LI21:211:BMIN
         ctrl: QUAD:LI21:211:CTRL
       control_name: QUAD:LI21:211
     metadata:
@@ -170,6 +196,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 31.204
+      type: QUAD
   QM12:
     controls_information:
       PVs:
@@ -177,6 +204,8 @@ magnets:
         bcon: QUAD:LI21:271:BCON
         bctrl: QUAD:LI21:271:BCTRL
         bdes: QUAD:LI21:271:BDES
+        bmax: QUAD:LI21:271:BMAX
+        bmin: QUAD:LI21:271:BMIN
         ctrl: QUAD:LI21:271:CTRL
       control_name: QUAD:LI21:271
     metadata:
@@ -189,6 +218,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 38.299
+      type: QUAD
   QM13:
     controls_information:
       PVs:
@@ -196,6 +226,8 @@ magnets:
         bcon: QUAD:LI21:278:BCON
         bctrl: QUAD:LI21:278:BCTRL
         bdes: QUAD:LI21:278:BDES
+        bmax: QUAD:LI21:278:BMAX
+        bmin: QUAD:LI21:278:BMIN
         ctrl: QUAD:LI21:278:CTRL
       control_name: QUAD:LI21:278
     metadata:
@@ -208,6 +240,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 38.97
+      type: QUAD
   QM14:
     controls_information:
       PVs:
@@ -215,6 +248,8 @@ magnets:
         bcon: QUAD:LI21:315:BCON
         bctrl: QUAD:LI21:315:BCTRL
         bdes: QUAD:LI21:315:BDES
+        bmax: QUAD:LI21:315:BMAX
+        bmin: QUAD:LI21:315:BMIN
         ctrl: QUAD:LI21:315:CTRL
       control_name: QUAD:LI21:315
     metadata:
@@ -227,6 +262,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 44.338
+      type: QUAD
   QM15:
     controls_information:
       PVs:
@@ -234,6 +270,8 @@ magnets:
         bcon: QUAD:LI21:335:BCON
         bctrl: QUAD:LI21:335:BCTRL
         bdes: QUAD:LI21:335:BDES
+        bmax: QUAD:LI21:335:BMAX
+        bmin: QUAD:LI21:335:BMIN
         ctrl: QUAD:LI21:335:CTRL
       control_name: QUAD:LI21:335
     metadata:
@@ -246,6 +284,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 44.903
+      type: QUAD
   SQ13:
     controls_information:
       PVs:
@@ -253,6 +292,8 @@ magnets:
         bcon: QUAD:LI21:243:BCON
         bctrl: QUAD:LI21:243:BCTRL
         bdes: QUAD:LI21:243:BDES
+        bmax: QUAD:LI21:243:BMAX
+        bmin: QUAD:LI21:243:BMIN
         ctrl: QUAD:LI21:243:CTRL
       control_name: QUAD:LI21:243
     metadata:
@@ -265,6 +306,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 35.615
+      type: QUAD
   XC21191:
     controls_information:
       PVs:
@@ -272,6 +314,8 @@ magnets:
         bcon: XCOR:LI21:191:BCON
         bctrl: XCOR:LI21:191:BCTRL
         bdes: XCOR:LI21:191:BDES
+        bmax: XCOR:LI21:191:BMAX
+        bmin: XCOR:LI21:191:BMIN
         ctrl: XCOR:LI21:191:CTRL
       control_name: XCOR:LI21:191
     metadata:
@@ -284,6 +328,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 30.056
+      type: XCOR
   XC21275:
     controls_information:
       PVs:
@@ -291,6 +336,8 @@ magnets:
         bcon: XCOR:LI21:275:BCON
         bctrl: XCOR:LI21:275:BCTRL
         bdes: XCOR:LI21:275:BDES
+        bmax: XCOR:LI21:275:BMAX
+        bmin: XCOR:LI21:275:BMIN
         ctrl: XCOR:LI21:275:CTRL
       control_name: XCOR:LI21:275
     metadata:
@@ -303,6 +350,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 39.325
+      type: XCOR
   XC21302:
     controls_information:
       PVs:
@@ -310,6 +358,8 @@ magnets:
         bcon: XCOR:LI21:302:BCON
         bctrl: XCOR:LI21:302:BCTRL
         bdes: XCOR:LI21:302:BDES
+        bmax: XCOR:LI21:302:BMAX
+        bmin: XCOR:LI21:302:BMIN
         ctrl: XCOR:LI21:302:CTRL
       control_name: XCOR:LI21:302
     metadata:
@@ -322,6 +372,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 42.229
+      type: XCOR
   XC21325:
     controls_information:
       PVs:
@@ -329,6 +380,8 @@ magnets:
         bcon: XCOR:LI21:325:BCON
         bctrl: XCOR:LI21:325:BCTRL
         bdes: XCOR:LI21:325:BDES
+        bmax: XCOR:LI21:325:BMAX
+        bmin: XCOR:LI21:325:BMIN
         ctrl: XCOR:LI21:325:CTRL
       control_name: XCOR:LI21:325
     metadata:
@@ -341,6 +394,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 44.618
+      type: XCOR
   YC21192:
     controls_information:
       PVs:
@@ -348,6 +402,8 @@ magnets:
         bcon: YCOR:LI21:192:BCON
         bctrl: YCOR:LI21:192:BCTRL
         bdes: YCOR:LI21:192:BDES
+        bmax: YCOR:LI21:192:BMAX
+        bmin: YCOR:LI21:192:BMIN
         ctrl: YCOR:LI21:192:CTRL
       control_name: YCOR:LI21:192
     metadata:
@@ -360,6 +416,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 30.056
+      type: YCOR
   YC21276:
     controls_information:
       PVs:
@@ -367,6 +424,8 @@ magnets:
         bcon: YCOR:LI21:276:BCON
         bctrl: YCOR:LI21:276:BCTRL
         bdes: YCOR:LI21:276:BDES
+        bmax: YCOR:LI21:276:BMAX
+        bmin: YCOR:LI21:276:BMIN
         ctrl: YCOR:LI21:276:CTRL
       control_name: YCOR:LI21:276
     metadata:
@@ -379,6 +438,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 39.325
+      type: YCOR
   YC21303:
     controls_information:
       PVs:
@@ -386,6 +446,8 @@ magnets:
         bcon: YCOR:LI21:303:BCON
         bctrl: YCOR:LI21:303:BCTRL
         bdes: YCOR:LI21:303:BDES
+        bmax: YCOR:LI21:303:BMAX
+        bmin: YCOR:LI21:303:BMIN
         ctrl: YCOR:LI21:303:CTRL
       control_name: YCOR:LI21:303
     metadata:
@@ -398,6 +460,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 42.575
+      type: YCOR
   YC21325:
     controls_information:
       PVs:
@@ -405,6 +468,8 @@ magnets:
         bcon: YCOR:LI21:325:BCON
         bctrl: YCOR:LI21:325:BCTRL
         bdes: YCOR:LI21:325:BDES
+        bmax: YCOR:LI21:325:BMAX
+        bmin: YCOR:LI21:325:BMIN
         ctrl: YCOR:LI21:325:CTRL
       control_name: YCOR:LI21:325
     metadata:
@@ -417,6 +482,7 @@ magnets:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 44.618
+      type: YCOR
 screens:
   OTR11:
     controls_information:
@@ -437,6 +503,7 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 34.834
+      type: PROF
   OTR12:
     controls_information:
       PVs:
@@ -456,3 +523,4 @@ screens:
       - CU_SFTH
       - CU_SXR
       sum_l_meters: 41.512
+      type: PROF

@@ -8,6 +8,7 @@ magnets:
       beam_path:
       - CU_SFTH
       sum_l_meters: 1734.345
+      type: BEND
   BXPM2:
     controls_information:
       PVs: {}
@@ -17,6 +18,7 @@ magnets:
       beam_path:
       - CU_SFTH
       sum_l_meters: 1735.59
+      type: BEND
 screens:
   XDCXRAY:
     controls_information:
@@ -26,6 +28,7 @@ screens:
       area: SFTH
       beam_path: []
       sum_l_meters: null
+      type: PROF
   YAGXRAY:
     controls_information:
       PVs: {}
@@ -34,3 +37,4 @@ screens:
       area: SFTH
       beam_path: []
       sum_l_meters: null
+      type: PROF

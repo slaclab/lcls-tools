@@ -9,6 +9,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 954.079
+      type: QUAD
   SQ1:
     controls_information:
       PVs: {}
@@ -19,6 +20,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 938.351
+      type: QUAD
   XC1996:
     controls_information:
       PVs: {}
@@ -29,3 +31,4 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 933.421
+      type: XCOR

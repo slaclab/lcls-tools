@@ -9,6 +9,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 29.111
+      type: QUAD
   Q11301:
     controls_information:
       PVs: {}
@@ -19,6 +20,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 38.433
+      type: QUAD
   QA11132:
     controls_information:
       PVs: {}
@@ -29,6 +31,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 22.851
+      type: QUAD
   QA11265:
     controls_information:
       PVs: {}
@@ -39,6 +42,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 35.192
+      type: QUAD
   XC11104:
     controls_information:
       PVs: {}
@@ -49,6 +53,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 20.344
+      type: XCOR
   XC11140:
     controls_information:
       PVs: {}
@@ -59,6 +64,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 23.604
+      type: XCOR
   XC11202:
     controls_information:
       PVs: {}
@@ -69,6 +75,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 29.517
+      type: XCOR
   XC11272:
     controls_information:
       PVs: {}
@@ -79,6 +86,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 35.779
+      type: XCOR
   XC11304:
     controls_information:
       PVs: {}
@@ -89,6 +97,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 39.082
+      type: XCOR
   YC11105:
     controls_information:
       PVs: {}
@@ -99,6 +108,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 20.344
+      type: YCOR
   YC11141:
     controls_information:
       PVs: {}
@@ -109,6 +119,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 23.604
+      type: YCOR
   YC11203:
     controls_information:
       PVs: {}
@@ -119,6 +130,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 29.804
+      type: YCOR
   YC11273:
     controls_information:
       PVs: {}
@@ -129,6 +141,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 35.779
+      type: YCOR
   YC11305:
     controls_information:
       PVs: {}
@@ -139,3 +152,4 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 39.082
+      type: YCOR
