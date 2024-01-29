@@ -164,11 +164,12 @@ class Magnet(Device):
     def bcon(self) -> float:
         """Get the configuration strength of magnet"""
         return self.controls_information.PVs.bcon.get()
+
     @property
     def bmax(self) -> float:
         """Get maximum magnetic field value in KG or KG-m^x."""
         return self.controls_information.PVs.bmax.get()
-    
+
     @property
     def bmin(self) -> float:
         """Get minimum magnetic field value in kG or kG-m^x."""
