@@ -6,7 +6,6 @@ from pydantic import BaseModel, DirectoryPath
 
 class Measurement(BaseModel, ABC):
     name: str
-    device_list: list[str]
     save_data: bool = True
     save_location: Optional[DirectoryPath] = None
 
