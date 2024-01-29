@@ -24,7 +24,7 @@ CONFIG = "config"
 # sense in the context of thes scan types
 
 
-class CorPlotMatScan(object):
+class MatCorrPlot(object):
     """Unpack a correlation plot scan .mat file"""
 
     def __init__(self, mat_file):
