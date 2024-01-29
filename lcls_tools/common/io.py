@@ -1,13 +1,19 @@
-from typing import Union
+from typing import Optional
 
-from lcls_tools.common.devices.device import Device
+from lcls_tools.common.measurement.measurement import Measurement
 
 
-def dump_data_to_h5py(
-        element: Union[Device, Measurement],
-        data: dict,
-        filename: str = None
-):
-    """
-    Dump data to
-    """
+class HDF5Dumper:
+    def __init__(self):
+        pass
+
+    def dump_data_to_file(
+            self,
+            measurement_data: dict,
+            measurement_obj: Measurement,
+            filename: Optional[str] = None
+    ):
+        """
+        Dump data to h5file
+        """
+        pass
