@@ -90,6 +90,9 @@ class MagnetTest(TestCase):
             "ctrl",
             "length",
             "b_tolerance",
+            "bmax", 
+            "bmin",
+        #    "bdes", # is this somewhere else?
         ]:
             self.assertTrue(
                 hasattr(self.magnet, item),
