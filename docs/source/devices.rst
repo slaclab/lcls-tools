@@ -1,3 +1,4 @@
+=======
 Devices
 =======
 
@@ -42,3 +43,25 @@ Magnet Class
 .. autoclass:: lcls_tools.common.devices.magnet.MagnetMetadata
     :members:
     :undoc-members:
+
+
+Screen Class
+============
+
+.. autoclass:: lcls_tools.common.devices.screen.Screen
+    :members:
+    :undoc-members:
+
+.. autoclass:: lcls_tools.common.devices.screen.ScreenCollection
+    :members:
+    :undoc-members:
+
+.. autoclass:: lcls_tools.common.devices.screen.ScreenControlInformation
+    :members:
+    :undoc-members:
+
+.. autoclass:: lcls_tools.common.devices.screen.ScreenPVSet
+    :members:
+    :undoc-members:
+
+

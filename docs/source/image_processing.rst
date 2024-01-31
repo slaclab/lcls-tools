@@ -1,8 +1,9 @@
+================
 Image Processing
 ================
 
-Hello, World!
-
+Image
+=====
 .. automodule:: lcls_tools.common.image_processing.image 
     :members:
     :undoc-members:
