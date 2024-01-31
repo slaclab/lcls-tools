@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.stats import norm
 from scipy.optimize import curve_fit
 import statistics
 from sklearn.metrics import mean_squared_error
@@ -7,7 +8,7 @@ from sklearn.metrics import mean_squared_error
 # from scipy.special import erf
 
 
-class FittingTool:
+class Fitting:
     def __init__(self, data: np.array, **kwargs):
         """tool takes in the data points for some distribution"""
 
@@ -195,9 +196,12 @@ class FittingTool:
 
     @staticmethod
     def gaussian(x, amp, mu, sig, offset):
-        """Gaussian Function"""
-        """need a way to guess params if amp =/"""
-        return amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0))) + offset
+        """Return Gaussian fit of 1D data array."""
+        #"""need a way to guess params if amp =/"""
+        #return amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0))) + offset
+        # Trying to increase consistency of test w/ scipy.norm
+        mean, std = norm.fit(x)
+        return norm.pdf(x, mean, std)
 
     @staticmethod
     def gaussian_with_linear_background(x, amp, mu, sig, offset, slope):
