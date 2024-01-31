@@ -12,5 +12,5 @@ class Measurement(BaseModel, ABC):
     @abstractmethod
     def measure(self) -> dict:
         """ Implements a measurement and returns a dictionary with the results"""
-        pass
+        raise NotImplementedError
 

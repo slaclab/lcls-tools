@@ -16,7 +16,7 @@ class HDF5IO:
         """
         Write data to h5file
         """
-        pass
+        raise NotImplementedError
 
     def read(
             self,
@@ -25,4 +25,4 @@ class HDF5IO:
         """
         Read data from h5file
         """
-        pass
+        raise NotImplementedError
