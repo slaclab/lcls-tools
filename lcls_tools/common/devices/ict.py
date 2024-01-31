@@ -6,7 +6,6 @@ from epics import PV
 
 class ICTPVSet(PVSet):
     """
-    The PV interface for screens is not uniform.
     We list the potential PVs below and only
     use the ones that are set to be PV-typed after
     initialisation.
