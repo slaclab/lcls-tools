@@ -1,36 +1,58 @@
+from typing import List, Union, Callable, Optional
 import numpy as np
 from scipy.stats import norm
 from scipy.optimize import curve_fit
-import statistics
-from sklearn.metrics import mean_squared_error
+from pydantic import (
+    BaseModel,
+    ConfigDict
+    PositiveFloat,
+    SerializeAsAny,
+    field_validator,
+)
 
+# import statistics
+# from sklearn.metrics import mean_squared_error
 # from scipy.ndimage import gaussian_filter
 # from scipy.special import erf
 
 
-class Fitting:
-    def __init__(self, data: np.array, **kwargs):
-        """tool takes in the data points for some distribution"""
+class FitOptions(BaseModel):
+    model_config = ConfigDict(
+        frozen=True,
+    )
+    type:  Optional[str] = None
+    batch: Optional[bool] = False
+    guess: Optional[dict] = None
+    best_fit: Optional[bool] = False
+    #data_dict: Optional[dict] = None
+    #n_restarts: Optional[int] = 10
 
-        self.options = {
-            "batch_mode": False,
-            "best_fit": False,
-            "data_dictionary": {},
-            "initial_guess_dictionary": {},
-            "n_restarts": 10,
-        }
-        self.options.update(kwargs)
+    # self.options = {
+    #    "batch_mode": False,
+    #    "best_fit": False,
+    #    "data_dictionary": {},
+    #    "initial_guess_dictionary": {},
+    #    "n_restarts": 10,
+    # }
+    # self.options.update(kwargs)
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
-        self.distribution_data = data
-        self.x = np.arange(len(data))
+
+class Fitting(BaseModel):
+    fit_options: SerializeAsAny[FitOptions]
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        # """tool takes in the data points for some distribution"""
+        #self.distribution_data = data
+        #self.x = np.arange(len(data))
 
         # need like some dictionary looper here.
-
-        # print(self.options)
-
-        self.initial_params = self.guess_params(
-            self.distribution_data, self.options["initial_guess_dictionary"]
-        )
+        #self.initial_params = self.guess_params(
+        #    self.distribution_data, self.options["initial_guess_dictionary"]
+        #)
 
     def guess_params(self, distribution: np.array, initial_guess: dict = {}) -> dict:
         initial_params = {}
@@ -197,8 +219,8 @@ class Fitting:
     @staticmethod
     def gaussian(x, amp, mu, sig, offset):
         """Return Gaussian fit of 1D data array."""
-        #"""need a way to guess params if amp =/"""
-        #return amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0))) + offset
+        # """need a way to guess params if amp =/"""
+        # return amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0))) + offset
         # Trying to increase consistency of test w/ scipy.norm
         mean, std = norm.fit(x)
         return norm.pdf(x, mean, std)
