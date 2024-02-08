@@ -6,12 +6,15 @@ magnets:
         bcon: BEND:UNDH:2130:BCON
         bctrl: BEND:UNDH:2130:BCTRL
         bdes: BEND:UNDH:2130:BDES
+        bmax: BEND:UNDH:2130:BMAX
+        bmin: BEND:UNDH:2130:BMIN
         ctrl: BEND:UNDH:2130:CTRL
       control_name: BEND:UNDH:2130
     metadata:
       area: UNDH
       beam_path: []
       sum_l_meters: null
+      type: BEND
   BCXCB22:
     controls_information:
       PVs: {}
@@ -20,6 +23,7 @@ magnets:
       area: UNDH
       beam_path: []
       sum_l_meters: null
+      type: BEND
   BCXCB23:
     controls_information:
       PVs:
@@ -27,12 +31,15 @@ magnets:
         bcon: BEND:UNDH:2160:BCON
         bctrl: BEND:UNDH:2160:BCTRL
         bdes: BEND:UNDH:2160:BDES
+        bmax: BEND:UNDH:2160:BMAX
+        bmin: BEND:UNDH:2160:BMIN
         ctrl: BEND:UNDH:2160:CTRL
       control_name: BEND:UNDH:2160
     metadata:
       area: UNDH
       beam_path: []
       sum_l_meters: null
+      type: BEND
   BCXCB24:
     controls_information:
       PVs:
@@ -40,12 +47,15 @@ magnets:
         bcon: BEND:UNDH:2175:BCON
         bctrl: BEND:UNDH:2175:BCTRL
         bdes: BEND:UNDH:2175:BDES
+        bmax: BEND:UNDH:2175:BMAX
+        bmin: BEND:UNDH:2175:BMIN
         ctrl: BEND:UNDH:2175:CTRL
       control_name: BEND:UNDH:2175
     metadata:
       area: UNDH
       beam_path: []
       sum_l_meters: null
+      type: BEND
   BCXCBX11:
     controls_information:
       PVs:
@@ -53,6 +63,8 @@ magnets:
         bcon: BEND:UNDH:1330:BCON
         bctrl: BEND:UNDH:1330:BCTRL
         bdes: BEND:UNDH:1330:BDES
+        bmax: BEND:UNDH:1330:BMAX
+        bmin: BEND:UNDH:1330:BMIN
         ctrl: BEND:UNDH:1330:CTRL
       control_name: BEND:UNDH:1330
     metadata:
@@ -64,6 +76,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1548.705
+      type: BEND
   BCXCBX12:
     controls_information:
       PVs:
@@ -71,6 +84,8 @@ magnets:
         bcon: BEND:UNDH:1355:BCON
         bctrl: BEND:UNDH:1355:BCTRL
         bdes: BEND:UNDH:1355:BDES
+        bmax: BEND:UNDH:1355:BMAX
+        bmin: BEND:UNDH:1355:BMIN
         ctrl: BEND:UNDH:1355:CTRL
       control_name: BEND:UNDH:1355
     metadata:
@@ -82,6 +97,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1549.935
+      type: BEND
   BCXCBX13:
     controls_information:
       PVs:
@@ -89,6 +105,8 @@ magnets:
         bcon: BEND:UNDH:1360:BCON
         bctrl: BEND:UNDH:1360:BCTRL
         bdes: BEND:UNDH:1360:BDES
+        bmax: BEND:UNDH:1360:BMAX
+        bmin: BEND:UNDH:1360:BMIN
         ctrl: BEND:UNDH:1360:CTRL
       control_name: BEND:UNDH:1360
     metadata:
@@ -100,6 +118,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1550.471
+      type: BEND
   BCXCBX14:
     controls_information:
       PVs:
@@ -107,6 +126,8 @@ magnets:
         bcon: BEND:UNDH:1375:BCON
         bctrl: BEND:UNDH:1375:BCTRL
         bdes: BEND:UNDH:1375:BDES
+        bmax: BEND:UNDH:1375:BMAX
+        bmin: BEND:UNDH:1375:BMIN
         ctrl: BEND:UNDH:1375:CTRL
       control_name: BEND:UNDH:1375
     metadata:
@@ -118,6 +139,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1551.701
+      type: BEND
   BCXCBX21:
     controls_information:
       PVs:
@@ -125,6 +147,8 @@ magnets:
         bcon: BEND:UNDH:2130:BCON
         bctrl: BEND:UNDH:2130:BCTRL
         bdes: BEND:UNDH:2130:BDES
+        bmax: BEND:UNDH:2130:BMAX
+        bmin: BEND:UNDH:2130:BMIN
         ctrl: BEND:UNDH:2130:CTRL
       control_name: BEND:UNDH:2130
     metadata:
@@ -136,6 +160,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1580.806
+      type: BEND
   BCXCBX22:
     controls_information:
       PVs:
@@ -143,6 +168,8 @@ magnets:
         bcon: BEND:UNDH:2155:BCON
         bctrl: BEND:UNDH:2155:BCTRL
         bdes: BEND:UNDH:2155:BDES
+        bmax: BEND:UNDH:2155:BMAX
+        bmin: BEND:UNDH:2155:BMIN
         ctrl: BEND:UNDH:2155:CTRL
       control_name: BEND:UNDH:2155
     metadata:
@@ -154,6 +181,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1582.037
+      type: BEND
   BCXCBX23:
     controls_information:
       PVs:
@@ -161,6 +189,8 @@ magnets:
         bcon: BEND:UNDH:2160:BCON
         bctrl: BEND:UNDH:2160:BCTRL
         bdes: BEND:UNDH:2160:BDES
+        bmax: BEND:UNDH:2160:BMAX
+        bmin: BEND:UNDH:2160:BMIN
         ctrl: BEND:UNDH:2160:CTRL
       control_name: BEND:UNDH:2160
     metadata:
@@ -172,6 +202,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1582.572
+      type: BEND
   BCXCBX24:
     controls_information:
       PVs:
@@ -179,6 +210,8 @@ magnets:
         bcon: BEND:UNDH:2175:BCON
         bctrl: BEND:UNDH:2175:BCTRL
         bdes: BEND:UNDH:2175:BDES
+        bmax: BEND:UNDH:2175:BMAX
+        bmin: BEND:UNDH:2175:BMIN
         ctrl: BEND:UNDH:2175:CTRL
       control_name: BEND:UNDH:2175
     metadata:
@@ -190,6 +223,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1583.803
+      type: BEND
   BCXHS1:
     controls_information:
       PVs:
@@ -197,6 +231,8 @@ magnets:
         bcon: BEND:UNDH:2810:BCON
         bctrl: BEND:UNDH:2810:BCTRL
         bdes: BEND:UNDH:2810:BDES
+        bmax: BEND:UNDH:2810:BMAX
+        bmin: BEND:UNDH:2810:BMIN
         ctrl: BEND:UNDH:2810:CTRL
       control_name: BEND:UNDH:2810
     metadata:
@@ -208,6 +244,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1608.932
+      type: BEND
   BCXHS2:
     controls_information:
       PVs:
@@ -215,6 +252,8 @@ magnets:
         bcon: BEND:UNDH:2830:BCON
         bctrl: BEND:UNDH:2830:BCTRL
         bdes: BEND:UNDH:2830:BDES
+        bmax: BEND:UNDH:2830:BMAX
+        bmin: BEND:UNDH:2830:BMIN
         ctrl: BEND:UNDH:2830:CTRL
       control_name: BEND:UNDH:2830
     metadata:
@@ -226,6 +265,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1609.889
+      type: BEND
   BCXHS3:
     controls_information:
       PVs:
@@ -233,6 +273,8 @@ magnets:
         bcon: BEND:UNDH:2850:BCON
         bctrl: BEND:UNDH:2850:BCTRL
         bdes: BEND:UNDH:2850:BDES
+        bmax: BEND:UNDH:2850:BMAX
+        bmin: BEND:UNDH:2850:BMIN
         ctrl: BEND:UNDH:2850:CTRL
       control_name: BEND:UNDH:2850
     metadata:
@@ -244,6 +286,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1610.825
+      type: BEND
   BCXHS4:
     controls_information:
       PVs:
@@ -251,6 +294,8 @@ magnets:
         bcon: BEND:UNDH:2870:BCON
         bctrl: BEND:UNDH:2870:BCTRL
         bdes: BEND:UNDH:2870:BDES
+        bmax: BEND:UNDH:2870:BMAX
+        bmin: BEND:UNDH:2870:BMIN
         ctrl: BEND:UNDH:2870:CTRL
       control_name: BEND:UNDH:2870
     metadata:
@@ -262,6 +307,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1611.782
+      type: BEND
   QHXH13:
     controls_information:
       PVs:
@@ -269,6 +315,8 @@ magnets:
         bcon: QUAD:UNDH:1380:BCON
         bctrl: QUAD:UNDH:1380:BCTRL
         bdes: QUAD:UNDH:1380:BDES
+        bmax: QUAD:UNDH:1380:BMAX
+        bmin: QUAD:UNDH:1380:BMIN
         ctrl: QUAD:UNDH:1380:CTRL
       control_name: QUAD:UNDH:1380
     metadata:
@@ -280,6 +328,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1552.131
+      type: QUAD
   QHXH14:
     controls_information:
       PVs:
@@ -287,6 +336,8 @@ magnets:
         bcon: QUAD:UNDH:1480:BCON
         bctrl: QUAD:UNDH:1480:BCTRL
         bdes: QUAD:UNDH:1480:BDES
+        bmax: QUAD:UNDH:1480:BMAX
+        bmin: QUAD:UNDH:1480:BMIN
         ctrl: QUAD:UNDH:1480:CTRL
       control_name: QUAD:UNDH:1480
     metadata:
@@ -298,6 +349,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1556.01
+      type: QUAD
   QHXH15:
     controls_information:
       PVs:
@@ -305,6 +357,8 @@ magnets:
         bcon: QUAD:UNDH:1580:BCON
         bctrl: QUAD:UNDH:1580:BCTRL
         bdes: QUAD:UNDH:1580:BDES
+        bmax: QUAD:UNDH:1580:BMAX
+        bmin: QUAD:UNDH:1580:BMIN
         ctrl: QUAD:UNDH:1580:CTRL
       control_name: QUAD:UNDH:1580
     metadata:
@@ -316,6 +370,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1560.023
+      type: QUAD
   QHXH16:
     controls_information:
       PVs:
@@ -323,6 +378,8 @@ magnets:
         bcon: QUAD:UNDH:1680:BCON
         bctrl: QUAD:UNDH:1680:BCTRL
         bdes: QUAD:UNDH:1680:BDES
+        bmax: QUAD:UNDH:1680:BMAX
+        bmin: QUAD:UNDH:1680:BMIN
         ctrl: QUAD:UNDH:1680:CTRL
       control_name: QUAD:UNDH:1680
     metadata:
@@ -334,6 +391,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1564.035
+      type: QUAD
   QHXH17:
     controls_information:
       PVs:
@@ -341,6 +399,8 @@ magnets:
         bcon: QUAD:UNDH:1780:BCON
         bctrl: QUAD:UNDH:1780:BCTRL
         bdes: QUAD:UNDH:1780:BDES
+        bmax: QUAD:UNDH:1780:BMAX
+        bmin: QUAD:UNDH:1780:BMIN
         ctrl: QUAD:UNDH:1780:CTRL
       control_name: QUAD:UNDH:1780
     metadata:
@@ -352,6 +412,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1568.048
+      type: QUAD
   QHXH18:
     controls_information:
       PVs:
@@ -359,6 +420,8 @@ magnets:
         bcon: QUAD:UNDH:1880:BCON
         bctrl: QUAD:UNDH:1880:BCTRL
         bdes: QUAD:UNDH:1880:BDES
+        bmax: QUAD:UNDH:1880:BMAX
+        bmin: QUAD:UNDH:1880:BMIN
         ctrl: QUAD:UNDH:1880:CTRL
       control_name: QUAD:UNDH:1880
     metadata:
@@ -370,6 +433,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1572.061
+      type: QUAD
   QHXH19:
     controls_information:
       PVs:
@@ -377,6 +441,8 @@ magnets:
         bcon: QUAD:UNDH:1980:BCON
         bctrl: QUAD:UNDH:1980:BCTRL
         bdes: QUAD:UNDH:1980:BDES
+        bmax: QUAD:UNDH:1980:BMAX
+        bmin: QUAD:UNDH:1980:BMIN
         ctrl: QUAD:UNDH:1980:CTRL
       control_name: QUAD:UNDH:1980
     metadata:
@@ -388,6 +454,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1576.073
+      type: QUAD
   QHXH20:
     controls_information:
       PVs:
@@ -395,6 +462,8 @@ magnets:
         bcon: QUAD:UNDH:2080:BCON
         bctrl: QUAD:UNDH:2080:BCTRL
         bdes: QUAD:UNDH:2080:BDES
+        bmax: QUAD:UNDH:2080:BMAX
+        bmin: QUAD:UNDH:2080:BMIN
         ctrl: QUAD:UNDH:2080:CTRL
       control_name: QUAD:UNDH:2080
     metadata:
@@ -406,6 +475,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1580.086
+      type: QUAD
   QHXH21:
     controls_information:
       PVs:
@@ -413,6 +483,8 @@ magnets:
         bcon: QUAD:UNDH:2180:BCON
         bctrl: QUAD:UNDH:2180:BCTRL
         bdes: QUAD:UNDH:2180:BDES
+        bmax: QUAD:UNDH:2180:BMAX
+        bmin: QUAD:UNDH:2180:BMIN
         ctrl: QUAD:UNDH:2180:CTRL
       control_name: QUAD:UNDH:2180
     metadata:
@@ -424,6 +496,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1584.232
+      type: QUAD
   QHXH22:
     controls_information:
       PVs:
@@ -431,6 +504,8 @@ magnets:
         bcon: QUAD:UNDH:2280:BCON
         bctrl: QUAD:UNDH:2280:BCTRL
         bdes: QUAD:UNDH:2280:BDES
+        bmax: QUAD:UNDH:2280:BMAX
+        bmin: QUAD:UNDH:2280:BMIN
         ctrl: QUAD:UNDH:2280:CTRL
       control_name: QUAD:UNDH:2280
     metadata:
@@ -442,6 +517,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1588.111
+      type: QUAD
   QHXH23:
     controls_information:
       PVs:
@@ -449,6 +525,8 @@ magnets:
         bcon: QUAD:UNDH:2380:BCON
         bctrl: QUAD:UNDH:2380:BCTRL
         bdes: QUAD:UNDH:2380:BDES
+        bmax: QUAD:UNDH:2380:BMAX
+        bmin: QUAD:UNDH:2380:BMIN
         ctrl: QUAD:UNDH:2380:CTRL
       control_name: QUAD:UNDH:2380
     metadata:
@@ -460,6 +538,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1592.124
+      type: QUAD
   QHXH24:
     controls_information:
       PVs:
@@ -467,6 +546,8 @@ magnets:
         bcon: QUAD:UNDH:2480:BCON
         bctrl: QUAD:UNDH:2480:BCTRL
         bdes: QUAD:UNDH:2480:BDES
+        bmax: QUAD:UNDH:2480:BMAX
+        bmin: QUAD:UNDH:2480:BMIN
         ctrl: QUAD:UNDH:2480:CTRL
       control_name: QUAD:UNDH:2480
     metadata:
@@ -478,6 +559,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1596.137
+      type: QUAD
   QHXH25:
     controls_information:
       PVs:
@@ -485,6 +567,8 @@ magnets:
         bcon: QUAD:UNDH:2580:BCON
         bctrl: QUAD:UNDH:2580:BCTRL
         bdes: QUAD:UNDH:2580:BDES
+        bmax: QUAD:UNDH:2580:BMAX
+        bmin: QUAD:UNDH:2580:BMIN
         ctrl: QUAD:UNDH:2580:CTRL
       control_name: QUAD:UNDH:2580
     metadata:
@@ -496,6 +580,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1600.149
+      type: QUAD
   QHXH26:
     controls_information:
       PVs:
@@ -503,6 +588,8 @@ magnets:
         bcon: QUAD:UNDH:2680:BCON
         bctrl: QUAD:UNDH:2680:BCTRL
         bdes: QUAD:UNDH:2680:BDES
+        bmax: QUAD:UNDH:2680:BMAX
+        bmin: QUAD:UNDH:2680:BMIN
         ctrl: QUAD:UNDH:2680:CTRL
       control_name: QUAD:UNDH:2680
     metadata:
@@ -514,6 +601,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1604.162
+      type: QUAD
   QHXH27:
     controls_information:
       PVs:
@@ -521,6 +609,8 @@ magnets:
         bcon: QUAD:UNDH:2780:BCON
         bctrl: QUAD:UNDH:2780:BCTRL
         bdes: QUAD:UNDH:2780:BDES
+        bmax: QUAD:UNDH:2780:BMAX
+        bmin: QUAD:UNDH:2780:BMIN
         ctrl: QUAD:UNDH:2780:CTRL
       control_name: QUAD:UNDH:2780
     metadata:
@@ -532,6 +622,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1608.175
+      type: QUAD
   QHXH28:
     controls_information:
       PVs:
@@ -539,6 +630,8 @@ magnets:
         bcon: QUAD:UNDH:2880:BCON
         bctrl: QUAD:UNDH:2880:BCTRL
         bdes: QUAD:UNDH:2880:BDES
+        bmax: QUAD:UNDH:2880:BMAX
+        bmin: QUAD:UNDH:2880:BMIN
         ctrl: QUAD:UNDH:2880:CTRL
       control_name: QUAD:UNDH:2880
     metadata:
@@ -550,6 +643,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1612.187
+      type: QUAD
   QHXH29:
     controls_information:
       PVs:
@@ -557,6 +651,8 @@ magnets:
         bcon: QUAD:UNDH:2980:BCON
         bctrl: QUAD:UNDH:2980:BCTRL
         bdes: QUAD:UNDH:2980:BDES
+        bmax: QUAD:UNDH:2980:BMAX
+        bmin: QUAD:UNDH:2980:BMIN
         ctrl: QUAD:UNDH:2980:CTRL
       control_name: QUAD:UNDH:2980
     metadata:
@@ -568,6 +664,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1616.2
+      type: QUAD
   QHXH30:
     controls_information:
       PVs:
@@ -575,6 +672,8 @@ magnets:
         bcon: QUAD:UNDH:3080:BCON
         bctrl: QUAD:UNDH:3080:BCTRL
         bdes: QUAD:UNDH:3080:BDES
+        bmax: QUAD:UNDH:3080:BMAX
+        bmin: QUAD:UNDH:3080:BMIN
         ctrl: QUAD:UNDH:3080:CTRL
       control_name: QUAD:UNDH:3080
     metadata:
@@ -586,6 +685,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1620.213
+      type: QUAD
   QHXH31:
     controls_information:
       PVs:
@@ -593,6 +693,8 @@ magnets:
         bcon: QUAD:UNDH:3180:BCON
         bctrl: QUAD:UNDH:3180:BCTRL
         bdes: QUAD:UNDH:3180:BDES
+        bmax: QUAD:UNDH:3180:BMAX
+        bmin: QUAD:UNDH:3180:BMIN
         ctrl: QUAD:UNDH:3180:CTRL
       control_name: QUAD:UNDH:3180
     metadata:
@@ -604,6 +706,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1624.225
+      type: QUAD
   QHXH32:
     controls_information:
       PVs:
@@ -611,6 +714,8 @@ magnets:
         bcon: QUAD:UNDH:3280:BCON
         bctrl: QUAD:UNDH:3280:BCTRL
         bdes: QUAD:UNDH:3280:BDES
+        bmax: QUAD:UNDH:3280:BMAX
+        bmin: QUAD:UNDH:3280:BMIN
         ctrl: QUAD:UNDH:3280:CTRL
       control_name: QUAD:UNDH:3280
     metadata:
@@ -622,6 +727,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1628.238
+      type: QUAD
   QHXH33:
     controls_information:
       PVs:
@@ -629,6 +735,8 @@ magnets:
         bcon: QUAD:UNDH:3380:BCON
         bctrl: QUAD:UNDH:3380:BCTRL
         bdes: QUAD:UNDH:3380:BDES
+        bmax: QUAD:UNDH:3380:BMAX
+        bmin: QUAD:UNDH:3380:BMIN
         ctrl: QUAD:UNDH:3380:CTRL
       control_name: QUAD:UNDH:3380
     metadata:
@@ -640,6 +748,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1632.251
+      type: QUAD
   QHXH34:
     controls_information:
       PVs:
@@ -647,6 +756,8 @@ magnets:
         bcon: QUAD:UNDH:3480:BCON
         bctrl: QUAD:UNDH:3480:BCTRL
         bdes: QUAD:UNDH:3480:BDES
+        bmax: QUAD:UNDH:3480:BMAX
+        bmin: QUAD:UNDH:3480:BMIN
         ctrl: QUAD:UNDH:3480:CTRL
       control_name: QUAD:UNDH:3480
     metadata:
@@ -658,6 +769,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1636.263
+      type: QUAD
   QHXH35:
     controls_information:
       PVs:
@@ -665,6 +777,8 @@ magnets:
         bcon: QUAD:UNDH:3580:BCON
         bctrl: QUAD:UNDH:3580:BCTRL
         bdes: QUAD:UNDH:3580:BDES
+        bmax: QUAD:UNDH:3580:BMAX
+        bmin: QUAD:UNDH:3580:BMIN
         ctrl: QUAD:UNDH:3580:CTRL
       control_name: QUAD:UNDH:3580
     metadata:
@@ -676,6 +790,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1640.276
+      type: QUAD
   QHXH36:
     controls_information:
       PVs:
@@ -683,6 +798,8 @@ magnets:
         bcon: QUAD:UNDH:3680:BCON
         bctrl: QUAD:UNDH:3680:BCTRL
         bdes: QUAD:UNDH:3680:BDES
+        bmax: QUAD:UNDH:3680:BMAX
+        bmin: QUAD:UNDH:3680:BMIN
         ctrl: QUAD:UNDH:3680:CTRL
       control_name: QUAD:UNDH:3680
     metadata:
@@ -694,6 +811,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1644.289
+      type: QUAD
   QHXH37:
     controls_information:
       PVs:
@@ -701,6 +819,8 @@ magnets:
         bcon: QUAD:UNDH:3780:BCON
         bctrl: QUAD:UNDH:3780:BCTRL
         bdes: QUAD:UNDH:3780:BDES
+        bmax: QUAD:UNDH:3780:BMAX
+        bmin: QUAD:UNDH:3780:BMIN
         ctrl: QUAD:UNDH:3780:CTRL
       control_name: QUAD:UNDH:3780
     metadata:
@@ -712,6 +832,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1648.301
+      type: QUAD
   QHXH38:
     controls_information:
       PVs:
@@ -719,6 +840,8 @@ magnets:
         bcon: QUAD:UNDH:3880:BCON
         bctrl: QUAD:UNDH:3880:BCTRL
         bdes: QUAD:UNDH:3880:BDES
+        bmax: QUAD:UNDH:3880:BMAX
+        bmin: QUAD:UNDH:3880:BMIN
         ctrl: QUAD:UNDH:3880:CTRL
       control_name: QUAD:UNDH:3880
     metadata:
@@ -730,6 +853,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1652.314
+      type: QUAD
   QHXH39:
     controls_information:
       PVs:
@@ -737,6 +861,8 @@ magnets:
         bcon: QUAD:UNDH:3980:BCON
         bctrl: QUAD:UNDH:3980:BCTRL
         bdes: QUAD:UNDH:3980:BDES
+        bmax: QUAD:UNDH:3980:BMAX
+        bmin: QUAD:UNDH:3980:BMIN
         ctrl: QUAD:UNDH:3980:CTRL
       control_name: QUAD:UNDH:3980
     metadata:
@@ -748,6 +874,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1656.327
+      type: QUAD
   QHXH40:
     controls_information:
       PVs:
@@ -755,6 +882,8 @@ magnets:
         bcon: QUAD:UNDH:4080:BCON
         bctrl: QUAD:UNDH:4080:BCTRL
         bdes: QUAD:UNDH:4080:BDES
+        bmax: QUAD:UNDH:4080:BMAX
+        bmin: QUAD:UNDH:4080:BMIN
         ctrl: QUAD:UNDH:4080:CTRL
       control_name: QUAD:UNDH:4080
     metadata:
@@ -766,6 +895,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1660.339
+      type: QUAD
   QHXH41:
     controls_information:
       PVs:
@@ -773,6 +903,8 @@ magnets:
         bcon: QUAD:UNDH:4180:BCON
         bctrl: QUAD:UNDH:4180:BCTRL
         bdes: QUAD:UNDH:4180:BDES
+        bmax: QUAD:UNDH:4180:BMAX
+        bmin: QUAD:UNDH:4180:BMIN
         ctrl: QUAD:UNDH:4180:CTRL
       control_name: QUAD:UNDH:4180
     metadata:
@@ -784,6 +916,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1664.352
+      type: QUAD
   QHXH42:
     controls_information:
       PVs:
@@ -791,6 +924,8 @@ magnets:
         bcon: QUAD:UNDH:4280:BCON
         bctrl: QUAD:UNDH:4280:BCTRL
         bdes: QUAD:UNDH:4280:BDES
+        bmax: QUAD:UNDH:4280:BMAX
+        bmin: QUAD:UNDH:4280:BMIN
         ctrl: QUAD:UNDH:4280:CTRL
       control_name: QUAD:UNDH:4280
     metadata:
@@ -802,6 +937,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1668.365
+      type: QUAD
   QHXH43:
     controls_information:
       PVs:
@@ -809,6 +945,8 @@ magnets:
         bcon: QUAD:UNDH:4380:BCON
         bctrl: QUAD:UNDH:4380:BCTRL
         bdes: QUAD:UNDH:4380:BDES
+        bmax: QUAD:UNDH:4380:BMAX
+        bmin: QUAD:UNDH:4380:BMIN
         ctrl: QUAD:UNDH:4380:CTRL
       control_name: QUAD:UNDH:4380
     metadata:
@@ -820,6 +958,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1672.377
+      type: QUAD
   QHXH44:
     controls_information:
       PVs:
@@ -827,6 +966,8 @@ magnets:
         bcon: QUAD:UNDH:4480:BCON
         bctrl: QUAD:UNDH:4480:BCTRL
         bdes: QUAD:UNDH:4480:BDES
+        bmax: QUAD:UNDH:4480:BMAX
+        bmin: QUAD:UNDH:4480:BMIN
         ctrl: QUAD:UNDH:4480:CTRL
       control_name: QUAD:UNDH:4480
     metadata:
@@ -838,6 +979,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1676.39
+      type: QUAD
   QHXH45:
     controls_information:
       PVs:
@@ -845,6 +987,8 @@ magnets:
         bcon: QUAD:UNDH:4580:BCON
         bctrl: QUAD:UNDH:4580:BCTRL
         bdes: QUAD:UNDH:4580:BDES
+        bmax: QUAD:UNDH:4580:BMAX
+        bmin: QUAD:UNDH:4580:BMIN
         ctrl: QUAD:UNDH:4580:CTRL
       control_name: QUAD:UNDH:4580
     metadata:
@@ -856,6 +1000,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1680.403
+      type: QUAD
   QHXH46:
     controls_information:
       PVs:
@@ -863,6 +1008,8 @@ magnets:
         bcon: QUAD:UNDH:4680:BCON
         bctrl: QUAD:UNDH:4680:BCTRL
         bdes: QUAD:UNDH:4680:BDES
+        bmax: QUAD:UNDH:4680:BMAX
+        bmin: QUAD:UNDH:4680:BMIN
         ctrl: QUAD:UNDH:4680:CTRL
       control_name: QUAD:UNDH:4680
     metadata:
@@ -874,6 +1021,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1684.415
+      type: QUAD
   QHXH47:
     controls_information:
       PVs:
@@ -881,6 +1029,8 @@ magnets:
         bcon: QUAD:UNDH:4780:BCON
         bctrl: QUAD:UNDH:4780:BCTRL
         bdes: QUAD:UNDH:4780:BDES
+        bmax: QUAD:UNDH:4780:BMAX
+        bmin: QUAD:UNDH:4780:BMIN
         ctrl: QUAD:UNDH:4780:CTRL
       control_name: QUAD:UNDH:4780
     metadata:
@@ -892,6 +1042,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1688.428
+      type: QUAD
   XCHU21:
     controls_information:
       PVs: {}
@@ -900,6 +1051,7 @@ magnets:
       area: UNDH
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   XCHX13:
     controls_information:
       PVs:
@@ -907,6 +1059,8 @@ magnets:
         bcon: XCOR:UNDH:1380:BCON
         bctrl: XCOR:UNDH:1380:BCTRL
         bdes: XCOR:UNDH:1380:BDES
+        bmax: XCOR:UNDH:1380:BMAX
+        bmin: XCOR:UNDH:1380:BMIN
         ctrl: XCOR:UNDH:1380:CTRL
       control_name: XCOR:UNDH:1380
     metadata:
@@ -918,6 +1072,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1552.131
+      type: XCOR
   XCHX14:
     controls_information:
       PVs:
@@ -925,6 +1080,8 @@ magnets:
         bcon: XCOR:UNDH:1480:BCON
         bctrl: XCOR:UNDH:1480:BCTRL
         bdes: XCOR:UNDH:1480:BDES
+        bmax: XCOR:UNDH:1480:BMAX
+        bmin: XCOR:UNDH:1480:BMIN
         ctrl: XCOR:UNDH:1480:CTRL
       control_name: XCOR:UNDH:1480
     metadata:
@@ -936,6 +1093,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1556.01
+      type: XCOR
   XCHX15:
     controls_information:
       PVs:
@@ -943,6 +1101,8 @@ magnets:
         bcon: XCOR:UNDH:1580:BCON
         bctrl: XCOR:UNDH:1580:BCTRL
         bdes: XCOR:UNDH:1580:BDES
+        bmax: XCOR:UNDH:1580:BMAX
+        bmin: XCOR:UNDH:1580:BMIN
         ctrl: XCOR:UNDH:1580:CTRL
       control_name: XCOR:UNDH:1580
     metadata:
@@ -954,6 +1114,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1560.023
+      type: XCOR
   XCHX16:
     controls_information:
       PVs:
@@ -961,6 +1122,8 @@ magnets:
         bcon: XCOR:UNDH:1680:BCON
         bctrl: XCOR:UNDH:1680:BCTRL
         bdes: XCOR:UNDH:1680:BDES
+        bmax: XCOR:UNDH:1680:BMAX
+        bmin: XCOR:UNDH:1680:BMIN
         ctrl: XCOR:UNDH:1680:CTRL
       control_name: XCOR:UNDH:1680
     metadata:
@@ -972,6 +1135,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1564.035
+      type: XCOR
   XCHX17:
     controls_information:
       PVs:
@@ -979,6 +1143,8 @@ magnets:
         bcon: XCOR:UNDH:1780:BCON
         bctrl: XCOR:UNDH:1780:BCTRL
         bdes: XCOR:UNDH:1780:BDES
+        bmax: XCOR:UNDH:1780:BMAX
+        bmin: XCOR:UNDH:1780:BMIN
         ctrl: XCOR:UNDH:1780:CTRL
       control_name: XCOR:UNDH:1780
     metadata:
@@ -990,6 +1156,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1568.048
+      type: XCOR
   XCHX18:
     controls_information:
       PVs:
@@ -997,6 +1164,8 @@ magnets:
         bcon: XCOR:UNDH:1880:BCON
         bctrl: XCOR:UNDH:1880:BCTRL
         bdes: XCOR:UNDH:1880:BDES
+        bmax: XCOR:UNDH:1880:BMAX
+        bmin: XCOR:UNDH:1880:BMIN
         ctrl: XCOR:UNDH:1880:CTRL
       control_name: XCOR:UNDH:1880
     metadata:
@@ -1008,6 +1177,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1572.061
+      type: XCOR
   XCHX19:
     controls_information:
       PVs:
@@ -1015,6 +1185,8 @@ magnets:
         bcon: XCOR:UNDH:1980:BCON
         bctrl: XCOR:UNDH:1980:BCTRL
         bdes: XCOR:UNDH:1980:BDES
+        bmax: XCOR:UNDH:1980:BMAX
+        bmin: XCOR:UNDH:1980:BMIN
         ctrl: XCOR:UNDH:1980:CTRL
       control_name: XCOR:UNDH:1980
     metadata:
@@ -1026,6 +1198,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1576.073
+      type: XCOR
   XCHX20:
     controls_information:
       PVs:
@@ -1033,6 +1206,8 @@ magnets:
         bcon: XCOR:UNDH:2080:BCON
         bctrl: XCOR:UNDH:2080:BCTRL
         bdes: XCOR:UNDH:2080:BDES
+        bmax: XCOR:UNDH:2080:BMAX
+        bmin: XCOR:UNDH:2080:BMIN
         ctrl: XCOR:UNDH:2080:CTRL
       control_name: XCOR:UNDH:2080
     metadata:
@@ -1044,6 +1219,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1580.086
+      type: XCOR
   XCHX21:
     controls_information:
       PVs:
@@ -1051,6 +1227,8 @@ magnets:
         bcon: XCOR:UNDH:2180:BCON
         bctrl: XCOR:UNDH:2180:BCTRL
         bdes: XCOR:UNDH:2180:BDES
+        bmax: XCOR:UNDH:2180:BMAX
+        bmin: XCOR:UNDH:2180:BMIN
         ctrl: XCOR:UNDH:2180:CTRL
       control_name: XCOR:UNDH:2180
     metadata:
@@ -1062,6 +1240,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1584.232
+      type: XCOR
   XCHX22:
     controls_information:
       PVs:
@@ -1069,6 +1248,8 @@ magnets:
         bcon: XCOR:UNDH:2280:BCON
         bctrl: XCOR:UNDH:2280:BCTRL
         bdes: XCOR:UNDH:2280:BDES
+        bmax: XCOR:UNDH:2280:BMAX
+        bmin: XCOR:UNDH:2280:BMIN
         ctrl: XCOR:UNDH:2280:CTRL
       control_name: XCOR:UNDH:2280
     metadata:
@@ -1080,6 +1261,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1588.111
+      type: XCOR
   XCHX23:
     controls_information:
       PVs:
@@ -1087,6 +1269,8 @@ magnets:
         bcon: XCOR:UNDH:2380:BCON
         bctrl: XCOR:UNDH:2380:BCTRL
         bdes: XCOR:UNDH:2380:BDES
+        bmax: XCOR:UNDH:2380:BMAX
+        bmin: XCOR:UNDH:2380:BMIN
         ctrl: XCOR:UNDH:2380:CTRL
       control_name: XCOR:UNDH:2380
     metadata:
@@ -1098,6 +1282,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1592.124
+      type: XCOR
   XCHX24:
     controls_information:
       PVs:
@@ -1105,6 +1290,8 @@ magnets:
         bcon: XCOR:UNDH:2480:BCON
         bctrl: XCOR:UNDH:2480:BCTRL
         bdes: XCOR:UNDH:2480:BDES
+        bmax: XCOR:UNDH:2480:BMAX
+        bmin: XCOR:UNDH:2480:BMIN
         ctrl: XCOR:UNDH:2480:CTRL
       control_name: XCOR:UNDH:2480
     metadata:
@@ -1116,6 +1303,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1596.137
+      type: XCOR
   XCHX25:
     controls_information:
       PVs:
@@ -1123,6 +1311,8 @@ magnets:
         bcon: XCOR:UNDH:2580:BCON
         bctrl: XCOR:UNDH:2580:BCTRL
         bdes: XCOR:UNDH:2580:BDES
+        bmax: XCOR:UNDH:2580:BMAX
+        bmin: XCOR:UNDH:2580:BMIN
         ctrl: XCOR:UNDH:2580:CTRL
       control_name: XCOR:UNDH:2580
     metadata:
@@ -1134,6 +1324,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1600.149
+      type: XCOR
   XCHX26:
     controls_information:
       PVs:
@@ -1141,6 +1332,8 @@ magnets:
         bcon: XCOR:UNDH:2680:BCON
         bctrl: XCOR:UNDH:2680:BCTRL
         bdes: XCOR:UNDH:2680:BDES
+        bmax: XCOR:UNDH:2680:BMAX
+        bmin: XCOR:UNDH:2680:BMIN
         ctrl: XCOR:UNDH:2680:CTRL
       control_name: XCOR:UNDH:2680
     metadata:
@@ -1152,6 +1345,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1604.162
+      type: XCOR
   XCHX27:
     controls_information:
       PVs:
@@ -1159,6 +1353,8 @@ magnets:
         bcon: XCOR:UNDH:2780:BCON
         bctrl: XCOR:UNDH:2780:BCTRL
         bdes: XCOR:UNDH:2780:BDES
+        bmax: XCOR:UNDH:2780:BMAX
+        bmin: XCOR:UNDH:2780:BMIN
         ctrl: XCOR:UNDH:2780:CTRL
       control_name: XCOR:UNDH:2780
     metadata:
@@ -1170,6 +1366,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1608.175
+      type: XCOR
   XCHX28:
     controls_information:
       PVs:
@@ -1177,6 +1374,8 @@ magnets:
         bcon: XCOR:UNDH:2880:BCON
         bctrl: XCOR:UNDH:2880:BCTRL
         bdes: XCOR:UNDH:2880:BDES
+        bmax: XCOR:UNDH:2880:BMAX
+        bmin: XCOR:UNDH:2880:BMIN
         ctrl: XCOR:UNDH:2880:CTRL
       control_name: XCOR:UNDH:2880
     metadata:
@@ -1188,6 +1387,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1612.187
+      type: XCOR
   XCHX29:
     controls_information:
       PVs:
@@ -1195,6 +1395,8 @@ magnets:
         bcon: XCOR:UNDH:2980:BCON
         bctrl: XCOR:UNDH:2980:BCTRL
         bdes: XCOR:UNDH:2980:BDES
+        bmax: XCOR:UNDH:2980:BMAX
+        bmin: XCOR:UNDH:2980:BMIN
         ctrl: XCOR:UNDH:2980:CTRL
       control_name: XCOR:UNDH:2980
     metadata:
@@ -1206,6 +1408,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1616.2
+      type: XCOR
   XCHX30:
     controls_information:
       PVs:
@@ -1213,6 +1416,8 @@ magnets:
         bcon: XCOR:UNDH:3080:BCON
         bctrl: XCOR:UNDH:3080:BCTRL
         bdes: XCOR:UNDH:3080:BDES
+        bmax: XCOR:UNDH:3080:BMAX
+        bmin: XCOR:UNDH:3080:BMIN
         ctrl: XCOR:UNDH:3080:CTRL
       control_name: XCOR:UNDH:3080
     metadata:
@@ -1224,6 +1429,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1620.213
+      type: XCOR
   XCHX31:
     controls_information:
       PVs:
@@ -1231,6 +1437,8 @@ magnets:
         bcon: XCOR:UNDH:3180:BCON
         bctrl: XCOR:UNDH:3180:BCTRL
         bdes: XCOR:UNDH:3180:BDES
+        bmax: XCOR:UNDH:3180:BMAX
+        bmin: XCOR:UNDH:3180:BMIN
         ctrl: XCOR:UNDH:3180:CTRL
       control_name: XCOR:UNDH:3180
     metadata:
@@ -1242,6 +1450,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1624.225
+      type: XCOR
   XCHX32:
     controls_information:
       PVs:
@@ -1249,6 +1458,8 @@ magnets:
         bcon: XCOR:UNDH:3280:BCON
         bctrl: XCOR:UNDH:3280:BCTRL
         bdes: XCOR:UNDH:3280:BDES
+        bmax: XCOR:UNDH:3280:BMAX
+        bmin: XCOR:UNDH:3280:BMIN
         ctrl: XCOR:UNDH:3280:CTRL
       control_name: XCOR:UNDH:3280
     metadata:
@@ -1260,6 +1471,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1628.238
+      type: XCOR
   XCHX33:
     controls_information:
       PVs:
@@ -1267,6 +1479,8 @@ magnets:
         bcon: XCOR:UNDH:3380:BCON
         bctrl: XCOR:UNDH:3380:BCTRL
         bdes: XCOR:UNDH:3380:BDES
+        bmax: XCOR:UNDH:3380:BMAX
+        bmin: XCOR:UNDH:3380:BMIN
         ctrl: XCOR:UNDH:3380:CTRL
       control_name: XCOR:UNDH:3380
     metadata:
@@ -1278,6 +1492,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1632.251
+      type: XCOR
   XCHX34:
     controls_information:
       PVs:
@@ -1285,6 +1500,8 @@ magnets:
         bcon: XCOR:UNDH:3480:BCON
         bctrl: XCOR:UNDH:3480:BCTRL
         bdes: XCOR:UNDH:3480:BDES
+        bmax: XCOR:UNDH:3480:BMAX
+        bmin: XCOR:UNDH:3480:BMIN
         ctrl: XCOR:UNDH:3480:CTRL
       control_name: XCOR:UNDH:3480
     metadata:
@@ -1296,6 +1513,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1636.263
+      type: XCOR
   XCHX35:
     controls_information:
       PVs:
@@ -1303,6 +1521,8 @@ magnets:
         bcon: XCOR:UNDH:3580:BCON
         bctrl: XCOR:UNDH:3580:BCTRL
         bdes: XCOR:UNDH:3580:BDES
+        bmax: XCOR:UNDH:3580:BMAX
+        bmin: XCOR:UNDH:3580:BMIN
         ctrl: XCOR:UNDH:3580:CTRL
       control_name: XCOR:UNDH:3580
     metadata:
@@ -1314,6 +1534,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1640.276
+      type: XCOR
   XCHX36:
     controls_information:
       PVs:
@@ -1321,6 +1542,8 @@ magnets:
         bcon: XCOR:UNDH:3680:BCON
         bctrl: XCOR:UNDH:3680:BCTRL
         bdes: XCOR:UNDH:3680:BDES
+        bmax: XCOR:UNDH:3680:BMAX
+        bmin: XCOR:UNDH:3680:BMIN
         ctrl: XCOR:UNDH:3680:CTRL
       control_name: XCOR:UNDH:3680
     metadata:
@@ -1332,6 +1555,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1644.289
+      type: XCOR
   XCHX37:
     controls_information:
       PVs:
@@ -1339,6 +1563,8 @@ magnets:
         bcon: XCOR:UNDH:3780:BCON
         bctrl: XCOR:UNDH:3780:BCTRL
         bdes: XCOR:UNDH:3780:BDES
+        bmax: XCOR:UNDH:3780:BMAX
+        bmin: XCOR:UNDH:3780:BMIN
         ctrl: XCOR:UNDH:3780:CTRL
       control_name: XCOR:UNDH:3780
     metadata:
@@ -1350,6 +1576,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1648.301
+      type: XCOR
   XCHX38:
     controls_information:
       PVs:
@@ -1357,6 +1584,8 @@ magnets:
         bcon: XCOR:UNDH:3880:BCON
         bctrl: XCOR:UNDH:3880:BCTRL
         bdes: XCOR:UNDH:3880:BDES
+        bmax: XCOR:UNDH:3880:BMAX
+        bmin: XCOR:UNDH:3880:BMIN
         ctrl: XCOR:UNDH:3880:CTRL
       control_name: XCOR:UNDH:3880
     metadata:
@@ -1368,6 +1597,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1652.314
+      type: XCOR
   XCHX39:
     controls_information:
       PVs:
@@ -1375,6 +1605,8 @@ magnets:
         bcon: XCOR:UNDH:3980:BCON
         bctrl: XCOR:UNDH:3980:BCTRL
         bdes: XCOR:UNDH:3980:BDES
+        bmax: XCOR:UNDH:3980:BMAX
+        bmin: XCOR:UNDH:3980:BMIN
         ctrl: XCOR:UNDH:3980:CTRL
       control_name: XCOR:UNDH:3980
     metadata:
@@ -1386,6 +1618,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1656.327
+      type: XCOR
   XCHX40:
     controls_information:
       PVs:
@@ -1393,6 +1626,8 @@ magnets:
         bcon: XCOR:UNDH:4080:BCON
         bctrl: XCOR:UNDH:4080:BCTRL
         bdes: XCOR:UNDH:4080:BDES
+        bmax: XCOR:UNDH:4080:BMAX
+        bmin: XCOR:UNDH:4080:BMIN
         ctrl: XCOR:UNDH:4080:CTRL
       control_name: XCOR:UNDH:4080
     metadata:
@@ -1404,6 +1639,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1660.339
+      type: XCOR
   XCHX41:
     controls_information:
       PVs:
@@ -1411,6 +1647,8 @@ magnets:
         bcon: XCOR:UNDH:4180:BCON
         bctrl: XCOR:UNDH:4180:BCTRL
         bdes: XCOR:UNDH:4180:BDES
+        bmax: XCOR:UNDH:4180:BMAX
+        bmin: XCOR:UNDH:4180:BMIN
         ctrl: XCOR:UNDH:4180:CTRL
       control_name: XCOR:UNDH:4180
     metadata:
@@ -1422,6 +1660,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1664.352
+      type: XCOR
   XCHX42:
     controls_information:
       PVs:
@@ -1429,6 +1668,8 @@ magnets:
         bcon: XCOR:UNDH:4280:BCON
         bctrl: XCOR:UNDH:4280:BCTRL
         bdes: XCOR:UNDH:4280:BDES
+        bmax: XCOR:UNDH:4280:BMAX
+        bmin: XCOR:UNDH:4280:BMIN
         ctrl: XCOR:UNDH:4280:CTRL
       control_name: XCOR:UNDH:4280
     metadata:
@@ -1440,6 +1681,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1668.365
+      type: XCOR
   XCHX43:
     controls_information:
       PVs:
@@ -1447,6 +1689,8 @@ magnets:
         bcon: XCOR:UNDH:4380:BCON
         bctrl: XCOR:UNDH:4380:BCTRL
         bdes: XCOR:UNDH:4380:BDES
+        bmax: XCOR:UNDH:4380:BMAX
+        bmin: XCOR:UNDH:4380:BMIN
         ctrl: XCOR:UNDH:4380:CTRL
       control_name: XCOR:UNDH:4380
     metadata:
@@ -1458,6 +1702,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1672.377
+      type: XCOR
   XCHX44:
     controls_information:
       PVs:
@@ -1465,6 +1710,8 @@ magnets:
         bcon: XCOR:UNDH:4480:BCON
         bctrl: XCOR:UNDH:4480:BCTRL
         bdes: XCOR:UNDH:4480:BDES
+        bmax: XCOR:UNDH:4480:BMAX
+        bmin: XCOR:UNDH:4480:BMIN
         ctrl: XCOR:UNDH:4480:CTRL
       control_name: XCOR:UNDH:4480
     metadata:
@@ -1476,6 +1723,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1676.39
+      type: XCOR
   XCHX45:
     controls_information:
       PVs:
@@ -1483,6 +1731,8 @@ magnets:
         bcon: XCOR:UNDH:4580:BCON
         bctrl: XCOR:UNDH:4580:BCTRL
         bdes: XCOR:UNDH:4580:BDES
+        bmax: XCOR:UNDH:4580:BMAX
+        bmin: XCOR:UNDH:4580:BMIN
         ctrl: XCOR:UNDH:4580:CTRL
       control_name: XCOR:UNDH:4580
     metadata:
@@ -1494,6 +1744,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1680.403
+      type: XCOR
   XCHX46:
     controls_information:
       PVs:
@@ -1501,6 +1752,8 @@ magnets:
         bcon: XCOR:UNDH:4680:BCON
         bctrl: XCOR:UNDH:4680:BCTRL
         bdes: XCOR:UNDH:4680:BDES
+        bmax: XCOR:UNDH:4680:BMAX
+        bmin: XCOR:UNDH:4680:BMIN
         ctrl: XCOR:UNDH:4680:CTRL
       control_name: XCOR:UNDH:4680
     metadata:
@@ -1512,6 +1765,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1684.415
+      type: XCOR
   XCHX47:
     controls_information:
       PVs:
@@ -1519,6 +1773,8 @@ magnets:
         bcon: XCOR:UNDH:4780:BCON
         bctrl: XCOR:UNDH:4780:BCTRL
         bdes: XCOR:UNDH:4780:BDES
+        bmax: XCOR:UNDH:4780:BMAX
+        bmin: XCOR:UNDH:4780:BMIN
         ctrl: XCOR:UNDH:4780:CTRL
       control_name: XCOR:UNDH:4780
     metadata:
@@ -1530,6 +1786,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1688.428
+      type: XCOR
   YCHU21:
     controls_information:
       PVs: {}
@@ -1538,6 +1795,7 @@ magnets:
       area: UNDH
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   YCHX13:
     controls_information:
       PVs:
@@ -1545,6 +1803,8 @@ magnets:
         bcon: YCOR:UNDH:1380:BCON
         bctrl: YCOR:UNDH:1380:BCTRL
         bdes: YCOR:UNDH:1380:BDES
+        bmax: YCOR:UNDH:1380:BMAX
+        bmin: YCOR:UNDH:1380:BMIN
         ctrl: YCOR:UNDH:1380:CTRL
       control_name: YCOR:UNDH:1380
     metadata:
@@ -1556,6 +1816,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1552.131
+      type: YCOR
   YCHX14:
     controls_information:
       PVs:
@@ -1563,6 +1824,8 @@ magnets:
         bcon: YCOR:UNDH:1480:BCON
         bctrl: YCOR:UNDH:1480:BCTRL
         bdes: YCOR:UNDH:1480:BDES
+        bmax: YCOR:UNDH:1480:BMAX
+        bmin: YCOR:UNDH:1480:BMIN
         ctrl: YCOR:UNDH:1480:CTRL
       control_name: YCOR:UNDH:1480
     metadata:
@@ -1574,6 +1837,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1556.01
+      type: YCOR
   YCHX15:
     controls_information:
       PVs:
@@ -1581,6 +1845,8 @@ magnets:
         bcon: YCOR:UNDH:1580:BCON
         bctrl: YCOR:UNDH:1580:BCTRL
         bdes: YCOR:UNDH:1580:BDES
+        bmax: YCOR:UNDH:1580:BMAX
+        bmin: YCOR:UNDH:1580:BMIN
         ctrl: YCOR:UNDH:1580:CTRL
       control_name: YCOR:UNDH:1580
     metadata:
@@ -1592,6 +1858,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1560.023
+      type: YCOR
   YCHX16:
     controls_information:
       PVs:
@@ -1599,6 +1866,8 @@ magnets:
         bcon: YCOR:UNDH:1680:BCON
         bctrl: YCOR:UNDH:1680:BCTRL
         bdes: YCOR:UNDH:1680:BDES
+        bmax: YCOR:UNDH:1680:BMAX
+        bmin: YCOR:UNDH:1680:BMIN
         ctrl: YCOR:UNDH:1680:CTRL
       control_name: YCOR:UNDH:1680
     metadata:
@@ -1610,6 +1879,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1564.035
+      type: YCOR
   YCHX17:
     controls_information:
       PVs:
@@ -1617,6 +1887,8 @@ magnets:
         bcon: YCOR:UNDH:1780:BCON
         bctrl: YCOR:UNDH:1780:BCTRL
         bdes: YCOR:UNDH:1780:BDES
+        bmax: YCOR:UNDH:1780:BMAX
+        bmin: YCOR:UNDH:1780:BMIN
         ctrl: YCOR:UNDH:1780:CTRL
       control_name: YCOR:UNDH:1780
     metadata:
@@ -1628,6 +1900,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1568.048
+      type: YCOR
   YCHX18:
     controls_information:
       PVs:
@@ -1635,6 +1908,8 @@ magnets:
         bcon: YCOR:UNDH:1880:BCON
         bctrl: YCOR:UNDH:1880:BCTRL
         bdes: YCOR:UNDH:1880:BDES
+        bmax: YCOR:UNDH:1880:BMAX
+        bmin: YCOR:UNDH:1880:BMIN
         ctrl: YCOR:UNDH:1880:CTRL
       control_name: YCOR:UNDH:1880
     metadata:
@@ -1646,6 +1921,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1572.061
+      type: YCOR
   YCHX19:
     controls_information:
       PVs:
@@ -1653,6 +1929,8 @@ magnets:
         bcon: YCOR:UNDH:1980:BCON
         bctrl: YCOR:UNDH:1980:BCTRL
         bdes: YCOR:UNDH:1980:BDES
+        bmax: YCOR:UNDH:1980:BMAX
+        bmin: YCOR:UNDH:1980:BMIN
         ctrl: YCOR:UNDH:1980:CTRL
       control_name: YCOR:UNDH:1980
     metadata:
@@ -1664,6 +1942,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1576.073
+      type: YCOR
   YCHX20:
     controls_information:
       PVs:
@@ -1671,6 +1950,8 @@ magnets:
         bcon: YCOR:UNDH:2080:BCON
         bctrl: YCOR:UNDH:2080:BCTRL
         bdes: YCOR:UNDH:2080:BDES
+        bmax: YCOR:UNDH:2080:BMAX
+        bmin: YCOR:UNDH:2080:BMIN
         ctrl: YCOR:UNDH:2080:CTRL
       control_name: YCOR:UNDH:2080
     metadata:
@@ -1682,6 +1963,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1580.086
+      type: YCOR
   YCHX21:
     controls_information:
       PVs:
@@ -1689,6 +1971,8 @@ magnets:
         bcon: YCOR:UNDH:2180:BCON
         bctrl: YCOR:UNDH:2180:BCTRL
         bdes: YCOR:UNDH:2180:BDES
+        bmax: YCOR:UNDH:2180:BMAX
+        bmin: YCOR:UNDH:2180:BMIN
         ctrl: YCOR:UNDH:2180:CTRL
       control_name: YCOR:UNDH:2180
     metadata:
@@ -1700,6 +1984,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1584.232
+      type: YCOR
   YCHX22:
     controls_information:
       PVs:
@@ -1707,6 +1992,8 @@ magnets:
         bcon: YCOR:UNDH:2280:BCON
         bctrl: YCOR:UNDH:2280:BCTRL
         bdes: YCOR:UNDH:2280:BDES
+        bmax: YCOR:UNDH:2280:BMAX
+        bmin: YCOR:UNDH:2280:BMIN
         ctrl: YCOR:UNDH:2280:CTRL
       control_name: YCOR:UNDH:2280
     metadata:
@@ -1718,6 +2005,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1588.111
+      type: YCOR
   YCHX23:
     controls_information:
       PVs:
@@ -1725,6 +2013,8 @@ magnets:
         bcon: YCOR:UNDH:2380:BCON
         bctrl: YCOR:UNDH:2380:BCTRL
         bdes: YCOR:UNDH:2380:BDES
+        bmax: YCOR:UNDH:2380:BMAX
+        bmin: YCOR:UNDH:2380:BMIN
         ctrl: YCOR:UNDH:2380:CTRL
       control_name: YCOR:UNDH:2380
     metadata:
@@ -1736,6 +2026,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1592.124
+      type: YCOR
   YCHX24:
     controls_information:
       PVs:
@@ -1743,6 +2034,8 @@ magnets:
         bcon: YCOR:UNDH:2480:BCON
         bctrl: YCOR:UNDH:2480:BCTRL
         bdes: YCOR:UNDH:2480:BDES
+        bmax: YCOR:UNDH:2480:BMAX
+        bmin: YCOR:UNDH:2480:BMIN
         ctrl: YCOR:UNDH:2480:CTRL
       control_name: YCOR:UNDH:2480
     metadata:
@@ -1754,6 +2047,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1596.137
+      type: YCOR
   YCHX25:
     controls_information:
       PVs:
@@ -1761,6 +2055,8 @@ magnets:
         bcon: YCOR:UNDH:2580:BCON
         bctrl: YCOR:UNDH:2580:BCTRL
         bdes: YCOR:UNDH:2580:BDES
+        bmax: YCOR:UNDH:2580:BMAX
+        bmin: YCOR:UNDH:2580:BMIN
         ctrl: YCOR:UNDH:2580:CTRL
       control_name: YCOR:UNDH:2580
     metadata:
@@ -1772,6 +2068,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1600.149
+      type: YCOR
   YCHX26:
     controls_information:
       PVs:
@@ -1779,6 +2076,8 @@ magnets:
         bcon: YCOR:UNDH:2680:BCON
         bctrl: YCOR:UNDH:2680:BCTRL
         bdes: YCOR:UNDH:2680:BDES
+        bmax: YCOR:UNDH:2680:BMAX
+        bmin: YCOR:UNDH:2680:BMIN
         ctrl: YCOR:UNDH:2680:CTRL
       control_name: YCOR:UNDH:2680
     metadata:
@@ -1790,6 +2089,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1604.162
+      type: YCOR
   YCHX27:
     controls_information:
       PVs:
@@ -1797,6 +2097,8 @@ magnets:
         bcon: YCOR:UNDH:2780:BCON
         bctrl: YCOR:UNDH:2780:BCTRL
         bdes: YCOR:UNDH:2780:BDES
+        bmax: YCOR:UNDH:2780:BMAX
+        bmin: YCOR:UNDH:2780:BMIN
         ctrl: YCOR:UNDH:2780:CTRL
       control_name: YCOR:UNDH:2780
     metadata:
@@ -1808,6 +2110,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1608.175
+      type: YCOR
   YCHX28:
     controls_information:
       PVs:
@@ -1815,6 +2118,8 @@ magnets:
         bcon: YCOR:UNDH:2880:BCON
         bctrl: YCOR:UNDH:2880:BCTRL
         bdes: YCOR:UNDH:2880:BDES
+        bmax: YCOR:UNDH:2880:BMAX
+        bmin: YCOR:UNDH:2880:BMIN
         ctrl: YCOR:UNDH:2880:CTRL
       control_name: YCOR:UNDH:2880
     metadata:
@@ -1826,6 +2131,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1612.187
+      type: YCOR
   YCHX29:
     controls_information:
       PVs:
@@ -1833,6 +2139,8 @@ magnets:
         bcon: YCOR:UNDH:2980:BCON
         bctrl: YCOR:UNDH:2980:BCTRL
         bdes: YCOR:UNDH:2980:BDES
+        bmax: YCOR:UNDH:2980:BMAX
+        bmin: YCOR:UNDH:2980:BMIN
         ctrl: YCOR:UNDH:2980:CTRL
       control_name: YCOR:UNDH:2980
     metadata:
@@ -1844,6 +2152,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1616.2
+      type: YCOR
   YCHX30:
     controls_information:
       PVs:
@@ -1851,6 +2160,8 @@ magnets:
         bcon: YCOR:UNDH:3080:BCON
         bctrl: YCOR:UNDH:3080:BCTRL
         bdes: YCOR:UNDH:3080:BDES
+        bmax: YCOR:UNDH:3080:BMAX
+        bmin: YCOR:UNDH:3080:BMIN
         ctrl: YCOR:UNDH:3080:CTRL
       control_name: YCOR:UNDH:3080
     metadata:
@@ -1862,6 +2173,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1620.213
+      type: YCOR
   YCHX31:
     controls_information:
       PVs:
@@ -1869,6 +2181,8 @@ magnets:
         bcon: YCOR:UNDH:3180:BCON
         bctrl: YCOR:UNDH:3180:BCTRL
         bdes: YCOR:UNDH:3180:BDES
+        bmax: YCOR:UNDH:3180:BMAX
+        bmin: YCOR:UNDH:3180:BMIN
         ctrl: YCOR:UNDH:3180:CTRL
       control_name: YCOR:UNDH:3180
     metadata:
@@ -1880,6 +2194,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1624.225
+      type: YCOR
   YCHX32:
     controls_information:
       PVs:
@@ -1887,6 +2202,8 @@ magnets:
         bcon: YCOR:UNDH:3280:BCON
         bctrl: YCOR:UNDH:3280:BCTRL
         bdes: YCOR:UNDH:3280:BDES
+        bmax: YCOR:UNDH:3280:BMAX
+        bmin: YCOR:UNDH:3280:BMIN
         ctrl: YCOR:UNDH:3280:CTRL
       control_name: YCOR:UNDH:3280
     metadata:
@@ -1898,6 +2215,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1628.238
+      type: YCOR
   YCHX33:
     controls_information:
       PVs:
@@ -1905,6 +2223,8 @@ magnets:
         bcon: YCOR:UNDH:3380:BCON
         bctrl: YCOR:UNDH:3380:BCTRL
         bdes: YCOR:UNDH:3380:BDES
+        bmax: YCOR:UNDH:3380:BMAX
+        bmin: YCOR:UNDH:3380:BMIN
         ctrl: YCOR:UNDH:3380:CTRL
       control_name: YCOR:UNDH:3380
     metadata:
@@ -1916,6 +2236,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1632.251
+      type: YCOR
   YCHX34:
     controls_information:
       PVs:
@@ -1923,6 +2244,8 @@ magnets:
         bcon: YCOR:UNDH:3480:BCON
         bctrl: YCOR:UNDH:3480:BCTRL
         bdes: YCOR:UNDH:3480:BDES
+        bmax: YCOR:UNDH:3480:BMAX
+        bmin: YCOR:UNDH:3480:BMIN
         ctrl: YCOR:UNDH:3480:CTRL
       control_name: YCOR:UNDH:3480
     metadata:
@@ -1934,6 +2257,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1636.263
+      type: YCOR
   YCHX35:
     controls_information:
       PVs:
@@ -1941,6 +2265,8 @@ magnets:
         bcon: YCOR:UNDH:3580:BCON
         bctrl: YCOR:UNDH:3580:BCTRL
         bdes: YCOR:UNDH:3580:BDES
+        bmax: YCOR:UNDH:3580:BMAX
+        bmin: YCOR:UNDH:3580:BMIN
         ctrl: YCOR:UNDH:3580:CTRL
       control_name: YCOR:UNDH:3580
     metadata:
@@ -1952,6 +2278,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1640.276
+      type: YCOR
   YCHX36:
     controls_information:
       PVs:
@@ -1959,6 +2286,8 @@ magnets:
         bcon: YCOR:UNDH:3680:BCON
         bctrl: YCOR:UNDH:3680:BCTRL
         bdes: YCOR:UNDH:3680:BDES
+        bmax: YCOR:UNDH:3680:BMAX
+        bmin: YCOR:UNDH:3680:BMIN
         ctrl: YCOR:UNDH:3680:CTRL
       control_name: YCOR:UNDH:3680
     metadata:
@@ -1970,6 +2299,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1644.289
+      type: YCOR
   YCHX37:
     controls_information:
       PVs:
@@ -1977,6 +2307,8 @@ magnets:
         bcon: YCOR:UNDH:3780:BCON
         bctrl: YCOR:UNDH:3780:BCTRL
         bdes: YCOR:UNDH:3780:BDES
+        bmax: YCOR:UNDH:3780:BMAX
+        bmin: YCOR:UNDH:3780:BMIN
         ctrl: YCOR:UNDH:3780:CTRL
       control_name: YCOR:UNDH:3780
     metadata:
@@ -1988,6 +2320,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1648.301
+      type: YCOR
   YCHX38:
     controls_information:
       PVs:
@@ -1995,6 +2328,8 @@ magnets:
         bcon: YCOR:UNDH:3880:BCON
         bctrl: YCOR:UNDH:3880:BCTRL
         bdes: YCOR:UNDH:3880:BDES
+        bmax: YCOR:UNDH:3880:BMAX
+        bmin: YCOR:UNDH:3880:BMIN
         ctrl: YCOR:UNDH:3880:CTRL
       control_name: YCOR:UNDH:3880
     metadata:
@@ -2006,6 +2341,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1652.314
+      type: YCOR
   YCHX39:
     controls_information:
       PVs:
@@ -2013,6 +2349,8 @@ magnets:
         bcon: YCOR:UNDH:3980:BCON
         bctrl: YCOR:UNDH:3980:BCTRL
         bdes: YCOR:UNDH:3980:BDES
+        bmax: YCOR:UNDH:3980:BMAX
+        bmin: YCOR:UNDH:3980:BMIN
         ctrl: YCOR:UNDH:3980:CTRL
       control_name: YCOR:UNDH:3980
     metadata:
@@ -2024,6 +2362,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1656.327
+      type: YCOR
   YCHX40:
     controls_information:
       PVs:
@@ -2031,6 +2370,8 @@ magnets:
         bcon: YCOR:UNDH:4080:BCON
         bctrl: YCOR:UNDH:4080:BCTRL
         bdes: YCOR:UNDH:4080:BDES
+        bmax: YCOR:UNDH:4080:BMAX
+        bmin: YCOR:UNDH:4080:BMIN
         ctrl: YCOR:UNDH:4080:CTRL
       control_name: YCOR:UNDH:4080
     metadata:
@@ -2042,6 +2383,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1660.339
+      type: YCOR
   YCHX41:
     controls_information:
       PVs:
@@ -2049,6 +2391,8 @@ magnets:
         bcon: YCOR:UNDH:4180:BCON
         bctrl: YCOR:UNDH:4180:BCTRL
         bdes: YCOR:UNDH:4180:BDES
+        bmax: YCOR:UNDH:4180:BMAX
+        bmin: YCOR:UNDH:4180:BMIN
         ctrl: YCOR:UNDH:4180:CTRL
       control_name: YCOR:UNDH:4180
     metadata:
@@ -2060,6 +2404,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1664.352
+      type: YCOR
   YCHX42:
     controls_information:
       PVs:
@@ -2067,6 +2412,8 @@ magnets:
         bcon: YCOR:UNDH:4280:BCON
         bctrl: YCOR:UNDH:4280:BCTRL
         bdes: YCOR:UNDH:4280:BDES
+        bmax: YCOR:UNDH:4280:BMAX
+        bmin: YCOR:UNDH:4280:BMIN
         ctrl: YCOR:UNDH:4280:CTRL
       control_name: YCOR:UNDH:4280
     metadata:
@@ -2078,6 +2425,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1668.365
+      type: YCOR
   YCHX43:
     controls_information:
       PVs:
@@ -2085,6 +2433,8 @@ magnets:
         bcon: YCOR:UNDH:4380:BCON
         bctrl: YCOR:UNDH:4380:BCTRL
         bdes: YCOR:UNDH:4380:BDES
+        bmax: YCOR:UNDH:4380:BMAX
+        bmin: YCOR:UNDH:4380:BMIN
         ctrl: YCOR:UNDH:4380:CTRL
       control_name: YCOR:UNDH:4380
     metadata:
@@ -2096,6 +2446,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1672.377
+      type: YCOR
   YCHX44:
     controls_information:
       PVs:
@@ -2103,6 +2454,8 @@ magnets:
         bcon: YCOR:UNDH:4480:BCON
         bctrl: YCOR:UNDH:4480:BCTRL
         bdes: YCOR:UNDH:4480:BDES
+        bmax: YCOR:UNDH:4480:BMAX
+        bmin: YCOR:UNDH:4480:BMIN
         ctrl: YCOR:UNDH:4480:CTRL
       control_name: YCOR:UNDH:4480
     metadata:
@@ -2114,6 +2467,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1676.39
+      type: YCOR
   YCHX45:
     controls_information:
       PVs:
@@ -2121,6 +2475,8 @@ magnets:
         bcon: YCOR:UNDH:4580:BCON
         bctrl: YCOR:UNDH:4580:BCTRL
         bdes: YCOR:UNDH:4580:BDES
+        bmax: YCOR:UNDH:4580:BMAX
+        bmin: YCOR:UNDH:4580:BMIN
         ctrl: YCOR:UNDH:4580:CTRL
       control_name: YCOR:UNDH:4580
     metadata:
@@ -2132,6 +2488,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1680.403
+      type: YCOR
   YCHX46:
     controls_information:
       PVs:
@@ -2139,6 +2496,8 @@ magnets:
         bcon: YCOR:UNDH:4680:BCON
         bctrl: YCOR:UNDH:4680:BCTRL
         bdes: YCOR:UNDH:4680:BDES
+        bmax: YCOR:UNDH:4680:BMAX
+        bmin: YCOR:UNDH:4680:BMIN
         ctrl: YCOR:UNDH:4680:CTRL
       control_name: YCOR:UNDH:4680
     metadata:
@@ -2150,6 +2509,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1684.415
+      type: YCOR
   YCHX47:
     controls_information:
       PVs:
@@ -2157,6 +2517,8 @@ magnets:
         bcon: YCOR:UNDH:4780:BCON
         bctrl: YCOR:UNDH:4780:BCTRL
         bdes: YCOR:UNDH:4780:BDES
+        bmax: YCOR:UNDH:4780:BMAX
+        bmin: YCOR:UNDH:4780:BMIN
         ctrl: YCOR:UNDH:4780:CTRL
       control_name: YCOR:UNDH:4780
     metadata:
@@ -2168,6 +2530,7 @@ magnets:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1688.428
+      type: YCOR
 screens:
   BODCBX40:
     controls_information:
@@ -2182,6 +2545,7 @@ screens:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1549.467
+      type: PROF
   DSSCBX11:
     controls_information:
       PVs: {}
@@ -2195,6 +2559,7 @@ screens:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1581.412
+      type: PROF
   YAGBRAG:
     controls_information:
       PVs: {}
@@ -2203,6 +2568,7 @@ screens:
       area: UNDH
       beam_path: []
       sum_l_meters: null
+      type: PROF
   YAGCBX42:
     controls_information:
       PVs: {}
@@ -2216,3 +2582,4 @@ screens:
       - CU_SFTH
       - SC_HXR
       sum_l_meters: 1549.411
+      type: PROF

@@ -9,6 +9,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 1006.843
+      type: BEND
   Q0D:
     controls_information:
       PVs: {}
@@ -19,6 +20,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 997.885
+      type: QUAD
   Q1D:
     controls_information:
       PVs: {}
@@ -29,6 +31,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 1000.109
+      type: QUAD
   Q2D:
     controls_information:
       PVs: {}
@@ -39,6 +42,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 1002.334
+      type: QUAD
 screens:
   BETA1:
     controls_information:
@@ -48,6 +52,7 @@ screens:
       area: SPECT2
       beam_path: []
       sum_l_meters: null
+      type: PROF
   BETA2:
     controls_information:
       PVs: {}
@@ -56,6 +61,7 @@ screens:
       area: SPECT2
       beam_path: []
       sum_l_meters: null
+      type: PROF
   BETAL:
     controls_information:
       PVs: {}
@@ -64,6 +70,7 @@ screens:
       area: SPECT2
       beam_path: []
       sum_l_meters: null
+      type: PROF
   CFAR:
     controls_information:
       PVs: {}
@@ -72,6 +79,7 @@ screens:
       area: SPECT2
       beam_path: []
       sum_l_meters: null
+      type: PROF
   ELANEX:
     controls_information:
       PVs: {}
@@ -80,6 +88,7 @@ screens:
       area: SPECT2
       beam_path: []
       sum_l_meters: null
+      type: PROF
   WDSOTR:
     controls_information:
       PVs: {}
@@ -90,3 +99,4 @@ screens:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 999.253
+      type: PROF

@@ -1,0 +1,93 @@
+SC: &SC
+  - GUNB
+  - L0B
+  - HTR
+  - COL0
+  - L1B
+  - BC1B
+  - COL1
+  - L2B
+  - BC2B
+  - EMIT2
+  - L3B
+  - EXT
+  - DOG
+  - BYP
+
+
+SC_SXR: 
+  - *SC
+  - SPS
+  - SLTS
+  - BSYS
+  - LTUS
+  - UNDS
+  - DMPS
+  - FEES
+
+SC_HXR: 
+  - *SC
+  - SPH
+  - SLTH
+  - BSYH1
+  - BSYH2
+  - LTUH
+  - UNDH
+  - DMPH
+  - FEEH
+
+SC_BSYD: 
+  - *SC
+  - SPD1
+  - SPD2
+  - SPD3
+  - SLTD
+
+SC_DIAG0: 
+  - GUNB
+  - L0B
+  - HTR
+  - DIAG0
+
+SC_DASEL: 
+  - *SC
+  - SPD1
+  - SPD2
+  - DASEL
+  - BSYA2
+
+CU: &CU
+  - GUN
+  - L0
+  - DL1
+  - L1
+  - BC1
+  - L2
+  - BC2
+  - L3
+
+CU_HXR: 
+  - *CU
+  - CLTH1
+  - CLTH2
+  - BSYH1
+  - BSYH2
+  - LTUH
+  - UNDH
+  - DMPH
+
+CU_SXR:
+  - *CU
+  - CLTS
+  - BSYS
+  - LTUS
+  - UNDS
+  - DMPS
+
+CU_ALINE:
+  - *CU
+  - CLTH1
+  - CLTH2
+  - BSYH1
+  - BSYA1
+  - BSYA2

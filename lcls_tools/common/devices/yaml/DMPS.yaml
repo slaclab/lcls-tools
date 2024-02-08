@@ -6,6 +6,8 @@ magnets:
         bcon: BEND:DMPS:400:BCON
         bctrl: BEND:DMPS:400:BCTRL
         bdes: BEND:DMPS:400:BDES
+        bmax: BEND:DMPS:400:BMAX
+        bmin: BEND:DMPS:400:BMIN
         ctrl: BEND:DMPS:400:CTRL
       control_name: BEND:DMPS:400
     metadata:
@@ -14,6 +16,7 @@ magnets:
       - CU_SXR
       - SC_SXR
       sum_l_meters: 3746.094
+      type: BEND
   BYD2B:
     controls_information:
       PVs:
@@ -21,6 +24,8 @@ magnets:
         bcon: BEND:DMPS:410:BCON
         bctrl: BEND:DMPS:410:BCTRL
         bdes: BEND:DMPS:410:BDES
+        bmax: BEND:DMPS:410:BMAX
+        bmin: BEND:DMPS:410:BMIN
         ctrl: BEND:DMPS:410:CTRL
       control_name: BEND:DMPS:410
     metadata:
@@ -29,6 +34,7 @@ magnets:
       - CU_SXR
       - SC_SXR
       sum_l_meters: 3747.794
+      type: BEND
   BYD3B:
     controls_information:
       PVs:
@@ -36,6 +42,8 @@ magnets:
         bcon: BEND:DMPS:420:BCON
         bctrl: BEND:DMPS:420:BCTRL
         bdes: BEND:DMPS:420:BDES
+        bmax: BEND:DMPS:420:BMAX
+        bmin: BEND:DMPS:420:BMIN
         ctrl: BEND:DMPS:420:CTRL
       control_name: BEND:DMPS:420
     metadata:
@@ -44,6 +52,7 @@ magnets:
       - CU_SXR
       - SC_SXR
       sum_l_meters: 3749.494
+      type: BEND
   BYDSS:
     controls_information:
       PVs:
@@ -51,6 +60,8 @@ magnets:
         bcon: BEND:DMPS:395:BCON
         bctrl: BEND:DMPS:395:BCTRL
         bdes: BEND:DMPS:395:BDES
+        bmax: BEND:DMPS:395:BMAX
+        bmin: BEND:DMPS:395:BMIN
         ctrl: BEND:DMPS:395:CTRL
       control_name: BEND:DMPS:395
     metadata:
@@ -59,6 +70,7 @@ magnets:
       - CU_SXR
       - SC_SXR
       sum_l_meters: 3744.802
+      type: BEND
   QDMP1B:
     controls_information:
       PVs:
@@ -66,6 +78,8 @@ magnets:
         bcon: QUAD:DMPS:500:BCON
         bctrl: QUAD:DMPS:500:BCTRL
         bdes: QUAD:DMPS:500:BDES
+        bmax: QUAD:DMPS:500:BMAX
+        bmin: QUAD:DMPS:500:BMIN
         ctrl: QUAD:DMPS:500:CTRL
       control_name: QUAD:DMPS:500
     metadata:
@@ -74,6 +88,7 @@ magnets:
       - CU_SXR
       - SC_SXR
       sum_l_meters: 3761.951
+      type: QUAD
   QDMP2B:
     controls_information:
       PVs:
@@ -81,6 +96,8 @@ magnets:
         bcon: QUAD:DMPS:600:BCON
         bctrl: QUAD:DMPS:600:BCTRL
         bdes: QUAD:DMPS:600:BDES
+        bmax: QUAD:DMPS:600:BMAX
+        bmin: QUAD:DMPS:600:BMIN
         ctrl: QUAD:DMPS:600:CTRL
       control_name: QUAD:DMPS:600
     metadata:
@@ -89,6 +106,7 @@ magnets:
       - CU_SXR
       - SC_SXR
       sum_l_meters: 3763.001
+      type: QUAD
   QUE1B:
     controls_information:
       PVs:
@@ -96,6 +114,8 @@ magnets:
         bcon: QUAD:DMPS:300:BCON
         bctrl: QUAD:DMPS:300:BCTRL
         bdes: QUAD:DMPS:300:BDES
+        bmax: QUAD:DMPS:300:BMAX
+        bmin: QUAD:DMPS:300:BMIN
         ctrl: QUAD:DMPS:300:CTRL
       control_name: QUAD:DMPS:300
     metadata:
@@ -108,6 +128,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3733.799
+      type: QUAD
   QUE2B:
     controls_information:
       PVs:
@@ -115,6 +136,8 @@ magnets:
         bcon: QUAD:DMPS:380:BCON
         bctrl: QUAD:DMPS:380:BCTRL
         bdes: QUAD:DMPS:380:BDES
+        bmax: QUAD:DMPS:380:BMAX
+        bmin: QUAD:DMPS:380:BMIN
         ctrl: QUAD:DMPS:380:CTRL
       control_name: QUAD:DMPS:380
     metadata:
@@ -127,6 +150,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3741.589
+      type: QUAD
   XCD3B:
     controls_information:
       PVs:
@@ -134,6 +158,8 @@ magnets:
         bcon: XCOR:DMPS:392:BCON
         bctrl: XCOR:DMPS:392:BCTRL
         bdes: XCOR:DMPS:392:BDES
+        bmax: XCOR:DMPS:392:BMAX
+        bmin: XCOR:DMPS:392:BMIN
         ctrl: XCOR:DMPS:392:CTRL
       control_name: XCOR:DMPS:392
     metadata:
@@ -146,6 +172,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3743.997
+      type: XCOR
   XCDDB:
     controls_information:
       PVs:
@@ -153,6 +180,8 @@ magnets:
         bcon: XCOR:DMPS:602:BCON
         bctrl: XCOR:DMPS:602:BCTRL
         bdes: XCOR:DMPS:602:BDES
+        bmax: XCOR:DMPS:602:BMAX
+        bmin: XCOR:DMPS:602:BMIN
         ctrl: XCOR:DMPS:602:CTRL
       control_name: XCOR:DMPS:602
     metadata:
@@ -161,6 +190,7 @@ magnets:
       - CU_SXR
       - SC_SXR
       sum_l_meters: 3763.691
+      type: XCOR
   XCUE2B:
     controls_information:
       PVs:
@@ -168,6 +198,8 @@ magnets:
         bcon: XCOR:DMPS:298:BCON
         bctrl: XCOR:DMPS:298:BCTRL
         bdes: XCOR:DMPS:298:BDES
+        bmax: XCOR:DMPS:298:BMAX
+        bmin: XCOR:DMPS:298:BMIN
         ctrl: XCOR:DMPS:298:CTRL
       control_name: XCOR:DMPS:298
     metadata:
@@ -180,6 +212,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3732.969
+      type: XCOR
   YCD3B:
     controls_information:
       PVs:
@@ -187,6 +220,8 @@ magnets:
         bcon: YCOR:DMPS:391:BCON
         bctrl: YCOR:DMPS:391:BCTRL
         bdes: YCOR:DMPS:391:BDES
+        bmax: YCOR:DMPS:391:BMAX
+        bmin: YCOR:DMPS:391:BMIN
         ctrl: YCOR:DMPS:391:CTRL
       control_name: YCOR:DMPS:391
     metadata:
@@ -199,6 +234,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3743.653
+      type: YCOR
   YCDDB:
     controls_information:
       PVs:
@@ -206,6 +242,8 @@ magnets:
         bcon: YCOR:DMPS:440:BCON
         bctrl: YCOR:DMPS:440:BCTRL
         bdes: YCOR:DMPS:440:BDES
+        bmax: YCOR:DMPS:440:BMAX
+        bmin: YCOR:DMPS:440:BMIN
         ctrl: YCOR:DMPS:440:CTRL
       control_name: YCOR:DMPS:440
     metadata:
@@ -214,6 +252,7 @@ magnets:
       - CU_SXR
       - SC_SXR
       sum_l_meters: 3761.001
+      type: YCOR
   YCUE1B:
     controls_information:
       PVs:
@@ -221,6 +260,8 @@ magnets:
         bcon: YCOR:DMPS:201:BCON
         bctrl: YCOR:DMPS:201:BCTRL
         bdes: YCOR:DMPS:201:BDES
+        bmax: YCOR:DMPS:201:BMAX
+        bmin: YCOR:DMPS:201:BMIN
         ctrl: YCOR:DMPS:201:CTRL
       control_name: YCOR:DMPS:201
     metadata:
@@ -233,14 +274,15 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3731.228
+      type: YCOR
 screens:
   OTRDMPB:
     controls_information:
       PVs:
         image: OTRS:DMPS:695:Image:ArrayData
         n_bits: OTRS:DMPS:695:N_OF_BITS
-        n_col: OTRS:DMPS:695:Image:ArraySizeY_RBV
-        n_row: OTRS:DMPS:695:Image:ArraySizeX_RBV
+        n_col: OTRS:DMPS:695:Image:ArraySize1_RBV
+        n_row: OTRS:DMPS:695:Image:ArraySize0_RBV
         resolution: OTRS:DMPS:695:RESOLUTION
       control_name: OTRS:DMPS:695
     metadata:
@@ -249,3 +291,4 @@ screens:
       - CU_SXR
       - SC_SXR
       sum_l_meters: 3771.399
+      type: PROF

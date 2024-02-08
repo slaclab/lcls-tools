@@ -6,6 +6,8 @@ magnets:
         bcon: BEND:SLTH:145:BCON
         bctrl: BEND:SLTH:145:BCTRL
         bdes: BEND:SLTH:145:BDES
+        bmax: BEND:SLTH:145:BMAX
+        bmin: BEND:SLTH:145:BMIN
         ctrl: BEND:SLTH:145:CTRL
       control_name: BEND:SLTH:145
     metadata:
@@ -13,6 +15,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3061.743
+      type: BEND
   BXSP1H:
     controls_information:
       PVs:
@@ -20,6 +23,8 @@ magnets:
         bcon: BEND:SLTH:435:BCON
         bctrl: BEND:SLTH:435:BCTRL
         bdes: BEND:SLTH:435:BDES
+        bmax: BEND:SLTH:435:BMAX
+        bmin: BEND:SLTH:435:BMIN
         ctrl: BEND:SLTH:435:CTRL
       control_name: BEND:SLTH:435
     metadata:
@@ -27,6 +32,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3120.583
+      type: BEND
   QSP12H:
     controls_information:
       PVs:
@@ -34,6 +40,8 @@ magnets:
         bcon: QUAD:SLTH:200:BCON
         bctrl: QUAD:SLTH:200:BCTRL
         bdes: QUAD:SLTH:200:BDES
+        bmax: QUAD:SLTH:200:BMAX
+        bmin: QUAD:SLTH:200:BMIN
         ctrl: QUAD:SLTH:200:CTRL
       control_name: QUAD:SLTH:200
     metadata:
@@ -41,6 +49,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3071.821
+      type: QUAD
   QSP13H:
     controls_information:
       PVs:
@@ -48,6 +57,8 @@ magnets:
         bcon: QUAD:SLTH:220:BCON
         bctrl: QUAD:SLTH:220:BCTRL
         bdes: QUAD:SLTH:220:BDES
+        bmax: QUAD:SLTH:220:BMAX
+        bmin: QUAD:SLTH:220:BMIN
         ctrl: QUAD:SLTH:220:CTRL
       control_name: QUAD:SLTH:220
     metadata:
@@ -55,6 +66,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3076.667
+      type: QUAD
   XCSP13H:
     controls_information:
       PVs:
@@ -62,6 +74,8 @@ magnets:
         bcon: XCOR:SLTH:218:BCON
         bctrl: XCOR:SLTH:218:BCTRL
         bdes: XCOR:SLTH:218:BDES
+        bmax: XCOR:SLTH:218:BMAX
+        bmin: XCOR:SLTH:218:BMIN
         ctrl: XCOR:SLTH:218:CTRL
       control_name: XCOR:SLTH:218
     metadata:
@@ -69,6 +83,7 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3076.174
+      type: XCOR
   YCSP12H:
     controls_information:
       PVs:
@@ -76,6 +91,8 @@ magnets:
         bcon: YCOR:SLTH:201:BCON
         bctrl: YCOR:SLTH:201:BCTRL
         bdes: YCOR:SLTH:201:BDES
+        bmax: YCOR:SLTH:201:BMAX
+        bmin: YCOR:SLTH:201:BMIN
         ctrl: YCOR:SLTH:201:CTRL
       control_name: YCOR:SLTH:201
     metadata:
@@ -83,3 +100,4 @@ magnets:
       beam_path:
       - SC_HXR
       sum_l_meters: 3072.275
+      type: YCOR

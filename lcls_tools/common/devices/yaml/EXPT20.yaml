@@ -9,6 +9,7 @@ screens:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 994.813
+      type: PROF
   IPWS3:
     controls_information:
       PVs: {}
@@ -19,3 +20,4 @@ screens:
       - F2_ELEC
       - F2_POSI
       sum_l_meters: 997.053
+      type: PROF

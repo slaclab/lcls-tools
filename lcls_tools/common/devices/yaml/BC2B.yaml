@@ -6,6 +6,8 @@ magnets:
         bcon: BEND:BC2B:200:BCON
         bctrl: BEND:BC2B:200:BCTRL
         bdes: BEND:BC2B:200:BDES
+        bmax: BEND:BC2B:200:BMAX
+        bmin: BEND:BC2B:200:BMIN
         ctrl: BEND:BC2B:200:CTRL
       control_name: BEND:BC2B:200
     metadata:
@@ -20,6 +22,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 343.668
+      type: BEND
   BCX22:
     controls_information:
       PVs:
@@ -27,6 +30,8 @@ magnets:
         bcon: BEND:BC2B:500:BCON
         bctrl: BEND:BC2B:500:BCTRL
         bdes: BEND:BC2B:500:BDES
+        bmax: BEND:BC2B:500:BMAX
+        bmin: BEND:BC2B:500:BMIN
         ctrl: BEND:BC2B:500:CTRL
       control_name: BEND:BC2B:500
     metadata:
@@ -41,6 +46,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 354.089
+      type: BEND
   BCX23:
     controls_information:
       PVs:
@@ -48,6 +54,8 @@ magnets:
         bcon: BEND:BC2B:600:BCON
         bctrl: BEND:BC2B:600:BCTRL
         bdes: BEND:BC2B:600:BDES
+        bmax: BEND:BC2B:600:BMAX
+        bmin: BEND:BC2B:600:BMIN
         ctrl: BEND:BC2B:600:CTRL
       control_name: BEND:BC2B:600
     metadata:
@@ -62,6 +70,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 356.388
+      type: BEND
   BCX24:
     controls_information:
       PVs:
@@ -69,6 +78,8 @@ magnets:
         bcon: BEND:BC2B:900:BCON
         bctrl: BEND:BC2B:900:BCTRL
         bdes: BEND:BC2B:900:BDES
+        bmax: BEND:BC2B:900:BMAX
+        bmin: BEND:BC2B:900:BMIN
         ctrl: BEND:BC2B:900:CTRL
       control_name: BEND:BC2B:900
     metadata:
@@ -83,6 +94,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 366.808
+      type: BEND
   CQ21B:
     controls_information:
       PVs:
@@ -90,6 +102,8 @@ magnets:
         bcon: QUAD:BC2B:250:BCON
         bctrl: QUAD:BC2B:250:BCTRL
         bdes: QUAD:BC2B:250:BDES
+        bmax: QUAD:BC2B:250:BMAX
+        bmin: QUAD:BC2B:250:BMIN
         ctrl: QUAD:BC2B:250:CTRL
       control_name: QUAD:BC2B:250
     metadata:
@@ -104,6 +118,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 345.955
+      type: QUAD
   CQ22B:
     controls_information:
       PVs:
@@ -111,6 +126,8 @@ magnets:
         bcon: QUAD:BC2B:850:BCON
         bctrl: QUAD:BC2B:850:BCTRL
         bdes: QUAD:BC2B:850:BDES
+        bmax: QUAD:BC2B:850:BMAX
+        bmin: QUAD:BC2B:850:BMIN
         ctrl: QUAD:BC2B:850:CTRL
       control_name: QUAD:BC2B:850
     metadata:
@@ -125,6 +142,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 364.522
+      type: QUAD
   Q2C01:
     controls_information:
       PVs:
@@ -132,6 +150,8 @@ magnets:
         bcon: QUAD:BC2B:150:BCON
         bctrl: QUAD:BC2B:150:BCTRL
         bdes: QUAD:BC2B:150:BDES
+        bmax: QUAD:BC2B:150:BMAX
+        bmin: QUAD:BC2B:150:BMIN
         ctrl: QUAD:BC2B:150:CTRL
       control_name: QUAD:BC2B:150
     metadata:
@@ -146,6 +166,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 342.84
+      type: QUAD
   XC2C00:
     controls_information:
       PVs:
@@ -153,6 +174,8 @@ magnets:
         bcon: XCOR:BC2B:126:BCON
         bctrl: XCOR:BC2B:126:BCTRL
         bdes: XCOR:BC2B:126:BDES
+        bmax: XCOR:BC2B:126:BMAX
+        bmin: XCOR:BC2B:126:BMIN
         ctrl: XCOR:BC2B:126:CTRL
       control_name: XCOR:BC2B:126
     metadata:
@@ -167,6 +190,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 342.126
+      type: XCOR
   YC2C00:
     controls_information:
       PVs:
@@ -174,6 +198,8 @@ magnets:
         bcon: YCOR:BC2B:137:BCON
         bctrl: YCOR:BC2B:137:BCTRL
         bdes: YCOR:BC2B:137:BDES
+        bmax: YCOR:BC2B:137:BMAX
+        bmin: YCOR:BC2B:137:BMIN
         ctrl: YCOR:BC2B:137:CTRL
       control_name: YCOR:BC2B:137
     metadata:
@@ -188,14 +214,15 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 342.465
+      type: YCOR
 screens:
   OTR21B:
     controls_information:
       PVs:
         image: PROF:BC2B:545:Image:ArrayData
         n_bits: PROF:BC2B:545:N_OF_BITS
-        n_col: PROF:BC2B:545:Image:ArraySizeY_RBV
-        n_row: PROF:BC2B:545:Image:ArraySizeX_RBV
+        n_col: PROF:BC2B:545:Image:ArraySize1_RBV
+        n_row: PROF:BC2B:545:Image:ArraySize0_RBV
         resolution: PROF:BC2B:545:RESOLUTION
       control_name: PROF:BC2B:545
     metadata:
@@ -210,3 +237,4 @@ screens:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 355.091
+      type: PROF
