@@ -5,7 +5,7 @@
 ################################################################################
 from datetime import datetime
 from time import sleep
-from typing import Callable, Dict, List, Type, Optional
+from typing import Callable, Dict, List, Optional, Type
 
 from numpy import sign
 
@@ -480,20 +480,23 @@ class StepperTuner(utils.SCLinacObject):
         maxSteps: int = utils.DEFAULT_STEPPER_MAX_STEPS,
         speed: int = utils.DEFAULT_STEPPER_SPEED,
         changeLimits: bool = True,
+        check_detune: bool = True,
     ):
         """
         :param numSteps: positive for increasing cavity length, negative for decreasing
         :param maxSteps: the maximum number of steps allowed at once
         :param speed: the speed of the motor in steps/second
         :param changeLimits: whether to change the speed and steps
+        :param check_detune: whether to check for valid detune after each move
         :return:
         """
 
         self.check_abort()
+        maxSteps = abs(maxSteps)
 
         if changeLimits:
             # on the off chance that someone tries to write a negative maximum
-            self.max_steps = abs(maxSteps)
+            self.max_steps = maxSteps
 
             # make sure that we don't exceed the speed limit as defined by the tuner experts
             self.speed = (
@@ -501,18 +504,24 @@ class StepperTuner(utils.SCLinacObject):
             )
 
         if abs(numSteps) <= maxSteps:
-            print(f"{self.cavity} {numSteps} steps <= {maxSteps} max")
+            print(f"{self.cavity} {abs(numSteps)} steps <= {maxSteps} max")
             self.step_des = abs(numSteps)
-            self.issueMoveCommand(numSteps)
+            self.issueMoveCommand(numSteps, check_detune=check_detune)
             self.restoreDefaults()
         else:
-            print(f"{self.cavity} {numSteps} steps > {maxSteps} max")
+            print(f"{self.cavity} {abs(numSteps)} steps > {maxSteps} max")
             self.step_des = maxSteps
-            self.issueMoveCommand(numSteps)
+            self.issueMoveCommand(numSteps, check_detune=check_detune)
             print(f"{self.cavity} moving {numSteps - (sign(numSteps) * maxSteps)}")
-            self.move(numSteps - (sign(numSteps) * maxSteps), maxSteps, speed, False)
+            self.move(
+                numSteps - (sign(numSteps) * maxSteps),
+                maxSteps,
+                speed,
+                changeLimits=False,
+                check_detune=check_detune,
+            )
 
-    def issueMoveCommand(self, numSteps):
+    def issueMoveCommand(self, numSteps: int, check_detune: bool = True):
         # this is necessary because the tuners for the HLs move the other direction
         if self.cavity.cryomodule.is_harmonic_linearizer:
             numSteps *= -1
@@ -527,7 +536,8 @@ class StepperTuner(utils.SCLinacObject):
 
         while self.motor_moving:
             self.check_abort()
-            self.cavity.check_detune()
+            if check_detune:
+                self.cavity.check_detune()
             print(f"{self} motor still moving, waiting 5s", datetime.now())
             sleep(5)
 
@@ -1696,7 +1706,7 @@ class Cryomodule(utils.SCLinacObject):
         stepper_class=StepperTuner,
         piezo_class=Piezo,
     ):
-        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner], Type[Piezo],) -> None # noqa: E501
+        # type: (str, Linac, Type[Cavity], Type[Magnet], Type[Rack], bool, Type[SSA], Type[StepperTuner], Type[Piezo]) -> None # noqa: E501
         """
         Parameters
         ----------
