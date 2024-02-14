@@ -7,6 +7,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202600:
     controls_information:
       PVs: {}
@@ -15,6 +16,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202700:
     controls_information:
       PVs: {}
@@ -23,6 +25,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202710:
     controls_information:
       PVs: {}
@@ -31,6 +34,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202720:
     controls_information:
       PVs: {}
@@ -39,6 +43,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202730:
     controls_information:
       PVs: {}
@@ -47,6 +52,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202770:
     controls_information:
       PVs: {}
@@ -55,6 +61,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202780:
     controls_information:
       PVs: {}
@@ -63,6 +70,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202790:
     controls_information:
       PVs: {}
@@ -71,6 +79,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202800:
     controls_information:
       PVs: {}
@@ -79,6 +88,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202900:
     controls_information:
       PVs: {}
@@ -87,6 +97,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202930:
     controls_information:
       PVs: {}
@@ -95,6 +106,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202940:
     controls_information:
       PVs: {}
@@ -103,6 +115,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202950:
     controls_information:
       PVs: {}
@@ -111,6 +124,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   B202960:
     controls_information:
       PVs: {}
@@ -119,6 +133,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: BEND
   Q202591T:
     controls_information:
       PVs: {}
@@ -127,6 +142,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202641T:
     controls_information:
       PVs: {}
@@ -135,6 +151,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202651T:
     controls_information:
       PVs: {}
@@ -143,6 +160,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202671T:
     controls_information:
       PVs: {}
@@ -151,6 +169,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202681T:
     controls_information:
       PVs: {}
@@ -159,6 +178,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202691T:
     controls_information:
       PVs: {}
@@ -167,6 +187,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202751T:
     controls_information:
       PVs: {}
@@ -175,6 +196,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202811T:
     controls_information:
       PVs: {}
@@ -183,6 +205,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202821T:
     controls_information:
       PVs: {}
@@ -191,6 +214,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202831T:
     controls_information:
       PVs: {}
@@ -199,6 +223,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202851T:
     controls_information:
       PVs: {}
@@ -207,6 +232,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202861T:
     controls_information:
       PVs: {}
@@ -215,6 +241,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   Q202921T:
     controls_information:
       PVs: {}
@@ -223,6 +250,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   X202566T:
     controls_information:
       PVs: {}
@@ -231,6 +259,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   X202626T:
     controls_information:
       PVs: {}
@@ -239,6 +268,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   X202866T:
     controls_information:
       PVs: {}
@@ -247,6 +277,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   X202936T:
     controls_information:
       PVs: {}
@@ -255,6 +286,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   Y202647T:
     controls_information:
       PVs: {}
@@ -263,6 +295,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   Y202677T:
     controls_information:
       PVs: {}
@@ -271,6 +304,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   Y202827T:
     controls_information:
       PVs: {}
@@ -279,6 +313,7 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   Y202857T:
     controls_information:
       PVs: {}
@@ -287,3 +322,4 @@ magnets:
       area: POSITR
       beam_path: []
       sum_l_meters: null
+      type: YCOR

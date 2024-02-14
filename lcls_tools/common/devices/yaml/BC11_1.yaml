@@ -9,6 +9,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 40.514
+      type: BEND
   BCX11331:
     controls_information:
       PVs: {}
@@ -19,6 +20,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 43.163
+      type: BEND
   BCX11338:
     controls_information:
       PVs: {}
@@ -29,6 +31,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 44.197
+      type: BEND
   BCX11355:
     controls_information:
       PVs: {}
@@ -39,6 +42,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 46.846
+      type: BEND
   CQ11317:
     controls_information:
       PVs: {}
@@ -49,6 +53,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 41.529
+      type: QUAD
   CQ11352:
     controls_information:
       PVs: {}
@@ -59,6 +64,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 45.954
+      type: QUAD
   QM11312:
     controls_information:
       PVs: {}
@@ -69,6 +75,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 40.015
+      type: QUAD
   SQ11340:
     controls_information:
       PVs: {}
@@ -79,6 +86,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 45.677
+      type: QUAD
   YC11321:
     controls_information:
       PVs: {}
@@ -89,6 +97,7 @@ magnets:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 41.91
+      type: YCOR
 screens:
   PR11316:
     controls_information:
@@ -100,6 +109,7 @@ screens:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 41.208
+      type: PROF
   PR11334:
     controls_information:
       PVs: {}
@@ -110,6 +120,7 @@ screens:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 43.563
+      type: PROF
   PR11335:
     controls_information:
       PVs: {}
@@ -120,6 +131,7 @@ screens:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 43.861
+      type: PROF
   PR11342:
     controls_information:
       PVs: {}
@@ -130,3 +142,4 @@ screens:
       - F2_ELEC
       - F2_SCAV
       sum_l_meters: 44.899
+      type: PROF

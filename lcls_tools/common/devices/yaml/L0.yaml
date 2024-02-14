@@ -6,6 +6,8 @@ magnets:
         bcon: QUAD:IN20:361:BCON
         bctrl: QUAD:IN20:361:BCTRL
         bdes: QUAD:IN20:361:BDES
+        bmax: QUAD:IN20:361:BMAX
+        bmin: QUAD:IN20:361:BMIN
         ctrl: QUAD:IN20:361:CTRL
       control_name: QUAD:IN20:361
     metadata:
@@ -19,6 +21,7 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 4.855
+      type: QUAD
   QA02:
     controls_information:
       PVs:
@@ -26,6 +29,8 @@ magnets:
         bcon: QUAD:IN20:371:BCON
         bctrl: QUAD:IN20:371:BCTRL
         bdes: QUAD:IN20:371:BDES
+        bmax: QUAD:IN20:371:BMAX
+        bmin: QUAD:IN20:371:BMIN
         ctrl: QUAD:IN20:371:CTRL
       control_name: QUAD:IN20:371
     metadata:
@@ -39,6 +44,7 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 5.183
+      type: QUAD
   SOL2:
     controls_information:
       PVs:
@@ -46,6 +52,8 @@ magnets:
         bcon: SOLN:IN20:311:BCON
         bctrl: SOLN:IN20:311:BCTRL
         bdes: SOLN:IN20:311:BDES
+        bmax: SOLN:IN20:311:BMAX
+        bmin: SOLN:IN20:311:BMIN
         ctrl: SOLN:IN20:311:CTRL
       control_name: SOLN:IN20:311
     metadata:
@@ -59,6 +67,7 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 1.717
+      type: SOLE
   XC02:
     controls_information:
       PVs:
@@ -66,6 +75,8 @@ magnets:
         bcon: XCOR:IN20:311:BCON
         bctrl: XCOR:IN20:311:BCTRL
         bdes: XCOR:IN20:311:BDES
+        bmax: XCOR:IN20:311:BMAX
+        bmin: XCOR:IN20:311:BMIN
         ctrl: XCOR:IN20:311:CTRL
       control_name: XCOR:IN20:311
     metadata:
@@ -79,6 +90,7 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 2.366
+      type: XCOR
   XC03:
     controls_information:
       PVs:
@@ -86,6 +98,8 @@ magnets:
         bcon: XCOR:IN20:341:BCON
         bctrl: XCOR:IN20:341:BCTRL
         bdes: XCOR:IN20:341:BDES
+        bmax: XCOR:IN20:341:BMAX
+        bmin: XCOR:IN20:341:BMIN
         ctrl: XCOR:IN20:341:CTRL
       control_name: XCOR:IN20:341
     metadata:
@@ -99,6 +113,7 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 4.158
+      type: XCOR
   XC04:
     controls_information:
       PVs:
@@ -106,6 +121,8 @@ magnets:
         bcon: XCOR:IN20:381:BCON
         bctrl: XCOR:IN20:381:BCTRL
         bdes: XCOR:IN20:381:BDES
+        bmax: XCOR:IN20:381:BMAX
+        bmin: XCOR:IN20:381:BMIN
         ctrl: XCOR:IN20:381:CTRL
       control_name: XCOR:IN20:381
     metadata:
@@ -119,6 +136,7 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 5.699
+      type: XCOR
   XC05:
     controls_information:
       PVs:
@@ -126,6 +144,8 @@ magnets:
         bcon: XCOR:IN20:411:BCON
         bctrl: XCOR:IN20:411:BCTRL
         bdes: XCOR:IN20:411:BDES
+        bmax: XCOR:IN20:411:BMAX
+        bmin: XCOR:IN20:411:BMIN
         ctrl: XCOR:IN20:411:CTRL
       control_name: XCOR:IN20:411
     metadata:
@@ -139,6 +159,7 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 8.002
+      type: XCOR
   YC02:
     controls_information:
       PVs:
@@ -146,6 +167,8 @@ magnets:
         bcon: YCOR:IN20:312:BCON
         bctrl: YCOR:IN20:312:BCTRL
         bdes: YCOR:IN20:312:BDES
+        bmax: YCOR:IN20:312:BMAX
+        bmin: YCOR:IN20:312:BMIN
         ctrl: YCOR:IN20:312:CTRL
       control_name: YCOR:IN20:312
     metadata:
@@ -159,6 +182,7 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 2.366
+      type: YCOR
   YC03:
     controls_information:
       PVs:
@@ -166,6 +190,8 @@ magnets:
         bcon: YCOR:IN20:342:BCON
         bctrl: YCOR:IN20:342:BCTRL
         bdes: YCOR:IN20:342:BDES
+        bmax: YCOR:IN20:342:BMAX
+        bmin: YCOR:IN20:342:BMIN
         ctrl: YCOR:IN20:342:CTRL
       control_name: YCOR:IN20:342
     metadata:
@@ -179,6 +205,7 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 4.158
+      type: YCOR
   YC04:
     controls_information:
       PVs:
@@ -186,6 +213,8 @@ magnets:
         bcon: YCOR:IN20:382:BCON
         bctrl: YCOR:IN20:382:BCTRL
         bdes: YCOR:IN20:382:BDES
+        bmax: YCOR:IN20:382:BMAX
+        bmin: YCOR:IN20:382:BMIN
         ctrl: YCOR:IN20:382:CTRL
       control_name: YCOR:IN20:382
     metadata:
@@ -199,6 +228,7 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 5.699
+      type: YCOR
   YC05:
     controls_information:
       PVs:
@@ -206,6 +236,8 @@ magnets:
         bcon: YCOR:IN20:412:BCON
         bctrl: YCOR:IN20:412:BCTRL
         bdes: YCOR:IN20:412:BDES
+        bmax: YCOR:IN20:412:BMAX
+        bmin: YCOR:IN20:412:BMIN
         ctrl: YCOR:IN20:412:CTRL
       control_name: YCOR:IN20:412
     metadata:
@@ -219,14 +251,15 @@ magnets:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 8.002
+      type: YCOR
 screens:
   YAG02:
     controls_information:
       PVs:
-        image: YAGS:IN20:241:IMAGE
+        image: YAGS:IN20:241:Image:ArrayData
         n_bits: YAGS:IN20:241:N_OF_BITS
-        n_col: YAGS:IN20:241:N_OF_COL
-        n_row: YAGS:IN20:241:N_OF_ROW
+        n_col: YAGS:IN20:241:Image:ArraySize1_RBV
+        n_row: YAGS:IN20:241:Image:ArraySize0_RBV
         resolution: YAGS:IN20:241:RESOLUTION
       control_name: YAGS:IN20:241
     metadata:
@@ -240,6 +273,7 @@ screens:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 1.388
+      type: PROF
   YAG03:
     controls_information:
       PVs:
@@ -260,3 +294,4 @@ screens:
       - CU_SPEC
       - CU_SXR
       sum_l_meters: 4.615
+      type: PROF

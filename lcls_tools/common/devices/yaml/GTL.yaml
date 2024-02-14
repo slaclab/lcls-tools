@@ -6,9 +6,12 @@ magnets:
         bcon: BEND:IN20:231:BCON
         bctrl: BEND:IN20:231:BCTRL
         bdes: BEND:IN20:231:BDES
+        bmax: BEND:IN20:231:BMAX
+        bmin: BEND:IN20:231:BMIN
         ctrl: BEND:IN20:231:CTRL
       control_name: BEND:IN20:231
     metadata:
       area: GTL
       beam_path: []
       sum_l_meters: null
+      type: BEND

@@ -7,6 +7,7 @@ magnets:
       area: LI20
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   QS0:
     controls_information:
       PVs: {}
@@ -15,3 +16,4 @@ magnets:
       area: LI20
       beam_path: []
       sum_l_meters: null
+      type: QUAD

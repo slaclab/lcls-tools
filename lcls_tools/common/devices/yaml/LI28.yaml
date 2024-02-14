@@ -7,6 +7,7 @@ magnets:
       area: LI28
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   YC29096:
     controls_information:
       PVs: {}
@@ -15,3 +16,4 @@ magnets:
       area: LI28
       beam_path: []
       sum_l_meters: null
+      type: YCOR

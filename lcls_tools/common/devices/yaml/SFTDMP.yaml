@@ -7,3 +7,4 @@ magnets:
       area: SFTDMP
       beam_path: []
       sum_l_meters: null
+      type: BEND

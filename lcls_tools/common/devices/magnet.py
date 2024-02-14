@@ -27,6 +27,8 @@ class MagnetPVSet(PVSet):
     bdes: PV
     bcon: PV
     ctrl: PV
+    bmax: PV
+    bmin: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -162,6 +164,16 @@ class Magnet(Device):
     def bcon(self) -> float:
         """Get the configuration strength of magnet"""
         return self.controls_information.PVs.bcon.get()
+
+    @property
+    def bmax(self) -> float:
+        """Get maximum magnetic field value in KG or KG-m^x."""
+        return self.controls_information.PVs.bmax.get()
+
+    @property
+    def bmin(self) -> float:
+        """Get minimum magnetic field value in kG or kG-m^x."""
+        return self.controls_information.PVs.bmin.get()
 
     def is_bact_settled(self, b_tolerance: Optional[float] = 0.0) -> bool:
         return abs(self.bdes) - abs(self.bact) < b_tolerance
