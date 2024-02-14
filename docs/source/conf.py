@@ -6,10 +6,14 @@ import os
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(__file__, "../../../")))
+from lcls_tools.common.data_analysis.fitting_tool import *
 from lcls_tools.common.devices.magnet import *
 from lcls_tools.common.devices.device import *
 from lcls_tools.common.devices.screen import *
-from lcls_tools.common.image_processing.image import *
+from lcls_tools.common.matlab2py.mat_image import *
+from lcls_tools.common.matlab2py.mat_emit_scan import *
+from lcls_tools.common.matlab2py.mat_corr_plot import *
+
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -31,5 +35,5 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "alabaster"
-html_static_path = ["_static"]
+html_theme = "sphinx_rtd_theme"
+html_static_path = []

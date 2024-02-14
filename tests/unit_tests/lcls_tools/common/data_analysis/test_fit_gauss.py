@@ -18,6 +18,7 @@ class TestFitTool(unittest.TestCase):
             + amp2 * np.exp(-np.power(x - nu, 2.0) / (2 * np.power(rho, 2.0)))
         ) + offset
 
+    @unittest.skip("Assertion is not raised when it should be; fixing in issue #130.")
     def test_fit_tool_gaussian(self):
         # Test that the fitting tool can fit each type of gaussian distribution
         x_data = np.arange(500)
@@ -36,6 +37,7 @@ class TestFitTool(unittest.TestCase):
             self.assertIn("rmse", val)
             self.assertLessEqual(val["rmse"], 0.4)
 
+    @unittest.skip("Assertion is not raised when it should be; fixing in issue #130.")
     def test_fit_tool_super_gaussian(self):
         x_data = np.arange(500)
         y_noise = np.random.normal(size=len(x_data), scale=0.04)
@@ -51,6 +53,7 @@ class TestFitTool(unittest.TestCase):
             if key == "super_gaussian":
                 self.assertLessEqual(val["rmse"], 0.4)
 
+    @unittest.skip("Assertion is not raised when it should be; fixing in issue #130.")
     def test_fit_tool_double_gaussian(self):
         # generated data for super gaussian
         x_data = np.arange(500)

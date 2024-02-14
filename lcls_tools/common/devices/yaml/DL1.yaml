@@ -568,12 +568,7 @@ magnets:
 screens:
   OTR1:
     controls_information:
-      PVs:
-        image: OTRS:IN20:541:IMAGE
-        n_bits: OTRS:IN20:541:N_OF_BITS
-        n_col: OTRS:IN20:541:N_OF_COL
-        n_row: OTRS:IN20:541:N_OF_ROW
-        resolution: OTRS:IN20:541:RESOLUTION
+      PVs: {}
       control_name: OTRS:IN20:541
     metadata:
       area: DL1
@@ -611,10 +606,10 @@ screens:
   OTR3:
     controls_information:
       PVs:
-        image: OTRS:IN20:621:IMAGE
+        image: OTRS:IN20:621:Image:ArrayData
         n_bits: OTRS:IN20:621:N_OF_BITS
-        n_col: OTRS:IN20:621:N_OF_COL
-        n_row: OTRS:IN20:621:N_OF_ROW
+        n_col: OTRS:IN20:621:Image:ArraySize1_RBV
+        n_row: OTRS:IN20:621:Image:ArraySize0_RBV
         resolution: OTRS:IN20:621:RESOLUTION
       control_name: OTRS:IN20:621
     metadata:
@@ -652,10 +647,10 @@ screens:
   OTRH1:
     controls_information:
       PVs:
-        image: OTRS:IN20:465:IMAGE
+        image: OTRS:IN20:465:Image:ArrayData
         n_bits: OTRS:IN20:465:N_OF_BITS
-        n_col: OTRS:IN20:465:N_OF_COL
-        n_row: OTRS:IN20:465:N_OF_ROW
+        n_col: OTRS:IN20:465:Image:ArraySize1_RBV
+        n_row: OTRS:IN20:465:Image:ArraySize0_RBV
         resolution: OTRS:IN20:465:RESOLUTION
       control_name: OTRS:IN20:465
     metadata:
@@ -673,10 +668,10 @@ screens:
   OTRH2:
     controls_information:
       PVs:
-        image: OTRS:IN20:471:IMAGE
+        image: OTRS:IN20:471:Image:ArrayData
         n_bits: OTRS:IN20:471:N_OF_BITS
-        n_col: OTRS:IN20:471:N_OF_COL
-        n_row: OTRS:IN20:471:N_OF_ROW
+        n_col: OTRS:IN20:471:Image:ArraySize1_RBV
+        n_row: OTRS:IN20:471:Image:ArraySize0_RBV
         resolution: OTRS:IN20:471:RESOLUTION
       control_name: OTRS:IN20:471
     metadata:

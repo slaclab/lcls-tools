@@ -256,10 +256,10 @@ screens:
   YAG02:
     controls_information:
       PVs:
-        image: YAGS:IN20:241:IMAGE
+        image: YAGS:IN20:241:Image:ArrayData
         n_bits: YAGS:IN20:241:N_OF_BITS
-        n_col: YAGS:IN20:241:N_OF_COL
-        n_row: YAGS:IN20:241:N_OF_ROW
+        n_col: YAGS:IN20:241:Image:ArraySize1_RBV
+        n_row: YAGS:IN20:241:Image:ArraySize0_RBV
         resolution: YAGS:IN20:241:RESOLUTION
       control_name: YAGS:IN20:241
     metadata:
