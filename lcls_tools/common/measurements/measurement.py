@@ -10,7 +10,7 @@ class Measurement(BaseModel, ABC):
     save_location: Optional[DirectoryPath] = None
 
     @abstractmethod
-    def measure(self) -> dict:
+    def measure(self, **kwargs) -> dict:
         """ Implements a measurement and returns a dictionary with the results"""
         raise NotImplementedError
 
