@@ -832,6 +832,9 @@ class Cavity(utils.SCLinacObject):
         self.detune_best_pv: str = self.pv_addr("DFBEST")
         self._detune_best_pv_obj: Optional[PV] = None
 
+        self.detune_chirp_pv: str = self.pv_addr("CHIRP:DF")
+        self._detune_chirp_pv_obj: Optional[PV] = None
+
         self.rf_permit_pv: str = self.pv_addr("RFPERMIT")
         self._rf_permit_pv_obj: Optional[PV] = None
 
@@ -1210,7 +1213,7 @@ class Cavity(utils.SCLinacObject):
 
     def move_to_resonance(self, reset_signed_steps=False, use_sela=False):
         def delta_detune():
-            return self.detune_best
+            return self.detune
 
         self.setup_tuning(use_sela=use_sela)
         print(f"Tuning {self} to resonance in " + ("SELA" if use_sela else "chirp"))
@@ -1248,12 +1251,32 @@ class Cavity(utils.SCLinacObject):
         return self._detune_best_pv_obj
 
     @property
+    def detune_chirp_pv_obj(self) -> PV:
+        if not self._detune_chirp_pv_obj:
+            self._detune_chirp_pv_obj = PV(self.detune_chirp_pv)
+        return self._detune_chirp_pv_obj
+
+    @property
     def detune_best(self):
         return self.detune_best_pv_obj.get()
 
     @property
+    def detune_chirp(self):
+        return self.detune_chirp_pv_obj.get()
+
+    @property
+    def detune(self):
+        if self.rf_mode == utils.RF_MODE_CHIRP:
+            return self.detune_chirp
+        else:
+            return self.detune_best
+
+    @property
     def detune_invalid(self) -> bool:
-        return self.detune_best_pv_obj.severity == EPICS_INVALID_VAL
+        if self.rf_mode == utils.RF_MODE_CHIRP:
+            return self.detune_chirp_pv_obj.severity == EPICS_INVALID_VAL
+        else:
+            return self.detune_best_pv_obj.severity == EPICS_INVALID_VAL
 
     def _auto_tune(
         self,
