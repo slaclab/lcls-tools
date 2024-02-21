@@ -1544,6 +1544,7 @@ class Cavity(utils.SCLinacObject):
         sleep(2)
 
         while self.characterization_running:
+            self.check_abort()
             print(
                 f"waiting for {self} characterization" f" to stop running",
                 datetime.now(),
@@ -1551,9 +1552,9 @@ class Cavity(utils.SCLinacObject):
             sleep(1)
 
         if self.characterization_status == utils.CALIBRATION_COMPLETE_VALUE:
-            if (datetime.now() - self.characterization_timestamp).total_seconds() > 60:
+            if (datetime.now() - self.characterization_timestamp).total_seconds() > 300:
                 raise utils.CavityQLoadedCalibrationError(
-                    f"{self} characterization did not start"
+                    f"{self} characterization took longer than 5 minutes to run"
                 )
             self.finish_characterization()
 
