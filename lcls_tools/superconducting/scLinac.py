@@ -1554,7 +1554,7 @@ class Cavity(utils.SCLinacObject):
         if self.characterization_status == utils.CALIBRATION_COMPLETE_VALUE:
             if (datetime.now() - self.characterization_timestamp).total_seconds() > 300:
                 raise utils.CavityQLoadedCalibrationError(
-                    f"{self} characterization took longer than 5 minutes to run"
+                    f"No valid {self} characterization within the last 5 min"
                 )
             self.finish_characterization()
 
