@@ -49,4 +49,3 @@ class BeamChargeMeasurement(Measurement):
             )
 
             return results
-

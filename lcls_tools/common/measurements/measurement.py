@@ -13,4 +13,3 @@ class Measurement(BaseModel, ABC):
     def measure(self, **kwargs) -> dict:
         """ Implements a measurement and returns a dictionary with the results"""
         raise NotImplementedError
-
