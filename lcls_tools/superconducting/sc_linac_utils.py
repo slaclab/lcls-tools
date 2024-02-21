@@ -75,6 +75,7 @@ HL_SSA_SHARED_PVS = [
     "FaultReset",
     "NRP_PRMT",
     "FaultSummary.SEVR",
+    "480VACStat",
 ]
 
 HL_SSA_PS_SETPOINT = 2500
