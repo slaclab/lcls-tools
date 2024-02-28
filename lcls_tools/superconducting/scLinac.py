@@ -173,6 +173,7 @@ class SSA(utils.SCLinacObject):
     def turn_on(self):
         if not self.is_on:
             print(f"Turning {self} on")
+            self.reset()
             self.turn_on_pv_obj.put(1)
 
             while not self.is_on:
@@ -211,14 +212,18 @@ class SSA(utils.SCLinacObject):
         return self._reset_pv_obj
 
     def reset(self):
-        print(f"Resetting {self}...")
-        self.reset_pv_obj.put(1)
+        reset_attempt = 0
+        while self.is_faulted:
+            print(f"Resetting {self}...")
+            self.reset_pv_obj.put(1)
 
-        while self.is_resetting:
-            sleep(1)
+            while self.is_resetting:
+                sleep(1)
 
-        if self.is_faulted:
-            raise utils.SSAFaultError(f"Unable to reset {self}")
+            if self.is_faulted and reset_attempt > 2:
+                raise utils.SSAFaultError(f"{self} failed to reset 3x")
+
+            reset_attempt += 1
 
         print(f"{self} reset")
 
