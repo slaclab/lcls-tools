@@ -1,5 +1,5 @@
-from pydantic import BaseModel, SerializeAsAny, ConfigDict
-from typing import List, Union, Callable, Optional
+from pydantic import BaseModel, SerializeAsAny, ConfigDict, field_validator
+from typing import List, Union, Callable, Dict
 from epics import PV
 
 
@@ -43,7 +43,7 @@ class RemoveDeviceCallbackError(Exception):
 
 
 class Device(BaseModel):
-    name: Optional[str] = None
+    name: str = None
     controls_information: SerializeAsAny[ControlInformation]
     metadata: SerializeAsAny[Metadata]
 
@@ -141,3 +141,26 @@ class Device(BaseModel):
         index = self._get_callback_index(pv_obj, function)
         if index:
             pv_obj.remove_callback(index)
+
+
+class DeviceCollection(BaseModel):
+    devices: Dict[str, SerializeAsAny[Device]] = None
+
+    @field_validator("devices", mode="before")
+    def validate_devices(cls, v):
+        """
+        Add name field to data that will be passed to Device class
+        and then use that dictionary to create each Device.
+        """
+        for name, device in v.items():
+            device = dict(device)
+            device.update({"name": name})
+            v.update({name: device})
+        return v
+
+    def __init__(self, *args, **kwargs):
+        super(DeviceCollection, self).__init__(*args, **kwargs)
+
+    @property
+    def device_names(self):
+        return list(self.devices.keys())

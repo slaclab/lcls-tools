@@ -339,7 +339,14 @@ magnets:
       type: XCOR
   RCDAS19:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: XCOR:DASEL:998:BACT
+        bcon: XCOR:DASEL:998:BCON
+        bctrl: XCOR:DASEL:998:BCTRL
+        bdes: XCOR:DASEL:998:BDES
+        bmax: XCOR:DASEL:998:BMAX
+        bmin: XCOR:DASEL:998:BMIN
+        ctrl: XCOR:DASEL:998:CTRL
       control_name: XCOR:DASEL:998
     metadata:
       area: DASEL
@@ -366,7 +373,14 @@ magnets:
       type: XCOR
   XCDAS14:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: XCOR:DASEL:622:BACT
+        bcon: XCOR:DASEL:622:BCON
+        bctrl: XCOR:DASEL:622:BCTRL
+        bdes: XCOR:DASEL:622:BDES
+        bmax: XCOR:DASEL:622:BMAX
+        bmin: XCOR:DASEL:622:BMIN
+        ctrl: XCOR:DASEL:622:CTRL
       control_name: XCOR:DASEL:622
     metadata:
       area: DASEL
@@ -393,7 +407,14 @@ magnets:
       type: YCOR
   YCDAS17:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: YCOR:DASEL:821:BACT
+        bcon: YCOR:DASEL:821:BCON
+        bctrl: YCOR:DASEL:821:BCTRL
+        bdes: YCOR:DASEL:821:BDES
+        bmax: YCOR:DASEL:821:BMAX
+        bmin: YCOR:DASEL:821:BMIN
+        ctrl: YCOR:DASEL:821:CTRL
       control_name: YCOR:DASEL:821
     metadata:
       area: DASEL
