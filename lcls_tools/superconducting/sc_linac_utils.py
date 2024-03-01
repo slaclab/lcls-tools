@@ -32,6 +32,7 @@ L3B = [
 
 LINAC_TUPLES = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
 LINAC_CM_DICT = {0: L0B, 1: L1B, 2: L2B, 3: L3B}
+LINAC_CM_MAP = [L0B, L1B, L2B, L3B]
 
 BEAMLINEVACUUM_INFIXES = [
     ["0198"],
@@ -152,6 +153,11 @@ INTERLOCK_RESET_ATTEMPS = 3
 
 
 class SCLinacObject(ABC, object):
+    """
+    Base class used to represent all components of the LCLS II superconducting
+    accelerator (linacs, cryomodules, racks, cavities, SSAs, and tuners)
+    """
+
     @property
     @abstractmethod
     def pv_prefix(self):
