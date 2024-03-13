@@ -139,13 +139,13 @@ class SSA(utils.SCLinacObject):
             self._drive_max_setpoint_pv_obj = PV(self.drive_max_setpoint_pv)
         self._drive_max_setpoint_pv_obj.put(value)
 
-    def calibrate(self, drivemax, attempt=0):
-        print(f"Trying {self} calibration with drivemax {drivemax}")
-        if drivemax < 0.4:
+    def calibrate(self, drive_max, attempt=0):
+        print(f"Trying {self} calibration with drive max {drive_max}")
+        if drive_max < 0.4:
             raise utils.SSACalibrationError(f"Requested {self} drive max too low")
 
         print(f"Setting {self} max drive")
-        self.drive_max = drivemax
+        self.drive_max = drive_max
 
         try:
             self.cavity.check_abort()
@@ -153,7 +153,7 @@ class SSA(utils.SCLinacObject):
 
         except (utils.SSACalibrationToleranceError, utils.SSACalibrationError) as e:
             if attempt < 3:
-                self.calibrate(drivemax, attempt + 1)
+                self.calibrate(drive_max, attempt + 1)
             else:
                 raise utils.SSACalibrationError(e)
 
@@ -480,63 +480,63 @@ class StepperTuner(utils.SCLinacObject):
     def speed(self, value: int):
         self.speed_pv_obj.put(value)
 
-    def restoreDefaults(self):
+    def restore_defaults(self):
         self.max_steps = utils.DEFAULT_STEPPER_MAX_STEPS
         self.speed = utils.DEFAULT_STEPPER_SPEED
 
     def move(
         self,
-        numSteps: int,
-        maxSteps: int = utils.DEFAULT_STEPPER_MAX_STEPS,
+        num_steps: int,
+        max_steps: int = utils.DEFAULT_STEPPER_MAX_STEPS,
         speed: int = utils.DEFAULT_STEPPER_SPEED,
-        changeLimits: bool = True,
+        change_limits: bool = True,
         check_detune: bool = True,
     ):
         """
-        :param numSteps: positive for increasing cavity length, negative for decreasing
-        :param maxSteps: the maximum number of steps allowed at once
+        :param num_steps: positive for increasing cavity length, negative for decreasing
+        :param max_steps: the maximum number of steps allowed at once
         :param speed: the speed of the motor in steps/second
-        :param changeLimits: whether to change the speed and steps
+        :param change_limits: whether to change the speed and steps
         :param check_detune: whether to check for valid detune after each move
         :return:
         """
 
         self.check_abort()
-        maxSteps = abs(maxSteps)
+        max_steps = abs(max_steps)
 
-        if changeLimits:
+        if change_limits:
             # on the off chance that someone tries to write a negative maximum
-            self.max_steps = maxSteps
+            self.max_steps = max_steps
 
             # make sure that we don't exceed the speed limit as defined by the tuner experts
             self.speed = (
                 speed if speed < utils.MAX_STEPPER_SPEED else utils.MAX_STEPPER_SPEED
             )
 
-        if abs(numSteps) <= maxSteps:
-            print(f"{self.cavity} {abs(numSteps)} steps <= {maxSteps} max")
-            self.step_des = abs(numSteps)
-            self.issueMoveCommand(numSteps, check_detune=check_detune)
-            self.restoreDefaults()
+        if abs(num_steps) <= max_steps:
+            print(f"{self.cavity} {abs(num_steps)} steps <= {max_steps} max")
+            self.step_des = abs(num_steps)
+            self.issue_move_command(num_steps, check_detune=check_detune)
+            self.restore_defaults()
         else:
-            print(f"{self.cavity} {abs(numSteps)} steps > {maxSteps} max")
-            self.step_des = maxSteps
-            self.issueMoveCommand(numSteps, check_detune=check_detune)
-            print(f"{self.cavity} moving {numSteps - (sign(numSteps) * maxSteps)}")
+            print(f"{self.cavity} {abs(num_steps)} steps > {max_steps} max")
+            self.step_des = max_steps
+            self.issue_move_command(num_steps, check_detune=check_detune)
+            print(f"{self.cavity} moving {num_steps - (sign(num_steps) * max_steps)}")
             self.move(
-                numSteps - (sign(numSteps) * maxSteps),
-                maxSteps,
+                num_steps - (sign(num_steps) * max_steps),
+                max_steps,
                 speed,
-                changeLimits=False,
+                change_limits=False,
                 check_detune=check_detune,
             )
 
-    def issueMoveCommand(self, numSteps: int, check_detune: bool = True):
+    def issue_move_command(self, num_steps: int, check_detune: bool = True):
         # this is necessary because the tuners for the HLs move the other direction
         if self.cavity.cryomodule.is_harmonic_linearizer:
-            numSteps *= -1
+            num_steps *= -1
 
-        if sign(numSteps) == 1:
+        if sign(num_steps) == 1:
             self.move_positive()
         else:
             self.move_negative()
@@ -728,13 +728,10 @@ class Cavity(utils.SCLinacObject):
         @param rack_object: the rack object the cavities belong to
         """
 
-        self.number = cavity_num
+        self.number: int = cavity_num
         self.rack: Rack = rack_object
         self.cryomodule: Cryomodule = self.rack.cryomodule
-        self.linac = self.cryomodule.linac
-        self.ssa = self.rack.ssa_class(cavity=self)
-        self.steppertuner = self.rack.stepper_class(cavity=self)
-        self.piezo = self.rack.piezo_class(cavity=self)
+        self.linac: Linac = self.cryomodule.linac
 
         if self.cryomodule.is_harmonic_linearizer:
             self.length = 0.346
@@ -756,6 +753,12 @@ class Cavity(utils.SCLinacObject):
         )
 
         self.chirp_prefix = self._pv_prefix + "CHIRP:"
+        self.abort_flag: bool = False
+
+        # These need to be created after all the base cavity properties are defined
+        self.ssa: SSA = self.rack.ssa_class(cavity=self)
+        self.stepper_tuner: StepperTuner = self.rack.stepper_class(cavity=self)
+        self.piezo: Piezo = self.rack.piezo_class(cavity=self)
 
         self._calc_probe_q_pv_obj: Optional[PV] = None
         self.calc_probe_q_pv: str = self.pv_addr("QPROBE_CALC1.PROC")
@@ -866,8 +869,6 @@ class Cavity(utils.SCLinacObject):
         self.freq_stop_pv: str = self.chirp_prefix + "FREQ_STOP"
         self._freq_stop_pv_obj: Optional[PV] = None
 
-        self.abort_flag: bool = False
-
         self.hw_mode_pv: str = self.pv_addr("HWMODE")
         self._hw_mode_pv_obj: Optional[PV] = None
 
@@ -883,7 +884,7 @@ class Cavity(utils.SCLinacObject):
 
     @property
     def microsteps_per_hz(self):
-        return 1 / self.steppertuner.hz_per_microstep
+        return 1 / self.stepper_tuner.hz_per_microstep
 
     def start_characterization(self):
         if not self._characterization_start_pv_obj:
@@ -1119,10 +1120,12 @@ class Cavity(utils.SCLinacObject):
         rfs = rfs_map[self.number]
 
         r = self.rack.rack_name
-        cm = self.cryomodule.pv_prefix[
-            :-3
-        ]  # need to remove trailing colon and zeroes to match needed format
-        id = self.cryomodule.name
+
+        # need to remove trailing colon and zeroes to match needed format
+        cm = self.cryomodule.pv_prefix[:-3]
+
+        # "id" shadows built-in id, renaming
+        macro_id = self.cryomodule.name
 
         ch = 2 if self.number in [2, 4] else 1
 
@@ -1132,7 +1135,7 @@ class Cavity(utils.SCLinacObject):
                 "RFS={rfs}".format(rfs=rfs),
                 "R={r}".format(r=r),
                 "CM={cm}".format(cm=cm),
-                "ID={id}".format(id=id),
+                "ID={id}".format(id=macro_id),
                 "CH={ch}".format(ch=ch),
             ]
         )
@@ -1303,7 +1306,7 @@ class Cavity(utils.SCLinacObject):
         steps_moved: int = 0
 
         if reset_signed_steps:
-            self.steppertuner.reset_signed_steps()
+            self.stepper_tuner.reset_signed_steps()
 
         self.tune_config_pv_obj.put(utils.TUNE_CONFIG_OTHER_VALUE)
 
@@ -1313,9 +1316,9 @@ class Cavity(utils.SCLinacObject):
 
             print(f"Moving stepper for {self} {est_steps} steps")
 
-            self.steppertuner.move(
+            self.stepper_tuner.move(
                 est_steps,
-                maxSteps=int(abs(est_steps) * 1.1),
+                max_steps=int(abs(est_steps) * 1.1),
                 speed=utils.MAX_STEPPER_SPEED,
             )
 
@@ -1338,7 +1341,7 @@ class Cavity(utils.SCLinacObject):
                     f"Cannot tune {self} in SELA with invalid detune"
                 )
 
-    def checkAndSetOnTime(self):
+    def check_and_set_on_time(self):
         """
         In pulsed mode the cavity has a duty cycle determined by the on time and
         off time. We want the on time to be 70 ms or else the various cavity
@@ -1354,7 +1357,7 @@ class Cavity(utils.SCLinacObject):
                 )
             )
             self.pulse_on_time = utils.NOMINAL_PULSED_ONTIME
-            self.pushGoButton()
+            self.push_go_button()
 
     @property
     def pulse_go_pv_obj(self) -> PV:
@@ -1362,7 +1365,7 @@ class Cavity(utils.SCLinacObject):
             self._pulse_go_pv_obj = PV(self._pv_prefix + "PULSE_DIFF_SUM")
         return self._pulse_go_pv_obj
 
-    def pushGoButton(self):
+    def push_go_button(self):
         """
         Many of the changes made to a cavity don't actually take effect until the
         go button is pressed
@@ -1391,7 +1394,7 @@ class Cavity(utils.SCLinacObject):
         else:
             raise utils.CavityHWModeError(f"{self} not online")
 
-    def turnOff(self):
+    def turn_off(self):
         print(f"turning {self} off")
         self.rf_control = 0
         while self.is_on:
@@ -1400,30 +1403,30 @@ class Cavity(utils.SCLinacObject):
             sleep(1)
         print(f"{self} off")
 
-    def setup_selap(self, desAmp: float = 5):
-        self.setup_rf(desAmp)
+    def setup_selap(self, des_amp: float = 5):
+        self.setup_rf(des_amp)
         self.set_selap_mode()
         print(f"{self} set up in SELAP")
 
-    def setup_sela(self, desAmp: float = 5):
-        self.setup_rf(desAmp)
+    def setup_sela(self, des_amp: float = 5):
+        self.setup_rf(des_amp)
         self.set_sela_mode()
         print(f"{self} set up in SELA")
 
     def check_abort(self):
         if self.abort_flag:
             self.abort_flag = False
-            self.turnOff()
+            self.turn_off()
             raise utils.CavityAbortError(f"Abort requested for {self}")
 
-    def setup_rf(self, desAmp):
-        if desAmp > self.ades_max:
+    def setup_rf(self, des_amp):
+        if des_amp > self.ades_max:
             print(
                 f"Requested amplitude for {self} too high - ramping up to AMAX instead"
             )
-            desAmp = self.ades_max
+            des_amp = self.ades_max
         print(f"setting up {self}")
-        self.turnOff()
+        self.turn_off()
         self.ssa.calibrate(self.ssa.drive_max)
         self.move_to_resonance()
 
@@ -1436,19 +1439,19 @@ class Cavity(utils.SCLinacObject):
 
         self.check_abort()
 
-        self.ades = min(5, desAmp)
+        self.ades = min(5, des_amp)
         self.set_sel_mode()
         self.piezo.enable_feedback()
         self.set_sela_mode()
 
         self.check_abort()
 
-        if desAmp <= 10:
-            self.walk_amp(desAmp, 0.5)
+        if des_amp <= 10:
+            self.walk_amp(des_amp, 0.5)
 
         else:
             self.walk_amp(10, 0.5)
-            self.walk_amp(desAmp, 0.1)
+            self.walk_amp(des_amp, 0.1)
 
     def reset_data_decimation(self):
         print(f"Setting data decimation for {self}")
@@ -1504,10 +1507,10 @@ class Cavity(utils.SCLinacObject):
 
         print(f"Checking {self} RF permit")
         if self.rf_inhibited:
-            if attempt >= utils.INTERLOCK_RESET_ATTEMPS:
+            if attempt >= utils.INTERLOCK_RESET_ATTEMPTS:
                 raise utils.CavityFaultError(
                     f"{self} still faulted after"
-                    f" {utils.INTERLOCK_RESET_ATTEMPS} "
+                    f" {utils.INTERLOCK_RESET_ATTEMPTS} "
                     f"reset attempts"
                 )
             else:
@@ -1598,7 +1601,7 @@ class Cavity(utils.SCLinacObject):
         while self.ades <= (des_amp - step_size):
             self.check_abort()
             if self.is_quenched:
-                raise utils.QuenchError(f"{self} quench detected, aborting rampup")
+                raise utils.QuenchError(f"{self} quench detected, aborting RF ramp")
             self.ades = self.ades + step_size
             # to avoid tripping sensitive interlock
             sleep(0.1)
@@ -1610,12 +1613,11 @@ class Cavity(utils.SCLinacObject):
 
 
 class Magnet(utils.SCLinacObject):
-    def __init__(self, magnettype, cryomodule):
+    def __init__(self, magnet_type, cryomodule):
         # type: (str, Cryomodule) -> None
-        self._pv_prefix = "{magnettype}:{linac}:{cm}85:".format(
-            magnettype=magnettype, linac=cryomodule.linac.name, cm=cryomodule.name
-        )
-        self.name = magnettype
+        self._pv_prefix = f"{magnet_type}:{cryomodule.linac.name}:{cryomodule.name}85:"
+
+        self.name = magnet_type
         self.cryomodule: Cryomodule = cryomodule
 
         self.bdes_pv: str = self.pv_addr("BDES")
@@ -1656,10 +1658,10 @@ class Magnet(utils.SCLinacObject):
     def reset(self):
         self.control_pv_obj.put(utils.MAGNET_RESET_VALUE)
 
-    def turnOn(self):
+    def turn_on(self):
         self.control_pv_obj.put(utils.MAGNET_ON_VALUE)
 
-    def turnOff(self):
+    def turn_off(self):
         self.control_pv_obj.put(utils.MAGNET_OFF_VALUE)
 
     def degauss(self):
@@ -1749,9 +1751,9 @@ class Cryomodule(utils.SCLinacObject):
         self.piezo_class: Type[Piezo] = self.linac.piezo_class
 
         if not self.is_harmonic_linearizer:
-            self.quad: Magnet = self.magnet_class(magnettype="QUAD", cryomodule=self)
-            self.xcor: Magnet = self.magnet_class(magnettype="XCOR", cryomodule=self)
-            self.ycor: Magnet = self.magnet_class(magnettype="YCOR", cryomodule=self)
+            self.quad: Magnet = self.magnet_class(magnet_type="QUAD", cryomodule=self)
+            self.xcor: Magnet = self.magnet_class(magnet_type="XCOR", cryomodule=self)
+            self.ycor: Magnet = self.magnet_class(magnet_type="YCOR", cryomodule=self)
 
         self._pv_prefix = f"ACCL:{self.linac.name}:{self.name}00:"
 
@@ -1816,15 +1818,15 @@ class Linac:
         @param linac_section: int of Linac index i.e. "L0B" -> 0
         @param beamline_vacuum_infixes: str list of vacuum infixes for that
                                         section as found in
-                                        utils.BEAMLINEVACUUM_INFIXES
+                                        utils.BEAMLINE_VACUUM_INFIXES
         @param insulating_vacuum_cryomodules: str list of cryomodules with
                                               insulated vacuum readback in that
                                               section as found in
-                                              utils.INSULATINGVACUUM_CRYOMODULES
+                                              utils.INSULATING_VACUUM_CRYOMODULES
         @param machine: Machine object that this linac belongs to
         """
 
-        self.cryomodule_class: Type[Cryomodule] = machine.crymodule_class
+        self.cryomodule_class: Type[Cryomodule] = machine.cryomodule_class
         self.cavity_class = machine.cavity_class
         self.rack_class = machine.rack_class
         self.magnet_class = machine.magnet_class
@@ -1878,7 +1880,7 @@ class Machine:
         piezo_class: Type[Piezo] = Piezo,
     ):
         self.linac_class = linac_class
-        self.crymodule_class = cryomodule_class
+        self.cryomodule_class = cryomodule_class
         self.cavity_class = cavity_class
         self.magnet_class = magnet_class
         self.rack_class = rack_class
@@ -1892,10 +1894,15 @@ class Machine:
             self.linacs.append(
                 linac_class(
                     linac_section=section,
-                    beamline_vacuum_infixes=utils.BEAMLINEVACUUM_INFIXES[section],
-                    insulating_vacuum_cryomodules=utils.INSULATINGVACUUM_CRYOMODULES[
+                    beamline_vacuum_infixes=utils.BEAMLINE_VACUUM_INFIXES[section],
+                    insulating_vacuum_cryomodules=utils.INSULATING_VACUUM_CRYOMODULES[
                         section
                     ],
                     machine=self,
                 )
             )
+
+        self.cryomodules: Dict[str, Cryomodule] = {}
+        for linac in self.linacs:
+            for cm_name, cm_obj in linac.cryomodules.items():
+                self.cryomodules[cm_name] = cm_obj
