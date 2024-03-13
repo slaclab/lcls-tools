@@ -1969,3 +1969,6 @@ class Machine:
         for linac in self.linacs:
             for cm_name, cm_obj in linac.cryomodules.items():
                 self.cryomodules[cm_name] = cm_obj
+
+
+MACHINE = Machine()
