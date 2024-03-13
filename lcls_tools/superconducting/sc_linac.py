@@ -15,12 +15,17 @@ from lcls_tools.common.controls.pyepics.utils import EPICS_INVALID_VAL, PV
 
 class SSA(utils.SCLinacObject):
     """
-    This class provides the following subset of SSA controls:
+    Python representation of LCLS II SSAs. This class provides utility functions
+    for powering off/on, resetting, and calibrating
 
     """
 
     def __init__(self, cavity):
         # type: (Cavity) -> None
+        """
+        @param cavity: the cavity object powered by this SSA
+        """
+
         self.cavity: Cavity = cavity
         self._pv_prefix = self.cavity.pv_addr("SSA:")
 
@@ -319,8 +324,18 @@ class SSA(utils.SCLinacObject):
 
 
 class StepperTuner(utils.SCLinacObject):
+    """
+    Python representation of LCLS II stepper tuners. This class provides wrappers
+    for common stepper controls including sending move commands, checking movement
+    status, and retrieving stored movement parameters
+
+    """
+
     def __init__(self, cavity):
         # type (Cavity) -> None
+        """
+        @param cavity: the cavity object tuned by this stepper
+        """
 
         self.cavity: Cavity = cavity
         self._pv_prefix: str = self.cavity.pv_addr("STEP:")
@@ -559,8 +574,18 @@ class StepperTuner(utils.SCLinacObject):
 
 
 class Piezo(utils.SCLinacObject):
+    """
+    Python representation of LCLS II piezo tuners. This class provides utility
+    functions for toggling feedback mode and changing bias voltage and DC offset
+
+    """
+
     def __init__(self, cavity):
         # type (Cavity) -> None
+        """
+        @param cavity: The cavity object tuned by this piezo
+        """
+
         self.cavity: Cavity = cavity
         self._pv_prefix: str = self.cavity.pv_addr("PZT:")
 
@@ -714,7 +739,10 @@ class Piezo(utils.SCLinacObject):
 
 class Cavity(utils.SCLinacObject):
     """
-    Python representation of LCLS II cavities
+    Python representation of LCLS II cavities. This class provides utility
+    functions for commonly used tasks including powering on/off, changing RF mode,
+    setting amplitude, characterizing, and tuning to resonance
+
     """
 
     def __init__(
@@ -1613,8 +1641,19 @@ class Cavity(utils.SCLinacObject):
 
 
 class Magnet(utils.SCLinacObject):
+    """
+    Python representation of LCLS II magnets. This class provides wrappers for
+    common magnet controls including powering on/off and changing strength
+
+    """
+
     def __init__(self, magnet_type, cryomodule):
         # type: (str, Cryomodule) -> None
+        """
+        @param magnet_type: One of QUAD, XCOR, or YCOR
+        @param cryomodule: the cryomodule object in which this magnet is contained
+        """
+
         self._pv_prefix = f"{magnet_type}:{cryomodule.linac.name}:{cryomodule.name}85:"
 
         self.name = magnet_type
@@ -1673,7 +1712,8 @@ class Magnet(utils.SCLinacObject):
 
 class Rack(utils.SCLinacObject):
     """
-    Python representation of LCLS II RF Racks.
+    Python representation of LCLS II RF Racks. This class functions mostly as a
+    container for cavities.
     Rack A has cavities 1 through 4, Rack B has cavities 5 through 8.
     """
 
@@ -1726,6 +1766,12 @@ class Rack(utils.SCLinacObject):
 
 
 class Cryomodule(utils.SCLinacObject):
+    """
+    Python representation of an LCLS II cryomodule. This class functions mostly
+    as a container for racks and cryo-level PVs
+
+    """
+
     def __init__(
         self,
         cryo_name,
@@ -1733,8 +1779,6 @@ class Cryomodule(utils.SCLinacObject):
     ):
         # type: (str, Linac) -> None # noqa: E501
         """
-        Python representation of an LCLS II cryomodule
-
         @param cryo_name: str name of Cryomodule i.e. "02", "03", "H1", "H2"
         @param linac_object: the linac object this cryomodule belongs to i.e.
                              CM02 is in linac L1B
@@ -1806,6 +1850,12 @@ class Cryomodule(utils.SCLinacObject):
 
 
 class Linac:
+    """
+    Python representation of LCLS II linac sections. This class functions mostly
+    as a container for cryomodules and linac-level vacuum PVs
+
+    """
+
     def __init__(
         self,
         linac_section,
@@ -1868,6 +1918,13 @@ class Linac:
 
 
 class Machine:
+    """
+    Python representation of the entire LCLS II accelerator. This class functions
+    as a generator for lower level accelerator objects, as well as a container
+    for generated cryomodule objects
+
+    """
+
     def __init__(
         self,
         linac_class: Type[Linac] = Linac,
@@ -1879,6 +1936,12 @@ class Machine:
         ssa_class: Type[SSA] = SSA,
         piezo_class: Type[Piezo] = Piezo,
     ):
+        """
+        All inputs are optional, but allow for object customization for more
+        specific use cases. Only functionality used by at least two applications
+        is put in default classes
+
+        """
         self.linac_class = linac_class
         self.cryomodule_class = cryomodule_class
         self.cavity_class = cavity_class
