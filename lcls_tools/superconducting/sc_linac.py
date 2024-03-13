@@ -230,8 +230,10 @@ class SSA(utils.SCLinacObject):
             while self.is_resetting:
                 sleep(1)
 
-            if self.is_faulted and reset_attempt > 2:
-                raise utils.SSAFaultError(f"{self} failed to reset 3x")
+            if self.is_faulted and reset_attempt >= utils.INTERLOCK_RESET_ATTEMPTS:
+                raise utils.SSAFaultError(
+                    f"{self} failed to reset {utils.INTERLOCK_RESET_ATTEMPTS}x"
+                )
 
             reset_attempt += 1
 
