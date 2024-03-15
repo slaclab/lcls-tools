@@ -29,6 +29,11 @@ class SSA(utils.SCLinacObject):
         self.cavity: Cavity = cavity
         self._pv_prefix = self.cavity.pv_addr("SSA:")
 
+        # HL cryomodules only have 4 physical SSAs such that they each power two
+        # cavities (SSA 1 powers cavities 1 and 5, SSA 2 powers cavities 2 and 6,
+        # etc.) Because of that, HL cavities have a subset of shared SSA
+        # controls (on/off/reset/voltage). HL SSAs also have a lower expected
+        # forward power.
         if self.cavity.cryomodule.is_harmonic_linearizer:
             cavity_num = utils.HL_SSA_MAP[self.cavity.number]
             self.hl_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:SSA:".format(
@@ -92,6 +97,12 @@ class SSA(utils.SCLinacObject):
         return self._pv_prefix
 
     def pv_addr(self, suffix: str):
+        """
+        @param suffix: The specific PV signal to be appended to the appropriate
+                       prefix (that will depend on if the signal is shared
+                       between HL SSAs)
+        @return: Full PV address of the form ACCL:L{X}B:{CM}{CAV}0:SSA:SUFFIX
+        """
         if (
             self.cavity.cryomodule.is_harmonic_linearizer
             and suffix in utils.HL_SSA_SHARED_PVS
@@ -145,6 +156,11 @@ class SSA(utils.SCLinacObject):
         self._drive_max_setpoint_pv_obj.put(value)
 
     def calibrate(self, drive_max, attempt=0):
+        """
+        @param drive_max: drive max to use for SSA calibration
+        @param attempt: recursively incremented upon calibration failure
+        @return: None
+        """
         print(f"Trying {self} calibration with drive max {drive_max}")
         if drive_max < 0.4:
             raise utils.SSACalibrationError(f"Requested {self} drive max too low")
@@ -182,8 +198,11 @@ class SSA(utils.SCLinacObject):
 
     def turn_on(self):
         if not self.is_on:
-            print(f"Turning {self} on")
+            # Check to see if SSA is hard faulted first (self.reset() tries a set
+            # number of times before raising an error)
             self.reset()
+
+            print(f"Turning {self} on")
             self.turn_on_pv_obj.put(1)
 
             while not self.is_on:
@@ -272,8 +291,11 @@ class SSA(utils.SCLinacObject):
         """
         Runs the SSA through its range and finds the slope that describes
         the relationship between SSA drive signal and output power
-        :return:
+        @param save_slope: Whether to update the saved slope PV with the newly
+                           calculated value or not
+        @return: None
         """
+
         self.reset()
         self.turn_on()
 
@@ -330,7 +352,6 @@ class StepperTuner(utils.SCLinacObject):
     Python representation of LCLS II stepper tuners. This class provides wrappers
     for common stepper controls including sending move commands, checking movement
     status, and retrieving stored movement parameters
-
     """
 
     def __init__(self, cavity):
@@ -405,6 +426,12 @@ class StepperTuner(utils.SCLinacObject):
         return abs(self.hz_per_microstep_pv_obj.get())
 
     def check_abort(self):
+        """
+        This function raises an error if either a stepper abort or a cavity abort
+        has been requested.
+        @return: None
+        """
+        self.cavity.check_abort()
         if self.abort_flag:
             self.abort()
             self.abort_flag = False
@@ -515,7 +542,7 @@ class StepperTuner(utils.SCLinacObject):
         :param speed: the speed of the motor in steps/second
         :param change_limits: whether to change the speed and steps
         :param check_detune: whether to check for valid detune after each move
-        :return:
+        :return: None
         """
 
         self.check_abort()
@@ -549,6 +576,16 @@ class StepperTuner(utils.SCLinacObject):
             )
 
     def issue_move_command(self, num_steps: int, check_detune: bool = True):
+        """
+        Determine whether to move positive or negative depending on the requested
+        number of steps
+        @param num_steps: Signed number of steps to move the stepper
+        @param check_detune: Whether to check for a valid detune during move
+                             (this should only be false when we cannot see
+                             cavity frequency, i.e. when we are not at 2 K)
+        @return: None
+        """
+
         # this is necessary because the tuners for the HLs move the other direction
         if self.cavity.cryomodule.is_harmonic_linearizer:
             num_steps *= -1
