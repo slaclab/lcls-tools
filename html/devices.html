@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Devices &mdash; lcls-tools  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Image Processing" href="image_processing.html" />
+    <link rel="prev" title="Welcome to lcls-tools’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            lcls-tools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#device-base-class">Device Base Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.device.Device"><code class="docutils literal notranslate"><span class="pre">Device</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.add_callback_to_pv"><code class="docutils literal notranslate"><span class="pre">Device.add_callback_to_pv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.area"><code class="docutils literal notranslate"><span class="pre">Device.area</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.beam_path"><code class="docutils literal notranslate"><span class="pre">Device.beam_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.controls_information"><code class="docutils literal notranslate"><span class="pre">Device.controls_information</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.get_callbacks"><code class="docutils literal notranslate"><span class="pre">Device.get_callbacks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.metadata"><code class="docutils literal notranslate"><span class="pre">Device.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">Device.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.model_config"><code class="docutils literal notranslate"><span class="pre">Device.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.model_fields"><code class="docutils literal notranslate"><span class="pre">Device.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.name"><code class="docutils literal notranslate"><span class="pre">Device.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.remove_callback_from_pv"><code class="docutils literal notranslate"><span class="pre">Device.remove_callback_from_pv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Device.sum_l_meters"><code class="docutils literal notranslate"><span class="pre">Device.sum_l_meters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.device.ControlInformation"><code class="docutils literal notranslate"><span class="pre">ControlInformation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.ControlInformation.PVs"><code class="docutils literal notranslate"><span class="pre">ControlInformation.PVs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.ControlInformation.control_name"><code class="docutils literal notranslate"><span class="pre">ControlInformation.control_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.ControlInformation.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ControlInformation.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.ControlInformation.model_config"><code class="docutils literal notranslate"><span class="pre">ControlInformation.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.ControlInformation.model_fields"><code class="docutils literal notranslate"><span class="pre">ControlInformation.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.device.PVSet"><code class="docutils literal notranslate"><span class="pre">PVSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.PVSet.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">PVSet.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.PVSet.model_config"><code class="docutils literal notranslate"><span class="pre">PVSet.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.PVSet.model_fields"><code class="docutils literal notranslate"><span class="pre">PVSet.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata"><code class="docutils literal notranslate"><span class="pre">Metadata</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata.area"><code class="docutils literal notranslate"><span class="pre">Metadata.area</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata.beam_path"><code class="docutils literal notranslate"><span class="pre">Metadata.beam_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">Metadata.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata.model_config"><code class="docutils literal notranslate"><span class="pre">Metadata.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata.model_fields"><code class="docutils literal notranslate"><span class="pre">Metadata.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata.sum_l_meters"><code class="docutils literal notranslate"><span class="pre">Metadata.sum_l_meters</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#magnet-class">Magnet Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet"><code class="docutils literal notranslate"><span class="pre">Magnet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.b_tolerance"><code class="docutils literal notranslate"><span class="pre">Magnet.b_tolerance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.bact"><code class="docutils literal notranslate"><span class="pre">Magnet.bact</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.bcon"><code class="docutils literal notranslate"><span class="pre">Magnet.bcon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.bctrl"><code class="docutils literal notranslate"><span class="pre">Magnet.bctrl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.bdes"><code class="docutils literal notranslate"><span class="pre">Magnet.bdes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.bmax"><code class="docutils literal notranslate"><span class="pre">Magnet.bmax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.bmin"><code class="docutils literal notranslate"><span class="pre">Magnet.bmin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.calibrate"><code class="docutils literal notranslate"><span class="pre">Magnet.calibrate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.check_options"><code class="docutils literal notranslate"><span class="pre">Magnet.check_options()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.check_state"><code class="docutils literal notranslate"><span class="pre">Magnet.check_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.con_to_des"><code class="docutils literal notranslate"><span class="pre">Magnet.con_to_des()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.controls_information"><code class="docutils literal notranslate"><span class="pre">Magnet.controls_information</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.ctrl"><code class="docutils literal notranslate"><span class="pre">Magnet.ctrl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.ctrl_options"><code class="docutils literal notranslate"><span class="pre">Magnet.ctrl_options</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.dac_zero"><code class="docutils literal notranslate"><span class="pre">Magnet.dac_zero()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.degauss"><code class="docutils literal notranslate"><span class="pre">Magnet.degauss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.is_bact_settled"><code class="docutils literal notranslate"><span class="pre">Magnet.is_bact_settled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.length"><code class="docutils literal notranslate"><span class="pre">Magnet.length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.load_bdes"><code class="docutils literal notranslate"><span class="pre">Magnet.load_bdes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.metadata"><code class="docutils literal notranslate"><span class="pre">Magnet.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">Magnet.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.model_config"><code class="docutils literal notranslate"><span class="pre">Magnet.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.model_fields"><code class="docutils literal notranslate"><span class="pre">Magnet.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.perturb"><code class="docutils literal notranslate"><span class="pre">Magnet.perturb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.reset"><code class="docutils literal notranslate"><span class="pre">Magnet.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.save_bdes"><code class="docutils literal notranslate"><span class="pre">Magnet.save_bdes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.standardize"><code class="docutils literal notranslate"><span class="pre">Magnet.standardize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.trim"><code class="docutils literal notranslate"><span class="pre">Magnet.trim()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.turn_off"><code class="docutils literal notranslate"><span class="pre">Magnet.turn_off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.turn_on"><code class="docutils literal notranslate"><span class="pre">Magnet.turn_on()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet.undo_bdes"><code class="docutils literal notranslate"><span class="pre">Magnet.undo_bdes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection"><code class="docutils literal notranslate"><span class="pre">MagnetCollection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.degauss"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.degauss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.magnets"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.magnets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.model_config"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.model_fields"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.scan"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.scan()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.seconds_since"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.seconds_since()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.set_bdes"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.set_bdes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.turn_off"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.turn_off()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.turn_on"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.turn_on()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetCollection.validate_magnets"><code class="docutils literal notranslate"><span class="pre">MagnetCollection.validate_magnets()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetControlInformation"><code class="docutils literal notranslate"><span class="pre">MagnetControlInformation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.PVs"><code class="docutils literal notranslate"><span class="pre">MagnetControlInformation.PVs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.ctrl_options"><code class="docutils literal notranslate"><span class="pre">MagnetControlInformation.ctrl_options</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">MagnetControlInformation.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.model_config"><code class="docutils literal notranslate"><span class="pre">MagnetControlInformation.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.model_fields"><code class="docutils literal notranslate"><span class="pre">MagnetControlInformation.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.model_post_init"><code class="docutils literal notranslate"><span class="pre">MagnetControlInformation.model_post_init()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bact"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.bact</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bcon"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.bcon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bctrl"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.bctrl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bdes"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.bdes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bmax"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.bmax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bmin"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.bmin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.ctrl"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.ctrl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.model_config"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.model_fields"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet.validate_pv_fields"><code class="docutils literal notranslate"><span class="pre">MagnetPVSet.validate_pv_fields()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetMetadata"><code class="docutils literal notranslate"><span class="pre">MagnetMetadata</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetMetadata.b_tolerance"><code class="docutils literal notranslate"><span class="pre">MagnetMetadata.b_tolerance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetMetadata.length"><code class="docutils literal notranslate"><span class="pre">MagnetMetadata.length</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetMetadata.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">MagnetMetadata.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetMetadata.model_config"><code class="docutils literal notranslate"><span class="pre">MagnetMetadata.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetMetadata.model_fields"><code class="docutils literal notranslate"><span class="pre">MagnetMetadata.model_fields</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#screen-class">Screen Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen"><code class="docutils literal notranslate"><span class="pre">Screen</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.controls_information"><code class="docutils literal notranslate"><span class="pre">Screen.controls_information</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.hdf_save_location"><code class="docutils literal notranslate"><span class="pre">Screen.hdf_save_location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.image"><code class="docutils literal notranslate"><span class="pre">Screen.image</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.image_timestamp"><code class="docutils literal notranslate"><span class="pre">Screen.image_timestamp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.is_saving_images"><code class="docutils literal notranslate"><span class="pre">Screen.is_saving_images</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.last_save_filepath"><code class="docutils literal notranslate"><span class="pre">Screen.last_save_filepath</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.metadata"><code class="docutils literal notranslate"><span class="pre">Screen.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">Screen.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.model_config"><code class="docutils literal notranslate"><span class="pre">Screen.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.model_fields"><code class="docutils literal notranslate"><span class="pre">Screen.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.model_post_init"><code class="docutils literal notranslate"><span class="pre">Screen.model_post_init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.n_bits"><code class="docutils literal notranslate"><span class="pre">Screen.n_bits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.n_columns"><code class="docutils literal notranslate"><span class="pre">Screen.n_columns</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.n_rows"><code class="docutils literal notranslate"><span class="pre">Screen.n_rows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.resolution"><code class="docutils literal notranslate"><span class="pre">Screen.resolution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen.save_images"><code class="docutils literal notranslate"><span class="pre">Screen.save_images()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenCollection"><code class="docutils literal notranslate"><span class="pre">ScreenCollection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenCollection.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ScreenCollection.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenCollection.model_config"><code class="docutils literal notranslate"><span class="pre">ScreenCollection.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenCollection.model_fields"><code class="docutils literal notranslate"><span class="pre">ScreenCollection.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenCollection.screens"><code class="docutils literal notranslate"><span class="pre">ScreenCollection.screens</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenCollection.set_hdf_save_location"><code class="docutils literal notranslate"><span class="pre">ScreenCollection.set_hdf_save_location()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenCollection.validate_screens"><code class="docutils literal notranslate"><span class="pre">ScreenCollection.validate_screens()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenControlInformation"><code class="docutils literal notranslate"><span class="pre">ScreenControlInformation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenControlInformation.PVs"><code class="docutils literal notranslate"><span class="pre">ScreenControlInformation.PVs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenControlInformation.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ScreenControlInformation.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenControlInformation.model_config"><code class="docutils literal notranslate"><span class="pre">ScreenControlInformation.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenControlInformation.model_fields"><code class="docutils literal notranslate"><span class="pre">ScreenControlInformation.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet"><code class="docutils literal notranslate"><span class="pre">ScreenPVSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet.image"><code class="docutils literal notranslate"><span class="pre">ScreenPVSet.image</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ScreenPVSet.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet.model_config"><code class="docutils literal notranslate"><span class="pre">ScreenPVSet.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet.model_fields"><code class="docutils literal notranslate"><span class="pre">ScreenPVSet.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet.n_bits"><code class="docutils literal notranslate"><span class="pre">ScreenPVSet.n_bits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet.n_col"><code class="docutils literal notranslate"><span class="pre">ScreenPVSet.n_col</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet.n_row"><code class="docutils literal notranslate"><span class="pre">ScreenPVSet.n_row</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet.resolution"><code class="docutils literal notranslate"><span class="pre">ScreenPVSet.resolution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet.validate_pv_fields"><code class="docutils literal notranslate"><span class="pre">ScreenPVSet.validate_pv_fields()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="image_processing.html">Image Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab2py.html">Matlab to Python Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lcls-tools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Devices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/devices.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="devices">
+<h1>Devices<a class="headerlink" href="#devices" title="Link to this heading"></a></h1>
+<section id="device-base-class">
+<h2>Device Base Class<a class="headerlink" href="#device-base-class" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.device.</span></span><span class="sig-name descname"><span class="pre">Device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controls_information</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lcls_tools.common.devices.device.ControlInformation" title="lcls_tools.common.devices.device.ControlInformation"><span class="pre">ControlInformation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata" title="lcls_tools.common.devices.device.Metadata"><span class="pre">Metadata</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.device.Device" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.add_callback_to_pv">
+<span class="sig-name descname"><span class="pre">add_callback_to_pv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.device.Device.add_callback_to_pv" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.area">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#lcls_tools.common.devices.device.Device.area" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.beam_path">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">beam_path</span></span><a class="headerlink" href="#lcls_tools.common.devices.device.Device.beam_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.controls_information">
+<span class="sig-name descname"><span class="pre">controls_information</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.device.ControlInformation" title="lcls_tools.common.devices.device.ControlInformation"><span class="pre">ControlInformation</span></a></em><a class="headerlink" href="#lcls_tools.common.devices.device.Device.controls_information" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.get_callbacks">
+<span class="sig-name descname"><span class="pre">get_callbacks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.device.Device.get_callbacks" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata" title="lcls_tools.common.devices.device.Metadata"><span class="pre">Metadata</span></a></em><a class="headerlink" href="#lcls_tools.common.devices.device.Device.metadata" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.Device.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.Device.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'controls_information':</span> <span class="pre">FieldInfo(annotation=ControlInformation,</span> <span class="pre">required=True,</span> <span class="pre">metadata=[SerializeAsAny()]),</span> <span class="pre">'metadata':</span> <span class="pre">FieldInfo(annotation=Metadata,</span> <span class="pre">required=True,</span> <span class="pre">metadata=[SerializeAsAny()]),</span> <span class="pre">'name':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.Device.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.Device.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.remove_callback_from_pv">
+<span class="sig-name descname"><span class="pre">remove_callback_from_pv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.device.Device.remove_callback_from_pv" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Device.sum_l_meters">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sum_l_meters</span></span><a class="headerlink" href="#lcls_tools.common.devices.device.Device.sum_l_meters" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.ControlInformation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.device.</span></span><span class="sig-name descname"><span class="pre">ControlInformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PVs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lcls_tools.common.devices.device.PVSet" title="lcls_tools.common.devices.device.PVSet"><span class="pre">PVSet</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.device.ControlInformation" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.ControlInformation.PVs">
+<span class="sig-name descname"><span class="pre">PVs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.device.PVSet" title="lcls_tools.common.devices.device.PVSet"><span class="pre">PVSet</span></a></em><a class="headerlink" href="#lcls_tools.common.devices.device.ControlInformation.PVs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.ControlInformation.control_name">
+<span class="sig-name descname"><span class="pre">control_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.ControlInformation.control_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.ControlInformation.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.ControlInformation.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.ControlInformation.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'frozen':</span> <span class="pre">True}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.ControlInformation.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.ControlInformation.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'PVs':</span> <span class="pre">FieldInfo(annotation=PVSet,</span> <span class="pre">required=True),</span> <span class="pre">'control_name':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.ControlInformation.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.PVSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.device.</span></span><span class="sig-name descname"><span class="pre">PVSet</span></span><a class="headerlink" href="#lcls_tools.common.devices.device.PVSet" title="Link to this definition"></a></dt>
+<dd><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.PVSet.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.PVSet.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.PVSet.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'arbitrary_types_allowed':</span> <span class="pre">True,</span> <span class="pre">'extra':</span> <span class="pre">'forbid',</span> <span class="pre">'frozen':</span> <span class="pre">True}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.PVSet.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.PVSet.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.PVSet.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Metadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.device.</span></span><span class="sig-name descname"><span class="pre">Metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_l_meters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.device.Metadata" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Metadata.area">
+<span class="sig-name descname"><span class="pre">area</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.Metadata.area" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Metadata.beam_path">
+<span class="sig-name descname"><span class="pre">beam_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#lcls_tools.common.devices.device.Metadata.beam_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Metadata.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.Metadata.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Metadata.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.Metadata.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Metadata.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'area':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'beam_path':</span> <span class="pre">FieldInfo(annotation=List[str],</span> <span class="pre">required=True),</span> <span class="pre">'sum_l_meters':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.Metadata.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.device.Metadata.sum_l_meters">
+<span class="sig-name descname"><span class="pre">sum_l_meters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#lcls_tools.common.devices.device.Metadata.sum_l_meters" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="magnet-class">
+<h2>Magnet Class<a class="headerlink" href="#magnet-class" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.magnet.</span></span><span class="sig-name descname"><span class="pre">Magnet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controls_information</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetControlInformation" title="lcls_tools.common.devices.magnet.MagnetControlInformation"><span class="pre">MagnetControlInformation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetMetadata" title="lcls_tools.common.devices.magnet.MagnetMetadata"><span class="pre">MagnetMetadata</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet" title="Link to this definition"></a></dt>
+<dd><dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.b_tolerance">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">b_tolerance</span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.b_tolerance" title="Link to this definition"></a></dt>
+<dd><p>Returns the field tolerance in kG or kGm</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.bact">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bact</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.bact" title="Link to this definition"></a></dt>
+<dd><p>Get the BACT value</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.bcon">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bcon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.bcon" title="Link to this definition"></a></dt>
+<dd><p>Get the configuration strength of magnet</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.bctrl">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bctrl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.bctrl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.bdes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bdes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.bdes" title="Link to this definition"></a></dt>
+<dd><p>Get BDES value</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.bmax">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bmax</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.bmax" title="Link to this definition"></a></dt>
+<dd><p>Get maximum magnetic field value in KG or KG-m^x.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.bmin">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bmin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.bmin" title="Link to this definition"></a></dt>
+<dd><p>Get minimum magnetic field value in kG or kG-m^x.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.calibrate">
+<span class="sig-name descname"><span class="pre">calibrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.calibrate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.check_options">
+<span class="sig-name descname"><span class="pre">check_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.check_options" title="Link to this definition"></a></dt>
+<dd><p>Decorator to only allow :CTRL to be set if that option exists for the magnet</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.check_state">
+<span class="sig-name descname"><span class="pre">check_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.check_state" title="Link to this definition"></a></dt>
+<dd><p>Decorator to only allow transitions in ‘Ready’ state</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.con_to_des">
+<span class="sig-name descname"><span class="pre">con_to_des</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.con_to_des" title="Link to this definition"></a></dt>
+<dd><p>Issue con to des commands</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.controls_information">
+<span class="sig-name descname"><span class="pre">controls_information</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetControlInformation" title="lcls_tools.common.devices.magnet.MagnetControlInformation"><span class="pre">MagnetControlInformation</span></a></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.controls_information" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.ctrl">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ctrl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.ctrl" title="Link to this definition"></a></dt>
+<dd><p>Get the current action on magnet</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.ctrl_options">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ctrl_options</span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.ctrl_options" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.dac_zero">
+<span class="sig-name descname"><span class="pre">dac_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.dac_zero" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.degauss">
+<span class="sig-name descname"><span class="pre">degauss</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.degauss" title="Link to this definition"></a></dt>
+<dd><p>Degauss magnet</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.is_bact_settled">
+<span class="sig-name descname"><span class="pre">is_bact_settled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b_tolerance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.is_bact_settled" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.length">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.length" title="Link to this definition"></a></dt>
+<dd><p>Returns the effective length in meters</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.load_bdes">
+<span class="sig-name descname"><span class="pre">load_bdes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.load_bdes" title="Link to this definition"></a></dt>
+<dd><p>Load BDES</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetMetadata" title="lcls_tools.common.devices.magnet.MagnetMetadata"><span class="pre">MagnetMetadata</span></a></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.metadata" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'controls_information':</span> <span class="pre">FieldInfo(annotation=MagnetControlInformation,</span> <span class="pre">required=True,</span> <span class="pre">metadata=[SerializeAsAny()]),</span> <span class="pre">'metadata':</span> <span class="pre">FieldInfo(annotation=MagnetMetadata,</span> <span class="pre">required=True,</span> <span class="pre">metadata=[SerializeAsAny()]),</span> <span class="pre">'name':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.perturb">
+<span class="sig-name descname"><span class="pre">perturb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.perturb" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.reset" title="Link to this definition"></a></dt>
+<dd><p>Reset magnet</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.save_bdes">
+<span class="sig-name descname"><span class="pre">save_bdes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.save_bdes" title="Link to this definition"></a></dt>
+<dd><p>Save BDES</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.standardize">
+<span class="sig-name descname"><span class="pre">standardize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.standardize" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.trim">
+<span class="sig-name descname"><span class="pre">trim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.trim" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.turn_off">
+<span class="sig-name descname"><span class="pre">turn_off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.turn_off" title="Link to this definition"></a></dt>
+<dd><p>Turn off magnet</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.turn_on">
+<span class="sig-name descname"><span class="pre">turn_on</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.turn_on" title="Link to this definition"></a></dt>
+<dd><p>Turn on magnet</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.Magnet.undo_bdes">
+<span class="sig-name descname"><span class="pre">undo_bdes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.Magnet.undo_bdes" title="Link to this definition"></a></dt>
+<dd><p>Undo BDES</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.magnet.</span></span><span class="sig-name descname"><span class="pre">MagnetCollection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magnets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet" title="lcls_tools.common.devices.magnet.Magnet"><span class="pre">Magnet</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection" title="Link to this definition"></a></dt>
+<dd><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.degauss">
+<span class="sig-name descname"><span class="pre">degauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">magnets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.degauss" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.magnets">
+<span class="sig-name descname"><span class="pre">magnets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet" title="lcls_tools.common.devices.magnet.Magnet"><span class="pre">Magnet</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.magnets" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'magnets':</span> <span class="pre">FieldInfo(annotation=Dict[str,</span> <span class="pre">Annotated[Magnet,</span> <span class="pre">SerializeAsAny]],</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.scan">
+<span class="sig-name descname"><span class="pre">scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scan_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.scan" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.seconds_since">
+<span class="sig-name descname"><span class="pre">seconds_since</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_to_check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.seconds_since" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.set_bdes">
+<span class="sig-name descname"><span class="pre">set_bdes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">magnet_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settle_timeout_in_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.set_bdes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.turn_off">
+<span class="sig-name descname"><span class="pre">turn_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">magnets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.turn_off" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.turn_on">
+<span class="sig-name descname"><span class="pre">turn_on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">magnets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.turn_on" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetCollection.validate_magnets">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_magnets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.magnet.Magnet" title="lcls_tools.common.devices.magnet.Magnet"><span class="pre">Magnet</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetCollection.validate_magnets" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetControlInformation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.magnet.</span></span><span class="sig-name descname"><span class="pre">MagnetControlInformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PVs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet" title="lcls_tools.common.devices.magnet.MagnetPVSet"><span class="pre">MagnetPVSet</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetControlInformation" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetControlInformation.PVs">
+<span class="sig-name descname"><span class="pre">PVs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.magnet.MagnetPVSet" title="lcls_tools.common.devices.magnet.MagnetPVSet"><span class="pre">MagnetPVSet</span></a></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.PVs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetControlInformation.ctrl_options">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ctrl_options</span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.ctrl_options" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetControlInformation.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetControlInformation.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'frozen':</span> <span class="pre">True}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetControlInformation.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'PVs':</span> <span class="pre">FieldInfo(annotation=MagnetPVSet,</span> <span class="pre">required=True,</span> <span class="pre">metadata=[SerializeAsAny()]),</span> <span class="pre">'control_name':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetControlInformation.model_post_init">
+<span class="sig-name descname"><span class="pre">model_post_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">__context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetControlInformation.model_post_init" title="Link to this definition"></a></dt>
+<dd><p>This function is meant to behave like a BaseModel method to initialise private attributes.</p>
+<p>It takes context as an argument since that’s what pydantic-core passes when calling it.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>self: The BaseModel instance.
+__context: The context.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.magnet.</span></span><span class="sig-name descname"><span class="pre">MagnetPVSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bdes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bcon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bmax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bmin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.bact">
+<span class="sig-name descname"><span class="pre">bact</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bact" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.bcon">
+<span class="sig-name descname"><span class="pre">bcon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bcon" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.bctrl">
+<span class="sig-name descname"><span class="pre">bctrl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bctrl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.bdes">
+<span class="sig-name descname"><span class="pre">bdes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bdes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.bmax">
+<span class="sig-name descname"><span class="pre">bmax</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bmax" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.bmin">
+<span class="sig-name descname"><span class="pre">bmin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.bmin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.ctrl">
+<span class="sig-name descname"><span class="pre">ctrl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.ctrl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'arbitrary_types_allowed':</span> <span class="pre">True,</span> <span class="pre">'extra':</span> <span class="pre">'forbid',</span> <span class="pre">'frozen':</span> <span class="pre">True}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'bact':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True),</span> <span class="pre">'bcon':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True),</span> <span class="pre">'bctrl':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True),</span> <span class="pre">'bdes':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True),</span> <span class="pre">'bmax':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True),</span> <span class="pre">'bmin':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True),</span> <span class="pre">'ctrl':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetPVSet.validate_pv_fields">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_pv_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PV</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetPVSet.validate_pv_fields" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.magnet.</span></span><span class="sig-name descname"><span class="pre">MagnetMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beam_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_l_meters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_tolerance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetMetadata" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetMetadata.b_tolerance">
+<span class="sig-name descname"><span class="pre">b_tolerance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetMetadata.b_tolerance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetMetadata.length">
+<span class="sig-name descname"><span class="pre">length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetMetadata.length" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetMetadata.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetMetadata.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetMetadata.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetMetadata.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.magnet.MagnetMetadata.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'area':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'b_tolerance':</span> <span class="pre">FieldInfo(annotation=Union[Annotated[float,</span> <span class="pre">Gt],</span> <span class="pre">NoneType],</span> <span class="pre">required=False),</span> <span class="pre">'beam_path':</span> <span class="pre">FieldInfo(annotation=List[str],</span> <span class="pre">required=True),</span> <span class="pre">'length':</span> <span class="pre">FieldInfo(annotation=Union[Annotated[float,</span> <span class="pre">Gt],</span> <span class="pre">NoneType],</span> <span class="pre">required=False),</span> <span class="pre">'sum_l_meters':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.magnet.MagnetMetadata.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="screen-class">
+<h2>Screen Class<a class="headerlink" href="#screen-class" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.screen.</span></span><span class="sig-name descname"><span class="pre">Screen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controls_information</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenControlInformation" title="lcls_tools.common.devices.screen.ScreenControlInformation"><span class="pre">ScreenControlInformation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata" title="lcls_tools.common.devices.device.Metadata"><span class="pre">Metadata</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.controls_information">
+<span class="sig-name descname"><span class="pre">controls_information</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenControlInformation" title="lcls_tools.common.devices.screen.ScreenControlInformation"><span class="pre">ScreenControlInformation</span></a></em><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.controls_information" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.hdf_save_location">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hdf_save_location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.hdf_save_location" title="Link to this definition"></a></dt>
+<dd><p>The location where any HDF5 file for images is saved for this screen</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.image">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.image" title="Link to this definition"></a></dt>
+<dd><p>The current image from EPICS
+reshaped to the dimensions of
+the camera associated with this screen</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.image_timestamp">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image_timestamp</span></span><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.image_timestamp" title="Link to this definition"></a></dt>
+<dd><p>Get last timestamp for last PV activity</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.is_saving_images">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_saving_images</span></span><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.is_saving_images" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.last_save_filepath">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">last_save_filepath</span></span><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.last_save_filepath" title="Link to this definition"></a></dt>
+<dd><p>Location and filename for the last file saved by this screen (set in save_images())</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.device.Metadata" title="lcls_tools.common.devices.device.Metadata"><span class="pre">Metadata</span></a></em><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.metadata" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'controls_information':</span> <span class="pre">FieldInfo(annotation=ScreenControlInformation,</span> <span class="pre">required=True,</span> <span class="pre">metadata=[SerializeAsAny()]),</span> <span class="pre">'metadata':</span> <span class="pre">FieldInfo(annotation=Metadata,</span> <span class="pre">required=True,</span> <span class="pre">metadata=[SerializeAsAny()]),</span> <span class="pre">'name':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.model_post_init">
+<span class="sig-name descname"><span class="pre">model_post_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">__context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.model_post_init" title="Link to this definition"></a></dt>
+<dd><p>This function is meant to behave like a BaseModel method to initialise private attributes.</p>
+<p>It takes context as an argument since that’s what pydantic-core passes when calling it.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>self: The BaseModel instance.
+__context: The context.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.n_bits">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_bits</span></span><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.n_bits" title="Link to this definition"></a></dt>
+<dd><p>The number of bits to represent each pixel in the image</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.n_columns">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_columns</span></span><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.n_columns" title="Link to this definition"></a></dt>
+<dd><p>The number of columns in the screen image</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.n_rows">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_rows</span></span><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.n_rows" title="Link to this definition"></a></dt>
+<dd><p>The number of rows in the screen image</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.resolution">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resolution</span></span><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.resolution" title="Link to this definition"></a></dt>
+<dd><p>The conversion factor of pixels to mm</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.Screen.save_images">
+<span class="sig-name descname"><span class="pre">save_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_to_capture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threaded</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout_in_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.screen.Screen.save_images" title="Link to this definition"></a></dt>
+<dd><p>Collect and saves images to HDF5.
+Option for threading which spawns a child process
+in a way that dependant GUIs/Code do not hang.
+The extra_metadata dictionary will be attached
+to the metadata for each image in HDF5 .</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenCollection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.screen.</span></span><span class="sig-name descname"><span class="pre">ScreenCollection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">screens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen" title="lcls_tools.common.devices.screen.Screen"><span class="pre">Screen</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenCollection" title="Link to this definition"></a></dt>
+<dd><p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenCollection.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenCollection.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenCollection.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenCollection.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenCollection.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'screens':</span> <span class="pre">FieldInfo(annotation=Dict[str,</span> <span class="pre">Annotated[Screen,</span> <span class="pre">SerializeAsAny]],</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenCollection.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenCollection.screens">
+<span class="sig-name descname"><span class="pre">screens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.screen.Screen" title="lcls_tools.common.devices.screen.Screen"><span class="pre">Screen</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenCollection.screens" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenCollection.set_hdf_save_location">
+<span class="sig-name descname"><span class="pre">set_hdf_save_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenCollection.set_hdf_save_location" title="Link to this definition"></a></dt>
+<dd><p>Sets the HDF5 save location all of the screens in the collection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenCollection.validate_screens">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_screens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenCollection.validate_screens" title="Link to this definition"></a></dt>
+<dd><p>Add name field to data that will be passed to Screen class
+and then use that dictionary to create each Screen.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenControlInformation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.screen.</span></span><span class="sig-name descname"><span class="pre">ScreenControlInformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PVs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet" title="lcls_tools.common.devices.screen.ScreenPVSet"><span class="pre">ScreenPVSet</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenControlInformation" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenControlInformation.PVs">
+<span class="sig-name descname"><span class="pre">PVs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#lcls_tools.common.devices.screen.ScreenPVSet" title="lcls_tools.common.devices.screen.ScreenPVSet"><span class="pre">ScreenPVSet</span></a></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenControlInformation.PVs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenControlInformation.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenControlInformation.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenControlInformation.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'frozen':</span> <span class="pre">True}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenControlInformation.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenControlInformation.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'PVs':</span> <span class="pre">FieldInfo(annotation=ScreenPVSet,</span> <span class="pre">required=True,</span> <span class="pre">metadata=[SerializeAsAny()]),</span> <span class="pre">'control_name':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenControlInformation.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenPVSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.screen.</span></span><span class="sig-name descname"><span class="pre">ScreenPVSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PV</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenPVSet" title="Link to this definition"></a></dt>
+<dd><p>The PV interface for screens is not uniform.
+We list the potential PVs below and only
+use the ones that are set to be PV-typed after
+initialisation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenPVSet.image">
+<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenPVSet.image" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenPVSet.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenPVSet.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenPVSet.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'arbitrary_types_allowed':</span> <span class="pre">True,</span> <span class="pre">'extra':</span> <span class="pre">'forbid',</span> <span class="pre">'frozen':</span> <span class="pre">True}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenPVSet.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenPVSet.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'image':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True),</span> <span class="pre">'n_bits':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True),</span> <span class="pre">'n_col':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True),</span> <span class="pre">'n_row':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True),</span> <span class="pre">'resolution':</span> <span class="pre">FieldInfo(annotation=PV,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenPVSet.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenPVSet.n_bits">
+<span class="sig-name descname"><span class="pre">n_bits</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenPVSet.n_bits" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenPVSet.n_col">
+<span class="sig-name descname"><span class="pre">n_col</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenPVSet.n_col" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenPVSet.n_row">
+<span class="sig-name descname"><span class="pre">n_row</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenPVSet.n_row" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenPVSet.resolution">
+<span class="sig-name descname"><span class="pre">resolution</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">PV</span></em><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenPVSet.resolution" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.screen.ScreenPVSet.validate_pv_fields">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_pv_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.screen.ScreenPVSet.validate_pv_fields" title="Link to this definition"></a></dt>
+<dd><p>Convert each PV string from YAML into a PV object</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to lcls-tools’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="image_processing.html" class="btn btn-neutral float-right" title="Image Processing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nicole Neveu, Lisa Zacarias, Chris Garnier, Matt King.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
