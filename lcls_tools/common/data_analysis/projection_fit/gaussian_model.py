@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from scipy.stats import rv_continuous, norm, beta, gamma
 from scipy.ndimage import gaussian_filter
-from method_base import MethodBase
+from lcls_tools.common.data_analysis.projection_fit.method_base import MethodBase
 
 
 class GaussianModel(MethodBase):

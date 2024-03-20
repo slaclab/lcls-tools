@@ -1,9 +1,10 @@
 import numpy as np
+import scipy.optimize
 from matplotlib import patches, pyplot as plt 
 from typing import Union,List,Type,TypeVar
 from pydantic import BaseModel, PositiveFloat, ConfigDict
-from method_base import MethodBase
-import scipy.optimize
+from lcls_tools.common.data_analysis.projection_fit.method_base import MethodBase
+
 
 class ProjectionFit(BaseModel):
     '''

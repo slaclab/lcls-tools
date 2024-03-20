@@ -3,7 +3,7 @@ from typing import Union,List,Type,TypeVar
 import numpy as np
 from matplotlib import patches, pyplot as plt 
 from pydantic import BaseModel,PositiveFloat,ConfigDict
-from roi import CircularROI, RectangularROI, ROI
+from lcls_tools.common.image_processing.roi import CircularROI, RectangularROI, ROI
 import os
 
 class ImageProcessor(BaseModel):
@@ -41,11 +41,13 @@ class ImageProcessor(BaseModel):
         if self.roi is not None:
             processed_image =self.roi.crop_image(processed_image)
         if self.visualize:
-            fig, ax = plt.subplots()
-            c = ax.imshow(raw_image>0, origin="lower")
+            fig, ax = plt.subplots(2,1)
+            c = ax[0].imshow(raw_image>0, origin="lower")
+            g = ax[1].imshow(processed_image>0,origin="lower")
             rect = self.roi.get_patch()
-            ax.add_patch(rect)
+            ax[0].add_patch(rect)
             fig.colorbar(c)
+
         return processed_image
     
     # needs read h5 file or update property to not load from file
