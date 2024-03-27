@@ -48,7 +48,9 @@ class Archiver:
     def getDataAtTime(self, pvList, timeRequested):
         # type: (List[str], datetime) -> ArchiverData
 
-        suffix = SINGLE_RESULT_SUFFIX.format(TIME=timeRequested.isoformat())
+        suffix = SINGLE_RESULT_SUFFIX.format(
+            TIME=timeRequested.isoformat(timespec="microseconds")
+        )
         url = self.url_formatter.format(SUFFIX=suffix)
 
         response = requests.post(
@@ -114,8 +116,9 @@ class Archiver:
                     timeout=TIMEOUT,
                     params={
                         "pv": pv,
-                        "from": startTime.isoformat() + UTC_DELTA_T,
-                        "to": endTime.isoformat() + UTC_DELTA_T,
+                        "from": startTime.isoformat(timespec="microseconds")
+                        + UTC_DELTA_T,
+                        "to": endTime.isoformat(timespec="microseconds") + UTC_DELTA_T,
                     },
                 )
 

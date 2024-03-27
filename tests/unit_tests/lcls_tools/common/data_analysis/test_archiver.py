@@ -355,6 +355,31 @@ class TestArchiver(unittest.TestCase):
                 "test_get_data_at_time connection unsuccessful as network was unreachable."
             )
 
+    def test_get_data_no_microseconds(self):
+        time_no_miscroseconds = datetime(
+            year=2024, month=3, day=25, hour=14, minute=7, second=20
+        )
+
+        pv = "ACCL:L0B:0110:AACTMEAN"
+
+        expected_result = ArchiverData(
+            timeStamps=[time_no_miscroseconds],
+            values={"ACCL:L0B:0110:AACTMEAN": [0.0004232343591732812]},
+        )
+
+        try:
+            self.assertEqual(
+                self.archiver.getDataAtTime([pv], time_no_miscroseconds),
+                expected_result,
+            )
+
+        except requests.exceptions.Timeout:
+            self.skipTest("test_get_data_no_microseconds connection timed out")
+        except requests.exceptions.ConnectionError:
+            self.skipTest(
+                "test_get_data_no_microseconds connection unsuccessful as network was unreachable."
+            )
+
     def test_get_data_with_time_interval(self):
         try:
             self.assertEqual(
