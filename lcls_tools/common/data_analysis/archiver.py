@@ -1,11 +1,12 @@
 import json
 import time
+from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Dict, List, Union
 
-import numpy as np
 import requests
+from lcls_tools.common.controls.pyepics.utils import EPICS_INVALID_VAL
 
 # The double braces are to allow for partial formatting
 ARCHIVER_URL_FORMATTER = (
@@ -25,17 +26,72 @@ TIMEOUT = 3
 
 
 @dataclass
-class ArchiverData:
+class ArchiverValue:
     """
-    A data class for easier data handling (so that external functions can
-    invoke .values and .timestamps instead of having to remember dictionary keys
+    Using keys from documentation found at:
+    https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
     """
 
-    # todo make this not a union
-    # Currently one list if timestamps are shared by all PVs else a dict of
-    # pv -> timstamps
-    timeStamps: Union[List[datetime], Dict[str, List[datetime]]]
-    values: Dict[str, List]
+    secs: int = None
+    val: Union[float, int, str] = None
+    nanos: int = None
+    severity: int = None
+    status: int = None
+    fields: Dict = None
+    _timestamp: datetime = None
+
+    @property
+    def timestamp(self):
+        if not self._timestamp:
+            self._timestamp = datetime.fromtimestamp(self.secs) + timedelta(
+                microseconds=self.nanos / 1000
+            )
+        return self._timestamp
+
+    @property
+    def is_valid(self):
+        return self.severity is not None and self.severity == EPICS_INVALID_VAL
+
+
+class ArchiveDataHandler:
+    def __init__(self, value_list: List[ArchiverValue] = None):
+        self.value_list: List[ArchiverValue] = value_list if value_list else []
+
+    def __str__(self):
+        data = {
+            "timestamps": self.timestamps,
+            "values": self.values,
+            "validity": self.severities,
+        }
+        return json.dumps(data, indent=4, sort_keys=True, default=str)
+
+    @property
+    def timestamps(self):
+        return list(map(lambda value: value.timestamp, self.value_list))
+
+    @property
+    def values(self):
+        return list(map(lambda value: value.val, self.value_list))
+
+    @property
+    def severities(self):
+        return list(map(lambda value: value.is_valid, self.value_list))
+
+    @property
+    def valid_values(self):
+        valid_values = []
+        for value in self.value_list:
+            if value.is_valid:
+                valid_values.append(value)
+        return valid_values
+
+    @property
+    def invalid_values(self):
+        invalid_values = []
+        for value in self.value_list:
+            if not value.is_valid:
+                invalid_values.append(value)
+        return invalid_values
 
 
 class Archiver:
@@ -45,104 +101,102 @@ class Archiver:
         """
         self.url_formatter = ARCHIVER_URL_FORMATTER.format(MACHINE=machine)
 
-    def getDataAtTime(self, pvList, timeRequested):
-        # type: (List[str], datetime) -> ArchiverData
+    def get_data_at_time(self, pv_list, time_requested):
+        # type: (List[str], datetime) -> Dict[str, ArchiverValue]
 
         suffix = SINGLE_RESULT_SUFFIX.format(
-            TIME=timeRequested.isoformat(timespec="microseconds")
+            TIME=time_requested.isoformat(timespec="microseconds")
         )
         url = self.url_formatter.format(SUFFIX=suffix)
 
         response = requests.post(
-            url=url, data={"pv": ",".join(pvList)}, timeout=TIMEOUT
+            url=url, data={"pv": ",".join(pv_list)}, timeout=TIMEOUT
         )
 
-        values = {}
-        times = [timeRequested]
-        for pv in pvList:
-            values[pv] = []
+        result: Dict[str, ArchiverValue] = {}
 
         try:
-            jsonData = json.loads(response.text)
-            for pv, data in jsonData.items():
-                values[pv].append(data["val"])
+            json_data = json.loads(response.text)
+            for pv, data in json_data.items():
+                result[pv] = ArchiverValue(**data)
 
         except ValueError:
             print(
-                "JSON error with {PVS} at {TIME}".format(PVS=pvList, TIME=timeRequested)
+                "JSON error with {PVS} at {TIME}".format(
+                    PVS=pv_list, TIME=time_requested
+                )
             )
-            print(jsonData)
-        return ArchiverData(timeStamps=times, values=values)
+            print(json_data)
+        return result
 
-    def getDataWithTimeInterval(self, pvList, startTime, endTime, timeDelta):
-        # type: (List[str], datetime, datetime, timedelta) -> ArchiverData
-        currTime = startTime
-        times = []
-        values = {}
-        for pv in pvList:
-            values[pv] = []
+    def get_data_with_time_interval(self, pv_list, start_time, end_time, time_delta):
+        # type: (List[str], datetime, datetime, timedelta) -> Dict[str, ArchiveDataHandler]
+        curr_time = start_time
 
-        while currTime < endTime:
-            result = self.getDataAtTime(pvList, currTime)
-            times.append(currTime)
-            for pv, valueList in result.values.items():
-                try:
-                    values[pv].append(valueList.pop())
-                except IndexError:
-                    values[pv].append(np.nan)
-            currTime += timeDelta
+        result: Dict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
 
-        return ArchiverData(timeStamps=times, values=values)
+        while curr_time < end_time:
+            value: Dict[str, ArchiverValue] = self.get_data_at_time(pv_list, curr_time)
+            for pv, archiver_value in value.items():
+                result[pv].value_list.append(archiver_value)
+
+            curr_time += time_delta
+
+        return result
 
     # returns timestamps in UTC
-    def getValuesOverTimeRange(self, pvList, startTime, endTime, timeDelta=None):
-        # type: (List[str], datetime, datetime, timedelta) -> ArchiverData
+    def get_values_over_time_range(
+        self, pv_list, start_time, end_time, time_delta=None
+    ):
+        # type: (List[str], datetime, datetime, timedelta) -> Dict[str, ArchiveDataHandler]
 
-        if timeDelta:
-            return self.getDataWithTimeInterval(pvList, startTime, endTime, timeDelta)
+        if time_delta:
+            return self.get_data_with_time_interval(
+                pv_list, start_time, end_time, time_delta
+            )
+
         else:
             url = self.url_formatter.format(SUFFIX=RANGE_RESULT_SUFFIX)
-
-            times = {}
-            values = {}
+            result: Dict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
 
             # TODO figure out how to send all PVs at once
-            for pv in pvList:
-                times[pv] = []
-                values[pv] = []
-
+            for pv in pv_list:
                 response = requests.get(
                     url=url,
                     timeout=TIMEOUT,
                     params={
                         "pv": pv,
-                        "from": startTime.isoformat(timespec="microseconds")
+                        "from": start_time.isoformat(timespec="microseconds")
                         + UTC_DELTA_T,
-                        "to": endTime.isoformat(timespec="microseconds") + UTC_DELTA_T,
+                        "to": end_time.isoformat(timespec="microseconds") + UTC_DELTA_T,
                     },
                 )
 
                 try:
-                    jsonData = json.loads(response.text)
+                    json_data = json.loads(response.text)
                     # It returns a list of len 1 for some godforsaken reason...
                     # unless the archiver returns no data in which case the list is empty...
-                    if len(jsonData) == 0:
-                        times[pv].append([])
-                        values[pv].append([])
+                    if len(json_data) == 0:
+                        result[pv] = ArchiveDataHandler()
                     else:
-                        element = jsonData.pop()
+                        element = json_data.pop()
                         for datum in element["data"]:
-                            # TODO implement filtering by BSA PV
-
-                            # Using keys from documentation found at:
-                            # https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
-                            times[pv].append(
-                                datetime.fromtimestamp(datum["secs"])
-                                + timedelta(microseconds=datum["nanos"] / 1000)
-                            )
-                            values[pv].append(datum["val"])
+                            data_obj: ArchiverValue = ArchiverValue(**datum)
+                            result[pv].value_list.append(data_obj)
 
                 except ValueError:
                     print("JSON error with {pv}".format(pv=pv))
 
-            return ArchiverData(timeStamps=times, values=values)
+            return result
+
+
+if __name__ == "__main__":
+    dt = datetime.now() - timedelta(days=7)
+    lcls_archiver = Archiver("lcls")
+    result = lcls_archiver.get_data_with_time_interval(
+        pv_list=["ACCL:L1B:H250:CHIRP:DF", "ACCL:L1B:H240:AACTMEAN"],
+        start_time=dt,
+        end_time=datetime.now(),
+        time_delta=timedelta(days=1),
+    )
+    print(result["ACCL:L1B:H250:CHIRP:DF"])
