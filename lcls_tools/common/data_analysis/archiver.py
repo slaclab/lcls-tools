@@ -3,9 +3,10 @@ import time
 from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Dict, List, Union
+from typing import Dict, List, Union, Optional
 
 import requests
+
 from lcls_tools.common.controls.pyepics.utils import EPICS_INVALID_VAL
 
 # The double braces are to allow for partial formatting
@@ -37,8 +38,8 @@ class ArchiverValue:
     nanos: int = None
     severity: int = None
     status: int = None
-    fields: Dict = None
-    _timestamp: datetime = None
+    fields: Optional[Dict] = None
+    _timestamp: Optional[datetime] = None
 
     @property
     def timestamp(self):
@@ -50,7 +51,7 @@ class ArchiverValue:
 
     @property
     def is_valid(self):
-        return self.severity is not None and self.severity == EPICS_INVALID_VAL
+        return self.severity is not None and self.severity != EPICS_INVALID_VAL
 
 
 class ArchiveDataHandler:
@@ -59,9 +60,9 @@ class ArchiveDataHandler:
 
     def __str__(self):
         data = {
-            "timestamps": self.timestamps,
+            "timestamps": self.epoch_timestamps,
             "values": self.values,
-            "validity": self.severities,
+            "is_valid": self.validities,
         }
         return json.dumps(data, indent=4, sort_keys=True, default=str)
 
@@ -70,28 +71,16 @@ class ArchiveDataHandler:
         return list(map(lambda value: value.timestamp, self.value_list))
 
     @property
+    def epoch_timestamps(self):
+        return list(map(lambda value: value.timestamp.timestamp(), self.value_list))
+
+    @property
     def values(self):
         return list(map(lambda value: value.val, self.value_list))
 
     @property
-    def severities(self):
+    def validities(self):
         return list(map(lambda value: value.is_valid, self.value_list))
-
-    @property
-    def valid_values(self):
-        valid_values = []
-        for value in self.value_list:
-            if value.is_valid:
-                valid_values.append(value)
-        return valid_values
-
-    @property
-    def invalid_values(self):
-        invalid_values = []
-        for value in self.value_list:
-            if not value.is_valid:
-                invalid_values.append(value)
-        return invalid_values
 
 
 class Archiver:
@@ -126,7 +115,6 @@ class Archiver:
                     PVS=pv_list, TIME=time_requested
                 )
             )
-            print(json_data)
         return result
 
     def get_data_with_time_interval(self, pv_list, start_time, end_time, time_delta):
@@ -188,15 +176,3 @@ class Archiver:
                     print("JSON error with {pv}".format(pv=pv))
 
             return result
-
-
-if __name__ == "__main__":
-    dt = datetime.now() - timedelta(days=7)
-    lcls_archiver = Archiver("lcls")
-    result = lcls_archiver.get_data_with_time_interval(
-        pv_list=["ACCL:L1B:H250:CHIRP:DF", "ACCL:L1B:H240:AACTMEAN"],
-        start_time=dt,
-        end_time=datetime.now(),
-        time_delta=timedelta(days=1),
-    )
-    print(result["ACCL:L1B:H250:CHIRP:DF"])
