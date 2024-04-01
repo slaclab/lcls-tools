@@ -1,0 +1,22 @@
+# conda env create -f environment.yml
+name: lcls-tools
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.9
+  - numpy
+  - setuptools
+  - scipy
+  - matplotlib
+  - pyepics
+  - pydantic>=2.3
+  - pyyaml
+  - requests
+  - h5py
+  - scikit-learn
+# documentation
+  - sphinx
+  - sphinx_rtd_theme
+  - myst-parser
+#  - pip:
+#    - git+git://github.com/some/repo
