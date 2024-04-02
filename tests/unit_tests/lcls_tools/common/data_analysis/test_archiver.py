@@ -607,13 +607,16 @@ class TestArchiver(unittest.TestCase):
             self.expected_time_delta_result,
         )
 
-    def test_get_values_over_time_range_without_timedelta(self):
+    def test_get_values_over_time_range_with_timedelta(self):
         try:
             self.assertEqual(
                 self.archiver.get_values_over_time_range(
-                    self.pv_lst, self.time - timedelta(days=10), self.time
+                    self.pv_lst,
+                    self.time - timedelta(days=10),
+                    self.time,
+                    timedelta(days=1),
                 ),
-                self.expectedNoDeltaResult,
+                self.expected_time_delta_result,
             )
 
         except requests.exceptions.Timeout:
@@ -623,7 +626,7 @@ class TestArchiver(unittest.TestCase):
                 "test_get_values_over_time_range connection unsuccessful as network was unreachable."
             )
 
-    def test_get_values_over_time_range_with_timedelta(self):
+    def test_get_values_over_time_range_without_timedelta(self):
         dfbest_lst = [
             ArchiverValue(
                 secs=1711144579,
