@@ -3,7 +3,7 @@ import time
 from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Optional, Union
 
 import requests
 
@@ -41,8 +41,11 @@ class ArchiverValue:
     fields: Optional[Dict] = None
     _timestamp: Optional[datetime] = None
 
+    def __hash__(self):
+        return self.secs ^ hash(self.val) ^ self.nanos ^ self.severity ^ self.status
+
     @property
-    def timestamp(self):
+    def timestamp(self) -> datetime:
         if not self._timestamp:
             self._timestamp = datetime.fromtimestamp(self.secs) + timedelta(
                 microseconds=self.nanos / 1000
@@ -50,7 +53,7 @@ class ArchiverValue:
         return self._timestamp
 
     @property
-    def is_valid(self):
+    def is_valid(self) -> bool:
         return self.severity is not None and self.severity != EPICS_INVALID_VAL
 
 
@@ -60,11 +63,18 @@ class ArchiveDataHandler:
 
     def __str__(self):
         data = {
-            "timestamps": self.epoch_timestamps,
+            "timestamps": self.timestamps,
             "values": self.values,
             "is_valid": self.validities,
         }
         return json.dumps(data, indent=4, sort_keys=True, default=str)
+
+    def __eq__(self, other):
+        if not isinstance(other, ArchiveDataHandler):
+            return False
+
+        else:
+            return set(self.value_list) == set(other.value_list)
 
     @property
     def timestamps(self):
@@ -97,10 +107,9 @@ class Archiver:
             TIME=time_requested.isoformat(timespec="microseconds")
         )
         url = self.url_formatter.format(SUFFIX=suffix)
+        data = {"pv": ",".join(pv_list)}
 
-        response = requests.post(
-            url=url, data={"pv": ",".join(pv_list)}, timeout=TIMEOUT
-        )
+        response = requests.post(url=url, data=data, timeout=TIMEOUT)
 
         result: Dict[str, ArchiverValue] = {}
 
