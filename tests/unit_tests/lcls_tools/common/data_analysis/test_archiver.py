@@ -850,3 +850,7 @@ class TestArchiver(unittest.TestCase):
             self.skipTest(
                 "test_get_values_over_time_range connection unsuccessful as network was unreachable."
             )
+
+
+if __name__ == "__main__":
+    unittest.main()
