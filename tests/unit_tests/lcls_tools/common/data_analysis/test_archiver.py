@@ -263,16 +263,30 @@ class TestArchiver(unittest.TestCase):
     def tearDown(self) -> None:
         return super().tearDown()
 
-    # Utility class to be used for mocking a response to requests.post
     class MockResponse(object):
+        """
+        Utility class to be used for mocking a response to requests.post
+        There should not be a need for an actual response, so this is a blank
+        class for now
+        """
+
         def __init__(self):
             self.text = ""
 
     @mock.patch("requests.post")
     @mock.patch("json.loads")
-    def test_get_data_at_time_mocked_data(self, mockedLoads, mockedPost):
-        mockedLoads.return_value = self.json_data
-        mockedPost.return_value = self.MockResponse()
+    def test_get_data_at_time_mocked_data(
+        self, mocked_loads: mock.MagicMock, mocked_post: mock.MagicMock
+    ):
+        """
+        We want requests.post to do nothing and json.loads to return a very
+        specific archiver result
+        @param mocked_loads: provided by the unit test as specific by @mock.patch
+        @param mocked_post: provided by the unit test as specific by @mock.patch
+        @return: None
+        """
+        mocked_loads.return_value = self.json_data
+        mocked_post.return_value = self.MockResponse()
 
         self.assertEqual(
             get_data_at_time(self.pv_lst, self.time),
