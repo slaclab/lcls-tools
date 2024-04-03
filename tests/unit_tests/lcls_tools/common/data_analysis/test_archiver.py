@@ -1,24 +1,11 @@
 import unittest
-from datetime import datetime, timedelta
+import unittest.mock as mock
 
-import requests
-
-from lcls_tools.common.data_analysis.archiver import (
-    ArchiveDataHandler,
-    Archiver,
-    ArchiverValue,
-)
-
-# Python compatibility. The first branch is for 3, the second for 2
-try:
-    import unittest.mock as mock
-except ImportError:
-    import mock
+from lcls_tools.common.data_analysis.archiver import *
 
 
 class TestArchiver(unittest.TestCase):
     def setUp(self) -> None:
-        self.archiver = Archiver("lcls")
         self.time = datetime(
             year=2024, month=4, day=1, hour=14, minute=56, second=30, microsecond=10
         )
@@ -288,14 +275,14 @@ class TestArchiver(unittest.TestCase):
         mockedPost.return_value = self.MockResponse()
 
         self.assertEqual(
-            self.archiver.get_data_at_time(self.pv_lst, self.time),
+            get_data_at_time(self.pv_lst, self.time),
             self.expected_single_result,
         )
 
     def test_get_data_at_time(self):
         try:
             self.assertEqual(
-                self.archiver.get_data_at_time(self.pv_lst, self.time),
+                get_data_at_time(self.pv_lst, self.time),
                 self.expected_single_result,
             )
         except requests.exceptions.Timeout:
@@ -326,9 +313,7 @@ class TestArchiver(unittest.TestCase):
 
         try:
             self.assertEqual(
-                self.archiver.get_data_at_time(
-                    pv_list=[pv], time_requested=time_no_miscroseconds
-                ),
+                get_data_at_time(pv_list=[pv], time_requested=time_no_miscroseconds),
                 expected_result,
             )
 
@@ -341,7 +326,7 @@ class TestArchiver(unittest.TestCase):
 
     def test_get_data_with_time_interval(self):
         try:
-            result = self.archiver.get_data_with_time_interval(
+            result = get_data_with_time_interval(
                 self.pv_lst,
                 self.time - timedelta(days=10),
                 self.time,
@@ -360,8 +345,17 @@ class TestArchiver(unittest.TestCase):
                 "test_get_data_with_time_interval connection unsuccessful as network was unreachable."
             )
 
-    def test_get_data_with_time_interval_mocked(self):
-        def side_effect(pv_list, time):
+    @mock.patch("lcls_tools.common.data_analysis.archiver.get_data_at_time")
+    def test_get_data_with_time_interval_mocked(self, mocked_get_data: mock.MagicMock):
+        """
+        We want to overload the call to get_data_at_time that
+        get_data_with_time_interval makes
+        @param mocked_get_data: magic mock provided by this unit test as directed
+                                by the @mock.patch decorator
+        @return: None
+        """
+
+        def side_effect(pv_list, time_stamp):
             self.assertEqual(pv_list, self.pv_lst)
 
             times = []
@@ -592,13 +586,12 @@ class TestArchiver(unittest.TestCase):
                 },
             }
 
-            return time_map[str(time)]
+            return time_map[str(time_stamp)]
 
-        self.archiver.get_data_at_time = mock.MagicMock(name="get_data_at_time")
-        self.archiver.get_data_at_time.side_effect = side_effect
+        mocked_get_data.side_effect = side_effect
 
         self.assertEqual(
-            self.archiver.get_data_with_time_interval(
+            get_data_with_time_interval(
                 self.pv_lst,
                 self.time - timedelta(days=10),
                 self.time,
@@ -610,7 +603,7 @@ class TestArchiver(unittest.TestCase):
     def test_get_values_over_time_range_with_timedelta(self):
         try:
             self.assertEqual(
-                self.archiver.get_values_over_time_range(
+                get_values_over_time_range(
                     self.pv_lst,
                     self.time - timedelta(days=10),
                     self.time,
@@ -829,7 +822,7 @@ class TestArchiver(unittest.TestCase):
 
         try:
             self.assertEqual(
-                self.archiver.get_values_over_time_range(
+                get_values_over_time_range(
                     self.pv_lst,
                     self.time - timedelta(seconds=10),
                     self.time,
