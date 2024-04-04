@@ -16,16 +16,16 @@ class PVInvalidError(Exception):
 
 class PV(EPICS_PV):
     def __init__(
-            self,
-            pvname,
-            connection_timeout=0.01,
-            callback=None,
-            form="time",
-            verbose=False,
-            auto_monitor=None,
-            count=None,
-            connection_callback=None,
-            access_callback=None,
+        self,
+        pvname,
+        connection_timeout=0.01,
+        callback=None,
+        form="time",
+        verbose=False,
+        auto_monitor=None,
+        count=None,
+        connection_callback=None,
+        access_callback=None,
     ):
         super().__init__(
                 pvname=pvname,
@@ -58,6 +58,7 @@ class PV(EPICS_PV):
                     as_numpy=as_numpy,
                     use_monitor=use_monitor,
             )
+
             if value is not None:
                 break
             attempt += 1
@@ -79,14 +80,14 @@ class PV(EPICS_PV):
         return status
 
     def get(
-            self,
-            count=None,
-            as_string=False,
-            as_numpy=True,
-            timeout=None,
-            with_ctrlvars=False,
-            use_monitor=True,
-            use_caget=True,
+        self,
+        count=None,
+        as_string=False,
+        as_numpy=True,
+        timeout=None,
+        with_ctrlvars=False,
+        use_monitor=True,
+        use_caget=True,
     ):
         if use_caget:
             return self.caget(
@@ -108,15 +109,15 @@ class PV(EPICS_PV):
                 )
 
     def put(
-            self,
-            value,
-            wait=True,
-            timeout=30.0,
-            use_complete=False,
-            callback=None,
-            callback_data=None,
-            retry=True,
-            use_caput=True,
+        self,
+        value,
+        wait=True,
+        timeout=30.0,
+        use_complete=False,
+        callback=None,
+        callback_data=None,
+        retry=True,
+        use_caput=True,
     ):
         if use_caput:
             return self.caput(value)
