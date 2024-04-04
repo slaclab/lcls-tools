@@ -15,8 +15,29 @@ class PVInvalidError(Exception):
 
 
 class PV(EPICS_PV):
-    def __init__(self, pvname):
-        super().__init__(pvname, connection_timeout=0.01)
+    def __init__(
+        self,
+        pvname,
+        connection_timeout=0.01,
+        callback=None,
+        form="time",
+        verbose=False,
+        auto_monitor=None,
+        count=None,
+        connection_callback=None,
+        access_callback=None,
+    ):
+        super().__init__(
+            pvname=pvname,
+            connection_timeout=connection_timeout,
+            callback=callback,
+            form=form,
+            verbose=verbose,
+            auto_monitor=auto_monitor,
+            count=count,
+            connection_callback=connection_callback,
+            access_callback=access_callback,
+        )
 
     def __str__(self):
         return f"{self.pvname} PV Object"
@@ -37,6 +58,7 @@ class PV(EPICS_PV):
                 as_numpy=as_numpy,
                 use_monitor=use_monitor,
             )
+
             if value is not None:
                 break
             attempt += 1
