@@ -38,14 +38,14 @@ class PV(EPICS_PV):
                 connection_callback=connection_callback,
                 access_callback=access_callback,
         )
-    
+
     def __str__(self):
         return f"{self.pvname} PV Object"
-    
+
     @property
     def val(self):
         return super().value
-    
+
     def caget(self, count=None, as_string=False, as_numpy=True, use_monitor=True):
         attempt = 1
         while True:
@@ -64,7 +64,7 @@ class PV(EPICS_PV):
             print(f"{self.pvname} did not return a valid value, retrying")
             sleep(0.5)
         return value
-    
+
     def caput(self, value):
         attempt = 1
         while True:
@@ -77,7 +77,7 @@ class PV(EPICS_PV):
             print(f"{self} caput did not execute successfully, retrying")
             sleep(0.5)
         return status
-    
+
     def get(
             self,
             count=None,
@@ -92,10 +92,10 @@ class PV(EPICS_PV):
             return self.caget(
                     as_string=as_string, as_numpy=as_numpy, use_monitor=use_monitor
             )
-        
+
         else:
             self.connect()
-            
+
             value = super().get(
                     count, as_string, as_numpy, timeout, with_ctrlvars, use_monitor
             )
@@ -106,7 +106,7 @@ class PV(EPICS_PV):
                 return self.caget(
                         as_string=as_string, as_numpy=as_numpy, use_monitor=use_monitor
                 )
-    
+
     def put(
             self,
             value,
@@ -120,7 +120,7 @@ class PV(EPICS_PV):
     ):
         if use_caput:
             return self.caput(value)
-        
+
         status = super().put(
                 value,
                 wait=wait,
@@ -129,7 +129,7 @@ class PV(EPICS_PV):
                 callback=callback,
                 callback_data=callback_data,
         )
-        
+
         if retry and (status != 1):
             print(f"{self} put not successful, using caput")
             self.caput(value)
