@@ -26,28 +26,39 @@ class ScreenBeamProfileMeasurement(Measurement):
     # charge_window: Optional[ChargeWindow] = None
 
     def measure(self,n_shots:int = 1 ) -> dict:
-
         images = []
         while len(images) < n_shots:
             measurement = self.single_measure()
             if len(measurement):
                 images += [measurement]
         # fit profile if requested
+        results = {'images':images}
         if self.fit_profile:
-            results = {}
+            final_results = []
             for i, ele in enumerate(images):
-                # needs work
+                # concat dictionaries and store as list element, loop over all images
                 temp = {}
-                rms_x = np.array(np.sum(ele["processed_image"],axis=0))
-                rms_y = np.array(np.sum(ele["processed_image"],axis=1))
-                temp['rms_x'] = self.fitting_tool.fit_projection(rms_x)
-                temp['rms_y'] = self.fitting_tool.fit_projection(rms_y)
-                results['image_' + str(i)] = temp
-            final_results = self.model_dump() | results 
+                # should i flatten ele?
+                temp['image'] = ele
+                projection_x = np.array(np.sum(ele["processed_image"],axis=0))
+                projection_y = np.array(np.sum(ele["processed_image"],axis=1))
+                try:
+                    for key, param in (self.fitting_tool.fit_projection(projection_x).items()):
+                        key_x = key + '_x'
+                        temp[key_x] = param
+                except KeyError:
+                    print(f'KeyError in fit method for x_proj with {key} and {param}')
+                try:
+                    for key, param in (self.fitting_tool.fit_projection(projection_y).items()):
+                        key_y = key + '_y'
+                        temp[key_y] = param
+                except KeyError:
+                    print(f'KeyError in fit method for y_proj with {key} and {param}')
+                final_results += [temp]
+            
+            # what should I do with results now?
+            results['fits'] = final_results 
 
-        else:
-            # concat list elements into a single dict
-            final_results = {}
 
         # no attribute dump controller 
         if self.save_data:
