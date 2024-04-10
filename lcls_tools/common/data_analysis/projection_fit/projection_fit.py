@@ -22,7 +22,7 @@ class ProjectionFit(BaseModel):
     model : MethodBase 
     visualize_priors: bool = False
     use_priors: bool = False
-    visualize_fit: bool = True
+    visualize_fit: bool = False
 
     def normalize(self,old_data:np.ndarray)->np.ndarray:
         '''normalize a 1d array by scaling and shifting data s.t. data is between 0 and 1'''

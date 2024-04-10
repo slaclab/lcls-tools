@@ -7,6 +7,7 @@ from matplotlib import patches
 from pydantic import (
     BaseModel,
     PositiveFloat,
+    Field
 )
 
 class ROI(BaseModel, ABC):
@@ -26,6 +27,7 @@ class CircularROI(ROI):
     bounding box around the ROI and setting pixels outside the boundary to a fill
     value (usually zero).
     """
+    roi_type: str = Field(default ='circular',frozen=True)
     radius: PositiveFloat
     @property
     def bounding_box(self):
@@ -49,7 +51,6 @@ class CircularROI(ROI):
                     img[y, x] = fill_value
         return img
     
-
     def get_patch(self):
         return patches.Circle(
             tuple(self.center), self.radius, facecolor="none", edgecolor="r")
@@ -59,6 +60,8 @@ class RectangularROI(ROI):
     Define a rectangular region of interest (ROI) for an image, cropping pixels outside
     the ROI.
     """
+    # set roi_type : str = 'rectangular' and freeze it.
+    roi_type: str = Field(default ='rectangular',frozen=True)
     xwidth: int
     ywidth: int
     @property
