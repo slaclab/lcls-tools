@@ -10,13 +10,16 @@ class ImageProcessor(BaseModel):
     ------------------------
     Arguments:
     roi: ROI (roi object either Circular or Rectangular),
-    background_image: np.ndarray (optional image that will be used in background subtraction if passed),
-    threshold: Positive Float (value of pixel intensity to be subtracted if background_image is None, default value = 0.0)
+    background_image: np.ndarray (optional image that will be used in
+        background subtraction if passed),
+    threshold: Positive Float (value of pixel intensity to be subtracted
+        if background_image is None, default value = 0.0)
     visualize: bool (plots processed image)
     ------------------------
     Methods:
     subtract_background: takes a raw image and does pixel intensity subtraction
-    process: takes raw image and calls subtract_background, passes to result to the roi object for cropping.
+    process: takes raw image and calls subtract_background, passes to result
+        to the roi object for cropping.
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
@@ -43,7 +46,7 @@ class ImageProcessor(BaseModel):
             # here needs some work
             fig, ax = plt.subplots(2, 1)
             c = ax[0].imshow(raw_image > 0, origin="lower")
-            g = ax[1].imshow(processed_image > 0, origin="lower")
+            # g = ax[1].imshow(processed_image > 0, origin="lower")
             rect = self.roi.get_patch()
             ax[0].add_patch(rect)
             fig.colorbar(c)

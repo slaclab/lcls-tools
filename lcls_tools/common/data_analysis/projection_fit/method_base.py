@@ -5,13 +5,15 @@ from matplotlib import pyplot as plt
 
 class MethodBase(ABC):
     """
-    Base abstract class for all methods, which serves as the bare minimum skeleton code needed. Should be used only as a parent class
-    to all method models.
+    Base abstract class for all methods, which serves as the bare minimum skeleton code needed.
+    Should be used only as a parent class to all method models.
     ---------------------------
     Arguments:
     param_names: list (list all of param names that the model will contain)
-    param_guesses: np.ndarray (array that contains a guess as to what each param value is organized in the same order as param_names)
-    param_bounds: np.ndarray (array that contains the lower and upper bound on for acceptable values of each parameter)
+    param_guesses: np.ndarray (array that contains a guess as to what
+        each param value is organized in the same order as param_names)
+    param_bounds: np.ndarray (array that contains the lower
+        and upper bound on for acceptable values of each parameter)
     """
 
     def __init__(self):

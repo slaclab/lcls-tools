@@ -7,9 +7,11 @@ from lcls_tools.common.data_analysis.projection_fit.method_base import MethodBas
 class GaussianModel(MethodBase):
     """
     GaussianModel Class that finds initial param values for gaussian distribution
-    and builds probability density functions for the likelyhood a param to be that value based on those initial param values
-    - passing this class the variable distribution_data automatically updates the initial values and and probability density functions
-     to match that data
+        and builds probability density functions for the likelyhood a param
+        to be that value based on those initial param values
+
+    - passing this class the variable distribution_data automatically updates
+        the initial values and and probability density functions to match that data
     """
 
     param_names: list = ["amplitude", "mean", "sigma", "offset"]
