@@ -72,10 +72,10 @@ class MethodBase(ABC):
         pass
 
     def loss(self, params, x, y, use_priors=False):
-        l = -self.log_likelihood(x, y, params)
+        loss_temp = -self.log_likelihood(x, y, params)
         if use_priors:
-            l = l - self.log_prior(params)
-        return l
+            loss_temp = loss_temp - self.log_prior(params)
+        return loss_temp
 
     @property
     def priors(self):

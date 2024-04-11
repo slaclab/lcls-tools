@@ -8,14 +8,17 @@ from lcls_tools.common.data_analysis.projection_fit.method_base import MethodBas
 class ProjectionFit(BaseModel):
     """
     1d fitting class that allows users to choose the model with which the fit is performed,
-    and if prior assumptions (bayesian regression) about the data should be used when performing the fit. Additionally there is an option to visualize the fitted data and priors.
+    and if prior assumptions (bayesian regression) about the data should be used when performing the fit.
+        Additionally there is an option to visualize the fitted data and priors.
     -To perform a 1d fit, call fit_projection(projection_data={*data_to_fit*})
     ------------------------
     Arguments:
-    model: MethodBase (this argument is a child class object of method base e.g GaussianModel & DoubleGaussianModel)
+    model: MethodBase (this argument is a child class object of method base
+        e.g GaussianModel & DoubleGaussianModel)
     visualize_priors: bool (shows plots of the priors and init guess distribution before fit)
     use_priors: bool (incorporates prior distribution information into fit)
-    visualize_fit: bool (visualize the parameters as a function of the forward function from our model compared to distribution data)
+    visualize_fit: bool (visualize the parameters as a function of the forward function
+        from our model compared to distribution data)
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
@@ -25,7 +28,10 @@ class ProjectionFit(BaseModel):
     visualize_fit: bool = False
 
     def normalize(self, old_data: np.ndarray) -> np.ndarray:
-        """normalize a 1d array by scaling and shifting data s.t. data is between 0 and 1"""
+        """
+        Normalize a 1d array by scaling and shifting data
+        s.t. data is between 0 and 1
+        """
         data = old_data.copy()
         normalized_data = data / (np.max(data))
         return normalized_data
@@ -33,7 +39,10 @@ class ProjectionFit(BaseModel):
     def unnormalize_model_params(
         self, params_dict: dict[str, float], projection_data: np.ndarray
     ) -> np.ndarray:
-        """takes fitted and normalized params and returns them to unnormalized values i.e the true fitted values of the distribution"""
+        """
+        Takes fitted and normalized params and returns them
+        to unnormalized values i.e the true fitted values of the distribution
+        """
         max_value = np.max(projection_data)
         length = len(projection_data)
         for key, val in params_dict.items():
@@ -54,7 +63,8 @@ class ProjectionFit(BaseModel):
 
     def fit_model(self) -> scipy.optimize._optimize.OptimizeResult:
         """
-        Fits model params to distribution data and plots the fitted params as a function of the model.
+        Fits model params to distribution data and plots the fitted params
+        as a function of the model.
         Returns optimizeResult object
         """
         x = np.linspace(0, 1, len(self.model.distribution_data))
@@ -95,7 +105,8 @@ class ProjectionFit(BaseModel):
     def fit_projection(self, projection_data: np.ndarray) -> dict[str, float]:
         """
         Wrapper function that does all necessary steps to fit 1d array.
-        Returns a dictionary where the keys are the model params and their values are the params fitted to the data
+        Returns a dictionary where the keys are the model params and their
+        values are the params fitted to the data
         """
         assert len(projection_data.shape) == 1
         fitted_params_dict = {}
