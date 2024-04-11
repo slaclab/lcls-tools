@@ -1110,7 +1110,7 @@ class Cavity(utils.SCLinacObject):
     @property
     def pulse_on_time(self):
         if not self._pulse_on_time_pv_obj:
-            self._pulse_on_time_pv_obj = PV(self._pv_prefix + "PULSE_ONTIME")
+            self._pulse_on_time_pv_obj = PV(self.pulse_on_time_pv)
         return self._pulse_on_time_pv_obj.get()
 
     @pulse_on_time.setter
@@ -1196,17 +1196,7 @@ class Cavity(utils.SCLinacObject):
 
         ch = 2 if self.number in [2, 4] else 1
 
-        macro_string = ",".join(
-            [
-                "C={c}".format(c=self.number),
-                "RFS={rfs}".format(rfs=rfs),
-                "R={r}".format(r=r),
-                "CM={cm}".format(cm=cm),
-                "ID={id}".format(id=macro_id),
-                "CH={ch}".format(ch=ch),
-            ]
-        )
-        return macro_string
+        return f"C={self.number},RFS={rfs},R={r},CM={cm},ID={macro_id},CH={ch}"
 
     @property
     def hw_mode(self):
