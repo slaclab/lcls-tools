@@ -31,7 +31,8 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
         self.test_instantiate_pydantic_objects()
 
     def create_test_image(self, size: tuple, center: list, radius: int):
-        # make img that is a circle in the center of the image with known standard dev and mean. no imports, no calls to external or
+        # make img that is a circle in the center of the image with known
+        # standard dev and mean. no imports, no calls to external or
         # internal files.
         image = np.zeros(size)
         for y in range(image.shape[0]):
