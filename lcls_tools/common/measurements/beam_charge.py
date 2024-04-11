@@ -12,6 +12,7 @@ class BeamChargeMeasurement(Measurement):
     name = "beam_charge"
     ict_monitor: ICT
     wait_time: PositiveFloat = 1.0
+
     def measure(self, n_shots: int = 1) -> dict:
         """
         Measure the bunch charge using an ICT monitor.
