@@ -1,7 +1,12 @@
+import datetime
 from random import randint
 from unittest import TestCase
 from unittest.mock import MagicMock
 
+from lcls_tools.common.controls.pyepics.utils import (
+    EPICS_INVALID_VAL,
+    EPICS_NO_ALARM_VAL,
+)
 from lcls_tools.superconducting.sc_linac import Cavity, MACHINE, StepperTuner
 from lcls_tools.superconducting.sc_linac_utils import (
     RF_MODE_CHIRP,
@@ -20,6 +25,7 @@ from lcls_tools.superconducting.sc_linac_utils import (
     CHARACTERIZATION_CRASHED_VALUE,
     HW_MODE_ONLINE_VALUE,
     HW_MODE_OFFLINE_VALUE,
+    DetuneError,
 )
 
 
@@ -35,7 +41,10 @@ class TestCavity(TestCase):
     def setUp(self):
         self.cavity: Cavity = MACHINE.cryomodules["01"].cavities[1]
         self.hl_cavity: Cavity = MACHINE.cryomodules["H1"].cavities[1]
+        self.cavity._rf_mode_pv_obj = make_mock_pv(self.cavity.rf_mode_pv)
         self.cavity._rf_mode_ctrl_pv_obj = make_mock_pv(self.cavity.rf_mode_ctrl_pv)
+        self.cavity._detune_chirp_pv_obj = make_mock_pv(self.cavity.detune_chirp_pv)
+        self.cavity._detune_best_pv_obj = make_mock_pv(self.cavity.detune_best_pv)
 
         self.hz_per_microstep = 0.00540801
         self.measured_loaded_q = 4.41011e07
@@ -85,7 +94,7 @@ class TestCavity(TestCase):
 
     def test_rf_mode(self):
         mode = randint(0, 6)
-        self.cavity._rf_mode_pv_obj = make_mock_pv(self.cavity.rf_mode_pv, get_val=mode)
+        self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=mode)
         self.assertEqual(self.cavity.rf_mode, mode)
 
     def test_set_chirp_mode(self):
@@ -394,34 +403,83 @@ class TestCavity(TestCase):
         self.cavity._freq_stop_pv_obj.put.assert_called_with(new_val)
 
     def test_calculate_probe_q(self):
-        self.fail()
+        self.cavity._calc_probe_q_pv_obj = make_mock_pv(self.cavity.calc_probe_q_pv)
+        self.cavity.calculate_probe_q()
+        self.cavity._calc_probe_q_pv_obj.put.assert_called_with(1)
 
     def test_set_chirp_range(self):
-        self.fail()
+        self.cavity._chirp_freq_start_pv_obj = make_mock_pv(
+            self.cavity.chirp_freq_start_pv
+        )
+        self.cavity._freq_stop_pv_obj = make_mock_pv(self.cavity.freq_stop_pv)
+        offset = randint(-400000, 0)
+        self.cavity.set_chirp_range(offset)
+        self.cavity._chirp_freq_start_pv_obj.put.assert_called_with(offset)
+        self.cavity._freq_stop_pv_obj.put.assert_called_with(-offset)
 
     def test_rf_state(self):
-        self.fail()
+        self.cavity._rf_state_pv_obj = make_mock_pv(self.cavity.rf_state_pv, get_val=1)
+        self.assertEqual(self.cavity.rf_state, 1)
 
     def test_is_on(self):
-        self.fail()
+        self.cavity._rf_state_pv_obj = make_mock_pv(self.cavity.rf_state_pv, get_val=1)
+        self.assertTrue(self.cavity.is_on)
+
+        self.cavity._rf_state_pv_obj = make_mock_pv(self.cavity.rf_state_pv, get_val=0)
+        self.assertFalse(self.cavity.is_on)
 
     def test_move_to_resonance(self):
         self.fail()
+        self.cavity.move_to_resonance()
 
     def test_detune_best(self):
-        self.fail()
+        val = self.set_detune_best()
+        self.assertEqual(self.cavity.detune_best, val)
+
+    def set_detune_best(self):
+        val = randint(-400000, 400000)
+        self.cavity._detune_best_pv_obj.get = MagicMock(return_value=val)
+        return val
 
     def test_detune_chirp(self):
-        self.fail()
+        val = self.set_chirp_detune()
+        self.assertEqual(self.cavity.detune_chirp, val)
 
     def test_detune(self):
-        self.fail()
+        self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=RF_MODE_SELA)
+        val = self.set_detune_best()
+        self.assertEqual(self.cavity.detune, val)
+
+    def test_detune_in_chirp(self):
+        self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=RF_MODE_CHIRP)
+        val = self.set_chirp_detune()
+        self.assertEqual(self.cavity.detune, val)
+
+    def set_chirp_detune(self):
+        val = randint(-400000, 400000)
+        self.cavity._detune_chirp_pv_obj.get = MagicMock(return_value=val)
+        return val
 
     def test_detune_invalid(self):
-        self.fail()
+        self.cavity._detune_best_pv_obj.severity = EPICS_INVALID_VAL
+        self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=RF_MODE_SELA)
+        self.assertTrue(self.cavity.detune_invalid)
+
+        self.cavity._detune_best_pv_obj.severity = EPICS_NO_ALARM_VAL
+        self.assertFalse(self.cavity.detune_invalid)
+
+    def test_detune_invalid_chirp(self):
+        self.cavity._detune_chirp_pv_obj.severity = EPICS_INVALID_VAL
+        self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=RF_MODE_CHIRP)
+        self.assertTrue(self.cavity.detune_invalid)
+
+        self.cavity._detune_chirp_pv_obj.severity = EPICS_NO_ALARM_VAL
+        self.assertFalse(self.cavity.detune_invalid)
 
     def test__auto_tune(self):
-        self.fail()
+        self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=RF_MODE_CHIRP)
+        self.cavity._detune_chirp_pv_obj.severity = EPICS_INVALID_VAL
+        self.assertRaises(DetuneError, self.cavity._auto_tune, None)
 
     def test_check_detune(self):
         self.fail()
