@@ -1,4 +1,3 @@
-import datetime
 from random import randint
 from unittest import TestCase
 from unittest.mock import MagicMock
