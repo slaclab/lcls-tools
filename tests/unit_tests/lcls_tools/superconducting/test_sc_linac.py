@@ -1,4 +1,3 @@
-import datetime
 from random import randint
 from unittest import TestCase
 from unittest.mock import MagicMock
@@ -47,7 +46,15 @@ class TestCavity(TestCase):
         self.cavity._detune_best_pv_obj = make_mock_pv(self.cavity.detune_best_pv)
 
         self.hz_per_microstep = 0.00540801
+        self.cavity.stepper_tuner._hz_per_microstep_pv_obj = make_mock_pv(
+            self.cavity.stepper_tuner.hz_per_microstep_pv, get_val=self.hz_per_microstep
+        )
+        self.cavity.stepper_tuner.move = MagicMock()
+        self.cavity._tune_config_pv_obj = make_mock_pv(self.cavity.tune_config_pv)
+
         self.measured_loaded_q = 4.41011e07
+
+        self.detune_calls = 0
 
     def test_pv_prefix(self):
         self.assertEqual(self.cavity.pv_prefix, "ACCL:L0B:0110:")
@@ -60,9 +67,6 @@ class TestCavity(TestCase):
         self.assertEqual(self.hl_cavity.loaded_q_upper_limit, LOADED_Q_UPPER_LIMIT_HL)
 
     def test_microsteps_per_hz(self):
-        self.cavity.stepper_tuner._hz_per_microstep_pv_obj = make_mock_pv(
-            self.cavity.stepper_tuner.hz_per_microstep_pv, get_val=self.hz_per_microstep
-        )
         self.assertEqual(self.cavity.microsteps_per_hz, 1 / self.hz_per_microstep)
 
     def test_start_characterization(self):
@@ -428,8 +432,22 @@ class TestCavity(TestCase):
         self.cavity._rf_state_pv_obj = make_mock_pv(self.cavity.rf_state_pv, get_val=0)
         self.assertFalse(self.cavity.is_on)
 
+    def mock_detune(self):
+        """
+        Ham fisted way of having the cavity report as detuned the first loop
+        and tuned the second
+        """
+        self.detune_calls += 1
+        print(f"Mock detune called {self.detune_calls}x")
+
+        if self.detune_calls > 1:
+            return randint(-50, 50)
+
+        else:
+            return randint(500, 1000)
+
     def test_move_to_resonance(self):
-        self.fail()
+        self.cavity._detune_chirp_pv_obj.get.side_effect = self.mock_detune
         self.cavity.move_to_resonance()
 
     def test_detune_best(self):
@@ -476,13 +494,44 @@ class TestCavity(TestCase):
         self.cavity._detune_chirp_pv_obj.severity = EPICS_NO_ALARM_VAL
         self.assertFalse(self.cavity.detune_invalid)
 
-    def test__auto_tune(self):
+    def test__auto_tune_invalid(self):
+        """
+        TODO figure out how to test the guts when detune > tolerance
+        """
         self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=RF_MODE_CHIRP)
         self.cavity._detune_chirp_pv_obj.severity = EPICS_INVALID_VAL
+
+        # delta_hz_func argument is unnecessary
         self.assertRaises(DetuneError, self.cavity._auto_tune, None)
 
+    def test__auto_tune_out_of_tol(self):
+        self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=RF_MODE_CHIRP)
+        self.cavity._detune_chirp_pv_obj.severity = EPICS_NO_ALARM_VAL
+
+        self.detune_calls = 0
+        self.cavity._auto_tune(delta_hz_func=self.mock_detune)
+        self.cavity.stepper_tuner.move.assert_called()
+        self.assertEqual(self.detune_calls, 2)
+
     def test_check_detune(self):
-        self.fail()
+        self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=RF_MODE_CHIRP)
+        self.cavity._detune_chirp_pv_obj.severity = EPICS_INVALID_VAL
+        self.cavity._chirp_freq_start_pv_obj = make_mock_pv(
+            self.cavity.chirp_freq_start_pv, get_val=50000
+        )
+        self.cavity.find_chirp_range = MagicMock()
+        self.cavity.check_detune()
+        self.cavity.find_chirp_range.assert_called_with(
+            50000 * 1.1, "find_chirp_range not called or called with incorrect value"
+        )
+
+        self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=RF_MODE_SELA)
+        self.cavity._detune_best_pv_obj.severity = EPICS_INVALID_VAL
+        self.assertRaises(
+            DetuneError,
+            self.cavity.check_detune,
+            "check_detune() did not raise an error when in SELA and detune_best is invalid",
+        )
 
     def test_check_and_set_on_time(self):
         self.fail()
