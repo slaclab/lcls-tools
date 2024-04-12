@@ -354,13 +354,13 @@ class TestCavity(TestCase):
 
     def test_edm_macro_string(self):
         self.assertEqual(
-            self.cavity.edm_macro_string, f"C=1,RFS=1A,R=A,CM=ACCL:L0B:01,ID=01,CH=1"
+            self.cavity.edm_macro_string, "C=1,RFS=1A,R=A,CM=ACCL:L0B:01,ID=01,CH=1"
         )
 
     def test_edm_macro_string_rack_b(self):
         cav = MACHINE.cryomodules["01"].cavities[5]
         self.assertEqual(
-            cav.edm_macro_string, f"C=5,RFS=1B,R=B,CM=ACCL:L0B:01,ID=01,CH=1"
+            cav.edm_macro_string, "C=5,RFS=1B,R=B,CM=ACCL:L0B:01,ID=01,CH=1"
         )
 
     def test_hw_mode(self):
