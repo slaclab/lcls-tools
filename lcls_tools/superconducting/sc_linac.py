@@ -805,11 +805,15 @@ class Cavity(utils.SCLinacObject):
             self.frequency = 3.9e9
             self.loaded_q_lower_limit = utils.LOADED_Q_LOWER_LIMIT_HL
             self.loaded_q_upper_limit = utils.LOADED_Q_UPPER_LIMIT_HL
+            self.scale_factor_lower_limit = utils.CAVITY_SCALE_LOWER_LIMIT_HL
+            self.scale_factor_upper_limit = utils.CAVITY_SCALE_UPPER_LIMIT_HL
         else:
             self.length = 1.038
             self.frequency = 1.3e9
             self.loaded_q_lower_limit = utils.LOADED_Q_LOWER_LIMIT
             self.loaded_q_upper_limit = utils.LOADED_Q_UPPER_LIMIT
+            self.scale_factor_lower_limit = utils.CAVITY_SCALE_LOWER_LIMIT
+            self.scale_factor_upper_limit = utils.CAVITY_SCALE_UPPER_LIMIT
 
         self._pv_prefix = "ACCL:{LINAC}:{CRYOMODULE}{CAVITY}0:".format(
             LINAC=self.linac.name, CRYOMODULE=self.cryomodule.name, CAVITY=self.number
@@ -1075,18 +1079,11 @@ class Cavity(utils.SCLinacObject):
 
     @property
     def measured_scale_factor_in_tolerance(self) -> bool:
-        if self.cryomodule.is_harmonic_linearizer:
-            return (
-                utils.CAVITY_SCALE_LOWER_LIMIT_HL
-                < self.measured_scale_factor
-                < utils.CAVITY_SCALE_UPPER_LIMIT_HL
-            )
-        else:
-            return (
-                utils.CAVITY_SCALE_LOWER_LIMIT
-                < self.measured_scale_factor
-                < utils.CAVITY_SCALE_UPPER_LIMIT
-            )
+        return (
+            self.scale_factor_lower_limit
+            < self.measured_scale_factor
+            < self.scale_factor_upper_limit
+        )
 
     def push_scale_factor(self):
         if not self._push_scale_factor_pv_obj:
@@ -1279,6 +1276,12 @@ class Cavity(utils.SCLinacObject):
     def is_on(self):
         return self.rf_state == 1
 
+    def delta_piezo(self):
+        delta_volts = self.piezo.voltage - utils.PIEZO_CENTER_VOLTAGE
+        delta_hz = delta_volts * utils.PIEZO_HZ_PER_VOLT
+        print(f"{self} piezo detune: {delta_hz}")
+        return delta_hz if not self.cryomodule.is_harmonic_linearizer else -delta_hz
+
     def move_to_resonance(self, reset_signed_steps=False, use_sela=False):
         def delta_detune():
             return self.detune
@@ -1292,20 +1295,9 @@ class Cavity(utils.SCLinacObject):
         )
 
         if use_sela:
-
-            def delta_piezo():
-                delta_volts = self.piezo.voltage - utils.PIEZO_CENTER_VOLTAGE
-                delta_hz = delta_volts * utils.PIEZO_HZ_PER_VOLT
-                print(f"{self} piezo detune: {delta_hz}")
-                return (
-                    delta_hz
-                    if not self.cryomodule.is_harmonic_linearizer
-                    else -delta_hz
-                )
-
             print(f"Centering {self} piezo")
             self._auto_tune(
-                delta_hz_func=delta_piezo,
+                delta_hz_func=self.delta_piezo,
                 tolerance=100,
                 reset_signed_steps=False,
             )
@@ -1430,6 +1422,7 @@ class Cavity(utils.SCLinacObject):
         """
         self._pulse_go_pv_obj.put(1)
         while self.pulse_status < 2:
+            self.check_abort()
             print("waiting for pulse state", datetime.now())
             sleep(1)
         if self.pulse_status > 2:
@@ -1621,15 +1614,13 @@ class Cavity(utils.SCLinacObject):
 
         if self.characterization_status == utils.CALIBRATION_COMPLETE_VALUE:
             if (datetime.now() - self.characterization_timestamp).total_seconds() > 300:
-                raise utils.CavityQLoadedCalibrationError(
+                raise utils.CavityCharacterizationError(
                     f"No valid {self} characterization within the last 5 min"
                 )
             self.finish_characterization()
 
         if self.characterization_crashed:
-            raise utils.CavityQLoadedCalibrationError(
-                f"{self} characterization crashed"
-            )
+            raise utils.CavityCharacterizationError(f"{self} characterization crashed")
 
     def finish_characterization(self):
         print(f"pushing {self} characterization results")
