@@ -37,7 +37,7 @@ class ProjectionFit(BaseModel):
         return normalized_data
 
     def unnormalize_model_params(
-        self, params_dict: dict[str, float], projection_data: np.ndarray
+        self, params_dict: dict, projection_data: np.ndarray
     ) -> np.ndarray:
         """
         Takes fitted and normalized params and returns them
