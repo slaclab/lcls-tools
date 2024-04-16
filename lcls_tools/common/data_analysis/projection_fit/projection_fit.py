@@ -102,8 +102,9 @@ class ProjectionFit(BaseModel):
             )
         return res
 
-    def fit_projection(self, projection_data: np.ndarray) -> dict[str, float]:
+    def fit_projection(self, projection_data: np.ndarray) -> dict:
         """
+        type is dict[str, float]
         Wrapper function that does all necessary steps to fit 1d array.
         Returns a dictionary where the keys are the model params and their
         values are the params fitted to the data
