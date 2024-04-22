@@ -1,9 +1,11 @@
 from time import sleep
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 
 from lcls_tools.common.controls.pyepics.utils import PV
 from lcls_tools.superconducting import sc_linac_utils as utils
-from lcls_tools.superconducting.sc_cavity import Cavity
+
+if TYPE_CHECKING:
+    from lcls_tools.superconducting.sc_cavity import Cavity
 
 
 class Piezo(utils.SCLinacObject):
@@ -13,13 +15,12 @@ class Piezo(utils.SCLinacObject):
 
     """
 
-    def __init__(self, cavity):
-        # type (Cavity) -> None
+    def __init__(self, cavity: "Cavity"):
         """
         @param cavity: The cavity object tuned by this piezo
         """
 
-        self.cavity: Cavity = cavity
+        self.cavity: "Cavity" = cavity
         self._pv_prefix: str = self.cavity.pv_addr("PZT:")
 
         self.enable_pv: str = self.pv_addr("ENABLE")

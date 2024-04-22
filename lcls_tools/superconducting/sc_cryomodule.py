@@ -1,13 +1,15 @@
-from typing import Type, Dict, List
+from typing import Type, Dict, List, TYPE_CHECKING
 
 from lcls_tools.superconducting import sc_linac_utils as utils
-from lcls_tools.superconducting.sc_cavity import Cavity
-from lcls_tools.superconducting.sc_linac import Linac
-from lcls_tools.superconducting.sc_magnet import Magnet
-from lcls_tools.superconducting.sc_piezo import Piezo
-from lcls_tools.superconducting.sc_rack import Rack
-from lcls_tools.superconducting.sc_ssa import SSA
-from lcls_tools.superconducting.sc_stepper import StepperTuner
+
+if TYPE_CHECKING:
+    from lcls_tools.superconducting.sc_cavity import Cavity
+    from lcls_tools.superconducting.sc_linac import Linac
+    from lcls_tools.superconducting.sc_magnet import Magnet
+    from lcls_tools.superconducting.sc_piezo import Piezo
+    from lcls_tools.superconducting.sc_rack import Rack
+    from lcls_tools.superconducting.sc_ssa import SSA
+    from lcls_tools.superconducting.sc_stepper import StepperTuner
 
 
 class Cryomodule(utils.SCLinacObject):
@@ -19,10 +21,9 @@ class Cryomodule(utils.SCLinacObject):
 
     def __init__(
         self,
-        cryo_name,
-        linac_object,
+        cryo_name: str,
+        linac_object: "Linac",
     ):
-        # type: (str, Linac) -> None # noqa: E501
         """
         @param cryo_name: str name of Cryomodule i.e. "02", "03", "H1", "H2"
         @param linac_object: the linac object this cryomodule belongs to i.e.
@@ -30,19 +31,19 @@ class Cryomodule(utils.SCLinacObject):
         """
 
         self.name: str = cryo_name
-        self.linac: Linac = linac_object
+        self.linac: "Linac" = linac_object
 
-        self.magnet_class: Type[Magnet] = self.linac.magnet_class
-        self.rack_class: Type[Rack] = self.linac.rack_class
-        self.cavity_class: Type[Cavity] = self.linac.cavity_class
-        self.ssa_class: Type[SSA] = self.linac.ssa_class
-        self.stepper_class: Type[StepperTuner] = self.linac.stepper_class
-        self.piezo_class: Type[Piezo] = self.linac.piezo_class
+        self.magnet_class: Type["Magnet"] = self.linac.magnet_class
+        self.rack_class: Type["Rack"] = self.linac.rack_class
+        self.cavity_class: Type["Cavity"] = self.linac.cavity_class
+        self.ssa_class: Type["SSA"] = self.linac.ssa_class
+        self.stepper_class: Type["StepperTuner"] = self.linac.stepper_class
+        self.piezo_class: Type["Piezo"] = self.linac.piezo_class
 
         if not self.is_harmonic_linearizer:
-            self.quad: Magnet = self.magnet_class(magnet_type="QUAD", cryomodule=self)
-            self.xcor: Magnet = self.magnet_class(magnet_type="XCOR", cryomodule=self)
-            self.ycor: Magnet = self.magnet_class(magnet_type="YCOR", cryomodule=self)
+            self.quad: "Magnet" = self.magnet_class(magnet_type="QUAD", cryomodule=self)
+            self.xcor: "Magnet" = self.magnet_class(magnet_type="XCOR", cryomodule=self)
+            self.ycor: "Magnet" = self.magnet_class(magnet_type="YCOR", cryomodule=self)
 
         self._pv_prefix = f"ACCL:{self.linac.name}:{self.name}00:"
 
@@ -62,10 +63,10 @@ class Cryomodule(utils.SCLinacObject):
         self.jt_valve_readback_pv: str = self.jt_prefix + "ORBV"
         self.heater_readback_pv: str = f"CPIC:CM{self.name}:0000:EHCV:ORBV"
 
-        self.rack_a: Rack = self.rack_class(rack_name="A", cryomodule_object=self)
-        self.rack_b: Rack = self.rack_class(rack_name="B", cryomodule_object=self)
+        self.rack_a: "Rack" = self.rack_class(rack_name="A", cryomodule_object=self)
+        self.rack_b: "Rack" = self.rack_class(rack_name="B", cryomodule_object=self)
 
-        self.cavities: Dict[int, Cavity] = {}
+        self.cavities: Dict[int, "Cavity"] = {}
         self.cavities.update(self.rack_a.cavities)
         self.cavities.update(self.rack_b.cavities)
 

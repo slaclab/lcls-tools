@@ -1,12 +1,14 @@
 from datetime import datetime
 from time import sleep
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 
 from numpy import sign
 
 from lcls_tools.common.controls.pyepics.utils import PV
 from lcls_tools.superconducting import sc_linac_utils as utils
-from lcls_tools.superconducting.sc_cavity import Cavity
+
+if TYPE_CHECKING:
+    from lcls_tools.superconducting.sc_cavity import Cavity
 
 
 class StepperTuner(utils.SCLinacObject):
@@ -16,13 +18,12 @@ class StepperTuner(utils.SCLinacObject):
     status, and retrieving stored movement parameters
     """
 
-    def __init__(self, cavity):
-        # type (Cavity) -> None
+    def __init__(self, cavity: "Cavity"):
         """
         @param cavity: the cavity object tuned by this stepper
         """
 
-        self.cavity: Cavity = cavity
+        self.cavity: "Cavity" = cavity
         self._pv_prefix: str = self.cavity.pv_addr("STEP:")
 
         self.move_pos_pv: str = self.pv_addr("MOV_REQ_POS")

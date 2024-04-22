@@ -1,8 +1,10 @@
-from typing import Type, Dict
+from typing import Type, Dict, TYPE_CHECKING
 
 from lcls_tools.superconducting import sc_linac_utils as utils
-from lcls_tools.superconducting.sc_cavity import Cavity
-from lcls_tools.superconducting.sc_cryomodule import Cryomodule
+
+if TYPE_CHECKING:
+    from lcls_tools.superconducting.sc_cavity import Cavity
+    from lcls_tools.superconducting.sc_cryomodule import Cryomodule
 
 
 class Rack(utils.SCLinacObject):
@@ -14,10 +16,9 @@ class Rack(utils.SCLinacObject):
 
     def __init__(
         self,
-        rack_name,
-        cryomodule_object,
+        rack_name: str,
+        cryomodule_object: "Cryomodule",
     ):
-        # type: (str, Cryomodule) -> None
         """
         Parameters
         ----------
@@ -25,15 +26,15 @@ class Rack(utils.SCLinacObject):
         cryomodule_object: the cryomodule object this rack belongs to
         """
 
-        self.cryomodule: Cryomodule = cryomodule_object
+        self.cryomodule: "Cryomodule" = cryomodule_object
         self.rack_name = rack_name
 
-        self.cavity_class: Type[Cavity] = self.cryomodule.cavity_class
+        self.cavity_class: Type["Cavity"] = self.cryomodule.cavity_class
         self.ssa_class = self.cryomodule.ssa_class
         self.stepper_class = self.cryomodule.stepper_class
         self.piezo_class = self.cryomodule.piezo_class
 
-        self.cavities: Dict[int, Cavity] = {}
+        self.cavities: Dict[int, "Cavity"] = {}
         self._pv_prefix = self.cryomodule.pv_addr(
             "RACK{RACK}:".format(RACK=self.rack_name)
         )

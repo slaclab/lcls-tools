@@ -1,10 +1,12 @@
 from datetime import datetime
 from time import sleep
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 
 from lcls_tools.common.controls.pyepics.utils import PV
 from lcls_tools.superconducting import sc_linac_utils as utils
-from lcls_tools.superconducting.sc_cavity import Cavity
+
+if TYPE_CHECKING:
+    from lcls_tools.superconducting.sc_cavity import Cavity
 
 
 class SSA(utils.SCLinacObject):
@@ -14,13 +16,12 @@ class SSA(utils.SCLinacObject):
 
     """
 
-    def __init__(self, cavity):
-        # type: (Cavity) -> None
+    def __init__(self, cavity: "Cavity"):
         """
         @param cavity: the cavity object powered by this SSA
         """
 
-        self.cavity: Cavity = cavity
+        self.cavity: "Cavity" = cavity
         self._pv_prefix = self.cavity.pv_addr("SSA:")
 
         # HL cryomodules only have 4 physical SSAs such that they each power two

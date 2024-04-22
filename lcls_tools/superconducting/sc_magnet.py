@@ -1,8 +1,10 @@
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 
 from lcls_tools.common.controls.pyepics.utils import PV
 from lcls_tools.superconducting import sc_linac_utils as utils
-from lcls_tools.superconducting.sc_cryomodule import Cryomodule
+
+if TYPE_CHECKING:
+    from lcls_tools.superconducting.sc_cryomodule import Cryomodule
 
 
 class Magnet(utils.SCLinacObject):
@@ -12,8 +14,7 @@ class Magnet(utils.SCLinacObject):
 
     """
 
-    def __init__(self, magnet_type, cryomodule):
-        # type: (str, Cryomodule) -> None
+    def __init__(self, magnet_type: str, cryomodule: "Cryomodule"):
         """
         @param magnet_type: One of QUAD, XCOR, or YCOR
         @param cryomodule: the cryomodule object in which this magnet is contained
@@ -22,7 +23,7 @@ class Magnet(utils.SCLinacObject):
         self._pv_prefix = f"{magnet_type}:{cryomodule.linac.name}:{cryomodule.name}85:"
 
         self.name = magnet_type
-        self.cryomodule: Cryomodule = cryomodule
+        self.cryomodule: "Cryomodule" = cryomodule
 
         self.bdes_pv: str = self.pv_addr("BDES")
         self._bdes_pv_obj: Optional[PV] = None
