@@ -7,7 +7,8 @@ from lcls_tools.common.controls.pyepics.utils import (
     EPICS_INVALID_VAL,
     EPICS_NO_ALARM_VAL,
 )
-from lcls_tools.superconducting.sc_linac import Cavity, MACHINE, StepperTuner
+from lcls_tools.superconducting.sc_cavity import Cavity
+from lcls_tools.superconducting.sc_linac import MACHINE
 from lcls_tools.superconducting.sc_linac_utils import (
     RF_MODE_CHIRP,
     RF_MODE_SEL,
@@ -37,6 +38,7 @@ from lcls_tools.superconducting.sc_linac_utils import (
     CavityCharacterizationError,
     QuenchError,
 )
+from lcls_tools.superconducting.sc_stepper import StepperTuner
 
 
 def make_mock_pv(pv_name: str = None, get_val=None) -> MagicMock:
