@@ -237,6 +237,14 @@ class CavityQLoadedCalibrationError(Exception):
     pass
 
 
+class CavityCharacterizationError(Exception):
+    """
+    Exception thrown during cavity characterization
+    """
+
+    pass
+
+
 class CavityScaleFactorCalibrationError(Exception):
     """
     Exception thrown during cavity scale factor calibration
