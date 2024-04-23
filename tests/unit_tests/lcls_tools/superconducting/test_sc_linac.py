@@ -25,6 +25,7 @@ from lcls_tools.superconducting.sc_linac_utils import (
     HW_MODE_ONLINE_VALUE,
     HW_MODE_OFFLINE_VALUE,
     DetuneError,
+    TUNE_CONFIG_OTHER_VALUE,
 )
 
 
@@ -46,6 +47,10 @@ class TestCavity(TestCase):
         self.cavity._detune_best_pv_obj = make_mock_pv(self.cavity.detune_best_pv)
 
         self.hz_per_microstep = 0.00540801
+        self.cavity.stepper_tuner._hz_per_microstep_pv_obj = make_mock_pv(
+            self.cavity.stepper_tuner.hz_per_microstep_pv, get_val=self.hz_per_microstep
+        )
+
         self.measured_loaded_q = 4.41011e07
 
     def test_pv_prefix(self):
@@ -59,9 +64,6 @@ class TestCavity(TestCase):
         self.assertEqual(self.hl_cavity.loaded_q_upper_limit, LOADED_Q_UPPER_LIMIT_HL)
 
     def test_microsteps_per_hz(self):
-        self.cavity.stepper_tuner._hz_per_microstep_pv_obj = make_mock_pv(
-            self.cavity.stepper_tuner.hz_per_microstep_pv, get_val=self.hz_per_microstep
-        )
         self.assertEqual(self.cavity.microsteps_per_hz, 1 / self.hz_per_microstep)
 
     def test_start_characterization(self):
@@ -476,9 +478,18 @@ class TestCavity(TestCase):
         self.assertFalse(self.cavity.detune_invalid)
 
     def test__auto_tune(self):
+        def mock_detune_func():
+            return 0
+
         self.cavity._rf_mode_pv_obj.get = MagicMock(return_value=RF_MODE_CHIRP)
         self.cavity._detune_chirp_pv_obj.severity = EPICS_INVALID_VAL
         self.assertRaises(DetuneError, self.cavity._auto_tune, None)
+
+        self.cavity._detune_chirp_pv_obj.severity = EPICS_NO_ALARM_VAL
+        self.cavity._tune_config_pv_obj = make_mock_pv(self.cavity.tune_config_pv)
+
+        self.cavity._auto_tune(mock_detune_func)
+        self.cavity._tune_config_pv_obj.put.assert_called_with(TUNE_CONFIG_OTHER_VALUE)
 
     def test_check_detune(self):
         self.fail()
