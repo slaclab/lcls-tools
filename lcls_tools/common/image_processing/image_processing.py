@@ -46,7 +46,7 @@ class ImageProcessor(BaseModel):
             # here needs some work
             fig, ax = plt.subplots(2, 1)
             c = ax[0].imshow(raw_image > 0, origin="lower")
-            # g = ax[1].imshow(processed_image > 0, origin="lower")
+            g = ax[1].imshow(processed_image > 0, origin="lower")
             rect = self.roi.get_patch()
             ax[0].add_patch(rect)
             fig.colorbar(c)

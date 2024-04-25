@@ -17,8 +17,7 @@ class MethodBase(ABC):
     """
 
     def __init__(self):
-        self.param_names: list = None
-        self.param_guesses: np.ndarray = None
+        self.param_names: list = None     
         self.param_bounds: np.ndarray = None
         self.init_values: list = None
 
@@ -32,7 +31,7 @@ class MethodBase(ABC):
 
     def plot_init_values(self):
         """Plots init values as a function of forward and visually compares it to the initial distribution"""
-        fig, axs = plt.subplots(1, 1, figsize=(10, 5))
+        fig, axs = plt.subplots(1, 1)
         x = np.linspace(0, 1, len(self.distribution_data))
         y_fit = self.forward(x, self.init_values)
         axs.plot(x, self.distribution_data, label="Projection Data")
@@ -45,7 +44,7 @@ class MethodBase(ABC):
     def plot_priors(self):
         """Plots prior distributions for each param in param_names"""
         num_plots = len(self.priors)
-        fig, axs = plt.subplots(num_plots, 1, figsize=(10, 10))
+        fig, axs = plt.subplots(num_plots, 1)
         for i, (param, prior) in enumerate(self.priors.items()):
             x = np.linspace(0, self.param_bounds[i][-1], len(self.distribution_data))
             axs[i].plot(x, prior.pdf(x))

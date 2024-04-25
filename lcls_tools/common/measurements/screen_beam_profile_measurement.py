@@ -21,6 +21,7 @@ class ScreenBeamProfileMeasurement(Measurement):
     single_measure:
     """
 
+
     name: str = "beam_profile"
     device: Screen
     image_processor: ImageProcessor
@@ -41,26 +42,21 @@ class ScreenBeamProfileMeasurement(Measurement):
             for i, ele in enumerate(images):
                 # concat dictionaries and store as list element, loop over all images
                 temp = {}
-                # should i flatten ele?
-                temp["image"] = ele
+                temp["raw_image"] = ele["raw_image"]
+                temp["processed_image"] = ele["processed_image"]
+
                 projection_x = np.array(np.sum(ele["processed_image"], axis=0))
                 projection_y = np.array(np.sum(ele["processed_image"], axis=1))
-                try:
-                    for key, param in self.fitting_tool.fit_projection(
-                        projection_x
-                    ).items():
-                        key_x = key + "_x"
-                        temp[key_x] = param
-                except KeyError:
-                    print(f"KeyError in fit method for x_proj with {key} and {param}")
-                try:
-                    for key, param in self.fitting_tool.fit_projection(
-                        projection_y
-                    ).items():
-                        key_y = key + "_y"
-                        temp[key_y] = param
-                except KeyError:
-                    print(f"KeyError in fit method for y_proj with {key} and {param}")
+
+                for key, param in self.fitting_tool.fit_projection(
+                    projection_x).items():
+                    key_x = key + "_x"
+                    temp[key_x] = param
+
+                for key, param in self.fitting_tool.fit_projection(
+                    projection_y).items():
+                    key_y = key + "_y"
+                    temp[key_y] = param
                 final_results += [temp]
 
             # what should I do with results now?

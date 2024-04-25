@@ -20,7 +20,7 @@ class ProjectionFit(BaseModel):
     visualize_fit: bool (visualize the parameters as a function of the forward function
         from our model compared to distribution data)
     """
-
+    # come up with better name
     model_config = ConfigDict(arbitrary_types_allowed=True)
     model: MethodBase
     visualize_priors: bool = False
@@ -71,12 +71,13 @@ class ProjectionFit(BaseModel):
         y = self.model.distribution_data
         res = scipy.optimize.minimize(
             self.model.loss,
-            self.model.param_guesses,
+            self.model.init_values,
             args=(x, y, self.use_priors),
             bounds=self.model.param_bounds,
         )
         if self.visualize_fit:
-            fig, ax = plt.subplots(figsize=(10, 5))
+            #TODO:dont specify size, use fig.tight_layout
+            fig, ax = plt.subplots()
             y_fit = self.model.forward(x, res.x)
             ax.plot(x, y, label="data")
             ax.plot(x, y_fit, label="fit")
@@ -100,7 +101,8 @@ class ProjectionFit(BaseModel):
                 verticalalignment="top",
                 bbox=props,
             )
-        return res
+            fig.tight_layout()
+        return res #TODO:optional argument to return fig,ax
 
     def fit_projection(self, projection_data: np.ndarray) -> dict:
         """
