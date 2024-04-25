@@ -17,11 +17,9 @@ class ScreenBeamProfileMeasurement(Measurement):
     fit_profile: bool = True ()
     ------------------------
     Methods:
-    measure:
-    single_measure:
+    single_measure: measures device and returns raw and processed image
+    measure: does multiple measurements and has an option to fit the image profiles
     """
-
-
     name: str = "beam_profile"
     device: Screen
     image_processor: ImageProcessor
@@ -30,17 +28,29 @@ class ScreenBeamProfileMeasurement(Measurement):
     # charge_window: Optional[ChargeWindow] = None
 
     def measure(self, n_shots: int = 1) -> dict:
+        '''
+        Measurement function that takes in n_shots as argumentment, where n_shots is the number of 
+        image profiles (is this what I want to call it?) 
+        we would like to measure. Invokes single_measure per shot
+        Then if fit_profile = True, fits the x and y projections of each image using the provided
+        fitting_tool. Results are stored in list of dictionaries where each element of the list
+        is results for the image fitting process stored as a dictionary.
+        ----
+        Currently under work, what do we want to do with the images? 
+        Needs dump_controller
+
+        '''
         images = []
         while len(images) < n_shots:
             measurement = self.single_measure()
             if len(measurement):
                 images += [measurement]
-        # fit profile if requested
+
         results = {"images": images}
         if self.fit_profile:
             final_results = []
             for i, ele in enumerate(images):
-                # concat dictionaries and store as list element, loop over all images
+
                 temp = {}
                 temp["raw_image"] = ele["raw_image"]
                 temp["processed_image"] = ele["processed_image"]
@@ -70,6 +80,12 @@ class ScreenBeamProfileMeasurement(Measurement):
         return final_results
 
     def single_measure(self) -> dict:
+        '''
+        Function that grabs a single image from the device class 
+        (typically live beam images) and passes it to the 
+        image processing class for processing (subtraction and cropping)
+        returns a dictionary with both the raw and processed dictionary
+        '''
         # measure profiles
         # get raw data
         raw_image = self.device.image

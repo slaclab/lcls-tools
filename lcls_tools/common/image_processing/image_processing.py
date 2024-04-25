@@ -23,7 +23,7 @@ class ImageProcessor(BaseModel):
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    roi: ROI
+    roi: ROI = None
     background_image: np.ndarray = None
     threshold: PositiveFloat = 0.0
     visualize: bool = False
