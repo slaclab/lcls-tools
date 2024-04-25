@@ -6,6 +6,8 @@ magnets:
         bcon: KICK:DASEL:105:BCON
         bctrl: KICK:DASEL:105:BCTRL
         bdes: KICK:DASEL:105:BDES
+        bmax: KICK:DASEL:105:BMAX
+        bmin: KICK:DASEL:105:BMIN
         ctrl: KICK:DASEL:105:CTRL
       control_name: KICK:DASEL:105
     metadata:
@@ -13,6 +15,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2921.87
+      type: BEND
   BKRDAS2:
     controls_information:
       PVs:
@@ -20,6 +23,8 @@ magnets:
         bcon: KICK:DASEL:110:BCON
         bctrl: KICK:DASEL:110:BCTRL
         bdes: KICK:DASEL:110:BDES
+        bmax: KICK:DASEL:110:BMAX
+        bmin: KICK:DASEL:110:BMIN
         ctrl: KICK:DASEL:110:CTRL
       control_name: KICK:DASEL:110
     metadata:
@@ -27,6 +32,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2923.17
+      type: BEND
   BKRDAS3:
     controls_information:
       PVs:
@@ -34,6 +40,8 @@ magnets:
         bcon: KICK:DASEL:115:BCON
         bctrl: KICK:DASEL:115:BCTRL
         bdes: KICK:DASEL:115:BDES
+        bmax: KICK:DASEL:115:BMAX
+        bmin: KICK:DASEL:115:BMIN
         ctrl: KICK:DASEL:115:CTRL
       control_name: KICK:DASEL:115
     metadata:
@@ -41,6 +49,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2924.47
+      type: BEND
   BKRDAS4:
     controls_information:
       PVs:
@@ -48,6 +57,8 @@ magnets:
         bcon: KICK:DASEL:120:BCON
         bctrl: KICK:DASEL:120:BCTRL
         bdes: KICK:DASEL:120:BDES
+        bmax: KICK:DASEL:120:BMAX
+        bmin: KICK:DASEL:120:BMIN
         ctrl: KICK:DASEL:120:CTRL
       control_name: KICK:DASEL:120
     metadata:
@@ -55,6 +66,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2925.77
+      type: BEND
   BKRDAS5:
     controls_information:
       PVs:
@@ -62,6 +74,8 @@ magnets:
         bcon: KICK:DASEL:122:BCON
         bctrl: KICK:DASEL:122:BCTRL
         bdes: KICK:DASEL:122:BDES
+        bmax: KICK:DASEL:122:BMAX
+        bmin: KICK:DASEL:122:BMIN
         ctrl: KICK:DASEL:122:CTRL
       control_name: KICK:DASEL:122
     metadata:
@@ -69,6 +83,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2927.07
+      type: BEND
   BKRDAS6:
     controls_information:
       PVs:
@@ -76,6 +91,8 @@ magnets:
         bcon: KICK:DASEL:125:BCON
         bctrl: KICK:DASEL:125:BCTRL
         bdes: KICK:DASEL:125:BDES
+        bmax: KICK:DASEL:125:BMAX
+        bmin: KICK:DASEL:125:BMIN
         ctrl: KICK:DASEL:125:CTRL
       control_name: KICK:DASEL:125
     metadata:
@@ -83,6 +100,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2928.37
+      type: BEND
   BLRDAS:
     controls_information:
       PVs:
@@ -90,6 +108,8 @@ magnets:
         bcon: BEND:DASEL:210:BCON
         bctrl: BEND:DASEL:210:BCTRL
         bdes: BEND:DASEL:210:BDES
+        bmax: BEND:DASEL:210:BMAX
+        bmin: BEND:DASEL:210:BMIN
         ctrl: BEND:DASEL:210:CTRL
       control_name: BEND:DASEL:210
     metadata:
@@ -97,6 +117,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2951.805
+      type: BEND
   BRDAS1:
     controls_information:
       PVs:
@@ -104,6 +125,8 @@ magnets:
         bcon: BEND:DASEL:415:BCON
         bctrl: BEND:DASEL:415:BCTRL
         bdes: BEND:DASEL:415:BDES
+        bmax: BEND:DASEL:415:BMAX
+        bmin: BEND:DASEL:415:BMIN
         ctrl: BEND:DASEL:415:CTRL
       control_name: BEND:DASEL:415
     metadata:
@@ -111,6 +134,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3008.128
+      type: BEND
   BRDAS2:
     controls_information:
       PVs: {}
@@ -120,6 +144,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3166.694
+      type: BEND
   QDAS11:
     controls_information:
       PVs:
@@ -127,6 +152,8 @@ magnets:
         bcon: QUAD:DASEL:434:BCON
         bctrl: QUAD:DASEL:434:BCTRL
         bdes: QUAD:DASEL:434:BDES
+        bmax: QUAD:DASEL:434:BMAX
+        bmin: QUAD:DASEL:434:BMIN
         ctrl: QUAD:DASEL:434:CTRL
       control_name: QUAD:DASEL:434
     metadata:
@@ -134,6 +161,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3012.928
+      type: QUAD
   QDAS12:
     controls_information:
       PVs: {}
@@ -143,6 +171,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3027.852
+      type: QUAD
   QDAS13:
     controls_information:
       PVs: {}
@@ -152,6 +181,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3046.605
+      type: QUAD
   QDAS14:
     controls_information:
       PVs: {}
@@ -161,6 +191,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3065.157
+      type: QUAD
   QDAS15:
     controls_information:
       PVs: {}
@@ -170,6 +201,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3083.41
+      type: QUAD
   QDAS16:
     controls_information:
       PVs: {}
@@ -179,6 +211,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3101.663
+      type: QUAD
   QDAS17:
     controls_information:
       PVs: {}
@@ -188,6 +221,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3119.115
+      type: QUAD
   QDAS18A:
     controls_information:
       PVs: {}
@@ -197,6 +231,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3134.78
+      type: QUAD
   QDAS18B:
     controls_information:
       PVs: {}
@@ -206,6 +241,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3135.04
+      type: QUAD
   QDAS19:
     controls_information:
       PVs: {}
@@ -215,6 +251,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3144.144
+      type: QUAD
   QDAS1A:
     controls_information:
       PVs:
@@ -222,6 +259,8 @@ magnets:
         bcon: QUAD:DASEL:304:BCON
         bctrl: QUAD:DASEL:304:BCTRL
         bdes: QUAD:DASEL:304:BDES
+        bmax: QUAD:DASEL:304:BMAX
+        bmin: QUAD:DASEL:304:BMIN
         ctrl: QUAD:DASEL:304:CTRL
       control_name: QUAD:DASEL:304
     metadata:
@@ -229,6 +268,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2977.336
+      type: QUAD
   QDAS1B:
     controls_information:
       PVs:
@@ -236,6 +276,8 @@ magnets:
         bcon: QUAD:DASEL:300:BCON
         bctrl: QUAD:DASEL:300:BCTRL
         bdes: QUAD:DASEL:300:BDES
+        bmax: QUAD:DASEL:300:BMAX
+        bmin: QUAD:DASEL:300:BMIN
         ctrl: QUAD:DASEL:300:CTRL
       control_name: QUAD:DASEL:300
     metadata:
@@ -243,6 +285,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2977.076
+      type: QUAD
   QDAS2A:
     controls_information:
       PVs:
@@ -250,6 +293,8 @@ magnets:
         bcon: QUAD:DASEL:312:BCON
         bctrl: QUAD:DASEL:312:BCTRL
         bdes: QUAD:DASEL:312:BDES
+        bmax: QUAD:DASEL:312:BMAX
+        bmin: QUAD:DASEL:312:BMIN
         ctrl: QUAD:DASEL:312:CTRL
       control_name: QUAD:DASEL:312
     metadata:
@@ -257,6 +302,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2979.36
+      type: QUAD
   QDAS2B:
     controls_information:
       PVs:
@@ -264,6 +310,8 @@ magnets:
         bcon: QUAD:DASEL:314:BCON
         bctrl: QUAD:DASEL:314:BCTRL
         bdes: QUAD:DASEL:314:BDES
+        bmax: QUAD:DASEL:314:BMAX
+        bmin: QUAD:DASEL:314:BMIN
         ctrl: QUAD:DASEL:314:CTRL
       control_name: QUAD:DASEL:314
     metadata:
@@ -271,6 +319,7 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2979.621
+      type: QUAD
   RCDAS11:
     controls_information:
       PVs:
@@ -278,6 +327,8 @@ magnets:
         bcon: XCOR:DASEL:422:BCON
         bctrl: XCOR:DASEL:422:BCTRL
         bdes: XCOR:DASEL:422:BDES
+        bmax: XCOR:DASEL:422:BMAX
+        bmin: XCOR:DASEL:422:BMIN
         ctrl: XCOR:DASEL:422:CTRL
       control_name: XCOR:DASEL:422
     metadata:
@@ -285,20 +336,17 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3009.428
+      type: XCOR
   RCDAS19:
     controls_information:
-      PVs:
-        bact: XCOR:DASEL:998:BACT
-        bcon: XCOR:DASEL:998:BCON
-        bctrl: XCOR:DASEL:998:BCTRL
-        bdes: XCOR:DASEL:998:BDES
-        ctrl: XCOR:DASEL:998:CTRL
+      PVs: {}
       control_name: XCOR:DASEL:998
     metadata:
       area: DASEL
       beam_path:
       - SC_DASEL
       sum_l_meters: 3167.694
+      type: XCOR
   XCDAS1:
     controls_information:
       PVs:
@@ -306,6 +354,8 @@ magnets:
         bcon: XCOR:DASEL:294:BCON
         bctrl: XCOR:DASEL:294:BCTRL
         bdes: XCOR:DASEL:294:BDES
+        bmax: XCOR:DASEL:294:BMAX
+        bmin: XCOR:DASEL:294:BMIN
         ctrl: XCOR:DASEL:294:CTRL
       control_name: XCOR:DASEL:294
     metadata:
@@ -313,20 +363,17 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2974.752
+      type: XCOR
   XCDAS14:
     controls_information:
-      PVs:
-        bact: XCOR:DASEL:622:BACT
-        bcon: XCOR:DASEL:622:BCON
-        bctrl: XCOR:DASEL:622:BCTRL
-        bdes: XCOR:DASEL:622:BDES
-        ctrl: XCOR:DASEL:622:CTRL
+      PVs: {}
       control_name: XCOR:DASEL:622
     metadata:
       area: DASEL
       beam_path:
       - SC_DASEL
       sum_l_meters: 3064.595
+      type: XCOR
   YCDAS1:
     controls_information:
       PVs:
@@ -334,6 +381,8 @@ magnets:
         bcon: YCOR:DASEL:297:BCON
         bctrl: YCOR:DASEL:297:BCTRL
         bdes: YCOR:DASEL:297:BDES
+        bmax: YCOR:DASEL:297:BMAX
+        bmin: YCOR:DASEL:297:BMIN
         ctrl: YCOR:DASEL:297:CTRL
       control_name: YCOR:DASEL:297
     metadata:
@@ -341,28 +390,25 @@ magnets:
       beam_path:
       - SC_DASEL
       sum_l_meters: 2975.252
+      type: YCOR
   YCDAS17:
     controls_information:
-      PVs:
-        bact: YCOR:DASEL:821:BACT
-        bcon: YCOR:DASEL:821:BCON
-        bctrl: YCOR:DASEL:821:BCTRL
-        bdes: YCOR:DASEL:821:BDES
-        ctrl: YCOR:DASEL:821:CTRL
+      PVs: {}
       control_name: YCOR:DASEL:821
     metadata:
       area: DASEL
       beam_path:
       - SC_DASEL
       sum_l_meters: 3118.553
+      type: YCOR
 screens:
   PRDAS12:
     controls_information:
       PVs:
         image: PROF:DASEL:440:Image:ArrayData
         n_bits: PROF:DASEL:440:N_OF_BITS
-        n_col: PROF:DASEL:440:Image:ArraySizeY_RBV
-        n_row: PROF:DASEL:440:Image:ArraySizeX_RBV
+        n_col: PROF:DASEL:440:Image:ArraySize1_RBV
+        n_row: PROF:DASEL:440:Image:ArraySize0_RBV
         resolution: PROF:DASEL:440:RESOLUTION
       control_name: PROF:DASEL:440
     metadata:
@@ -370,13 +416,14 @@ screens:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3014.49
+      type: PROF
   PRDAS14:
     controls_information:
       PVs:
         image: PROF:DASEL:655:Image:ArrayData
         n_bits: PROF:DASEL:655:N_OF_BITS
-        n_col: PROF:DASEL:655:Image:ArraySizeY_RBV
-        n_row: PROF:DASEL:655:Image:ArraySizeX_RBV
+        n_col: PROF:DASEL:655:Image:ArraySize1_RBV
+        n_row: PROF:DASEL:655:Image:ArraySize0_RBV
         resolution: PROF:DASEL:655:RESOLUTION
       control_name: PROF:DASEL:655
     metadata:
@@ -384,13 +431,14 @@ screens:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3073.484
+      type: PROF
   PRDAS17:
     controls_information:
       PVs:
         image: PROF:DASEL:818:Image:ArrayData
         n_bits: PROF:DASEL:818:N_OF_BITS
-        n_col: PROF:DASEL:818:Image:ArraySizeY_RBV
-        n_row: PROF:DASEL:818:Image:ArraySizeX_RBV
+        n_col: PROF:DASEL:818:Image:ArraySize1_RBV
+        n_row: PROF:DASEL:818:Image:ArraySize0_RBV
         resolution: PROF:DASEL:818:RESOLUTION
       control_name: PROF:DASEL:818
     metadata:
@@ -398,3 +446,4 @@ screens:
       beam_path:
       - SC_DASEL
       sum_l_meters: 3118.053
+      type: PROF

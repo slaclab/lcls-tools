@@ -6,6 +6,8 @@ magnets:
         bcon: BEND:IN20:931:BCON
         bctrl: BEND:IN20:931:BCTRL
         bdes: BEND:IN20:931:BDES
+        bmax: BEND:IN20:931:BMAX
+        bmin: BEND:IN20:931:BMIN
         ctrl: BEND:IN20:931:CTRL
       control_name: BEND:IN20:931
     metadata:
@@ -13,6 +15,7 @@ magnets:
       beam_path:
       - CU_SPEC
       sum_l_meters: 19.284
+      type: BEND
   DX01:
     controls_information:
       PVs:
@@ -20,12 +23,15 @@ magnets:
         bcon: BEND:IN20:661:BCON
         bctrl: BEND:IN20:661:BCTRL
         bdes: BEND:IN20:661:BDES
+        bmax: BEND:IN20:661:BMAX
+        bmin: BEND:IN20:661:BMIN
         ctrl: BEND:IN20:661:CTRL
       control_name: BEND:IN20:661
     metadata:
       area: SPEC
       beam_path: []
       sum_l_meters: null
+      type: BEND
   QS01:
     controls_information:
       PVs:
@@ -33,6 +39,8 @@ magnets:
         bcon: QUAD:IN20:941:BCON
         bctrl: QUAD:IN20:941:BCTRL
         bdes: QUAD:IN20:941:BDES
+        bmax: QUAD:IN20:941:BMAX
+        bmin: QUAD:IN20:941:BMIN
         ctrl: QUAD:IN20:941:CTRL
       control_name: QUAD:IN20:941
     metadata:
@@ -40,6 +48,7 @@ magnets:
       beam_path:
       - CU_SPEC
       sum_l_meters: 20.088
+      type: QUAD
   QS02:
     controls_information:
       PVs:
@@ -47,6 +56,8 @@ magnets:
         bcon: QUAD:IN20:961:BCON
         bctrl: QUAD:IN20:961:BCTRL
         bdes: QUAD:IN20:961:BDES
+        bmax: QUAD:IN20:961:BMAX
+        bmin: QUAD:IN20:961:BMIN
         ctrl: QUAD:IN20:961:CTRL
       control_name: QUAD:IN20:961
     metadata:
@@ -54,6 +65,7 @@ magnets:
       beam_path:
       - CU_SPEC
       sum_l_meters: 20.596
+      type: QUAD
   XCS1:
     controls_information:
       PVs:
@@ -61,6 +73,8 @@ magnets:
         bcon: XCOR:IN20:911:BCON
         bctrl: XCOR:IN20:911:BCTRL
         bdes: XCOR:IN20:911:BDES
+        bmax: XCOR:IN20:911:BMAX
+        bmin: XCOR:IN20:911:BMIN
         ctrl: XCOR:IN20:911:CTRL
       control_name: XCOR:IN20:911
     metadata:
@@ -68,6 +82,7 @@ magnets:
       beam_path:
       - CU_SPEC
       sum_l_meters: 17.954
+      type: XCOR
   XCS2:
     controls_information:
       PVs:
@@ -75,6 +90,8 @@ magnets:
         bcon: XCOR:IN20:951:BCON
         bctrl: XCOR:IN20:951:BCTRL
         bdes: XCOR:IN20:951:BDES
+        bmax: XCOR:IN20:951:BMAX
+        bmin: XCOR:IN20:951:BMIN
         ctrl: XCOR:IN20:951:CTRL
       control_name: XCOR:IN20:951
     metadata:
@@ -82,6 +99,7 @@ magnets:
       beam_path:
       - CU_SPEC
       sum_l_meters: 20.341
+      type: XCOR
   YCS1:
     controls_information:
       PVs:
@@ -89,6 +107,8 @@ magnets:
         bcon: YCOR:IN20:912:BCON
         bctrl: YCOR:IN20:912:BCTRL
         bdes: YCOR:IN20:912:BDES
+        bmax: YCOR:IN20:912:BMAX
+        bmin: YCOR:IN20:912:BMIN
         ctrl: YCOR:IN20:912:CTRL
       control_name: YCOR:IN20:912
     metadata:
@@ -96,6 +116,7 @@ magnets:
       beam_path:
       - CU_SPEC
       sum_l_meters: 17.954
+      type: YCOR
   YCS2:
     controls_information:
       PVs:
@@ -103,6 +124,8 @@ magnets:
         bcon: YCOR:IN20:952:BCON
         bctrl: YCOR:IN20:952:BCTRL
         bdes: YCOR:IN20:952:BDES
+        bmax: YCOR:IN20:952:BMAX
+        bmin: YCOR:IN20:952:BMIN
         ctrl: YCOR:IN20:952:CTRL
       control_name: YCOR:IN20:952
     metadata:
@@ -110,6 +133,7 @@ magnets:
       beam_path:
       - CU_SPEC
       sum_l_meters: 20.341
+      type: YCOR
 screens:
   OTRS1:
     controls_information:
@@ -120,6 +144,7 @@ screens:
       beam_path:
       - CU_SPEC
       sum_l_meters: 21.782
+      type: PROF
   YAGS1:
     controls_information:
       PVs:
@@ -134,6 +159,7 @@ screens:
       beam_path:
       - CU_SPEC
       sum_l_meters: 18.588
+      type: PROF
   YAGS2:
     controls_information:
       PVs:
@@ -148,3 +174,4 @@ screens:
       beam_path:
       - CU_SPEC
       sum_l_meters: 21.414
+      type: PROF

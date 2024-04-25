@@ -8,6 +8,7 @@ magnets:
       beam_path:
       - CU_ALINE
       sum_l_meters: 1103.271
+      type: BEND
   BKRAPM2:
     controls_information:
       PVs: {}
@@ -17,6 +18,7 @@ magnets:
       beam_path:
       - CU_ALINE
       sum_l_meters: 1104.921
+      type: BEND
   BKRAPM3:
     controls_information:
       PVs: {}
@@ -26,6 +28,7 @@ magnets:
       beam_path:
       - CU_ALINE
       sum_l_meters: 1106.571
+      type: BEND
   BKRAPM4:
     controls_information:
       PVs: {}
@@ -35,6 +38,7 @@ magnets:
       beam_path:
       - CU_ALINE
       sum_l_meters: 1108.221
+      type: BEND
   BRAM1:
     controls_information:
       PVs: {}
@@ -45,6 +49,7 @@ magnets:
       - CU_ALINE
       - SC_DASEL
       sum_l_meters: 1164.244
+      type: BEND
   YCBSYA:
     controls_information:
       PVs: {}
@@ -54,3 +59,4 @@ magnets:
       beam_path:
       - CU_ALINE
       sum_l_meters: 1114.68
+      type: YCOR

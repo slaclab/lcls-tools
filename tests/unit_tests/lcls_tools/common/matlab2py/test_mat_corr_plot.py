@@ -1,7 +1,7 @@
 import os
 import unittest
-from lcls_tools.common.matlab2py.cor_plot.cor_plot_mat_scan import (
-    CorPlotMatScan as CPMS,
+from lcls_tools.common.matlab2py.mat_corr_plot import (
+    MatCorrPlot as MCP,
 )
 
 # We need a scan where all struct names are populated
@@ -43,7 +43,7 @@ ITER_QE = 400
 TS_QE = 737728.26
 
 
-class CorPlotMatScanTest(unittest.TestCase):
+class MatCorrPlotTest(unittest.TestCase):
     dataset_location: str = "tests/datasets/scan/correlation/matlab"
 
     def setUp(self) -> None:
@@ -66,25 +66,25 @@ class CorPlotMatScanTest(unittest.TestCase):
         return super().setUp()
 
     def test_init_mat_file_test(self):
-        cpms = CPMS(self.file)
-        self.assertEqual(cpms.fields, FIELDS_TEST)
-        self.assertEqual(cpms.accelerator, ACCL_TEST)
-        self.assertEqual(cpms.ctrl_pv, CTRL_PV_TEST)
-        self.assertEqual(cpms.iterations, ITER_TEST)
-        self.assertEqual(round(cpms.ctrl_vals[0], 3), CTRL_VAL_0_TEST)
-        self.assertEqual(cpms.beam_names, BEAM_NAMES_TEST)
-        self.assertEqual(round(cpms.timestamp, 2), TS_TEST)
-        self.assertEqual(cpms.samples, SAMPLES_TEST)
+        mcp = MCP(self.file)
+        self.assertEqual(mcp.fields, FIELDS_TEST)
+        self.assertEqual(mcp.accelerator, ACCL_TEST)
+        self.assertEqual(mcp.ctrl_pv, CTRL_PV_TEST)
+        self.assertEqual(mcp.iterations, ITER_TEST)
+        self.assertEqual(round(mcp.ctrl_vals[0], 3), CTRL_VAL_0_TEST)
+        self.assertEqual(mcp.beam_names, BEAM_NAMES_TEST)
+        self.assertEqual(round(mcp.timestamp, 2), TS_TEST)
+        self.assertEqual(mcp.samples, SAMPLES_TEST)
 
     def test_init_mat_file_qe(self):
-        cpms = CPMS(self.qe_file)
-        self.assertEqual(cpms.fields, FIELDS_QE)
-        self.assertEqual(cpms.accelerator, ACCL_QE)
-        self.assertEqual(cpms.ctrl_pv, CTRL_PV_QE)
-        self.assertEqual(cpms.iterations, ITER_QE)
-        self.assertEqual(round(cpms.ctrl_vals[0], 2), CTRL_VAL_0_QE)
-        self.assertEqual(cpms.beam_names, None)
-        self.assertEqual(round(cpms.timestamp, 2), TS_QE)
+        mcp = MCP(self.qe_file)
+        self.assertEqual(mcp.fields, FIELDS_QE)
+        self.assertEqual(mcp.accelerator, ACCL_QE)
+        self.assertEqual(mcp.ctrl_pv, CTRL_PV_QE)
+        self.assertEqual(mcp.iterations, ITER_QE)
+        self.assertEqual(round(mcp.ctrl_vals[0], 2), CTRL_VAL_0_QE)
+        self.assertEqual(mcp.beam_names, None)
+        self.assertEqual(round(mcp.timestamp, 2), TS_QE)
 
     def test_init_bad_file(self):
-        self.assertRaises(Exception, CPMS(self.bad_file))
+        self.assertRaises(Exception, MCP(self.bad_file))

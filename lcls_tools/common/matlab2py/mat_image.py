@@ -7,7 +7,7 @@ from lcls_tools.common.image_processing.image import Image
 
 
 class MatImage(object):
-    """.mat image object from typical LCLS .mat file (R2012a)"""
+    """.mat image object from typical LCLS .mat file (R2012-2020a)"""
 
     def __init__(self):
         self._mat_file = None
@@ -137,7 +137,7 @@ class MatImage(object):
         return self._back
 
     def _unpack_mat_data(self, mat_file):
-        """Please shoot me"""
+        """TODO: Try to generalize this."""
         file_contents = sio.loadmat(mat_file)
         data = file_contents["data"][0][0]
         self._mat_file = mat_file
@@ -164,7 +164,7 @@ class MatImage(object):
         self._back = data[20][0][0]
 
     def load_mat_image(self, mat_file):
-        """Converting super gross .mat image data structure to an object"""
+        """Converting .mat image data structure to an object"""
         if not os.path.isfile(mat_file):
             raise FileNotFoundError(f"Could not find {mat_file}")
         try:

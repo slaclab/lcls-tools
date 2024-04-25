@@ -12,6 +12,7 @@ Welcome to lcls-tools's documentation!
 
    devices.rst
    image_processing.rst
+   matlab2py.rst 
    
 
 Indices and tables

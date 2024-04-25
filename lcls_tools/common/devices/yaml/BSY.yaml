@@ -7,6 +7,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: QUAD
   XC6:
     controls_information:
       PVs: {}
@@ -15,6 +16,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   XCBSY09:
     controls_information:
       PVs: {}
@@ -23,6 +25,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   XCBSY26:
     controls_information:
       PVs: {}
@@ -31,6 +34,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   XCBSY34:
     controls_information:
       PVs: {}
@@ -39,6 +43,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   XCBSY36:
     controls_information:
       PVs: {}
@@ -47,6 +52,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   XCBSY60:
     controls_information:
       PVs: {}
@@ -55,6 +61,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   XCBSY71:
     controls_information:
       PVs: {}
@@ -63,6 +70,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   XCBSY81:
     controls_information:
       PVs: {}
@@ -71,6 +79,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: XCOR
   YC5:
     controls_information:
       PVs: {}
@@ -79,6 +88,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   YCBSY10:
     controls_information:
       PVs: {}
@@ -87,6 +97,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   YCBSY27:
     controls_information:
       PVs: {}
@@ -95,6 +106,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   YCBSY35:
     controls_information:
       PVs: {}
@@ -103,6 +115,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   YCBSY37:
     controls_information:
       PVs: {}
@@ -111,6 +124,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   YCBSY62:
     controls_information:
       PVs: {}
@@ -119,6 +133,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   YCBSY72:
     controls_information:
       PVs: {}
@@ -127,6 +142,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: YCOR
   YCBSY82:
     controls_information:
       PVs: {}
@@ -135,6 +151,7 @@ magnets:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: YCOR
 screens:
   PRBSY45:
     controls_information:
@@ -144,3 +161,4 @@ screens:
       area: BSY
       beam_path: []
       sum_l_meters: null
+      type: PROF
