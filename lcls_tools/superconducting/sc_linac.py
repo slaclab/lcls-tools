@@ -52,14 +52,13 @@ class Linac:
 
         self.name = f"L{linac_section}B"
         self.cryomodules: Dict[str, Cryomodule] = {}
-        self.vacuum_prefix = "VGXX:{linac}:".format(linac=self.name)
+        self.vacuum_prefix = f"VGXX:{self.name}:"
 
         self.beamline_vacuum_pvs: List[str] = [
-            self.vacuum_prefix + "{infix}:COMBO_P".format(infix=infix)
-            for infix in beamline_vacuum_infixes
+            f"{self.vacuum_prefix}{infix}:COMBO_P" for infix in beamline_vacuum_infixes
         ]
         self.insulating_vacuum_pvs: List[str] = [
-            self.vacuum_prefix + "{cm}96:COMBO_P".format(cm=cm)
+            f"{self.vacuum_prefix}{cm}96:COMBO_P"
             for cm in insulating_vacuum_cryomodules
         ]
 
@@ -67,20 +66,6 @@ class Linac:
             self.cryomodules[cm_name] = self.cryomodule_class(
                 cryo_name=cm_name, linac_object=self
             )
-
-    def add_cryomodules(
-        self,
-        cryomodule_string_list: List[str],
-    ):
-        for cryomoduleString in cryomodule_string_list:
-            self.add_cryomodule(
-                cryomodule_name=cryomoduleString,
-            )
-
-    def add_cryomodule(self, cryomodule_name: str):
-        self.cryomodules[cryomodule_name] = self.cryomodule_class(
-            cryo_name=cryomodule_name, linac_object=self
-        )
 
 
 class Machine:
