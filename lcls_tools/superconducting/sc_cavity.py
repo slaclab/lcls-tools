@@ -296,8 +296,8 @@ class Cavity(utils.SCLinacObject):
     def measured_loaded_q_in_tolerance(self) -> bool:
         return (
             self.loaded_q_lower_limit
-            < self.measured_loaded_q
-            < self.loaded_q_upper_limit
+            <= self.measured_loaded_q
+            <= self.loaded_q_upper_limit
         )
 
     def push_loaded_q(self):
@@ -315,8 +315,8 @@ class Cavity(utils.SCLinacObject):
     def measured_scale_factor_in_tolerance(self) -> bool:
         return (
             self.scale_factor_lower_limit
-            < self.measured_scale_factor
-            < self.scale_factor_upper_limit
+            <= self.measured_scale_factor
+            <= self.scale_factor_upper_limit
         )
 
     def push_scale_factor(self):

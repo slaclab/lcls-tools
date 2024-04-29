@@ -50,8 +50,8 @@ for non_hl_cm_num in range(1, 36):
 
 for i in range(1, 3):
     hl_obj: Cryomodule = MACHINE.cryomodules[f"H{i}"]
-    for hl_cavity in hl_obj.cavities.values():
-        hl_cavities.append(hl_cavity)
+    for hl_cavity_obj in hl_obj.cavities.values():
+        hl_cavities.append(hl_cavity_obj)
 
 # TODO handle hitting end of list
 # An iterator so that we use a different cavity for every test to make
@@ -232,7 +232,10 @@ class TestCavity(TestCase):
         hl_cavity = next(hl_cavity_iterator)
         val = randint(CAVITY_SCALE_LOWER_LIMIT_HL, CAVITY_SCALE_UPPER_LIMIT_HL)
         hl_cavity._measured_scale_factor_pv_obj = make_mock_pv(get_val=val)
-        self.assertTrue(hl_cavity.measured_scale_factor_in_tolerance)
+        self.assertTrue(
+            hl_cavity.measured_scale_factor_in_tolerance,
+            f"scale factor {val} not in tol for {hl_cavity}",
+        )
 
     def test_measured_scale_factor_in_tolerance(self):
         cavity = next(cavity_iterator)
