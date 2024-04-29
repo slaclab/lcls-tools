@@ -68,7 +68,7 @@ class TestCavity(TestCase):
         self.detune_calls = 0
 
     def test_pv_prefix(self):
-        cavity = next(self.cavity_iterator)
+        cavity = MACHINE.cryomodules["01"].cavities[1]
         self.assertEqual(cavity.pv_prefix, "ACCL:L0B:0110:")
 
     def test_loaded_q_limits(self):
@@ -359,13 +359,13 @@ class TestCavity(TestCase):
     def test_edm_macro_string(self):
         cavity = MACHINE.cryomodules["01"].cavities[1]
         self.assertEqual(
-            cavity.edm_macro_string, f"C=1,RFS=1A,R=A,CM=ACCL:L0B:01,ID=01,CH=1"
+            cavity.edm_macro_string, "C=1,RFS=1A,R=A,CM=ACCL:L0B:01,ID=01,CH=1"
         )
 
     def test_edm_macro_string_rack_b(self):
         cav = MACHINE.cryomodules["01"].cavities[5]
         self.assertEqual(
-            cav.edm_macro_string, f"C=5,RFS=1B,R=B,CM=ACCL:L0B:01,ID=01,CH=1"
+            cav.edm_macro_string, "C=5,RFS=1B,R=B,CM=ACCL:L0B:01,ID=01,CH=1"
         )
 
     def test_hw_mode(self):
