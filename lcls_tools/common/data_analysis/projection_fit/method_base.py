@@ -100,3 +100,5 @@ class MethodBase(ABC):
             raise TypeError("Input must be ndarray")
         self._distribution_data = distribution_data
         self.find_priors(self._distribution_data)
+        #TODO:rename to profile_data
+        #TODO:change find_priors to self.find_init_values

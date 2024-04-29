@@ -24,15 +24,16 @@ class GaussianModel(MethodBase):
             self.distribution_data = distribution_data
             self.find_priors(self.distribution_data)
 
-    def find_init_values(self, data: np.array) -> list:
+    def find_init_values(self, data: np.array) -> np.array:
         offset = float(np.min(data))
         amplitude = np.max(gaussian_filter(data, sigma=5)) - offset
         mean = np.argmax(gaussian_filter(data, sigma=5)) / (len(data))
         sigma = 0.1
-        self.init_values = [amplitude, mean, sigma, offset]
+        self.init_values = np.array([amplitude, mean, sigma, offset])
+        #TODO:change to dictionary
         return self.init_values
 
-    def find_priors(self, data: np.array) -> None:
+    def find_priors(self, data: np.array) ->dict:
         """do initial guesses based on data and make distribution from that guess"""
 
         init_values = self.find_init_values(data)
@@ -43,7 +44,7 @@ class GaussianModel(MethodBase):
         amplitude_alpha = (amplitude_mean**2) / amplitude_var
         amplitude_beta = amplitude_mean / amplitude_var
         amplitude_prior = gamma(amplitude_alpha, loc=0, scale=1 / amplitude_beta)
-
+        #TODO:change to be compatible with init_values dictionary
         mean_prior = norm(init_values[self.param_names.index("mean")], 0.1)
 
         sigma_alpha = 2.5
@@ -61,14 +62,19 @@ class GaussianModel(MethodBase):
         return self.priors
 
     @staticmethod
-    def forward(x: float, params: list) -> float:
+    def forward(x: float, params: dict) -> float:
+        #TODO:implement calling _foward
+        pass
+    @staticmethod
+    def _forward(x:float,params:np.ndarray) :
         amplitude = params[0]
         mean = params[1]
         sigma = params[2]
         offset = params[3]
+        #TODO: init scipy.norm has private attribute then reference it return 
         return amplitude * np.exp(-((x - mean) ** 2) / (2 * sigma**2)) + offset
 
     def log_prior(self, params: list) -> float:
-
-        return np.sum([prior.logpdf(params[i]) for i, (key, prior) in enumerate(self.priors.items())])
+        #TODO:change to dictionary
+        return np.sum([prior.logpdf(params([i])) for i, (key, prior) in enumerate(self.priors.items())])
 

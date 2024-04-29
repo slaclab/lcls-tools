@@ -1,7 +1,8 @@
 import unittest
 import os
 import numpy as np
-import lcls_tools.common.image_processing as ImageProcessor
+from lcls_tools.common.image_processing.image_processing import ImageProcessor
+from lcls_tools.common.image_processing.roi import RectangularROI
 
 class TestImageCreator():
     def create_test_image(self, size: tuple, center: list, radius: int):
@@ -28,13 +29,20 @@ class ImageProcessingTest(unittest.TestCase):
         self.radius = 50
         self.image_creator = TestImageCreator()
         self.image = self.image_creator.create_test_image(size = self.size, center=self.center,radius = self.radius)
-    def test_subtract_background(self):
-        image_processor = ImageProcessor()
-        # need to create a background image
-        image = image_processor.subtract_background(self.image)
-        # hm?
+
     def test_process(self):
         image_processor = ImageProcessor()
         image = image_processor.process(self.image)
-        # hm? 
+        assert isinstance(image,np.ndarray)
+        #test that any use case returns an ndarray
+        roi = RectangularROI(center =self.center,xwidth=self.widths[0], ywidth=self.widths[1])
+        image_processor = ImageProcessor(roi=roi)
+        image = image_processor.process(self.image)
+        assert isinstance(image,np.ndarray)
 
+    def test_subtract_background(self):
+        background_image = self.image_creator.create_test_image(size = self.size, center=self.center,radius = self.radius)
+        image_processor = ImageProcessor(background_image=background_image)
+        # if subtraction works with two exactly identical arrays then all values will be zero
+        image = image_processor.subtract_background(self.image)
+        assert image.all() == np.zeros(self.size).all()

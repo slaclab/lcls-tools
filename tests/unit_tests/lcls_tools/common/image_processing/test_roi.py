@@ -34,14 +34,18 @@ class ROITest(unittest.TestCase):
     def test_circular_roi_crop_image(self):
         circular = CircularROI(center =self.center,radius = self.radius)
         cropped_image = circular.crop_image(self.image)
-        assert cropped_image.shape[0] < 200
-        assert cropped_image.shape[1] < 200
-        # print idk.... this one is annoying.
+        assert cropped_image.shape[0] < self.image.shape[0]
+        assert cropped_image.shape[1] < self.image.shape[1]
 
     def test_fill_value_outside_circle(self):
-        #print also annoying...
-        
-        pass
+        # create circular ROI with zero length
+        circular = CircularROI(center =self.center,radius = 1)
+        # fill values outside the circular radius to zero. if this works the projections will be zero)
+        # radius zero wont work set to radius to one,  if distance  > 1 fill_value so only 8 elements in the 2 d array have a value
+        image = circular.fill_value_outside_circle(img=self.image,center = self.center,radius=1,fill_value=0)
+        assert np.array(np.sum(image,axis=0))[self.center[1]] <5
+        assert np.array(np.sum(image,axis=1))[self.center[0]] <5
+
 
     def test_rectangular_roi_crop_image(self):
         rectangular =  RectangularROI(center =self.center,xwidth=self.widths[0], ywidth=self.widths[1])

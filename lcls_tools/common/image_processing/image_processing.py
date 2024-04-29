@@ -33,6 +33,7 @@ class ImageProcessor(BaseModel):
         if self.background_image is not None:
             # needs test?
             image = raw_image - self.background_image
+            print(image)
         else:
             image = np.clip(raw_image - self.threshold, 0, 1e7)
         return image

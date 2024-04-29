@@ -69,6 +69,8 @@ class ProjectionFit(BaseModel):
         """
         x = np.linspace(0, 1, len(self.model.distribution_data))
         y = self.model.distribution_data
+
+        #TODO:self.model_init_values is now a dictionary -> change to list for minimize
         res = scipy.optimize.minimize(
             self.model.loss,
             self.model.init_values,
