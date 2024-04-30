@@ -70,14 +70,13 @@ class ProjectionFit(BaseModel):
         """
         x = np.linspace(0, 1, len(self.model.profile_data))
         y = self.model.profile_data
+        # should I switch to OrderedDict from collections so that its obvious its an ordered dictionary?
+        init_values = list(self.model.init_values.values())
 
-
-        #TODO:self.model_init_values is now a dictionary -> change to list for minimize
-        #making an ordered list here is making this fit_model model dependent since it needs knowledge of the params list ordering
-
+        # would changing self.model.loss to a dictionary work?
         res = scipy.optimize.minimize(
             self.model.loss,
-            self.model.init_values_list,
+            init_values,
             args=(x, y, self.use_priors),
             bounds=self.model.param_bounds,
         )
@@ -117,7 +116,6 @@ class ProjectionFit(BaseModel):
         Returns a dictionary where the keys are the model params and their
         values are the params fitted to the data
         """
-        #TODO:start here assume that screen_beam_profile is doing a profile measurement. follow logic all the way through with and without priors.
         assert len(projection_data.shape) == 1
         fitted_params_dict = {}
         normalized_data = self.normalize(projection_data)

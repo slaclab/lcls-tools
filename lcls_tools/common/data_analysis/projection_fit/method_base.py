@@ -20,7 +20,6 @@ class MethodBase(ABC):
         self.param_names: list = None     
         self.param_bounds: np.ndarray = None
         self.init_values: dict = None
-        self.init_values_list: list = None
 
     @abstractmethod
     def find_init_values(self, data: np.ndarray) -> list:
@@ -31,11 +30,12 @@ class MethodBase(ABC):
         pass
 
     def plot_init_values(self):
+        init_values = np.array(list(self.init_values.values()))
         """Plots init values as a function of forward and visually compares it to the initial distribution"""
         fig, axs = plt.subplots(1, 1)
         x = np.linspace(0, 1, len(self.profile_data))
         #TODO: update this when _forward is implemented
-        y_fit = self.forward(x, self.init_values_list)
+        y_fit = self.forward(x, init_values)
         axs.plot(x, self.profile_data, label="Projection Data")
         axs.plot(x, y_fit, label="Initial Guess Fit Data")
         axs.set_xlabel("x")
@@ -65,16 +65,24 @@ class MethodBase(ABC):
     @staticmethod
     @abstractmethod
     def forward(x: np.array, params: np.array) -> np.array:
+        #TODO:change params to dict
+        pass
+    @abstractmethod
+    def _forward(x: np.array, params: np.array) -> np.array:
+        #TODO:change params to dict
         pass
 
     def log_likelihood(self, x, y, params):
+        #TODO:implement using params as a dictionary
         return -np.sum((y - self.forward(x, params)) ** 2)
 
     @abstractmethod
     def log_prior(self, params):
+        #TODO:implement using params as a dictionary
         pass
 
     def loss(self, params, x, y, use_priors=False):
+        #TODO:implement using params as a dictionary
         loss_temp = -self.log_likelihood(x, y, params)
         if use_priors:
             loss_temp = loss_temp - self.log_prior(params)

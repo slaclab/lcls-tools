@@ -25,16 +25,13 @@ class GaussianModel(MethodBase):
             self.find_init_values(self.profile_data)
             self.find_priors(self.profile_data)
 
-    def find_init_values(self, data: np.array) -> np.array:
+    def find_init_values(self, data: np.array) -> dict:
         offset = float(np.min(data))
         amplitude = np.max(gaussian_filter(data, sigma=5)) - offset
         mean = np.argmax(gaussian_filter(data, sigma=5)) / (len(data))
         sigma = 0.1
-        self.init_values_list = np.array([amplitude, mean, sigma, offset])
-        self.init_values = {"amplitude":amplitude,"mean":mean,"sigma":sigma,"offset":offset}
-        # if use_priors = True in projection_fit then find priors? use case where projection fit is instantiated with use_priors = False then flag is changed but you have no priors
+        self.init_values = {self.param_names[0]:amplitude,self.param_names[1]:mean,self.param_names[2]:sigma,self.param_names[3]:offset}
         self.find_priors()
-        #TODO:change to dictionary
         return self.init_values
 
     def find_priors(self) ->dict:
