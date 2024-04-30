@@ -19,7 +19,8 @@ class MethodBase(ABC):
     def __init__(self):
         self.param_names: list = None     
         self.param_bounds: np.ndarray = None
-        self.init_values: list = None
+        self.init_values: dict = None
+        self.init_values_list: list = None
 
     @abstractmethod
     def find_init_values(self, data: np.ndarray) -> list:
@@ -32,9 +33,10 @@ class MethodBase(ABC):
     def plot_init_values(self):
         """Plots init values as a function of forward and visually compares it to the initial distribution"""
         fig, axs = plt.subplots(1, 1)
-        x = np.linspace(0, 1, len(self.distribution_data))
-        y_fit = self.forward(x, self.init_values)
-        axs.plot(x, self.distribution_data, label="Projection Data")
+        x = np.linspace(0, 1, len(self.profile_data))
+        #TODO: update this when _forward is implemented
+        y_fit = self.forward(x, self.init_values_list)
+        axs.plot(x, self.profile_data, label="Projection Data")
         axs.plot(x, y_fit, label="Initial Guess Fit Data")
         axs.set_xlabel("x")
         axs.set_ylabel("Forward(x)")
@@ -46,7 +48,7 @@ class MethodBase(ABC):
         num_plots = len(self.priors)
         fig, axs = plt.subplots(num_plots, 1)
         for i, (param, prior) in enumerate(self.priors.items()):
-            x = np.linspace(0, self.param_bounds[i][-1], len(self.distribution_data))
+            x = np.linspace(0, self.param_bounds[i][-1], len(self.profile_data))
             axs[i].plot(x, prior.pdf(x))
             axs[i].axvline(
                 self.param_bounds[i, 0],
@@ -90,15 +92,14 @@ class MethodBase(ABC):
         self._priors = priors
 
     @property
-    def distribution_data(self):
+    def profile_data(self):
         """1d array typically projection data"""
-        return self._distribution_data
+        return self._profile_data
 
-    @distribution_data.setter
-    def distribution_data(self, distribution_data):
-        if not isinstance(distribution_data, np.ndarray):
+    @profile_data.setter
+    def profile_data(self, profile_data):
+        if not isinstance(profile_data, np.ndarray):
             raise TypeError("Input must be ndarray")
-        self._distribution_data = distribution_data
-        self.find_priors(self._distribution_data)
-        #TODO:rename to profile_data
+        self._profile_data = profile_data
+        self.find_init_values(self._profile_data)
         #TODO:change find_priors to self.find_init_values

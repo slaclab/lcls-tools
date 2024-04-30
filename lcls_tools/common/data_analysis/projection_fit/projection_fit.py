@@ -56,10 +56,11 @@ class ProjectionFit(BaseModel):
 
     def model_setup(self, projection_data=np.ndarray) -> None:
         """sets up the model and plots init_values/priors"""
-        self.model.distribution_data = projection_data
+        self.model.profile_data = projection_data
         if self.visualize_priors:
-            self.model.plot_priors()
             self.model.plot_init_values()
+            self.model.plot_priors()
+
 
     def fit_model(self) -> scipy.optimize._optimize.OptimizeResult:
         """
@@ -67,18 +68,21 @@ class ProjectionFit(BaseModel):
         as a function of the model.
         Returns optimizeResult object
         """
-        x = np.linspace(0, 1, len(self.model.distribution_data))
-        y = self.model.distribution_data
+        x = np.linspace(0, 1, len(self.model.profile_data))
+        y = self.model.profile_data
+
 
         #TODO:self.model_init_values is now a dictionary -> change to list for minimize
+        #making an ordered list here is making this fit_model model dependent since it needs knowledge of the params list ordering
+
         res = scipy.optimize.minimize(
             self.model.loss,
-            self.model.init_values,
+            self.model.init_values_list,
             args=(x, y, self.use_priors),
             bounds=self.model.param_bounds,
         )
+
         if self.visualize_fit:
-            #TODO:dont specify size, use fig.tight_layout
             fig, ax = plt.subplots()
             y_fit = self.model.forward(x, res.x)
             ax.plot(x, y, label="data")
@@ -104,8 +108,8 @@ class ProjectionFit(BaseModel):
                 bbox=props,
             )
             fig.tight_layout()
-        return res #TODO:optional argument to return fig,ax
-
+        return res#TODO:optional argument to return fig,ax
+ 
     def fit_projection(self, projection_data: np.ndarray) -> dict:
         """
         type is dict[str, float]
@@ -113,11 +117,13 @@ class ProjectionFit(BaseModel):
         Returns a dictionary where the keys are the model params and their
         values are the params fitted to the data
         """
+        #TODO:start here assume that screen_beam_profile is doing a profile measurement. follow logic all the way through with and without priors.
         assert len(projection_data.shape) == 1
         fitted_params_dict = {}
         normalized_data = self.normalize(projection_data)
         self.model_setup(projection_data=normalized_data)
         res = self.fit_model()
+        #TODO:return fig,ax with res if optional flag is True
         for i, param in enumerate(self.model.param_names):
             fitted_params_dict[param] = (res.x)[i]
         params_dict = self.unnormalize_model_params(fitted_params_dict, projection_data)
