@@ -28,9 +28,16 @@ class WirePVSet(PVSet):
     velo: PV # velocity
     rbv: PV
     rmp: PV  # retracted motor position?
-    xsize: PV
-    ysize: PV
-    zsize: PV
+    startscan: PV
+    usexwire: PV
+    useywire: PV
+    useuwire: PV
+    xwireinner: PV
+    xwireouter: PV
+    ywireinner: PV
+    ywireouter: PV
+    uwireinner: PV
+    uwireouter: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
