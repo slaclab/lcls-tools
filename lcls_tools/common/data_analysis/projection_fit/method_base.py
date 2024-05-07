@@ -20,22 +20,23 @@ class MethodBase(ABC):
         self.param_names: list = None     
         self.param_bounds: np.ndarray = None
         self.init_values: dict = None
+        self.fitted_params_dict: dict = None
 
     @abstractmethod
     def find_init_values(self, data: np.ndarray) -> list:
-        pass
+        ...
+    
 
     @abstractmethod
     def find_priors(self, data: np.ndarray) -> dict:
-        pass
+        ...
 
     def plot_init_values(self):
         init_values = np.array(list(self.init_values.values()))
         """Plots init values as a function of forward and visually compares it to the initial distribution"""
         fig, axs = plt.subplots(1, 1)
         x = np.linspace(0, 1, len(self.profile_data))
-        #TODO: update this when _forward is implemented
-        y_fit = self.forward(x, init_values)
+        y_fit = self._forward(x, init_values)
         axs.plot(x, self.profile_data, label="Projection Data")
         axs.plot(x, y_fit, label="Initial Guess Fit Data")
         axs.set_xlabel("x")
@@ -62,30 +63,40 @@ class MethodBase(ABC):
         fig.tight_layout()
         return fig, axs
 
+    def forward(self, x: np.ndarray, params: dict) -> np.ndarray:
+        #TODO:test new usage
+        print('calling forward')
+        params_list = np.array([params[name] for name in self.param_names])
+        print(params_list)
+        return self._forward(x,params_list)
+    
     @staticmethod
     @abstractmethod
-    def forward(x: np.array, params: np.array) -> np.array:
-        #TODO:change params to dict
-        pass
-    @abstractmethod
-    def _forward(x: np.array, params: np.array) -> np.array:
-        #TODO:change params to dict
-        pass
+    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray:
+        ...
 
-    def log_likelihood(self, x, y, params):
-        #TODO:implement using params as a dictionary
-        return -np.sum((y - self.forward(x, params)) ** 2)
+    def log_prior(self, params:dict):
+        #TODO:test new usage
+        params_list = np.array([params[name] for name in self.param_names])
+        return self._log_prior(params_list)
 
     @abstractmethod
-    def log_prior(self, params):
-        #TODO:implement using params as a dictionary
-        pass
+    def _log_prior(self, params:np.ndarray):
+        ...
+
+    def log_likelihood(self, x:np.ndarray, y:np.ndarray, params:dict):
+        #TODO:test new usage
+        params_list = np.array([params[name] for name in self.param_names])
+        return self._log_likelihood(x,y,params_list)
+    
+    def _log_likelihood(self, x:np.ndarray, y:np.ndarray, params:np.ndarray):
+        return -np.sum((y - self._forward(x, params)) ** 2)
 
     def loss(self, params, x, y, use_priors=False):
-        #TODO:implement using params as a dictionary
-        loss_temp = -self.log_likelihood(x, y, params)
+        #TODO:implement using private functions _log_likelihood and _log_prior
+        loss_temp = -self._log_likelihood(x, y, params)
         if use_priors:
-            loss_temp = loss_temp - self.log_prior(params)
+            loss_temp = loss_temp - self._log_prior(params)
         return loss_temp
 
     @property
@@ -110,4 +121,4 @@ class MethodBase(ABC):
             raise TypeError("Input must be ndarray")
         self._profile_data = profile_data
         self.find_init_values(self._profile_data)
-        #TODO:change find_priors to self.find_init_values
+        self.find_priors()

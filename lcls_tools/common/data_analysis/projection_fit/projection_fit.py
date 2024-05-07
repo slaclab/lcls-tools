@@ -23,9 +23,7 @@ class ProjectionFit(BaseModel):
     # come up with better name
     model_config = ConfigDict(arbitrary_types_allowed=True)
     model: MethodBase
-    visualize_priors: bool = False
     use_priors: bool = False
-    visualize_fit: bool = False
 
     def normalize(self, old_data: np.ndarray) -> np.ndarray:
         """
@@ -57,9 +55,7 @@ class ProjectionFit(BaseModel):
     def model_setup(self, projection_data=np.ndarray) -> None:
         """sets up the model and plots init_values/priors"""
         self.model.profile_data = projection_data
-        if self.visualize_priors:
-            self.model.plot_init_values()
-            self.model.plot_priors()
+
 
 
     def fit_model(self) -> scipy.optimize._optimize.OptimizeResult:
@@ -70,44 +66,17 @@ class ProjectionFit(BaseModel):
         """
         x = np.linspace(0, 1, len(self.model.profile_data))
         y = self.model.profile_data
-        # should I switch to OrderedDict from collections so that its obvious its an ordered dictionary?
-        init_values = list(self.model.init_values.values())
+      
+        init_values = np.array([self.model.init_values[name] for name in self.model.param_names])
 
-        # would changing self.model.loss to a dictionary work?
         res = scipy.optimize.minimize(
             self.model.loss,
             init_values,
             args=(x, y, self.use_priors),
             bounds=self.model.param_bounds,
         )
-
-        if self.visualize_fit:
-            fig, ax = plt.subplots()
-            y_fit = self.model.forward(x, res.x)
-            ax.plot(x, y, label="data")
-            ax.plot(x, y_fit, label="fit")
-            ax.set_xlabel("x")
-            ax.set_ylabel("y")
-            ax.legend(loc="upper right")
-            assert len(self.model.param_names) == len(res.x)
-            textstr = "\n".join(
-                [
-                    r"$\mathrm{%s}=%.2f$" % (self.model.param_names[i], res.x[i])
-                    for i in range(len(res.x))
-                ]
-            )
-            props = dict(boxstyle="round", facecolor="wheat", alpha=0.5)
-            ax.text(
-                0.05,
-                0.95,
-                textstr,
-                transform=ax.transAxes,
-                fontsize=14,
-                verticalalignment="top",
-                bbox=props,
-            )
-            fig.tight_layout()
-        return res#TODO:optional argument to return fig,ax
+        
+        return res
  
     def fit_projection(self, projection_data: np.ndarray) -> dict:
         """
@@ -121,8 +90,38 @@ class ProjectionFit(BaseModel):
         normalized_data = self.normalize(projection_data)
         self.model_setup(projection_data=normalized_data)
         res = self.fit_model()
-        #TODO:return fig,ax with res if optional flag is True
         for i, param in enumerate(self.model.param_names):
             fitted_params_dict[param] = (res.x)[i]
+        self.model.fitted_params_dict = fitted_params_dict
+        print(f'fitted params for plotting:{self.model.fitted_params_dict}')
         params_dict = self.unnormalize_model_params(fitted_params_dict, projection_data)
         return params_dict
+
+    
+    def plot_fit(self):
+        #TODO: dont specify any style, create lines and text boxes that go into figure
+        #TODO: resolve issues with using res.x
+        x = np.linspace(0, 1, len(self.model.profile_data))
+        y = self.model.profile_data
+        fig, ax = plt.subplots()
+        params = np.array([self.model.fitted_params_dict[name] for name in self.model.param_names])
+        y_fit = self.model._forward(x, params)
+        ax.plot(x, y, label="data")
+        ax.plot(x, y_fit, label="fit")
+        '''
+        textstr = "\n".join(
+            [
+                r"$\mathrm{%s}=%.2f$" % (self.model.param_names[i], res.x[i])
+                for i in range(len(res.x))
+            ]
+        )
+        ax.text(
+            0.05,
+            0.95,
+            textstr,
+            transform=ax.transAxes,
+            verticalalignment="top",
+            
+        )
+        '''
+        return fig,ax

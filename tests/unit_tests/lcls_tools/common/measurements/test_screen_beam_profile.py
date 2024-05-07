@@ -60,11 +60,11 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
         self.image_processor = ImageProcessor(roi=self.roi)
 
         self.pvs = {
-            "image": "OTRS:TEST:650:Image:ArrayData",
-            "n_bits": "OTRS:TEST:650:N_OF_BITS",
-            "n_col": "OTRS:TEST:650:Image:ArraySize1_RBV",
-            "n_row": "OTRS:TEST:650:Image:ArraySize0_RBV",
-            "resolution": "OTRS:TEST:650:RESOLUTION",
+            "image": "ArrayData",
+            "n_bits": "N_OF_BITS",
+            "n_col": "Image:ArraySize1_RBV",
+            "n_row": "Image:ArraySize0_RBV",
+            "resolution": ":RESOLUTION",
         }
         self.metadata = {
             "area": "TEST",

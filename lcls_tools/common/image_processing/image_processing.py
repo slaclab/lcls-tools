@@ -31,26 +31,28 @@ class ImageProcessor(BaseModel):
     def subtract_background(self, raw_image: np.ndarray) -> np.ndarray:
         """Subtract background pixel intensity from a raw image"""
         if self.background_image is not None:
-            # needs test?
             image = raw_image - self.background_image
         else:
-            image = np.clip(raw_image - self.threshold, 0, 1e7)
+            image = raw_image - self.threshold
         return image
+
+    def clip_image(self,image):
+        return np.clip(image, 0, None)
 
     def process(self, raw_image: np.ndarray) -> np.ndarray:
         """Process image by subtracting background pixel intensity from a raw image then cropping it"""
-        processed_image = self.subtract_background(raw_image)
+        image = self.subtract_background(raw_image)
+        clipped_image = self.clip_image(image)
         if self.roi is not None:
-            processed_image = self.roi.crop_image(processed_image)
-        if self.visualize:
-            # here needs some work
-            fig, ax = plt.subplots(2, 1)
-            c = ax[0].imshow(raw_image > 0, origin="lower")
-            g = ax[1].imshow(processed_image > 0, origin="lower")
-            rect = self.roi.get_patch()
-            ax[0].add_patch(rect)
-            fig.colorbar(c)
-
+            processed_image = self.roi.crop_image(clipped_image)
+        else:
+            processed_image = clipped_image
         return processed_image
 
-    # needs read h5 file or update property to not load from file
+    def plot_raw_and_processed_image(self,raw_image:np.ndarray,processed_image):
+        fig,ax = plt.subplots(2, 1)
+        c = ax[0].imshow(raw_image > 0, origin="lower")
+        rect = self.roi.get_patch()
+        ax[0].add_patch(rect)
+        ax[1].imshow(processed_image > 0, origin="lower")
+        fig.colorbar(c)

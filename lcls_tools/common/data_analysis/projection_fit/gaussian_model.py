@@ -13,7 +13,6 @@ class GaussianModel(MethodBase):
     - passing this class the variable profile_data automatically updates
         the initial values and and probability density functions to match that data
     """
-
     param_names: list = ["amplitude", "mean", "sigma", "offset"]
     param_bounds: np.ndarray = np.array(
         [[0.01, 1.0], [0.01, 1.0], [0.01, 5.0], [0.01, 1.0]]
@@ -24,26 +23,26 @@ class GaussianModel(MethodBase):
             self.profile_data = profile_data
             self.find_init_values(self.profile_data)
             self.find_priors(self.profile_data)
+        self.fitted_params_dict = {}    
 
-    def find_init_values(self, data: np.array) -> dict:
+    def find_init_values(self, data: np.ndarray) -> dict:
         offset = float(np.min(data))
         amplitude = np.max(gaussian_filter(data, sigma=5)) - offset
         mean = np.argmax(gaussian_filter(data, sigma=5)) / (len(data))
         sigma = 0.1
         self.init_values = {self.param_names[0]:amplitude,self.param_names[1]:mean,self.param_names[2]:sigma,self.param_names[3]:offset}
-        self.find_priors()
+        
         return self.init_values
 
     def find_priors(self) ->dict:
         """do initial guesses based on data and make distribution from that guess"""
 
-        #amplitude_mean = init_values[0] #insert for zero<-index(param_name,'amp')
         amplitude_mean = self.init_values["amplitude"]
         amplitude_var = 0.05
         amplitude_alpha = (amplitude_mean**2) / amplitude_var
         amplitude_beta = amplitude_mean / amplitude_var
         amplitude_prior = gamma(amplitude_alpha, loc=0, scale=1 / amplitude_beta)
-        #TODO:change to be compatible with init_values dictionary
+
         mean_prior = norm(self.init_values["mean"], 0.1)
 
         sigma_alpha = 2.5
@@ -60,27 +59,19 @@ class GaussianModel(MethodBase):
 
         return self.priors
 
+    #TODO:be more consistent with np.array,np.ndarray, lists
+
     @staticmethod
-    def forward(x: float, params: dict) -> float:
-        #TODO:implement calling _foward
-        amplitude = params[0]
-        mean = params[1]
-        sigma = params[2]
-        offset = params[3]
+    def _forward(x:np.ndarray,params_list:np.ndarray):
+        amplitude = params_list[0]
+        mean = params_list[1]
+        sigma = params_list[2]
+        offset = params_list[3]
         #TODO: init scipy.norm has private attribute then reference it return 
         return amplitude * np.exp(-((x - mean) ** 2) / (2 * sigma**2)) + offset
+        #normal = norm()
+        #return amplitude* normal.pdf((x - mean) / sigma)  + offset
 
-        pass
-    @staticmethod
-    def _forward(x:float,params:np.ndarray) :
-        amplitude = params[0]
-        mean = params[1]
-        sigma = params[2]
-        offset = params[3]
-        #TODO: init scipy.norm has private attribute then reference it return 
-        return amplitude * np.exp(-((x - mean) ** 2) / (2 * sigma**2)) + offset
-
-    def log_prior(self, params: list) -> float:
-        #TODO:change to dictionary
+    def _log_prior(self, params: np.ndarray) -> float:
         return np.sum([prior.logpdf(params[i]) for i, (key, prior) in enumerate(self.priors.items())])
 
