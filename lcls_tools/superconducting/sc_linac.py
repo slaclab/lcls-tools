@@ -1219,6 +1219,10 @@ class Cavity(utils.SCLinacObject):
         return self.hw_mode == utils.HW_MODE_ONLINE_VALUE
 
     @property
+    def is_offline(self) -> bool:
+        return self.hw_mode == utils.HW_MODE_OFFLINE_VALUE
+
+    @property
     def is_quenched(self) -> bool:
         if not self._quench_latch_pv_obj:
             self._quench_latch_pv_obj = PV(self.quench_latch_pv)
