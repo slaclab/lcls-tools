@@ -181,6 +181,8 @@ def stepper_tol_factor(num_steps) -> float:
     that goes.
     """
 
+    num_steps = abs(num_steps)
+
     if num_steps <= 50000:
         return 10
 
