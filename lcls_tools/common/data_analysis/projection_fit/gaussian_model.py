@@ -73,10 +73,9 @@ class GaussianModel(MethodBase):
         mean = params_list[1]
         sigma = params_list[2]
         offset = params_list[3]
-        # TODO: init scipy.norm has private attribute then reference it return
-        return amplitude * np.exp(-((x - mean) ** 2) / (2 * sigma**2)) + offset
-        # normal = norm()
-        # return amplitude* normal.pdf((x - mean) / sigma)  + offset
+        #return amplitude * np.exp(-((x - mean) ** 2) / (2 * sigma**2)) + offset
+        normal = norm()
+        return (amplitude * (np.sqrt(2*np.pi))) * normal.pdf((x - mean) / sigma) + offset
 
     def _log_prior(self, params: np.ndarray) -> float:
         return np.sum(
