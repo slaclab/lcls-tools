@@ -123,3 +123,26 @@ class Machine:
 
 
 MACHINE = Machine()
+
+
+class CavityIterator:
+    def __init__(self):
+        self.machine: Machine = Machine()
+
+        non_hl_cavities = []
+        hl_cavities = []
+
+        for non_hl_cm_num in range(1, 36):
+            cm_obj: Cryomodule = self.machine.cryomodules[f"{non_hl_cm_num:02d}"]
+            for cavity_obj in cm_obj.cavities.values():
+                non_hl_cavities.append(cavity_obj)
+
+        for i in range(1, 3):
+            hl_obj: Cryomodule = self.machine.cryomodules[f"H{i}"]
+            for hl_cavity_obj in hl_obj.cavities.values():
+                hl_cavities.append(hl_cavity_obj)
+
+        # TODO handle hitting end of list
+        self.non_hl_iterator = iter(non_hl_cavities)
+        self.hl_iterator = iter(hl_cavities)
+        self.all_iterator = iter(non_hl_cavities + hl_cavities)
