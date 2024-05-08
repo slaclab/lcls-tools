@@ -25,6 +25,7 @@ class ProjectionFit(BaseModel):
     model: MethodBase
     use_priors: bool = False
 
+
     def normalize(self, old_data: np.ndarray) -> np.ndarray:
         """
         Normalize a 1d array by scaling and shifting data
@@ -75,9 +76,35 @@ class ProjectionFit(BaseModel):
             args=(x, y, self.use_priors),
             bounds=self.model.param_bounds,
         )
-        
-        return res
- 
+
+        fig, ax = plt.subplots()
+        y_fit = self.model._forward(x, res.x)
+        ax.plot(x, y, label="data")
+        ax.plot(x, y_fit, label="fit")
+        ax.set_xlabel("x")
+        ax.set_ylabel("y")
+        ax.legend(loc="upper right")
+        assert len(self.model.param_names) == len(res.x)
+        textstr = "\n".join(
+            [
+                r"$\mathrm{%s}=%.2f$" % (self.model.param_names[i], res.x[i])
+                for i in range(len(res.x))
+            ]
+        )
+        props = dict(boxstyle="round", facecolor="wheat", alpha=0.5)
+        ax.text(
+            0.05,
+            0.95,
+            textstr,
+            transform=ax.transAxes,
+            fontsize=14,
+            verticalalignment="top",
+            bbox=props,
+        )
+        fig.tight_layout()
+        return res#TODO:optional argument to return fig,ax
+    
+
     def fit_projection(self, projection_data: np.ndarray) -> dict:
         """
         type is dict[str, float]
@@ -93,7 +120,6 @@ class ProjectionFit(BaseModel):
         for i, param in enumerate(self.model.param_names):
             fitted_params_dict[param] = (res.x)[i]
         self.model.fitted_params_dict = fitted_params_dict
-        print(f'fitted params for plotting:{self.model.fitted_params_dict}')
         params_dict = self.unnormalize_model_params(fitted_params_dict, projection_data)
         return params_dict
 
@@ -106,7 +132,7 @@ class ProjectionFit(BaseModel):
         fig, ax = plt.subplots()
         params = np.array([self.model.fitted_params_dict[name] for name in self.model.param_names])
         y_fit = self.model._forward(x, params)
-        ax.plot(x, y, label="data")
+        #ax.plot(x, y, label="data")
         ax.plot(x, y_fit, label="fit")
         '''
         textstr = "\n".join(

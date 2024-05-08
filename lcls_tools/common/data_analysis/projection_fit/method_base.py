@@ -65,7 +65,6 @@ class MethodBase(ABC):
 
     def forward(self, x: np.ndarray, params: dict) -> np.ndarray:
         #TODO:test new usage
-        print('calling forward')
         params_list = np.array([params[name] for name in self.param_names])
         print(params_list)
         return self._forward(x,params_list)
@@ -122,3 +121,4 @@ class MethodBase(ABC):
         self._profile_data = profile_data
         self.find_init_values(self._profile_data)
         self.find_priors()
+        self.fitted_params_dict = {}

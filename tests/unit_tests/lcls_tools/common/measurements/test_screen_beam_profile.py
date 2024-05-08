@@ -44,7 +44,7 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
 
     def test_instantiate_pydantic_objects(self):
         self.gauss_model = GaussianModel()
-        self.projection_fit = ProjectionFit(model=self.gauss_model, visualize_fit=True)
+        self.projection_fit = ProjectionFit(model=self.gauss_model)
 
         # creating image processing class
         self.radius = 50
