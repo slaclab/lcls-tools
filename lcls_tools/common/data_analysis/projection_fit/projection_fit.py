@@ -20,11 +20,11 @@ class ProjectionFit(BaseModel):
     visualize_fit: bool (visualize the parameters as a function of the forward function
         from our model compared to distribution data)
     """
+
     # come up with better name
     model_config = ConfigDict(arbitrary_types_allowed=True)
     model: MethodBase
     use_priors: bool = False
-
 
     def normalize(self, old_data: np.ndarray) -> np.ndarray:
         """
@@ -65,8 +65,10 @@ class ProjectionFit(BaseModel):
         """
         x = np.linspace(0, 1, len(self.model.profile_data))
         y = self.model.profile_data
-      
-        init_values = np.array([self.model.init_values[name] for name in self.model.param_names])
+
+        init_values = np.array(
+            [self.model.init_values[name] for name in self.model.param_names]
+        )
 
         res = scipy.optimize.minimize(
             self.model.loss,
@@ -75,8 +77,7 @@ class ProjectionFit(BaseModel):
             bounds=self.model.param_bounds,
         )
 
-        return res#TODO:optional argument to return fig,ax
-    
+        return res  # TODO:optional argument to return fig,ax
 
     def fit_projection(self, projection_data: np.ndarray) -> dict:
         """
@@ -97,9 +98,9 @@ class ProjectionFit(BaseModel):
         return params_dict
 
     def plot_fit(self):
-        #TODO: dont specify any style, create lines and text boxes that go into figure
-        #TODO: resolve issues with using res.x
-        x = np.linspace(0, 1,len(self.model.profile_data))
+        # TODO: dont specify any style, create lines and text boxes that go into figure
+        # TODO: resolve issues with using res.x
+        x = np.linspace(0, 1, len(self.model.profile_data))
         y = self.model.profile_data
         fig, ax = plt.subplots()
         y_fit = self.model.forward(x, self.model.fitted_params_dict)
@@ -108,8 +109,8 @@ class ProjectionFit(BaseModel):
 
         textstr = "\n".join(
             [
-                r"$\mathrm{%s}=%.2f$" % (key,val)
-                for key,val in self.model.fitted_params_dict.items()
+                r"$\mathrm{%s}=%.2f$" % (key, val)
+                for key, val in self.model.fitted_params_dict.items()
             ]
         )
         ax.text(
@@ -118,6 +119,5 @@ class ProjectionFit(BaseModel):
             textstr,
             transform=ax.transAxes,
             verticalalignment="top",
-            
         )
-        return fig,ax
+        return fig, ax

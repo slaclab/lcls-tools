@@ -17,19 +17,16 @@ class MethodBase(ABC):
     """
 
     def __init__(self):
-        self.param_names: list = None     
+        self.param_names: list = None
         self.param_bounds: np.ndarray = None
         self.init_values: dict = None
         self.fitted_params_dict: dict = None
 
     @abstractmethod
-    def find_init_values(self, data: np.ndarray) -> list:
-        ...
-    
+    def find_init_values(self, data: np.ndarray) -> list: ...
 
     @abstractmethod
-    def find_priors(self, data: np.ndarray) -> dict:
-        ...
+    def find_priors(self, data: np.ndarray) -> dict: ...
 
     def plot_init_values(self):
         init_values = np.array(list(self.init_values.values()))
@@ -64,34 +61,32 @@ class MethodBase(ABC):
         return fig, axs
 
     def forward(self, x: np.ndarray, params: dict) -> np.ndarray:
-        #TODO:test new usage
+        # TODO:test new usage
         params_list = np.array([params[name] for name in self.param_names])
-        return self._forward(x,params_list)
-    
+        return self._forward(x, params_list)
+
     @staticmethod
     @abstractmethod
-    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray:
-        ...
+    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray: ...
 
-    def log_prior(self, params:dict):
-        #TODO:test new usage
+    def log_prior(self, params: dict):
+        # TODO:test new usage
         params_list = np.array([params[name] for name in self.param_names])
         return self._log_prior(params_list)
 
     @abstractmethod
-    def _log_prior(self, params:np.ndarray):
-        ...
+    def _log_prior(self, params: np.ndarray): ...
 
-    def log_likelihood(self, x:np.ndarray, y:np.ndarray, params:dict):
-        #TODO:test new usage
+    def log_likelihood(self, x: np.ndarray, y: np.ndarray, params: dict):
+        # TODO:test new usage
         params_list = np.array([params[name] for name in self.param_names])
-        return self._log_likelihood(x,y,params_list)
-    
-    def _log_likelihood(self, x:np.ndarray, y:np.ndarray, params:np.ndarray):
+        return self._log_likelihood(x, y, params_list)
+
+    def _log_likelihood(self, x: np.ndarray, y: np.ndarray, params: np.ndarray):
         return -np.sum((y - self._forward(x, params)) ** 2)
 
     def loss(self, params, x, y, use_priors=False):
-        #TODO:implement using private functions _log_likelihood and _log_prior
+        # TODO:implement using private functions _log_likelihood and _log_prior
         loss_temp = -self._log_likelihood(x, y, params)
         if use_priors:
             loss_temp = loss_temp - self._log_prior(params)

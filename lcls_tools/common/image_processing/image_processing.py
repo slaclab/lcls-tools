@@ -36,7 +36,7 @@ class ImageProcessor(BaseModel):
             image = raw_image - self.threshold
         return image
 
-    def clip_image(self,image):
+    def clip_image(self, image):
         return np.clip(image, 0, None)
 
     def process(self, raw_image: np.ndarray) -> np.ndarray:
@@ -49,8 +49,8 @@ class ImageProcessor(BaseModel):
             processed_image = clipped_image
         return processed_image
 
-    def plot_raw_and_processed_image(self,raw_image:np.ndarray,processed_image):
-        fig,ax = plt.subplots(2, 1)
+    def plot_raw_and_processed_image(self, raw_image: np.ndarray, processed_image):
+        fig, ax = plt.subplots(2, 1)
         c = ax[0].imshow(raw_image > 0, origin="lower")
         rect = self.roi.get_patch()
         ax[0].add_patch(rect)
