@@ -57,8 +57,6 @@ class ProjectionFit(BaseModel):
         """sets up the model and plots init_values/priors"""
         self.model.profile_data = projection_data
 
-
-
     def fit_model(self) -> scipy.optimize._optimize.OptimizeResult:
         """
         Fits model params to distribution data and plots the fitted params
@@ -77,31 +75,6 @@ class ProjectionFit(BaseModel):
             bounds=self.model.param_bounds,
         )
 
-        fig, ax = plt.subplots()
-        y_fit = self.model._forward(x, res.x)
-        ax.plot(x, y, label="data")
-        ax.plot(x, y_fit, label="fit")
-        ax.set_xlabel("x")
-        ax.set_ylabel("y")
-        ax.legend(loc="upper right")
-        assert len(self.model.param_names) == len(res.x)
-        textstr = "\n".join(
-            [
-                r"$\mathrm{%s}=%.2f$" % (self.model.param_names[i], res.x[i])
-                for i in range(len(res.x))
-            ]
-        )
-        props = dict(boxstyle="round", facecolor="wheat", alpha=0.5)
-        ax.text(
-            0.05,
-            0.95,
-            textstr,
-            transform=ax.transAxes,
-            fontsize=14,
-            verticalalignment="top",
-            bbox=props,
-        )
-        fig.tight_layout()
         return res#TODO:optional argument to return fig,ax
     
 
@@ -119,26 +92,24 @@ class ProjectionFit(BaseModel):
         res = self.fit_model()
         for i, param in enumerate(self.model.param_names):
             fitted_params_dict[param] = (res.x)[i]
-        self.model.fitted_params_dict = fitted_params_dict
+        self.model.fitted_params_dict = fitted_params_dict.copy()
         params_dict = self.unnormalize_model_params(fitted_params_dict, projection_data)
         return params_dict
 
-    
     def plot_fit(self):
         #TODO: dont specify any style, create lines and text boxes that go into figure
         #TODO: resolve issues with using res.x
-        x = np.linspace(0, 1, len(self.model.profile_data))
+        x = np.linspace(0, 1,len(self.model.profile_data))
         y = self.model.profile_data
         fig, ax = plt.subplots()
-        params = np.array([self.model.fitted_params_dict[name] for name in self.model.param_names])
-        y_fit = self.model._forward(x, params)
-        #ax.plot(x, y, label="data")
+        y_fit = self.model.forward(x, self.model.fitted_params_dict)
+        ax.plot(x, y, label="data")
         ax.plot(x, y_fit, label="fit")
-        '''
+
         textstr = "\n".join(
             [
-                r"$\mathrm{%s}=%.2f$" % (self.model.param_names[i], res.x[i])
-                for i in range(len(res.x))
+                r"$\mathrm{%s}=%.2f$" % (key,val)
+                for key,val in self.model.fitted_params_dict.items()
             ]
         )
         ax.text(
@@ -149,5 +120,4 @@ class ProjectionFit(BaseModel):
             verticalalignment="top",
             
         )
-        '''
         return fig,ax

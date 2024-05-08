@@ -66,7 +66,6 @@ class MethodBase(ABC):
     def forward(self, x: np.ndarray, params: dict) -> np.ndarray:
         #TODO:test new usage
         params_list = np.array([params[name] for name in self.param_names])
-        print(params_list)
         return self._forward(x,params_list)
     
     @staticmethod
