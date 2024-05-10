@@ -11,6 +11,12 @@ Python tools for LCLS:
 * Image collection and processing tools
 * Beam calculations (emittance, solenoid alignment corrections, etc...)
 
+# Organization
+Files should be organinzed by thier function and be as modular as possible. See [model-view-control](https://www.codecademy.com/article/mvc) programming style.
+First, if the code is general enough to be used on both LCLS and LCLS-II, it belongs in the lcls-tools/common directory.
+If the code specific to LCLS or LCLS-II, use the normalconducting and superconducting directories respectively.
+Functions used to analyze data, belongs in the common/data_analysis directory.
+
 # Rules of contribution 
 * Try to make your code readable 
 * Add comments whenever possible
