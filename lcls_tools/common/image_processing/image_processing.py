@@ -26,7 +26,6 @@ class ImageProcessor(BaseModel):
     roi: ROI = None
     background_image: np.ndarray = None
     threshold: PositiveFloat = 0.0
-    visualize: bool = False
 
     def subtract_background(self, raw_image: np.ndarray) -> np.ndarray:
         """Subtract background pixel intensity from a raw image"""

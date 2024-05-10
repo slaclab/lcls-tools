@@ -1,5 +1,6 @@
 import numpy as np
 import scipy.optimize
+import scipy.signal
 from matplotlib import pyplot as plt
 from pydantic import BaseModel, ConfigDict
 from lcls_tools.common.data_analysis.projection_fit.method_base import MethodBase
@@ -33,6 +34,9 @@ class ProjectionFit(BaseModel):
         """
         data = old_data.copy()
         normalized_data = data / (np.max(data))
+        # normalized_data_tuple = scipy.signal.normalize(data,np.max(data))
+        # print(normalized_data_tuple)
+        # normalized_data = normalized_data_tuple[0]
         return normalized_data
 
     def unnormalize_model_params(

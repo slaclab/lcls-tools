@@ -46,9 +46,19 @@ class TestImageProcessing(unittest.TestCase):
 
         """
         Given an np.ndarray check that when the image_processor 
-        is passed a threshold check that the np.ndarray elements
-        are clipped at to not drop below zero
+        is passed a threshold check that subtraction occurs correctly
         """
         image_processor = ImageProcessor(threshold=1)
         image = image_processor.subtract_background(self.image)
-        assert image.all() >= np.zeros(self.size).all()
+        assert image.all() == (self.image - 1).all()
+
+    def test_clip(self):
+        """
+        Given an np.ndarray check that when the image_processor
+        is passed a threshold check that the np.ndarray elements
+        are clipped at to not drop below zero
+        """
+        image_processor = ImageProcessor(threshold=100)
+        image = image_processor.subtract_background(self.image)
+        clipped_image = image_processor.clip_image(image)
+        assert clipped_image.all() >= np.zeros(self.size).all()
