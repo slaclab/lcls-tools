@@ -61,3 +61,4 @@ class TestImageProcessing(unittest.TestCase):
         image = image_processor.subtract_background(self.image)
         clipped_image = image_processor.clip_image(image)
         assert clipped_image.all() >= np.zeros(self.size).all()
+        
