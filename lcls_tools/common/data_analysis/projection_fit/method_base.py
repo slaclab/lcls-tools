@@ -23,10 +23,12 @@ class MethodBase(ABC):
         self.fitted_params_dict: dict = None
 
     @abstractmethod
-    def find_init_values(self, data: np.ndarray) -> list: ...
+    def find_init_values(self, data: np.ndarray) -> list: 
+        ...
 
     @abstractmethod
-    def find_priors(self, data: np.ndarray) -> dict: ...
+    def find_priors(self, data: np.ndarray) -> dict: 
+        ...
 
     def plot_init_values(self):
         init_values = np.array(list(self.init_values.values()))
@@ -67,7 +69,8 @@ class MethodBase(ABC):
 
     @staticmethod
     @abstractmethod
-    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray: ...
+    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray: 
+        ...
 
     def log_prior(self, params: dict):
         # TODO:test new usage
@@ -75,7 +78,8 @@ class MethodBase(ABC):
         return self._log_prior(params_list)
 
     @abstractmethod
-    def _log_prior(self, params: np.ndarray): ...
+    def _log_prior(self, params: np.ndarray): 
+        ...
 
     def log_likelihood(self, x: np.ndarray, y: np.ndarray, params: dict):
         # TODO:test new usage

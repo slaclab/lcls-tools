@@ -1,5 +1,4 @@
 import unittest
-import os
 import numpy as np
 from lcls_tools.common.image_processing.roi import ROI, RectangularROI, CircularROI
 
@@ -18,16 +17,6 @@ class TestROI(unittest.TestCase):
         self.filled_value_test_image = np.load(
             self.data_location + "test_roi_fill_value_image.npy"
         )
-
-    def test_roi(self):
-        """
-        Test that Rectangular and Circular ROIs
-        still instantiate with these arguments
-        """
-        rectangular = RectangularROI(
-            center=self.center, xwidth=self.widths[0], ywidth=self.widths[1]
-        )
-        circular = CircularROI(center=self.center, radius=self.radius)
 
     def test_circular_roi_crop_image(self):
         """
