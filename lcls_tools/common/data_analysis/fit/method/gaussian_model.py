@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.stats import norm, gamma
 from scipy.ndimage import gaussian_filter
-from lcls_tools.common.data_analysis.projection_fit.method_base import MethodBase
+from lcls_tools.common.data_analysis.fit.method.method_base import MethodBase
 
 
 class GaussianModel(MethodBase):
@@ -19,17 +19,19 @@ class GaussianModel(MethodBase):
         [[0.01, 1.0], [0.01, 1.0], [0.01, 5.0], [0.01, 1.0]]
     )
 
-    def __init__(self, profile_data: np.ndarray = None):
-        if profile_data is not None:
-            self.profile_data = profile_data
-            self.find_init_values(self.profile_data)
-            self.find_priors(self.profile_data)
+    def __init__(self, profile_data: np.ndarray):
+        self.profile_data = profile_data
+        self.find_init_values()
+        self.find_priors()
         self.fitted_params_dict = {}
 
-    def find_init_values(self, data: np.ndarray) -> dict:
-        offset = float(np.min(data))
-        amplitude = np.max(gaussian_filter(data, sigma=5)) - offset
-        mean = np.argmax(gaussian_filter(data, sigma=5)) / (len(data))
+    def find_init_values(self) -> dict:
+        # TODO: change next four lines to get init guess from scipy norm
+        offset = float(np.min(self.profile_data))
+        amplitude = np.max(gaussian_filter(self.profile_data, sigma=5)) - offset
+        mean = np.argmax(gaussian_filter(self.profile_data, sigma=5)) / (
+            len(self.profile_data)
+        )
         sigma = 0.1
         self.init_values = {
             self.param_names[0]: amplitude,
@@ -41,7 +43,7 @@ class GaussianModel(MethodBase):
         return self.init_values
 
     def find_priors(self) -> dict:
-        """do initial guesses based on data and make distribution from that guess"""
+        """Do initial guesses based on data and make distribution from that guess"""
 
         amplitude_mean = self.init_values["amplitude"]
         amplitude_var = 0.05

@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 
 class MethodBase(ABC):
     """
-    Base abstract class for all methods, which serves as the bare minimum skeleton code needed.
+    Base abstract class for all fit methods, which serves as the bare minimum skeleton code needed.
     Should be used only as a parent class to all method models.
     ---------------------------
     Arguments:
@@ -23,7 +23,7 @@ class MethodBase(ABC):
         self.fitted_params_dict: dict = None
 
     @abstractmethod
-    def find_init_values(self, data: np.ndarray) -> list:
+    def find_init_values(self) -> list:
         ...
 
     @abstractmethod
@@ -87,10 +87,12 @@ class MethodBase(ABC):
         return self._log_likelihood(x, y, params_list)
 
     def _log_likelihood(self, x: np.ndarray, y: np.ndarray, params: np.ndarray):
+        # reducing error between data and fit
         return -np.sum((y - self._forward(x, params)) ** 2)
 
     def loss(self, params, x, y, use_priors=False):
         # TODO:implement using private functions _log_likelihood and _log_prior
+        # ML group way of iterating over priors/ reducing difference in fit and data
         loss_temp = -self._log_likelihood(x, y, params)
         if use_priors:
             loss_temp = loss_temp - self._log_prior(params)
@@ -109,7 +111,7 @@ class MethodBase(ABC):
 
     @property
     def profile_data(self):
-        """1d array typically projection data"""
+        """1D array typically projection data"""
         return self._profile_data
 
     @profile_data.setter
@@ -117,6 +119,6 @@ class MethodBase(ABC):
         if not isinstance(profile_data, np.ndarray):
             raise TypeError("Input must be ndarray")
         self._profile_data = profile_data
-        self.find_init_values(self._profile_data)
+        self.find_init_values()
         self.find_priors()
         self.fitted_params_dict = {}

@@ -1,22 +1,35 @@
-from lcls_tools.common.data_analysis.fitting_tool import FittingTool
+from lcls_tools.common.data_analysis.fit.method.gaussian_model import GaussianModel
 import numpy as np
 import unittest
+import os
 
 
-class TestFitTool(unittest.TestCase):
-    def gaussian(self, x, amp, mu, sig, offset):
-        return amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0))) + offset
+class TestGaussianModel(unittest.TestCase):
+    def setUp(self) -> None:
+        self.data_location = "./tests/datasets/fit/"
+        self.data_filename = os.path.join(self.data_location, "test_gaussian.npy")
+        with open(self.data_filename, "r") as file:
+            self.data = np.load(self.data_filename)
+            self.gaussian_model = GaussianModel(self.data)
+        return super().setUp()
 
-    def super_gaussian(self, x, amp, mu, sig, P, offset):
-        """Super Gaussian Function"""
-        """Degree of P related to flatness of curve at peak"""
-        return amp * np.exp((-abs(x - mu) ** (P)) / (2 * sig ** (P))) + offset
+    def test_find_init_values(self):
+        init_dict = self.gaussian_model.find_init_values()
+        self.assertIsNotNone(init_dict)
+        # TODO: pick up test here, the init dict is not as expected
+        print(init_dict)
+        return
 
-    def double_gaussian(self, x, amp, mu, sig, amp2, nu, rho, offset):
-        return (
-            amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0)))
-            + amp2 * np.exp(-np.power(x - nu, 2.0) / (2 * np.power(rho, 2.0)))
-        ) + offset
+    # def super_gaussian(self, x, amp, mu, sig, P, offset):
+    #    """Super Gaussian Function"""
+    #    """Degree of P related to flatness of curve at peak"""
+    #    return amp * np.exp((-abs(x - mu) ** (P)) / (2 * sig ** (P))) + offset
+
+    # def double_gaussian(self, x, amp, mu, sig, amp2, nu, rho, offset):
+    #    return (
+    #        amp * np.exp(-np.power(x - mu, 2.0) / (2 * np.power(sig, 2.0)))
+    #        + amp2 * np.exp(-np.power(x - nu, 2.0) / (2 * np.power(rho, 2.0)))
+    #    ) + offset
 
     @unittest.skip("Assertion is not raised when it should be; fixing in issue #130.")
     def test_fit_tool_gaussian(self):

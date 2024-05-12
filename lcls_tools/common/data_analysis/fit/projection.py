@@ -3,7 +3,7 @@ import scipy.optimize
 import scipy.signal
 from matplotlib import pyplot as plt
 from pydantic import BaseModel, ConfigDict
-from lcls_tools.common.data_analysis.projection_fit.method_base import MethodBase
+from lcls_tools.common.data_analysis.fit.method.method_base import MethodBase
 
 
 class ProjectionFit(BaseModel):
@@ -22,18 +22,19 @@ class ProjectionFit(BaseModel):
         from our model compared to distribution data)
     """
 
-    # come up with better name
+    # TODO: come up with better name
     model_config = ConfigDict(arbitrary_types_allowed=True)
     model: MethodBase
     use_priors: bool = False
 
-    def normalize(self, old_data: np.ndarray) -> np.ndarray:
+    def normalize(self, data: np.ndarray) -> np.ndarray:
         """
         Normalize a 1d array by scaling and shifting data
         s.t. data is between 0 and 1
         """
-        data = old_data.copy()
-        normalized_data = data / (np.max(data))
+        data_copy = data.copy()
+        normalized_data = data_copy / (np.max(data))
+        # TODO: consider if robust normalization method needed, sensitive to zeros in tails.
         # normalized_data_tuple = scipy.signal.normalize(data,np.max(data))
         # print(normalized_data_tuple)
         # normalized_data = normalized_data_tuple[0]
@@ -58,7 +59,7 @@ class ProjectionFit(BaseModel):
         return params_dict
 
     def model_setup(self, projection_data=np.ndarray) -> None:
-        """sets up the model and plots init_values/priors"""
+        """sets up the model and init_values/priors"""
         self.model.profile_data = projection_data
 
     def fit_model(self) -> scipy.optimize._optimize.OptimizeResult:
