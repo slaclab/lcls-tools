@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.stats import norm
-import matplotlib.pyplot as plt
+
+# import matplotlib.pyplot as plt
 
 # Generating 1000 point gaussian distribution
 data = np.random.normal(size=1000)

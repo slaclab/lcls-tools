@@ -1,6 +1,6 @@
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.image_processing.image_processing import ImageProcessor
-from lcls_tools.common.data_analysis.projection_fit.projection_fit import ProjectionFit
+from lcls_tools.common.data_analysis.fit.projection import ProjectionFit
 from lcls_tools.common.measurements.measurement import Measurement
 import numpy as np
 
@@ -51,7 +51,6 @@ class ScreenBeamProfileMeasurement(Measurement):
         if self.fit_profile:
             final_results = []
             for i, ele in enumerate(images):
-
                 temp = {}
                 temp["raw_image"] = ele["raw_image"]
                 temp["processed_image"] = ele["processed_image"]

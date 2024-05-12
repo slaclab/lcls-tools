@@ -1,8 +1,8 @@
 from lcls_tools.common.measurements.screen_beam_profile_measurement import (
     ScreenBeamProfileMeasurement,
 )
-from lcls_tools.common.data_analysis.projection_fit.projection_fit import ProjectionFit
-from lcls_tools.common.data_analysis.projection_fit.gaussian_model import GaussianModel
+from lcls_tools.common.data_analysis.fit.projection import ProjectionFit
+from lcls_tools.common.data_analysis.fit.method.gaussian_model import GaussianModel
 from lcls_tools.common.image_processing.image_processing import ImageProcessor
 from lcls_tools.common.image_processing.roi import RectangularROI
 from lcls_tools.common.devices.device import Metadata
@@ -44,7 +44,7 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
 
     def test_instantiate_pydantic_objects(self):
         self.gauss_model = GaussianModel()
-        self.projection_fit = ProjectionFit(model=self.gauss_model)
+        self.projection = ProjectionFit(model=self.gauss_model)
 
         # creating image processing class
         self.radius = 50
@@ -88,7 +88,7 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
             name=self.control_name,
             device=self.screen_test,
             image_processor=self.image_processor,
-            fitting_tool=self.projection_fit,
+            fitting_tool=self.projection,
         )
 
     def test_single_measure(self):

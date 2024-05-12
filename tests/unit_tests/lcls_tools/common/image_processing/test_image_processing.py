@@ -44,7 +44,7 @@ class TestImageProcessing(unittest.TestCase):
         assert image.all() == (self.image - 1).all()
 
         """
-        Given an np.ndarray check that when the image_processor 
+        Given an np.ndarray check that when the image_processor
         is passed a threshold check that subtraction occurs correctly
         """
         image_processor = ImageProcessor(threshold=1)
@@ -61,4 +61,3 @@ class TestImageProcessing(unittest.TestCase):
         image = image_processor.subtract_background(self.image)
         clipped_image = image_processor.clip_image(image)
         assert clipped_image.all() >= np.zeros(self.size).all()
-        
