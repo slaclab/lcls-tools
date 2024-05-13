@@ -44,7 +44,6 @@ class TestStepperTuner(TestCase):
         self.assertRaises(
             StepperAbortError,
             stepper.check_abort,
-            f"{stepper} did not abort when flag set to true",
         )
 
     def test_abort(self):
@@ -156,4 +155,13 @@ class TestStepperTuner(TestCase):
 
     def test_issue_move_command(self):
         stepper = next(cavity_iterator.non_hl_iterator).stepper_tuner
-        stepper.issue_move_command()
+        stepper.move_positive = MagicMock()
+        stepper._motor_moving_pv_obj = make_mock_pv(get_val=0)
+        stepper._limit_switch_a_pv_obj = make_mock_pv(get_val=0)
+        stepper._limit_switch_b_pv_obj = make_mock_pv(get_val=0)
+
+        stepper.issue_move_command(randint(1000, 10000))
+        stepper.move_positive.assert_called()
+        stepper._motor_moving_pv_obj.get.assert_called()
+        stepper._limit_switch_a_pv_obj.get.assert_called()
+        stepper._limit_switch_b_pv_obj.get.assert_called()
