@@ -126,8 +126,8 @@ MACHINE = Machine()
 
 
 class CavityIterator:
-    def __init__(self):
-        self.machine: Machine = Machine()
+    def __init__(self, cavity_class=Cavity):
+        self.machine: Machine = Machine(cavity_class=cavity_class)
 
         non_hl_cavities = []
         hl_cavities = []
