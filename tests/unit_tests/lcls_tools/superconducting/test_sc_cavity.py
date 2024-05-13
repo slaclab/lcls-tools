@@ -780,3 +780,8 @@ class TestCavity(TestCase):
         cavity._ades_pv_obj = make_mock_pv(get_val=16.05)
         cavity.walk_amp(16.1, 0.1)
         cavity._ades_pv_obj.put.assert_called_with(16.1)
+
+    def test_is_offline(self):
+        cavity = next(cavity_iterator.non_hl_iterator)
+        cavity._hw_mode_pv_obj = make_mock_pv(get_val=HW_MODE_OFFLINE_VALUE)
+        self.assertTrue(cavity.is_offline)
