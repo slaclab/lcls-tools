@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.stats import norm, gamma
 from scipy.ndimage import gaussian_filter
-from lcls_tools.common.data_analysis.fit.method.method_base import MethodBase
+from lcls_tools.common.data_analysis.fit.method_base import MethodBase
 
 
 class GaussianModel(MethodBase):
