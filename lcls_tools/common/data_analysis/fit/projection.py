@@ -3,7 +3,7 @@ import scipy.optimize
 import scipy.signal
 from matplotlib import pyplot as plt
 from pydantic import BaseModel, ConfigDict
-from lcls_tools.common.data_analysis.fit.method.method_base import MethodBase
+from lcls_tools.common.data_analysis.fit.method_base import MethodBase
 
 
 class ProjectionFit(BaseModel):
@@ -40,6 +40,7 @@ class ProjectionFit(BaseModel):
         # normalized_data = normalized_data_tuple[0]
         return normalized_data
 
+    # TODO: move normalize/unormalize to method base? (Chris?)
     def unnormalize_model_params(
         self, params_dict: dict, projection_data: np.ndarray
     ) -> np.ndarray:

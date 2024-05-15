@@ -30,6 +30,7 @@ class MethodBase(ABC):
     def find_priors(self, data: np.ndarray) -> dict:
         ...
 
+    # TODO: move to plotting file
     def plot_init_values(self):
         init_values = np.array(list(self.init_values.values()))
         """Plots init values as a function of forward and visually compares it to the initial distribution"""
@@ -43,6 +44,7 @@ class MethodBase(ABC):
         axs.set_title("Initial Fit Guess")
         return fig, axs
 
+    # TODO: move to plotting file
     def plot_priors(self):
         """Plots prior distributions for each param in param_names"""
         num_plots = len(self.priors)
@@ -64,8 +66,8 @@ class MethodBase(ABC):
 
     def forward(self, x: np.ndarray, params: dict) -> np.ndarray:
         # TODO:test new usage
-        params_list = np.array([params[name] for name in self.param_names])
-        return self._forward(x, params_list)
+        # params_list = np.array([params[name] for name in self.param_names])
+        return self._forward(x, params)  # params_list)
 
     @staticmethod
     @abstractmethod

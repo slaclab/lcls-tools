@@ -2,7 +2,7 @@ from lcls_tools.common.measurements.screen_beam_profile_measurement import (
     ScreenBeamProfileMeasurement,
 )
 from lcls_tools.common.data_analysis.fit.projection import ProjectionFit
-from lcls_tools.common.data_analysis.fit.method.gaussian_model import GaussianModel
+from lcls_tools.common.data_analysis.fit.methods import GaussianModel
 from lcls_tools.common.image_processing.image_processing import ImageProcessor
 from lcls_tools.common.image_processing.roi import RectangularROI
 from lcls_tools.common.devices.device import Metadata
