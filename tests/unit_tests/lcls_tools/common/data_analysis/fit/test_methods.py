@@ -29,8 +29,8 @@ class TestGaussianModel(unittest.TestCase):
         priors_dict = self.gaussian_model.find_priors()
         self.assertIsNotNone(priors_dict)
         return  # TODO: flesh out this test
+    
     @unittest.skip
-
     def test_forward(self):
         init_dict = self.gaussian_model.find_init_values()
         fit = self.gaussian_model.forward(self.data, init_dict)
