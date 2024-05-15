@@ -14,7 +14,7 @@ class TestGaussianModel(unittest.TestCase):
         # Decimal place to check calculation errors to
         self.decimals = 2
         return super().setUp()
-    
+
     @unittest.skip
     def test_find_init_values(self):
         init_dict = self.gaussian_model.find_init_values()
@@ -23,12 +23,14 @@ class TestGaussianModel(unittest.TestCase):
         self.assertAlmostEqual(init_dict["mean"], -0.07874, places=self.decimals)
         self.assertAlmostEqual(init_dict["sigma"], 1.0, places=self.decimals)
         return
+
     @unittest.skip
     def test_find_priors(self):
         priors_dict = self.gaussian_model.find_priors()
         self.assertIsNotNone(priors_dict)
         return  # TODO: flesh out this test
     @unittest.skip
+
     def test_forward(self):
         init_dict = self.gaussian_model.find_init_values()
         fit = self.gaussian_model.forward(self.data, init_dict)
