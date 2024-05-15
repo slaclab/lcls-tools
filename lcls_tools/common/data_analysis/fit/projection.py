@@ -33,14 +33,9 @@ class ProjectionFit(BaseModel):
         s.t. data is between 0 and 1
         """
         data_copy = data.copy()
-        normalized_data = data_copy / (np.max(data))
-        # TODO: consider if robust normalization method needed, sensitive to zeros in tails.
-        # normalized_data_tuple = scipy.signal.normalize(data,np.max(data))
-        # print(normalized_data_tuple)
-        # normalized_data = normalized_data_tuple[0]
+        normalized_data = (data_copy - np.min(data)) / (np.max(data) - np.min(data))
         return normalized_data
 
-    # TODO: move normalize/unormalize to method base? (Chris?)
     def unnormalize_model_params(
         self, params_dict: dict, projection_data: np.ndarray
     ) -> np.ndarray:
@@ -48,13 +43,14 @@ class ProjectionFit(BaseModel):
         Takes fitted and normalized params and returns them
         to unnormalized values i.e the true fitted values of the distribution
         """
-        max_value = np.max(projection_data)
+
+        projection_data_range = np.max(projection_data) - np.min(projection_data)
         length = len(projection_data)
         for key, val in params_dict.items():
             if "sigma" in key or "mean" in key:
                 true_fitted_val = val * length
             else:
-                true_fitted_val = val * max_value
+                true_fitted_val = val * projection_data_range + np.min(projection_data)
             temp = {key: true_fitted_val}
             params_dict.update(temp)
         return params_dict

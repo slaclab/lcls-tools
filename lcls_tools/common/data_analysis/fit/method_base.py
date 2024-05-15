@@ -16,19 +16,19 @@ class MethodBase(ABC):
         and upper bound on for acceptable values of each parameter)
     """
 
+    param_names: list = None
+    param_bounds: np.ndarray = None
+
     def __init__(self):
-        self.param_names: list = None
-        self.param_bounds: np.ndarray = None
+
         self.init_values: dict = None
         self.fitted_params_dict: dict = None
 
     @abstractmethod
-    def find_init_values(self) -> list:
-        ...
+    def find_init_values(self) -> list: ...
 
     @abstractmethod
-    def find_priors(self, data: np.ndarray) -> dict:
-        ...
+    def find_priors(self, data: np.ndarray) -> dict: ...
 
     # TODO: move to plotting file
     def plot_init_values(self):
@@ -66,22 +66,22 @@ class MethodBase(ABC):
 
     def forward(self, x: np.ndarray, params: dict) -> np.ndarray:
         # TODO:test new usage
-        # params_list = np.array([params[name] for name in self.param_names])
-        return self._forward(x, params)  # params_list)
+
+        params_list = np.array([params[name] for name in self.param_names])
+        return self._forward(x, params_list)
 
     @staticmethod
     @abstractmethod
-    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray:
-        ...
+    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray: ...
 
     def log_prior(self, params: dict):
         # TODO:test new usage
+        print(params)
         params_list = np.array([params[name] for name in self.param_names])
         return self._log_prior(params_list)
 
     @abstractmethod
-    def _log_prior(self, params: np.ndarray):
-        ...
+    def _log_prior(self, params: np.ndarray): ...
 
     def log_likelihood(self, x: np.ndarray, y: np.ndarray, params: dict):
         # TODO:test new usage
@@ -121,6 +121,7 @@ class MethodBase(ABC):
         if not isinstance(profile_data, np.ndarray):
             raise TypeError("Input must be ndarray")
         self._profile_data = profile_data
+        # should change these to private methods only called when profile data is set
         self.find_init_values()
         self.find_priors()
         self.fitted_params_dict = {}

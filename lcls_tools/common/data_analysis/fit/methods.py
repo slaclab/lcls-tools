@@ -14,27 +14,30 @@ class GaussianModel(MethodBase):
 
     param_names: list = ["mean", "sigma", "amplitude", "offset"]
     # TODO: remove if not needed
-    # param_bounds: np.ndarray = np.array(
-    #    [[0.01, 1.0], [0.01, 1.0], [0.01, 5.0], [0.01, 1.0]]
-    # )
-
-    def __init__(self, profile_data: np.ndarray):
-        self.profile_data = profile_data
-        self.find_init_values()
-        self.find_priors()
-        self.fitted_params_dict = {}
+    param_bounds: np.ndarray = np.array(
+        [
+            [0.01, 1.0],
+            [0.01, 5.0],
+            [0.01, 1.0],
+            [0.01, 1.0],
+        ]
+    )
 
     def find_init_values(self) -> dict:
         """Fit data without optimization, return values."""
-        data = self.profile_data
-        init_fit = norm.pdf(data)
-        amplitude = init_fit.max() - init_fit.min()
+
+        data = self._profile_data
+        x = np.linspace(0, 1, len(data))
+        # init_fit = norm.pdf(data)
+        amplitude = data.max() - data.min()
+        mean = np.average(x, weights=data)
+        sigma = np.sqrt(np.cov(x, aweights=data))
 
         self.init_values = {
-            self.param_names[0]: data.mean(),
-            self.param_names[1]: data.std(),
+            self.param_names[0]: mean,  # data.mean()
+            self.param_names[1]: sigma,  # data.std()
             self.param_names[2]: amplitude,
-            self.param_names[3]: init_fit.min(),
+            self.param_names[3]: data.min(),
         }
         return self.init_values
 
@@ -65,13 +68,16 @@ class GaussianModel(MethodBase):
         }
         return self.priors
 
-    # TODO:be more consistent with np.array,np.ndarray, lists
-    # TODO: does this need to be a static method?
-    def _forward(self, x: np.array, params: dict):
+    def _forward(self, x: np.array, params: np.array):
         # Load distribution parameters
-        mean = params["mean"]
-        sigma = params["sigma"]
-        return norm.pdf(x, loc=mean, scale=sigma)
+        # needs to be array for scipy.minimize
+        mean = params[0]
+        sigma = params[1]
+        amplitude = params[2]
+        offset = params[3]
+        return (
+            np.sqrt(2 * np.pi) * amplitude * norm.pdf((x - mean) / sigma) + offset
+        )  # norm.pdf(x, loc=mean, scale=sigma) #(
 
     # TODO: remove when above is confirmed the same/below not needed.
     # @staticmethod

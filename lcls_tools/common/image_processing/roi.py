@@ -44,7 +44,7 @@ class CircularROI(ROI):
         fill_value = kwargs.get("fill_value", 0.0)
         img = self.fill_value_outside_circle(img, self.center, self.radius, fill_value)
         bbox = self.bounding_box
-        img = img[bbox[1]: bbox[1] + bbox[3], bbox[0]: bbox[0] + bbox[2]]
+        img = img[bbox[1] : bbox[1] + bbox[3], bbox[0] : bbox[0] + bbox[2]]
         return img
 
     def fill_value_outside_circle(
@@ -96,7 +96,7 @@ class RectangularROI(ROI):
                 f"image size is {img.shape}"
             )
         bbox = self.bounding_box
-        img = img[bbox[1]: bbox[1] + bbox[3], bbox[0]: bbox[0] + bbox[2]]
+        img = img[bbox[1] : bbox[1] + bbox[3], bbox[0] : bbox[0] + bbox[2]]
         return img
 
     def get_patch(self):
