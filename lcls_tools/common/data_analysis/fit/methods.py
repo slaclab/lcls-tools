@@ -13,7 +13,6 @@ class GaussianModel(MethodBase):
     """
 
     param_names: list = ["mean", "sigma", "amplitude", "offset"]
-    # TODO: remove if not needed
     param_bounds: np.ndarray = np.array(
         [
             [0.01, 1.0],
