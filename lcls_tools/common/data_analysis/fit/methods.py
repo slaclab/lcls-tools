@@ -29,12 +29,12 @@ class GaussianModel(MethodBase):
         x = np.linspace(0, 1, len(data))
         # init_fit = norm.pdf(data)
         amplitude = data.max() - data.min()
-        mean = np.average(x, weights=data)
-        sigma = np.sqrt(np.cov(x, aweights=data))
+        weighted_mean = np.average(x, weights=data)
+        weighted_sigma = np.sqrt(np.cov(x, aweights=data))
 
         self.init_values = {
-            self.param_names[0]: mean,  # data.mean()
-            self.param_names[1]: sigma,  # data.std()
+            self.param_names[0]: weighted_mean,  # data.mean()
+            self.param_names[1]: weighted_sigma,  # data.std()
             self.param_names[2]: amplitude,
             self.param_names[3]: data.min(),
         }
