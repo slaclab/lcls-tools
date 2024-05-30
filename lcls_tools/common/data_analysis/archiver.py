@@ -1,16 +1,16 @@
 import json
 import time
+from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Dict, List, Union
+from typing import Dict, List, Optional, Union
 
-import numpy as np
 import requests
 
-# The double braces are to allow for partial formatting
-ARCHIVER_URL_FORMATTER = (
-    "http://{MACHINE}-archapp.slac.stanford.edu/retrieval/data/{{SUFFIX}}"
-)
+from lcls_tools.common.controls.pyepics.utils import EPICS_INVALID_VAL
+
+ARCHIVER_URL_FORMATTER = "http://lcls-archapp.slac.stanford.edu/retrieval/data/{SUFFIX}"
+
 
 # If daylight savings time, SLAC is 7 hours behind UTC otherwise 8
 if time.localtime().tm_isdst:
@@ -25,121 +25,157 @@ TIMEOUT = 3
 
 
 @dataclass
-class ArchiverData:
+class ArchiverValue:
     """
-    A data class for easier data handling (so that external functions can
-    invoke .values and .timestamps instead of having to remember dictionary keys
+    Using keys from documentation found at:
+    https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
     """
 
-    # todo make this not a union
-    # Currently one list if timestamps are shared by all PVs else a dict of
-    # pv -> timstamps
-    timeStamps: Union[List[datetime], Dict[str, List[datetime]]]
-    values: Dict[str, List]
+    secs: int = None
+    val: Union[float, int, str] = None
+    nanos: int = None
+    severity: int = None
+    status: int = None
+    fields: Optional[Dict] = None
+    _timestamp: Optional[datetime] = None
+
+    def __hash__(self):
+        return self.secs ^ hash(self.val) ^ self.nanos ^ self.severity ^ self.status
+
+    @property
+    def timestamp(self) -> datetime:
+        if not self._timestamp:
+            self._timestamp = datetime.fromtimestamp(self.secs) + timedelta(
+                microseconds=self.nanos / 1000
+            )
+        return self._timestamp
+
+    @property
+    def is_valid(self) -> bool:
+        return self.severity is not None and self.severity != EPICS_INVALID_VAL
 
 
-class Archiver:
-    def __init__(self, machine: str):
+class ArchiveDataHandler:
+    def __init__(self, value_list: List[ArchiverValue] = None):
+        self.value_list: List[ArchiverValue] = value_list if value_list else []
+
+    def __str__(self):
+        data = {
+            "timestamps": self.timestamps,
+            "values": self.values,
+            "is_valid": self.validities,
+        }
+        return json.dumps(data, indent=4, sort_keys=True, default=str)
+
+    def __eq__(self, other):
+        if not isinstance(other, ArchiveDataHandler):
+            return False
+
+        else:
+            return set(self.value_list) == set(other.value_list)
+
+    @property
+    def timestamps(self) -> List[datetime]:
         """
-        machine is a string that is either "lcls" or "facet"
+        Current documentation indicates that matplotlib can handle datetime
+        objects directly; needs validation
+        @return: list of datetimes
         """
-        self.url_formatter = ARCHIVER_URL_FORMATTER.format(MACHINE=machine)
+        return list(map(lambda value: value.timestamp, self.value_list))
 
-    def getDataAtTime(self, pvList, timeRequested):
-        # type: (List[str], datetime) -> ArchiverData
+    @property
+    def values(self) -> List[Union[str, int, float]]:
+        return list(map(lambda value: value.val, self.value_list))
 
-        suffix = SINGLE_RESULT_SUFFIX.format(TIME=timeRequested.isoformat())
-        url = self.url_formatter.format(SUFFIX=suffix)
+    @property
+    def validities(self) -> List[bool]:
+        return list(map(lambda value: value.is_valid, self.value_list))
 
-        response = requests.post(
-            url=url, data={"pv": ",".join(pvList)}, timeout=TIMEOUT
+
+def get_data_at_time(
+    pv_list: List[str], time_requested: datetime
+) -> Dict[str, ArchiverValue]:
+    suffix = SINGLE_RESULT_SUFFIX.format(
+        TIME=time_requested.isoformat(timespec="microseconds")
+    )
+    url = ARCHIVER_URL_FORMATTER.format(SUFFIX=suffix)
+    data = {"pv": ",".join(pv_list)}
+
+    response = requests.post(url=url, data=data, timeout=TIMEOUT)
+
+    result: Dict[str, ArchiverValue] = {}
+
+    try:
+        json_data = json.loads(response.text)
+        for pv, data in json_data.items():
+            result[pv] = ArchiverValue(**data)
+
+    except ValueError:
+        print(
+            "JSON error with {PVS} at {TIME}".format(PVS=pv_list, TIME=time_requested)
         )
 
-        values = {}
-        times = [timeRequested]
-        for pv in pvList:
-            values[pv] = []
+    return result
 
-        try:
-            jsonData = json.loads(response.text)
-            for pv, data in jsonData.items():
-                values[pv].append(data["val"])
 
-        except ValueError:
-            print(
-                "JSON error with {PVS} at {TIME}".format(PVS=pvList, TIME=timeRequested)
+def get_data_with_time_interval(
+    pv_list: List[str],
+    start_time: datetime,
+    end_time: datetime,
+    time_delta: timedelta,
+) -> Dict[str, ArchiveDataHandler]:
+    curr_time = start_time
+    result: Dict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
+
+    while curr_time < end_time:
+        value: Dict[str, ArchiverValue] = get_data_at_time(pv_list, curr_time)
+        for pv, archiver_value in value.items():
+            result[pv].value_list.append(archiver_value)
+
+        curr_time += time_delta
+
+    return result
+
+
+# returns timestamps in UTC
+def get_values_over_time_range(
+    pv_list: List[str],
+    start_time: datetime,
+    end_time: datetime,
+    time_delta: timedelta = None,
+) -> Dict[str, ArchiveDataHandler]:
+    if time_delta:
+        return get_data_with_time_interval(pv_list, start_time, end_time, time_delta)
+
+    else:
+        url = ARCHIVER_URL_FORMATTER.format(SUFFIX=RANGE_RESULT_SUFFIX)
+        result: Dict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
+
+        # TODO figure out how to send all PVs at once
+        for pv in pv_list:
+            response = requests.get(
+                url=url,
+                timeout=TIMEOUT,
+                params={
+                    "pv": pv,
+                    "from": start_time.isoformat(timespec="microseconds") + UTC_DELTA_T,
+                    "to": end_time.isoformat(timespec="microseconds") + UTC_DELTA_T,
+                },
             )
-            print(jsonData)
-        return ArchiverData(timeStamps=times, values=values)
 
-    def getDataWithTimeInterval(self, pvList, startTime, endTime, timeDelta):
-        # type: (List[str], datetime, datetime, timedelta) -> ArchiverData
-        currTime = startTime
-        times = []
-        values = {}
-        for pv in pvList:
-            values[pv] = []
+            try:
+                json_data = json.loads(response.text)
+                # It returns a list of len 1 for some godforsaken reason...
+                # unless the archiver returns no data in which case the list is empty...
+                if len(json_data) == 0:
+                    result[pv] = ArchiveDataHandler()
+                else:
+                    element = json_data.pop()
+                    for datum in element["data"]:
+                        data_obj: ArchiverValue = ArchiverValue(**datum)
+                        result[pv].value_list.append(data_obj)
 
-        while currTime < endTime:
-            result = self.getDataAtTime(pvList, currTime)
-            times.append(currTime)
-            for pv, valueList in result.values.items():
-                try:
-                    values[pv].append(valueList.pop())
-                except IndexError:
-                    values[pv].append(np.nan)
-            currTime += timeDelta
+            except ValueError:
+                print("JSON error with {pv}".format(pv=pv))
 
-        return ArchiverData(timeStamps=times, values=values)
-
-    # returns timestamps in UTC
-    def getValuesOverTimeRange(self, pvList, startTime, endTime, timeDelta=None):
-        # type: (List[str], datetime, datetime, timedelta) -> ArchiverData
-
-        if timeDelta:
-            return self.getDataWithTimeInterval(pvList, startTime, endTime, timeDelta)
-        else:
-            url = self.url_formatter.format(SUFFIX=RANGE_RESULT_SUFFIX)
-
-            times = {}
-            values = {}
-
-            # TODO figure out how to send all PVs at once
-            for pv in pvList:
-                times[pv] = []
-                values[pv] = []
-
-                response = requests.get(
-                    url=url,
-                    timeout=TIMEOUT,
-                    params={
-                        "pv": pv,
-                        "from": startTime.isoformat() + UTC_DELTA_T,
-                        "to": endTime.isoformat() + UTC_DELTA_T,
-                    },
-                )
-
-                try:
-                    jsonData = json.loads(response.text)
-                    # It returns a list of len 1 for some godforsaken reason...
-                    # unless the archiver returns no data in which case the list is empty...
-                    if len(jsonData) == 0:
-                        times[pv].append([])
-                        values[pv].append([])
-                    else:
-                        element = jsonData.pop()
-                        for datum in element["data"]:
-                            # TODO implement filtering by BSA PV
-
-                            # Using keys from documentation found at:
-                            # https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
-                            times[pv].append(
-                                datetime.fromtimestamp(datum["secs"])
-                                + timedelta(microseconds=datum["nanos"] / 1000)
-                            )
-                            values[pv].append(datum["val"])
-
-                except ValueError:
-                    print("JSON error with {pv}".format(pv=pv))
-
-            return ArchiverData(timeStamps=times, values=values)
+        return result
