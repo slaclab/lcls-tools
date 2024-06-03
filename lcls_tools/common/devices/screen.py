@@ -243,9 +243,11 @@ class Screen(Device):
                     # we update with original key if it isn't in our normal screen metadata
                     # otherwise, prepend user_ to the key to retain all information.
                     [
-                        dset.attrs.update({key: value})
-                        if key not in self.metadata
-                        else dset.attrs.update({"user_" + key: value})
+                        (
+                            dset.attrs.update({key: value})
+                            if key not in self.metadata
+                            else dset.attrs.update({"user_" + key: value})
+                        )
                         for key, value in extra_metadata.items()
                     ]
 
