@@ -105,11 +105,11 @@ class YAMLGenerator:
                 ],
                 "area": element["Area"],
                 "type": element["Keyword"],
-                "sum_l_meters": float(
-                    np.format_float_positional(sum_l_meters, precision=3)
-                )
-                if sum_l_meters is not None
-                else None,
+                "sum_l_meters": (
+                    float(np.format_float_positional(sum_l_meters, precision=3))
+                    if sum_l_meters is not None
+                    else None
+                ),
             },
         }
         [
@@ -234,6 +234,27 @@ class YAMLGenerator:
                 print("No additional controls information found for ", device)
         return device_data
 
+    def add_extra_data_to_device(
+        self,
+        device_data: Dict[str, Any],
+        additional_controls_information: Dict[str, Any] = {},
+        additional_metadata: Dict[str, Any] = {},
+    ) -> Dict[str, Any]:
+        complete_device_data = {}
+        complete_device_data.update(
+            self.add_to_device_metadata(
+                device_data=device_data,
+                additional_metadata=additional_metadata,
+            ),
+        )
+        complete_device_data.update(
+            self.add_to_device_controls_information(
+                device_data=complete_device_data,
+                additional_controls_information=additional_controls_information,
+            ),
+        )
+        return complete_device_data
+
     def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
         required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
         # PV suffix as the key, the name we want to store it as in yaml file as the value
@@ -257,13 +278,10 @@ class YAMLGenerator:
             pv_search_terms=possible_magnet_pvs,
         )
         if basic_magnet_data:
-            magnet_with_additional_metadata = self.add_to_device_metadata(
+            complete_magnet_data = self.add_extra_data_to_device(
                 device_data=basic_magnet_data,
-                additional_metadata=additional_metadata_data,
-            )
-            complete_magnet_data = self.add_to_device_controls_information(
-                device_data=magnet_with_additional_metadata,
                 additional_controls_information=additional_controls_data,
+                additional_metadata=additional_metadata_data,
             )
             return complete_magnet_data
         else:
@@ -293,13 +311,10 @@ class YAMLGenerator:
             pv_search_terms=possible_screen_pvs,
         )
         if basic_screen_data:
-            screen_with_additional_metadata = self.add_to_device_metadata(
+            complete_screen_data = self.add_extra_data_to_device(
                 device_data=basic_screen_data,
-                additional_metadata=additional_metadata_data,
-            )
-            complete_screen_data = self.add_to_device_controls_information(
-                device_data=screen_with_additional_metadata,
                 additional_controls_information=additional_controls_data,
+                additional_metadata=additional_metadata_data,
             )
             return complete_screen_data
         else:
