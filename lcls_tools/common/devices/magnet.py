@@ -116,16 +116,6 @@ class Magnet(Device):
         """Returns the field tolerance in kG or kGm"""
         return self.metadata.b_tolerance
 
-    @property
-    def bmin(self):
-        """Returns the minimum strength available"""
-        self.controls_information.PVs.bmin.get()
-
-    @property
-    def bmax(self):
-        """Returns the minimum strength available"""
-        self.controls_information.PVs.bmax.get()
-
     @b_tolerance.setter
     def b_tolerance(self, value):
         if not isinstance(value, float):
