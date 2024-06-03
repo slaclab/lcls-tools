@@ -15,7 +15,7 @@ from lcls_tools.common.devices.screen import (
     ScreenCollection,
 )
 
-from pydantic import BaseModel, SerializeAsAny, Field, field_validator
+from pydantic import BaseModel, SerializeAsAny, field_validator
 
 
 class Area(BaseModel):
