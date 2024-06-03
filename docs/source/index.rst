@@ -11,6 +11,7 @@ Welcome to lcls-tools's documentation!
    :caption: Contents:
 
    devices.rst
+   area.rst
    image_processing.rst
    matlab2py.rst 
    
