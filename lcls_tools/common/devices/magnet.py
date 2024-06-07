@@ -262,7 +262,7 @@ class MagnetCollection(DeviceCollection):
 
     @property
     def magnets(self) -> Dict[str, SerializeAsAny[Magnet]]:
-        """ A dictionary (key=name, value=Magnet) to directly access magnet objects"""
+        """A dictionary (key=name, value=Magnet) to directly access magnet objects"""
         return self.devices
 
     def _seconds_since(self, time_to_check: datetime) -> int:
@@ -286,10 +286,10 @@ class MagnetCollection(DeviceCollection):
         magnet_dict: Dict[str, float],
         settle_timeout_in_seconds: int = 5,
     ) -> None:
-        """ 
+        """
         Set BDES and TRIMs for a set of magnets in the collection by providing settings in the following
         form:
-        
+
         {
             '<magnet-name-1>' : bdes_value_1,
             '<magnet-name-2>' : bdes_value_2,
@@ -345,7 +345,7 @@ class MagnetCollection(DeviceCollection):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
-        """ Turns off the magnets provided """
+        """Turns off the magnets provided"""
         magnets_to_turn_off = self._make_magnet_names_list_from_args(magnets)
         for magnet in magnets_to_turn_off:
             try:
@@ -361,7 +361,7 @@ class MagnetCollection(DeviceCollection):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
-        """ Turns on the magnets provided """
+        """Turns on the magnets provided"""
         magnets_to_turn_on = self._make_magnet_names_list_from_args(magnets)
         for magnet in magnets_to_turn_on:
             try:
@@ -377,7 +377,7 @@ class MagnetCollection(DeviceCollection):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
-        """ Perform a degauss for each magnet provided in the list """
+        """Perform a degauss for each magnet provided in the list"""
         magnets_to_degauss = self._make_magnet_names_list_from_args(magnets)
         if magnets_to_degauss:
             if isinstance(magnets, str):
