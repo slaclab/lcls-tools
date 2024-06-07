@@ -57,7 +57,7 @@ class Beampath(BaseModel):
         search_areas: Union[str, List[str]] = None,
     ) -> Union[bool, Dict[str, bool]]:
         """Check if the areas exists within the configured beampath.
-        :returns Dict[str,bool]: key = area, value = is_in_beampath
+        :returns Dict[str,bool]: key = area, value = True/False
         """
         if self.areas:
             # we want to take both single and multiple areas to check

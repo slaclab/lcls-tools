@@ -290,15 +290,11 @@ class MagnetCollection(DeviceCollection):
         Set BDES and TRIMs for a set of magnets in the collection by providing settings in the following
         form:
 
-        {
-            '<magnet-name-1>' : bdes_value_1,
-            '<magnet-name-2>' : bdes_value_2,
-            ...
-            '<magnet-name-n>' : bdes_value_n,
-        }
+        {'MAGB' : 1.0, 'MAGC' : 2.0, ..., 'MAGZ' : 3.0}
 
         Automatically waits until each magnet is settled within a wait-time (default = 5 seconds)
         """
+
         if not magnet_dict:
             return
 

@@ -27,7 +27,7 @@ Superconducting Beampaths
 .. automodule:: lcls_tools.superconducting.beampaths
     :members:
 
-
+Below is the list of areas for each superconducting beampath
 
 .. literalinclude:: ../../lcls_tools/common/devices/yaml/beampaths.yaml
    :lines: 1-62
@@ -59,6 +59,8 @@ Normalconducting Beampaths
 
 .. automodule:: lcls_tools.normalconducting.beampaths
     :members:
+
+Below is the list of areas for each normalconducting beampath
 
 .. literalinclude:: ../../lcls_tools/common/devices/yaml/beampaths.yaml
    :lines: 62-
