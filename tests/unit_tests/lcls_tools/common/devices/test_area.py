@@ -16,6 +16,6 @@ class TestArea(unittest.TestCase):
             "tests/datasets/devices/config/screen/typical_screen.yaml", "r"
         ) as file:
             mock_screen_data["screens"] = yaml.safe_load(file)
-        area = Area(**mock_screen_data)
+        area = Area(name="mock_area", **mock_screen_data)
         self.assertIsNone(area.magnet_collection)
         self.assertIsNone(area.magnets)
