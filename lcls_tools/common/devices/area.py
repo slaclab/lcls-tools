@@ -15,7 +15,7 @@ from lcls_tools.common.devices.screen import (
     ScreenCollection,
 )
 
-from pydantic import BaseModel, SerializeAsAny, field_validator
+from pydantic import BaseModel, SerializeAsAny, Field, field_validator
 
 
 class Area(BaseModel):
@@ -28,11 +28,62 @@ class Area(BaseModel):
     :cvar screen_collection: The ScreenCollection for this area
     """
 
-    magnet_collection: Optional[Union[SerializeAsAny[MagnetCollection], None]] = None
-    screen_collection: Optional[Union[SerializeAsAny[ScreenCollection], None]] = None
+    name: str = None
+    magnet_collection: Optional[
+        Union[
+            SerializeAsAny[MagnetCollection],
+            None,
+        ]
+    ] = Field(
+        alias="magnets",
+        default=None,
+    )
+    screen_collection: Optional[
+        Union[
+            SerializeAsAny[ScreenCollection],
+            None,
+        ]
+    ] = Field(
+        alias="screens",
+        default=None,
+    )
+
+    def __init__(
+        self,
+        name,
+        *args,
+        **kwargs,
+    ):
+        super(Area, self).__init__(
+            name=name,
+            *args,
+            **kwargs,
+        )
+
+    @field_validator(
+        "magnet_collection",
+        mode="before",
+    )
+    def validate_magnets(cls, v: Dict[str, Any]):
+        if v:
+            # Unpack the magnet data from yaml into MagnetCollection
+            # before creating the magnet_collection
+            return MagnetCollection(**{"magnets": {**v}})
+
+    @field_validator(
+        "screen_collection",
+        mode="before",
+    )
+    def validate_screens(cls, v: Dict[str, Any]):
+        if v:
+            # Unpack the screens data from yaml into ScreenCollection
+            return ScreenCollection(**{"screens": {**v}})
 
     @property
-    def magnets(self) -> Union[Dict[str, Magnet], None]:
+    def magnets(self) -> Union[
+        Dict[str, Magnet],
+        None,
+    ]:
         """
         A Dict[str, Magnet] for this area, where the dict keys are magnet names.
         If no magnets exist for this area, this property is None.
@@ -44,7 +95,10 @@ class Area(BaseModel):
             return None
 
     @property
-    def screens(self) -> Union[Dict[str, Screen], None]:
+    def screens(self) -> Union[
+        Dict[str, Screen],
+        None,
+    ]:
         """
         A Dict[str, Screen] for this area, where the dict keys are screen names
         If no screens exist for this area, this property is None.
@@ -55,15 +109,14 @@ class Area(BaseModel):
             print("Area does not contain screens.")
             return None
 
-    @field_validator("magnet_collection", mode="before")
-    def validate_magnets(cls, v: Dict[str, Any]):
-        if v:
-            return MagnetCollection(**{"magnets": {**v}})
+    def does_magnet_exist(
+        self,
+        magnet_name: str = None,
+    ) -> bool:
+        return magnet_name in self.magnets
 
-    @field_validator("screen_collection", mode="before")
-    def validate_screens(cls, v: Dict[str, Any]):
-        if v:
-            return ScreenCollection(**{"screens": {**v}})
-
-    def __init__(self, *args, **kwargs):
-        super(Area, self).__init__(*args, **kwargs)
+    def does_screen_exist(
+        self,
+        screen_name: str = None,
+    ) -> bool:
+        return screen_name in self.screens
