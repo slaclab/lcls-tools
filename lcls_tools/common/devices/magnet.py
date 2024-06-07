@@ -262,9 +262,10 @@ class MagnetCollection(DeviceCollection):
 
     @property
     def magnets(self) -> Dict[str, SerializeAsAny[Magnet]]:
+        """ A dictionary (key=name, value=Magnet) to directly access magnet objects"""
         return self.devices
 
-    def seconds_since(self, time_to_check: datetime) -> int:
+    def _seconds_since(self, time_to_check: datetime) -> int:
         if not isinstance(time_to_check, datetime):
             raise TypeError("Please provide a datetime object for comparison.")
         return (datetime.now() - time_to_check).seconds
@@ -285,6 +286,19 @@ class MagnetCollection(DeviceCollection):
         magnet_dict: Dict[str, float],
         settle_timeout_in_seconds: int = 5,
     ) -> None:
+        """ 
+        Set BDES and TRIMs for a set of magnets in the collection by providing settings in the following
+        form:
+        
+        {
+            '<magnet-name-1>' : bdes_value_1,
+            '<magnet-name-2>' : bdes_value_2,
+            ...
+            '<magnet-name-n>' : bdes_value_n,
+        }
+
+        Automatically waits until each magnet is settled within a wait-time (default = 5 seconds)
+        """
         if not magnet_dict:
             return
 
@@ -295,7 +309,7 @@ class MagnetCollection(DeviceCollection):
                 time_when_trim_started = datetime.now()
                 while not self.devices[magnet].is_bact_settled():
                     if (
-                        self.seconds_since(time_when_trim_started)
+                        self._seconds_since(time_when_trim_started)
                         > settle_timeout_in_seconds
                     ):
                         print(
@@ -319,6 +333,10 @@ class MagnetCollection(DeviceCollection):
         scan_settings: List[Dict[str, float]],
         function: Optional[callable] = None,
     ) -> None:
+        """
+        Scans magnets given a list of magnet settings (Dict[magnet_name, bdes_value])
+        and calls the provided function after each setting is achieved.
+        """
         for setting in scan_settings:
             self.set_bdes(setting)
             function() if function else None
@@ -327,6 +345,7 @@ class MagnetCollection(DeviceCollection):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
+        """ Turns off the magnets provided """
         magnets_to_turn_off = self._make_magnet_names_list_from_args(magnets)
         for magnet in magnets_to_turn_off:
             try:
@@ -342,6 +361,7 @@ class MagnetCollection(DeviceCollection):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
+        """ Turns on the magnets provided """
         magnets_to_turn_on = self._make_magnet_names_list_from_args(magnets)
         for magnet in magnets_to_turn_on:
             try:
@@ -357,6 +377,7 @@ class MagnetCollection(DeviceCollection):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
+        """ Perform a degauss for each magnet provided in the list """
         magnets_to_degauss = self._make_magnet_names_list_from_args(magnets)
         if magnets_to_degauss:
             if isinstance(magnets, str):
