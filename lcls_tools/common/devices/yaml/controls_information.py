@@ -1,7 +1,7 @@
 from typing import List
 
 
-def get_magnet_controls_information(magnet_names: List[str] = []):
+def get_magnet_controls_information(magnet_names: List[str] = None):
     # return a data structure of the form:
     # {
     #  mag-name-1 : {controls-information-field-1 : value-1, controls-information-field-2 : value-2, ...},
@@ -15,7 +15,7 @@ def get_magnet_controls_information(magnet_names: List[str] = []):
     return {}
 
 
-def get_screen_controls_information(screen_names: List[str] = []):
+def get_screen_controls_information(screen_names: List[str] = None):
     # return a data structure of the form:
     # {
     #  scr-name-1 : {controls-information-field-1 : value-1, controls-information-field-2 : value-2, ...},
