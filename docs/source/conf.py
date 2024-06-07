@@ -8,6 +8,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(__file__, "../../../")))
 from lcls_tools.common.data_analysis.fitting_tool import *
 from lcls_tools.common.devices.magnet import *
+from lcls_tools.common.devices.beampath import *
 from lcls_tools.common.devices.device import *
 from lcls_tools.common.devices.screen import *
 from lcls_tools.common.matlab2py.mat_image import *
