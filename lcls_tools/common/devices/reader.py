@@ -109,8 +109,7 @@ def create_area(area: str = None) -> Union[None, Area]:
     if not yaml_data:
         return None
     try:
-        print(yaml_data)
-        return Area(**yaml_data)
+        return Area(name=area, **yaml_data)
     except ValidationError as field_error:
         print("Error trying to create area", area, " : ", field_error)
         return None
@@ -149,7 +148,7 @@ def create_beampath(beampath: str = None) -> Union[None, Beampath]:
             created_area = create_area(area=area)
             if created_area:
                 areas[area] = created_area
-        return Beampath(**{"areas": areas})
+        return Beampath(name=beampath, **{"areas": areas})
     except KeyError as ke:
         print(
             "Area: ",
