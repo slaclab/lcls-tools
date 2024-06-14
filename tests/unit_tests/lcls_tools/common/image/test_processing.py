@@ -1,5 +1,6 @@
 import unittest
 import numpy as np
+
 from lcls_tools.common.image.processing import ImageProcessor
 from lcls_tools.common.image.roi import RectangularROI
 
@@ -11,7 +12,7 @@ class TestImageProcessing(unittest.TestCase):
         super().__init__(methodName)
         self.center = [400, 400]
         self.size = (800, 800)
-        self.widths = (300, 300)
+        self.widths = (350, 300)
         self.radius = 50
         self.image = np.load(self.data_location + "test_roi_image.npy")
 
@@ -22,13 +23,26 @@ class TestImageProcessing(unittest.TestCase):
         """
         image_processor = ImageProcessor()
         image = image_processor.process(self.image)
-        assert isinstance(image, np.ndarray)
+        self.assertIsInstance(
+            image, np.ndarray,
+            msg=f"expected image to be an instance of np.ndarray"
+        )
         roi = RectangularROI(
             center=self.center, xwidth=self.widths[0], ywidth=self.widths[1]
         )
         image_processor = ImageProcessor(roi=roi)
         image = image_processor.process(self.image)
-        assert isinstance(image, np.ndarray)
+        self.assertIsInstance(
+            image, np.ndarray,
+            msg=f"expected image to be an instance of np.ndarray"
+        )
+        imageShape = image.shape
+        roiShape = (roi.ywidth, roi.xwidth)
+        self.assertEqual(
+            imageShape, roiShape,
+            msg=f"expected image shape {imageShape} " +
+                f"to equal roi {roiShape}"
+        )
         # TODO:run coverage
 
     def test_subtract_background(self):
@@ -41,7 +55,13 @@ class TestImageProcessing(unittest.TestCase):
         background_image = np.ones(self.size)
         image_processor = ImageProcessor(background_image=background_image)
         image = image_processor.subtract_background(self.image)
-        assert image.all() == (self.image - 1).all()
+        image = image
+        background = (self.image - 1)
+        np.testing.assert_array_equal(
+            image, background,
+            err_msg="expected image to equal background " +
+                    "during background subtraction"
+        )
 
         """
         Given an np.ndarray check that when the image_processor
@@ -49,7 +69,13 @@ class TestImageProcessing(unittest.TestCase):
         """
         image_processor = ImageProcessor(threshold=1)
         image = image_processor.subtract_background(self.image)
-        assert image.all() == (self.image - 1).all()
+        image = image
+        background = (self.image - 1)
+        np.testing.assert_array_equal(
+            image, background,
+            err_msg="expected image to equal background " +
+                    "when applying threshold"
+        )
 
     def test_clip(self):
         """
@@ -60,4 +86,8 @@ class TestImageProcessing(unittest.TestCase):
         image_processor = ImageProcessor(threshold=100)
         image = image_processor.subtract_background(self.image)
         clipped_image = image_processor.clip_image(image)
-        assert clipped_image.all() >= np.zeros(self.size).all()
+        np.testing.assert_array_equal(
+            clipped_image, np.zeros(self.size),
+            err_msg="expected clipped image to equal zero " +
+                    "when subtracting background with threshold"
+        )
