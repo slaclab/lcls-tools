@@ -1,7 +1,7 @@
 import os
 import unittest
 import numpy as np
-from lcls_tools.common.image_processing import Image
+from lcls_tools.common.image import Image
 
 
 class ImageTest(unittest.TestCase):

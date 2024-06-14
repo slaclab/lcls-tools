@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.ndimage import gaussian_filter
 from pydantic import BaseModel, PositiveFloat, ConfigDict
-from lcls_tools.common.image_processing.roi import ROI
+from lcls_tools.common.image.roi import ROI
 
 
 class ImageProcessor(BaseModel):

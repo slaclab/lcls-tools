@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from lcls_tools.common.image_processing.roi import RectangularROI, CircularROI
+from lcls_tools.common.image.roi import RectangularROI, CircularROI
 
 
 class TestROI(unittest.TestCase):
