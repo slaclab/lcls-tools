@@ -25,7 +25,7 @@ class TestImageProcessing(unittest.TestCase):
         image = image_processor.process(self.image)
         self.assertIsInstance(
             image, np.ndarray,
-            msg=f"expected image to be an instance of np.ndarray"
+            msg="expected image to be an instance of np.ndarray"
         )
         roi = RectangularROI(
             center=self.center, xwidth=self.widths[0], ywidth=self.widths[1]
@@ -34,14 +34,14 @@ class TestImageProcessing(unittest.TestCase):
         image = image_processor.process(self.image)
         self.assertIsInstance(
             image, np.ndarray,
-            msg=f"expected image to be an instance of np.ndarray"
+            msg="expected image to be an instance of np.ndarray"
         )
         imageShape = image.shape
         roiShape = (roi.ywidth, roi.xwidth)
         self.assertEqual(
             imageShape, roiShape,
-            msg=f"expected image shape {imageShape} " +
-                f"to equal roi {roiShape}"
+            msg=(f"expected image shape {imageShape} "
+                 + f"to equal roi {roiShape}")
         )
         # TODO:run coverage
 
@@ -59,8 +59,8 @@ class TestImageProcessing(unittest.TestCase):
         background = (self.image - 1)
         np.testing.assert_array_equal(
             image, background,
-            err_msg="expected image to equal background " +
-                    "during background subtraction"
+            err_msg=("expected image to equal background "
+                     + "during background subtraction")
         )
 
         """
@@ -73,8 +73,8 @@ class TestImageProcessing(unittest.TestCase):
         background = (self.image - 1)
         np.testing.assert_array_equal(
             image, background,
-            err_msg="expected image to equal background " +
-                    "when applying threshold"
+            err_msg=("expected image to equal background "
+                     + "when applying threshold")
         )
 
     def test_clip(self):
@@ -88,6 +88,6 @@ class TestImageProcessing(unittest.TestCase):
         clipped_image = image_processor.clip_image(image)
         np.testing.assert_array_equal(
             clipped_image, np.zeros(self.size),
-            err_msg="expected clipped image to equal zero " +
-                    "when subtracting background with threshold"
+            err_msg=("expected clipped image to equal zero "
+                     + "when subtracting background with threshold")
         )
