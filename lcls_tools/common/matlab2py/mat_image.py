@@ -3,7 +3,7 @@ import scipy.io as sio
 import matplotlib.pyplot as plt
 import os
 
-from lcls_tools.common.image_processing.image import Image
+from lcls_tools.common.image_processing import Image
 
 
 class MatImage(object):
