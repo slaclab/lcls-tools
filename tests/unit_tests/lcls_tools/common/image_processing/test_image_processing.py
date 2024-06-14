@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from lcls_tools.common.image_processing.image_processing import ImageProcessor
+from lcls_tools.common.image_processing.processing import ImageProcessor
 from lcls_tools.common.image_processing.roi import RectangularROI
 
 
