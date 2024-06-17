@@ -12,6 +12,6 @@ Image
     :members:
     :undoc-members:
 
-.. automodule:: lcls_tools.common.image_processing.roi
+.. automodule:: lcls_tools.common.image.roi
     :members:
     :undoc-members:
