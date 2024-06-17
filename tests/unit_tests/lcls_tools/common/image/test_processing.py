@@ -43,7 +43,6 @@ class TestImageProcessing(unittest.TestCase):
             msg=(f"expected image shape {imageShape} "
                  + f"to equal roi {roiShape}")
         )
-        # TODO:run coverage
 
     def test_subtract_background(self):
         """
