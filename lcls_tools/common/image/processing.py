@@ -38,7 +38,7 @@ class ImageProcessor(BaseModel):
     def clip_image(self, image):
         return np.clip(image, 0, None)
 
-    def process(self, raw_image: np.ndarray) -> np.ndarray:
+    def auto_process(self, raw_image: np.ndarray) -> np.ndarray:
         """Process image by subtracting background pixel intensity
         from a raw image, crop, and filter"""
         image = self.subtract_background(raw_image)

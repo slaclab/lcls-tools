@@ -22,7 +22,7 @@ class TestImageProcessing(unittest.TestCase):
         and assert the return in an np.ndarray
         """
         image_processor = ImageProcessor()
-        image = image_processor.process(self.image)
+        image = image_processor.auto_process(self.image)
         self.assertIsInstance(
             image, np.ndarray,
             msg="expected image to be an instance of np.ndarray"
@@ -31,7 +31,7 @@ class TestImageProcessing(unittest.TestCase):
             center=self.center, xwidth=self.widths[0], ywidth=self.widths[1]
         )
         image_processor = ImageProcessor(roi=roi)
-        image = image_processor.process(self.image)
+        image = image_processor.auto_process(self.image)
         self.assertIsInstance(
             image, np.ndarray,
             msg="expected image to be an instance of np.ndarray"
