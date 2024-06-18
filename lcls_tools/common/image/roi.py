@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 import numpy as np
 from pydantic import BaseModel, PositiveFloat
-from typing import ClassVar, List, Optional
+from typing import List
+
 
 class ROI(BaseModel, ABC):
     center: List[PositiveFloat]
@@ -33,6 +34,7 @@ class ROI(BaseModel, ABC):
                   self.box[1]:self.box[3]]
         return img
 
+
 class RectangularROI(ROI):
     """
     Define a rectangular region of interest (ROI) for an image, cropping pixels outside
@@ -43,6 +45,7 @@ class RectangularROI(ROI):
     @property
     def bounds(self):
         return self.width
+
 
 class EllipticalROI(ROI):
     """
@@ -63,8 +66,8 @@ class EllipticalROI(ROI):
         height, width = img.shape
         for y in range(height):
             for x in range(width):
-                distance = (((x - c[0]) / r[0]) ** 2 +
-                            ((y - c[1]) / r[1]) ** 2)
+                distance = (((x - c[0]) / r[0]) ** 2
+                            + ((y - c[1]) / r[1]) ** 2)
                 if distance > 1:
                     img[y, x] = fill_value
         return img
@@ -78,6 +81,7 @@ class EllipticalROI(ROI):
         fill_value = kwargs.get("fill_value", 0.0)
         img = self.negative_fill(img, fill_value)
         return img
+
 
 class CircularROI(EllipticalROI):
     """
