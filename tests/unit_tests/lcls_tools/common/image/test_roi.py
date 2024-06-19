@@ -10,7 +10,7 @@ class TestROI(unittest.TestCase):
         super().__init__(methodName)
         self.center = [400, 400]
         self.size = (800, 800)
-        self.widths = (300, 300)
+        self.width = [300, 300]
         self.radius = 50
 
         self.image = np.load(self.data_location + "test_roi_image.npy")
@@ -36,9 +36,7 @@ class TestROI(unittest.TestCase):
         Test that this image is now exactly equal to the test filled value image
         """
         circular = CircularROI(center=self.center, radius=self.radius)
-        image = circular.fill_value_outside_circle(
-            img=self.image, center=self.center, radius=10, fill_value=0
-        )
+        image = circular.negative_fill(self.image, fill_value=0)
         assert image.all() == self.filled_value_test_image.all()
 
     def test_rectangular_roi_crop_image(self):
@@ -47,8 +45,6 @@ class TestROI(unittest.TestCase):
         test that image has correct size after cropping
         (size of roi)
         """
-        rectangular = RectangularROI(
-            center=self.center, xwidth=self.widths[0], ywidth=self.widths[1]
-        )
+        rectangular = RectangularROI(center=self.center, width=self.width)
         cropped_image = rectangular.crop_image(self.image)
-        assert cropped_image.shape == self.widths
+        assert list(cropped_image.shape) == self.width
