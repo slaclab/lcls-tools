@@ -10,7 +10,7 @@ class TestROI(unittest.TestCase):
         super().__init__(methodName)
         self.center = [400, 400]
         self.size = (800, 800)
-        self.width = [300, 300]
+        self.extent = [300, 300]
         self.radius = 50
 
         self.image = np.load(self.data_location + "test_roi_image.npy")
@@ -45,6 +45,6 @@ class TestROI(unittest.TestCase):
         test that image has correct size after cropping
         (size of roi)
         """
-        rectangular = ROI(center=self.center, width=self.width)
+        rectangular = ROI(center=self.center, extent=self.extent)
         cropped_image = rectangular.crop_image(self.image)
-        assert list(cropped_image.shape) == self.width
+        assert list(cropped_image.shape) == self.extent
