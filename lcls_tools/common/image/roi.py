@@ -1,12 +1,10 @@
 import numpy as np
 from pydantic import (
     BaseModel,
-    field_validator,
     model_validator,
     PositiveFloat
 )
-from typing import Any, Dict, List, Optional
-from typing_extensions import Self
+from typing import Any, Dict, List
 
 
 class ROI(BaseModel):
@@ -43,7 +41,7 @@ class EllipticalROI(ROI):
 
     @model_validator(mode='before')
     def __set_radius_and_extent__(cls, data: Any) -> Any:
-        # The caret key '^' is logical xor in this case. 
+        # The caret key '^' is logical xor in this case.
         if not ('radius' in data) ^ ('extent' in data):
             raise ValueError('enter extent or radius field but not both')
         if 'radius' in data:
