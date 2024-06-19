@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from lcls_tools.common.image.roi import RectangularROI, CircularROI
+from lcls_tools.common.image.roi import ROI, CircularROI
 
 
 class TestROI(unittest.TestCase):
@@ -45,6 +45,6 @@ class TestROI(unittest.TestCase):
         test that image has correct size after cropping
         (size of roi)
         """
-        rectangular = RectangularROI(center=self.center, width=self.width)
+        rectangular = ROI(center=self.center, width=self.width)
         cropped_image = rectangular.crop_image(self.image)
         assert list(cropped_image.shape) == self.width

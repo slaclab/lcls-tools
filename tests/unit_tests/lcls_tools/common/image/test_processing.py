@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 
 from lcls_tools.common.image.processing import ImageProcessor
-from lcls_tools.common.image.roi import RectangularROI
+from lcls_tools.common.image.roi import ROI
 
 
 class TestImageProcessing(unittest.TestCase):
@@ -27,7 +27,7 @@ class TestImageProcessing(unittest.TestCase):
             image, np.ndarray,
             msg="expected image to be an instance of np.ndarray"
         )
-        roi = RectangularROI(center=self.center, width=self.width)
+        roi = ROI(center=self.center, width=self.width)
         image_processor = ImageProcessor(roi=roi)
         image = image_processor.auto_process(self.image)
         self.assertIsInstance(
