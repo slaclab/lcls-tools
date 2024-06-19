@@ -12,7 +12,7 @@ class TestImageProcessing(unittest.TestCase):
         super().__init__(methodName)
         self.center = [400, 400]
         self.size = (800, 800)
-        self.widths = (350, 300)
+        self.width = [350, 300]
         self.radius = 50
         self.image = np.load(self.data_location + "test_roi_image.npy")
 
@@ -27,9 +27,7 @@ class TestImageProcessing(unittest.TestCase):
             image, np.ndarray,
             msg="expected image to be an instance of np.ndarray"
         )
-        roi = RectangularROI(
-            center=self.center, xwidth=self.widths[0], ywidth=self.widths[1]
-        )
+        roi = RectangularROI(center=self.center, width=self.width)
         image_processor = ImageProcessor(roi=roi)
         image = image_processor.auto_process(self.image)
         self.assertIsInstance(
@@ -37,7 +35,7 @@ class TestImageProcessing(unittest.TestCase):
             msg="expected image to be an instance of np.ndarray"
         )
         imageShape = image.shape
-        roiShape = (roi.ywidth, roi.xwidth)
+        roiShape = tuple(roi.width)
         self.assertEqual(
             imageShape, roiShape,
             msg=(f"expected image shape {imageShape} "
