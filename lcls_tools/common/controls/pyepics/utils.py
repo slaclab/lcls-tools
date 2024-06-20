@@ -1,4 +1,5 @@
 from time import sleep
+from unittest.mock import MagicMock
 
 from epics import PV as EPICS_PV, caget as epics_caget, caput as epics_caput
 
@@ -134,3 +135,14 @@ class PV(EPICS_PV):
         if retry and (status != 1):
             print(f"{self} put not successful, using caput")
             self.caput(value)
+
+
+def make_mock_pv(
+    pv_name: str = None, get_val=None, severity=EPICS_NO_ALARM_VAL
+) -> MagicMock:
+    return MagicMock(
+        pvname=pv_name,
+        put=MagicMock(return_value=1),
+        get=MagicMock(return_value=get_val),
+        severity=severity,
+    )
