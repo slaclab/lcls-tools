@@ -5,8 +5,9 @@ from matplotlib import pyplot as plt
 
 class MethodBase(ABC):
     """
-    Base abstract class for all fit methods, which serves as the bare minimum skeleton code needed.
-    Should be used only as a parent class to all method models.
+    Base abstract class for all fit methods, which serves as the bare minimum
+    skeleton code needed. Should be used only as a parent class to all method
+    models.
     ---------------------------
     Arguments:
     param_names: list (list all of param names that the model will contain)
@@ -35,7 +36,10 @@ class MethodBase(ABC):
     # TODO: move to plotting file
     def plot_init_values(self):
         init_values = np.array(list(self.init_values.values()))
-        """Plots init values as a function of forward and visually compares it to the initial distribution"""
+        """
+        Plots init values as a function of forward and visually compares it to
+        the initial distribution
+        """
         fig, axs = plt.subplots(1, 1)
         x = np.linspace(0, 1, len(self.profile_data))
         y_fit = self._forward(x, init_values)
@@ -59,7 +63,12 @@ class MethodBase(ABC):
                 ls="--",
                 c="k",
             )
-            axs[i].axvline(self.param_bounds[i, 1], ls="--", c="k", label="bounds")
+            axs[i].axvline(
+                self.param_bounds[i, 1],
+                ls="--",
+                c="k",
+                label="bounds"
+            )
             axs[i].set_title(param + " prior")
             axs[i].set_ylabel("Density")
             axs[i].set_xlabel(param)
@@ -97,8 +106,9 @@ class MethodBase(ABC):
         return -np.sum((y - self._forward(x, params)) ** 2)
 
     def loss(self, params, x, y, use_priors=False):
-        # TODO:implement using private functions _log_likelihood and _log_prior
-        # ML group way of iterating over priors/ reducing difference in fit and data
+        # TODO: implement using private functions _log_likelihood and
+        # _log_prior ML group way of iterating over priors/reducing
+        # difference in fit and data
         loss_temp = -self._log_likelihood(x, y, params)
         if use_priors:
             loss_temp = loss_temp - self._log_prior(params)
@@ -107,7 +117,7 @@ class MethodBase(ABC):
     @property
     def priors(self):
         """
-        Initial Priors store in a dictionary where the keys are the 
+        Initial Priors store in a dictionary where the keys are the
         complete set of parameters of the Model
         """
         return self._priors
@@ -128,7 +138,7 @@ class MethodBase(ABC):
         if not isinstance(profile_data, np.ndarray):
             raise TypeError("Input must be ndarray")
         self._profile_data = profile_data
-        # should change these to private methods only called when profile data is set
+        # should change these to private methods
         self.find_init_values()
         self.find_priors()
         self.fitted_params_dict = {}
