@@ -1,3 +1,7 @@
+#############################
+# Superconducting Beampaths #
+#############################
+
 SC: &SC
   - GUNB
   - L0B
@@ -55,6 +59,10 @@ SC_DASEL:
   - SPD2
   - DASEL
   - BSYA2
+
+##############################
+# Normalconducting Beampaths #
+##############################
 
 CU: &CU
   - GUN
