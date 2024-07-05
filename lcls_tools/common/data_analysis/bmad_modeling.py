@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from pydantic.dataclasses import dataclass
 import numpy as np
 import os
 import matplotlib.pyplot as plt
@@ -6,9 +6,8 @@ import epics
 from lcls_live.datamaps import get_datamaps
 from lcls_live.archiver import lcls_archiver_restore
 
-
 @dataclass
-class BmadModel:
+class BmadModel():
     """
     Bmad Modeling class for analysis and plotting.
     Machine data from  EPICS DES, EPICS ACT or , Archive.
@@ -72,8 +71,9 @@ class BmadModel:
 
     beam_path: str
     data_source: str
-    beam_code: str = "1"
-    date_time: str = "2024-03-24T17:10:00.000000-08:00"
+    beam_code: str = '1'
+    date_time: str = '2024-03-24T17:10:00.000000-08:00'
+
 
     def __post_init__(self):
         """Runs after dataclass init, updates data maps used by lcls-live"""
@@ -217,15 +217,15 @@ class BmadModel:
             amplNp = np.where(amplNp < 0.5, 0, amplNp)
             phasNp = np.array(np.deg2rad(phas))
             gainMeasured = amplNp * np.cos(phasNp)
-            if region == "L2B":
+            if region == "L1B":
                 expected_gain = 1000 * (
-                    pvdata["REFS:BC2B:500:EDES"] - pvdata["REFS:BC1B:400:EDES"]
-                )
+                    pvdata["REFS:BC1B:400:EDES"] - 0.09 )
+            elif region == "L2B":
+                expected_gain = 1000 * (
+                    pvdata["REFS:BC2B:500:EDES"] - pvdata["REFS:BC1B:400:EDES"])
             elif region == "L3B":
                 expected_gain = 1000 * (
-                    pvdata["REFS:DMPS:400:EDES"] - pvdata["REFS:BC2B:500:EDES"]
-                )
-
+                    pvdata["REFS:DMPS:400:EDES"] - pvdata["REFS:BC2B:500:EDES"])
             dF = (expected_gain - sum(gainMeasured)) / sum(ampl)
             # fudge = 1 + dF
             complexGain = amplNp * np.exp(1j * phasNp)
