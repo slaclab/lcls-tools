@@ -28,6 +28,8 @@ class WirePVSet(PVSet):
     velo: PV # velocity
     rbv: PV
     rmp: PV  # retracted motor position?
+    init: PV
+    retract: PV
     startscan: PV
     usexwire: PV
     useywire: PV
@@ -38,6 +40,9 @@ class WirePVSet(PVSet):
     ywireouter: PV
     uwireinner: PV
     uwireouter: PV
+    enabled: PV
+    homed: PV
+    timeout: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -119,97 +124,132 @@ class Wire(Device):
         return decorator
 
     @property
-    def ctrl_options(self):
-        return self.controls_information.ctrl_options
-
-    @property
-    def homed_status(self):
-        return self.controls_information.homed_status.get()
-
-    @property
-    def xsize(self):
-        """Returns the x wire thickenss in um"""
-        #Try to grab from PV first, then if fails, get from yaml
-        #Make sure to print statement saying if yaml values used
-        try:
-            return self.metadata.PVs.xsize.get()
-        except:
-            print(EPICS_ERROR_MESSAGE)
-            #TODO: Returning wire size from yaml file instead
-            return 
-
-    @property    
-    def ysize(self):
-        """Returns the y wire thickness in um"""
-        try:
-            return self.metadata.PVs.ysize.get()
-        except:
-            print(EPICS_ERROR_MESSAGE)
-            #TODO: Returning wire size from yaml file instead
+    def use_x_wire(self):
+        return self.controls_information.PVs.usexwire.get()
+    @use_x_wire.setter
+    def use_x_wire(self, val: int) -> None:
+        if not (val == 1 or val == 0):
+            print("Value must be 0 or 1")
             return
+        self.controls_information.PVs.usexwire.put(value = val)
 
     @property
-    def usize(self):
-        """Returns the u wire thickness in um"""
-        try:
-            return self.metadata.PVs.usize.get()
-        except:
-            print(EPICS_ERROR_MESSAGE)
-            #TODO: Returning wire size from yaml file instead
+    def x_wire_inner(self):
+        return self.controls_information.PVs.xwireinner.get()
+    @x_wire_inner.setter
+    def x_wire_inner(self, val: int) -> None:
+        if not isinstance(val, int):
+            print("Value must be an int")
             return
+        self.controls_information.PVs.xwireinner.put(value = val)
 
-    #TODO: Initialize should happen before wire moves
-    #but that doesn't need to be available to users
+    @property
+    def x_wire_outer(self):
+        return self.controls_information.PVs.xwireouter.get()
+    @x_wire_outer.setter
+    def x_wire_outer(self, val: int) -> None:
+        if not isinstance(val, int):
+            print("Value must be an int")
+            return
+        self.controls_information.PVs.xwireouter.put(value = val)
 
-    #TODO: use this to set x/y/u wires positions?
-    #Something like position.setter??
+    @property
+    def use_y_wire(self):
+        return self.metadata.PVs.useywire.get()
+    @use_y_wire.setter
+    def use_y_wire(self, val: int) -> None:
+        if not (val == 1 or val == 0):
+            print("Value must be 0 or 1")
+            return
+        self.controls_information.PVs.useywire.put(value = val)
+
+    @property
+    def y_wire_inner(self):
+        return self.controls_information.PVs.ywireinner.get()
+    @y_wire_inner.setter
+    def y_wire_inner(self, val: int) -> None:
+        if not isinstance(val, int):
+            print("Value must be an int")
+            return
+        self.controls_information.PVs.ywireinner.put(value = val)
+
+    @property
+    def y_wire_outer(self):
+        return self.controls_information.PVs.ywireouter.get()
+    @x_wire_outer.setter
+    def y_wire_outer(self, val: int) -> None:
+        if not isinstance(val, int):
+            print("Value must be an int")
+            return
+        self.controls_information.PVs.ywireouter.put(value = val)
+
+    @property
+    def use_u_wire(self):
+        return self.metadata.PVs.useuwire.get()
+    @use_u_wire.setter
+    def use_u_wire(self, val: int) -> None:
+        if not (val == 1 or val == 0):
+            print("Value must be 0 or 1")
+            return
+        self.controls_information.PVs.useuwire.put(value = val)
+
+    @property
+    def u_wire_inner(self):
+        return self.controls_information.PVs.uwireinner.get()
+    @u_wire_inner.setter
+    def u_wire_inner(self, val: int) -> None:
+        if not isinstance(val, int):
+            print("Value must be an int")
+            return
+        self.controls_information.PVs.uwireinner.put(value = val)
+
+    @property
+    def u_wire_outer(self):
+        return self.controls_information.PVs.uwireouter.get()
+    @u_wire_outer.setter
+    def u_wire_outer(self, val: int) -> None:
+        if not isinstance(val, int):
+            print("Value must be an int")
+            return
+        self.controls_information.PVs.uwireouter.put(value = val)
+
+    @property
+    def initialized(self):
+        return self.controls_information.PVs.enabled.get()
+    @initialized.setter
+    def initalized(self, val) -> None:
+        if not val == 1:
+            print("Value must be 1")
+            return
+        self.controls_information.PVs.initialize.put(value = val)
+
+    @property
+    def homed(self):
+        return self.controls_information.PVs.homed.get()
+
+    @property
+    def position(self):
+        return self.controls_information.PVs.rbv.get()
     @position.setter
-    def position(self, value):
-        if not isinstance(value, float):
+    def position(self, val: int) -> None:
+        if not isinstance(val, int):
+            print("Value must be an int")
             return
-        self.metadata.position = value
-
-    @property 
-    def motr(self) -> Union[float, int]:
-        return self.controls_information.PVs.motr.get()
-
-    #TODO: make a motr setter?
-    @motr.setter
-    @check_state
-    def bctrl(self, val: Union[float, int]) -> None:
-        """Set bctrl value"""
-        if not (isinstance(val, float) or isinstance(val, int)):
-            print("you need to provide an int or float")
-            return
-        self.controls_information.PVs.bctrl.put(value=val)
+        self.controls_information.PVs.motr.put(value = val)
 
     @property
-    def rbv(self) -> float:
-        """Get the position readback of the motor"""
-        return self.controls_information.PVs.motr.rbv.get()
+    def speed(self):
+        return self.controls_information.PVs.velo.get()
 
-    #TODO: double check retracted motor tolerance
-    def is_motor_retracted(self, tolerance: Optional[float] = 0.0) -> bool:
-        return abs(self.rbv) - abs(self.rmp) < tolerance
-
-
-    #TODO: find out retraction command
-    @check_options("RMP")
-    @check_state
-    def retract(self) -> None:
-        """Issue retract command"""
-        self.controls_information.PVs.ctrl.put(self.ctrl_options[""])
-
-    #@check_options("SAVE_BDES")
-    #def save_bdes(self) -> None:
-    #    """Save BDES"""
-    #    self.controls_information.PVs.ctrl.put(self.ctrl_options["SAVE_BDES"])
-
-    #@check_options("RESET")
-    #def reset(self) -> None:
-    #    """Reset wire"""
-    #    self.controls_information.PVs.ctrl.put(self.ctrl_options["RESET"])
-
+    @property
+    def retract(self):
+        return self.controls_information.PVs.retract.get()
+    @retract.setter
+    def retract(self, val: int) -> None:
+        if not val == 1:
+            print("Value must be 1")
+            return
+        self.controls_information.PVs.retract.put(value = val)
 
 class WireCollection(BaseModel):
     wires: Dict[str, SerializeAsAny[Wire]]
@@ -239,33 +279,3 @@ class WireCollection(BaseModel):
         else:
             wire_names = list(self.wires.keys())
         return wire_names
-
-    def _scan_wire(
-        self, wire_positions: Dict[str, float], 
-        #TODO: scan one wire x/y/u
-        return RaiseNotImplementedError
-
-    def scan_xwire(
-        self,
-        wire_dict: Dict[str, float],
-        settle_timeout_in_seconds: int = 5,
-    ) -> None:
-        if not wire_dict:
-            return
-
-        for wire in wire_dict.items():
-            try:
-                #TODO: Scan only x wire? call _scan_wire()
-                pass 
-            except KeyError:
-                print(
-                    "You tried to set a wire that does not exist.",
-                    f"{wire} was not set to {bval}.",
-                )
-
-    def scan_all_wires(
-        self,
-        scan_settings: List[Dict[str, float]],
-        function: Optional[callable] = None,
-    ) -> None:
-        return RaiseNotImplementedError
