@@ -40,7 +40,7 @@ class ProjectionFit(BaseModel):
         return normalized_data
 
     def unnormalize_model_params(
-        self, params_dict: dict, projection_data: np.ndarray
+        self, method_params_dict: dict, projection_data: np.ndarray
     ) -> np.ndarray:
         """
         Takes fitted and normalized params and returns them
@@ -49,7 +49,7 @@ class ProjectionFit(BaseModel):
 
         projection_data_range = np.max(projection_data) - np.min(projection_data)
         length = len(projection_data)
-        for key, val in params_dict.items():
+        for key, val in method_params_dict.items():
             if "sigma" in key or "mean" in key:
                 true_fitted_val = val * length
             elif "offset" in key:
@@ -57,8 +57,8 @@ class ProjectionFit(BaseModel):
             else:
                 true_fitted_val = val * projection_data_range
             temp = {key: true_fitted_val}
-            params_dict.update(temp)
-        return params_dict
+            method_params_dict.update(temp)
+        return method_params_dict
 
     def model_setup(self, projection_data=np.ndarray) -> None:
         """sets up the model and init_values/priors"""
@@ -72,16 +72,14 @@ class ProjectionFit(BaseModel):
         """
         x = np.linspace(0, 1, len(self.model.profile_data))
         y = self.model.profile_data
-
-        init_values = np.array(
-            [self.model.init_values[name] for name in self.model.param_names]
-        )
-
+        
+        init_values = self.model.model_parameters.initial_values
+        bounds = self.model.model_parameters.bounds
         res = scipy.optimize.minimize(
             self.model.loss,
             init_values,
             args=(x, y, self.use_priors),
-            bounds=self.model.param_bounds,
+            bounds=bounds,
             method="Powell"
         )
         return res  # TODO:optional argument to return fig,ax
@@ -98,49 +96,10 @@ class ProjectionFit(BaseModel):
         normalized_data = self.normalize(projection_data)
         self.model_setup(projection_data=normalized_data)
         res = self.fit_model()
-        for i, param in enumerate(self.model.param_names):
+
+
+        for i, param in enumerate(self.model.model_parameters.parameters):
             fitted_params_dict[param] = (res.x)[i]
         self.model.fitted_params_dict = fitted_params_dict.copy()
         params_dict = self.unnormalize_model_params(fitted_params_dict, projection_data)
         return params_dict
-
-    def plot_fit(self, **kwargs):
-        """
-        Plots the normalized fitted forward function against the normed data.
-        To plot unnormalized projection data, pass the unnormalized forward
-        function params and data as kwargs.
-        """
-        fitted_params_dict = {}
-        projection_data = []
-        if kwargs:
-            for key, val in kwargs.items():
-                if key in self.model.fitted_params_dict:
-                    fitted_params_dict[key] = val
-                else:
-                    projection_data = val
-            x = np.linspace(0, len(projection_data), len(projection_data))
-        else:
-            fitted_params_dict.update(self.model.fitted_params_dict)
-            projection_data = self.model.profile_data
-            x = np.linspace(0, 1, len(self.model.profile_data))
-
-        y = projection_data
-        fig, ax = plt.subplots()
-        y_fit = self.model.forward(x, fitted_params_dict)
-        ax.plot(x, y, label="data")
-        ax.plot(x, y_fit, label="fit")
-
-        textstr = "\n".join(
-            [
-                r"$\mathrm{%s}=%.2f$" % (key, val)
-                for key, val in fitted_params_dict.items()
-            ]
-        )
-        ax.text(
-            0.05,
-            0.95,
-            textstr,
-            transform=ax.transAxes,
-            verticalalignment="top",
-        )
-        return fig, ax
