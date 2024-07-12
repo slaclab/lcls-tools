@@ -6,6 +6,8 @@ magnets:
         bcon: KICK:SPS:385:BCON
         bctrl: KICK:SPS:385:BCTRL
         bdes: KICK:SPS:385:BDES
+        bmax: KICK:SPS:385:BMAX
+        bmin: KICK:SPS:385:BMIN
         ctrl: KICK:SPS:385:CTRL
       control_name: KICK:SPS:385
     metadata:
@@ -17,6 +19,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2879.37
+      type: BEND
   BKYSP2S:
     controls_information:
       PVs:
@@ -24,6 +27,8 @@ magnets:
         bcon: KICK:SPS:390:BCON
         bctrl: KICK:SPS:390:BCTRL
         bdes: KICK:SPS:390:BDES
+        bmax: KICK:SPS:390:BMAX
+        bmin: KICK:SPS:390:BMIN
         ctrl: KICK:SPS:390:CTRL
       control_name: KICK:SPS:390
     metadata:
@@ -35,6 +40,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2880.67
+      type: BEND
   BKYSP3S:
     controls_information:
       PVs:
@@ -42,6 +48,8 @@ magnets:
         bcon: KICK:SPS:395:BCON
         bctrl: KICK:SPS:395:BCTRL
         bdes: KICK:SPS:395:BDES
+        bmax: KICK:SPS:395:BMAX
+        bmin: KICK:SPS:395:BMIN
         ctrl: KICK:SPS:395:CTRL
       control_name: KICK:SPS:395
     metadata:
@@ -53,6 +61,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2881.97
+      type: BEND
   BLXSPS:
     controls_information:
       PVs:
@@ -60,6 +69,8 @@ magnets:
         bcon: BEND:SPS:470:BCON
         bctrl: BEND:SPS:470:BCTRL
         bdes: BEND:SPS:470:BDES
+        bmax: BEND:SPS:470:BMAX
+        bmin: BEND:SPS:470:BMIN
         ctrl: BEND:SPS:470:CTRL
       control_name: BEND:SPS:470
     metadata:
@@ -71,6 +82,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2900.67
+      type: BEND
   BXSP1S:
     controls_information:
       PVs:
@@ -78,6 +90,8 @@ magnets:
         bcon: BEND:SPS:610:BCON
         bctrl: BEND:SPS:610:BCTRL
         bdes: BEND:SPS:610:BDES
+        bmax: BEND:SPS:610:BMAX
+        bmin: BEND:SPS:610:BMIN
         ctrl: BEND:SPS:610:CTRL
       control_name: BEND:SPS:610
     metadata:
@@ -89,6 +103,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2945.898
+      type: BEND
   BXSP2S:
     controls_information:
       PVs:
@@ -96,6 +111,8 @@ magnets:
         bcon: BEND:SPS:800:BCON
         bctrl: BEND:SPS:800:BCTRL
         bdes: BEND:SPS:800:BDES
+        bmax: BEND:SPS:800:BMAX
+        bmin: BEND:SPS:800:BMIN
         ctrl: BEND:SPS:800:CTRL
       control_name: BEND:SPS:800
     metadata:
@@ -107,6 +124,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3003.644
+      type: BEND
   BXSP3S:
     controls_information:
       PVs:
@@ -114,6 +132,8 @@ magnets:
         bcon: BEND:SPS:950:BCON
         bctrl: BEND:SPS:950:BCTRL
         bdes: BEND:SPS:950:BDES
+        bmax: BEND:SPS:950:BMAX
+        bmin: BEND:SPS:950:BMIN
         ctrl: BEND:SPS:950:CTRL
       control_name: BEND:SPS:950
     metadata:
@@ -125,6 +145,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3048.871
+      type: BEND
   BYSP1S:
     controls_information:
       PVs:
@@ -132,6 +153,8 @@ magnets:
         bcon: BEND:SPS:530:BCON
         bctrl: BEND:SPS:530:BCTRL
         bdes: BEND:SPS:530:BDES
+        bmax: BEND:SPS:530:BMAX
+        bmin: BEND:SPS:530:BMIN
         ctrl: BEND:SPS:530:CTRL
       control_name: BEND:SPS:530
     metadata:
@@ -143,6 +166,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2920.429
+      type: BEND
   BYSP2S:
     controls_information:
       PVs:
@@ -150,6 +174,8 @@ magnets:
         bcon: BEND:SPS:560:BCON
         bctrl: BEND:SPS:560:BCTRL
         bdes: BEND:SPS:560:BDES
+        bmax: BEND:SPS:560:BMAX
+        bmin: BEND:SPS:560:BMIN
         ctrl: BEND:SPS:560:CTRL
       control_name: BEND:SPS:560
     metadata:
@@ -161,6 +187,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2932.829
+      type: BEND
   QSP1S:
     controls_information:
       PVs:
@@ -168,6 +195,8 @@ magnets:
         bcon: QUAD:SPS:570:BCON
         bctrl: QUAD:SPS:570:BCTRL
         bdes: QUAD:SPS:570:BDES
+        bmax: QUAD:SPS:570:BMAX
+        bmin: QUAD:SPS:570:BMIN
         ctrl: QUAD:SPS:570:CTRL
       control_name: QUAD:SPS:570
     metadata:
@@ -179,6 +208,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2934.068
+      type: QUAD
   QSP2S:
     controls_information:
       PVs:
@@ -186,6 +216,8 @@ magnets:
         bcon: QUAD:SPS:580:BCON
         bctrl: QUAD:SPS:580:BCTRL
         bdes: QUAD:SPS:580:BDES
+        bmax: QUAD:SPS:580:BMAX
+        bmin: QUAD:SPS:580:BMIN
         ctrl: QUAD:SPS:580:CTRL
       control_name: QUAD:SPS:580
     metadata:
@@ -197,6 +229,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2936.438
+      type: QUAD
   QSP3S:
     controls_information:
       PVs:
@@ -204,6 +237,8 @@ magnets:
         bcon: QUAD:SPS:640:BCON
         bctrl: QUAD:SPS:640:BCTRL
         bdes: QUAD:SPS:640:BDES
+        bmax: QUAD:SPS:640:BMAX
+        bmin: QUAD:SPS:640:BMIN
         ctrl: QUAD:SPS:640:CTRL
       control_name: QUAD:SPS:640
     metadata:
@@ -215,6 +250,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2953.181
+      type: QUAD
   QSP4S:
     controls_information:
       PVs:
@@ -222,6 +258,8 @@ magnets:
         bcon: QUAD:SPS:650:BCON
         bctrl: QUAD:SPS:650:BCTRL
         bdes: QUAD:SPS:650:BDES
+        bmax: QUAD:SPS:650:BMAX
+        bmin: QUAD:SPS:650:BMIN
         ctrl: QUAD:SPS:650:CTRL
       control_name: QUAD:SPS:650
     metadata:
@@ -233,6 +271,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2956.176
+      type: QUAD
   QSP5S:
     controls_information:
       PVs:
@@ -240,6 +279,8 @@ magnets:
         bcon: QUAD:SPS:710:BCON
         bctrl: QUAD:SPS:710:BCTRL
         bdes: QUAD:SPS:710:BDES
+        bmax: QUAD:SPS:710:BMAX
+        bmin: QUAD:SPS:710:BMIN
         ctrl: QUAD:SPS:710:CTRL
       control_name: QUAD:SPS:710
     metadata:
@@ -251,6 +292,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2974.771
+      type: QUAD
   QSP6S:
     controls_information:
       PVs:
@@ -258,6 +300,8 @@ magnets:
         bcon: QUAD:SPS:770:BCON
         bctrl: QUAD:SPS:770:BCTRL
         bdes: QUAD:SPS:770:BDES
+        bmax: QUAD:SPS:770:BMAX
+        bmin: QUAD:SPS:770:BMIN
         ctrl: QUAD:SPS:770:CTRL
       control_name: QUAD:SPS:770
     metadata:
@@ -269,6 +313,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2993.366
+      type: QUAD
   QSP7S:
     controls_information:
       PVs:
@@ -276,6 +321,8 @@ magnets:
         bcon: QUAD:SPS:780:BCON
         bctrl: QUAD:SPS:780:BCTRL
         bdes: QUAD:SPS:780:BDES
+        bmax: QUAD:SPS:780:BMAX
+        bmin: QUAD:SPS:780:BMIN
         ctrl: QUAD:SPS:780:CTRL
       control_name: QUAD:SPS:780
     metadata:
@@ -287,6 +334,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2996.361
+      type: QUAD
   QSP8S:
     controls_information:
       PVs:
@@ -294,6 +342,8 @@ magnets:
         bcon: QUAD:SPS:830:BCON
         bctrl: QUAD:SPS:830:BCTRL
         bdes: QUAD:SPS:830:BDES
+        bmax: QUAD:SPS:830:BMAX
+        bmin: QUAD:SPS:830:BMIN
         ctrl: QUAD:SPS:830:CTRL
       control_name: QUAD:SPS:830
     metadata:
@@ -305,6 +355,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3013.104
+      type: QUAD
   QSP9S:
     controls_information:
       PVs:
@@ -312,6 +363,8 @@ magnets:
         bcon: QUAD:SPS:840:BCON
         bctrl: QUAD:SPS:840:BCTRL
         bdes: QUAD:SPS:840:BDES
+        bmax: QUAD:SPS:840:BMAX
+        bmin: QUAD:SPS:840:BMIN
         ctrl: QUAD:SPS:840:CTRL
       control_name: QUAD:SPS:840
     metadata:
@@ -323,6 +376,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3015.474
+      type: QUAD
   XCSP1S:
     controls_information:
       PVs:
@@ -330,6 +384,8 @@ magnets:
         bcon: XCOR:SPS:578:BCON
         bctrl: XCOR:SPS:578:BCTRL
         bdes: XCOR:SPS:578:BDES
+        bmax: XCOR:SPS:578:BMAX
+        bmin: XCOR:SPS:578:BMIN
         ctrl: XCOR:SPS:578:CTRL
       control_name: XCOR:SPS:578
     metadata:
@@ -341,6 +397,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2935.619
+      type: XCOR
   XCSP3S:
     controls_information:
       PVs:
@@ -348,6 +405,8 @@ magnets:
         bcon: XCOR:SPS:634:BCON
         bctrl: XCOR:SPS:634:BCTRL
         bdes: XCOR:SPS:634:BDES
+        bmax: XCOR:SPS:634:BMAX
+        bmin: XCOR:SPS:634:BMIN
         ctrl: XCOR:SPS:634:CTRL
       control_name: XCOR:SPS:634
     metadata:
@@ -359,6 +418,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2952.383
+      type: XCOR
   XCSP5S:
     controls_information:
       PVs:
@@ -366,6 +426,8 @@ magnets:
         bcon: XCOR:SPS:706:BCON
         bctrl: XCOR:SPS:706:BCTRL
         bdes: XCOR:SPS:706:BDES
+        bmax: XCOR:SPS:706:BMAX
+        bmin: XCOR:SPS:706:BMIN
         ctrl: XCOR:SPS:706:CTRL
       control_name: XCOR:SPS:706
     metadata:
@@ -377,6 +439,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2974.277
+      type: XCOR
   XCSP7S:
     controls_information:
       PVs:
@@ -384,6 +447,8 @@ magnets:
         bcon: XCOR:SPS:776:BCON
         bctrl: XCOR:SPS:776:BCTRL
         bdes: XCOR:SPS:776:BDES
+        bmax: XCOR:SPS:776:BMAX
+        bmin: XCOR:SPS:776:BMIN
         ctrl: XCOR:SPS:776:CTRL
       control_name: XCOR:SPS:776
     metadata:
@@ -395,6 +460,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2995.563
+      type: XCOR
   XCSP9S:
     controls_information:
       PVs:
@@ -402,6 +468,8 @@ magnets:
         bcon: XCOR:SPS:836:BCON
         bctrl: XCOR:SPS:836:BCTRL
         bdes: XCOR:SPS:836:BDES
+        bmax: XCOR:SPS:836:BMAX
+        bmin: XCOR:SPS:836:BMIN
         ctrl: XCOR:SPS:836:CTRL
       control_name: XCOR:SPS:836
     metadata:
@@ -413,6 +481,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3014.575
+      type: XCOR
   YCSP2S:
     controls_information:
       PVs:
@@ -420,6 +489,8 @@ magnets:
         bcon: YCOR:SPS:587:BCON
         bctrl: YCOR:SPS:587:BCTRL
         bdes: YCOR:SPS:587:BDES
+        bmax: YCOR:SPS:587:BMAX
+        bmin: YCOR:SPS:587:BMIN
         ctrl: YCOR:SPS:587:CTRL
       control_name: YCOR:SPS:587
     metadata:
@@ -431,6 +502,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2937.887
+      type: YCOR
   YCSP4S:
     controls_information:
       PVs:
@@ -438,6 +510,8 @@ magnets:
         bcon: YCOR:SPS:643:BCON
         bctrl: YCOR:SPS:643:BCTRL
         bdes: YCOR:SPS:643:BDES
+        bmax: YCOR:SPS:643:BMAX
+        bmin: YCOR:SPS:643:BMIN
         ctrl: YCOR:SPS:643:CTRL
       control_name: YCOR:SPS:643
     metadata:
@@ -449,6 +523,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2955.428
+      type: YCOR
   YCSP6S:
     controls_information:
       PVs:
@@ -456,6 +531,8 @@ magnets:
         bcon: YCOR:SPS:767:BCON
         bctrl: YCOR:SPS:767:BCTRL
         bdes: YCOR:SPS:767:BDES
+        bmax: YCOR:SPS:767:BMAX
+        bmin: YCOR:SPS:767:BMIN
         ctrl: YCOR:SPS:767:CTRL
       control_name: YCOR:SPS:767
     metadata:
@@ -467,6 +544,7 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 2992.872
+      type: YCOR
   YCSP8S:
     controls_information:
       PVs:
@@ -474,6 +552,8 @@ magnets:
         bcon: YCOR:SPS:827:BCON
         bctrl: YCOR:SPS:827:BCTRL
         bdes: YCOR:SPS:827:BDES
+        bmax: YCOR:SPS:827:BMAX
+        bmin: YCOR:SPS:827:BMIN
         ctrl: YCOR:SPS:827:CTRL
       control_name: YCOR:SPS:827
     metadata:
@@ -485,3 +565,4 @@ magnets:
       - SC_STXI
       - SC_SXR
       sum_l_meters: 3012.306
+      type: YCOR

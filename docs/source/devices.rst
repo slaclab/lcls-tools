@@ -2,66 +2,35 @@
 Devices
 =======
 
-Device Base Class
+Device Classes
 =================
+
+All functions and properties below should be common to all Devices
 
 .. autoclass:: lcls_tools.common.devices.device.Device
     :members:
-    :undoc-members:
 
-.. autoclass:: lcls_tools.common.devices.device.ControlInformation
-    :members:
-    :undoc-members:
-
-.. autoclass:: lcls_tools.common.devices.device.PVSet
-    :members:
-    :undoc-members:
-
-.. autoclass:: lcls_tools.common.devices.device.Metadata
-    :members:
-    :undoc-members:
-
-Magnet Class
-============
+The devices below allow users to perform operations on individual devices of a given type.
 
 .. autoclass:: lcls_tools.common.devices.magnet.Magnet
     :members:
-    :undoc-members:
-
-.. autoclass:: lcls_tools.common.devices.magnet.MagnetCollection
-    :members:
-    :undoc-members:
-
-.. autoclass:: lcls_tools.common.devices.magnet.MagnetControlInformation
-    :members:
-    :undoc-members:
-
-.. autoclass:: lcls_tools.common.devices.magnet.MagnetPVSet
-    :members:
-    :undoc-members:
-
-.. autoclass:: lcls_tools.common.devices.magnet.MagnetMetadata
-    :members:
-    :undoc-members:
-
-
-Screen Class
-============
 
 .. autoclass:: lcls_tools.common.devices.screen.Screen
     :members:
-    :undoc-members:
+
+
+Device Collections
+======================
+
+All functions and properties below should be common to all DeviceCollections
+
+.. autoclass:: lcls_tools.common.devices.device.DeviceCollection
+    :members:
+
+The collections below allow users to perform group operations on given device types
+
+.. autoclass:: lcls_tools.common.devices.magnet.MagnetCollection
+    :members:
 
 .. autoclass:: lcls_tools.common.devices.screen.ScreenCollection
     :members:
-    :undoc-members:
-
-.. autoclass:: lcls_tools.common.devices.screen.ScreenControlInformation
-    :members:
-    :undoc-members:
-
-.. autoclass:: lcls_tools.common.devices.screen.ScreenPVSet
-    :members:
-    :undoc-members:
-
-
