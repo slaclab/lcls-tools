@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import numpy as np
+
 from pydantic import BaseModel, ConfigDict
 from scipy.stats import rv_continuous
 
@@ -50,6 +51,7 @@ class ModelParameters(BaseModel):
 
 
 # TODO: define properties
+
 class MethodBase(ABC):
     """
     Base abstract class for all fit methods, which serves as the bare minimum
@@ -127,6 +129,7 @@ class MethodBase(ABC):
         return loss_temp
 
     @property
+
     def profile_data(self):
         """1D array typically projection data"""
         return self._profile_data
@@ -136,6 +139,7 @@ class MethodBase(ABC):
         if not isinstance(profile_data, np.ndarray):
             raise TypeError("Input must be ndarray")
         self._profile_data = profile_data
+
         self.find_init_values()
         self.find_priors()
         self.fitted_params_dict = {}
