@@ -1,7 +1,6 @@
 import numpy as np
 import scipy.optimize
 import scipy.signal
-from matplotlib import pyplot as plt
 from pydantic import BaseModel, ConfigDict
 from lcls_tools.common.data_analysis.fit.method_base import MethodBase
 
@@ -36,7 +35,8 @@ class ProjectionFit(BaseModel):
         s.t. data is between 0 and 1
         """
         data_copy = data.copy()
-        normalized_data = (data_copy - np.min(data)) / (np.max(data) - np.min(data))
+        normalized_data = ((data_copy - np.min(data)) /
+                           (np.max(data) - np.min(data)))
         return normalized_data
 
     def unnormalize_model_params(
@@ -47,13 +47,15 @@ class ProjectionFit(BaseModel):
         to unnormalized values i.e the true fitted values of the distribution
         """
 
-        projection_data_range = np.max(projection_data) - np.min(projection_data)
+        projection_data_range = (np.max(projection_data) -
+                                 np.min(projection_data))
         length = len(projection_data)
         for key, val in method_params_dict.items():
             if "sigma" in key or "mean" in key:
                 true_fitted_val = val * length
             elif "offset" in key:
-                true_fitted_val = val * projection_data_range + np.min(projection_data)
+                true_fitted_val = (val * projection_data_range +
+                                   np.min(projection_data))
             else:
                 true_fitted_val = val * projection_data_range
             temp = {key: true_fitted_val}
@@ -72,7 +74,7 @@ class ProjectionFit(BaseModel):
         """
         x = np.linspace(0, 1, len(self.model.profile_data))
         y = self.model.profile_data
-        
+
         init_values = self.model.model_parameters.initial_values
         bounds = self.model.model_parameters.bounds
         res = scipy.optimize.minimize(
@@ -80,9 +82,9 @@ class ProjectionFit(BaseModel):
             init_values,
             args=(x, y, self.use_priors),
             bounds=bounds,
-            method="Powell"
+            method="Powell",
         )
-        return res  # TODO:optional argument to return fig,ax
+        return res
 
     def fit_projection(self, projection_data: np.ndarray) -> dict:
         """
@@ -97,9 +99,9 @@ class ProjectionFit(BaseModel):
         self.model_setup(projection_data=normalized_data)
         res = self.fit_model()
 
-
         for i, param in enumerate(self.model.model_parameters.parameters):
             fitted_params_dict[param] = (res.x)[i]
         self.model.fitted_params_dict = fitted_params_dict.copy()
-        params_dict = self.unnormalize_model_params(fitted_params_dict, projection_data)
+        params_dict = self.unnormalize_model_params(fitted_params_dict,
+                                                    projection_data)
         return params_dict

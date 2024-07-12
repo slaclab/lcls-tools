@@ -3,44 +3,53 @@ import numpy as np
 from pydantic import BaseModel, ConfigDict
 from scipy.stats import rv_continuous
 
+
 class Parameter(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    bounds : list
-    initial_value : float = None
-    prior : rv_continuous = None
+    bounds: list
+    initial_value: float = None
+    prior: rv_continuous = None
+
 
 class ModelParameters(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    name : str
-    parameters : dict[str,Parameter]
+    name: str
+    parameters: dict[str, Parameter]
 
     @property
     def bounds(self):
-        return np.vstack([np.array(self.parameters[parameter].bounds) for parameter in self.parameters])
-    
+        return np.vstack(
+            [
+                np.array(self.parameters[parameter].bounds)
+                for parameter in self.parameters
+            ]
+        )
+
     @property
     def initial_values(self):
-        return np.array([self.parameters[parameter].initial_value for parameter in self.parameters])
-    
+        return np.array(
+            [self.parameters[parameter].initial_value
+                for parameter in self.parameters]
+        )
+
     @initial_values.setter
-    #TODO: can change argument to type dict[str,Parameter] but don't think that makes sense since 
-    # GaussianModel already has modelParameters.paramters and we want to update the value of 
-    # ModelParameters.parameters['mean'].initial_value 
-    def initial_values(self,initial_values: dict[str,float]):
-        for parameter,initial_value in initial_values.items():
+    def initial_values(self, initial_values: dict[str, float]):
+        for parameter, initial_value in initial_values.items():
             self.parameters[parameter].initial_value = initial_value
 
     @property
     def priors(self):
-        return np.array([self.parameters[parameter].prior for parameter in self.parameters])
-    
+        return np.array(
+            [self.parameters[parameter].prior for parameter in self.parameters]
+        )
+
     @priors.setter
-    def priors(self,priors: dict[str,float]):
-        for parameter,prior in priors.items():
+    def priors(self, priors: dict[str, float]):
+        for parameter, prior in priors.items():
             self.parameters[parameter].prior = prior
 
 
-#TODO: define properties 
+# TODO: define properties
 class MethodBase(ABC):
     """
     Base abstract class for all fit methods, which serves as the bare minimum
@@ -54,45 +63,67 @@ class MethodBase(ABC):
     param_bounds: np.ndarray (array that contains the lower
         and upper bound on for acceptable values of each parameter)
     """
-    model_parameters : ModelParameters = None
 
-
-    @abstractmethod
-    def find_init_values(self) -> list:
-        ...
+    model_parameters: ModelParameters = None
 
     @abstractmethod
-    def find_priors(self, data: np.ndarray) -> dict:
-        ...
+    def find_init_values(self) -> list: ...
 
-    def forward(self, x: np.ndarray, method_param_dict: dict[str,float]) -> np.ndarray:
-        method_param_list = np.array([method_param_dict[parameter_name] for parameter_name in self.model_parameters.parameters])
-        return self._forward(x, method_param_list)
+    @abstractmethod
+    def find_priors(self, data: np.ndarray) -> dict: ...
+
+    def forward(
+        self, x: np.ndarray, method_parameter_dict: dict[str, float]
+    ) -> np.ndarray:
+        method_parameter_list = np.array(
+            [
+                method_parameter_dict[parameter_name]
+                for parameter_name in self.model_parameters.parameters
+            ]
+        )
+        return self._forward(x, method_parameter_list)
 
     @staticmethod
     @abstractmethod
-    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray:
-        ...
+    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray: ...
 
-    def log_prior(self, method_param_dict: dict[str,rv_continuous]):
-        method_param_list = np.array([method_param_dict[parameter_name] for parameter_name in self.model_parameters.parameters])
-        return self._log_prior(method_param_list)
+    def log_prior(self, method_parameter_dict: dict[str, rv_continuous]):
+        method_parameter_list = np.array(
+            [
+                method_parameter_dict[parameter_name]
+                for parameter_name in self.model_parameters.parameters
+            ]
+        )
+        return self._log_prior(method_parameter_list)
 
     @abstractmethod
-    def _log_prior(self, params: np.ndarray):
-        ...
+    def _log_prior(self, params: np.ndarray): ...
 
-    def log_likelihood(self, x: np.ndarray, y: np.ndarray, method_param_dict: dict):
-        method_param_list = np.array([method_param_dict[parameter_name] for parameter_name in self.model_parameters.parameters])
-        return self._log_likelihood(x, y, method_param_list)
+    def log_likelihood(self, x: np.ndarray, y: np.ndarray,
+                       method_parameter_dict: dict):
+        method_parameter_list = np.array(
+            [
+                method_parameter_dict[parameter_name]
+                for parameter_name in self.model_parameters.parameters
+            ]
+        )
+        return self._log_likelihood(x, y, method_parameter_list)
 
-    def _log_likelihood(self, x: np.ndarray, y: np.ndarray, method_param_list: np.ndarray):
-        return -np.sum((y - self._forward(x, method_param_list)) ** 2)
+    def _log_likelihood(
+        self, x: np.ndarray, y: np.ndarray, method_parameter_list: np.ndarray
+    ):
+        return -np.sum((y - self._forward(x, method_parameter_list)) ** 2)
 
-    def loss(self, method_param_list:np.ndarray, x:np.ndarray, y:np.ndarray, use_priors:bool=False):
-        loss_temp = -self._log_likelihood(x, y, method_param_list)
+    def loss(
+        self,
+        method_parameter_list: np.ndarray,
+        x: np.ndarray,
+        y: np.ndarray,
+        use_priors: bool = False,
+    ):
+        loss_temp = -self._log_likelihood(x, y, method_parameter_list)
         if use_priors:
-            loss_temp = loss_temp - self._log_prior(method_param_list)
+            loss_temp = loss_temp - self._log_prior(method_parameter_list)
         return loss_temp
 
     @property
