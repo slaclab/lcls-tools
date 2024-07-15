@@ -75,8 +75,8 @@ class ProjectionFit(BaseModel):
         x = np.linspace(0, 1, len(self.model.profile_data))
         y = self.model.profile_data
 
-        init_values = self.model.model_parameters.initial_values
-        bounds = self.model.model_parameters.bounds
+        init_values = self.model.parameters.initial_values
+        bounds = self.model.parameters.bounds
         res = scipy.optimize.minimize(
             self.model.loss,
             init_values,
@@ -99,7 +99,7 @@ class ProjectionFit(BaseModel):
         self.model_setup(projection_data=normalized_data)
         res = self.fit_model()
 
-        for i, param in enumerate(self.model.model_parameters.parameters):
+        for i, param in enumerate(self.model.parameters.parameters):
             fitted_params_dict[param] = (res.x)[i]
         self.model.fitted_params_dict = fitted_params_dict.copy()
         params_dict = self.unnormalize_model_params(fitted_params_dict,

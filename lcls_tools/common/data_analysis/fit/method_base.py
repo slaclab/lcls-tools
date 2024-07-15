@@ -20,16 +20,16 @@ class ModelParameters(BaseModel):
     def bounds(self):
         return np.vstack(
             [
-                np.array(self.parameters[parameter].bounds)
-                for parameter in self.parameters
+                np.array(parameter.bounds)
+                for parameter in self.parameters.values()
             ]
         )
 
     @property
     def initial_values(self):
         return np.array(
-            [self.parameters[parameter].initial_value
-                for parameter in self.parameters]
+            [parameter.initial_value
+                for parameter in self.parameters.values()]
         )
 
     @initial_values.setter
@@ -64,7 +64,7 @@ class MethodBase(ABC):
         and upper bound on for acceptable values of each parameter)
     """
 
-    model_parameters: ModelParameters = None
+    parameters: ModelParameters = None
 
     @abstractmethod
     def find_init_values(self) -> list: ...
@@ -78,7 +78,7 @@ class MethodBase(ABC):
         method_parameter_list = np.array(
             [
                 method_parameter_dict[parameter_name]
-                for parameter_name in self.model_parameters.parameters
+                for parameter_name in self.parameters.parameters
             ]
         )
         return self._forward(x, method_parameter_list)
@@ -91,7 +91,7 @@ class MethodBase(ABC):
         method_parameter_list = np.array(
             [
                 method_parameter_dict[parameter_name]
-                for parameter_name in self.model_parameters.parameters
+                for parameter_name in self.parameters.parameters
             ]
         )
         return self._log_prior(method_parameter_list)
@@ -104,7 +104,7 @@ class MethodBase(ABC):
         method_parameter_list = np.array(
             [
                 method_parameter_dict[parameter_name]
-                for parameter_name in self.model_parameters.parameters
+                for parameter_name in self.parameters.parameters
             ]
         )
         return self._log_likelihood(x, y, method_parameter_list)
