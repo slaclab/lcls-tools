@@ -28,14 +28,13 @@ class GaussianModel(MethodBase):
     density functions to match that data.
     """
 
-    model_parameters = gaussian_parameters
+    parameters = gaussian_parameters
 
     def find_init_values(self) -> dict:
         """Fit data without optimization, return values."""
 
         data = self._profile_data
         x = np.linspace(0, 1, len(data))
-        # init_fit = norm.pdf(data)
         offset = data.min() + 0.01
         amplitude = data.max() - offset
 
@@ -48,7 +47,7 @@ class GaussianModel(MethodBase):
             "amplitude": amplitude,
             "offset": offset,
         }
-        self.model_parameters.initial_values = init_values
+        self.parameters.initial_values = init_values
         return init_values
 
     def find_priors(self) -> dict:
@@ -75,12 +74,14 @@ class GaussianModel(MethodBase):
 
         # Creating a normal distribution of points around initial offset.
         offset_prior = norm(init_values["offset"], 0.5)
-        parameters = [parameter for parameter in init_values]
-        priors = dict(
-            zip(parameters, [mean_prior, sigma_prior,
-                             amplitude_prior, offset_prior])
-        )
-        self.model_parameters.priors = priors
+        priors = {
+            "mean": mean_prior,
+            "sigma": sigma_prior,
+            "amplitude": amplitude_prior,
+            "offset": offset_prior,
+        }
+
+        self.parameters.priors = priors
         return priors
 
     def _forward(self, x: np.array, method_parameter_list: np.array):
@@ -97,6 +98,6 @@ class GaussianModel(MethodBase):
         return np.sum(
             [
                 prior.logpdf(method_parameter_list[i])
-                for i, prior in enumerate(self.model_parameters.priors)
+                for i, prior in enumerate(self.parameters.priors)
             ]
         )
