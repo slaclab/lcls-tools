@@ -91,8 +91,8 @@ class GaussianModel(MethodBase):
         sigma = method_parameter_list[1]
         amplitude = method_parameter_list[2]
         offset = method_parameter_list[3]
-        return (np.sqrt(2 * np.pi) * amplitude *
-                norm.pdf((x - mean) / sigma) + offset)
+        return (np.sqrt(2 * np.pi) * amplitude
+                * norm.pdf((x - mean) / sigma) + offset)
 
     def _log_prior(self, method_parameter_list: np.ndarray) -> float:
         return np.sum(

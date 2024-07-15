@@ -69,10 +69,12 @@ class MethodBase(ABC):
     parameters: ModelParameters = None
 
     @abstractmethod
-    def find_init_values(self) -> list: ...
+    def find_init_values(self) -> list:
+        ...
 
     @abstractmethod
-    def find_priors(self, data: np.ndarray) -> dict: ...
+    def find_priors(self, data: np.ndarray) -> dict:
+        ...
 
     def forward(
         self, x: np.ndarray, method_parameter_dict: dict[str, float]
@@ -87,7 +89,8 @@ class MethodBase(ABC):
 
     @staticmethod
     @abstractmethod
-    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray: ...
+    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray:
+        ...
 
     def log_prior(self, method_parameter_dict: dict[str, rv_continuous]):
         method_parameter_list = np.array(
@@ -99,7 +102,8 @@ class MethodBase(ABC):
         return self._log_prior(method_parameter_list)
 
     @abstractmethod
-    def _log_prior(self, params: np.ndarray): ...
+    def _log_prior(self, params: np.ndarray):
+        ...
 
     def log_likelihood(self, x: np.ndarray, y: np.ndarray,
                        method_parameter_dict: dict):
@@ -129,7 +133,6 @@ class MethodBase(ABC):
         return loss_temp
 
     @property
-
     def profile_data(self):
         """1D array typically projection data"""
         return self._profile_data
