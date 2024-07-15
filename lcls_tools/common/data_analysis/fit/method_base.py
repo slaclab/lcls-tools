@@ -1,7 +1,56 @@
 from abc import ABC, abstractmethod
 import numpy as np
-from matplotlib import pyplot as plt
 
+from pydantic import BaseModel, ConfigDict
+from scipy.stats import rv_continuous
+
+
+class Parameter(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    bounds: list
+    initial_value: float = None
+    prior: rv_continuous = None
+
+
+class ModelParameters(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    name: str
+    parameters: dict[str, Parameter]
+
+    @property
+    def bounds(self):
+        return np.vstack(
+            [
+                np.array(parameter.bounds)
+                for parameter in self.parameters.values()
+            ]
+        )
+
+    @property
+    def initial_values(self):
+        return np.array(
+            [parameter.initial_value
+                for parameter in self.parameters.values()]
+        )
+
+    @initial_values.setter
+    def initial_values(self, initial_values: dict[str, float]):
+        for parameter, initial_value in initial_values.items():
+            self.parameters[parameter].initial_value = initial_value
+
+    @property
+    def priors(self):
+        return np.array(
+            [self.parameters[parameter].prior for parameter in self.parameters]
+        )
+
+    @priors.setter
+    def priors(self, priors: dict[str, float]):
+        for parameter, prior in priors.items():
+            self.parameters[parameter].prior = prior
+
+
+# TODO: define properties
 
 class MethodBase(ABC):
     """
@@ -17,118 +66,70 @@ class MethodBase(ABC):
         and upper bound on for acceptable values of each parameter)
     """
 
-    param_names: list = None
-    param_bounds: np.ndarray = None
-
-    def __init__(self):
-
-        self.init_values: dict = None
-        self.fitted_params_dict: dict = None
+    parameters: ModelParameters = None
 
     @abstractmethod
-    def find_init_values(self) -> list:
-        ...
+    def find_init_values(self) -> list: ...
 
     @abstractmethod
-    def find_priors(self, data: np.ndarray) -> dict:
-        ...
+    def find_priors(self, data: np.ndarray) -> dict: ...
 
-    # TODO: move to plotting file
-    def plot_init_values(self):
-        init_values = np.array(list(self.init_values.values()))
-        """
-        Plots init values as a function of forward and visually compares it to
-        the initial distribution
-        """
-        fig, axs = plt.subplots(1, 1)
-        x = np.linspace(0, 1, len(self.profile_data))
-        y_fit = self._forward(x, init_values)
-        axs.plot(x, self.profile_data, label="Projection Data")
-        axs.plot(x, y_fit, label="Initial Guess Fit Data")
-        axs.set_xlabel("x")
-        axs.set_ylabel("Forward(x)")
-        axs.set_title("Initial Fit Guess")
-        return fig, axs
-
-    # TODO: move to plotting file
-    def plot_priors(self):
-        """Plots prior distributions for each param in param_names"""
-        num_plots = len(self.priors)
-        fig, axs = plt.subplots(num_plots, 1)
-        for i, (param, prior) in enumerate(self.priors.items()):
-            x = np.linspace(0, self.param_bounds[i][-1], len(self.profile_data))
-            axs[i].plot(x, prior.pdf(x))
-            axs[i].axvline(
-                self.param_bounds[i, 0],
-                ls="--",
-                c="k",
-            )
-            axs[i].axvline(
-                self.param_bounds[i, 1],
-                ls="--",
-                c="k",
-                label="bounds"
-            )
-            axs[i].set_title(param + " prior")
-            axs[i].set_ylabel("Density")
-            axs[i].set_xlabel(param)
-        fig.tight_layout()
-        return fig, axs
-
-    def forward(self, x: np.ndarray, params: dict) -> np.ndarray:
-        # TODO:test new usage
-
-        params_list = np.array([params[name] for name in self.param_names])
-        return self._forward(x, params_list)
+    def forward(
+        self, x: np.ndarray, method_parameter_dict: dict[str, float]
+    ) -> np.ndarray:
+        method_parameter_list = np.array(
+            [
+                method_parameter_dict[parameter_name]
+                for parameter_name in self.parameters.parameters
+            ]
+        )
+        return self._forward(x, method_parameter_list)
 
     @staticmethod
     @abstractmethod
-    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray:
-        ...
+    def _forward(x: np.ndarray, params: np.ndarray) -> np.ndarray: ...
 
-    def log_prior(self, params: dict):
-        # TODO:test new usage
-        print(params)
-        params_list = np.array([params[name] for name in self.param_names])
-        return self._log_prior(params_list)
+    def log_prior(self, method_parameter_dict: dict[str, rv_continuous]):
+        method_parameter_list = np.array(
+            [
+                method_parameter_dict[parameter_name]
+                for parameter_name in self.parameters.parameters
+            ]
+        )
+        return self._log_prior(method_parameter_list)
 
     @abstractmethod
-    def _log_prior(self, params: np.ndarray):
-        ...
+    def _log_prior(self, params: np.ndarray): ...
 
-    def log_likelihood(self, x: np.ndarray, y: np.ndarray, params: dict):
-        # TODO:test new usage
-        params_list = np.array([params[name] for name in self.param_names])
-        return self._log_likelihood(x, y, params_list)
+    def log_likelihood(self, x: np.ndarray, y: np.ndarray,
+                       method_parameter_dict: dict):
+        method_parameter_list = np.array(
+            [
+                method_parameter_dict[parameter_name]
+                for parameter_name in self.parameters.parameters
+            ]
+        )
+        return self._log_likelihood(x, y, method_parameter_list)
 
-    def _log_likelihood(self, x: np.ndarray, y: np.ndarray, params: np.ndarray):
-        # reducing error between data and fit
-        return -np.sum((y - self._forward(x, params)) ** 2)
+    def _log_likelihood(
+        self, x: np.ndarray, y: np.ndarray, method_parameter_list: np.ndarray
+    ):
+        return -np.sum((y - self._forward(x, method_parameter_list)) ** 2)
 
-    def loss(self, params, x, y, use_priors=False):
-        # TODO: implement using private functions _log_likelihood and
-        # _log_prior ML group way of iterating over priors/reducing
-        # difference in fit and data
-        loss_temp = -self._log_likelihood(x, y, params)
+    def loss(
+        self,
+        method_parameter_list: np.ndarray,
+        x: np.ndarray,
+        y: np.ndarray,
+        use_priors: bool = False,
+    ):
+        loss_temp = -self._log_likelihood(x, y, method_parameter_list)
         if use_priors:
-            loss_temp = loss_temp - self._log_prior(params)
+            loss_temp = loss_temp - self._log_prior(method_parameter_list)
         return loss_temp
 
     @property
-    def priors(self):
-        """
-        Initial Priors store in a dictionary where the keys are the
-        complete set of parameters of the Model
-        """
-        return self._priors
 
-    @priors.setter
-    def priors(self, priors):
-        if not isinstance(priors, dict):
-            raise TypeError("Input must be a dictionary")
-        self._priors = priors
-
-    @property
     def profile_data(self):
         """1D array typically projection data"""
         return self._profile_data
@@ -138,7 +139,7 @@ class MethodBase(ABC):
         if not isinstance(profile_data, np.ndarray):
             raise TypeError("Input must be ndarray")
         self._profile_data = profile_data
-        # should change these to private methods
+
         self.find_init_values()
         self.find_priors()
         self.fitted_params_dict = {}
