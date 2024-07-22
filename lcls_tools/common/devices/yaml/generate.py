@@ -207,3 +207,34 @@ class YAMLGenerator:
             required_types=required_screen_types,
             pv_search_terms=possible_screen_pvs,
         )
+    
+    def extract_wires(self, area: Union[str, List[str]] = ["HTR"]):
+        required_wire_types = ["WIRE"]
+        possible_wire_pvs = {
+            "MOTR": "motr",
+            "MOTR.VELO": "velo",
+            "MOTR.RBV": "rbv",
+            "MOTR_INIT": "initialize",
+            "MOTR_RETRACT": "retract",
+            "STARTSCAN": "startscan",
+            "XWIRESIZE": "xsize",
+            "YWIRESIZE": "ysize",
+            "UWIRESIZE": "usize",
+            "USEXWIRE": "usexwire",
+            "USEYWIRE": "useywire",
+            "USEUWIRE": "useuwire",
+            "XWIREINNER": "xwireinner",
+            "XWIREOUTER": "xwireouter",
+            "YWIREINNER": "ywireinner",
+            "YWIREOUTER": "ywireouter",
+            "UWIREINNER": "uwireinner",
+            "UWIREOUTER": "uwireouter",
+            "MOTR_ENABLED_STS": "enabled",
+            "MOTR_HOMED_STS": "homed",
+            "MOTR_TIMEOUTEN": "timeout",
+        }
+        return self.extract_devices(
+            area = area,
+            required_types=required_wire_types,
+            pv_search_terms=possible_wire_pvs,
+        )
