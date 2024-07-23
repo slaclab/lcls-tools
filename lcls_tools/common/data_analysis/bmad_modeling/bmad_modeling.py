@@ -1,4 +1,3 @@
-from pydantic.dataclasses import dataclass
 import numpy as np
 import os
 import matplotlib.pyplot as plt
@@ -7,7 +6,7 @@ from lcls_live.datamaps import get_datamaps
 from lcls_live.archiver import lcls_archiver_restore
 
 def evaluate_tao(tao, tao_cmds):
-        """Evaluate set of tao command, toggles lattice_calculation OFF/ON in between command list"""
+    """Evaluate set of tao command, toggles lattice_calculation OFF/ON in between command list"""
     tao.cmd("set global lattice_calc_on = F")
     tao.cmds(tao_cmds)
     tao.cmd("set global lattice_calc_on = T")
@@ -48,7 +47,7 @@ def match_twiss(tao, variable, datum):
     show_twiss(tao, element, [])
 
 def get_machine_values(data_source, date_time, pv_list):
-"""Returns pvdata, a dictionary with keys containing the PV name and values from Actual, Desired or Archive"""
+    """Returns pvdata, a dictionary with keys containing the PV name and values from Actual, Desired or Archive"""
     if data_source in ["DES", "ACT"]:
         pvdata = get_live(pv_list)
     elif "ARCHIVE" in data_source:
@@ -79,13 +78,13 @@ def get_element(tao, datum):
     return tao.data_parameter(datum, "ele_name")[0].split(";")[1]
 
 def get_live(pvlist):
-"""Returns dictionary with PV names as keys and values of PVs"""
+    """Returns dictionary with PV names as keys and values of PVs"""
     return dict(zip(pvlist, epics.caget_many(pvlist)))
 
 def use_klys_when_beam_off(tao_cmds, pvdata, beam_code="1"):
-        """Modifies tao_cmds, in_use set to 1 if station active on
+    """Modifies tao_cmds, in_use set to 1 if station active on
         beam_code"""
-        # use = {}
+    # use = {}
     new_cmd = []
     for cmd in tao_cmds:
         if 'in_use' in cmd:
