@@ -8,20 +8,17 @@ class HDF5IO:
         pass
 
     def write(
-            self,
-            measurement_data: dict,
-            measurement_obj: Measurement,
-            filename: Optional[str] = None
+        self,
+        measurement_data: dict,
+        measurement_obj: Measurement,
+        filename: Optional[str] = None,
     ):
         """
         Write data to h5file
         """
         raise NotImplementedError
 
-    def read(
-            self,
-            filename: Optional[str] = None
-    ):
+    def read(self, filename: Optional[str] = None):
         """
         Read data from h5file
         """
