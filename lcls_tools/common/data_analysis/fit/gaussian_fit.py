@@ -13,12 +13,12 @@ class GaussianFit(BaseModel):
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    processor: ImageProcessor #= ImageProcessor()
-    fit: ProjectionFit #= ProjectionFit()
+    processor: ImageProcessor = ImageProcessor()
+    fit: ProjectionFit = ProjectionFit()
     min_log_intensity: float = 4.0
     bounding_box_half_width: PositiveFloat = 3.0
     apply_bounding_box_constraint:bool = True
-    image: Optional[np.ndarray]
+    image: Optional[np.ndarray] = None
 
     @property
     def beamsize(self):
@@ -33,8 +33,8 @@ class GaussianFit(BaseModel):
         y_parameters = self.fit.fit_projection(y_proj)
 
         return  {
-            "centroid":  np.array(x_parameters['mean'],y_parameters['mean']),
-            "rms_sizes": np.array(x_parameters['sigma'],y_parameters['sigma']),
+            "centroid":  np.array((x_parameters['mean'],y_parameters['mean'])),
+            "rms_sizes": np.array((x_parameters['sigma'],y_parameters['sigma'])),
             "total_intensity": image.sum(),
             "log10_total_intensity": np.log10(image.sum()),
         }
@@ -63,22 +63,27 @@ class GaussianFit(BaseModel):
             centroid = beamspot_chars['centroid']
             sizes = beamspot_chars['rms_sizes']
 
+
             if np.all(~np.isnan(np.stack((centroid, sizes)))):
                 # get beam region bounding box
                 n_stds = self.bounding_box_half_width
+
                 pts = np.array(
                     (
                         centroid - n_stds * sizes,
                         centroid + n_stds * sizes,
                         centroid - n_stds * sizes * np.array((-1, 1)),
-                        centroid + n_stds * sizes * np.array((-1, 1))
+                        centroid + n_stds * sizes * np.array((-1, 1)),
                     )
                 )
-            
+
+
+                print(pts)
+
                 if self.processor.roi is not None:
                     roi_radius = self.processor.roi.radius
                 else:
-                    roi_radius = np.min(np.array(self.image.shape) / 2)
+                    roi_radius = np.min(np.array(self.image.shape) / 1.5) #maybe need to change this
 
                 temp = pts - np.array((roi_radius, roi_radius))
                 distances = np.linalg.norm(temp, axis=1)
