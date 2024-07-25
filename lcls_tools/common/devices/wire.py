@@ -20,8 +20,6 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
-EPICS_ERROR_MESSAGE = "Not able to connect to the control system."
-
 class WirePVSet(PVSet):
     motr: PV # the rest of the PVs are all related to the motor
     cnen: PV
@@ -31,6 +29,9 @@ class WirePVSet(PVSet):
     init: PV
     retract: PV
     startscan: PV
+    xsize: PV
+    ysize: PV
+    usize: PV
     usexwire: PV
     useywire: PV
     useuwire: PV
@@ -57,10 +58,14 @@ class WireControlInformation(ControlInformation):
     _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        #TODO: Get possible options for wire ctrl PV
-        options = self.PVs.motr.get_ctrlvars()["enum_strs"]
-        [self._ctrl_options.update({option: i}) for i, option in enumerate(options)]
+        super(WireControlInformation, self).__init__(*args, **kwargs)
+        # Get possible options for wire ctrl PV, empty dict by default.
+        options = self.PVs.ctrl.get_ctrlvars(timeout=1)
+        if options:
+            [
+                self._ctrl_options.update({option: i})
+                for i, option in enumerate(options["enum_strs"])
+            ]
 
     @property
     def ctrl_options(self):
@@ -91,7 +96,7 @@ class Wire(Device):
     """ Decorators """
 
     def check_state(f):
-        """Decorator to only allow transitions in 'Ready' state"""
+        """Decorator to only allow transitions in 'Ready' state."""
 
         def decorated(self, *args, **kwargs):
             #TODO: Find out right check for this spot/wires
@@ -103,7 +108,7 @@ class Wire(Device):
         return decorated
 
     def check_options(options_to_check: Union[str, List]):
-        """Decorator to only allow motor to move if wire is in the retracted position"""
+        """Decorator to only allow motor to move if wire is in the retracted position."""
         # Maybe this comment should be updated? Would we move from non retracted position?
         def decorator(function):
             @wraps(function)
@@ -124,7 +129,38 @@ class Wire(Device):
         return decorator
 
     @property
+    def xsize(self):
+        """Returns the x wire thickness in um."""
+        #Try to grab from PV first, then if fails, get from yaml
+        #Make sure to print statement saying if yaml values used
+        try:
+            return self.metadata.PVs.xsize.get()
+        except:
+            print(EPICS_ERROR_MESSAGE)
+            #TODO: Returning wire size from yaml file instead
+            return 
+        
+    @property    
+    def ysize(self):
+        """Returns the y wire thickness in um."""
+        try:
+            return self.metadata.PVs.ysize.get()
+        except:
+            print(EPICS_ERROR_MESSAGE)
+            #TODO: Returning wire size from yaml file instead
+
+    @property
+    def usize(self):
+        """Returns the u wire thickness in um."""
+        try:
+            return self.metadata.PVs.usize.get()
+        except:
+            print(EPICS_ERROR_MESSAGE)
+            #TODO: Returning wire size from yaml file instead
+
+    @property
     def use_x_wire(self):
+        """Checks if the X plane will be scanned."""
         return self.controls_information.PVs.usexwire.get()
     @use_x_wire.setter
     def use_x_wire(self, val: int) -> None:
@@ -135,6 +171,7 @@ class Wire(Device):
 
     @property
     def x_wire_inner(self):
+        """Returns the inner point of the X plane scan range."""
         return self.controls_information.PVs.xwireinner.get()
     @x_wire_inner.setter
     def x_wire_inner(self, val: int) -> None:
@@ -145,6 +182,7 @@ class Wire(Device):
 
     @property
     def x_wire_outer(self):
+        """Returns the outer point of the X plane scan range."""
         return self.controls_information.PVs.xwireouter.get()
     @x_wire_outer.setter
     def x_wire_outer(self, val: int) -> None:
@@ -155,6 +193,7 @@ class Wire(Device):
 
     @property
     def use_y_wire(self):
+        """Checks if the Y plane will be scanned."""
         return self.metadata.PVs.useywire.get()
     @use_y_wire.setter
     def use_y_wire(self, val: int) -> None:
@@ -165,6 +204,7 @@ class Wire(Device):
 
     @property
     def y_wire_inner(self):
+        """Returns the inner point of the Y plane scan range."""
         return self.controls_information.PVs.ywireinner.get()
     @y_wire_inner.setter
     def y_wire_inner(self, val: int) -> None:
@@ -175,6 +215,7 @@ class Wire(Device):
 
     @property
     def y_wire_outer(self):
+        """Returns the outer point of the Y plane scan range."""
         return self.controls_information.PVs.ywireouter.get()
     @x_wire_outer.setter
     def y_wire_outer(self, val: int) -> None:
@@ -185,6 +226,7 @@ class Wire(Device):
 
     @property
     def use_u_wire(self):
+        """Checks if the U plane will be scanned."""
         return self.metadata.PVs.useuwire.get()
     @use_u_wire.setter
     def use_u_wire(self, val: int) -> None:
@@ -195,6 +237,7 @@ class Wire(Device):
 
     @property
     def u_wire_inner(self):
+        """Returns the inner point of the U plane scan range."""
         return self.controls_information.PVs.uwireinner.get()
     @u_wire_inner.setter
     def u_wire_inner(self, val: int) -> None:
@@ -205,6 +248,7 @@ class Wire(Device):
 
     @property
     def u_wire_outer(self):
+        """Returns the outer point of the U plane scan range."""
         return self.controls_information.PVs.uwireouter.get()
     @u_wire_outer.setter
     def u_wire_outer(self, val: int) -> None:
@@ -215,6 +259,9 @@ class Wire(Device):
 
     @property
     def initialized(self):
+        """
+        Checks if the wire scanner device has been intialized..
+        """
         return self.controls_information.PVs.enabled.get()
     @initialized.setter
     def initalized(self, val) -> None:
@@ -225,10 +272,15 @@ class Wire(Device):
 
     @property
     def homed(self):
+        """
+        Checks if the wire is in the home position.  Home position
+        is 0 microns.
+        """
         return self.controls_information.PVs.homed.get()
 
     @property
     def position(self):
+        """Returns the readback value from the MOTR PV."""
         return self.controls_information.PVs.rbv.get()
     @position.setter
     def position(self, val: int) -> None:
@@ -239,10 +291,12 @@ class Wire(Device):
 
     @property
     def speed(self):
+        """Returns the current calculated speed of the wire scanner."""
         return self.controls_information.PVs.velo.get()
 
     @property
     def retract(self):
+        """Returns retract status of wire scanner"""
         return self.controls_information.PVs.retract.get()
     @retract.setter
     def retract(self, val: int) -> None:
