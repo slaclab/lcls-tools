@@ -1,5 +1,6 @@
 from datetime import datetime
 from functools import wraps
+
 from pydantic import (
     BaseModel,
     PositiveFloat,
@@ -20,10 +21,11 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
+
 class WirePVSet(PVSet):
-    motr: PV # the rest of the PVs are all related to the motor
+    motr: PV  # the rest of the PVs are all related to the motor
     cnen: PV
-    velo: PV # velocity
+    velo: PV  # velocity
     rbv: PV
     rmp: PV  # retracted motor position?
     init: PV
@@ -59,7 +61,7 @@ class WireControlInformation(ControlInformation):
 
     def __init__(self, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
-        # Get possible options for wire ctrl PV, empty dict by default.
+        # Get possible options for magnet ctrl PV, empty dict by default.
         options = self.PVs.ctrl.get_ctrlvars(timeout=1)
         if options:
             [
@@ -78,9 +80,9 @@ class WireMetadata(Metadata):
     xsize: Optional[PositiveFloat] = None
     ysize: Optional[PositiveFloat] = None
     usize: Optional[PositiveFloat] = None
-    #TODO: Add wire material and sum_l here?
-    #TODO: Add LBLM and BPM infomration here? 
-    #TODO: Add info on locations for X, Y, U wires
+    # TODO: Add wire material and sum_l here?
+    # TODO: Add LBLM and BPM infomration here? 
+    # TODO: Add info on locations for X, Y, U wires
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -99,7 +101,7 @@ class Wire(Device):
         """Decorator to only allow transitions in 'Ready' state."""
 
         def decorated(self, *args, **kwargs):
-            #TODO: Find out right check for this spot/wires
+            # TODO: Find out right check for this spot/wires
             if self.motr != "Ready":
                 print("Unable to perform action, wire not in Ready state")
                 return
@@ -131,23 +133,23 @@ class Wire(Device):
     @property
     def xsize(self):
         """Returns the x wire thickness in um."""
-        #Try to grab from PV first, then if fails, get from yaml
-        #Make sure to print statement saying if yaml values used
+        # Try to grab from PV first, then if fails, get from yaml
+        # Make sure to print statement saying if yaml values used
         try:
             return self.metadata.PVs.xsize.get()
         except:
             print(EPICS_ERROR_MESSAGE)
-            #TODO: Returning wire size from yaml file instead
-            return 
-        
-    @property    
+            # TODO: Returning wire size from yaml file instead
+            return
+
+    @property
     def ysize(self):
         """Returns the y wire thickness in um."""
         try:
             return self.metadata.PVs.ysize.get()
         except:
             print(EPICS_ERROR_MESSAGE)
-            #TODO: Returning wire size from yaml file instead
+            # TODO: Returning wire size from yaml file instead
 
     @property
     def usize(self):
@@ -156,106 +158,157 @@ class Wire(Device):
             return self.metadata.PVs.usize.get()
         except:
             print(EPICS_ERROR_MESSAGE)
-            #TODO: Returning wire size from yaml file instead
+            # TODO: Returning wire size from yaml file instead
 
     @property
     def use_x_wire(self):
         """Checks if the X plane will be scanned."""
         return self.controls_information.PVs.usexwire.get()
+
     @use_x_wire.setter
-    def use_x_wire(self, val: int) -> None:
-        if not (val == 1 or val == 0):
-            print("Value must be 0 or 1")
-            return
-        self.controls_information.PVs.usexwire.put(value = val)
+    def use_x_wire(self, val: bool) -> None:
+        int_val = int(val)
+        self.controls_information.PVs.usexwire.put(value=int_val)
+
+    @property
+    def x_range(self):
+        """
+        Returns the X plane scan range.  
+        Sets both inner and outer points.
+        """
+        x_inner = self.x_wire_inner
+        x_outer = self.x_wire_outer
+        x_range = [x_inner, x_outer]
+        return x_range
+
+    @x_range.setter
+    def x_range(self, val: list) -> None:
+        self.x_wire_inner(val[0])
+        self.x_wire_outer(val[1])
 
     @property
     def x_wire_inner(self):
         """Returns the inner point of the X plane scan range."""
         return self.controls_information.PVs.xwireinner.get()
+
     @x_wire_inner.setter
     def x_wire_inner(self, val: int) -> None:
         if not isinstance(val, int):
             print("Value must be an int")
             return
-        self.controls_information.PVs.xwireinner.put(value = val)
+        self.controls_information.PVs.xwireinner.put(value=val)
 
     @property
     def x_wire_outer(self):
         """Returns the outer point of the X plane scan range."""
         return self.controls_information.PVs.xwireouter.get()
+
     @x_wire_outer.setter
     def x_wire_outer(self, val: int) -> None:
         if not isinstance(val, int):
             print("Value must be an int")
             return
-        self.controls_information.PVs.xwireouter.put(value = val)
+        self.controls_information.PVs.xwireouter.put(value=val)
 
     @property
     def use_y_wire(self):
         """Checks if the Y plane will be scanned."""
         return self.metadata.PVs.useywire.get()
+
     @use_y_wire.setter
-    def use_y_wire(self, val: int) -> None:
-        if not (val == 1 or val == 0):
-            print("Value must be 0 or 1")
-            return
-        self.controls_information.PVs.useywire.put(value = val)
+    def use_y_wire(self, val: bool) -> None:
+        int_val = int(val)
+        self.controls_information.PVs.useywire.put(value=int_val)
+
+    @property
+    def y_range(self):
+        """
+        Returns the Y plane scan range.
+        Sets both inner and outer points.
+        """
+        y_inner = self.y_wire_inner
+        y_outer = self.y_wire_outer
+        y_range = [y_inner, y_outer]
+        return y_range
+
+    @y_range.setter
+    def y_range(self, val: list) -> None:
+        self.y_wire_inner(val[0])
+        self.y_wire_outer(val[1])
 
     @property
     def y_wire_inner(self):
         """Returns the inner point of the Y plane scan range."""
         return self.controls_information.PVs.ywireinner.get()
+
     @y_wire_inner.setter
     def y_wire_inner(self, val: int) -> None:
         if not isinstance(val, int):
             print("Value must be an int")
             return
-        self.controls_information.PVs.ywireinner.put(value = val)
+        self.controls_information.PVs.ywireinner.put(value=val)
 
     @property
     def y_wire_outer(self):
         """Returns the outer point of the Y plane scan range."""
         return self.controls_information.PVs.ywireouter.get()
-    @x_wire_outer.setter
+
+    @y_wire_outer.setter
     def y_wire_outer(self, val: int) -> None:
         if not isinstance(val, int):
             print("Value must be an int")
             return
-        self.controls_information.PVs.ywireouter.put(value = val)
+        self.controls_information.PVs.ywireouter.put(value=val)
 
     @property
     def use_u_wire(self):
         """Checks if the U plane will be scanned."""
         return self.metadata.PVs.useuwire.get()
+
     @use_u_wire.setter
-    def use_u_wire(self, val: int) -> None:
-        if not (val == 1 or val == 0):
-            print("Value must be 0 or 1")
-            return
-        self.controls_information.PVs.useuwire.put(value = val)
+    def use_u_wire(self, val: bool) -> None:
+        int_val = int(val)
+        self.controls_information.PVs.useuwire.put(value=int_val)
+
+    @property
+    def u_range(self):
+        """
+        Returns the U plane scan range.  
+        Sets both inner and outer points.
+        """
+        u_inner = self.u_wire_inner
+        u_outer = self.u_wire_outer
+        u_range = [u_inner, u_outer]
+        return u_range
+
+    @u_range.setter
+    def u_range(self, val: list) -> None:
+        self.u_wire_inner(val[0])
+        self.u_wire_outer(val[1])
 
     @property
     def u_wire_inner(self):
         """Returns the inner point of the U plane scan range."""
         return self.controls_information.PVs.uwireinner.get()
+
     @u_wire_inner.setter
     def u_wire_inner(self, val: int) -> None:
         if not isinstance(val, int):
             print("Value must be an int")
             return
-        self.controls_information.PVs.uwireinner.put(value = val)
+        self.controls_information.PVs.uwireinner.put(value=val)
 
     @property
     def u_wire_outer(self):
         """Returns the outer point of the U plane scan range."""
         return self.controls_information.PVs.uwireouter.get()
+
     @u_wire_outer.setter
     def u_wire_outer(self, val: int) -> None:
         if not isinstance(val, int):
             print("Value must be an int")
             return
-        self.controls_information.PVs.uwireouter.put(value = val)
+        self.controls_information.PVs.uwireouter.put(value=val)
 
     @property
     def initialized(self):
@@ -263,47 +316,33 @@ class Wire(Device):
         Checks if the wire scanner device has been intialized..
         """
         return self.controls_information.PVs.enabled.get()
-    @initialized.setter
-    def initalized(self, val) -> None:
-        if not val == 1:
-            print("Value must be 1")
-            return
-        self.controls_information.PVs.initialize.put(value = val)
+
+    def initalize(self) -> None:
+        self.controls_information.PVs.initialize.put(value=1)
 
     @property
     def homed(self):
-        """
-        Checks if the wire is in the home position.  Home position
-        is 0 microns.
-        """
+        """Checks if the wire is in the home position."""
         return self.controls_information.PVs.homed.get()
 
     @property
     def position(self):
         """Returns the readback value from the MOTR PV."""
         return self.controls_information.PVs.rbv.get()
+
     @position.setter
     def position(self, val: int) -> None:
-        if not isinstance(val, int):
-            print("Value must be an int")
-            return
-        self.controls_information.PVs.motr.put(value = val)
+        self.controls_information.PVs.motr.put(value=val)
 
     @property
     def speed(self):
         """Returns the current calculated speed of the wire scanner."""
         return self.controls_information.PVs.velo.get()
 
-    @property
     def retract(self):
-        """Returns retract status of wire scanner"""
-        return self.controls_information.PVs.retract.get()
-    @retract.setter
-    def retract(self, val: int) -> None:
-        if not val == 1:
-            print("Value must be 1")
-            return
-        self.controls_information.PVs.retract.put(value = val)
+        """Retracts the wire scanner"""
+        self.controls_information.PVs.retract.put(value=1)
+
 
 class WireCollection(BaseModel):
     wires: Dict[str, SerializeAsAny[Wire]]
