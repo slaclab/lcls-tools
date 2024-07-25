@@ -55,10 +55,14 @@ class WireControlInformation(ControlInformation):
     _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        #TODO: Get possible options for wire ctrl PV
-        options = self.PVs.motr.get_ctrlvars()["enum_strs"]
-        [self._ctrl_options.update({option: i}) for i, option in enumerate(options)]
+        super(WireControlInformation, self).__init__(*args, **kwargs)
+        # Get possible options for wire ctrl PV, empty dict by default.
+        options = self.PVs.ctrl.get_ctrlvars(timeout=1)
+        if options:
+            [
+                self._ctrl_options.update({option: i})
+                for i, option in enumerate(options["enum_strs"])
+            ]
 
     @property
     def ctrl_options(self):
