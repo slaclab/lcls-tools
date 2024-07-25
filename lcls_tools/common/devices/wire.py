@@ -20,8 +20,6 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
-EPICS_ERROR_MESSAGE = "Not able to connect to the control system."
-
 class WirePVSet(PVSet):
     motr: PV # the rest of the PVs are all related to the motor
     cnen: PV
