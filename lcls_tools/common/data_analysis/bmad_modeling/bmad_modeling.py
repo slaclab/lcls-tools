@@ -1,4 +1,5 @@
 import numpy as np
+import yaml
 import os
 import matplotlib.pyplot as plt
 import epics
@@ -46,7 +47,7 @@ def match_twiss(tao, variable, datum):
     element = get_element(tao, datum)
     show_twiss(tao, element, [])
 
-def get_machine_values(data_source, date_time, pv_list):
+def get_machine_values(data_source, pv_list, date_time=''):
     """Returns pvdata, a dictionary with keys containing the PV name and values from Actual, Desired or Archive"""
     if data_source in ["DES", "ACT"]:
         pvdata = get_live(pv_list)
@@ -66,10 +67,39 @@ def bdes_to_kmod(tao, element, bdes):
     bp = ele["E_TOT"] / 1e9 / 299.792458 * 1e4 # kG m
     return bdes / ele["L"] / bp  # kG / m / kG m = 1/m^2
 
+def get_rf_quads_pvlist(all_data_maps, tao):
+    """Returns pvlist for given beam_path"""
+    pvlist = set()
+    for dm_key, map in all_data_maps.items():
+        if dm_key in ["cavities", "quad"]:
+            elements = (map.data["bmad_name"].to_list())
+            pvs = map.pvlist
+            model_elements = []
+            full_model_elements = tao.lat_list("*", "ele.name")
+            for mdl_ele in full_model_elements:
+                if "#2" in mdl_ele:
+                    continue
+                new_ele = mdl_ele.replace("#1", "")
+                model_elements.append(new_ele)
+            for indx, ele in enumerate(elements):
+                if ele in model_elements:
+                    pvlist.add(pvs[indx])
+        if dm_key.startswith('K'):  #One for each Klystron
+            for pv in map.pvlist:
+                if "BEAMCODE" in pv:
+                    pv = f"BEAMCODE{self.beam_code}_STAT"
+                pvlist.add(pv)
+#    if "sc" in self.beam_path:
+#        pvlist.update(
+#            ["REFS:BC2B:500:EDES", "REFS:BC1B:400:EDES",
+#                 "REFS:DMPS:400:EDES"]
+#        )
+    return list(pvlist)
+
 def get_output(tao):
     """Returns dictionary of modeled parameters, including element name, twiss and Rmats"""
     # Output collecting
-    with open('./yaml/outkeys.yaml', 'r') as file:
+    with open('/sdf/home/c/colocho/lcls-tools/lcls_tools/common/data_analysis/bmad_modeling/yaml/outkeys.yaml', 'r') as file:
         outkeys = yaml.safe_load(file)['outkeys'].split()
     output = {k: tao.lat_list("*", k) for k in outkeys}
     return output
@@ -142,9 +172,9 @@ def create_emitmeas_datum(tao, element):
     tao.cmd("set global lattice_calc_on = T")
 
 class BmadModeling:
-    def __init__(self):
-        self.beam_path: str
-        self.data_source: str
+    def __init__(self, beam_path, data_source):
+        self.beam_path: str = beam_path
+        self.data_source: str = data_source
         self.beam_code: str = '1'
         self.date_time: str = '2024-03-24T17:10:00.000000-08:00'
         """updates datamaps depending on data source used by lcls-live"""
@@ -164,53 +194,25 @@ class BmadModeling:
         self.energy_measurements = self.all_data_maps['tao_energy_measurements'].data.to_dict()
 
 
-def get_rf_quads_pvlist(self):
-    """Returns pvlist for given beam_path"""
-    pvlist = set()
-    for dm_key, map in self.all_data_maps.items():
-        if dm_key in ["cavities", "quad"]:
-            elements = (map.data["bmad_name"].to_list())
-            pvs = map.pvlist
-            model_elements = []
-            full_model_elements = tao.lat_list("*", "ele.name")
-            for mdl_ele in full_model_elements:
-                if "#2" in mdl_ele:
-                    continue
-                new_ele = mdl_ele.replace("#1", "")
-                model_elements.append(new_ele)
-            for indx, ele in enumerate(elements):
-                if ele in model_elements:
-                    pvlist.add(pvs[indx])
-        if dm_key.startswith('K'):  #One for each Klystron
-            for pv in map.pvlist:
-                if "BEAMCODE" in pv:
-                    pv = f"BEAMCODE{self.beam_code}_STAT"
-                pvlist.add(pv)
-#    if "sc" in self.beam_path:
-#        pvlist.update(
-#            ["REFS:BC2B:500:EDES", "REFS:BC1B:400:EDES",
-#                 "REFS:DMPS:400:EDES"]
-#        )
-    self.pvlist = pvlist
-    return list(pvlist)
 
-def get_tao(self, pvdata):
+
+def get_tao(pvdata, mdl_obj):
     """Returns tao commands, if data_source is DES,
     calls use_klys_when_beam off"""
     lines_quads, lines_rf = [], []
-    for dm_key, map in self.all_data_maps.items():
-        if dm_key.start("K"):
+    for dm_key, map in mdl_obj.all_data_maps.items():
+        if dm_key.startswith("K"):
             acc_pv = map.accelerate_pvname
             if acc_pv == "":
                 continue
-            acc_pv = f"{acc_pv[0:21]}{self.beam_code}{acc_pv[22:]}"
+            acc_pv = f"{acc_pv[0:21]}{mdl_obj.beam_code}{acc_pv[22:]}"
             map.accelerate_pvname = acc_pv
             lines_rf += map.as_tao(pvdata)
         if dm_key == "cavities":
             lines_rf = map.as_tao(pvdata)
         if dm_key == "quads":
             lines_quads += map.as_tao(pvdata)
-    if "DES" in self.data_source and "cu" in self.beam_path:
+    if "DES" in mdl_obj.data_source and "cu" in mdl_obj.beam_path:
         new_lines = []
         for cmd in lines_rf:
             if "in_use" in cmd:
@@ -220,7 +222,7 @@ def get_tao(self, pvdata):
                 ele = cmd.split()[2]
                 [sector, station] = ele[1:].split("_")
                 pv = f"KLYS:LI{sector}:{station}1:"
-                f"BEAMCODE{self.beam_code}_STAT"
+                f"BEAMCODE{mdl_obj.beam_code}_STAT"
                 cmd_words = cmd.split()
                 cmd_words[-1] = str(pvdata[pv])
                 new_lines.append(" ".join(cmd_words))
@@ -228,6 +230,7 @@ def get_tao(self, pvdata):
                 new_lines.append(cmd)
         lines_rf = new_lines
     return lines_rf + lines_quads
+
 def get_expected_energy_gain(self, region):
     #expected gain PV from lcls-live
     key = [k for k, v in self.energy_measurements['name'].items()
