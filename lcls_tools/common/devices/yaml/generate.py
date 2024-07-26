@@ -215,6 +215,7 @@ class YAMLGenerator:
             "MOTR.VELO": "velo",
             "MOTR.RBV": "rbv",
             "MOTR_INIT": "initialize",
+            "MOTR_INIT_STS": "initialized"
             "MOTR_RETRACT": "retract",
             "STARTSCAN": "startscan",
             "XWIRESIZE": "xsize",
