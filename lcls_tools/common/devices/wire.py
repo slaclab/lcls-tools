@@ -6,6 +6,8 @@ from pydantic import (
     PositiveFloat,
     SerializeAsAny,
     field_validator,
+    conint,
+    ValidationError,
 )
 from typing import (
     Dict,
@@ -21,6 +23,16 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
+EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
+
+
+class BooleanModel(BaseModel):
+    value: bool
+
+
+class IntegerModel(BaseModel):
+    value: conint(strict=True)
+
 
 class WirePVSet(PVSet):
     motr: PV  # the rest of the PVs are all related to the motor
@@ -28,7 +40,8 @@ class WirePVSet(PVSet):
     velo: PV  # velocity
     rbv: PV
     rmp: PV  # retracted motor position?
-    init: PV
+    initialize: PV
+    initialized: PV
     retract: PV
     startscan: PV
     xsize: PV
@@ -167,8 +180,12 @@ class Wire(Device):
 
     @use_x_wire.setter
     def use_x_wire(self, val: bool) -> None:
-        int_val = int(val)
-        self.controls_information.PVs.usexwire.put(value=int_val)
+        try:
+            BooleanModel(value=val)
+            int_val = int(val)
+            self.controls_information.PVs.usexwire.put(value=int_val)
+        except ValidationError as e:
+            print("Value must be a bool:", e)
 
     @property
     def x_range(self):
@@ -193,10 +210,11 @@ class Wire(Device):
 
     @x_wire_inner.setter
     def x_wire_inner(self, val: int) -> None:
-        if not isinstance(val, int):
-            print("Value must be an int")
-            return
-        self.controls_information.PVs.xwireinner.put(value=val)
+        try:
+            IntegerModel(value=val)
+            self.controls_information.PVs.xwireinner.put(value=val)
+        except ValidationError as e:
+            print("Value must be an int:", e)
 
     @property
     def x_wire_outer(self):
@@ -205,10 +223,11 @@ class Wire(Device):
 
     @x_wire_outer.setter
     def x_wire_outer(self, val: int) -> None:
-        if not isinstance(val, int):
-            print("Value must be an int")
-            return
-        self.controls_information.PVs.xwireouter.put(value=val)
+        try:
+            IntegerModel(value=val)
+            self.controls_information.PVs.xwireouter.put(value=val)
+        except ValidationError as e:
+            print("Value must be an int:", e)
 
     @property
     def use_y_wire(self):
@@ -217,8 +236,12 @@ class Wire(Device):
 
     @use_y_wire.setter
     def use_y_wire(self, val: bool) -> None:
-        int_val = int(val)
-        self.controls_information.PVs.useywire.put(value=int_val)
+        try:
+            BooleanModel(value=val)
+            int_val = int(val)
+            self.controls_information.PVs.useywire.put(value=int_val)
+        except ValidationError as e:
+            print("Value must be a bool:", e)
 
     @property
     def y_range(self):
@@ -243,10 +266,11 @@ class Wire(Device):
 
     @y_wire_inner.setter
     def y_wire_inner(self, val: int) -> None:
-        if not isinstance(val, int):
-            print("Value must be an int")
-            return
-        self.controls_information.PVs.ywireinner.put(value=val)
+        try:
+            IntegerModel(value=val)
+            self.controls_information.PVs.ywireinner.put(value=val)
+        except ValidationError as e:
+            print("Value must be an int:", e)
 
     @property
     def y_wire_outer(self):
@@ -255,10 +279,11 @@ class Wire(Device):
 
     @y_wire_outer.setter
     def y_wire_outer(self, val: int) -> None:
-        if not isinstance(val, int):
-            print("Value must be an int")
-            return
-        self.controls_information.PVs.ywireouter.put(value=val)
+        try:
+            IntegerModel(value=val)
+            self.controls_information.PVs.ywireouter.put(value=val)
+        except ValidationError as e:
+            print("Value must be an int:", e)
 
     @property
     def use_u_wire(self):
@@ -267,8 +292,12 @@ class Wire(Device):
 
     @use_u_wire.setter
     def use_u_wire(self, val: bool) -> None:
-        int_val = int(val)
-        self.controls_information.PVs.useuwire.put(value=int_val)
+        try:
+            BooleanModel(value=val)
+            int_val = int(val)
+            self.controls_information.PVs.useuwire.put(value=int_val)
+        except ValidationError as e:
+            print("Value must be a bool:", e)
 
     @property
     def u_range(self):
@@ -293,10 +322,11 @@ class Wire(Device):
 
     @u_wire_inner.setter
     def u_wire_inner(self, val: int) -> None:
-        if not isinstance(val, int):
-            print("Value must be an int")
-            return
-        self.controls_information.PVs.uwireinner.put(value=val)
+        try:
+            IntegerModel(value=val)
+            self.controls_information.PVs.uwireinner.put(value=val)
+        except ValidationError as e:
+            print("Value must be an int:", e)
 
     @property
     def u_wire_outer(self):
@@ -305,17 +335,18 @@ class Wire(Device):
 
     @u_wire_outer.setter
     def u_wire_outer(self, val: int) -> None:
-        if not isinstance(val, int):
-            print("Value must be an int")
-            return
-        self.controls_information.PVs.uwireouter.put(value=val)
+        try:
+            IntegerModel(value=val)
+            self.controls_information.PVs.uwireouter.put(value=val)
+        except ValidationError as e:
+            print("Value must be an int:", e)
 
     @property
     def initialized(self):
         """
         Checks if the wire scanner device has been intialized..
         """
-        return self.controls_information.PVs.enabled.get()
+        return self.controls_information.PVs.initialized.get()
 
     def initalize(self) -> None:
         self.controls_information.PVs.initialize.put(value=1)
