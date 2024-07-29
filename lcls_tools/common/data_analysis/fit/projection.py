@@ -3,6 +3,7 @@ import scipy.optimize
 import scipy.signal
 from pydantic import BaseModel, ConfigDict
 from lcls_tools.common.data_analysis.fit.method_base import MethodBase
+from lcls_tools.common.data_analysis.fit.methods import GaussianModel
 
 
 class ProjectionFit(BaseModel):
@@ -26,7 +27,7 @@ class ProjectionFit(BaseModel):
 
     # TODO: come up with better name
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    model: MethodBase
+    model: MethodBase = GaussianModel()
     use_priors: bool = False
 
     def normalize(self, data: np.ndarray) -> np.ndarray:
