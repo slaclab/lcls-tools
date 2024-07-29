@@ -10,6 +10,7 @@ from threading import Thread
 from lcls_tools.common.devices.device import (
     Device,
     ControlInformation,
+    DeviceCollection,
     Metadata,
     PVSet,
 )
@@ -17,7 +18,7 @@ from lcls_tools.common.devices.device import (
 from epics import PV
 import h5py
 from pydantic import (
-    BaseModel,
+    Field,
     SerializeAsAny,
     field_validator,
 )
@@ -242,9 +243,11 @@ class Screen(Device):
                     # we update with original key if it isn't in our normal screen metadata
                     # otherwise, prepend user_ to the key to retain all information.
                     [
-                        dset.attrs.update({key: value})
-                        if key not in self.metadata
-                        else dset.attrs.update({"user_" + key: value})
+                        (
+                            dset.attrs.update({key: value})
+                            if key not in self.metadata
+                            else dset.attrs.update({"user_" + key: value})
+                        )
                         for key, value in extra_metadata.items()
                     ]
 
@@ -252,20 +255,15 @@ class Screen(Device):
         return
 
 
-class ScreenCollection(BaseModel):
-    screens: Dict[str, SerializeAsAny[Screen]]
+class ScreenCollection(DeviceCollection):
+    devices: Dict[str, SerializeAsAny[Screen]] = Field(alias="screens")
 
-    @field_validator("screens", mode="before")
-    def validate_screens(cls, v):
-        """
-        Add name field to data that will be passed to Screen class
-        and then use that dictionary to create each Screen.
-        """
-        for name, screen in v.items():
-            screen = dict(screen)
-            screen.update({"name": name})
-            v.update({name: screen})
-        return v
+    def __init__(self, *args, **kwargs):
+        super(ScreenCollection, self).__init__(*args, **kwargs)
+
+    @property
+    def screens(self) -> Dict[str, SerializeAsAny[Screen]]:
+        return self.devices
 
     def set_hdf_save_location(self, location: str):
         """Sets the HDF5 save location all of the screens in the collection."""
@@ -273,5 +271,5 @@ class ScreenCollection(BaseModel):
             raise AttributeError(
                 f"Could not set {location} HDF5 save location. Please provide an existing directory."
             )
-        for _, screen in self.screens.items():
+        for _, screen in self.devices.items():
             screen.hdf_save_location = location

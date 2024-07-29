@@ -23,6 +23,7 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
+
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
@@ -74,6 +75,7 @@ class WireControlInformation(ControlInformation):
 
     def __init__(self, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
+
         # Get possible options for magnet ctrl PV, empty dict by default.
         options = self.PVs.ctrl.get_ctrlvars(timeout=1)
         if options:
