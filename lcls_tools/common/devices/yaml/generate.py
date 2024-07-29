@@ -319,7 +319,7 @@ class YAMLGenerator:
             return complete_screen_data
         else:
             return {}
-   
+
     def extract_wires(self, area: Union[str, List[str]] = ["HTR"]):
         required_wire_types = ["WIRE"]
         possible_wire_pvs = {
