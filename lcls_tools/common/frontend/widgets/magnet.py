@@ -1,6 +1,7 @@
 from pydm import Display
 
-from lcls_tools.superconducting import scLinac, sc_linac_utils as utils
+import lcls_tools.superconducting.sc_magnet
+from lcls_tools.superconducting import sc_linac_utils as utils
 
 
 class MagnetScreen(Display):
@@ -10,7 +11,7 @@ class MagnetScreen(Display):
     def ui_filename(self):
         return "magnet_template.ui"
 
-    def connectSignals(self, magnet: scLinac.Magnet):
+    def connectSignals(self, magnet: lcls_tools.superconducting.sc_magnet.Magnet):
         self.ui.expertButton.macros = ["DEV={dev}".format(dev=magnet.pvprefix[:-1])]
         self.ui.magnetGroupBox.setTitle(
             "CM{cm} {magnettype}".format(

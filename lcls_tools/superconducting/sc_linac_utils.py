@@ -32,14 +32,15 @@ L3B = [
 
 LINAC_TUPLES = [("L0B", L0B), ("L1B", L1B), ("L2B", L2B), ("L3B", L3B)]
 LINAC_CM_DICT = {0: L0B, 1: L1B, 2: L2B, 3: L3B}
+LINAC_CM_MAP = [L0B, L1B + L1BHL, L2B, L3B]
 
-BEAMLINEVACUUM_INFIXES = [
+BEAMLINE_VACUUM_INFIXES = [
     ["0198"],
     ["0202", "H292"],
     ["0402", "1592"],
     ["1602", "2594", "2598", "3592"],
 ]
-INSULATINGVACUUM_CRYOMODULES = [
+INSULATING_VACUUM_CRYOMODULES = [
     ["01"],
     ["02", "H1"],
     ["04", "06", "08", "10", "12", "14"],
@@ -75,6 +76,7 @@ HL_SSA_SHARED_PVS = [
     "FaultReset",
     "NRP_PRMT",
     "FaultSummary.SEVR",
+    "480VACStat",
 ]
 
 HL_SSA_PS_SETPOINT = 2500
@@ -109,7 +111,7 @@ DEFAULT_STEPPER_SPEED = 20000
 MAX_STEPPER_SPEED = 60000
 STEPPER_ON_LIMIT_SWITCH_VALUE = 1
 
-# these values are based on the list of enum states found by probing {Magnettype}:L{x}B:{cm}85:CTRL
+# these values are based on the list of enum states found by probing {magnet_type}:L{x}B:{cm}85:CTRL
 MAGNET_RESET_VALUE = 10
 MAGNET_ON_VALUE = 11
 MAGNET_OFF_VALUE = 12
@@ -122,7 +124,7 @@ PIEZO_MANUAL_VALUE = 0
 PIEZO_FEEDBACK_VALUE = 1
 PIEZO_SCRIPT_RUNNING_VALUE = 2
 PIEZO_SCRIPT_COMPLETE_VALUE = 1
-PIEZO_PRERF_CHECKOUT_PASS_VALUE = 0
+PIEZO_PRE_RF_CHECKOUT_PASS_VALUE = 0
 PIEZO_WITH_RF_GRAD = 6.5
 PIEZO_CENTER_VOLTAGE = 25
 PIEZO_HZ_PER_VOLT = 20
@@ -147,10 +149,15 @@ HW_MODE_OFFLINE_VALUE = 2
 HW_MODE_MAIN_DONE_VALUE = 3
 HW_MODE_READY_VALUE = 4
 
-INTERLOCK_RESET_ATTEMPS = 3
+INTERLOCK_RESET_ATTEMPTS = 5
 
 
 class SCLinacObject(ABC, object):
+    """
+    Base class used to represent all components of the LCLS II superconducting
+    accelerator (linacs, cryomodules, racks, cavities, SSAs, and tuners)
+    """
+
     @property
     @abstractmethod
     def pv_prefix(self):
@@ -173,6 +180,8 @@ def stepper_tol_factor(num_steps) -> float:
     and large detunes). We are starting with a linear function and seeing how
     that goes.
     """
+
+    num_steps = abs(num_steps)
 
     if num_steps <= 50000:
         return 10
@@ -225,6 +234,14 @@ class SSACalibrationToleranceError(Exception):
 class CavityQLoadedCalibrationError(Exception):
     """
     Exception thrown during cavity loaded Q measurement
+    """
+
+    pass
+
+
+class CavityCharacterizationError(Exception):
+    """
+    Exception thrown during cavity characterization
     """
 
     pass

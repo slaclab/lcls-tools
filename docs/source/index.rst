@@ -10,7 +10,10 @@ Welcome to lcls-tools's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   beampath.rst
+   area.rst
    devices.rst
+
    image_processing.rst
    matlab2py.rst 
    

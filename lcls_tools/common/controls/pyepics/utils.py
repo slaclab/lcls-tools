@@ -1,6 +1,7 @@
 from time import sleep
+from unittest.mock import MagicMock
 
-from epics import PV as epics_pv, caget as epics_caget, caput as epics_caput
+from epics import PV as EPICS_PV, caget as epics_caget, caput as epics_caput
 
 # These are the values that decide whether a PV is alarming (and if so, how)
 EPICS_NO_ALARM_VAL = 0
@@ -14,12 +15,37 @@ class PVInvalidError(Exception):
         super(PVInvalidError, self).__init__(message)
 
 
-class PV(epics_pv):
-    def __init__(self, pvname):
-        super().__init__(pvname, connection_timeout=0.01)
+class PV(EPICS_PV):
+    def __init__(
+        self,
+        pvname,
+        connection_timeout=0.01,
+        callback=None,
+        form="time",
+        verbose=False,
+        auto_monitor=None,
+        count=None,
+        connection_callback=None,
+        access_callback=None,
+    ):
+        super().__init__(
+            pvname=pvname,
+            connection_timeout=connection_timeout,
+            callback=callback,
+            form=form,
+            verbose=verbose,
+            auto_monitor=auto_monitor,
+            count=count,
+            connection_callback=connection_callback,
+            access_callback=access_callback,
+        )
 
     def __str__(self):
         return f"{self.pvname} PV Object"
+
+    @property
+    def val(self):
+        return super().value
 
     def caget(self, count=None, as_string=False, as_numpy=True, use_monitor=True):
         attempt = 1
@@ -33,6 +59,7 @@ class PV(epics_pv):
                 as_numpy=as_numpy,
                 use_monitor=use_monitor,
             )
+
             if value is not None:
                 break
             attempt += 1
@@ -108,3 +135,14 @@ class PV(epics_pv):
         if retry and (status != 1):
             print(f"{self} put not successful, using caput")
             self.caput(value)
+
+
+def make_mock_pv(
+    pv_name: str = None, get_val=None, severity=EPICS_NO_ALARM_VAL
+) -> MagicMock:
+    return MagicMock(
+        pvname=pv_name,
+        put=MagicMock(return_value=1),
+        get=MagicMock(return_value=get_val),
+        severity=severity,
+    )

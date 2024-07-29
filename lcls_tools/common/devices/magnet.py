@@ -1,7 +1,7 @@
 from datetime import datetime
 from functools import wraps
 from pydantic import (
-    BaseModel,
+    Field,
     PositiveFloat,
     SerializeAsAny,
     field_validator,
@@ -15,6 +15,7 @@ from typing import (
 from lcls_tools.common.devices.device import (
     Device,
     ControlInformation,
+    DeviceCollection,
     Metadata,
     PVSet,
 )
@@ -27,11 +28,11 @@ class MagnetPVSet(PVSet):
     bdes: PV
     bcon: PV
     ctrl: PV
-    bmax: PV
     bmin: PV
+    bmax: PV
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, *args, **kwargs):
+        super(MagnetPVSet, self).__init__(*args, **kwargs)
 
     @field_validator("*", mode="before")
     def validate_pv_fields(cls, v: str) -> PV:
@@ -42,11 +43,15 @@ class MagnetControlInformation(ControlInformation):
     PVs: SerializeAsAny[MagnetPVSet]
     _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        # Get possible options for magnet ctrl PV
-        options = self.PVs.ctrl.get_ctrlvars()["enum_strs"]
-        [self._ctrl_options.update({option: i}) for i, option in enumerate(options)]
+    def __init__(self, *args, **kwargs):
+        super(MagnetControlInformation, self).__init__(*args, **kwargs)
+        # Get possible options for magnet ctrl PV, empty dict by default.
+        options = self.PVs.ctrl.get_ctrlvars(timeout=1)
+        if options:
+            [
+                self._ctrl_options.update({option: i})
+                for i, option in enumerate(options["enum_strs"])
+            ]
 
     @property
     def ctrl_options(self):
@@ -57,16 +62,16 @@ class MagnetMetadata(Metadata):
     length: Optional[PositiveFloat] = None
     b_tolerance: Optional[PositiveFloat] = None
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, *args, **kwargs):
+        super(MagnetMetadata, self).__init__(*args, **kwargs)
 
 
 class Magnet(Device):
     controls_information: SerializeAsAny[MagnetControlInformation]
     metadata: SerializeAsAny[MagnetMetadata]
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, *args, **kwargs):
+        super(Magnet, self).__init__(*args, **kwargs)
 
     """ Decorators """
 
@@ -249,19 +254,18 @@ class Magnet(Device):
         self.controls_information.PVs.ctrl.put(self.ctrl_options["DEGAUSS"])
 
 
-class MagnetCollection(BaseModel):
-    magnets: Dict[str, SerializeAsAny[Magnet]]
+class MagnetCollection(DeviceCollection):
+    devices: Dict[str, SerializeAsAny[Magnet]] = Field(alias="magnets")
 
-    @field_validator("magnets", mode="before")
-    def validate_magnets(cls, v) -> Dict[str, Magnet]:
-        for name, magnet in v.items():
-            magnet = dict(magnet)
-            # Set name field for magnet
-            magnet.update({"name": name})
-            v.update({name: magnet})
-        return v
+    def __init__(self, *args, **kwargs):
+        super(MagnetCollection, self).__init__(*args, **kwargs)
 
-    def seconds_since(self, time_to_check: datetime) -> int:
+    @property
+    def magnets(self) -> Dict[str, SerializeAsAny[Magnet]]:
+        """A dictionary (key=name, value=Magnet) to directly access magnet objects"""
+        return self.devices
+
+    def _seconds_since(self, time_to_check: datetime) -> int:
         if not isinstance(time_to_check, datetime):
             raise TypeError("Please provide a datetime object for comparison.")
         return (datetime.now() - time_to_check).seconds
@@ -274,7 +278,7 @@ class MagnetCollection(BaseModel):
             if isinstance(magnet_names, str):
                 magnet_names = [args]
         else:
-            magnet_names = list(self.magnets.keys())
+            magnet_names = list(self.devices.keys())
         return magnet_names
 
     def set_bdes(
@@ -282,17 +286,26 @@ class MagnetCollection(BaseModel):
         magnet_dict: Dict[str, float],
         settle_timeout_in_seconds: int = 5,
     ) -> None:
+        """
+        Set BDES and TRIMs for a set of magnets in the collection by providing settings in the following
+        form:
+
+        {'MAGB' : 1.0, 'MAGC' : 2.0, ..., 'MAGZ' : 3.0}
+
+        Automatically waits until each magnet is settled within a wait-time (default = 5 seconds)
+        """
+
         if not magnet_dict:
             return
 
         for magnet, bval in magnet_dict.items():
             try:
-                self.magnets[magnet].bdes = bval
-                self.magnets[magnet].trim()
+                self.devices[magnet].bdes = bval
+                self.devices[magnet].trim()
                 time_when_trim_started = datetime.now()
-                while not self.magnets[magnet].is_bact_settled():
+                while not self.devices[magnet].is_bact_settled():
                     if (
-                        self.seconds_since(time_when_trim_started)
+                        self._seconds_since(time_when_trim_started)
                         > settle_timeout_in_seconds
                     ):
                         print(
@@ -316,6 +329,10 @@ class MagnetCollection(BaseModel):
         scan_settings: List[Dict[str, float]],
         function: Optional[callable] = None,
     ) -> None:
+        """
+        Scans magnets given a list of magnet settings (Dict[magnet_name, bdes_value])
+        and calls the provided function after each setting is achieved.
+        """
         for setting in scan_settings:
             self.set_bdes(setting)
             function() if function else None
@@ -324,10 +341,11 @@ class MagnetCollection(BaseModel):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
+        """Turns off the magnets provided"""
         magnets_to_turn_off = self._make_magnet_names_list_from_args(magnets)
         for magnet in magnets_to_turn_off:
             try:
-                self.magnets[magnet].turn_off()
+                self.devices[magnet].turn_off()
             except KeyError:
                 print(
                     "Could not find ",
@@ -339,10 +357,11 @@ class MagnetCollection(BaseModel):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
+        """Turns on the magnets provided"""
         magnets_to_turn_on = self._make_magnet_names_list_from_args(magnets)
         for magnet in magnets_to_turn_on:
             try:
-                self.magnets[magnet].turn_on()
+                self.devices[magnet].turn_on()
             except KeyError:
                 print(
                     "Could not find ",
@@ -354,15 +373,16 @@ class MagnetCollection(BaseModel):
         self,
         magnets: Optional[Union[str, List]] = None,
     ) -> None:
+        """Perform a degauss for each magnet provided in the list"""
         magnets_to_degauss = self._make_magnet_names_list_from_args(magnets)
         if magnets_to_degauss:
             if isinstance(magnets, str):
                 magnets_to_degauss = [magnets]
         else:
-            magnets_to_degauss = list(self.magnets.keys())
+            magnets_to_degauss = list(self.devices.keys())
         for magnet in magnets_to_degauss:
             try:
-                self.magnets[magnet].degauss()
+                self.devices[magnet].degauss()
             except KeyError:
                 print(
                     "Could not find ",
