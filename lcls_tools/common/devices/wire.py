@@ -72,7 +72,7 @@ class WireControlInformation(ControlInformation):
     PVs: SerializeAsAny[WirePVSet]
     _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
 
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
         # Get possible options for magnet ctrl PV, empty dict by default.
         options = self.PVs.ctrl.get_ctrlvars(timeout=1)
