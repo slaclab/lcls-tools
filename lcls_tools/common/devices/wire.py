@@ -1,6 +1,4 @@
 from datetime import datetime
-from functools import wraps
-
 from pydantic import (
     BaseModel,
     PositiveFloat,
@@ -26,6 +24,19 @@ from epics import PV
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
+class RangeModel(BaseModel):
+    value: list
+
+    @field_validator('value')
+    def scan_range_validator(cls, v):
+        if len(v) != 2:
+            raise ValueError("List has length greater than 2")
+        elif v[0] >= v[1]:
+            raise ValueError("First element of list must be smaller than second element of list")
+        else:
+            return v
+
+
 class BooleanModel(BaseModel):
     value: bool
 
@@ -35,11 +46,10 @@ class IntegerModel(BaseModel):
 
 
 class WirePVSet(PVSet):
-    motr: PV  # the rest of the PVs are all related to the motor
+    motr: PositiveFloat
     cnen: PV
-    velo: PV  # velocity
+    velo: PV
     rbv: PV
-    rmp: PV  # retracted motor position?
     initialize: PV
     initialized: PV
     retract: PV
@@ -74,7 +84,7 @@ class WireControlInformation(ControlInformation):
 
     def __init__(self, *args, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
-        # Get possible options for magnet ctrl PV, empty dict by default.
+        # Get possible options for wire ctrl PV, empty dict by default.
         options = self.PVs.ctrl.get_ctrlvars(timeout=1)
         if options:
             [
@@ -88,12 +98,8 @@ class WireControlInformation(ControlInformation):
 
 
 class WireMetadata(Metadata):
-    thickness: Optional[PositiveFloat] = None
-    speed: Optional[PositiveFloat] = None
-    xsize: Optional[PositiveFloat] = None
-    ysize: Optional[PositiveFloat] = None
-    usize: Optional[PositiveFloat] = None
-    # TODO: Add wire material and sum_l here?
+    material: Optional[str] = None
+    sum_l: Optional[PositiveFloat] = None
     # TODO: Add LBLM and BPM infomration here?
     # TODO: Add info on locations for X, Y, U wires
 
@@ -107,41 +113,6 @@ class Wire(Device):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-    """ Decorators """
-
-    def check_state(f):
-        """Decorator to only allow transitions in 'Ready' state."""
-
-        def decorated(self, *args, **kwargs):
-            # TODO: Find out right check for this spot/wires
-            if self.motr != "Ready":
-                print("Unable to perform action, wire not in Ready state")
-                return
-            return f(self, *args, **kwargs)
-
-        return decorated
-
-    def check_options(options_to_check: Union[str, List]):
-        """Decorator to only allow motor to move if wire is in the retracted position."""
-        # Maybe this comment should be updated? Would we move from non retracted position?
-        def decorator(function):
-            @wraps(function)
-            def decorated(self, *args, **kwargs):
-                # convert single value to list.
-                if isinstance(options_to_check, str):
-                    options = [options_to_check]
-                for option in options:
-                    if option not in self.controls_information.ctrl_options:
-                        print(
-                            f"unable to perform process {option} with this wire {self.name}"
-                        )
-                        return
-                return function(self, *args, **kwargs)
-
-            return decorated
-
-        return decorator
 
     @property
     def xsize(self):
@@ -185,7 +156,7 @@ class Wire(Device):
             int_val = int(val)
             self.controls_information.PVs.usexwire.put(value=int_val)
         except ValidationError as e:
-            print("Value must be a bool:", e)
+            print("Input value must be a bool:", e)
 
     @property
     def x_range(self):
@@ -193,15 +164,16 @@ class Wire(Device):
         Returns the X plane scan range.
         Sets both inner and outer points.
         """
-        x_inner = self.x_wire_inner
-        x_outer = self.x_wire_outer
-        x_range = [x_inner, x_outer]
-        return x_range
+        return [self.x_wire_inner, self.x_wire_outer]
 
     @x_range.setter
     def x_range(self, val: list) -> None:
-        self.x_wire_inner(val[0])
-        self.x_wire_outer(val[1])
+        try:
+            RangeModel(value=val)
+            self.x_wire_inner(val[0])
+            self.x_wire_outer(val[1])
+        except ValidationError as e:
+            print("Scan range values failed validation:", e)
 
     @property
     def x_wire_inner(self):
@@ -214,7 +186,7 @@ class Wire(Device):
             IntegerModel(value=val)
             self.controls_information.PVs.xwireinner.put(value=val)
         except ValidationError as e:
-            print("Value must be an int:", e)
+            print("Range value must be an int:", e)
 
     @property
     def x_wire_outer(self):
@@ -227,7 +199,7 @@ class Wire(Device):
             IntegerModel(value=val)
             self.controls_information.PVs.xwireouter.put(value=val)
         except ValidationError as e:
-            print("Value must be an int:", e)
+            print("Range value must be an int:", e)
 
     @property
     def use_y_wire(self):
@@ -241,7 +213,7 @@ class Wire(Device):
             int_val = int(val)
             self.controls_information.PVs.useywire.put(value=int_val)
         except ValidationError as e:
-            print("Value must be a bool:", e)
+            print("Input value must be a bool:", e)
 
     @property
     def y_range(self):
@@ -249,15 +221,16 @@ class Wire(Device):
         Returns the Y plane scan range.
         Sets both inner and outer points.
         """
-        y_inner = self.y_wire_inner
-        y_outer = self.y_wire_outer
-        y_range = [y_inner, y_outer]
-        return y_range
+        return [self.y_wire_inner, self.y_wire_outer]
 
     @y_range.setter
     def y_range(self, val: list) -> None:
-        self.y_wire_inner(val[0])
-        self.y_wire_outer(val[1])
+        try:
+            RangeModel(value=val)
+            self.y_wire_inner(val[0])
+            self.y_wire_outer(val[1])
+        except ValidationError as e:
+            print("Scan range values failed validation:", e)
 
     @property
     def y_wire_inner(self):
@@ -270,7 +243,7 @@ class Wire(Device):
             IntegerModel(value=val)
             self.controls_information.PVs.ywireinner.put(value=val)
         except ValidationError as e:
-            print("Value must be an int:", e)
+            print("Range value must be an int:", e)
 
     @property
     def y_wire_outer(self):
@@ -283,7 +256,7 @@ class Wire(Device):
             IntegerModel(value=val)
             self.controls_information.PVs.ywireouter.put(value=val)
         except ValidationError as e:
-            print("Value must be an int:", e)
+            print("Range value must be an int:", e)
 
     @property
     def use_u_wire(self):
@@ -297,7 +270,7 @@ class Wire(Device):
             int_val = int(val)
             self.controls_information.PVs.useuwire.put(value=int_val)
         except ValidationError as e:
-            print("Value must be a bool:", e)
+            print("Input value must be a bool:", e)
 
     @property
     def u_range(self):
@@ -305,15 +278,16 @@ class Wire(Device):
         Returns the U plane scan range.
         Sets both inner and outer points.
         """
-        u_inner = self.u_wire_inner
-        u_outer = self.u_wire_outer
-        u_range = [u_inner, u_outer]
-        return u_range
+        return [self.u_wire_inner, self.u_wire_outer]
 
     @u_range.setter
     def u_range(self, val: list) -> None:
-        self.u_wire_inner(val[0])
-        self.u_wire_outer(val[1])
+        try:
+            RangeModel(value=val)
+            self.u_wire_inner(val[0])
+            self.u_wire_outer(val[1])
+        except ValidationError as e:
+            print("Scan range values failed validation:", e)
 
     @property
     def u_wire_inner(self):
@@ -326,7 +300,7 @@ class Wire(Device):
             IntegerModel(value=val)
             self.controls_information.PVs.uwireinner.put(value=val)
         except ValidationError as e:
-            print("Value must be an int:", e)
+            print("Range value must be an int:", e)
 
     @property
     def u_wire_outer(self):
@@ -339,7 +313,7 @@ class Wire(Device):
             IntegerModel(value=val)
             self.controls_information.PVs.uwireouter.put(value=val)
         except ValidationError as e:
-            print("Value must be an int:", e)
+            print("Range value must be an int:", e)
 
     @property
     def initialized(self):
