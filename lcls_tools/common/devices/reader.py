@@ -108,7 +108,7 @@ def create_screen(
 
 def create_wire(
     area: str = None, name: str = None
-) -> Union[None, Screen, ScreenCollection]:
+) -> Union[None, Wire, WireCollection]:
     device_data = _device_data(area=area, device_type="wires", name=name)
     if not device_data:
         return None
