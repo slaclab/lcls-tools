@@ -33,10 +33,10 @@ class GaussianFit(BaseModel):
         y_parameters = self.fit.fit_projection(y_proj)
 
         return {
-            "centroid":  np.array((x_parameters['mean'],
-                                   y_parameters['mean'])),
+            "centroid": np.array((x_parameters['mean'],
+                                 y_parameters['mean'])),
             "rms_sizes": np.array((x_parameters['sigma'],
-                                   y_parameters['sigma'])),
+                                  y_parameters['sigma'])),
             "total_intensity": image.sum(),
         }
 
@@ -52,12 +52,12 @@ class GaussianFit(BaseModel):
         else: do beamsize calculation and check that the beamspot is
         within the ROI
         '''
-        if (np.log10(beamspot_chars['total_intensity']) <
-                self.min_log_intensity):
+        if (np.log10(beamspot_chars['total_intensity'])
+                < self.min_log_intensity):
             # TODO: character count is really not liking this one line
-            print(("log10 image intensity" +
-                   f"{np.log10(beamspot_chars['total_intensity'])}" +
-                   "below threshold"))
+            print(("log10 image intensity"
+                   + f"{np.log10(beamspot_chars['total_intensity'])}"
+                   + "below threshold"))
             result = {
                 "Cx": np.NaN,
                 "Cy": np.NaN,
@@ -108,8 +108,8 @@ class GaussianFit(BaseModel):
 
                 # set results to none if the beam extends beyond the roi
                 # and the bounding box constraint is active
-                if (bounding_box_penalty > 0 and
-                        self.apply_bounding_box_constraint):
+                if (bounding_box_penalty > 0
+                        and self.apply_bounding_box_constraint):
                     for name in ["Cx", "Cy", "Sx", "Sy"]:
                         result[name] = np.NaN
 
