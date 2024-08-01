@@ -328,8 +328,8 @@ class YAMLGenerator:
         # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
         possible_wire_pvs = {
             "MOTR": "motr",
-            "MOTR.VELO": "velo",
-            "MOTR.RBV": "rbv",
+            # "MOTR.VELO": "velo",
+            # "MOTR.RBV": "rbv",
             "MOTR_INIT": "initialize",
             "MOTR_INIT_STS": "initialized",
             "MOTR_RETRACT": "retract",
