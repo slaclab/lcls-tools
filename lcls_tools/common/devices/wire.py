@@ -46,10 +46,9 @@ class IntegerModel(BaseModel):
 
 
 class WirePVSet(PVSet):
-    motr: PositiveFloat
-    cnen: PV
-    velo: PV
-    rbv: PV
+    motr: PV
+    # velo: PV
+    # rbv: PV
     initialize: PV
     initialized: PV
     retract: PV
