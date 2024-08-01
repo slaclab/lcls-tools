@@ -3,7 +3,7 @@
 # Built in
 # import datetime
 from unittest import TestCase
-from unittest.mock import Mock, patch # , PropertyMock
+from unittest.mock import Mock, patch  # , PropertyMock
 # import inspect
 
 # Local imports
