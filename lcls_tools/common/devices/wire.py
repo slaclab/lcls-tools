@@ -68,7 +68,6 @@ class WirePVSet(PVSet):
     enabled: PV
     homed: PV
     timeout: PV
-    ctrl: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
