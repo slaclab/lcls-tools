@@ -17,3 +17,33 @@ magnets:
       beam_path: []
       sum_l_meters: null
       type: YCOR
+wires:
+  WS044:
+    controls_information:
+      PVs:
+        enabled: WIRE:LI27:644:MOTR_ENABLED_STS
+        homed: WIRE:LI27:644:MOTR_HOMED_STS
+        initialize: WIRE:LI27:644:MOTR_INIT
+        initialized: WIRE:LI27:644:MOTR_INIT_STS
+        motr: WIRE:LI27:644:MOTR
+        retract: WIRE:LI27:644:MOTR_RETRACT
+        startscan: WIRE:LI27:644:STARTSCAN
+        timeout: WIRE:LI27:644:MOTR_TIMEOUTEN
+        useuwire: WIRE:LI27:644:USEUWIRE
+        usexwire: WIRE:LI27:644:USEXWIRE
+        useywire: WIRE:LI27:644:USEYWIRE
+        usize: WIRE:LI27:644:UWIRESIZE
+        uwireinner: WIRE:LI27:644:UWIREINNER
+        uwireouter: WIRE:LI27:644:UWIREOUTER
+        xsize: WIRE:LI27:644:XWIRESIZE
+        xwireinner: WIRE:LI27:644:XWIREINNER
+        xwireouter: WIRE:LI27:644:XWIREOUTER
+        ysize: WIRE:LI27:644:YWIRESIZE
+        ywireinner: WIRE:LI27:644:YWIREINNER
+        ywireouter: WIRE:LI27:644:YWIREOUTER
+      control_name: WIRE:LI27:644
+    metadata:
+      area: LI27
+      beam_path: []
+      sum_l_meters: null
+      type: WIRE
