@@ -284,3 +284,32 @@ screens:
       - CU_SXR
       sum_l_meters: 410.405
       type: PROF
+wires:
+  WS24:
+    controls_information:
+      PVs:
+        enabled: WIRE:LI24:705:MOTR_ENABLED_STS
+        initialized: WIRE:LI24:705:MOTR_INIT_STS
+        motr: WIRE:LI24:705:MOTR
+        startscan: WIRE:LI24:705:STARTSCAN
+        useuwire: WIRE:LI24:705:USEUWIRE
+        usexwire: WIRE:LI24:705:USEXWIRE
+        useywire: WIRE:LI24:705:USEYWIRE
+        uwireinner: WIRE:LI24:705:UWIREINNER
+        uwireouter: WIRE:LI24:705:UWIREOUTER
+        xwireinner: WIRE:LI24:705:XWIREINNER
+        xwireouter: WIRE:LI24:705:XWIREOUTER
+        ywireinner: WIRE:LI24:705:YWIREINNER
+        ywireouter: WIRE:LI24:705:YWIREOUTER
+      control_name: WIRE:LI24:705
+    metadata:
+      area: BC2
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 396.77
+      type: WIRE
