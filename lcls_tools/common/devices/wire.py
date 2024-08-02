@@ -68,6 +68,7 @@ class WirePVSet(PVSet):
     enabled: PV
     homed: PV
     timeout: PV
+    ctrl: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -83,9 +84,9 @@ class WireControlInformation(ControlInformation):
 
     def __init__(self, *args, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
-        # Get possible options for wire ctrl PV, empty dict by default.
-        options = self.PVs.ctrl.get_ctrlvars(timeout=1)
-        if options:
+        # Get possible options for wire motr PV, empty dict by default.
+        options = self.PVs.motr.get_ctrlvars(timeout=1)
+        if "enum_strs" in options:
             [
                 self._ctrl_options.update({option: i})
                 for i, option in enumerate(options["enum_strs"])
