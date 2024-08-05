@@ -695,3 +695,139 @@ screens:
       beam_path: []
       sum_l_meters: null
       type: PROF
+wires:
+  WS01:
+    controls_information:
+      PVs:
+        enabled: WIRE:IN20:531:MOTR_ENABLED_STS
+        initialized: WIRE:IN20:531:MOTR_INIT_STS
+        motr: WIRE:IN20:531:MOTR
+        startscan: WIRE:IN20:531:STARTSCAN
+        useuwire: WIRE:IN20:531:USEUWIRE
+        usexwire: WIRE:IN20:531:USEXWIRE
+        useywire: WIRE:IN20:531:USEYWIRE
+        usize: WIRE:IN20:531:UWIRESIZE
+        uwireinner: WIRE:IN20:531:UWIREINNER
+        uwireouter: WIRE:IN20:531:UWIREOUTER
+        xsize: WIRE:IN20:531:XWIRESIZE
+        xwireinner: WIRE:IN20:531:XWIREINNER
+        xwireouter: WIRE:IN20:531:XWIREOUTER
+        ysize: WIRE:IN20:531:YWIRESIZE
+        ywireinner: WIRE:IN20:531:YWIREINNER
+        ywireouter: WIRE:IN20:531:YWIREOUTER
+      control_name: WIRE:IN20:531
+    metadata:
+      area: DL1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 12.175
+      type: WIRE
+  WS02:
+    controls_information:
+      PVs:
+        enabled: WIRE:IN20:561:MOTR_ENABLED_STS
+        homed: WIRE:IN20:561:MOTR_HOMED_STS
+        initialize: WIRE:IN20:561:MOTR_INIT
+        initialized: WIRE:IN20:561:MOTR_INIT_STS
+        motr: WIRE:IN20:561:MOTR
+        retract: WIRE:IN20:561:MOTR_RETRACT
+        startscan: WIRE:IN20:561:STARTSCAN
+        timeout: WIRE:IN20:561:MOTR_TIMEOUTEN
+        useuwire: WIRE:IN20:561:USEUWIRE
+        usexwire: WIRE:IN20:561:USEXWIRE
+        useywire: WIRE:IN20:561:USEYWIRE
+        usize: WIRE:IN20:561:UWIRESIZE
+        uwireinner: WIRE:IN20:561:UWIREINNER
+        uwireouter: WIRE:IN20:561:UWIREOUTER
+        xsize: WIRE:IN20:561:XWIRESIZE
+        xwireinner: WIRE:IN20:561:XWIREINNER
+        xwireouter: WIRE:IN20:561:XWIREOUTER
+        ysize: WIRE:IN20:561:YWIRESIZE
+        ywireinner: WIRE:IN20:561:YWIREINNER
+        ywireouter: WIRE:IN20:561:YWIREOUTER
+      control_name: WIRE:IN20:561
+    metadata:
+      area: DL1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 14.089
+      type: WIRE
+  WS03:
+    controls_information:
+      PVs:
+        enabled: WIRE:IN20:611:MOTR_ENABLED_STS
+        homed: WIRE:IN20:611:MOTR_HOMED_STS
+        initialize: WIRE:IN20:611:MOTR_INIT
+        initialized: WIRE:IN20:611:MOTR_INIT_STS
+        motr: WIRE:IN20:611:MOTR
+        retract: WIRE:IN20:611:MOTR_RETRACT
+        startscan: WIRE:IN20:611:STARTSCAN
+        timeout: WIRE:IN20:611:MOTR_TIMEOUTEN
+        useuwire: WIRE:IN20:611:USEUWIRE
+        usexwire: WIRE:IN20:611:USEXWIRE
+        useywire: WIRE:IN20:611:USEYWIRE
+        usize: WIRE:IN20:611:UWIRESIZE
+        uwireinner: WIRE:IN20:611:UWIREINNER
+        uwireouter: WIRE:IN20:611:UWIREOUTER
+        xsize: WIRE:IN20:611:XWIRESIZE
+        xwireinner: WIRE:IN20:611:XWIREINNER
+        xwireouter: WIRE:IN20:611:XWIREOUTER
+        ysize: WIRE:IN20:611:YWIRESIZE
+        ywireinner: WIRE:IN20:611:YWIREINNER
+        ywireouter: WIRE:IN20:611:YWIREOUTER
+      control_name: WIRE:IN20:611
+    metadata:
+      area: DL1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 16.003
+      type: WIRE
+  WS04:
+    controls_information:
+      PVs:
+        enabled: WIRE:IN20:741:MOTR_ENABLED_STS
+        initialized: WIRE:IN20:741:MOTR_INIT_STS
+        motr: WIRE:IN20:741:MOTR
+        startscan: WIRE:IN20:741:STARTSCAN
+        useuwire: WIRE:IN20:741:USEUWIRE
+        usexwire: WIRE:IN20:741:USEXWIRE
+        useywire: WIRE:IN20:741:USEYWIRE
+        usize: WIRE:IN20:741:UWIRESIZE
+        uwireinner: WIRE:IN20:741:UWIREINNER
+        uwireouter: WIRE:IN20:741:UWIREOUTER
+        xsize: WIRE:IN20:741:XWIRESIZE
+        xwireinner: WIRE:IN20:741:XWIREINNER
+        xwireouter: WIRE:IN20:741:XWIREOUTER
+        ysize: WIRE:IN20:741:YWIRESIZE
+        ywireinner: WIRE:IN20:741:YWIREINNER
+        ywireouter: WIRE:IN20:741:YWIREOUTER
+      control_name: WIRE:IN20:741
+    metadata:
+      area: DL1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 18.519
+      type: WIRE

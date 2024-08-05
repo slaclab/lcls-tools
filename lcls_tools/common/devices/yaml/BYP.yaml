@@ -1223,3 +1223,115 @@ magnets:
       - SC_SXR
       sum_l_meters: 2767.894
       type: YCOR
+wires:
+  WSBP2:
+    controls_information:
+      PVs:
+        enabled: WIRE:BPN12:850:MOTR_ENABLED_STS
+        homed: WIRE:BPN12:850:MOTR_HOMED_STS
+        initialize: WIRE:BPN12:850:MOTR_INIT
+        initialized: WIRE:BPN12:850:MOTR_INIT_STS
+        motr: WIRE:BPN12:850:MOTR
+        retract: WIRE:BPN12:850:MOTR_RETRACT
+        startscan: WIRE:BPN12:850:STARTSCAN
+        timeout: WIRE:BPN12:850:MOTR_TIMEOUTEN
+        useuwire: WIRE:BPN12:850:USEUWIRE
+        usexwire: WIRE:BPN12:850:USEXWIRE
+        useywire: WIRE:BPN12:850:USEYWIRE
+        usize: WIRE:BPN12:850:UWIRESIZE
+        uwireinner: WIRE:BPN12:850:UWIREINNER
+        uwireouter: WIRE:BPN12:850:UWIREOUTER
+        xsize: WIRE:BPN12:850:XWIRESIZE
+        xwireinner: WIRE:BPN12:850:XWIREINNER
+        xwireouter: WIRE:BPN12:850:XWIREOUTER
+        ysize: WIRE:BPN12:850:YWIRESIZE
+        ywireinner: WIRE:BPN12:850:YWIREINNER
+        ywireouter: WIRE:BPN12:850:YWIREOUTER
+      control_name: WIRE:BPN12:850
+    metadata:
+      area: BYP
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1212.849
+      type: WIRE
+  WSBP3:
+    controls_information:
+      PVs:
+        enabled: WIRE:BPN14:850:MOTR_ENABLED_STS
+        homed: WIRE:BPN14:850:MOTR_HOMED_STS
+        initialize: WIRE:BPN14:850:MOTR_INIT
+        initialized: WIRE:BPN14:850:MOTR_INIT_STS
+        motr: WIRE:BPN14:850:MOTR
+        retract: WIRE:BPN14:850:MOTR_RETRACT
+        startscan: WIRE:BPN14:850:STARTSCAN
+        timeout: WIRE:BPN14:850:MOTR_TIMEOUTEN
+        useuwire: WIRE:BPN14:850:USEUWIRE
+        usexwire: WIRE:BPN14:850:USEXWIRE
+        useywire: WIRE:BPN14:850:USEYWIRE
+        usize: WIRE:BPN14:850:UWIRESIZE
+        uwireinner: WIRE:BPN14:850:UWIREINNER
+        uwireouter: WIRE:BPN14:850:UWIREOUTER
+        xsize: WIRE:BPN14:850:XWIRESIZE
+        xwireinner: WIRE:BPN14:850:XWIREINNER
+        xwireouter: WIRE:BPN14:850:XWIREOUTER
+        ysize: WIRE:BPN14:850:YWIRESIZE
+        ywireinner: WIRE:BPN14:850:YWIREINNER
+        ywireouter: WIRE:BPN14:850:YWIREOUTER
+      control_name: WIRE:BPN14:850
+    metadata:
+      area: BYP
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1416.049
+      type: WIRE
+  WSBP4:
+    controls_information:
+      PVs:
+        enabled: WIRE:BPN16:850:MOTR_ENABLED_STS
+        homed: WIRE:BPN16:850:MOTR_HOMED_STS
+        initialize: WIRE:BPN16:850:MOTR_INIT
+        initialized: WIRE:BPN16:850:MOTR_INIT_STS
+        motr: WIRE:BPN16:850:MOTR
+        retract: WIRE:BPN16:850:MOTR_RETRACT
+        startscan: WIRE:BPN16:850:STARTSCAN
+        timeout: WIRE:BPN16:850:MOTR_TIMEOUTEN
+        useuwire: WIRE:BPN16:850:USEUWIRE
+        usexwire: WIRE:BPN16:850:USEXWIRE
+        useywire: WIRE:BPN16:850:USEYWIRE
+        usize: WIRE:BPN16:850:UWIRESIZE
+        uwireinner: WIRE:BPN16:850:UWIREINNER
+        uwireouter: WIRE:BPN16:850:UWIREOUTER
+        xsize: WIRE:BPN16:850:XWIRESIZE
+        xwireinner: WIRE:BPN16:850:XWIREINNER
+        xwireouter: WIRE:BPN16:850:XWIREOUTER
+        ysize: WIRE:BPN16:850:YWIRESIZE
+        ywireinner: WIRE:BPN16:850:YWIREINNER
+        ywireouter: WIRE:BPN16:850:YWIREOUTER
+      control_name: WIRE:BPN16:850
+    metadata:
+      area: BYP
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1619.249
+      type: WIRE

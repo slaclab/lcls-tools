@@ -1,14 +1,7 @@
 magnets:
   BKX21957:
     controls_information:
-      PVs:
-        bact: KICK:LI21:957:BACT
-        bcon: KICK:LI21:957:BCON
-        bctrl: KICK:LI21:957:BCTRL
-        bdes: KICK:LI21:957:BDES
-        bmax: KICK:LI21:957:BMAX
-        bmin: KICK:LI21:957:BMIN
-        ctrl: KICK:LI21:957:CTRL
+      PVs: {}
       control_name: KICK:LI21:957
     metadata:
       area: L2
@@ -38,14 +31,7 @@ magnets:
       type: BEND
   BKY21929:
     controls_information:
-      PVs:
-        bact: KICK:LI21:929:BACT
-        bcon: KICK:LI21:929:BCON
-        bctrl: KICK:LI21:929:BCTRL
-        bdes: KICK:LI21:929:BDES
-        bmax: KICK:LI21:929:BMAX
-        bmin: KICK:LI21:929:BMIN
-        ctrl: KICK:LI21:929:CTRL
+      PVs: {}
       control_name: KICK:LI21:929
     metadata:
       area: L2
