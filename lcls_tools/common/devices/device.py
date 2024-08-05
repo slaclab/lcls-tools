@@ -112,6 +112,11 @@ class Device(BaseModel):
         return self.metadata.sum_l_meters
 
     @property
+    def z_location(self) -> float:
+        """The position for this device in the design in meters (alias for sum_l_meters)"""
+        return self.metadata.sum_l_meters
+
+    @property
     def beam_path(self) -> List[str]:
         """The list of beampaths that include this device"""
         return self.metadata.beam_path
