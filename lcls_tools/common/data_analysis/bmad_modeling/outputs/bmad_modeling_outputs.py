@@ -1,10 +1,18 @@
 import matplotlib.pyplot as plt
 import epics
+<<<<<<< HEAD
 from lcls_tools.common.data_analysis.bmad_modeling import bmad_modeling as mod 
 
 
 def plot_betas(output1, output2, **kwargs):
     """Generates two figures with beta.a and beta.b for two output runs"""
+=======
+import bmad_modeling as bmdo
+
+
+def plot_betas(output1, output2, **kwargs):
+    """Generates two figures with betas X and Y for two output runs"""
+>>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     plot_beta_options = {
     "title1": "",
     "title2": "",
@@ -52,6 +60,7 @@ def plot_betas(output1, output2, **kwargs):
     return fig1, fig2, axes_list
  
 def show_twiss(tao, element, datum=[]):
+<<<<<<< HEAD
     """Display model beta_a, alpha_a, beta_b and alpha_b for given element
     as well as bmag with respect to desing.  If datum is given, bmag with 
     respect to model is calculated"""
@@ -62,6 +71,15 @@ def show_twiss(tao, element, datum=[]):
         twiss_model = mod.get_twiss(tao, element, which="model")
         twiss_design = mod.get_twiss(tao, element)
         bmag_a, bmag_b = mod.bmag(twiss_model, twiss_design)
+=======
+    # parameters = ["beta_a", "alpha_a", "beta_b", "alpha_b"]
+    if not datum == []:
+        twiss_datum = tao.data_parameter(datum,"meas_value")[0].split(";")[1:]
+        twiss_datum = [float(val) for val in twiss_datum]
+        twiss_model = bmdo.get_twiss(tao, element, which="model")
+        twiss_design = bmdo.get_twiss(tao, element)
+        bmag_a, bmag_b = bmdo.bmag(twiss_model, twiss_design)
+>>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
         print(f"\n{element} BMAG_X {bmag_a:3.2f}, BMAG_Y {bmag_b:3.2f} ")
         print(f'{" " * 12} Beta     Alpha   Beta   Alpha ')
         print(f'{" " * 12}  X       X       Y       Y')
@@ -77,7 +95,11 @@ def show_twiss(tao, element, datum=[]):
             print(f'Measured:{" " * 0}', end="")
             for val in twiss_datum:
                 print(f"{float(val):8.2f}", end="")
+<<<<<<< HEAD
             bmag_a, bmag_b = mod.bmag(twiss_datum[0:4], twiss_model)
+=======
+            bmag_a, bmag_b = bmdo.bmag(twiss_datum[0:4], twiss_model)
+>>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
             print("\nMeasured to Model:")
             print(f"\n{element} BMAG_X {bmag_a:3.2f}, BMAG_Y {bmag_b:3.2f}")
         print("")
@@ -85,7 +107,11 @@ def show_twiss(tao, element, datum=[]):
 def quad_table(tao, pct_lim=1, show_energy=False):
     """Display table of quad elements BDES, BMOD, Bmad model
     BDES and  Bamd model energy.  Filter
+<<<<<<< HEAD
     by pct_lim =  (BMOD - Bmad model)/ BMOD"""
+=======
+    by pct_lim (BMOD - Bmad model)/ BMOD"""
+>>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     quads = tao.lat_list("quad::Q*", "ele.name", flags="-no_slaves")
     if show_energy:
         print("Ele.    Device            EACT    EDES    E_TOT    ")
@@ -98,7 +124,11 @@ def quad_table(tao, pct_lim=1, show_energy=False):
         eact = epics.caget(device + ":EACT")
         edes = epics.caget(device + ":EDES")
         e_tot = tao.ele_gen_attribs(element)["E_TOT"] / 1e9
+<<<<<<< HEAD
         model_bdes = mod.get_bmad_bdes(tao, element)
+=======
+        model_bdes = bmdo.get_bmad_bdes(tao, element)
+>>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
         if show_energy:
             print(
                 f"{element:7s} {device:15s} {eact:7.3f}"
@@ -114,8 +144,11 @@ def quad_table(tao, pct_lim=1, show_energy=False):
                 )
 
 def plot_twiss(tao, output, info="", xoff=0):
+<<<<<<< HEAD
     """Plot twiss parameters for one output as well as element lables
     """
+=======
+>>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     fig, ax = plt.subplots(figsize=(8, 4))
     ax.plot(output["ele.s"], output["ele.a.beta"], label=r"$\beta_a$")
     ax.plot(output["ele.s"], output["ele.b.beta"], label=r"$\beta_b$")
