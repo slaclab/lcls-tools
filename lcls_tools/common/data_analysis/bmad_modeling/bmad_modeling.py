@@ -7,12 +7,8 @@ from lcls_live.archiver import lcls_archiver_restore
 
 
 def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
-<<<<<<< HEAD
     """Returns pvlist from lcls_live datamaps for given beam_path
     for Cu beampaths beam_code can be 1 or 2"""
-=======
-    """Returns pvlist for given beam_path"""
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     pvlist = set()
     for dm_key, map in all_data_maps.items():
         if dm_key in ["cavities", "quad"]:
@@ -37,17 +33,10 @@ def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
 
 
 def get_energy_gain_pvlist(beam_path):
-<<<<<<< HEAD
     """Interim function to get list of EDES PVs from YAML file"""
     pvlist = []
     yaml_dir = '/sdf/home/c/colocho/lcls-tools/lcls_tools/' \
                'common/data_analysis/bmad_modeling/yaml/'
-    print("Current working directory:", os.getcwd())
-=======
-    pvlist = []
-    yaml_dir = '/sdf/home/c/colocho/lcls-tools/lcls_tools/' \
-               'common/data_analysis/bmad_modeling/yaml/'
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     with open(yaml_dir + 'energy_measurements.yml', 'r') as file:
         engy_meas = yaml.safe_load(file)[beam_path[0:2]]
     [pvlist.append(engy_meas[key]) for key in engy_meas.keys()]
@@ -56,11 +45,7 @@ def get_energy_gain_pvlist(beam_path):
 
 def evaluate_tao(tao, tao_cmds):
     """
-<<<<<<< HEAD
     Evaluate set of tao commands, toggles lattice_calculation OFF/ON
-=======
-    Evaluate set of tao command, toggles lattice_calculation OFF/ON
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     in between command list
     """
     tao.cmd("set global lattice_calc_on = F")
@@ -75,7 +60,6 @@ def get_twiss(tao, element, which="design"):
     result = tao.ele_twiss(element, which=which)
     return [result[p] for p in ["beta_a", "alpha_a", "beta_b", "alpha_b"]]
 
-<<<<<<< HEAD
 def list_to_numpy_array(x, val_type = 'Ampl', ampl_reject = 0.5, none_value = 0):
     """Convert None to 0.0 for values in x, if is_phase convert to radians
     if is_ampl set values less than 0.5 Mev to zero"""
@@ -87,10 +71,8 @@ def list_to_numpy_array(x, val_type = 'Ampl', ampl_reject = 0.5, none_value = 0)
     if val_type == 'Phas':
         x_np = np.deg2rad(x_np)
     return x_np
-    
-=======
 
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
+    
 def bmag(twiss, twiss_reference):
     """Calculates BMAG from imput twiss and reference twiss"""
     beta_a, alpha_a, beta_b, alpha_b = twiss
@@ -125,12 +107,7 @@ def match_twiss(tao, variable, datum):
 
 def get_tao(pvdata, mdl_obj):
     """
-<<<<<<< HEAD
     Returns tao commands from pvdata, if data_source is DES, calls use_klys_when_beam off for Cu Linac
-=======
-    Returns tao commands, if data_source is DES, calls use_klys_when_beam off
-    for Cu Linac
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     """
     lines_quads, lines_rf = [], []
     for dm_key, map in mdl_obj.all_data_maps.items():
@@ -281,12 +258,7 @@ def get_expected_energy_gain(pvdata, region, beam_path):
     """
     yaml_dir = '/sdf/home/c/colocho/lcls-tools/lcls_tools/' \
                'common/data_analysis/bmad_modeling/yaml/'
-<<<<<<< HEAD
-    print("Current working directory:", os.getcwd())
-    with open('energy_measurements.yml', 'r') as file:
-=======
     with open(yaml_dir + 'energy_measurements.yml', 'r') as file:
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
         engy_meas = yaml.safe_load(file)[beam_path[0:2]]
     if region == 'L1':
         previous_region = 'GUN'
@@ -297,43 +269,12 @@ def get_expected_energy_gain(pvdata, region, beam_path):
     return expected_gain
 
 
-<<<<<<< HEAD
 def update_energy_gain_sc(tao, pvdata, region, mdl_obj):
-=======
-class BmadModeling:
-    def __init__(self, beam_path, data_source):
-        self.beam_path: str = beam_path
-        self.data_source: str = data_source
-        self.beam_code: str = '1'
-        self.date_time: str = '2024-03-24T17:10:00.000000-08:00'
-        """updates datamaps depending on data source used by lcls-live"""
-        if "LCLS_LATTICE" not in os.environ:
-            raise OSError("Environment variable LCLS_LATTICE not defined")
-        self.all_data_maps = get_datamaps(self.beam_path)
-        if self.data_source == "DES":
-            use_pv = "pvname"
-        elif self.data_source == "ACT":
-            use_pv = "pvname_rbv"
-        elif self.data_source == "ARCHIVE":
-            use_pv = "pvname"
-        if "sc" in self.beam_path:
-            self.all_data_maps["cavities"].pvname = use_pv
-            self.injector_energy = 0.09
-        self.all_data_maps["quad"].pvname = use_pv
-        self.energy_measurements = self.all_data_maps['tao_energy_measurements'].data.to_dict()
-
-
-def update_energy_gain_sc(self, tao, pvdata, region):
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     """
     Updates SC Linac energy gain profile based on bending magnets,
     calculates a fudge and modifies model's cavity amplitudes and phases
     """
-<<<<<<< HEAD
     expected_gain = get_expected_energy_gain(pvdata, region, mdl_obj.beam_path)
-=======
-    expected_gain = self.get_expected_energy_gain(region)
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     cavities = tao.lat_list(
         f"LCAV::BEG{region}B:END{region}B", "ele.name")
     for indx, cav in enumerate(cavities):
@@ -349,12 +290,7 @@ def update_energy_gain_sc(self, tao, pvdata, region):
     amplNp = list_to_numpy_array(ampl)
     phasNp = list_to_numpy_array(phas, val_type = 'Phas')
     gainMeasured = amplNp * np.cos(phasNp)
-<<<<<<< HEAD
     dF = (expected_gain - sum(gainMeasured)) / amplNp.sum()
-
-=======
-    dF = (expected_gain - sum(gainMeasured)) / sum(ampl)
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     # fudge = 1 + dF
     complexGain = amplNp * np.exp(1j * phasNp)
     complexGainFudged = complexGain + amplNp * dF
@@ -374,20 +310,13 @@ def update_energy_gain_sc(self, tao, pvdata, region):
     print(region_e_tot)
 
 
-<<<<<<< HEAD
+
 def update_energy_gain_cu(tao, pvdata, mdl_obj):
-=======
-def update_energy_gain_cu(self, tao, pvdata, region):
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     """
     Updates Cu Linac energy gain profile based on bending magnets,
     calculates a fudge and modifies model's cavity amplitudes and phases
     """
-<<<<<<< HEAD
     expected_gain = get_expected_energy_gain(region)
-=======
-    expected_gain = self.get_expected_energy_gain(region)
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     init_cmds = ["veto dat *", "veto var *"]
     if region == "L2":
         tao.cmd(f"set dat BC1.energy[2]|meas = {expected_gain} ")
@@ -402,7 +331,6 @@ def update_energy_gain_cu(self, tao, pvdata, region):
     tao.cmds(optimize_cmds)
     r = tao.cmd("run")
     print(r)
-<<<<<<< HEAD
 
 
 def update_datum_meas(tao, datum, mdl_obj, useDesing=True):
@@ -411,16 +339,6 @@ def update_datum_meas(tao, datum, mdl_obj, useDesing=True):
     """
     [d2_name, d1_name] = datum.split('.')
     element = tao.data(d2_name, d1_name)['ele_name']
-=======
-    [print(line) for line in tao.cmd("show merit")]
-
-
-def update_datum_meas(self, tao, datum, useDesing=True):
-    """
-    Updates datum with EPICS or design twiss values
-    """
-    element = self.get_element(tao, datum)
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
     TWISS = ["beta_a", "alpha_a", "beta_b", "alpha_b"]
     cmd = []
     if useDesing:
@@ -440,7 +358,6 @@ def update_datum_meas(self, tao, datum, useDesing=True):
                 f"set dat {datum}[{ii+1}]|meas = {measured[pvs[ii]]}")
     tao.cmds(cmd)
     tao.cmd(f"show dat {datum}")
-<<<<<<< HEAD
 
 
 class BmadModeling:
@@ -465,5 +382,3 @@ class BmadModeling:
         self.all_data_maps["quad"].pvname = use_pv
 
 
-=======
->>>>>>> ed37cc8ec1f2f7a00bd319bfb6b2fc6ab1fa40c4
