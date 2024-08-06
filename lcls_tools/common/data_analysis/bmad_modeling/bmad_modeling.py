@@ -60,11 +60,12 @@ def get_twiss(tao, element, which="design"):
     result = tao.ele_twiss(element, which=which)
     return [result[p] for p in ["beta_a", "alpha_a", "beta_b", "alpha_b"]]
 
-def list_to_numpy_array(x, val_type = 'Ampl', ampl_reject = 0.5, none_value = 0):
+
+def list_to_numpy_array(x, val_type='Ampl', ampl_reject=0.5, none_value=0):
     """Convert None to 0.0 for values in x, if is_phase convert to radians
     if is_ampl set values less than 0.5 Mev to zero"""
     x_np = np.array(x)
-    x_np = np.where(x == None, np.nan, x).astype(float)
+    x_np = np.where(x is None, np.nan, x).astype(float)
     x_np = np.nan_to_num(x_np, nan=0.0)
     if val_type == 'Ampl':
         x_np = np.where(x_np < ampl_reject, 0, x_np)
@@ -72,7 +73,7 @@ def list_to_numpy_array(x, val_type = 'Ampl', ampl_reject = 0.5, none_value = 0)
         x_np = np.deg2rad(x_np)
     return x_np
 
-    
+
 def bmag(twiss, twiss_reference):
     """Calculates BMAG from imput twiss and reference twiss"""
     beta_a, alpha_a, beta_b, alpha_b = twiss
@@ -288,7 +289,7 @@ def update_energy_gain_sc(tao, pvdata, region, mdl_obj):
     ampl = [pvdata[dev + ":A" + attr] for dev in devices]
     phas = [pvdata[dev + ":P" + attr] for dev in devices]
     amplNp = list_to_numpy_array(ampl)
-    phasNp = list_to_numpy_array(phas, val_type = 'Phas')
+    phasNp = list_to_numpy_array(phas, val_type='Phas')
     gainMeasured = amplNp * np.cos(phasNp)
     dF = (expected_gain - sum(gainMeasured)) / amplNp.sum()
     # fudge = 1 + dF
@@ -310,20 +311,19 @@ def update_energy_gain_sc(tao, pvdata, region, mdl_obj):
     print(region_e_tot)
 
 
-
 def update_energy_gain_cu(tao, pvdata, mdl_obj):
     """
     Updates Cu Linac energy gain profile based on bending magnets,
     calculates a fudge and modifies model's cavity amplitudes and phases
     """
-    expected_gain = get_expected_energy_gain(region)
+    expected_gain = get_expected_energy_gain(mdl_obj.region)
     init_cmds = ["veto dat *", "veto var *"]
-    if region == "L2":
+    if mdl_obj.region == "L2":
         tao.cmd(f"set dat BC1.energy[2]|meas = {expected_gain} ")
         optimize_cmds = init_cmds + [
             "use dat BC2.energy[1]",
             "use var linac_fudge[2]"]
-    if region == "L3":
+    if mdl_obj.region == "L3":
         tao.cmd(f"set dat L3[2]|meas ={expected_gain} ")
         optimize_cmds = init_cmds + [
             "use dat L3.energy[2]",
@@ -344,18 +344,18 @@ def update_datum_meas(tao, datum, mdl_obj, useDesing=True):
     if useDesing:
         ele_twiss = tao.ele_twiss(element, which="design")
         for ii, p in enumerate(TWISS):
-            cmd.append(f"set dat {datum}[{ii+1}]|meas = {ele_twiss[p]}")
+            cmd.append(f"set dat {datum}[{ii + 1}]|meas = {ele_twiss[p]}")
     else:
         device = tao.ele_head(element)["alias"]
         EPICS_ATTRIBUTE = ["BETA_X", "ALPHA_X", "BETA_Y", "ALPHA_Y"]
         pvs = [device + ":" + twiss for twiss in EPICS_ATTRIBUTE]
-        if self.data_source in ["ACT", "DES"]:
+        if mdl_obj.data_source in ["ACT", "DES"]:
             measured = get_live(pvs)
-        elif self.data_source == "ARCHIVE":
-            measured = lcls_archiver_restore(pvs, self.date_time)
+        elif mdl_obj.data_source == "ARCHIVE":
+            measured = lcls_archiver_restore(pvs, mdl_obj.date_time)
         for ii, pv in enumerate(pvs):
             cmd.append(
-                f"set dat {datum}[{ii+1}]|meas = {measured[pvs[ii]]}")
+                f"set dat {datum}[{ii + 1}]|meas = {measured[pvs[ii]]}")
     tao.cmds(cmd)
     tao.cmd(f"show dat {datum}")
 
@@ -380,5 +380,3 @@ class BmadModeling:
             self.all_data_maps["cavities"].pvname = use_pv
             self.injector_energy = 0.09
         self.all_data_maps["quad"].pvname = use_pv
-
-
