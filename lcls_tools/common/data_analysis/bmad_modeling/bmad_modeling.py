@@ -27,7 +27,7 @@ def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
         if dm_key.startswith('K'):  # One for each Klystron station
             for pv in map.pvlist:
                 if "BEAMCODE" in pv:
-                    pv = f"BEAMCODE{beam_code}_STAT"
+                    pv = map.accelerate_pvname
                 pvlist.add(pv)
     return list(pvlist)
 
@@ -116,14 +116,14 @@ def get_tao(pvdata, mdl_obj):
             acc_pv = map.accelerate_pvname
             if acc_pv == "":
                 continue
-            acc_pv = f"{acc_pv[0:21]}{mdl_obj.beam_code}{acc_pv[22:]}"
-            map.accelerate_pvname = acc_pv
+            #acc_pv = f"{acc_pv[0:21]}{mdl_obj.beam_code}{acc_pv[22:]}"
+            #map.accelerate_pvname = acc_pv
             lines_rf += map.as_tao(pvdata)
         if dm_key == "cavities":
             lines_rf = map.as_tao(pvdata)
         if dm_key == "quads":
             lines_quads += map.as_tao(pvdata)
-    if "DES" in mdl_obj.data_source and "cu" in mdl_obj.beam_path:
+    if "NOT" in mdl_obj.data_source and "cu" in mdl_obj.beam_path:
         new_lines = []
         for cmd in lines_rf:
             if "in_use" in cmd:
@@ -132,14 +132,14 @@ def get_tao(pvdata, mdl_obj):
                     continue
                 ele = cmd.split()[2]
                 [sector, station] = ele[1:].split("_")
-                pv = f"KLYS:LI{sector}:{station}1:"
+                pv = f"KLYS:LI{sector}:{station}1:" 
                 f"BEAMCODE{mdl_obj.beam_code}_STAT"
                 cmd_words = cmd.split()
                 cmd_words[-1] = str(pvdata[pv])
                 new_lines.append(" ".join(cmd_words))
             else:
                 new_lines.append(cmd)
-        lines_rf = new_lines
+        #lines_rf = new_lines
     return lines_rf + lines_quads
 
 
@@ -149,6 +149,14 @@ def get_machine_values(data_source, pv_list, date_time=''):
         pvdata = get_live(pv_list)
     elif "ARCHIVE" in data_source:
         pvdata = lcls_archiver_restore(pv_list, date_time)
+    if "DES" in data_source:
+        for pv, val in pvdata.items():
+            if any(k in pv for k in ['HDSC', 'SWRD', 'STAT']):
+                pvdata[pv] = 0
+            if 'DSTA' in pv:
+                pvdata[pv] = np.array([0, 0])
+        
+                
     return pvdata
 
 
@@ -364,7 +372,7 @@ class BmadModeling:
     def __init__(self, beam_path, data_source):
         self.beam_path: str = beam_path
         self.data_source: str = data_source
-        self.beam_code: str = '1'
+        self.beam_code = ['1' if beam_path == 'cu_hxr' else '2'][0]
         self.date_time: str = '2024-03-24T17:10:00.000000-08:00'
         """updates datamaps depending on data source used by lcls-live"""
         if "LCLS_LATTICE" not in os.environ:
@@ -378,5 +386,4 @@ class BmadModeling:
             use_pv = "pvname"
         if "sc" in self.beam_path:
             self.all_data_maps["cavities"].pvname = use_pv
-            self.injector_energy = 0.09
         self.all_data_maps["quad"].pvname = use_pv
