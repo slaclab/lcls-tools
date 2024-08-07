@@ -116,8 +116,8 @@ def get_tao(pvdata, mdl_obj):
             acc_pv = map.accelerate_pvname
             if acc_pv == "":
                 continue
-            #acc_pv = f"{acc_pv[0:21]}{mdl_obj.beam_code}{acc_pv[22:]}"
-            #map.accelerate_pvname = acc_pv
+            # acc_pv = f"{acc_pv[0:21]}{mdl_obj.beam_code}{acc_pv[22:]}"
+            # map.accelerate_pvname = acc_pv
             lines_rf += map.as_tao(pvdata)
         if dm_key == "cavities":
             lines_rf = map.as_tao(pvdata)
@@ -132,14 +132,14 @@ def get_tao(pvdata, mdl_obj):
                     continue
                 ele = cmd.split()[2]
                 [sector, station] = ele[1:].split("_")
-                pv = f"KLYS:LI{sector}:{station}1:" 
+                pv = f"KLYS:LI{sector}:{station}1:"
                 f"BEAMCODE{mdl_obj.beam_code}_STAT"
                 cmd_words = cmd.split()
                 cmd_words[-1] = str(pvdata[pv])
                 new_lines.append(" ".join(cmd_words))
             else:
                 new_lines.append(cmd)
-        #lines_rf = new_lines
+        # lines_rf = new_lines
     return lines_rf + lines_quads
 
 
@@ -155,8 +155,6 @@ def get_machine_values(data_source, pv_list, date_time=''):
                 pvdata[pv] = 0
             if 'DSTA' in pv:
                 pvdata[pv] = np.array([0, 0])
-        
-                
     return pvdata
 
 
