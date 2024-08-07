@@ -8,7 +8,7 @@ from lcls_live.archiver import lcls_archiver_restore
 
 def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
     """Returns pvlist from lcls_live datamaps for given beam_path
-    for Cu beampaths beam_code can be 1 or 2"""
+    for Cu beampaths beam_code can be 1 or 2 """
     pvlist = set()
     for dm_key, map in all_data_maps.items():
         if dm_key in ["cavities", "quad"]:
