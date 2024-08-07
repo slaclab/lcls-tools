@@ -6,11 +6,11 @@ import bmad_modeling as bmdo
 def plot_betas(output1, output2, **kwargs):
     """Generates two figures with betas X and Y for two output runs"""
     plot_beta_options = {
-    "title1": "",
-    "title2": "",
-    "label1": "Design",
-    "label2": "Model",
-    "figsize": (8, 4),
+        "title1": "",
+        "title2": "",
+        "label1": "Design",
+        "label2": "Model",
+        "figsize": (8, 4),
     }
     plot_beta_options.update(kwargs)
     opt = plot_beta_options
@@ -20,12 +20,12 @@ def plot_betas(output1, output2, **kwargs):
         label=opt["label1"], linestyle="--"
     )
     ax1.plot(output2["ele.s"],
-    output2["ele.a.beta"],
-    label=opt["label2"])
+             output2["ele.a.beta"],
+             label=opt["label2"])
     plt.legend()
     # Add energy to the rhs
     ax12 = ax1.twinx()
-    ax12.plot(output2["ele.s"], output2["ele.e_tot"] / 1e9,color="red")
+    ax12.plot(output2["ele.s"], output2["ele.e_tot"] / 1e9, color="red")
     ax12.set_ylabel("Energy (GeV)")
     efinal = output2["ele.e_tot"][-1] / 1e9
     plt.title(f'{opt["title1"]} Final energy: {efinal:.2f} GeV')
@@ -38,10 +38,10 @@ def plot_betas(output1, output2, **kwargs):
         label=opt["label1"], linestyle="--"
     )
     ax2.plot(output2["ele.s"], output2["ele.b.beta"],
-    label=opt["label2"])
+             label=opt["label2"])
     plt.legend()
     ax22 = ax2.twinx()
-    ax22.plot(output2["ele.s"], output2["ele.e_tot"] / 1e9,color="red")
+    ax22.plot(output2["ele.s"], output2["ele.e_tot"] / 1e9, color="red")
     ax22.set_ylabel("Energy (GeV)")
     plt.title(f'{opt["title2"]} Final energy: {efinal:.2f} GeV')
     ax2.set_xlabel("s (m)")
@@ -50,11 +50,12 @@ def plot_betas(output1, output2, **kwargs):
     fig1.show()
     fig2.show()
     return fig1, fig2, axes_list
- 
+
+
 def show_twiss(tao, element, datum=[]):
     # parameters = ["beta_a", "alpha_a", "beta_b", "alpha_b"]
     if not datum == []:
-        twiss_datum = tao.data_parameter(datum,"meas_value")[0].split(";")[1:]
+        twiss_datum = tao.data_parameter(datum, "meas_value")[0].split(";")[1:]
         twiss_datum = [float(val) for val in twiss_datum]
         twiss_model = bmdo.get_twiss(tao, element, which="model")
         twiss_design = bmdo.get_twiss(tao, element)
@@ -66,7 +67,7 @@ def show_twiss(tao, element, datum=[]):
         for val in twiss_design:
             print(f"{val:8.2f}", end="")
         print("")
-        print(f'Model:{" " *3}', end="")
+        print(f'Model:{" " * 3}', end="")
         for val in twiss_model:
             print(f"{val:8.2f}", end="")
         print("")
@@ -78,6 +79,7 @@ def show_twiss(tao, element, datum=[]):
             print("\nMeasured to Model:")
             print(f"\n{element} BMAG_X {bmag_a:3.2f}, BMAG_Y {bmag_b:3.2f}")
         print("")
+
 
 def quad_table(tao, pct_lim=1, show_energy=False):
     """Display table of quad elements BDES, BMOD, Bmad model
@@ -103,12 +105,13 @@ def quad_table(tao, pct_lim=1, show_energy=False):
             )
         else:
             percent = (
-                100 * abs((bmod - model_bdes) / bmod) if bmod !=0 else 0)
+                100 * abs((bmod - model_bdes) / bmod) if bmod != 0 else 0)
             if percent > pct_lim:
                 print(
                     f"{element:7s} {device:15s} {bdes:7.3f}"
                     f"{bmod:7.3f} {model_bdes:7.3f} {percent:7.3}"
                 )
+
 
 def plot_twiss(tao, output, info="", xoff=0):
     fig, ax = plt.subplots(figsize=(8, 4))
