@@ -450,3 +450,14 @@ screens:
       - F2_SCAV
       sum_l_meters: 919.713
       type: PROF
+wires:
+  WS57184:
+    controls_information:
+      PVs: {}
+      control_name: LI19:WIRE:7184
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 918.947
+      type: WIRE

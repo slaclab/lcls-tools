@@ -551,3 +551,152 @@ magnets:
       - SC_SXR
       sum_l_meters: 180.958
       type: YCOR
+wires:
+  WSC104:
+    controls_information:
+      PVs:
+        enabled: WIRE:COL1:360:MOTR_ENABLED_STS
+        homed: WIRE:COL1:360:MOTR_HOMED_STS
+        initialize: WIRE:COL1:360:MOTR_INIT
+        initialized: WIRE:COL1:360:MOTR_INIT_STS
+        motr: WIRE:COL1:360:MOTR
+        retract: WIRE:COL1:360:MOTR_RETRACT
+        startscan: WIRE:COL1:360:STARTSCAN
+        timeout: WIRE:COL1:360:MOTR_TIMEOUTEN
+        useuwire: WIRE:COL1:360:USEUWIRE
+        usexwire: WIRE:COL1:360:USEXWIRE
+        useywire: WIRE:COL1:360:USEYWIRE
+        usize: WIRE:COL1:360:UWIRESIZE
+        uwireinner: WIRE:COL1:360:UWIREINNER
+        uwireouter: WIRE:COL1:360:UWIREOUTER
+        xsize: WIRE:COL1:360:XWIRESIZE
+        xwireinner: WIRE:COL1:360:XWIREINNER
+        xwireouter: WIRE:COL1:360:XWIREOUTER
+        ysize: WIRE:COL1:360:YWIRESIZE
+        ywireinner: WIRE:COL1:360:YWIREINNER
+        ywireouter: WIRE:COL1:360:YWIREOUTER
+      control_name: WIRE:COL1:360
+    metadata:
+      area: COL1
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 154.52
+      type: WIRE
+  WSC106:
+    controls_information:
+      PVs:
+        enabled: WIRE:COL1:520:MOTR_ENABLED_STS
+        homed: WIRE:COL1:520:MOTR_HOMED_STS
+        initialize: WIRE:COL1:520:MOTR_INIT
+        initialized: WIRE:COL1:520:MOTR_INIT_STS
+        motr: WIRE:COL1:520:MOTR
+        retract: WIRE:COL1:520:MOTR_RETRACT
+        startscan: WIRE:COL1:520:STARTSCAN
+        timeout: WIRE:COL1:520:MOTR_TIMEOUTEN
+        useuwire: WIRE:COL1:520:USEUWIRE
+        usexwire: WIRE:COL1:520:USEXWIRE
+        useywire: WIRE:COL1:520:USEYWIRE
+        usize: WIRE:COL1:520:UWIRESIZE
+        uwireinner: WIRE:COL1:520:UWIREINNER
+        uwireouter: WIRE:COL1:520:UWIREOUTER
+        xsize: WIRE:COL1:520:XWIRESIZE
+        xwireinner: WIRE:COL1:520:XWIREINNER
+        xwireouter: WIRE:COL1:520:XWIREOUTER
+        ysize: WIRE:COL1:520:YWIRESIZE
+        ywireinner: WIRE:COL1:520:YWIREINNER
+        ywireouter: WIRE:COL1:520:YWIREOUTER
+      control_name: WIRE:COL1:520
+    metadata:
+      area: COL1
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 162.52
+      type: WIRE
+  WSC108:
+    controls_information:
+      PVs:
+        enabled: WIRE:COL1:680:MOTR_ENABLED_STS
+        homed: WIRE:COL1:680:MOTR_HOMED_STS
+        initialize: WIRE:COL1:680:MOTR_INIT
+        initialized: WIRE:COL1:680:MOTR_INIT_STS
+        motr: WIRE:COL1:680:MOTR
+        retract: WIRE:COL1:680:MOTR_RETRACT
+        startscan: WIRE:COL1:680:STARTSCAN
+        timeout: WIRE:COL1:680:MOTR_TIMEOUTEN
+        useuwire: WIRE:COL1:680:USEUWIRE
+        usexwire: WIRE:COL1:680:USEXWIRE
+        useywire: WIRE:COL1:680:USEYWIRE
+        usize: WIRE:COL1:680:UWIRESIZE
+        uwireinner: WIRE:COL1:680:UWIREINNER
+        uwireouter: WIRE:COL1:680:UWIREOUTER
+        xsize: WIRE:COL1:680:XWIRESIZE
+        xwireinner: WIRE:COL1:680:XWIREINNER
+        xwireouter: WIRE:COL1:680:XWIREOUTER
+        ysize: WIRE:COL1:680:YWIRESIZE
+        ywireinner: WIRE:COL1:680:YWIREINNER
+        ywireouter: WIRE:COL1:680:YWIREOUTER
+      control_name: WIRE:COL1:680
+    metadata:
+      area: COL1
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 170.52
+      type: WIRE
+  WSC110:
+    controls_information:
+      PVs:
+        enabled: WIRE:COL1:840:MOTR_ENABLED_STS
+        homed: WIRE:COL1:840:MOTR_HOMED_STS
+        initialize: WIRE:COL1:840:MOTR_INIT
+        initialized: WIRE:COL1:840:MOTR_INIT_STS
+        motr: WIRE:COL1:840:MOTR
+        retract: WIRE:COL1:840:MOTR_RETRACT
+        startscan: WIRE:COL1:840:STARTSCAN
+        timeout: WIRE:COL1:840:MOTR_TIMEOUTEN
+        useuwire: WIRE:COL1:840:USEUWIRE
+        usexwire: WIRE:COL1:840:USEXWIRE
+        useywire: WIRE:COL1:840:USEYWIRE
+        usize: WIRE:COL1:840:UWIRESIZE
+        uwireinner: WIRE:COL1:840:UWIREINNER
+        uwireouter: WIRE:COL1:840:UWIREOUTER
+        xsize: WIRE:COL1:840:XWIRESIZE
+        xwireinner: WIRE:COL1:840:XWIREINNER
+        xwireouter: WIRE:COL1:840:XWIREOUTER
+        ysize: WIRE:COL1:840:YWIRESIZE
+        ywireinner: WIRE:COL1:840:YWIREINNER
+        ywireouter: WIRE:COL1:840:YWIREOUTER
+      control_name: WIRE:COL1:840
+    metadata:
+      area: COL1
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 178.52
+      type: WIRE

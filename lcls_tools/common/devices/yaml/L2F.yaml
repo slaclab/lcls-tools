@@ -983,3 +983,52 @@ magnets:
       - F2_SCAV
       sum_l_meters: 395.17
       type: YCOR
+wires:
+  WS11444:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI11:444
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 65.888
+      type: WIRE
+  WS11614:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI11:614
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 81.131
+      type: WIRE
+  WS11744:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI11:744
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 102.921
+      type: WIRE
+  WS12214:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI12:214
+    metadata:
+      area: L2F
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 133.353
+      type: WIRE

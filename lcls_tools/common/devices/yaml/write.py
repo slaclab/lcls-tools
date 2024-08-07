@@ -22,11 +22,18 @@ class YAMLWriter:
         )
         if magnets:
             file_contents["magnets"] = magnets
+
         screens = self.generator.extract_screens(
             area=area,
         )
         if screens:
             file_contents["screens"] = screens
+
+        wires = self.generator.extract_wires(
+            area=area,
+        )
+        if wires:
+            file_contents["wires"] = wires
 
         if file_contents:
             return file_contents

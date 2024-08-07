@@ -4,8 +4,10 @@ from typing import Union, Optional, Any, Dict
 from pydantic import ValidationError
 from lcls_tools.common.devices.screen import Screen, ScreenCollection
 from lcls_tools.common.devices.magnet import Magnet, MagnetCollection
+from lcls_tools.common.devices.wire import Wire, WireCollection
 from lcls_tools.common.devices.area import Area
 from lcls_tools.common.devices.beampath import Beampath
+
 
 DEFAULT_YAML_LOCATION = "./lcls_tools/common/devices/yaml/"
 
@@ -102,6 +104,24 @@ def create_screen(
             return None
     else:
         return ScreenCollection(**device_data)
+
+
+def create_wire(
+    area: str = None, name: str = None
+) -> Union[None, Wire, WireCollection]:
+    device_data = _device_data(area=area, device_type="wires", name=name)
+    if not device_data:
+        return None
+    if name:
+        try:
+            # this data is not available from YAML directly in this form, so we add it here.
+            device_data.update({"name": name})
+            return Wire(**device_data)
+        except ValidationError as field_error:
+            print(field_error)
+            return None
+    else:
+        return WireCollection(**device_data)
 
 
 def create_area(area: str = None) -> Union[None, Area]:
