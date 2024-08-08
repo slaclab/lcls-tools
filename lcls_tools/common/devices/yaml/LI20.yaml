@@ -17,3 +17,31 @@ magnets:
       beam_path: []
       sum_l_meters: null
       type: QUAD
+wires:
+  WSIP2:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI20:3206
+    metadata:
+      area: LI20
+      beam_path: []
+      sum_l_meters: null
+      type: WIRE
+  WSIP3:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI20:3229
+    metadata:
+      area: LI20
+      beam_path: []
+      sum_l_meters: null
+      type: WIRE
+  WSIP4:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI20:3252
+    metadata:
+      area: LI20
+      beam_path: []
+      sum_l_meters: null
+      type: WIRE

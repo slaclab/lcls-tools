@@ -227,3 +227,34 @@ magnets:
       - SC_BSYD
       sum_l_meters: 3053.845
       type: YCOR
+wires:
+  WSSP1D:
+    controls_information:
+      PVs:
+        enabled: WIRE:SPD:872:MOTR_ENABLED_STS
+        homed: WIRE:SPD:872:MOTR_HOMED_STS
+        initialize: WIRE:SPD:872:MOTR_INIT
+        initialized: WIRE:SPD:872:MOTR_INIT_STS
+        motr: WIRE:SPD:872:MOTR
+        retract: WIRE:SPD:872:MOTR_RETRACT
+        startscan: WIRE:SPD:872:STARTSCAN
+        timeout: WIRE:SPD:872:MOTR_TIMEOUTEN
+        useuwire: WIRE:SPD:872:USEUWIRE
+        usexwire: WIRE:SPD:872:USEXWIRE
+        useywire: WIRE:SPD:872:USEYWIRE
+        usize: WIRE:SPD:872:UWIRESIZE
+        uwireinner: WIRE:SPD:872:UWIREINNER
+        uwireouter: WIRE:SPD:872:UWIREOUTER
+        xsize: WIRE:SPD:872:XWIRESIZE
+        xwireinner: WIRE:SPD:872:XWIREINNER
+        xwireouter: WIRE:SPD:872:XWIREOUTER
+        ysize: WIRE:SPD:872:YWIRESIZE
+        ywireinner: WIRE:SPD:872:YWIREINNER
+        ywireouter: WIRE:SPD:872:YWIREOUTER
+      control_name: WIRE:SPD:872
+    metadata:
+      area: SPD
+      beam_path:
+      - SC_BSYD
+      sum_l_meters: 3024.92
+      type: WIRE
