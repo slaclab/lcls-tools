@@ -157,10 +157,12 @@ class Wire(Device):
     def use(self, plane: str, val: bool) -> None:
         try:
             PlaneModel(value=plane)
-            property_name = "use_" + plane.lower() + "_wire"
-            setattr(self, property_name, val)
+            BooleanModel(value=val)
         except ValidationError as e:
             print("Plane must be X, Y, or U:", e)
+            return
+        property_name = "use_" + plane.lower() + "_wire"
+        setattr(self, property_name, val)
 
     def set_range(self, plane: str, val: list) -> None:
         try:
