@@ -45,6 +45,17 @@ class IntegerModel(BaseModel):
     value: conint(strict=True)
 
 
+class PlaneModel(BaseModel):
+    plane: str
+
+    @field_validator('plane')
+    def x_y_u_plane(cls, v):
+        if v.lower() in ['x', 'y', 'u']:
+            return v
+        else:
+            raise ValueError("Plane must be X, Y, or U")
+
+
 class WirePVSet(PVSet):
     motr: PV
     # velo: PV
@@ -142,6 +153,53 @@ class Wire(Device):
         except Exception:
             print(EPICS_ERROR_MESSAGE)
             # TODO: Returning wire size from yaml file instead
+
+    def use(self, plane: str, val: bool) -> None:
+        try:
+            PlaneModel(value=plane)
+            property_name = "use_" + plane.lower() + "_wire"
+            setattr(self, property_name, val)
+        except ValidationError as e:
+            print("Plane must be X, Y, or U:", e)
+
+    def set_range(self, plane: str, val: list) -> None:
+        try:
+            PlaneModel(value=plane)
+            RangeModel(value=val)
+            property_name = plane.lower() + "_range"
+            setattr(self, property_name, val)
+        except ValidationError as e:
+            print("Plane must be X, Y, or U:", e)
+
+    def set_inner_range(self, plane: str, val: int) -> None:
+        try:
+            PlaneModel(value=plane)
+            IntegerModel(value=val)
+            property_name = plane.lower() + "_wire_inner"
+            outer_property = plane.lower() + "_wire_outer"
+            outer_range = getattr(self, outer_property)
+            if val < outer_range:
+                setattr(self, property_name, val)
+            else:
+                print("Scan range value failed validation")
+                raise ValidationError
+        except ValidationError as e:
+            print("Plane must be X, Y, or U:", e)
+
+    def set_outer_range(self, plane: str, val: int) -> None:
+        try:
+            PlaneModel(value=plane)
+            IntegerModel(value=val)
+            property_name = plane.lower() + "_wire_outer"
+            inner_property = plane.lower() + "_wire_inner"
+            inner_range = getattr(self, inner_property)
+            if val > inner_range:
+                setattr(self, property_name, val)
+            else:
+                print("Scan range value failed validation")
+                raise ValidationError
+        except ValidationError as e:
+            print("Plane must be X, Y, or U:", e)
 
     @property
     def use_x_wire(self):
