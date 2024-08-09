@@ -134,6 +134,7 @@ class YAMLGenerator:
         # Use the control system name to get all PVs associated with device
         pv_dict = {}
         for search_term, handle in search_with_handles.items():
+            field = str()
             if "." in search_term:
                 search_term, field = search_term.split(".")
             # End of the PV name is implied in search_term
@@ -143,9 +144,10 @@ class YAMLGenerator:
                 if pv_list != list():
                     if len(pv_list) == 1:
                         # get the pv out of the results
-                        pv = pv_list[0]
-                        if "field" in locals():
-                            pv = pv + "." + field
+                        if field != str():
+                            pv = pv_list[0] + "." + field
+                        elif field == str():
+                            pv = pv_list[0]
                         if not handle:
                             # if the user has not provided their own handle then
                             # split by colon, grab the last part of the string as a handle
