@@ -144,10 +144,7 @@ class YAMLGenerator:
                 if pv_list != list():
                     if len(pv_list) == 1:
                         # get the pv out of the results
-                        if field != str():
-                            pv = pv_list[0] + "." + field
-                        elif field == str():
-                            pv = pv_list[0]
+                        pv = f"{pv_list[0]}.{field}" if field else pv_list[0]
                         if not handle:
                             # if the user has not provided their own handle then
                             # split by colon, grab the last part of the string as a handle
