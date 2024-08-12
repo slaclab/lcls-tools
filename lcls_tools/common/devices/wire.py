@@ -53,13 +53,13 @@ class PlaneModel(BaseModel):
         if v.lower() in ['x', 'y', 'u']:
             return v
         else:
-            raise ValueError("Plane must be X, Y, or U")
+            raise ValueError("basePlane must be X, Y, or U")
 
 
 class WirePVSet(PVSet):
     motr: PV
-    # velo: PV
-    # rbv: PV
+    velo: PV
+    rbv: PV
     initialize: PV
     initialized: PV
     retract: PV
@@ -79,6 +79,7 @@ class WirePVSet(PVSet):
     enabled: PV
     homed: PV
     timeout: PV
+    abort: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -406,6 +407,14 @@ class Wire(Device):
     def retract(self):
         """Retracts the wire scanner"""
         self.controls_information.PVs.retract.put(value=1)
+
+    def start_scan(self):
+        """Starts a wire scan using current parameters"""
+        self.controls_information.PVs.startscan.put(value=1)
+
+    def abort_scan(self):
+        """Aborts active wire scan"""
+        self.controls_information.PVs.abort.put(value=1)
 
 
 class WireCollection(BaseModel):
