@@ -1058,11 +1058,13 @@ wires:
   WSBP1:
     controls_information:
       PVs:
+        abort: WIRE:DOG:655:MOTR.STOP
         enabled: WIRE:DOG:655:MOTR_ENABLED_STS
         homed: WIRE:DOG:655:MOTR_HOMED_STS
         initialize: WIRE:DOG:655:MOTR_INIT
         initialized: WIRE:DOG:655:MOTR_INIT_STS
         motr: WIRE:DOG:655:MOTR
+        rbv: WIRE:DOG:655:MOTR.RBV
         retract: WIRE:DOG:655:MOTR_RETRACT
         startscan: WIRE:DOG:655:STARTSCAN
         timeout: WIRE:DOG:655:MOTR_TIMEOUTEN
@@ -1072,6 +1074,7 @@ wires:
         usize: WIRE:DOG:655:UWIRESIZE
         uwireinner: WIRE:DOG:655:UWIREINNER
         uwireouter: WIRE:DOG:655:UWIREOUTER
+        velo: WIRE:DOG:655:MOTR.VELO
         xsize: WIRE:DOG:655:XWIRESIZE
         xwireinner: WIRE:DOG:655:XWIREINNER
         xwireouter: WIRE:DOG:655:XWIREOUTER
