@@ -570,11 +570,13 @@ wires:
   WS13:
     controls_information:
       PVs:
+        abort: WIRE:LI21:301:MOTR.STOP
         enabled: WIRE:LI21:301:MOTR_ENABLED_STS
         homed: WIRE:LI21:301:MOTR_HOMED_STS
         initialize: WIRE:LI21:301:MOTR_INIT
         initialized: WIRE:LI21:301:MOTR_INIT_STS
         motr: WIRE:LI21:301:MOTR
+        rbv: WIRE:LI21:301:MOTR.RBV
         retract: WIRE:LI21:301:MOTR_RETRACT
         startscan: WIRE:LI21:301:STARTSCAN
         timeout: WIRE:LI21:301:MOTR_TIMEOUTEN
@@ -584,6 +586,7 @@ wires:
         usize: WIRE:LI21:301:UWIRESIZE
         uwireinner: WIRE:LI21:301:UWIREINNER
         uwireouter: WIRE:LI21:301:UWIREOUTER
+        velo: WIRE:LI21:301:MOTR.VELO
         xsize: WIRE:LI21:301:XWIRESIZE
         xwireinner: WIRE:LI21:301:XWIREINNER
         xwireouter: WIRE:LI21:301:XWIREOUTER

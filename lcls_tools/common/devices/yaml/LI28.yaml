@@ -21,11 +21,13 @@ wires:
   WS144:
     controls_information:
       PVs:
+        abort: WIRE:LI28:144:MOTR.STOP
         enabled: WIRE:LI28:144:MOTR_ENABLED_STS
         homed: WIRE:LI28:144:MOTR_HOMED_STS
         initialize: WIRE:LI28:144:MOTR_INIT
         initialized: WIRE:LI28:144:MOTR_INIT_STS
         motr: WIRE:LI28:144:MOTR
+        rbv: WIRE:LI28:144:MOTR.RBV
         retract: WIRE:LI28:144:MOTR_RETRACT
         startscan: WIRE:LI28:144:STARTSCAN
         timeout: WIRE:LI28:144:MOTR_TIMEOUTEN
@@ -35,6 +37,7 @@ wires:
         usize: WIRE:LI28:144:UWIRESIZE
         uwireinner: WIRE:LI28:144:UWIREINNER
         uwireouter: WIRE:LI28:144:UWIREOUTER
+        velo: WIRE:LI28:144:MOTR.VELO
         xsize: WIRE:LI28:144:XWIRESIZE
         xwireinner: WIRE:LI28:144:XWIREINNER
         xwireouter: WIRE:LI28:144:XWIREOUTER
@@ -50,11 +53,13 @@ wires:
   WS444:
     controls_information:
       PVs:
+        abort: WIRE:LI28:444:MOTR.STOP
         enabled: WIRE:LI28:444:MOTR_ENABLED_STS
         homed: WIRE:LI28:444:MOTR_HOMED_STS
         initialize: WIRE:LI28:444:MOTR_INIT
         initialized: WIRE:LI28:444:MOTR_INIT_STS
         motr: WIRE:LI28:444:MOTR
+        rbv: WIRE:LI28:444:MOTR.RBV
         retract: WIRE:LI28:444:MOTR_RETRACT
         startscan: WIRE:LI28:444:STARTSCAN
         timeout: WIRE:LI28:444:MOTR_TIMEOUTEN
@@ -64,6 +69,7 @@ wires:
         usize: WIRE:LI28:444:UWIRESIZE
         uwireinner: WIRE:LI28:444:UWIREINNER
         uwireouter: WIRE:LI28:444:UWIREOUTER
+        velo: WIRE:LI28:444:MOTR.VELO
         xsize: WIRE:LI28:444:XWIRESIZE
         xwireinner: WIRE:LI28:444:XWIREINNER
         xwireouter: WIRE:LI28:444:XWIREOUTER
@@ -79,11 +85,13 @@ wires:
   WS544:
     controls_information:
       PVs:
+        abort: WIRE:LI28:744:MOTR.STOP
         enabled: WIRE:LI28:744:MOTR_ENABLED_STS
         homed: WIRE:LI28:744:MOTR_HOMED_STS
         initialize: WIRE:LI28:744:MOTR_INIT
         initialized: WIRE:LI28:744:MOTR_INIT_STS
         motr: WIRE:LI28:744:MOTR
+        rbv: WIRE:LI28:744:MOTR.RBV
         retract: WIRE:LI28:744:MOTR_RETRACT
         startscan: WIRE:LI28:744:STARTSCAN
         timeout: WIRE:LI28:744:MOTR_TIMEOUTEN
@@ -93,6 +101,7 @@ wires:
         usize: WIRE:LI28:744:UWIRESIZE
         uwireinner: WIRE:LI28:744:UWIREINNER
         uwireouter: WIRE:LI28:744:UWIREOUTER
+        velo: WIRE:LI28:744:MOTR.VELO
         xsize: WIRE:LI28:744:XWIRESIZE
         xwireinner: WIRE:LI28:744:XWIREINNER
         xwireouter: WIRE:LI28:744:XWIREOUTER

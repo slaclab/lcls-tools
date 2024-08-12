@@ -195,11 +195,13 @@ wires:
   WSEMIT2:
     controls_information:
       PVs:
+        abort: WIRE:EMIT2:600:MOTR.STOP
         enabled: WIRE:EMIT2:600:MOTR_ENABLED_STS
         homed: WIRE:EMIT2:600:MOTR_HOMED_STS
         initialize: WIRE:EMIT2:600:MOTR_INIT
         initialized: WIRE:EMIT2:600:MOTR_INIT_STS
         motr: WIRE:EMIT2:600:MOTR
+        rbv: WIRE:EMIT2:600:MOTR.RBV
         retract: WIRE:EMIT2:600:MOTR_RETRACT
         startscan: WIRE:EMIT2:600:STARTSCAN
         timeout: WIRE:EMIT2:600:MOTR_TIMEOUTEN
@@ -209,6 +211,7 @@ wires:
         usize: WIRE:EMIT2:600:UWIRESIZE
         uwireinner: WIRE:EMIT2:600:UWIREINNER
         uwireouter: WIRE:EMIT2:600:UWIREOUTER
+        velo: WIRE:EMIT2:600:MOTR.VELO
         xsize: WIRE:EMIT2:600:XWIRESIZE
         xwireinner: WIRE:EMIT2:600:XWIREINNER
         xwireouter: WIRE:EMIT2:600:XWIREOUTER
