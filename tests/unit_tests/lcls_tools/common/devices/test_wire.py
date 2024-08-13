@@ -4,7 +4,7 @@
 # import datetime
 from unittest import TestCase
 from unittest.mock import Mock, patch  # , PropertyMock
-# import inspect
+import inspect
 
 # Local imports
 from lcls_tools.common.devices.reader import create_wire
@@ -15,11 +15,12 @@ class WireTest(TestCase):
     def setUp(self) -> None:
         # Set up some mocks that are needed for all test-cases.
         self.options_and_getter_function = {
-            # "MOTR.VELO": None,
-            # "MOTR.RBV": None,
+            "MOTR.VELO": None,
+            "MOTR.RBV": None,
             "MOTR_INIT": None,
             "MOTR_INIT_STS": None,
             "MOTR_RETRACT": None,
+            "MOTR": None,
             "STARTSCAN": None,
             "USEXWIRE": None,
             "USEYWIRE": None,
@@ -44,3 +45,134 @@ class WireTest(TestCase):
             area="BYP",
             name="WSBP2",
         )
+        self.options_requiring_state_check = [
+            "MOTR",
+        ]
+        self.options_and_getter_function = {
+            "MOTR.VELO": self.wire.speed,
+            "MOTR.RBV": self.wire.position,
+            "MOTR_INIT_STS": self.wire.initialized,
+            "USEXWIRE": self.wire.use_x_wire,
+            "USEYWIRE": self.wire.use_y_wire,
+            "USEUWIRE": self.wire.use_u_wire,
+            "XWIREINNER": self.wire.x_wire_inner,
+            "XWIREOUTER": self.wire.x_wire_outer,
+            "YWIREINNER": self.wire.y_wire_inner,
+            "YWIREOUTER": self.wire.y_wire_outer,
+            "UWIREINNER": self.wire.u_wire_inner,
+            "UWIREOUTER": self.wire.u_wire_outer,
+            "MOTR_ENABLED_STS": self.wire.enabled,
+            "MOTR_HOMED_STS": self.wire.homed,
+            "XWIRESIZE": self.wire.xsize,
+            "YWIRESIZE": self.wire.ysize,
+            "UWIRESIZE": self.wire.usize,
+        }
+        return super().setUp()
+
+    def tearDown(self) -> None:
+        # Stop the shared patches after each test-case is complete.
+        self.ctrl_options_patch.stop()
+        return super().tearDown()
+
+    def test_properties_exist(self) -> None:
+        """Test that all the properties we expect exist"""
+        # Assert that wire has all auto-generated private attributes
+        for handle, _ in self.magnet.controls_information.PVs:
+            self.assertTrue(
+                hasattr(self.wire, handle),
+                msg=f"expected wire to have attribute {handle}",
+            )
+        for item, _ in self.wire.metadata:
+            self.assertTrue(
+                hasattr(self.wire, item),
+                msg=f"expected wire to have attribute {item}",
+            )
+        # Assert that magnet has public properties
+        for item in [
+            "xsize",
+            "ysize",
+            "usize",
+            "use_x_wire",
+            "x_range",
+            "x_wire_inner",
+            "x_wire_outer",
+            "use_y_wire",
+            "y_range",
+            "y_wire_inner",
+            "y_wire_outer",
+            "use_u_wire",
+            "u_range",
+            "u_wire_inner",
+            "u_wire_outer",
+            "initialized",
+            "homed",
+            "position",
+            "speed"
+        ]:
+            self.assertTrue(
+                hasattr(self.wire, item),
+                msg=f"expected wire to have attribute {item}",
+            )
+
+    def test_methods(self) -> None:
+        """Test that all the methods we expect exist"""
+        self.assertEqual(inspect.ismethod(self.wire.retract), True)
+        self.assertEqual(inspect.ismethod(self.wire.start_scan), True)
+        self.assertEqual(inspect.ismethod(self.wire.abort_scan), True)
+        self.assertEqual(inspect.ismethod(self.wire.initialize), True)
+        self.assertEqual(inspect.ismethod(self.wire.set_inner_range), True)
+        self.assertEqual(inspect.ismethod(self.wire.set_outer_range), True)
+        self.assertEqual(inspect.ismethod(self.wire.set_range), True)
+        self.assertEqual(inspect.ismethod(self.wire.use), True)
+
+    def test_name(self) -> None:
+        """Test we get expected default"""
+        self.assertEqual(self.wire.name, "WSBP1")
+
+    def test_use_x_wire(self) -> None:
+        """Test use x wire validation"""
+        self.assertIsNone(self.wire.use_x_wire)
+        self.wire.use_x_wire = "a"
+        self.assertIsNone(self.wire.use_x_wire)
+        self.wire.use_x_wire = 0.1
+        self.assertIsNone(self.wire.use_x_wire)
+        self.wire.use_x_wire = 1
+        self.assertEqual(self.wire.use_x_wire, 1)
+
+    def test_use_y_wire(self) -> None:
+        """Test use y wire validation"""
+        self.assertIsNone(self.wire.use_y_wire)
+        self.wire.use_y_wire = "a"
+        self.assertIsNone(self.wire.use_y_wire)
+        self.wire.use_y_wire = 0.1
+        self.assertIsNone(self.wire.use_y_wire)
+        self.wire.use_y_wire = 1
+        self.assertEqual(self.wire.use_y_wire, 1)
+
+    def test_use_u_wire(self) -> None:
+        """Test use u wire validation"""
+        self.assertIsNone(self.wire.use_u_wire)
+        self.wire.use_u_wire = "a"
+        self.assertIsNone(self.wire.use_u_wire)
+        self.wire.use_u_wire = 0.1
+        self.assertIsNone(self.wire.use_u_wire)
+        self.wire.use_u_wire = 1
+        self.assertEqual(self.wire.use_u_wire, 1)
+
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_x_size(self, mock_pv_get) -> None:
+        mock_pv_get.return_value = 10
+        self.assertEqual(self.wire.xsize, 10)
+        mock_pv_get.assert_called_once()
+
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_y_size(self, mock_pv_get) -> None:
+        mock_pv_get.return_value = 10
+        self.assertEqual(self.wire.ysize, 10)
+        mock_pv_get.assert_called_once()
+
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_u_size(self, mock_pv_get) -> None:
+        mock_pv_get.return_value = 10
+        self.assertEqual(self.wire.usize, 10)
+        mock_pv_get.assert_called_once()
