@@ -125,6 +125,19 @@ class Wire(Device):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+    """ Decorators """
+
+    def check_state(f):
+        """Decorator to only allow transitions in 'Ready' state"""
+
+        def decorated(self, *args, **kwargs):
+            if self.initialized is not True:
+                print("Unable to perform action, magnet not in Ready state")
+                return
+            return f(self, *args, **kwargs)
+
+        return decorated
+
     @property
     def xsize(self):
         """Returns the x wire thickness in um."""
@@ -396,13 +409,23 @@ class Wire(Device):
         return self.controls_information.PVs.rbv.get()
 
     @position.setter
+    @check_state
     def position(self, val: int) -> None:
-        self.controls_information.PVs.motr.put(value=val)
+        try:
+            IntegerModel(value=val)
+            self.controls_information.PVs.motr.put(value=val)
+        except ValidationError as e:
+            print("Position value must be an int:", e)
 
     @property
     def speed(self):
         """Returns the current calculated speed of the wire scanner."""
         return self.controls_information.PVs.velo.get()
+
+    @property
+    def enabled(self):
+        """Returns the enabled state of the wire sacnner"""
+        return self.controls_information.PVs.enabled.get()
 
     def retract(self):
         """Retracts the wire scanner"""
