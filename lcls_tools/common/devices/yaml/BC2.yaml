@@ -288,15 +288,18 @@ wires:
   WS24:
     controls_information:
       PVs:
+        abort: WIRE:LI24:705:MOTR.STOP
         enabled: WIRE:LI24:705:MOTR_ENABLED_STS
         initialized: WIRE:LI24:705:MOTR_INIT_STS
         motr: WIRE:LI24:705:MOTR
+        rbv: WIRE:LI24:705:MOTR.RBV
         startscan: WIRE:LI24:705:STARTSCAN
         useuwire: WIRE:LI24:705:USEUWIRE
         usexwire: WIRE:LI24:705:USEXWIRE
         useywire: WIRE:LI24:705:USEYWIRE
         uwireinner: WIRE:LI24:705:UWIREINNER
         uwireouter: WIRE:LI24:705:UWIREOUTER
+        velo: WIRE:LI24:705:MOTR.VELO
         xwireinner: WIRE:LI24:705:XWIREINNER
         xwireouter: WIRE:LI24:705:XWIREOUTER
         ywireinner: WIRE:LI24:705:YWIREINNER

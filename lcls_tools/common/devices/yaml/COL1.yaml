@@ -555,11 +555,13 @@ wires:
   WSC104:
     controls_information:
       PVs:
+        abort: WIRE:COL1:360:MOTR.STOP
         enabled: WIRE:COL1:360:MOTR_ENABLED_STS
         homed: WIRE:COL1:360:MOTR_HOMED_STS
         initialize: WIRE:COL1:360:MOTR_INIT
         initialized: WIRE:COL1:360:MOTR_INIT_STS
         motr: WIRE:COL1:360:MOTR
+        rbv: WIRE:COL1:360:MOTR.RBV
         retract: WIRE:COL1:360:MOTR_RETRACT
         startscan: WIRE:COL1:360:STARTSCAN
         timeout: WIRE:COL1:360:MOTR_TIMEOUTEN
@@ -569,6 +571,7 @@ wires:
         usize: WIRE:COL1:360:UWIRESIZE
         uwireinner: WIRE:COL1:360:UWIREINNER
         uwireouter: WIRE:COL1:360:UWIREOUTER
+        velo: WIRE:COL1:360:MOTR.VELO
         xsize: WIRE:COL1:360:XWIRESIZE
         xwireinner: WIRE:COL1:360:XWIREINNER
         xwireouter: WIRE:COL1:360:XWIREOUTER
@@ -592,11 +595,13 @@ wires:
   WSC106:
     controls_information:
       PVs:
+        abort: WIRE:COL1:520:MOTR.STOP
         enabled: WIRE:COL1:520:MOTR_ENABLED_STS
         homed: WIRE:COL1:520:MOTR_HOMED_STS
         initialize: WIRE:COL1:520:MOTR_INIT
         initialized: WIRE:COL1:520:MOTR_INIT_STS
         motr: WIRE:COL1:520:MOTR
+        rbv: WIRE:COL1:520:MOTR.RBV
         retract: WIRE:COL1:520:MOTR_RETRACT
         startscan: WIRE:COL1:520:STARTSCAN
         timeout: WIRE:COL1:520:MOTR_TIMEOUTEN
@@ -606,6 +611,7 @@ wires:
         usize: WIRE:COL1:520:UWIRESIZE
         uwireinner: WIRE:COL1:520:UWIREINNER
         uwireouter: WIRE:COL1:520:UWIREOUTER
+        velo: WIRE:COL1:520:MOTR.VELO
         xsize: WIRE:COL1:520:XWIRESIZE
         xwireinner: WIRE:COL1:520:XWIREINNER
         xwireouter: WIRE:COL1:520:XWIREOUTER
@@ -629,11 +635,13 @@ wires:
   WSC108:
     controls_information:
       PVs:
+        abort: WIRE:COL1:680:MOTR.STOP
         enabled: WIRE:COL1:680:MOTR_ENABLED_STS
         homed: WIRE:COL1:680:MOTR_HOMED_STS
         initialize: WIRE:COL1:680:MOTR_INIT
         initialized: WIRE:COL1:680:MOTR_INIT_STS
         motr: WIRE:COL1:680:MOTR
+        rbv: WIRE:COL1:680:MOTR.RBV
         retract: WIRE:COL1:680:MOTR_RETRACT
         startscan: WIRE:COL1:680:STARTSCAN
         timeout: WIRE:COL1:680:MOTR_TIMEOUTEN
@@ -643,6 +651,7 @@ wires:
         usize: WIRE:COL1:680:UWIRESIZE
         uwireinner: WIRE:COL1:680:UWIREINNER
         uwireouter: WIRE:COL1:680:UWIREOUTER
+        velo: WIRE:COL1:680:MOTR.VELO
         xsize: WIRE:COL1:680:XWIRESIZE
         xwireinner: WIRE:COL1:680:XWIREINNER
         xwireouter: WIRE:COL1:680:XWIREOUTER
@@ -666,11 +675,13 @@ wires:
   WSC110:
     controls_information:
       PVs:
+        abort: WIRE:COL1:840:MOTR.STOP
         enabled: WIRE:COL1:840:MOTR_ENABLED_STS
         homed: WIRE:COL1:840:MOTR_HOMED_STS
         initialize: WIRE:COL1:840:MOTR_INIT
         initialized: WIRE:COL1:840:MOTR_INIT_STS
         motr: WIRE:COL1:840:MOTR
+        rbv: WIRE:COL1:840:MOTR.RBV
         retract: WIRE:COL1:840:MOTR_RETRACT
         startscan: WIRE:COL1:840:STARTSCAN
         timeout: WIRE:COL1:840:MOTR_TIMEOUTEN
@@ -680,6 +691,7 @@ wires:
         usize: WIRE:COL1:840:UWIRESIZE
         uwireinner: WIRE:COL1:840:UWIREINNER
         uwireouter: WIRE:COL1:840:UWIREOUTER
+        velo: WIRE:COL1:840:MOTR.VELO
         xsize: WIRE:COL1:840:XWIRESIZE
         xwireinner: WIRE:COL1:840:XWIREINNER
         xwireouter: WIRE:COL1:840:XWIREOUTER

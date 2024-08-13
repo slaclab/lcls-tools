@@ -493,7 +493,9 @@ wires:
   WSDG01:
     controls_information:
       PVs:
+        abort: WIRE:DIAG0:424:MOTR.STOP
         motr: WIRE:DIAG0:424:MOTR
+        rbv: WIRE:DIAG0:424:MOTR.RBV
         startscan: WIRE:DIAG0:424:STARTSCAN
         useuwire: WIRE:DIAG0:424:USEUWIRE
         usexwire: WIRE:DIAG0:424:USEXWIRE
@@ -501,6 +503,7 @@ wires:
         usize: WIRE:DIAG0:424:UWIRESIZE
         uwireinner: WIRE:DIAG0:424:UWIREINNER
         uwireouter: WIRE:DIAG0:424:UWIREOUTER
+        velo: WIRE:DIAG0:424:MOTR.VELO
         xsize: WIRE:DIAG0:424:XWIRESIZE
         xwireinner: WIRE:DIAG0:424:XWIREINNER
         xwireouter: WIRE:DIAG0:424:XWIREOUTER

@@ -699,9 +699,11 @@ wires:
   WS01:
     controls_information:
       PVs:
+        abort: WIRE:IN20:531:MOTR.STOP
         enabled: WIRE:IN20:531:MOTR_ENABLED_STS
         initialized: WIRE:IN20:531:MOTR_INIT_STS
         motr: WIRE:IN20:531:MOTR
+        rbv: WIRE:IN20:531:MOTR.RBV
         startscan: WIRE:IN20:531:STARTSCAN
         useuwire: WIRE:IN20:531:USEUWIRE
         usexwire: WIRE:IN20:531:USEXWIRE
@@ -709,6 +711,7 @@ wires:
         usize: WIRE:IN20:531:UWIRESIZE
         uwireinner: WIRE:IN20:531:UWIREINNER
         uwireouter: WIRE:IN20:531:UWIREOUTER
+        velo: WIRE:IN20:531:MOTR.VELO
         xsize: WIRE:IN20:531:XWIRESIZE
         xwireinner: WIRE:IN20:531:XWIREINNER
         xwireouter: WIRE:IN20:531:XWIREOUTER
@@ -731,11 +734,13 @@ wires:
   WS02:
     controls_information:
       PVs:
+        abort: WIRE:IN20:561:MOTR.STOP
         enabled: WIRE:IN20:561:MOTR_ENABLED_STS
         homed: WIRE:IN20:561:MOTR_HOMED_STS
         initialize: WIRE:IN20:561:MOTR_INIT
         initialized: WIRE:IN20:561:MOTR_INIT_STS
         motr: WIRE:IN20:561:MOTR
+        rbv: WIRE:IN20:561:MOTR.RBV
         retract: WIRE:IN20:561:MOTR_RETRACT
         startscan: WIRE:IN20:561:STARTSCAN
         timeout: WIRE:IN20:561:MOTR_TIMEOUTEN
@@ -745,6 +750,7 @@ wires:
         usize: WIRE:IN20:561:UWIRESIZE
         uwireinner: WIRE:IN20:561:UWIREINNER
         uwireouter: WIRE:IN20:561:UWIREOUTER
+        velo: WIRE:IN20:561:MOTR.VELO
         xsize: WIRE:IN20:561:XWIRESIZE
         xwireinner: WIRE:IN20:561:XWIREINNER
         xwireouter: WIRE:IN20:561:XWIREOUTER
@@ -767,11 +773,13 @@ wires:
   WS03:
     controls_information:
       PVs:
+        abort: WIRE:IN20:611:MOTR.STOP
         enabled: WIRE:IN20:611:MOTR_ENABLED_STS
         homed: WIRE:IN20:611:MOTR_HOMED_STS
         initialize: WIRE:IN20:611:MOTR_INIT
         initialized: WIRE:IN20:611:MOTR_INIT_STS
         motr: WIRE:IN20:611:MOTR
+        rbv: WIRE:IN20:611:MOTR.RBV
         retract: WIRE:IN20:611:MOTR_RETRACT
         startscan: WIRE:IN20:611:STARTSCAN
         timeout: WIRE:IN20:611:MOTR_TIMEOUTEN
@@ -781,6 +789,7 @@ wires:
         usize: WIRE:IN20:611:UWIRESIZE
         uwireinner: WIRE:IN20:611:UWIREINNER
         uwireouter: WIRE:IN20:611:UWIREOUTER
+        velo: WIRE:IN20:611:MOTR.VELO
         xsize: WIRE:IN20:611:XWIRESIZE
         xwireinner: WIRE:IN20:611:XWIREINNER
         xwireouter: WIRE:IN20:611:XWIREOUTER
@@ -803,9 +812,11 @@ wires:
   WS04:
     controls_information:
       PVs:
+        abort: WIRE:IN20:741:MOTR.STOP
         enabled: WIRE:IN20:741:MOTR_ENABLED_STS
         initialized: WIRE:IN20:741:MOTR_INIT_STS
         motr: WIRE:IN20:741:MOTR
+        rbv: WIRE:IN20:741:MOTR.RBV
         startscan: WIRE:IN20:741:STARTSCAN
         useuwire: WIRE:IN20:741:USEUWIRE
         usexwire: WIRE:IN20:741:USEXWIRE
@@ -813,6 +824,7 @@ wires:
         usize: WIRE:IN20:741:UWIRESIZE
         uwireinner: WIRE:IN20:741:UWIREINNER
         uwireouter: WIRE:IN20:741:UWIREOUTER
+        velo: WIRE:IN20:741:MOTR.VELO
         xsize: WIRE:IN20:741:XWIRESIZE
         xwireinner: WIRE:IN20:741:XWIREINNER
         xwireouter: WIRE:IN20:741:XWIREOUTER
