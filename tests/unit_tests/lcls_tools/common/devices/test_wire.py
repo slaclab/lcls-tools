@@ -160,19 +160,7 @@ class WireTest(TestCase):
         self.assertEqual(self.wire.use_u_wire, 1)
 
     @patch("epics.PV.get", new_callable=Mock)
-    def test_x_size(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 10
-        self.assertEqual(self.wire.xsize, 10)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_y_size(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 10
-        self.assertEqual(self.wire.ysize, 10)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_u_size(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 10
-        self.assertEqual(self.wire.usize, 10)
+    def test_position(self, mock_pv_get) -> None:
+        mock_pv_get.return_value = 10000
+        self.assertEqual(self.wire.motr, 10000)
         mock_pv_get.assert_called_once()
