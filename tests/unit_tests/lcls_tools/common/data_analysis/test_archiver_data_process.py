@@ -3,7 +3,7 @@ from pydantic import ValidationError
 import pandas as pd
 from datetime import datetime, timedelta
 from lcls_tools.common.data_analysis.archiver_data_process import (
-    PVModel, create_df, merge_dfs_by_timestamp_column,
+    PVModel, merge_dfs_by_timestamp_column,
     merge_dfs_with_margin_by_timestamp_column, get_formatted_timestamps)
 
 

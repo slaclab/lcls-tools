@@ -208,7 +208,7 @@ class PlottingBase(BaseModel):
         else:
             # create a title using the PV names
             pv_list = [df_curr.columns[1] for df_curr in self.pv_dataframes]
-            plt.title(f"{", ".join(pv_list)} vs. Time",
+            plt.title(f"{','.join(pv_list)} vs. Time",
                       fontdict=font_title.model_dump())
         plt.show()
 
@@ -282,8 +282,9 @@ class PlottingBase(BaseModel):
                               color=self.figure_title_color,
                               size=self.figure_title_font_size)
 
-        if (self.has_axis_labels and self.pv_x_label is not None and
-                self.pv_y_label is not None):
+        if (self.has_axis_labels
+                and self.pv_x_label
+                is not None and self.pv_y_label is not None):
             axis_labels.x_axis = self.pv_x_label
             axis_labels.y_axis = self.pv_y_label
 
