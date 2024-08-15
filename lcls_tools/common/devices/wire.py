@@ -161,7 +161,7 @@ class Wire(Device):
         """
         return self.controls_information.PVs.initialized.get()
 
-    def initalize(self) -> None:
+    def initialize(self) -> None:
         self.controls_information.PVs.initialize.put(value=1)
 
     @property
