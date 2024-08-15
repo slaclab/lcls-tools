@@ -405,7 +405,7 @@ class Wire(Device):
     @property
     def use_u_wire(self):
         """Checks if the U plane will be scanned."""
-        return self.metadata.PVs.useuwire.get()
+        return self.controls_information.PVs.useuwire.get()
 
     @use_u_wire.setter
     def use_u_wire(self, val: bool) -> None:
