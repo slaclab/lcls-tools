@@ -1320,3 +1320,52 @@ screens:
       - F2_SCAV
       sum_l_meters: 522.844
       type: PROF
+wires:
+  WS18944:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI18:944
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 827.81
+      type: WIRE
+  WS19144:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI19:144
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 841.798
+      type: WIRE
+  WS19244:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI19:244
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 854.142
+      type: WIRE
+  WS19344:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:LI19:344
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 866.487
+      type: WIRE

@@ -3325,3 +3325,156 @@ screens:
       - CU_SXR
       sum_l_meters: 992.757
       type: PROF
+wires:
+  WS27644:
+    controls_information:
+      PVs:
+        abort: WIRE:LI27:644:MOTR.STOP
+        enabled: WIRE:LI27:644:MOTR_ENABLED_STS
+        homed: WIRE:LI27:644:MOTR_HOMED_STS
+        initialize: WIRE:LI27:644:MOTR_INIT
+        initialized: WIRE:LI27:644:MOTR_INIT_STS
+        motr: WIRE:LI27:644:MOTR
+        rbv: WIRE:LI27:644:MOTR.RBV
+        retract: WIRE:LI27:644:MOTR_RETRACT
+        startscan: WIRE:LI27:644:STARTSCAN
+        timeout: WIRE:LI27:644:MOTR_TIMEOUTEN
+        useuwire: WIRE:LI27:644:USEUWIRE
+        usexwire: WIRE:LI27:644:USEXWIRE
+        useywire: WIRE:LI27:644:USEYWIRE
+        usize: WIRE:LI27:644:UWIRESIZE
+        uwireinner: WIRE:LI27:644:UWIREINNER
+        uwireouter: WIRE:LI27:644:UWIREOUTER
+        velo: WIRE:LI27:644:MOTR.VELO
+        xsize: WIRE:LI27:644:XWIRESIZE
+        xwireinner: WIRE:LI27:644:XWIREINNER
+        xwireouter: WIRE:LI27:644:XWIREOUTER
+        ysize: WIRE:LI27:644:YWIRESIZE
+        ywireinner: WIRE:LI27:644:YWIREINNER
+        ywireouter: WIRE:LI27:644:YWIREOUTER
+      control_name: WIRE:LI27:644
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 700.132
+      type: WIRE
+  WS28144:
+    controls_information:
+      PVs:
+        abort: WIRE:LI28:144:MOTR.STOP
+        enabled: WIRE:LI28:144:MOTR_ENABLED_STS
+        homed: WIRE:LI28:144:MOTR_HOMED_STS
+        initialize: WIRE:LI28:144:MOTR_INIT
+        initialized: WIRE:LI28:144:MOTR_INIT_STS
+        motr: WIRE:LI28:144:MOTR
+        rbv: WIRE:LI28:144:MOTR.RBV
+        retract: WIRE:LI28:144:MOTR_RETRACT
+        startscan: WIRE:LI28:144:STARTSCAN
+        timeout: WIRE:LI28:144:MOTR_TIMEOUTEN
+        useuwire: WIRE:LI28:144:USEUWIRE
+        usexwire: WIRE:LI28:144:USEXWIRE
+        useywire: WIRE:LI28:144:USEYWIRE
+        usize: WIRE:LI28:144:UWIRESIZE
+        uwireinner: WIRE:LI28:144:UWIREINNER
+        uwireouter: WIRE:LI28:144:UWIREOUTER
+        velo: WIRE:LI28:144:MOTR.VELO
+        xsize: WIRE:LI28:144:XWIRESIZE
+        xwireinner: WIRE:LI28:144:XWIREINNER
+        xwireouter: WIRE:LI28:144:XWIREOUTER
+        ysize: WIRE:LI28:144:YWIRESIZE
+        ywireinner: WIRE:LI28:144:YWIREINNER
+        ywireouter: WIRE:LI28:144:YWIREOUTER
+      control_name: WIRE:LI28:144
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 740.508
+      type: WIRE
+  WS28444:
+    controls_information:
+      PVs:
+        abort: WIRE:LI28:444:MOTR.STOP
+        enabled: WIRE:LI28:444:MOTR_ENABLED_STS
+        homed: WIRE:LI28:444:MOTR_HOMED_STS
+        initialize: WIRE:LI28:444:MOTR_INIT
+        initialized: WIRE:LI28:444:MOTR_INIT_STS
+        motr: WIRE:LI28:444:MOTR
+        rbv: WIRE:LI28:444:MOTR.RBV
+        retract: WIRE:LI28:444:MOTR_RETRACT
+        startscan: WIRE:LI28:444:STARTSCAN
+        timeout: WIRE:LI28:444:MOTR_TIMEOUTEN
+        useuwire: WIRE:LI28:444:USEUWIRE
+        usexwire: WIRE:LI28:444:USEXWIRE
+        useywire: WIRE:LI28:444:USEYWIRE
+        usize: WIRE:LI28:444:UWIRESIZE
+        uwireinner: WIRE:LI28:444:UWIREINNER
+        uwireouter: WIRE:LI28:444:UWIREOUTER
+        velo: WIRE:LI28:444:MOTR.VELO
+        xsize: WIRE:LI28:444:XWIRESIZE
+        xwireinner: WIRE:LI28:444:XWIREINNER
+        xwireouter: WIRE:LI28:444:XWIREOUTER
+        ysize: WIRE:LI28:444:YWIRESIZE
+        ywireinner: WIRE:LI28:444:YWIREINNER
+        ywireouter: WIRE:LI28:444:YWIREOUTER
+      control_name: WIRE:LI28:444
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 777.541
+      type: WIRE
+  WS28744:
+    controls_information:
+      PVs:
+        abort: WIRE:LI28:744:MOTR.STOP
+        enabled: WIRE:LI28:744:MOTR_ENABLED_STS
+        homed: WIRE:LI28:744:MOTR_HOMED_STS
+        initialize: WIRE:LI28:744:MOTR_INIT
+        initialized: WIRE:LI28:744:MOTR_INIT_STS
+        motr: WIRE:LI28:744:MOTR
+        rbv: WIRE:LI28:744:MOTR.RBV
+        retract: WIRE:LI28:744:MOTR_RETRACT
+        startscan: WIRE:LI28:744:STARTSCAN
+        timeout: WIRE:LI28:744:MOTR_TIMEOUTEN
+        useuwire: WIRE:LI28:744:USEUWIRE
+        usexwire: WIRE:LI28:744:USEXWIRE
+        useywire: WIRE:LI28:744:USEYWIRE
+        usize: WIRE:LI28:744:UWIRESIZE
+        uwireinner: WIRE:LI28:744:UWIREINNER
+        uwireouter: WIRE:LI28:744:UWIREOUTER
+        velo: WIRE:LI28:744:MOTR.VELO
+        xsize: WIRE:LI28:744:XWIRESIZE
+        xwireinner: WIRE:LI28:744:XWIREINNER
+        xwireouter: WIRE:LI28:744:XWIREOUTER
+        ysize: WIRE:LI28:744:YWIRESIZE
+        ywireinner: WIRE:LI28:744:YWIREINNER
+        ywireouter: WIRE:LI28:744:YWIREOUTER
+      control_name: WIRE:LI28:744
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 814.077
+      type: WIRE

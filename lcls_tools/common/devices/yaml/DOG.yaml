@@ -1054,3 +1054,44 @@ screens:
       - SC_SXR
       sum_l_meters: 729.924
       type: PROF
+wires:
+  WSBP1:
+    controls_information:
+      PVs:
+        abort: WIRE:DOG:655:MOTR.STOP
+        enabled: WIRE:DOG:655:MOTR_ENABLED_STS
+        homed: WIRE:DOG:655:MOTR_HOMED_STS
+        initialize: WIRE:DOG:655:MOTR_INIT
+        initialized: WIRE:DOG:655:MOTR_INIT_STS
+        motr: WIRE:DOG:655:MOTR
+        rbv: WIRE:DOG:655:MOTR.RBV
+        retract: WIRE:DOG:655:MOTR_RETRACT
+        startscan: WIRE:DOG:655:STARTSCAN
+        timeout: WIRE:DOG:655:MOTR_TIMEOUTEN
+        useuwire: WIRE:DOG:655:USEUWIRE
+        usexwire: WIRE:DOG:655:USEXWIRE
+        useywire: WIRE:DOG:655:USEYWIRE
+        usize: WIRE:DOG:655:UWIRESIZE
+        uwireinner: WIRE:DOG:655:UWIREINNER
+        uwireouter: WIRE:DOG:655:UWIREOUTER
+        velo: WIRE:DOG:655:MOTR.VELO
+        xsize: WIRE:DOG:655:XWIRESIZE
+        xwireinner: WIRE:DOG:655:XWIREINNER
+        xwireouter: WIRE:DOG:655:XWIREOUTER
+        ysize: WIRE:DOG:655:YWIRESIZE
+        ywireinner: WIRE:DOG:655:YWIREINNER
+        ywireouter: WIRE:DOG:655:YWIREOUTER
+      control_name: WIRE:DOG:655
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1009.649
+      type: WIRE

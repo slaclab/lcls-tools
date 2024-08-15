@@ -15,6 +15,11 @@ from lcls_tools.common.devices.screen import (
     ScreenCollection,
 )
 
+from lcls_tools.common.devices.wire import (
+    Wire,
+    WireCollection,
+)
+
 from pydantic import BaseModel, SerializeAsAny, Field, field_validator
 
 
@@ -45,6 +50,15 @@ class Area(BaseModel):
         ]
     ] = Field(
         alias="screens",
+        default=None,
+    )
+    wire_collection: Optional[
+        Union[
+            SerializeAsAny[WireCollection],
+            None,
+        ]
+    ] = Field(
+        alias="wires",
         default=None,
     )
 
@@ -79,6 +93,15 @@ class Area(BaseModel):
             # Unpack the screens data from yaml into ScreenCollection
             return ScreenCollection(**{"screens": {**v}})
 
+    @field_validator(
+        "wire_collection",
+        mode="before",
+    )
+    def validate_wires(cls, v: Dict[str, Any]):
+        if v:
+            # Unpack the wires data from yaml into WireCollection
+            return WireCollection(**{"wires": {**v}})
+
     @property
     def magnets(self) -> Union[
         Dict[str, Magnet],
@@ -107,6 +130,21 @@ class Area(BaseModel):
             return self.screen_collection.screens
         else:
             print("Area does not contain screens.")
+            return None
+
+    @property
+    def wires(self) -> Union[
+        Dict[str, Wire],
+        None,
+    ]:
+        """
+        A Dict[str, Wire] for this area, where the dict keys are wire names
+        If no wires exist for this area, this property is None
+        """
+        if self.wire_collection:
+            return self.wire_collection.wires
+        else:
+            print("Area does not contain wires.")
             return None
 
     def does_magnet_exist(

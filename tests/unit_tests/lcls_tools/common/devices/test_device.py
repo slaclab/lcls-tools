@@ -24,6 +24,12 @@ class TestDevice(unittest.TestCase):
         self.pv_obj = PV("SOLN:GUNB:212:BACT")
         return super().setUp()
 
+    def test_sum_l_meters_and_z_location_match(self):
+        self.assertEqual(
+            self.device.sum_l_meters,
+            self.device.z_location,
+        )
+
     def test_config_with_no_control_information_field_raises(self):
         name_of_device_with_missing_data = "DEVICE_2"
         with self.assertRaises(ValidationError):

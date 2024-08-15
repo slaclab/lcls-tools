@@ -524,3 +524,84 @@ screens:
       - CU_SXR
       sum_l_meters: 41.512
       type: PROF
+wires:
+  WS11:
+    controls_information:
+      PVs:
+        uwireinner: WIRE:LI21:285:UWIREINNER
+        uwireouter: WIRE:LI21:285:UWIREOUTER
+        xwireinner: WIRE:LI21:285:XWIREINNER
+        xwireouter: WIRE:LI21:285:XWIREOUTER
+        ywireinner: WIRE:LI21:285:YWIREINNER
+        ywireouter: WIRE:LI21:285:YWIREOUTER
+      control_name: WIRE:LI21:285
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 39.56
+      type: WIRE
+  WS12:
+    controls_information:
+      PVs:
+        uwireinner: WIRE:LI21:293:UWIREINNER
+        uwireouter: WIRE:LI21:293:UWIREOUTER
+        xwireinner: WIRE:LI21:293:XWIREINNER
+        xwireouter: WIRE:LI21:293:XWIREOUTER
+        ywireinner: WIRE:LI21:293:YWIREINNER
+        ywireouter: WIRE:LI21:293:YWIREOUTER
+      control_name: WIRE:LI21:293
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 41.217
+      type: WIRE
+  WS13:
+    controls_information:
+      PVs:
+        abort: WIRE:LI21:301:MOTR.STOP
+        enabled: WIRE:LI21:301:MOTR_ENABLED_STS
+        homed: WIRE:LI21:301:MOTR_HOMED_STS
+        initialize: WIRE:LI21:301:MOTR_INIT
+        initialized: WIRE:LI21:301:MOTR_INIT_STS
+        motr: WIRE:LI21:301:MOTR
+        rbv: WIRE:LI21:301:MOTR.RBV
+        retract: WIRE:LI21:301:MOTR_RETRACT
+        startscan: WIRE:LI21:301:STARTSCAN
+        timeout: WIRE:LI21:301:MOTR_TIMEOUTEN
+        useuwire: WIRE:LI21:301:USEUWIRE
+        usexwire: WIRE:LI21:301:USEXWIRE
+        useywire: WIRE:LI21:301:USEYWIRE
+        usize: WIRE:LI21:301:UWIRESIZE
+        uwireinner: WIRE:LI21:301:UWIREINNER
+        uwireouter: WIRE:LI21:301:UWIREOUTER
+        velo: WIRE:LI21:301:MOTR.VELO
+        xsize: WIRE:LI21:301:XWIRESIZE
+        xwireinner: WIRE:LI21:301:XWIREINNER
+        xwireouter: WIRE:LI21:301:XWIREOUTER
+        ysize: WIRE:LI21:301:YWIRESIZE
+        ywireinner: WIRE:LI21:301:YWIREINNER
+        ywireouter: WIRE:LI21:301:YWIREOUTER
+      control_name: WIRE:LI21:301
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 42.873
+      type: WIRE

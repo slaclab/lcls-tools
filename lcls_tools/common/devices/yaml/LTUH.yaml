@@ -2084,3 +2084,257 @@ screens:
       - SC_HXR
       sum_l_meters: 1461.796
       type: PROF
+wires:
+  WS31:
+    controls_information:
+      PVs:
+        abort: WIRE:LTUH:715:MOTR.STOP
+        enabled: WIRE:LTUH:715:MOTR_ENABLED_STS
+        homed: WIRE:LTUH:715:MOTR_HOMED_STS
+        initialize: WIRE:LTUH:715:MOTR_INIT
+        initialized: WIRE:LTUH:715:MOTR_INIT_STS
+        motr: WIRE:LTUH:715:MOTR
+        rbv: WIRE:LTUH:715:MOTR.RBV
+        retract: WIRE:LTUH:715:MOTR_RETRACT
+        startscan: WIRE:LTUH:715:STARTSCAN
+        timeout: WIRE:LTUH:715:MOTR_TIMEOUTEN
+        useuwire: WIRE:LTUH:715:USEUWIRE
+        usexwire: WIRE:LTUH:715:USEXWIRE
+        useywire: WIRE:LTUH:715:USEYWIRE
+        usize: WIRE:LTUH:715:UWIRESIZE
+        uwireinner: WIRE:LTUH:715:UWIREINNER
+        uwireouter: WIRE:LTUH:715:UWIREOUTER
+        velo: WIRE:LTUH:715:MOTR.VELO
+        xsize: WIRE:LTUH:715:XWIRESIZE
+        xwireinner: WIRE:LTUH:715:XWIREINNER
+        xwireouter: WIRE:LTUH:715:XWIREOUTER
+        ysize: WIRE:LTUH:715:YWIRESIZE
+        ywireinner: WIRE:LTUH:715:YWIREINNER
+        ywireouter: WIRE:LTUH:715:YWIREOUTER
+      control_name: WIRE:LTUH:715
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1409.712
+      type: WIRE
+  WS32:
+    controls_information:
+      PVs:
+        abort: WIRE:LTUH:735:MOTR.STOP
+        enabled: WIRE:LTUH:735:MOTR_ENABLED_STS
+        homed: WIRE:LTUH:735:MOTR_HOMED_STS
+        initialize: WIRE:LTUH:735:MOTR_INIT
+        initialized: WIRE:LTUH:735:MOTR_INIT_STS
+        motr: WIRE:LTUH:735:MOTR
+        rbv: WIRE:LTUH:735:MOTR.RBV
+        retract: WIRE:LTUH:735:MOTR_RETRACT
+        startscan: WIRE:LTUH:735:STARTSCAN
+        timeout: WIRE:LTUH:735:MOTR_TIMEOUTEN
+        useuwire: WIRE:LTUH:735:USEUWIRE
+        usexwire: WIRE:LTUH:735:USEXWIRE
+        useywire: WIRE:LTUH:735:USEYWIRE
+        usize: WIRE:LTUH:735:UWIRESIZE
+        uwireinner: WIRE:LTUH:735:UWIREINNER
+        uwireouter: WIRE:LTUH:735:UWIREOUTER
+        velo: WIRE:LTUH:735:MOTR.VELO
+        xsize: WIRE:LTUH:735:XWIRESIZE
+        xwireinner: WIRE:LTUH:735:XWIREINNER
+        xwireouter: WIRE:LTUH:735:XWIREOUTER
+        ysize: WIRE:LTUH:735:YWIRESIZE
+        ywireinner: WIRE:LTUH:735:YWIREINNER
+        ywireouter: WIRE:LTUH:735:YWIREOUTER
+      control_name: WIRE:LTUH:735
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1444.975
+      type: WIRE
+  WS33:
+    controls_information:
+      PVs:
+        abort: WIRE:LTUH:755:MOTR.STOP
+        enabled: WIRE:LTUH:755:MOTR_ENABLED_STS
+        homed: WIRE:LTUH:755:MOTR_HOMED_STS
+        initialize: WIRE:LTUH:755:MOTR_INIT
+        initialized: WIRE:LTUH:755:MOTR_INIT_STS
+        motr: WIRE:LTUH:755:MOTR
+        rbv: WIRE:LTUH:755:MOTR.RBV
+        retract: WIRE:LTUH:755:MOTR_RETRACT
+        startscan: WIRE:LTUH:755:STARTSCAN
+        timeout: WIRE:LTUH:755:MOTR_TIMEOUTEN
+        useuwire: WIRE:LTUH:755:USEUWIRE
+        usexwire: WIRE:LTUH:755:USEXWIRE
+        useywire: WIRE:LTUH:755:USEYWIRE
+        usize: WIRE:LTUH:755:UWIRESIZE
+        uwireinner: WIRE:LTUH:755:UWIREINNER
+        uwireouter: WIRE:LTUH:755:UWIREOUTER
+        velo: WIRE:LTUH:755:MOTR.VELO
+        xsize: WIRE:LTUH:755:XWIRESIZE
+        xwireinner: WIRE:LTUH:755:XWIREINNER
+        xwireouter: WIRE:LTUH:755:XWIREOUTER
+        ysize: WIRE:LTUH:755:YWIRESIZE
+        ywireinner: WIRE:LTUH:755:YWIREINNER
+        ywireouter: WIRE:LTUH:755:YWIREOUTER
+      control_name: WIRE:LTUH:755
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1480.239
+      type: WIRE
+  WS34:
+    controls_information:
+      PVs:
+        abort: WIRE:LTUH:775:MOTR.STOP
+        enabled: WIRE:LTUH:775:MOTR_ENABLED_STS
+        homed: WIRE:LTUH:775:MOTR_HOMED_STS
+        initialize: WIRE:LTUH:775:MOTR_INIT
+        initialized: WIRE:LTUH:775:MOTR_INIT_STS
+        motr: WIRE:LTUH:775:MOTR
+        rbv: WIRE:LTUH:775:MOTR.RBV
+        retract: WIRE:LTUH:775:MOTR_RETRACT
+        startscan: WIRE:LTUH:775:STARTSCAN
+        timeout: WIRE:LTUH:775:MOTR_TIMEOUTEN
+        useuwire: WIRE:LTUH:775:USEUWIRE
+        usexwire: WIRE:LTUH:775:USEXWIRE
+        useywire: WIRE:LTUH:775:USEYWIRE
+        usize: WIRE:LTUH:775:UWIRESIZE
+        uwireinner: WIRE:LTUH:775:UWIREINNER
+        uwireouter: WIRE:LTUH:775:UWIREOUTER
+        velo: WIRE:LTUH:775:MOTR.VELO
+        xsize: WIRE:LTUH:775:XWIRESIZE
+        xwireinner: WIRE:LTUH:775:XWIREINNER
+        xwireouter: WIRE:LTUH:775:XWIREOUTER
+        ysize: WIRE:LTUH:775:YWIRESIZE
+        ywireinner: WIRE:LTUH:775:YWIREINNER
+        ywireouter: WIRE:LTUH:775:YWIREOUTER
+      control_name: WIRE:LTUH:775
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1515.502
+      type: WIRE
+  WSDL31:
+    controls_information:
+      PVs:
+        abort: WIRE:LTUH:246:MOTR.STOP
+        enabled: WIRE:LTUH:246:MOTR_ENABLED_STS
+        homed: WIRE:LTUH:246:MOTR_HOMED_STS
+        initialize: WIRE:LTUH:246:MOTR_INIT
+        initialized: WIRE:LTUH:246:MOTR_INIT_STS
+        motr: WIRE:LTUH:246:MOTR
+        rbv: WIRE:LTUH:246:MOTR.RBV
+        retract: WIRE:LTUH:246:MOTR_RETRACT
+        startscan: WIRE:LTUH:246:STARTSCAN
+        timeout: WIRE:LTUH:246:MOTR_TIMEOUTEN
+        useuwire: WIRE:LTUH:246:USEUWIRE
+        usexwire: WIRE:LTUH:246:USEXWIRE
+        useywire: WIRE:LTUH:246:USEYWIRE
+        usize: WIRE:LTUH:246:UWIRESIZE
+        uwireinner: WIRE:LTUH:246:UWIREINNER
+        uwireouter: WIRE:LTUH:246:UWIREOUTER
+        velo: WIRE:LTUH:246:MOTR.VELO
+        xsize: WIRE:LTUH:246:XWIRESIZE
+        xwireinner: WIRE:LTUH:246:XWIREINNER
+        xwireouter: WIRE:LTUH:246:XWIREOUTER
+        ysize: WIRE:LTUH:246:YWIRESIZE
+        ywireinner: WIRE:LTUH:246:YWIREINNER
+        ywireouter: WIRE:LTUH:246:YWIREOUTER
+      control_name: WIRE:LTUH:246
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1255.337
+      type: WIRE
+  WSDL4:
+    controls_information:
+      PVs:
+        abort: WIRE:LTUH:538:MOTR.STOP
+        motr: WIRE:LTUH:538:MOTR
+        rbv: WIRE:LTUH:538:MOTR.RBV
+        startscan: WIRE:LTUH:538:STARTSCAN
+        useuwire: WIRE:LTUH:538:USEUWIRE
+        usexwire: WIRE:LTUH:538:USEXWIRE
+        useywire: WIRE:LTUH:538:USEYWIRE
+        usize: WIRE:LTUH:538:UWIRESIZE
+        uwireinner: WIRE:LTUH:538:UWIREINNER
+        uwireouter: WIRE:LTUH:538:UWIREOUTER
+        velo: WIRE:LTUH:538:MOTR.VELO
+        xsize: WIRE:LTUH:538:XWIRESIZE
+        xwireinner: WIRE:LTUH:538:XWIREINNER
+        xwireouter: WIRE:LTUH:538:XWIREOUTER
+        ysize: WIRE:LTUH:538:YWIRESIZE
+        ywireinner: WIRE:LTUH:538:YWIREINNER
+        ywireouter: WIRE:LTUH:538:YWIREOUTER
+      control_name: WIRE:LTUH:538
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1360.003
+      type: WIRE
+  WSVM2:
+    controls_information:
+      PVs:
+        abort: WIRE:LTUH:122:MOTR.STOP
+        enabled: WIRE:LTUH:122:MOTR_ENABLED_STS
+        homed: WIRE:LTUH:122:MOTR_HOMED_STS
+        initialize: WIRE:LTUH:122:MOTR_INIT
+        initialized: WIRE:LTUH:122:MOTR_INIT_STS
+        motr: WIRE:LTUH:122:MOTR
+        rbv: WIRE:LTUH:122:MOTR.RBV
+        retract: WIRE:LTUH:122:MOTR_RETRACT
+        startscan: WIRE:LTUH:122:STARTSCAN
+        timeout: WIRE:LTUH:122:MOTR_TIMEOUTEN
+        useuwire: WIRE:LTUH:122:USEUWIRE
+        usexwire: WIRE:LTUH:122:USEXWIRE
+        useywire: WIRE:LTUH:122:USEYWIRE
+        usize: WIRE:LTUH:122:UWIRESIZE
+        uwireinner: WIRE:LTUH:122:UWIREINNER
+        uwireouter: WIRE:LTUH:122:UWIREOUTER
+        velo: WIRE:LTUH:122:MOTR.VELO
+        xsize: WIRE:LTUH:122:XWIRESIZE
+        xwireinner: WIRE:LTUH:122:XWIREINNER
+        xwireouter: WIRE:LTUH:122:XWIREOUTER
+        ysize: WIRE:LTUH:122:YWIRESIZE
+        ywireinner: WIRE:LTUH:122:YWIREINNER
+        ywireouter: WIRE:LTUH:122:YWIREOUTER
+      control_name: WIRE:LTUH:122
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1211.773
+      type: WIRE

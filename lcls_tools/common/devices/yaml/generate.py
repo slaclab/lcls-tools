@@ -6,10 +6,12 @@ import numpy as np
 from lcls_tools.common.devices.yaml.metadata import (
     get_magnet_metadata,
     get_screen_metadata,
+    get_wire_metadata,
 )
 from lcls_tools.common.devices.yaml.controls_information import (
     get_magnet_controls_information,
     get_screen_controls_information,
+    get_wire_controls_information,
 )
 
 
@@ -132,6 +134,9 @@ class YAMLGenerator:
         # Use the control system name to get all PVs associated with device
         pv_dict = {}
         for search_term, handle in search_with_handles.items():
+            field = str()
+            if "." in search_term:
+                search_term, field = search_term.split(".")
             # End of the PV name is implied in search_term
             try:
                 pv_list = meme.names.list_pvs(name + ":" + search_term, sort_by="z")
@@ -139,7 +144,7 @@ class YAMLGenerator:
                 if pv_list != list():
                     if len(pv_list) == 1:
                         # get the pv out of the results
-                        pv = pv_list[0]
+                        pv = f"{pv_list[0]}.{field}" if field else pv_list[0]
                         if not handle:
                             # if the user has not provided their own handle then
                             # split by colon, grab the last part of the string as a handle
@@ -317,5 +322,53 @@ class YAMLGenerator:
                 additional_metadata=additional_metadata_data,
             )
             return complete_screen_data
+        else:
+            return {}
+
+    def extract_wires(self, area: Union[str, List[str]] = ["HTR"]):
+        required_wire_types = ["WIRE"]
+        # PV suffix as the key, the name we want to store it as in yaml file as the value
+        # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
+        possible_wire_pvs = {
+            "MOTR": "motr",
+            "MOTR.VELO": "velo",
+            "MOTR.RBV": "rbv",
+            "MOTR_INIT": "initialize",
+            "MOTR_INIT_STS": "initialized",
+            "MOTR_RETRACT": "retract",
+            "STARTSCAN": "startscan",
+            "XWIRESIZE": "xsize",
+            "YWIRESIZE": "ysize",
+            "UWIRESIZE": "usize",
+            "USEXWIRE": "usexwire",
+            "USEYWIRE": "useywire",
+            "USEUWIRE": "useuwire",
+            "XWIREINNER": "xwireinner",
+            "XWIREOUTER": "xwireouter",
+            "YWIREINNER": "ywireinner",
+            "YWIREOUTER": "ywireouter",
+            "UWIREINNER": "uwireinner",
+            "UWIREOUTER": "uwireouter",
+            "MOTR_ENABLED_STS": "enabled",
+            "MOTR_HOMED_STS": "homed",
+            "MOTR_TIMEOUTEN": "timeout",
+            "MOTR.STOP": "abort",
+        }
+        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        additional_metadata_data = get_wire_metadata()
+        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        additional_controls_data = get_wire_controls_information()
+        basic_wire_data = self.extract_devices(
+            area=area,
+            required_types=required_wire_types,
+            pv_search_terms=possible_wire_pvs,
+        )
+        if basic_wire_data:
+            complete_wire_data = self.add_extra_data_to_device(
+                device_data=basic_wire_data,
+                additional_controls_information=additional_controls_data,
+                additional_metadata=additional_metadata_data,
+            )
+            return complete_wire_data
         else:
             return {}
