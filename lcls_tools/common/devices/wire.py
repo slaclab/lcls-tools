@@ -69,9 +69,9 @@ class WirePVSet(PVSet):
     startscan: PV
     temperature: PV
     timeout: PV
+    useuwire: PV
     usexwire: PV
     useywire: PV
-    useuwire: PV
     usize: PV
     uwireinner: PV
     uwireouter: PV
@@ -348,7 +348,7 @@ class Wire(Device):
     @property
     def use_y_wire(self):
         """Checks if the Y plane will be scanned."""
-        return self.metadata.PVs.useywire.get()
+        return self.controls_information.PVs.useywire.get()
 
     @use_y_wire.setter
     def use_y_wire(self, val: bool) -> None:
