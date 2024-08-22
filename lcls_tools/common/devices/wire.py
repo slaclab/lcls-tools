@@ -62,8 +62,8 @@ class WirePVSet(PVSet):
     homed: PV
     initialize: PV
     initialized: PV
+    motor: PV
     position: PV
-    position_rbv: PV
     retract: PV
     scan_pulses: PV
     start_scan: PV
@@ -165,9 +165,14 @@ class Wire(Device):
         self.controls_information.PVs.initialize.put(value=1)
 
     @property
+    def motor(self):
+        """Returns the readback from the MOTR PV"""
+        return self.controls_information.PVs.motor.get()
+    
+    @property
     def position(self):
         """Returns the readback value from the MOTR PV."""
-        return self.controls_information.PVs.position_rbv.get()
+        return self.controls_information.PVs.motor.get()
 
     @position.setter
     @check_state

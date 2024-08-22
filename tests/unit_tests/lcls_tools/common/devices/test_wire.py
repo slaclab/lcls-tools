@@ -51,6 +51,7 @@ class WireTest(TestCase):
         self.options_and_getter_function = {
             "MOTR.VELO": self.wire.speed,
             "MOTR.RBV": self.wire.position,
+            "MOTR": self.wire.motor,
             "MOTR_INIT_STS": self.wire.initialized,
             "USEXWIRE": self.wire.use_x_wire,
             "USEYWIRE": self.wire.use_y_wire,
