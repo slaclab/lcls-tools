@@ -344,7 +344,7 @@ class YAMLGenerator:
             "MOTR_TIMEOUTEN": "timeout",
             "USEUWIRE": "use_u_wire",
             "USEXWIRE": "use_x_wire",
-            "USEYWIRE": "use__wire",
+            "USEYWIRE": "use_y_wire",
             "UWIRESIZE": "u_size",
             "UWIREINNER": "u_wire_inner",
             "UWIREOUTER": "u_wire_outer",
