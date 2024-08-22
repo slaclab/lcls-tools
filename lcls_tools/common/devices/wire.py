@@ -66,6 +66,7 @@ class WirePVSet(PVSet):
     position: PV
     retract: PV
     scan_pulses: PV
+    speed: PV
     start_scan: PV
     temperature: PV
     timeout: PV
@@ -75,7 +76,6 @@ class WirePVSet(PVSet):
     u_size: PV
     u_wire_inner: PV
     u_wire_outer: PV
-    speed: PV
     x_size: PV
     x_wire_inner: PV
     x_wire_outer: PV
@@ -168,7 +168,7 @@ class Wire(Device):
     def motor(self):
         """Returns the readback from the MOTR PV"""
         return self.controls_information.PVs.motor.get()
-    
+
     @property
     def position(self):
         """Returns the readback value from the MOTR PV."""
@@ -252,6 +252,19 @@ class Wire(Device):
     def temperature(self):
         """Returns RTD temperature"""
         return self.controls_information.PVs.temperature.get()
+
+    @property
+    def timeout(self):
+        """Returns enabled status of device timeout"""
+        return self.controls_information.PVs.timeout.get()
+
+    @timeout.setter
+    def timeout(self, val: bool) -> None:
+        try:
+            BooleanModel(value=val)
+            self.controls_information.PVs.timeout.put(value=val)
+        except ValidationError as e:
+            print("Input must be 1 or 0:", e)
 
     @property
     def x_size(self):
