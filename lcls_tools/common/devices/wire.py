@@ -98,7 +98,7 @@ class WireControlInformation(ControlInformation):
     def __init__(self, *args, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
         # Get possible options for wire motr PV, empty dict by default.
-        options = self.PVs.motr.get_ctrlvars(timeout=1)
+        options = self.PVs.position.get_ctrlvars(timeout=1)
         if "enum_strs" in options:
             [
                 self._ctrl_options.update({option: i})
