@@ -1,7 +1,7 @@
 from datetime import datetime
 from pydantic import (
     BaseModel,
-    PositiveFloat,
+    # PositiveFloat,
     SerializeAsAny,
     field_validator,
     conint,
@@ -111,8 +111,8 @@ class WireControlInformation(ControlInformation):
 
 
 class WireMetadata(Metadata):
-    material: Optional[str] = None
-    sum_l: Optional[PositiveFloat] = None
+    # material: Optional[str] = None
+    # sum_l: Optional[PositiveFloat] = None
     # TODO: Add LBLM and BPM infomration here?
     # TODO: Add info on locations for X, Y, U wires
 
