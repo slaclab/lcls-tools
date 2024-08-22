@@ -2,6 +2,7 @@ import numpy as np
 import yaml
 import os
 import epics
+from datetime import datetime, timedelta
 from lcls_live.datamaps import get_datamaps
 from lcls_live.archiver import lcls_archiver_restore
 
@@ -151,12 +152,14 @@ def get_tao(pvdata, mdl_obj):
                 new_lines.append(" ".join(cmd_words))
             else:
                 new_lines.append(cmd)
-        # lines_rf = new_lines
     return lines_rf + lines_quads
 
 
 def get_machine_values(data_source, pv_list, date_time=''):
     """Returns pvdata, a dictionary with keys containing the PV name and values from Actual, Desired or Archive"""
+    data_sources = ["DES", "ACT", "ARCHIVE"]
+    if data_source not in data_sources:
+        print(f'data_source should be one of {data_sources}')
     if data_source in ["DES", "ACT"]:
         pvdata = get_live(pv_list)
     elif "ARCHIVE" in data_source:
@@ -189,9 +192,8 @@ def get_output(tao):
     Returns dictionary of modeled parameters, including element name,
     twiss and Rmats
     """
-    yaml_dir = '/sdf/home/c/colocho/lcls-tools/lcls_tools/' \
-               'common/data_analysis/bmad_modeling/yaml/'
-    with open(yaml_dir + 'outkeys.yml', 'r') as file:
+    
+    with open(YAML_LOCATION + 'outkeys.yml', 'r') as file:
         outkeys = yaml.safe_load(file)['outkeys'].split()
     output = {k: tao.lat_list("*", k) for k in outkeys}
     return output
@@ -275,9 +277,7 @@ def get_expected_energy_gain(pvdata, region, beam_path):
     expected gain PV NOT from lcls-live
     region is one of L0, L1, L2, L3
     """
-    yaml_dir = '/sdf/home/c/colocho/lcls-tools/lcls_tools/' \
-               'common/data_analysis/bmad_modeling/yaml/'
-    with open(yaml_dir + 'energy_measurements.yml', 'r') as file:
+    with open(YAML_LOCATION + 'energy_measurements.yml', 'r') as file:
         engy_meas = yaml.safe_load(file)[beam_path[0:2]]
     if region == 'L1':
         previous_region = 'GUN'
@@ -379,12 +379,20 @@ def update_datum_meas(tao, datum, mdl_obj, useDesing=True):
 
 
 class BmadModeling:
+    beam_path: str
+    data_source: str
+    beam_code: str
+    date_time: str
+    data_maps: dict
+
     def __init__(self, beam_path, data_source):
         self.beam_path: str = beam_path
         self.data_source: str = data_source
         self.beam_code = ['1' if beam_path == 'cu_hxr' else '2'][0]
-        self.date_time: str = '2024-03-24T17:10:00.000000-08:00'
-        """updates datamaps depending on data source used by lcls-live"""
+        now = datetime.now()
+        one_our_ago = now - timedelta(hours=1)
+        self.date_time: str = one_our_ago.strftime("%Y-%m-%dT%H:%M:%S.00-8:00")
+        """updates datamaps depending on data_source, used by lcls-live"""
         if "LCLS_LATTICE" not in os.environ:
             raise OSError("Environment variable LCLS_LATTICE not defined")
         self.all_data_maps = get_datamaps(self.beam_path)
