@@ -43,7 +43,7 @@ figs = outfn.plot_betas(output_design, output)
 figs = outfn.plot_betas(output_design, output)
 
 # Other output functions
-outfn.show_twiss(tao, 'HTRUNDB', 'HTR')
+outfn.disp_twiss(tao, 'HTRUNDB', 'HTR')
 outfn.quad_table(tao)
 outfn.plot_twiss(tao, output_design)
 

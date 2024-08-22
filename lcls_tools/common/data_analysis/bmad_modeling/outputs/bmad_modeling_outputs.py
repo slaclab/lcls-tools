@@ -52,7 +52,7 @@ def plot_betas(output1, output2, **kwargs):
     return fig1, fig2, axes_list
 
 
-def show_twiss(tao, element, datum=[]):
+def disp_twiss(tao, element, datum=[]):
     """Display model beta_a, alpha_a, beta_b and alpha_b for given element as well as bmag with respect to desing."""
     """If datum is given, bmag with respect to model is calculated"""
     # parameters = ["beta_a", "alpha_a", "beta_b", "alpha_b"]
