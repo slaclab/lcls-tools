@@ -8,7 +8,7 @@ import inspect
 
 # Local imports
 from lcls_tools.common.devices.reader import create_wire
-# from lcls_tools.common.devices.wire import WireCollection
+from lcls_tools.common.devices.wire import WireCollection
 
 
 class WireTest(TestCase):
@@ -63,9 +63,9 @@ class WireTest(TestCase):
             "UWIREOUTER": self.wire.u_wire_outer,
             "MOTR_ENABLED_STS": self.wire.enabled,
             "MOTR_HOMED_STS": self.wire.homed,
-            "XWIRESIZE": self.wire.xsize,
-            "YWIRESIZE": self.wire.ysize,
-            "UWIRESIZE": self.wire.usize,
+            "XWIRESIZE": self.wire.x_size,
+            "YWIRESIZE": self.wire.y_size,
+            "UWIRESIZE": self.wire.u_size,
         }
         return super().setUp()
 

@@ -77,11 +77,11 @@ class WirePVSet(PVSet):
     u_wire_outer: PV
     speed: PV
     x_size: PV
-    x_wireinner: PV
-    x_wireouter: PV
+    x_wire_inner: PV
+    x_wire_outer: PV
     y_size: PV
-    y_wireinner: PV
-    y_wireouter: PV
+    y_wire_inner: PV
+    y_wire_outer: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
