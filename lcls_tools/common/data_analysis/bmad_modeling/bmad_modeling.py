@@ -7,6 +7,7 @@ from lcls_live.archiver import lcls_archiver_restore
 
 YAML_LOCATION = "./lcls_tools/common/data_analysis/bmad_modeling/yaml/"
 
+
 def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
     """Returns pvlist from lcls_live datamaps for given beam_path
     for Cu beampaths beam_code can be 1 or 2 """
@@ -107,6 +108,7 @@ def set_bmad_bdes(tao, element, bdes):
     ele_attr = tao.ele_gen_attribs(element)
     b1_gradient = -bdes / (10 * ele_attr["L"])
     tao.cmd(f'set ele {element} B1_GRADIENT = {b1_gradient}')
+
 
 def match_twiss(tao, variable, datum):
     """Performs optimization for given variable and datum"""
