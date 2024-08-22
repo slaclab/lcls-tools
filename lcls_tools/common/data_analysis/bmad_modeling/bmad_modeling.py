@@ -5,6 +5,7 @@ import epics
 from lcls_live.datamaps import get_datamaps
 from lcls_live.archiver import lcls_archiver_restore
 
+YAML_LOCATION = "./lcls_tools/common/data_analysis/bmad_modeling/yaml/"
 
 def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
     """Returns pvlist from lcls_live datamaps for given beam_path
@@ -35,10 +36,13 @@ def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
 def get_energy_gain_pvlist(beam_path):
     """Interim function to get list of EDES PVs from YAML file"""
     pvlist = []
-    yaml_dir = '/sdf/home/c/colocho/lcls-tools/lcls_tools/' \
-               'common/data_analysis/bmad_modeling/yaml/'
-    with open(yaml_dir + 'energy_measurements.yml', 'r') as file:
-        engy_meas = yaml.safe_load(file)[beam_path[0:2]]
+    yaml_file_name = YAML_LOCATION + 'energy_measurements.yml'
+    try:
+        with open(yaml_file_name, 'r') as file:
+            engy_meas = yaml.safe_load(file)[beam_path[0:2]]
+    except FileNotFoundError:
+        print(f"Could not find yaml file {yaml_file_name}")
+        return None
     [pvlist.append(engy_meas[key]) for key in engy_meas.keys()]
     return pvlist
 
@@ -61,7 +65,7 @@ def get_twiss(tao, element, which="design"):
     return [result[p] for p in ["beta_a", "alpha_a", "beta_b", "alpha_b"]]
 
 
-def list_to_numpy_array(x, val_type='Ampl', ampl_reject=0.5, none_value=0):
+def clean_up_none_values(x, val_type='Ampl', ampl_reject=0.5, none_value=0):
     """Convert None to 0.0 for values in x, if is_phase convert to radians
     if is_ampl set values less than 0.5 Mev to zero"""
     x_np = np.array(x)
@@ -84,7 +88,9 @@ def bmag(twiss, twiss_reference):
 
 
 def bmag_func(bb, ab, bl, al):
-    """bmag function"""
+    """Calculates the BMAG miss match parameter.  bb and ab are the modeled
+    beta and alpha functions at a given element and bl and al are the
+    reference (most of the time desing) values """
     return 1 / 2 * (bl / bb + bb / bl + bb * bl * (ab / bb - al / bl) ** 2)
 
 
@@ -95,6 +101,12 @@ def get_bmad_bdes(tao, element, b1_gradient=[]):
         b1_gradient = ele_attr["B1_GRADIENT"]
     return -b1_gradient * ele_attr["L"] * 10
 
+
+def set_bmad_bdes(tao, element, bdes):
+    """Update element B1_GRADIENT from given bdes"""
+    ele_attr = tao.ele_gen_attribs(element)
+    b1_gradient = -bdes / (10 * ele_attr["L"])
+    tao.cmd(f'set ele {element} B1_GRADIENT = {b1_gradient}')
 
 def match_twiss(tao, variable, datum):
     """Performs optimization for given variable and datum"""
@@ -116,8 +128,6 @@ def get_tao(pvdata, mdl_obj):
             acc_pv = map.accelerate_pvname
             if acc_pv == "":
                 continue
-            # acc_pv = f"{acc_pv[0:21]}{mdl_obj.beam_code}{acc_pv[22:]}"
-            # map.accelerate_pvname = acc_pv
             lines_rf += map.as_tao(pvdata)
         if dm_key == "cavities":
             lines_rf = map.as_tao(pvdata)
