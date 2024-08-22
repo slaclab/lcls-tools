@@ -192,7 +192,6 @@ def get_output(tao):
     Returns dictionary of modeled parameters, including element name,
     twiss and Rmats
     """
-    
     with open(YAML_LOCATION + 'outkeys.yml', 'r') as file:
         outkeys = yaml.safe_load(file)['outkeys'].split()
     output = {k: tao.lat_list("*", k) for k in outkeys}
