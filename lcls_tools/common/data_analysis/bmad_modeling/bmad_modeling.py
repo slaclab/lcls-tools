@@ -304,8 +304,8 @@ def update_energy_gain_sc(tao, pvdata, region, mdl_obj):
         attr = "DES"
     ampl = [pvdata[dev + ":A" + attr] for dev in devices]
     phas = [pvdata[dev + ":P" + attr] for dev in devices]
-    amplNp = list_to_numpy_array(ampl)
-    phasNp = list_to_numpy_array(phas, val_type='Phas')
+    amplNp = clean_up_none_values(ampl)
+    phasNp = clean_up_none_values(phas, val_type='Phas')
     gainMeasured = amplNp * np.cos(phasNp)
     dF = (expected_gain - sum(gainMeasured)) / amplNp.sum()
     # fudge = 1 + dF
