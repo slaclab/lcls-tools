@@ -26,9 +26,16 @@ TIMEOUT = 3
 
 @dataclass
 class ArchiverValue:
-    """
+    """A class to handle multiple archive data points.
+
     Using keys from documentation found at:
     https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
+
+    :param secs: The unix time stamp in seconds for the given datetime object.
+    :param val: The value for the PV corresponding to the given datetime object.
+    :param nanos: The nanosecond value of the EPICS record processing timestamp.
+    :param severity: Severity value of PV. Usually 0 for PVs that are not in an alarm condition.
+    :param status: The PV status, which will be 0 for a normal, connected PV.
     """
 
     secs: int = None
@@ -44,6 +51,11 @@ class ArchiverValue:
 
     @property
     def timestamp(self) -> datetime:
+        """Gets the datetime object for the ArchiverValue data point at the given time.
+
+        matplotlib can handle datetime objects directly, but data should be cleaned so that HH:MM:SS are also displayed.
+        """
+
         if not self._timestamp:
             self._timestamp = datetime.fromtimestamp(self.secs) + timedelta(
                 microseconds=self.nanos / 1000
@@ -52,14 +64,24 @@ class ArchiverValue:
 
     @property
     def is_valid(self) -> bool:
+        """Determines if the value corresponding to the ArchiverValue object is valid."""
         return self.severity is not None and self.severity != EPICS_INVALID_VAL
 
 
 class ArchiveDataHandler:
+    """A class to handle multiple archive data points.
+
+    Using keys from documentation found at:
+    https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
+
+    :param value_list: a list of ArchiverValue objects
+    """
+
     def __init__(self, value_list: List[ArchiverValue] = None):
         self.value_list: List[ArchiverValue] = value_list if value_list else []
 
     def __str__(self):
+        """Gets the JSON-formatted string representation of the ArchiveDataHandler."""
         data = {
             "timestamps": self.timestamps,
             "values": self.values,
@@ -76,25 +98,37 @@ class ArchiveDataHandler:
 
     @property
     def timestamps(self) -> List[datetime]:
+        """Gets the timestamps for the data within the specified range.
+
+        matplotlib can handle datetime objects directly, but data should be cleaned so that HH:MM:SS are also displayed.
         """
-        Current documentation indicates that matplotlib can handle datetime
-        objects directly; needs validation
-        @return: list of datetimes
-        """
+
         return list(map(lambda value: value.timestamp, self.value_list))
 
     @property
     def values(self) -> List[Union[str, int, float]]:
+        """Gets the values of the data within the specified range."""
+
         return list(map(lambda value: value.val, self.value_list))
 
     @property
     def validities(self) -> List[bool]:
+        """Gets the validities for the data within the specified range."""
+
         return list(map(lambda value: value.is_valid, self.value_list))
 
 
 def get_data_at_time(
     pv_list: List[str], time_requested: datetime
 ) -> Dict[str, ArchiverValue]:
+    """Gets a dict with ArchiverValue values corresponding to keys of the PVs in pv_list.
+
+    Can access: secs, val, nanos, severity, status, timestamp using the PV dictionary keys.
+
+    :param pv_list: The list of PVs that will be accessed as strings.
+    :param time_requested: The datetime object at which the data will be retrieved, given in PDT.
+    """
+
     suffix = SINGLE_RESULT_SUFFIX.format(
         TIME=time_requested.isoformat(timespec="microseconds")
     )
@@ -124,6 +158,16 @@ def get_data_with_time_interval(
     end_time: datetime,
     time_delta: timedelta,
 ) -> Dict[str, ArchiveDataHandler]:
+    """Gets a default dict with ArchiveDataHandler values corresponding to keys of the PVs in pv_list.
+
+    Can access either timestamps or values properties from ArchiveDataHandler using the PV dict keys.
+
+    :param pv_list: The list of PVs that will be accessed as strings
+    :param start_time: The datetime object that signifies the beginning of the time range, given in PDT.
+    :param end_time: The datetime object that signifies the end of the time range, given in PDT.
+    :param time_delta: The timedelta object that signifies the time between values.
+    """
+
     curr_time = start_time
     result: Dict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
 
@@ -137,13 +181,23 @@ def get_data_with_time_interval(
     return result
 
 
-# returns timestamps in UTC
 def get_values_over_time_range(
     pv_list: List[str],
     start_time: datetime,
     end_time: datetime,
     time_delta: timedelta = None,
 ) -> Dict[str, ArchiveDataHandler]:
+    """Gets a default dict with ArchiveDataHandler values corresponding to each PV in pv_list.
+
+    Can access either timestamps or values properties from ArchiveDataHandler using the PV dictionary keys.
+
+    :param pv_list: The list of PVs that will be accessed as strings
+    :param start_time: The datetime object that signifies the beginning of the time range, given in PDT.
+    :param end_time: The datetime object that signifies the end of the time range, given in PDT.
+    :param time_delta: The timedelta object that signifies the time between values. If left blank, all archived data is
+    returned for the given time range.
+    """
+
     if time_delta:
         return get_data_with_time_interval(pv_list, start_time, end_time, time_delta)
 
