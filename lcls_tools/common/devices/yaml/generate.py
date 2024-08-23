@@ -274,6 +274,12 @@ class YAMLGenerator:
             "BMAX": None,
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+
+        #TODO: Here is where I will add functionality to grab Effective Length 
+        #TODO: Should I write I getter method in get_magnet_metadata for grabbing effective length
+        #TODO: and storing it in a dictionary, it feels like this should be called after
+        #TODO: magnet devices are extracted if dict is sorted by MADNAME also 
+        #TODO: get_magnet_metadata requires a list of magnets
         additional_metadata_data = get_magnet_metadata()
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_controls_data = get_magnet_controls_information()

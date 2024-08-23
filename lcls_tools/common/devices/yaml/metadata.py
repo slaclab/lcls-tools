@@ -1,5 +1,5 @@
 from typing import List
-
+import csv #TODO: yes?
 
 def get_magnet_metadata(magnet_names: List[str] = []):
     # return a data structure of the form:
@@ -8,6 +8,8 @@ def get_magnet_metadata(magnet_names: List[str] = []):
     #  mag-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
+    #TODO: code needs to parse lcls_elements.csv for effective length by magnet
+    #TODO: for each magnet in magnet_names, correct?
     if magnet_names:
         raise NotImplementedError(
             "No method of getting additional metadata for magnets."
