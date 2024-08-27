@@ -8,8 +8,8 @@ from lcls_tools.common.devices.wire import Wire, WireCollection
 from lcls_tools.common.devices.area import Area
 from lcls_tools.common.devices.beampath import Beampath
 
-
-DEFAULT_YAML_LOCATION = "./lcls_tools/common/devices/yaml/"
+DEFAULT_YAML_LOCATION = os.path.join(os.path.dirname(__file__), 'yaml/')
+#DEFAULT_YAML_LOCATION = "./lcls_tools/common/devices/yaml/"
 
 
 def _find_yaml_file(
