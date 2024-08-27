@@ -1,7 +1,7 @@
 import numpy as np
 from pydantic import BaseModel, ConfigDict, PositiveFloat
 from typing import Optional
-from lcls_tools.common.data_analysis.fit.projection import ProjectionFit
+from lcls_tools.common.data.fit.projection import ProjectionFit
 from lcls_tools.common.image.processing import ImageProcessor
 
 

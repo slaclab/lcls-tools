@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.stats import norm, gamma
-from lcls_tools.common.data_analysis.fit.method_base import (
+from lcls_tools.common.data.fit.method_base import (
     MethodBase,
     ModelParameters,
     Parameter,

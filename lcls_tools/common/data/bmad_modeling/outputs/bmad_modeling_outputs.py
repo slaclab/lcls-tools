@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import epics
-from lcls_tools.common.data_analysis.bmad_modeling import bmad_modeling as mod
+from lcls_tools.common.data.bmad_modeling import bmad_modeling as mod
 
 
 def plot_betas(output1, output2, **kwargs):

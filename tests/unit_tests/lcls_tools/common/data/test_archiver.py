@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 import requests
 
-from lcls_tools.common.data_analysis.archiver import (
+from lcls_tools.common.data.archiver import (
     ArchiveDataHandler,
     ArchiverValue,
     get_data_at_time,

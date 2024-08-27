@@ -2,8 +2,8 @@ import numpy as np
 import scipy.optimize
 import scipy.signal
 from pydantic import BaseModel, ConfigDict
-from lcls_tools.common.data_analysis.fit.method_base import MethodBase
-from lcls_tools.common.data_analysis.fit.methods import GaussianModel
+from lcls_tools.common.data.fit.method_base import MethodBase
+from lcls_tools.common.data.fit.methods import GaussianModel
 
 
 class ProjectionFit(BaseModel):
