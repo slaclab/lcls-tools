@@ -133,7 +133,7 @@ class Wire(Device):
         """Decorator to only allow transitions in 'Initialized' state"""
 
         def decorated(self, *args, **kwargs):
-            if self.initialized is not True:
+            if self.initialize_status is not True:
                 print(f"Unable to perform action, {self} not in Initialized state")
                 return
             return f(self, *args, **kwargs)
@@ -155,11 +155,11 @@ class Wire(Device):
         return self.controls_information.PVs.homed.get()
 
     @property
-    def initialized(self):
+    def initialize_status(self):
         """
         Checks if the wire scanner device has been intialized..
         """
-        return self.controls_information.PVs.initialized.get()
+        return self.controls_information.PVs.initialize_status.get()
 
     def initialize(self) -> None:
         self.controls_information.PVs.initialize.put(value=1)
