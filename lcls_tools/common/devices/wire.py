@@ -61,7 +61,7 @@ class WirePVSet(PVSet):
     enabled: PV
     homed: PV
     initialize: PV
-    initialized: PV
+    initialize_status: PV
     motor: PV
     position: PV
     retract: PV

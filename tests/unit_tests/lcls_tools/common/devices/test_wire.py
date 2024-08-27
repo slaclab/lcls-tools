@@ -53,7 +53,7 @@ class WireTest(TestCase):
             "MOTR_ENABLED_STS": self.wire.enabled,
             "MOTR_HOMED_STS": self.wire.homed,
             "MOTR_INIT": self.wire.initialize,
-            "MOTR_INIT_STS": self.wire.initialized,
+            "MOTR_INIT_STS": self.wire.initialize_status,
             "MOTR": self.wire.motor,
             "MOTR.RBV": self.wire.position,
             "MOTR_RETRACT": self.wire.retract,

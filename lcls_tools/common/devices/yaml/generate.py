@@ -334,7 +334,7 @@ class YAMLGenerator:
             "MOTR_ENABLED_STS": "enabled",
             "MOTR_HOMED_STS": "homed",
             "MOTR_INIT": "initialize",
-            "MOTR_INIT_STS": "initialized",
+            "MOTR_INIT_STS": "initialize_status",
             "MOTR": "motor",
             "MOTR.RBV": "position",
             "MOTR_RETRACT": "retract",
