@@ -1,16 +1,10 @@
 magnets:
   BKRDG0:
     controls_information:
-      PVs:
-        bact: KICK:DIAG0:110:BACT
-        bcon: KICK:DIAG0:110:BCON
-        bctrl: KICK:DIAG0:110:BCTRL
-        bdes: KICK:DIAG0:110:BDES
-        bmax: KICK:DIAG0:110:BMAX
-        bmin: KICK:DIAG0:110:BMIN
-        ctrl: KICK:DIAG0:110:CTRL
+      PVs: {}
       control_name: KICK:DIAG0:110
     metadata:
+      Effective Length (m): '1.000011'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -18,16 +12,10 @@ magnets:
       type: BEND
   BLRDG0:
     controls_information:
-      PVs:
-        bact: BEND:DIAG0:155:BACT
-        bcon: BEND:DIAG0:155:BCON
-        bctrl: BEND:DIAG0:155:BCTRL
-        bdes: BEND:DIAG0:155:BDES
-        bmax: BEND:DIAG0:155:BMAX
-        bmin: BEND:DIAG0:155:BMIN
-        ctrl: BEND:DIAG0:155:CTRL
+      PVs: {}
       control_name: BEND:DIAG0:155
     metadata:
+      Effective Length (m): '.400748'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -35,16 +23,10 @@ magnets:
       type: BEND
   BXDG0:
     controls_information:
-      PVs:
-        bact: BEND:DIAG0:260:BACT
-        bcon: BEND:DIAG0:260:BCON
-        bctrl: BEND:DIAG0:260:BCTRL
-        bdes: BEND:DIAG0:260:BDES
-        bmax: BEND:DIAG0:260:BMAX
-        bmin: BEND:DIAG0:260:BMIN
-        ctrl: BEND:DIAG0:260:CTRL
+      PVs: {}
       control_name: BEND:DIAG0:260
     metadata:
+      Effective Length (m): '.400182'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -52,16 +34,10 @@ magnets:
       type: BEND
   BYDG0:
     controls_information:
-      PVs:
-        bact: BEND:DIAG0:510:BACT
-        bcon: BEND:DIAG0:510:BCON
-        bctrl: BEND:DIAG0:510:BCTRL
-        bdes: BEND:DIAG0:510:BDES
-        bmax: BEND:DIAG0:510:BMAX
-        bmin: BEND:DIAG0:510:BMIN
-        ctrl: BEND:DIAG0:510:CTRL
+      PVs: {}
       control_name: BEND:DIAG0:510
     metadata:
+      Effective Length (m): '.5435'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -69,16 +45,10 @@ magnets:
       type: BEND
   QDG001:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:190:BACT
-        bcon: QUAD:DIAG0:190:BCON
-        bctrl: QUAD:DIAG0:190:BCTRL
-        bdes: QUAD:DIAG0:190:BDES
-        bmax: QUAD:DIAG0:190:BMAX
-        bmin: QUAD:DIAG0:190:BMIN
-        ctrl: QUAD:DIAG0:190:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:190
     metadata:
+      Effective Length (m): '.197'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -86,16 +56,10 @@ magnets:
       type: QUAD
   QDG002:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:210:BACT
-        bcon: QUAD:DIAG0:210:BCON
-        bctrl: QUAD:DIAG0:210:BCTRL
-        bdes: QUAD:DIAG0:210:BDES
-        bmax: QUAD:DIAG0:210:BMAX
-        bmin: QUAD:DIAG0:210:BMIN
-        ctrl: QUAD:DIAG0:210:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:210
     metadata:
+      Effective Length (m): '.197'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -103,16 +67,10 @@ magnets:
       type: QUAD
   QDG003:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:230:BACT
-        bcon: QUAD:DIAG0:230:BCON
-        bctrl: QUAD:DIAG0:230:BCTRL
-        bdes: QUAD:DIAG0:230:BDES
-        bmax: QUAD:DIAG0:230:BMAX
-        bmin: QUAD:DIAG0:230:BMIN
-        ctrl: QUAD:DIAG0:230:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:230
     metadata:
+      Effective Length (m): '.197'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -120,16 +78,10 @@ magnets:
       type: QUAD
   QDG004:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:270:BACT
-        bcon: QUAD:DIAG0:270:BCON
-        bctrl: QUAD:DIAG0:270:BCTRL
-        bdes: QUAD:DIAG0:270:BDES
-        bmax: QUAD:DIAG0:270:BMAX
-        bmin: QUAD:DIAG0:270:BMIN
-        ctrl: QUAD:DIAG0:270:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:270
     metadata:
+      Effective Length (m): '.108'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -137,16 +89,10 @@ magnets:
       type: QUAD
   QDG005:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:285:BACT
-        bcon: QUAD:DIAG0:285:BCON
-        bctrl: QUAD:DIAG0:285:BCTRL
-        bdes: QUAD:DIAG0:285:BDES
-        bmax: QUAD:DIAG0:285:BMAX
-        bmin: QUAD:DIAG0:285:BMIN
-        ctrl: QUAD:DIAG0:285:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:285
     metadata:
+      Effective Length (m): '.108'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -154,16 +100,10 @@ magnets:
       type: QUAD
   QDG006:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:300:BACT
-        bcon: QUAD:DIAG0:300:BCON
-        bctrl: QUAD:DIAG0:300:BCTRL
-        bdes: QUAD:DIAG0:300:BDES
-        bmax: QUAD:DIAG0:300:BMAX
-        bmin: QUAD:DIAG0:300:BMIN
-        ctrl: QUAD:DIAG0:300:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:300
     metadata:
+      Effective Length (m): '.108'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -171,16 +111,10 @@ magnets:
       type: QUAD
   QDG007:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:360:BACT
-        bcon: QUAD:DIAG0:360:BCON
-        bctrl: QUAD:DIAG0:360:BCTRL
-        bdes: QUAD:DIAG0:360:BDES
-        bmax: QUAD:DIAG0:360:BMAX
-        bmin: QUAD:DIAG0:360:BMIN
-        ctrl: QUAD:DIAG0:360:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:360
     metadata:
+      Effective Length (m): '.108'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -188,16 +122,10 @@ magnets:
       type: QUAD
   QDG008:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:370:BACT
-        bcon: QUAD:DIAG0:370:BCON
-        bctrl: QUAD:DIAG0:370:BCTRL
-        bdes: QUAD:DIAG0:370:BDES
-        bmax: QUAD:DIAG0:370:BMAX
-        bmin: QUAD:DIAG0:370:BMIN
-        ctrl: QUAD:DIAG0:370:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:370
     metadata:
+      Effective Length (m): '.108'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -205,16 +133,10 @@ magnets:
       type: QUAD
   QDG009:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:390:BACT
-        bcon: QUAD:DIAG0:390:BCON
-        bctrl: QUAD:DIAG0:390:BCTRL
-        bdes: QUAD:DIAG0:390:BDES
-        bmax: QUAD:DIAG0:390:BMAX
-        bmin: QUAD:DIAG0:390:BMIN
-        ctrl: QUAD:DIAG0:390:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:390
     metadata:
+      Effective Length (m): '.108'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -222,16 +144,10 @@ magnets:
       type: QUAD
   QDG010:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:455:BACT
-        bcon: QUAD:DIAG0:455:BCON
-        bctrl: QUAD:DIAG0:455:BCTRL
-        bdes: QUAD:DIAG0:455:BDES
-        bmax: QUAD:DIAG0:455:BMAX
-        bmin: QUAD:DIAG0:455:BMIN
-        ctrl: QUAD:DIAG0:455:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:455
     metadata:
+      Effective Length (m): '.108'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -239,16 +155,10 @@ magnets:
       type: QUAD
   QDG011:
     controls_information:
-      PVs:
-        bact: QUAD:DIAG0:470:BACT
-        bcon: QUAD:DIAG0:470:BCON
-        bctrl: QUAD:DIAG0:470:BCTRL
-        bdes: QUAD:DIAG0:470:BDES
-        bmax: QUAD:DIAG0:470:BMAX
-        bmin: QUAD:DIAG0:470:BMIN
-        ctrl: QUAD:DIAG0:470:CTRL
+      PVs: {}
       control_name: QUAD:DIAG0:470
     metadata:
+      Effective Length (m): '.108'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -256,16 +166,10 @@ magnets:
       type: QUAD
   XCDG001:
     controls_information:
-      PVs:
-        bact: XCOR:DIAG0:178:BACT
-        bcon: XCOR:DIAG0:178:BCON
-        bctrl: XCOR:DIAG0:178:BCTRL
-        bdes: XCOR:DIAG0:178:BDES
-        bmax: XCOR:DIAG0:178:BMAX
-        bmin: XCOR:DIAG0:178:BMIN
-        ctrl: XCOR:DIAG0:178:CTRL
+      PVs: {}
       control_name: XCOR:DIAG0:178
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -273,16 +177,10 @@ magnets:
       type: XCOR
   XCDG002:
     controls_information:
-      PVs:
-        bact: XCOR:DIAG0:218:BACT
-        bcon: XCOR:DIAG0:218:BCON
-        bctrl: XCOR:DIAG0:218:BCTRL
-        bdes: XCOR:DIAG0:218:BDES
-        bmax: XCOR:DIAG0:218:BMAX
-        bmin: XCOR:DIAG0:218:BMIN
-        ctrl: XCOR:DIAG0:218:CTRL
+      PVs: {}
       control_name: XCOR:DIAG0:218
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -290,16 +188,10 @@ magnets:
       type: XCOR
   XCDG003:
     controls_information:
-      PVs:
-        bact: XCOR:DIAG0:280:BACT
-        bcon: XCOR:DIAG0:280:BCON
-        bctrl: XCOR:DIAG0:280:BCTRL
-        bdes: XCOR:DIAG0:280:BDES
-        bmax: XCOR:DIAG0:280:BMAX
-        bmin: XCOR:DIAG0:280:BMIN
-        ctrl: XCOR:DIAG0:280:CTRL
+      PVs: {}
       control_name: XCOR:DIAG0:280
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -307,16 +199,10 @@ magnets:
       type: XCOR
   XCDG005:
     controls_information:
-      PVs:
-        bact: XCOR:DIAG0:290:BACT
-        bcon: XCOR:DIAG0:290:BCON
-        bctrl: XCOR:DIAG0:290:BCTRL
-        bdes: XCOR:DIAG0:290:BDES
-        bmax: XCOR:DIAG0:290:BMAX
-        bmin: XCOR:DIAG0:290:BMIN
-        ctrl: XCOR:DIAG0:290:CTRL
+      PVs: {}
       control_name: XCOR:DIAG0:290
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -324,16 +210,10 @@ magnets:
       type: XCOR
   XCDG008:
     controls_information:
-      PVs:
-        bact: XCOR:DIAG0:380:BACT
-        bcon: XCOR:DIAG0:380:BCON
-        bctrl: XCOR:DIAG0:380:BCTRL
-        bdes: XCOR:DIAG0:380:BDES
-        bmax: XCOR:DIAG0:380:BMAX
-        bmin: XCOR:DIAG0:380:BMIN
-        ctrl: XCOR:DIAG0:380:CTRL
+      PVs: {}
       control_name: XCOR:DIAG0:380
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -341,16 +221,10 @@ magnets:
       type: XCOR
   XCDG010:
     controls_information:
-      PVs:
-        bact: XCOR:DIAG0:460:BACT
-        bcon: XCOR:DIAG0:460:BCON
-        bctrl: XCOR:DIAG0:460:BCTRL
-        bdes: XCOR:DIAG0:460:BDES
-        bmax: XCOR:DIAG0:460:BMAX
-        bmin: XCOR:DIAG0:460:BMIN
-        ctrl: XCOR:DIAG0:460:CTRL
+      PVs: {}
       control_name: XCOR:DIAG0:460
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -358,16 +232,10 @@ magnets:
       type: XCOR
   YCDG001:
     controls_information:
-      PVs:
-        bact: YCOR:DIAG0:199:BACT
-        bcon: YCOR:DIAG0:199:BCON
-        bctrl: YCOR:DIAG0:199:BCTRL
-        bdes: YCOR:DIAG0:199:BDES
-        bmax: YCOR:DIAG0:199:BMAX
-        bmin: YCOR:DIAG0:199:BMIN
-        ctrl: YCOR:DIAG0:199:CTRL
+      PVs: {}
       control_name: YCOR:DIAG0:199
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -375,16 +243,10 @@ magnets:
       type: YCOR
   YCDG002:
     controls_information:
-      PVs:
-        bact: YCOR:DIAG0:247:BACT
-        bcon: YCOR:DIAG0:247:BCON
-        bctrl: YCOR:DIAG0:247:BCTRL
-        bdes: YCOR:DIAG0:247:BDES
-        bmax: YCOR:DIAG0:247:BMAX
-        bmin: YCOR:DIAG0:247:BMIN
-        ctrl: YCOR:DIAG0:247:CTRL
+      PVs: {}
       control_name: YCOR:DIAG0:247
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -392,16 +254,10 @@ magnets:
       type: YCOR
   YCDG003:
     controls_information:
-      PVs:
-        bact: YCOR:DIAG0:280:BACT
-        bcon: YCOR:DIAG0:280:BCON
-        bctrl: YCOR:DIAG0:280:BCTRL
-        bdes: YCOR:DIAG0:280:BDES
-        bmax: YCOR:DIAG0:280:BMAX
-        bmin: YCOR:DIAG0:280:BMIN
-        ctrl: YCOR:DIAG0:280:CTRL
+      PVs: {}
       control_name: YCOR:DIAG0:280
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -409,16 +265,10 @@ magnets:
       type: YCOR
   YCDG005:
     controls_information:
-      PVs:
-        bact: YCOR:DIAG0:290:BACT
-        bcon: YCOR:DIAG0:290:BCON
-        bctrl: YCOR:DIAG0:290:BCTRL
-        bdes: YCOR:DIAG0:290:BDES
-        bmax: YCOR:DIAG0:290:BMAX
-        bmin: YCOR:DIAG0:290:BMIN
-        ctrl: YCOR:DIAG0:290:CTRL
+      PVs: {}
       control_name: YCOR:DIAG0:290
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -426,16 +276,10 @@ magnets:
       type: YCOR
   YCDG008:
     controls_information:
-      PVs:
-        bact: YCOR:DIAG0:380:BACT
-        bcon: YCOR:DIAG0:380:BCON
-        bctrl: YCOR:DIAG0:380:BCTRL
-        bdes: YCOR:DIAG0:380:BDES
-        bmax: YCOR:DIAG0:380:BMAX
-        bmin: YCOR:DIAG0:380:BMIN
-        ctrl: YCOR:DIAG0:380:CTRL
+      PVs: {}
       control_name: YCOR:DIAG0:380
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -443,16 +287,10 @@ magnets:
       type: YCOR
   YCDG010:
     controls_information:
-      PVs:
-        bact: YCOR:DIAG0:460:BACT
-        bcon: YCOR:DIAG0:460:BCON
-        bctrl: YCOR:DIAG0:460:BCTRL
-        bdes: YCOR:DIAG0:460:BDES
-        bmax: YCOR:DIAG0:460:BMAX
-        bmin: YCOR:DIAG0:460:BMIN
-        ctrl: YCOR:DIAG0:460:CTRL
+      PVs: {}
       control_name: YCOR:DIAG0:460
     metadata:
+      Effective Length (m): '0'
       area: DIAG0
       beam_path:
       - SC_DIAG0
@@ -461,12 +299,7 @@ magnets:
 screens:
   OTRDG02:
     controls_information:
-      PVs:
-        image: OTRS:DIAG0:420:Image:ArrayData
-        n_bits: OTRS:DIAG0:420:N_OF_BITS
-        n_col: OTRS:DIAG0:420:Image:ArraySize1_RBV
-        n_row: OTRS:DIAG0:420:Image:ArraySize0_RBV
-        resolution: OTRS:DIAG0:420:RESOLUTION
+      PVs: {}
       control_name: OTRS:DIAG0:420
     metadata:
       area: DIAG0
@@ -476,12 +309,7 @@ screens:
       type: PROF
   OTRDG04:
     controls_information:
-      PVs:
-        image: OTRS:DIAG0:525:Image:ArrayData
-        n_bits: OTRS:DIAG0:525:N_OF_BITS
-        n_col: OTRS:DIAG0:525:Image:ArraySize1_RBV
-        n_row: OTRS:DIAG0:525:Image:ArraySize0_RBV
-        resolution: OTRS:DIAG0:525:RESOLUTION
+      PVs: {}
       control_name: OTRS:DIAG0:525
     metadata:
       area: DIAG0
@@ -492,24 +320,7 @@ screens:
 wires:
   WSDG01:
     controls_information:
-      PVs:
-        abort: WIRE:DIAG0:424:MOTR.STOP
-        motr: WIRE:DIAG0:424:MOTR
-        rbv: WIRE:DIAG0:424:MOTR.RBV
-        startscan: WIRE:DIAG0:424:STARTSCAN
-        useuwire: WIRE:DIAG0:424:USEUWIRE
-        usexwire: WIRE:DIAG0:424:USEXWIRE
-        useywire: WIRE:DIAG0:424:USEYWIRE
-        usize: WIRE:DIAG0:424:UWIRESIZE
-        uwireinner: WIRE:DIAG0:424:UWIREINNER
-        uwireouter: WIRE:DIAG0:424:UWIREOUTER
-        velo: WIRE:DIAG0:424:MOTR.VELO
-        xsize: WIRE:DIAG0:424:XWIRESIZE
-        xwireinner: WIRE:DIAG0:424:XWIREINNER
-        xwireouter: WIRE:DIAG0:424:XWIREOUTER
-        ysize: WIRE:DIAG0:424:YWIRESIZE
-        ywireinner: WIRE:DIAG0:424:YWIREINNER
-        ywireouter: WIRE:DIAG0:424:YWIREOUTER
+      PVs: {}
       control_name: WIRE:DIAG0:424
     metadata:
       area: DIAG0

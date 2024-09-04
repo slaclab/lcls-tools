@@ -1,16 +1,10 @@
 magnets:
   BCX31B1:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:165:BACT
-        bcon: BEND:LTUS:165:BCON
-        bctrl: BEND:LTUS:165:BCTRL
-        bdes: BEND:LTUS:165:BDES
-        bmax: BEND:LTUS:165:BMAX
-        bmin: BEND:LTUS:165:BMIN
-        ctrl: BEND:LTUS:165:CTRL
+      PVs: {}
       control_name: BEND:LTUS:165
     metadata:
+      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -23,16 +17,10 @@ magnets:
       type: BEND
   BCX31B2:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:166:BACT
-        bcon: BEND:LTUS:166:BCON
-        bctrl: BEND:LTUS:166:BCTRL
-        bdes: BEND:LTUS:166:BDES
-        bmax: BEND:LTUS:166:BMAX
-        bmin: BEND:LTUS:166:BMIN
-        ctrl: BEND:LTUS:166:CTRL
+      PVs: {}
       control_name: BEND:LTUS:166
     metadata:
+      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -45,16 +33,10 @@ magnets:
       type: BEND
   BCX31B3:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:167:BACT
-        bcon: BEND:LTUS:167:BCON
-        bctrl: BEND:LTUS:167:BCTRL
-        bdes: BEND:LTUS:167:BDES
-        bmax: BEND:LTUS:167:BMAX
-        bmin: BEND:LTUS:167:BMIN
-        ctrl: BEND:LTUS:167:CTRL
+      PVs: {}
       control_name: BEND:LTUS:167
     metadata:
+      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -67,16 +49,10 @@ magnets:
       type: BEND
   BCX31B4:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:168:BACT
-        bcon: BEND:LTUS:168:BCON
-        bctrl: BEND:LTUS:168:BCTRL
-        bdes: BEND:LTUS:168:BDES
-        bmax: BEND:LTUS:168:BMAX
-        bmin: BEND:LTUS:168:BMIN
-        ctrl: BEND:LTUS:168:CTRL
+      PVs: {}
       control_name: BEND:LTUS:168
     metadata:
+      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -89,16 +65,10 @@ magnets:
       type: BEND
   BCX32B1:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:475:BACT
-        bcon: BEND:LTUS:475:BCON
-        bctrl: BEND:LTUS:475:BCTRL
-        bdes: BEND:LTUS:475:BDES
-        bmax: BEND:LTUS:475:BMAX
-        bmin: BEND:LTUS:475:BMIN
-        ctrl: BEND:LTUS:475:CTRL
+      PVs: {}
       control_name: BEND:LTUS:475
     metadata:
+      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -111,16 +81,10 @@ magnets:
       type: BEND
   BCX32B2:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:476:BACT
-        bcon: BEND:LTUS:476:BCON
-        bctrl: BEND:LTUS:476:BCTRL
-        bdes: BEND:LTUS:476:BDES
-        bmax: BEND:LTUS:476:BMAX
-        bmin: BEND:LTUS:476:BMIN
-        ctrl: BEND:LTUS:476:CTRL
+      PVs: {}
       control_name: BEND:LTUS:476
     metadata:
+      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -133,16 +97,10 @@ magnets:
       type: BEND
   BCX32B3:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:477:BACT
-        bcon: BEND:LTUS:477:BCON
-        bctrl: BEND:LTUS:477:BCTRL
-        bdes: BEND:LTUS:477:BDES
-        bmax: BEND:LTUS:477:BMAX
-        bmin: BEND:LTUS:477:BMIN
-        ctrl: BEND:LTUS:477:CTRL
+      PVs: {}
       control_name: BEND:LTUS:477
     metadata:
+      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -155,16 +113,10 @@ magnets:
       type: BEND
   BCX32B4:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:478:BACT
-        bcon: BEND:LTUS:478:BCON
-        bctrl: BEND:LTUS:478:BCTRL
-        bdes: BEND:LTUS:478:BDES
-        bmax: BEND:LTUS:478:BMAX
-        bmin: BEND:LTUS:478:BMIN
-        ctrl: BEND:LTUS:478:CTRL
+      PVs: {}
       control_name: BEND:LTUS:478
     metadata:
+      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -177,16 +129,10 @@ magnets:
       type: BEND
   BCXXL1:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:763:BACT
-        bcon: BEND:LTUS:763:BCON
-        bctrl: BEND:LTUS:763:BCTRL
-        bdes: BEND:LTUS:763:BDES
-        bmax: BEND:LTUS:763:BMAX
-        bmin: BEND:LTUS:763:BMIN
-        ctrl: BEND:LTUS:763:CTRL
+      PVs: {}
       control_name: BEND:LTUS:763
     metadata:
+      Effective Length (m): '.364'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -199,16 +145,10 @@ magnets:
       type: BEND
   BCXXL2:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:764:BACT
-        bcon: BEND:LTUS:764:BCON
-        bctrl: BEND:LTUS:764:BCTRL
-        bdes: BEND:LTUS:764:BDES
-        bmax: BEND:LTUS:764:BMAX
-        bmin: BEND:LTUS:764:BMIN
-        ctrl: BEND:LTUS:764:CTRL
+      PVs: {}
       control_name: BEND:LTUS:764
     metadata:
+      Effective Length (m): '.364'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -221,16 +161,10 @@ magnets:
       type: BEND
   BCXXL3:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:765:BACT
-        bcon: BEND:LTUS:765:BCON
-        bctrl: BEND:LTUS:765:BCTRL
-        bdes: BEND:LTUS:765:BDES
-        bmax: BEND:LTUS:765:BMAX
-        bmin: BEND:LTUS:765:BMIN
-        ctrl: BEND:LTUS:765:CTRL
+      PVs: {}
       control_name: BEND:LTUS:765
     metadata:
+      Effective Length (m): '.364'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -243,16 +177,10 @@ magnets:
       type: BEND
   BCXXL4:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:766:BACT
-        bcon: BEND:LTUS:766:BCON
-        bctrl: BEND:LTUS:766:BCTRL
-        bdes: BEND:LTUS:766:BDES
-        bmax: BEND:LTUS:766:BMAX
-        bmin: BEND:LTUS:766:BMIN
-        ctrl: BEND:LTUS:766:CTRL
+      PVs: {}
       control_name: BEND:LTUS:766
     metadata:
+      Effective Length (m): '.364'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -265,16 +193,10 @@ magnets:
       type: BEND
   BX31B:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:175:BACT
-        bcon: BEND:LTUS:175:BCON
-        bctrl: BEND:LTUS:175:BCTRL
-        bdes: BEND:LTUS:175:BDES
-        bmax: BEND:LTUS:175:BMAX
-        bmin: BEND:LTUS:175:BMIN
-        ctrl: BEND:LTUS:175:CTRL
+      PVs: {}
       control_name: BEND:LTUS:175
     metadata:
+      Effective Length (m): '2.656038'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -287,16 +209,10 @@ magnets:
       type: BEND
   BX32B:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:460:BACT
-        bcon: BEND:LTUS:460:BCON
-        bctrl: BEND:LTUS:460:BCTRL
-        bdes: BEND:LTUS:460:BDES
-        bmax: BEND:LTUS:460:BMAX
-        bmin: BEND:LTUS:460:BMIN
-        ctrl: BEND:LTUS:460:CTRL
+      PVs: {}
       control_name: BEND:LTUS:460
     metadata:
+      Effective Length (m): '2.656038'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -309,16 +225,10 @@ magnets:
       type: BEND
   BY1B:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:525:BACT
-        bcon: BEND:LTUS:525:BCON
-        bctrl: BEND:LTUS:525:BCTRL
-        bdes: BEND:LTUS:525:BDES
-        bmax: BEND:LTUS:525:BMAX
-        bmin: BEND:LTUS:525:BMIN
-        ctrl: BEND:LTUS:525:CTRL
+      PVs: {}
       control_name: BEND:LTUS:525
     metadata:
+      Effective Length (m): '1.025'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -331,16 +241,10 @@ magnets:
       type: BEND
   BY2B:
     controls_information:
-      PVs:
-        bact: BEND:LTUS:565:BACT
-        bcon: BEND:LTUS:565:BCON
-        bctrl: BEND:LTUS:565:BCTRL
-        bdes: BEND:LTUS:565:BDES
-        bmax: BEND:LTUS:565:BMAX
-        bmin: BEND:LTUS:565:BMIN
-        ctrl: BEND:LTUS:565:CTRL
+      PVs: {}
       control_name: BEND:LTUS:565
     metadata:
+      Effective Length (m): '1.025'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -353,16 +257,10 @@ magnets:
       type: BEND
   BYKIK1S:
     controls_information:
-      PVs:
-        bact: KICK:LTUS:350:BACT
-        bcon: KICK:LTUS:350:BCON
-        bctrl: KICK:LTUS:350:BCTRL
-        bdes: KICK:LTUS:350:BDES
-        bmax: KICK:LTUS:350:BMAX
-        bmin: KICK:LTUS:350:BMIN
-        ctrl: KICK:LTUS:350:CTRL
+      PVs: {}
       control_name: KICK:LTUS:350
     metadata:
+      Effective Length (m): '1.0601'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -375,16 +273,10 @@ magnets:
       type: BEND
   BYKIK2S:
     controls_information:
-      PVs:
-        bact: KICK:LTUS:360:BACT
-        bcon: KICK:LTUS:360:BCON
-        bctrl: KICK:LTUS:360:BCTRL
-        bdes: KICK:LTUS:360:BDES
-        bmax: KICK:LTUS:360:BMAX
-        bmin: KICK:LTUS:360:BMIN
-        ctrl: KICK:LTUS:360:CTRL
+      PVs: {}
       control_name: KICK:LTUS:360
     metadata:
+      Effective Length (m): '1.0601'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -397,16 +289,10 @@ magnets:
       type: BEND
   QDBL1:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:110:BACT
-        bcon: QUAD:LTUS:110:BCON
-        bctrl: QUAD:LTUS:110:BCTRL
-        bdes: QUAD:LTUS:110:BDES
-        bmax: QUAD:LTUS:110:BMAX
-        bmin: QUAD:LTUS:110:BMIN
-        ctrl: QUAD:LTUS:110:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:110
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -419,16 +305,10 @@ magnets:
       type: QUAD
   QDBL2:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:120:BACT
-        bcon: QUAD:LTUS:120:BCON
-        bctrl: QUAD:LTUS:120:BCTRL
-        bdes: QUAD:LTUS:120:BDES
-        bmax: QUAD:LTUS:120:BMAX
-        bmin: QUAD:LTUS:120:BMIN
-        ctrl: QUAD:LTUS:120:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:120
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -441,16 +321,10 @@ magnets:
       type: QUAD
   QDL11:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:150:BACT
-        bcon: QUAD:LTUS:150:BCON
-        bctrl: QUAD:LTUS:150:BCTRL
-        bdes: QUAD:LTUS:150:BDES
-        bmax: QUAD:LTUS:150:BMAX
-        bmin: QUAD:LTUS:150:BMIN
-        ctrl: QUAD:LTUS:150:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:150
     metadata:
+      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -463,16 +337,10 @@ magnets:
       type: QUAD
   QDL12:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:180:BACT
-        bcon: QUAD:LTUS:180:BCON
-        bctrl: QUAD:LTUS:180:BCTRL
-        bdes: QUAD:LTUS:180:BDES
-        bmax: QUAD:LTUS:180:BMAX
-        bmin: QUAD:LTUS:180:BMIN
-        ctrl: QUAD:LTUS:180:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:180
     metadata:
+      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -485,16 +353,10 @@ magnets:
       type: QUAD
   QDL13:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:235:BACT
-        bcon: QUAD:LTUS:235:BCON
-        bctrl: QUAD:LTUS:235:BCTRL
-        bdes: QUAD:LTUS:235:BDES
-        bmax: QUAD:LTUS:235:BMAX
-        bmin: QUAD:LTUS:235:BMIN
-        ctrl: QUAD:LTUS:235:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:235
     metadata:
+      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -507,16 +369,10 @@ magnets:
       type: QUAD
   QDL14:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:270:BACT
-        bcon: QUAD:LTUS:270:BCON
-        bctrl: QUAD:LTUS:270:BCTRL
-        bdes: QUAD:LTUS:270:BDES
-        bmax: QUAD:LTUS:270:BMAX
-        bmin: QUAD:LTUS:270:BMIN
-        ctrl: QUAD:LTUS:270:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:270
     metadata:
+      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -529,16 +385,10 @@ magnets:
       type: QUAD
   QDL15:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:300:BACT
-        bcon: QUAD:LTUS:300:BCON
-        bctrl: QUAD:LTUS:300:BCTRL
-        bdes: QUAD:LTUS:300:BDES
-        bmax: QUAD:LTUS:300:BMAX
-        bmin: QUAD:LTUS:300:BMIN
-        ctrl: QUAD:LTUS:300:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:300
     metadata:
+      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -551,16 +401,10 @@ magnets:
       type: QUAD
   QDL16:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:345:BACT
-        bcon: QUAD:LTUS:345:BCON
-        bctrl: QUAD:LTUS:345:BCTRL
-        bdes: QUAD:LTUS:345:BDES
-        bmax: QUAD:LTUS:345:BMAX
-        bmin: QUAD:LTUS:345:BMIN
-        ctrl: QUAD:LTUS:345:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:345
     metadata:
+      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -573,16 +417,10 @@ magnets:
       type: QUAD
   QDL17:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:370:BACT
-        bcon: QUAD:LTUS:370:BCON
-        bctrl: QUAD:LTUS:370:BCTRL
-        bdes: QUAD:LTUS:370:BDES
-        bmax: QUAD:LTUS:370:BMAX
-        bmin: QUAD:LTUS:370:BMIN
-        ctrl: QUAD:LTUS:370:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:370
     metadata:
+      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -595,16 +433,10 @@ magnets:
       type: QUAD
   QDL18:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:430:BACT
-        bcon: QUAD:LTUS:430:BCON
-        bctrl: QUAD:LTUS:430:BCTRL
-        bdes: QUAD:LTUS:430:BDES
-        bmax: QUAD:LTUS:430:BMAX
-        bmin: QUAD:LTUS:430:BMIN
-        ctrl: QUAD:LTUS:430:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:430
     metadata:
+      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -617,16 +449,10 @@ magnets:
       type: QUAD
   QDL19:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:450:BACT
-        bcon: QUAD:LTUS:450:BCON
-        bctrl: QUAD:LTUS:450:BCTRL
-        bdes: QUAD:LTUS:450:BDES
-        bmax: QUAD:LTUS:450:BMAX
-        bmin: QUAD:LTUS:450:BMIN
-        ctrl: QUAD:LTUS:450:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:450
     metadata:
+      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -639,16 +465,10 @@ magnets:
       type: QUAD
   QDL20:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:470:BACT
-        bcon: QUAD:LTUS:470:BCON
-        bctrl: QUAD:LTUS:470:BCTRL
-        bdes: QUAD:LTUS:470:BDES
-        bmax: QUAD:LTUS:470:BMAX
-        bmin: QUAD:LTUS:470:BMIN
-        ctrl: QUAD:LTUS:470:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:470
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -661,16 +481,10 @@ magnets:
       type: QUAD
   QDL21:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:500:BACT
-        bcon: QUAD:LTUS:500:BCON
-        bctrl: QUAD:LTUS:500:BCTRL
-        bdes: QUAD:LTUS:500:BDES
-        bmax: QUAD:LTUS:500:BMAX
-        bmin: QUAD:LTUS:500:BMIN
-        ctrl: QUAD:LTUS:500:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:500
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -683,16 +497,10 @@ magnets:
       type: QUAD
   QDL22:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:510:BACT
-        bcon: QUAD:LTUS:510:BCON
-        bctrl: QUAD:LTUS:510:BCTRL
-        bdes: QUAD:LTUS:510:BDES
-        bmax: QUAD:LTUS:510:BMAX
-        bmin: QUAD:LTUS:510:BMIN
-        ctrl: QUAD:LTUS:510:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:510
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -705,16 +513,10 @@ magnets:
       type: QUAD
   QE31B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:720:BACT
-        bcon: QUAD:LTUS:720:BCON
-        bctrl: QUAD:LTUS:720:BCTRL
-        bdes: QUAD:LTUS:720:BDES
-        bmax: QUAD:LTUS:720:BMAX
-        bmin: QUAD:LTUS:720:BMIN
-        ctrl: QUAD:LTUS:720:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:720
     metadata:
+      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -727,16 +529,10 @@ magnets:
       type: QUAD
   QE32B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:730:BACT
-        bcon: QUAD:LTUS:730:BCON
-        bctrl: QUAD:LTUS:730:BCTRL
-        bdes: QUAD:LTUS:730:BDES
-        bmax: QUAD:LTUS:730:BMAX
-        bmin: QUAD:LTUS:730:BMIN
-        ctrl: QUAD:LTUS:730:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:730
     metadata:
+      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -749,16 +545,10 @@ magnets:
       type: QUAD
   QE33B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:740:BACT
-        bcon: QUAD:LTUS:740:BCON
-        bctrl: QUAD:LTUS:740:BCTRL
-        bdes: QUAD:LTUS:740:BDES
-        bmax: QUAD:LTUS:740:BMAX
-        bmin: QUAD:LTUS:740:BMIN
-        ctrl: QUAD:LTUS:740:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:740
     metadata:
+      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -771,16 +561,10 @@ magnets:
       type: QUAD
   QE34B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:750:BACT
-        bcon: QUAD:LTUS:750:BCON
-        bctrl: QUAD:LTUS:750:BCTRL
-        bdes: QUAD:LTUS:750:BDES
-        bmax: QUAD:LTUS:750:BMAX
-        bmin: QUAD:LTUS:750:BMIN
-        ctrl: QUAD:LTUS:750:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:750
     metadata:
+      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -793,16 +577,10 @@ magnets:
       type: QUAD
   QE35B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:760:BACT
-        bcon: QUAD:LTUS:760:BCON
-        bctrl: QUAD:LTUS:760:BCTRL
-        bdes: QUAD:LTUS:760:BDES
-        bmax: QUAD:LTUS:760:BMAX
-        bmin: QUAD:LTUS:760:BMIN
-        ctrl: QUAD:LTUS:760:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:760
     metadata:
+      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -815,16 +593,10 @@ magnets:
       type: QUAD
   QE36B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:780:BACT
-        bcon: QUAD:LTUS:780:BCON
-        bctrl: QUAD:LTUS:780:BCTRL
-        bdes: QUAD:LTUS:780:BDES
-        bmax: QUAD:LTUS:780:BMAX
-        bmin: QUAD:LTUS:780:BMIN
-        ctrl: QUAD:LTUS:780:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:780
     metadata:
+      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -837,16 +609,10 @@ magnets:
       type: QUAD
   QEM1B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:620:BACT
-        bcon: QUAD:LTUS:620:BCON
-        bctrl: QUAD:LTUS:620:BCTRL
-        bdes: QUAD:LTUS:620:BDES
-        bmax: QUAD:LTUS:620:BMAX
-        bmin: QUAD:LTUS:620:BMIN
-        ctrl: QUAD:LTUS:620:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:620
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -859,16 +625,10 @@ magnets:
       type: QUAD
   QEM2B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:640:BACT
-        bcon: QUAD:LTUS:640:BCON
-        bctrl: QUAD:LTUS:640:BCTRL
-        bdes: QUAD:LTUS:640:BDES
-        bmax: QUAD:LTUS:640:BMAX
-        bmin: QUAD:LTUS:640:BMIN
-        ctrl: QUAD:LTUS:640:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:640
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -881,16 +641,10 @@ magnets:
       type: QUAD
   QEM3B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:660:BACT
-        bcon: QUAD:LTUS:660:BCON
-        bctrl: QUAD:LTUS:660:BCTRL
-        bdes: QUAD:LTUS:660:BDES
-        bmax: QUAD:LTUS:660:BMAX
-        bmin: QUAD:LTUS:660:BMIN
-        ctrl: QUAD:LTUS:660:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:660
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -903,16 +657,10 @@ magnets:
       type: QUAD
   QEM3VB:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:665:BACT
-        bcon: QUAD:LTUS:665:BCON
-        bctrl: QUAD:LTUS:665:BCTRL
-        bdes: QUAD:LTUS:665:BDES
-        bmax: QUAD:LTUS:665:BMAX
-        bmin: QUAD:LTUS:665:BMIN
-        ctrl: QUAD:LTUS:665:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:665
     metadata:
+      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -925,16 +673,10 @@ magnets:
       type: QUAD
   QEM4B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:680:BACT
-        bcon: QUAD:LTUS:680:BCON
-        bctrl: QUAD:LTUS:680:BCTRL
-        bdes: QUAD:LTUS:680:BDES
-        bmax: QUAD:LTUS:680:BMAX
-        bmin: QUAD:LTUS:680:BMIN
-        ctrl: QUAD:LTUS:680:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:680
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -947,16 +689,10 @@ magnets:
       type: QUAD
   QFXL1:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:725:BACT
-        bcon: QUAD:LTUS:725:BCON
-        bctrl: QUAD:LTUS:725:BCTRL
-        bdes: QUAD:LTUS:725:BDES
-        bmax: QUAD:LTUS:725:BMAX
-        bmin: QUAD:LTUS:725:BMIN
-        ctrl: QUAD:LTUS:725:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:725
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -969,16 +705,10 @@ magnets:
       type: QUAD
   QFXL2:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:772:BACT
-        bcon: QUAD:LTUS:772:BCON
-        bctrl: QUAD:LTUS:772:BCTRL
-        bdes: QUAD:LTUS:772:BDES
-        bmax: QUAD:LTUS:772:BMAX
-        bmin: QUAD:LTUS:772:BMIN
-        ctrl: QUAD:LTUS:772:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:772
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -991,16 +721,10 @@ magnets:
       type: QUAD
   QUM1B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:820:BACT
-        bcon: QUAD:LTUS:820:BCON
-        bctrl: QUAD:LTUS:820:BCTRL
-        bdes: QUAD:LTUS:820:BDES
-        bmax: QUAD:LTUS:820:BMAX
-        bmin: QUAD:LTUS:820:BMIN
-        ctrl: QUAD:LTUS:820:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:820
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1013,16 +737,10 @@ magnets:
       type: QUAD
   QUM2B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:840:BACT
-        bcon: QUAD:LTUS:840:BCON
-        bctrl: QUAD:LTUS:840:BCTRL
-        bdes: QUAD:LTUS:840:BDES
-        bmax: QUAD:LTUS:840:BMAX
-        bmin: QUAD:LTUS:840:BMIN
-        ctrl: QUAD:LTUS:840:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:840
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1035,16 +753,10 @@ magnets:
       type: QUAD
   QUM3B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:860:BACT
-        bcon: QUAD:LTUS:860:BCON
-        bctrl: QUAD:LTUS:860:BCTRL
-        bdes: QUAD:LTUS:860:BDES
-        bmax: QUAD:LTUS:860:BMAX
-        bmin: QUAD:LTUS:860:BMIN
-        ctrl: QUAD:LTUS:860:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:860
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1057,16 +769,10 @@ magnets:
       type: QUAD
   QUM4B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:880:BACT
-        bcon: QUAD:LTUS:880:BCON
-        bctrl: QUAD:LTUS:880:BCTRL
-        bdes: QUAD:LTUS:880:BDES
-        bmax: QUAD:LTUS:880:BMAX
-        bmin: QUAD:LTUS:880:BMIN
-        ctrl: QUAD:LTUS:880:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:880
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1079,16 +785,10 @@ magnets:
       type: QUAD
   QVB1B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:540:BACT
-        bcon: QUAD:LTUS:540:BCON
-        bctrl: QUAD:LTUS:540:BCTRL
-        bdes: QUAD:LTUS:540:BDES
-        bmax: QUAD:LTUS:540:BMAX
-        bmin: QUAD:LTUS:540:BMIN
-        ctrl: QUAD:LTUS:540:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:540
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1101,16 +801,10 @@ magnets:
       type: QUAD
   QVB2B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:550:BACT
-        bcon: QUAD:LTUS:550:BCON
-        bctrl: QUAD:LTUS:550:BCTRL
-        bdes: QUAD:LTUS:550:BDES
-        bmax: QUAD:LTUS:550:BMAX
-        bmin: QUAD:LTUS:550:BMIN
-        ctrl: QUAD:LTUS:550:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:550
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1123,16 +817,10 @@ magnets:
       type: QUAD
   QVB3B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:560:BACT
-        bcon: QUAD:LTUS:560:BCON
-        bctrl: QUAD:LTUS:560:BCTRL
-        bdes: QUAD:LTUS:560:BDES
-        bmax: QUAD:LTUS:560:BMAX
-        bmin: QUAD:LTUS:560:BMIN
-        ctrl: QUAD:LTUS:560:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:560
     metadata:
+      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1145,16 +833,10 @@ magnets:
       type: QUAD
   QVM3B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:570:BACT
-        bcon: QUAD:LTUS:570:BCON
-        bctrl: QUAD:LTUS:570:BCTRL
-        bdes: QUAD:LTUS:570:BDES
-        bmax: QUAD:LTUS:570:BMAX
-        bmin: QUAD:LTUS:570:BMIN
-        ctrl: QUAD:LTUS:570:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:570
     metadata:
+      Effective Length (m): '.32'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1167,16 +849,10 @@ magnets:
       type: QUAD
   QVM4B:
     controls_information:
-      PVs:
-        bact: QUAD:LTUS:580:BACT
-        bcon: QUAD:LTUS:580:BCON
-        bctrl: QUAD:LTUS:580:BCTRL
-        bdes: QUAD:LTUS:580:BDES
-        bmax: QUAD:LTUS:580:BMAX
-        bmin: QUAD:LTUS:580:BMIN
-        ctrl: QUAD:LTUS:580:CTRL
+      PVs: {}
       control_name: QUAD:LTUS:580
     metadata:
+      Effective Length (m): '.32'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1189,16 +865,10 @@ magnets:
       type: QUAD
   XCDBL2:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:118:BACT
-        bcon: XCOR:LTUS:118:BCON
-        bctrl: XCOR:LTUS:118:BCTRL
-        bdes: XCOR:LTUS:118:BDES
-        bmax: XCOR:LTUS:118:BMAX
-        bmin: XCOR:LTUS:118:BMIN
-        ctrl: XCOR:LTUS:118:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:118
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1211,16 +881,10 @@ magnets:
       type: XCOR
   XCDL11:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:148:BACT
-        bcon: XCOR:LTUS:148:BCON
-        bctrl: XCOR:LTUS:148:BCTRL
-        bdes: XCOR:LTUS:148:BDES
-        bmax: XCOR:LTUS:148:BMAX
-        bmin: XCOR:LTUS:148:BMIN
-        ctrl: XCOR:LTUS:148:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:148
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1233,16 +897,10 @@ magnets:
       type: XCOR
   XCDL13:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:228:BACT
-        bcon: XCOR:LTUS:228:BCON
-        bctrl: XCOR:LTUS:228:BCTRL
-        bdes: XCOR:LTUS:228:BDES
-        bmax: XCOR:LTUS:228:BMAX
-        bmin: XCOR:LTUS:228:BMIN
-        ctrl: XCOR:LTUS:228:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:228
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1255,16 +913,10 @@ magnets:
       type: XCOR
   XCDL15:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:296:BACT
-        bcon: XCOR:LTUS:296:BCON
-        bctrl: XCOR:LTUS:296:BCTRL
-        bdes: XCOR:LTUS:296:BDES
-        bmax: XCOR:LTUS:296:BMAX
-        bmin: XCOR:LTUS:296:BMIN
-        ctrl: XCOR:LTUS:296:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:296
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1277,16 +929,10 @@ magnets:
       type: XCOR
   XCDL17:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:368:BACT
-        bcon: XCOR:LTUS:368:BCON
-        bctrl: XCOR:LTUS:368:BCTRL
-        bdes: XCOR:LTUS:368:BDES
-        bmax: XCOR:LTUS:368:BMAX
-        bmin: XCOR:LTUS:368:BMIN
-        ctrl: XCOR:LTUS:368:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:368
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1299,16 +945,10 @@ magnets:
       type: XCOR
   XCDL19:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:448:BACT
-        bcon: XCOR:LTUS:448:BCON
-        bctrl: XCOR:LTUS:448:BCTRL
-        bdes: XCOR:LTUS:448:BDES
-        bmax: XCOR:LTUS:448:BMAX
-        bmin: XCOR:LTUS:448:BMIN
-        ctrl: XCOR:LTUS:448:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:448
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1321,16 +961,10 @@ magnets:
       type: XCOR
   XCDL22:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:508:BACT
-        bcon: XCOR:LTUS:508:BCON
-        bctrl: XCOR:LTUS:508:BCTRL
-        bdes: XCOR:LTUS:508:BDES
-        bmax: XCOR:LTUS:508:BMAX
-        bmin: XCOR:LTUS:508:BMIN
-        ctrl: XCOR:LTUS:508:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:508
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1343,16 +977,10 @@ magnets:
       type: XCOR
   XCE31B:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:718:BACT
-        bcon: XCOR:LTUS:718:BCON
-        bctrl: XCOR:LTUS:718:BCTRL
-        bdes: XCOR:LTUS:718:BDES
-        bmax: XCOR:LTUS:718:BMAX
-        bmin: XCOR:LTUS:718:BMIN
-        ctrl: XCOR:LTUS:718:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:718
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1365,16 +993,10 @@ magnets:
       type: XCOR
   XCE33B:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:738:BACT
-        bcon: XCOR:LTUS:738:BCON
-        bctrl: XCOR:LTUS:738:BCTRL
-        bdes: XCOR:LTUS:738:BDES
-        bmax: XCOR:LTUS:738:BMAX
-        bmin: XCOR:LTUS:738:BMIN
-        ctrl: XCOR:LTUS:738:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:738
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1387,16 +1009,10 @@ magnets:
       type: XCOR
   XCE35B:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:758:BACT
-        bcon: XCOR:LTUS:758:BCON
-        bctrl: XCOR:LTUS:758:BCTRL
-        bdes: XCOR:LTUS:758:BDES
-        bmax: XCOR:LTUS:758:BMAX
-        bmin: XCOR:LTUS:758:BMIN
-        ctrl: XCOR:LTUS:758:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:758
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1409,16 +1025,10 @@ magnets:
       type: XCOR
   XCEM1B:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:616:BACT
-        bcon: XCOR:LTUS:616:BCON
-        bctrl: XCOR:LTUS:616:BCTRL
-        bdes: XCOR:LTUS:616:BDES
-        bmax: XCOR:LTUS:616:BMAX
-        bmin: XCOR:LTUS:616:BMIN
-        ctrl: XCOR:LTUS:616:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:616
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1431,16 +1041,10 @@ magnets:
       type: XCOR
   XCEM3B:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:658:BACT
-        bcon: XCOR:LTUS:658:BCON
-        bctrl: XCOR:LTUS:658:BCTRL
-        bdes: XCOR:LTUS:658:BDES
-        bmax: XCOR:LTUS:658:BMAX
-        bmin: XCOR:LTUS:658:BMIN
-        ctrl: XCOR:LTUS:658:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:658
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1453,16 +1057,10 @@ magnets:
       type: XCOR
   XCUM1B:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:826:BACT
-        bcon: XCOR:LTUS:826:BCON
-        bctrl: XCOR:LTUS:826:BCTRL
-        bdes: XCOR:LTUS:826:BDES
-        bmax: XCOR:LTUS:826:BMAX
-        bmin: XCOR:LTUS:826:BMIN
-        ctrl: XCOR:LTUS:826:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:826
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1475,16 +1073,10 @@ magnets:
       type: XCOR
   XCUM3B:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:858:BACT
-        bcon: XCOR:LTUS:858:BCON
-        bctrl: XCOR:LTUS:858:BCTRL
-        bdes: XCOR:LTUS:858:BDES
-        bmax: XCOR:LTUS:858:BMAX
-        bmin: XCOR:LTUS:858:BMIN
-        ctrl: XCOR:LTUS:858:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:858
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1497,16 +1089,10 @@ magnets:
       type: XCOR
   XCVB2B:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:548:BACT
-        bcon: XCOR:LTUS:548:BCON
-        bctrl: XCOR:LTUS:548:BCTRL
-        bdes: XCOR:LTUS:548:BDES
-        bmax: XCOR:LTUS:548:BMAX
-        bmin: XCOR:LTUS:548:BMIN
-        ctrl: XCOR:LTUS:548:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:548
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1519,16 +1105,10 @@ magnets:
       type: XCOR
   XCVM3B:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:568:BACT
-        bcon: XCOR:LTUS:568:BCON
-        bctrl: XCOR:LTUS:568:BCTRL
-        bdes: XCOR:LTUS:568:BDES
-        bmax: XCOR:LTUS:568:BMAX
-        bmin: XCOR:LTUS:568:BMIN
-        ctrl: XCOR:LTUS:568:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:568
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1541,16 +1121,10 @@ magnets:
       type: XCOR
   XCXL1:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:722:BACT
-        bcon: XCOR:LTUS:722:BCON
-        bctrl: XCOR:LTUS:722:BCTRL
-        bdes: XCOR:LTUS:722:BDES
-        bmax: XCOR:LTUS:722:BMAX
-        bmin: XCOR:LTUS:722:BMIN
-        ctrl: XCOR:LTUS:722:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:722
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1563,16 +1137,10 @@ magnets:
       type: XCOR
   XCXL2:
     controls_information:
-      PVs:
-        bact: XCOR:LTUS:768:BACT
-        bcon: XCOR:LTUS:768:BCON
-        bctrl: XCOR:LTUS:768:BCTRL
-        bdes: XCOR:LTUS:768:BDES
-        bmax: XCOR:LTUS:768:BMAX
-        bmin: XCOR:LTUS:768:BMIN
-        ctrl: XCOR:LTUS:768:CTRL
+      PVs: {}
       control_name: XCOR:LTUS:768
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1585,16 +1153,10 @@ magnets:
       type: XCOR
   YCDBL1:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:111:BACT
-        bcon: YCOR:LTUS:111:BCON
-        bctrl: YCOR:LTUS:111:BCTRL
-        bdes: YCOR:LTUS:111:BDES
-        bmax: YCOR:LTUS:111:BMAX
-        bmin: YCOR:LTUS:111:BMIN
-        ctrl: YCOR:LTUS:111:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:111
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1607,16 +1169,10 @@ magnets:
       type: YCOR
   YCDL12:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:183:BACT
-        bcon: YCOR:LTUS:183:BCON
-        bctrl: YCOR:LTUS:183:BCTRL
-        bdes: YCOR:LTUS:183:BDES
-        bmax: YCOR:LTUS:183:BMAX
-        bmin: YCOR:LTUS:183:BMIN
-        ctrl: YCOR:LTUS:183:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:183
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1629,16 +1185,10 @@ magnets:
       type: YCOR
   YCDL14:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:267:BACT
-        bcon: YCOR:LTUS:267:BCON
-        bctrl: YCOR:LTUS:267:BCTRL
-        bdes: YCOR:LTUS:267:BDES
-        bmax: YCOR:LTUS:267:BMAX
-        bmin: YCOR:LTUS:267:BMIN
-        ctrl: YCOR:LTUS:267:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:267
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1651,16 +1201,10 @@ magnets:
       type: YCOR
   YCDL16:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:341:BACT
-        bcon: YCOR:LTUS:341:BCON
-        bctrl: YCOR:LTUS:341:BCTRL
-        bdes: YCOR:LTUS:341:BDES
-        bmax: YCOR:LTUS:341:BMAX
-        bmin: YCOR:LTUS:341:BMIN
-        ctrl: YCOR:LTUS:341:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:341
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1673,16 +1217,10 @@ magnets:
       type: YCOR
   YCDL18:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:427:BACT
-        bcon: YCOR:LTUS:427:BCON
-        bctrl: YCOR:LTUS:427:BCTRL
-        bdes: YCOR:LTUS:427:BDES
-        bmax: YCOR:LTUS:427:BMAX
-        bmin: YCOR:LTUS:427:BMIN
-        ctrl: YCOR:LTUS:427:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:427
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1695,16 +1233,10 @@ magnets:
       type: YCOR
   YCDL20:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:471:BACT
-        bcon: YCOR:LTUS:471:BCON
-        bctrl: YCOR:LTUS:471:BCTRL
-        bdes: YCOR:LTUS:471:BDES
-        bmax: YCOR:LTUS:471:BMAX
-        bmin: YCOR:LTUS:471:BMIN
-        ctrl: YCOR:LTUS:471:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:471
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1717,16 +1249,10 @@ magnets:
       type: YCOR
   YCDL21:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:499:BACT
-        bcon: YCOR:LTUS:499:BCON
-        bctrl: YCOR:LTUS:499:BCTRL
-        bdes: YCOR:LTUS:499:BDES
-        bmax: YCOR:LTUS:499:BMAX
-        bmin: YCOR:LTUS:499:BMIN
-        ctrl: YCOR:LTUS:499:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:499
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1739,16 +1265,10 @@ magnets:
       type: YCOR
   YCE32B:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:729:BACT
-        bcon: YCOR:LTUS:729:BCON
-        bctrl: YCOR:LTUS:729:BCTRL
-        bdes: YCOR:LTUS:729:BDES
-        bmax: YCOR:LTUS:729:BMAX
-        bmin: YCOR:LTUS:729:BMIN
-        ctrl: YCOR:LTUS:729:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:729
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1761,16 +1281,10 @@ magnets:
       type: YCOR
   YCE34B:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:749:BACT
-        bcon: YCOR:LTUS:749:BCON
-        bctrl: YCOR:LTUS:749:BCTRL
-        bdes: YCOR:LTUS:749:BDES
-        bmax: YCOR:LTUS:749:BMAX
-        bmin: YCOR:LTUS:749:BMIN
-        ctrl: YCOR:LTUS:749:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:749
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1783,16 +1297,10 @@ magnets:
       type: YCOR
   YCE36B:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:777:BACT
-        bcon: YCOR:LTUS:777:BCON
-        bctrl: YCOR:LTUS:777:BCTRL
-        bdes: YCOR:LTUS:777:BDES
-        bmax: YCOR:LTUS:777:BMAX
-        bmin: YCOR:LTUS:777:BMIN
-        ctrl: YCOR:LTUS:777:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:777
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1805,16 +1313,10 @@ magnets:
       type: YCOR
   YCEM2B:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:641:BACT
-        bcon: YCOR:LTUS:641:BCON
-        bctrl: YCOR:LTUS:641:BCTRL
-        bdes: YCOR:LTUS:641:BDES
-        bmax: YCOR:LTUS:641:BMAX
-        bmin: YCOR:LTUS:641:BMIN
-        ctrl: YCOR:LTUS:641:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:641
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1827,16 +1329,10 @@ magnets:
       type: YCOR
   YCEM4B:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:677:BACT
-        bcon: YCOR:LTUS:677:BCON
-        bctrl: YCOR:LTUS:677:BCTRL
-        bdes: YCOR:LTUS:677:BDES
-        bmax: YCOR:LTUS:677:BMAX
-        bmin: YCOR:LTUS:677:BMIN
-        ctrl: YCOR:LTUS:677:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:677
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1849,16 +1345,10 @@ magnets:
       type: YCOR
   YCUM2B:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:839:BACT
-        bcon: YCOR:LTUS:839:BCON
-        bctrl: YCOR:LTUS:839:BCTRL
-        bdes: YCOR:LTUS:839:BDES
-        bmax: YCOR:LTUS:839:BMAX
-        bmin: YCOR:LTUS:839:BMIN
-        ctrl: YCOR:LTUS:839:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:839
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1871,16 +1361,10 @@ magnets:
       type: YCOR
   YCUM4B:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:877:BACT
-        bcon: YCOR:LTUS:877:BCON
-        bctrl: YCOR:LTUS:877:BCTRL
-        bdes: YCOR:LTUS:877:BDES
-        bmax: YCOR:LTUS:877:BMAX
-        bmin: YCOR:LTUS:877:BMIN
-        ctrl: YCOR:LTUS:877:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:877
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1893,16 +1377,10 @@ magnets:
       type: YCOR
   YCVB1B:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:547:BACT
-        bcon: YCOR:LTUS:547:BCON
-        bctrl: YCOR:LTUS:547:BCTRL
-        bdes: YCOR:LTUS:547:BDES
-        bmax: YCOR:LTUS:547:BMAX
-        bmin: YCOR:LTUS:547:BMIN
-        ctrl: YCOR:LTUS:547:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:547
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1915,16 +1393,10 @@ magnets:
       type: YCOR
   YCVB3B:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:561:BACT
-        bcon: YCOR:LTUS:561:BCON
-        bctrl: YCOR:LTUS:561:BCTRL
-        bdes: YCOR:LTUS:561:BDES
-        bmax: YCOR:LTUS:561:BMAX
-        bmin: YCOR:LTUS:561:BMIN
-        ctrl: YCOR:LTUS:561:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:561
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1937,16 +1409,10 @@ magnets:
       type: YCOR
   YCVM4B:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:577:BACT
-        bcon: YCOR:LTUS:577:BCON
-        bctrl: YCOR:LTUS:577:BCTRL
-        bdes: YCOR:LTUS:577:BDES
-        bmax: YCOR:LTUS:577:BMAX
-        bmin: YCOR:LTUS:577:BMIN
-        ctrl: YCOR:LTUS:577:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:577
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1959,16 +1425,10 @@ magnets:
       type: YCOR
   YCXL1:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:721:BACT
-        bcon: YCOR:LTUS:721:BCON
-        bctrl: YCOR:LTUS:721:BCTRL
-        bdes: YCOR:LTUS:721:BDES
-        bmax: YCOR:LTUS:721:BMAX
-        bmin: YCOR:LTUS:721:BMIN
-        ctrl: YCOR:LTUS:721:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:721
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1981,16 +1441,10 @@ magnets:
       type: YCOR
   YCXL2:
     controls_information:
-      PVs:
-        bact: YCOR:LTUS:767:BACT
-        bcon: YCOR:LTUS:767:BCON
-        bctrl: YCOR:LTUS:767:BCTRL
-        bdes: YCOR:LTUS:767:BDES
-        bmax: YCOR:LTUS:767:BMAX
-        bmin: YCOR:LTUS:767:BMIN
-        ctrl: YCOR:LTUS:767:CTRL
+      PVs: {}
       control_name: YCOR:LTUS:767
     metadata:
+      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -2020,30 +1474,7 @@ screens:
 wires:
   WS31B:
     controls_information:
-      PVs:
-        abort: WIRE:LTUS:715:MOTR.STOP
-        enabled: WIRE:LTUS:715:MOTR_ENABLED_STS
-        homed: WIRE:LTUS:715:MOTR_HOMED_STS
-        initialize: WIRE:LTUS:715:MOTR_INIT
-        initialized: WIRE:LTUS:715:MOTR_INIT_STS
-        motr: WIRE:LTUS:715:MOTR
-        rbv: WIRE:LTUS:715:MOTR.RBV
-        retract: WIRE:LTUS:715:MOTR_RETRACT
-        startscan: WIRE:LTUS:715:STARTSCAN
-        timeout: WIRE:LTUS:715:MOTR_TIMEOUTEN
-        useuwire: WIRE:LTUS:715:USEUWIRE
-        usexwire: WIRE:LTUS:715:USEXWIRE
-        useywire: WIRE:LTUS:715:USEYWIRE
-        usize: WIRE:LTUS:715:UWIRESIZE
-        uwireinner: WIRE:LTUS:715:UWIREINNER
-        uwireouter: WIRE:LTUS:715:UWIREOUTER
-        velo: WIRE:LTUS:715:MOTR.VELO
-        xsize: WIRE:LTUS:715:XWIRESIZE
-        xwireinner: WIRE:LTUS:715:XWIREINNER
-        xwireouter: WIRE:LTUS:715:XWIREOUTER
-        ysize: WIRE:LTUS:715:YWIRESIZE
-        ywireinner: WIRE:LTUS:715:YWIREINNER
-        ywireouter: WIRE:LTUS:715:YWIREOUTER
+      PVs: {}
       control_name: WIRE:LTUS:715
     metadata:
       area: LTUS
@@ -2058,30 +1489,7 @@ wires:
       type: WIRE
   WS32B:
     controls_information:
-      PVs:
-        abort: WIRE:LTUS:735:MOTR.STOP
-        enabled: WIRE:LTUS:735:MOTR_ENABLED_STS
-        homed: WIRE:LTUS:735:MOTR_HOMED_STS
-        initialize: WIRE:LTUS:735:MOTR_INIT
-        initialized: WIRE:LTUS:735:MOTR_INIT_STS
-        motr: WIRE:LTUS:735:MOTR
-        rbv: WIRE:LTUS:735:MOTR.RBV
-        retract: WIRE:LTUS:735:MOTR_RETRACT
-        startscan: WIRE:LTUS:735:STARTSCAN
-        timeout: WIRE:LTUS:735:MOTR_TIMEOUTEN
-        useuwire: WIRE:LTUS:735:USEUWIRE
-        usexwire: WIRE:LTUS:735:USEXWIRE
-        useywire: WIRE:LTUS:735:USEYWIRE
-        usize: WIRE:LTUS:735:UWIRESIZE
-        uwireinner: WIRE:LTUS:735:UWIREINNER
-        uwireouter: WIRE:LTUS:735:UWIREOUTER
-        velo: WIRE:LTUS:735:MOTR.VELO
-        xsize: WIRE:LTUS:735:XWIRESIZE
-        xwireinner: WIRE:LTUS:735:XWIREINNER
-        xwireouter: WIRE:LTUS:735:XWIREOUTER
-        ysize: WIRE:LTUS:735:YWIRESIZE
-        ywireinner: WIRE:LTUS:735:YWIREINNER
-        ywireouter: WIRE:LTUS:735:YWIREOUTER
+      PVs: {}
       control_name: WIRE:LTUS:735
     metadata:
       area: LTUS
@@ -2096,30 +1504,7 @@ wires:
       type: WIRE
   WS33B:
     controls_information:
-      PVs:
-        abort: WIRE:LTUS:755:MOTR.STOP
-        enabled: WIRE:LTUS:755:MOTR_ENABLED_STS
-        homed: WIRE:LTUS:755:MOTR_HOMED_STS
-        initialize: WIRE:LTUS:755:MOTR_INIT
-        initialized: WIRE:LTUS:755:MOTR_INIT_STS
-        motr: WIRE:LTUS:755:MOTR
-        rbv: WIRE:LTUS:755:MOTR.RBV
-        retract: WIRE:LTUS:755:MOTR_RETRACT
-        startscan: WIRE:LTUS:755:STARTSCAN
-        timeout: WIRE:LTUS:755:MOTR_TIMEOUTEN
-        useuwire: WIRE:LTUS:755:USEUWIRE
-        usexwire: WIRE:LTUS:755:USEXWIRE
-        useywire: WIRE:LTUS:755:USEYWIRE
-        usize: WIRE:LTUS:755:UWIRESIZE
-        uwireinner: WIRE:LTUS:755:UWIREINNER
-        uwireouter: WIRE:LTUS:755:UWIREOUTER
-        velo: WIRE:LTUS:755:MOTR.VELO
-        xsize: WIRE:LTUS:755:XWIRESIZE
-        xwireinner: WIRE:LTUS:755:XWIREINNER
-        xwireouter: WIRE:LTUS:755:XWIREOUTER
-        ysize: WIRE:LTUS:755:YWIRESIZE
-        ywireinner: WIRE:LTUS:755:YWIREINNER
-        ywireouter: WIRE:LTUS:755:YWIREOUTER
+      PVs: {}
       control_name: WIRE:LTUS:755
     metadata:
       area: LTUS
@@ -2134,30 +1519,7 @@ wires:
       type: WIRE
   WS34B:
     controls_information:
-      PVs:
-        abort: WIRE:LTUS:785:MOTR.STOP
-        enabled: WIRE:LTUS:785:MOTR_ENABLED_STS
-        homed: WIRE:LTUS:785:MOTR_HOMED_STS
-        initialize: WIRE:LTUS:785:MOTR_INIT
-        initialized: WIRE:LTUS:785:MOTR_INIT_STS
-        motr: WIRE:LTUS:785:MOTR
-        rbv: WIRE:LTUS:785:MOTR.RBV
-        retract: WIRE:LTUS:785:MOTR_RETRACT
-        startscan: WIRE:LTUS:785:STARTSCAN
-        timeout: WIRE:LTUS:785:MOTR_TIMEOUTEN
-        useuwire: WIRE:LTUS:785:USEUWIRE
-        usexwire: WIRE:LTUS:785:USEXWIRE
-        useywire: WIRE:LTUS:785:USEYWIRE
-        usize: WIRE:LTUS:785:UWIRESIZE
-        uwireinner: WIRE:LTUS:785:UWIREINNER
-        uwireouter: WIRE:LTUS:785:UWIREOUTER
-        velo: WIRE:LTUS:785:MOTR.VELO
-        xsize: WIRE:LTUS:785:XWIRESIZE
-        xwireinner: WIRE:LTUS:785:XWIREINNER
-        xwireouter: WIRE:LTUS:785:XWIREOUTER
-        ysize: WIRE:LTUS:785:YWIRESIZE
-        ywireinner: WIRE:LTUS:785:YWIREINNER
-        ywireouter: WIRE:LTUS:785:YWIREOUTER
+      PVs: {}
       control_name: WIRE:LTUS:785
     metadata:
       area: LTUS
