@@ -1,20 +1,20 @@
 from typing import List
-import csv #TODO: yes?
 
-def get_magnet_metadata(magnet_names: List[str] = []):
+
+def get_magnet_metadata(magnet_names: List[str] = [], method: callable = None, **kwargs):
     # return a data structure of the form:
     # {
     #  mag-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  mag-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    #TODO: code needs to parse lcls_elements.csv for effective length by magnet
-    #TODO: for each magnet in magnet_names, correct?
-    if magnet_names:
-        raise NotImplementedError(
-            "No method of getting additional metadata for magnets."
-        )
-    return {}
+    if magnet_names and method:
+        #Add any additional metadata fields here
+        additional_fields = ['Element', 'Effective Length (m)']
+        device_elements = method(magnet_names, additional_fields)
+        return device_elements
+    else:
+        return {}
 
 
 def get_screen_metadata(screen_names: List[str] = []):
