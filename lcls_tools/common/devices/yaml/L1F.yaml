@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:201
     metadata:
+      Effective Length (m): '.1068'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -15,6 +16,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:301
     metadata:
+      Effective Length (m): '.1068'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -26,6 +28,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:132
     metadata:
+      Effective Length (m): '.1068'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -37,6 +40,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:265
     metadata:
+      Effective Length (m): '.1068'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -48,6 +52,7 @@ magnets:
       PVs: {}
       control_name: XCOR:LI11:104
     metadata:
+      Effective Length (m): '0'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -59,6 +64,7 @@ magnets:
       PVs: {}
       control_name: XCOR:LI11:140
     metadata:
+      Effective Length (m): '0'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -70,6 +76,7 @@ magnets:
       PVs: {}
       control_name: XCOR:LI11:202
     metadata:
+      Effective Length (m): '0'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -81,6 +88,7 @@ magnets:
       PVs: {}
       control_name: XCOR:LI11:272
     metadata:
+      Effective Length (m): '0'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -92,6 +100,7 @@ magnets:
       PVs: {}
       control_name: XCOR:LI11:304
     metadata:
+      Effective Length (m): '0'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -103,6 +112,7 @@ magnets:
       PVs: {}
       control_name: YCOR:LI11:105
     metadata:
+      Effective Length (m): '0'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -114,6 +124,7 @@ magnets:
       PVs: {}
       control_name: YCOR:LI11:141
     metadata:
+      Effective Length (m): '0'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -125,6 +136,7 @@ magnets:
       PVs: {}
       control_name: YCOR:LI11:203
     metadata:
+      Effective Length (m): '0'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -136,6 +148,7 @@ magnets:
       PVs: {}
       control_name: YCOR:LI11:273
     metadata:
+      Effective Length (m): '0'
       area: L1F
       beam_path:
       - F2_ELEC
@@ -147,6 +160,7 @@ magnets:
       PVs: {}
       control_name: YCOR:LI11:305
     metadata:
+      Effective Length (m): '0'
       area: L1F
       beam_path:
       - F2_ELEC

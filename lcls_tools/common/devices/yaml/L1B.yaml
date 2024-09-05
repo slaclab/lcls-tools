@@ -11,6 +11,7 @@ magnets:
         ctrl: QUAD:L1B:0285:CTRL
       control_name: QUAD:L1B:0285
     metadata:
+      Effective Length (m): '.23'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -35,6 +36,7 @@ magnets:
         ctrl: QUAD:L1B:0385:CTRL
       control_name: QUAD:L1B:0385
     metadata:
+      Effective Length (m): '.23'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -59,6 +61,7 @@ magnets:
         ctrl: XCOR:L1B:0285:CTRL
       control_name: XCOR:L1B:0285
     metadata:
+      Effective Length (m): '0'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -83,6 +86,7 @@ magnets:
         ctrl: XCOR:L1B:0385:CTRL
       control_name: XCOR:L1B:0385
     metadata:
+      Effective Length (m): '0'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -107,6 +111,7 @@ magnets:
         ctrl: YCOR:L1B:0285:CTRL
       control_name: YCOR:L1B:0285
     metadata:
+      Effective Length (m): '0'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -131,6 +136,7 @@ magnets:
         ctrl: YCOR:L1B:0385:CTRL
       control_name: YCOR:L1B:0385
     metadata:
+      Effective Length (m): '0'
       area: L1B
       beam_path:
       - SC_BSYD

@@ -11,6 +11,7 @@ magnets:
         ctrl: BEND:BC2B:200:CTRL
       control_name: BEND:BC2B:200
     metadata:
+      Effective Length (m): '.549201'
       area: BC2B
       beam_path:
       - SC_BSYD
@@ -35,6 +36,7 @@ magnets:
         ctrl: BEND:BC2B:500:CTRL
       control_name: BEND:BC2B:500
     metadata:
+      Effective Length (m): '.549201'
       area: BC2B
       beam_path:
       - SC_BSYD
@@ -59,6 +61,7 @@ magnets:
         ctrl: BEND:BC2B:600:CTRL
       control_name: BEND:BC2B:600
     metadata:
+      Effective Length (m): '.549201'
       area: BC2B
       beam_path:
       - SC_BSYD
@@ -83,6 +86,7 @@ magnets:
         ctrl: BEND:BC2B:900:CTRL
       control_name: BEND:BC2B:900
     metadata:
+      Effective Length (m): '.549201'
       area: BC2B
       beam_path:
       - SC_BSYD
@@ -107,6 +111,7 @@ magnets:
         ctrl: QUAD:BC2B:250:CTRL
       control_name: QUAD:BC2B:250
     metadata:
+      Effective Length (m): '.108'
       area: BC2B
       beam_path:
       - SC_BSYD
@@ -131,6 +136,7 @@ magnets:
         ctrl: QUAD:BC2B:850:CTRL
       control_name: QUAD:BC2B:850
     metadata:
+      Effective Length (m): '.108'
       area: BC2B
       beam_path:
       - SC_BSYD
@@ -155,6 +161,7 @@ magnets:
         ctrl: QUAD:BC2B:150:CTRL
       control_name: QUAD:BC2B:150
     metadata:
+      Effective Length (m): '.108'
       area: BC2B
       beam_path:
       - SC_BSYD
@@ -179,6 +186,7 @@ magnets:
         ctrl: XCOR:BC2B:126:CTRL
       control_name: XCOR:BC2B:126
     metadata:
+      Effective Length (m): '0'
       area: BC2B
       beam_path:
       - SC_BSYD
@@ -203,6 +211,7 @@ magnets:
         ctrl: YCOR:BC2B:137:CTRL
       control_name: YCOR:BC2B:137
     metadata:
+      Effective Length (m): '0'
       area: BC2B
       beam_path:
       - SC_BSYD

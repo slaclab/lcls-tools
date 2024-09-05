@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:121
     metadata:
+      Effective Length (m): '0'
       area: INJ
       beam_path:
       - F2_ELEC
@@ -15,6 +16,7 @@ magnets:
       PVs: {}
       control_name: SOLN:IN10:111
     metadata:
+      Effective Length (m): '0'
       area: INJ
       beam_path:
       - F2_ELEC
@@ -26,6 +28,7 @@ magnets:
       PVs: {}
       control_name: SOLN:IN10:121
     metadata:
+      Effective Length (m): '.2'
       area: INJ
       beam_path:
       - F2_ELEC
@@ -37,6 +40,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:122
     metadata:
+      Effective Length (m): '0'
       area: INJ
       beam_path:
       - F2_ELEC
@@ -48,6 +52,7 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:121
     metadata:
+      Effective Length (m): '0'
       area: INJ
       beam_path:
       - F2_ELEC
@@ -59,6 +64,7 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:221
     metadata:
+      Effective Length (m): '0'
       area: INJ
       beam_path:
       - F2_ELEC
@@ -70,6 +76,7 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:122
     metadata:
+      Effective Length (m): '0'
       area: INJ
       beam_path:
       - F2_ELEC
@@ -81,6 +88,7 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:222
     metadata:
+      Effective Length (m): '0'
       area: INJ
       beam_path:
       - F2_ELEC

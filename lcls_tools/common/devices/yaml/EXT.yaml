@@ -11,6 +11,7 @@ magnets:
         ctrl: QUAD:EXT:351:CTRL
       control_name: QUAD:EXT:351
     metadata:
+      Effective Length (m): '.1068'
       area: EXT
       beam_path:
       - SC_BSYD
@@ -35,6 +36,7 @@ magnets:
         ctrl: QUAD:EXT:748:CTRL
       control_name: QUAD:EXT:748
     metadata:
+      Effective Length (m): '.1068'
       area: EXT
       beam_path:
       - SC_BSYD
@@ -59,6 +61,7 @@ magnets:
         ctrl: XCOR:EXT:368:CTRL
       control_name: XCOR:EXT:368
     metadata:
+      Effective Length (m): '0'
       area: EXT
       beam_path:
       - SC_BSYD
@@ -83,6 +86,7 @@ magnets:
         ctrl: YCOR:EXT:762:CTRL
       control_name: YCOR:EXT:762
     metadata:
+      Effective Length (m): '0'
       area: EXT
       beam_path:
       - SC_BSYD

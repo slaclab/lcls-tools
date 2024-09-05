@@ -11,6 +11,7 @@ magnets:
         ctrl: QUAD:SLTS:180:CTRL
       control_name: QUAD:SLTS:180
     metadata:
+      Effective Length (m): '.1244'
       area: SLTS
       beam_path:
       - SC_S2_X
@@ -32,6 +33,7 @@ magnets:
         ctrl: QUAD:SLTS:430:CTRL
       control_name: QUAD:SLTS:430
     metadata:
+      Effective Length (m): '.1244'
       area: SLTS
       beam_path:
       - SC_S2_X
@@ -53,6 +55,7 @@ magnets:
         ctrl: QUAD:SLTS:460:CTRL
       control_name: QUAD:SLTS:460
     metadata:
+      Effective Length (m): '.1244'
       area: SLTS
       beam_path:
       - SC_S2_X
@@ -74,6 +77,7 @@ magnets:
         ctrl: QUAD:SLTS:150:CTRL
       control_name: QUAD:SLTS:150
     metadata:
+      Effective Length (m): '.1244'
       area: SLTS
       beam_path:
       - SC_S2_X
@@ -95,6 +99,7 @@ magnets:
         ctrl: XCOR:SLTS:182:CTRL
       control_name: XCOR:SLTS:182
     metadata:
+      Effective Length (m): '0'
       area: SLTS
       beam_path:
       - SC_S2_X
@@ -116,6 +121,7 @@ magnets:
         ctrl: XCOR:SLTS:442:CTRL
       control_name: XCOR:SLTS:442
     metadata:
+      Effective Length (m): '0'
       area: SLTS
       beam_path:
       - SC_S2_X
@@ -137,6 +143,7 @@ magnets:
         ctrl: XCOR:SLTS:468:CTRL
       control_name: XCOR:SLTS:468
     metadata:
+      Effective Length (m): '0'
       area: SLTS
       beam_path:
       - SC_S2_X
@@ -158,6 +165,7 @@ magnets:
         ctrl: YCOR:SLTS:183:CTRL
       control_name: YCOR:SLTS:183
     metadata:
+      Effective Length (m): '0'
       area: SLTS
       beam_path:
       - SC_S2_X
@@ -179,6 +187,7 @@ magnets:
         ctrl: YCOR:SLTS:443:CTRL
       control_name: YCOR:SLTS:443
     metadata:
+      Effective Length (m): '0'
       area: SLTS
       beam_path:
       - SC_S2_X
@@ -200,6 +209,7 @@ magnets:
         ctrl: YCOR:SLTS:469:CTRL
       control_name: YCOR:SLTS:469
     metadata:
+      Effective Length (m): '0'
       area: SLTS
       beam_path:
       - SC_S2_X

@@ -11,6 +11,7 @@ magnets:
         ctrl: BEND:IN20:231:CTRL
       control_name: BEND:IN20:231
     metadata:
+      Effective Length (m): ''
       area: GTL
       beam_path: []
       sum_l_meters: null

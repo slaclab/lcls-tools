@@ -292,6 +292,9 @@ class YAMLGenerator:
             # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
             additional_controls_data = get_magnet_controls_information()
 
+            pprint.pprint(basic_magnet_data)
+            pprint.pprint(additional_controls_data)
+
             complete_magnet_data = self.add_extra_data_to_device(
                 device_data=basic_magnet_data,
                 additional_controls_information=additional_controls_data,

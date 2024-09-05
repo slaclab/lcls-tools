@@ -11,6 +11,7 @@ magnets:
         ctrl: QUAD:GUNB:212:1:CTRL
       control_name: QUAD:GUNB:212:1
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -36,6 +37,7 @@ magnets:
         ctrl: QUAD:GUNB:823:1:CTRL
       control_name: QUAD:GUNB:823:1
     metadata:
+      Effective Length (m): '.0453'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -61,6 +63,7 @@ magnets:
         ctrl: SOLN:GUNB:212:CTRL
       control_name: SOLN:GUNB:212
     metadata:
+      Effective Length (m): '.0861'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -86,6 +89,7 @@ magnets:
         ctrl: SOLN:GUNB:100:CTRL
       control_name: SOLN:GUNB:100
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -111,6 +115,7 @@ magnets:
         ctrl: SOLN:GUNB:823:CTRL
       control_name: SOLN:GUNB:823
     metadata:
+      Effective Length (m): '.0869'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -136,6 +141,7 @@ magnets:
         ctrl: QUAD:GUNB:212:2:CTRL
       control_name: QUAD:GUNB:212:2
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -161,6 +167,7 @@ magnets:
         ctrl: QUAD:GUNB:823:2:CTRL
       control_name: QUAD:GUNB:823:2
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -186,6 +193,7 @@ magnets:
         ctrl: XCOR:GUNB:293:CTRL
       control_name: XCOR:GUNB:293
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -211,6 +219,7 @@ magnets:
         ctrl: XCOR:GUNB:388:CTRL
       control_name: XCOR:GUNB:388
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -236,6 +245,7 @@ magnets:
         ctrl: XCOR:GUNB:513:CTRL
       control_name: XCOR:GUNB:513
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -261,6 +271,7 @@ magnets:
         ctrl: XCOR:GUNB:713:CTRL
       control_name: XCOR:GUNB:713
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -286,6 +297,7 @@ magnets:
         ctrl: XCOR:GUNB:927:CTRL
       control_name: XCOR:GUNB:927
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -311,6 +323,7 @@ magnets:
         ctrl: YCOR:GUNB:293:CTRL
       control_name: YCOR:GUNB:293
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -336,6 +349,7 @@ magnets:
         ctrl: YCOR:GUNB:388:CTRL
       control_name: YCOR:GUNB:388
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -361,6 +375,7 @@ magnets:
         ctrl: YCOR:GUNB:513:CTRL
       control_name: YCOR:GUNB:513
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -386,6 +401,7 @@ magnets:
         ctrl: YCOR:GUNB:713:CTRL
       control_name: YCOR:GUNB:713
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD
@@ -411,6 +427,7 @@ magnets:
         ctrl: YCOR:GUNB:927:CTRL
       control_name: YCOR:GUNB:927
     metadata:
+      Effective Length (m): '0'
       area: GUNB
       beam_path:
       - SC_BSYD

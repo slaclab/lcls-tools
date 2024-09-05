@@ -11,6 +11,7 @@ magnets:
         ctrl: BEND:DMPH:400:CTRL
       control_name: BEND:DMPH:400
     metadata:
+      Effective Length (m): '1.45203'
       area: DMPH
       beam_path:
       - CU_HXR
@@ -29,6 +30,7 @@ magnets:
         ctrl: BEND:DMPH:410:CTRL
       control_name: BEND:DMPH:410
     metadata:
+      Effective Length (m): '1.45203'
       area: DMPH
       beam_path:
       - CU_HXR
@@ -47,6 +49,7 @@ magnets:
         ctrl: BEND:DMPH:420:CTRL
       control_name: BEND:DMPH:420
     metadata:
+      Effective Length (m): '1.45203'
       area: DMPH
       beam_path:
       - CU_HXR
@@ -65,6 +68,7 @@ magnets:
         ctrl: BEND:DMPH:395:CTRL
       control_name: BEND:DMPH:395
     metadata:
+      Effective Length (m): '.5'
       area: DMPH
       beam_path:
       - CU_HXR
@@ -83,6 +87,7 @@ magnets:
         ctrl: QUAD:DMPH:500:CTRL
       control_name: QUAD:DMPH:500
     metadata:
+      Effective Length (m): '.43'
       area: DMPH
       beam_path:
       - CU_HXR
@@ -101,6 +106,7 @@ magnets:
         ctrl: QUAD:DMPH:600:CTRL
       control_name: QUAD:DMPH:600
     metadata:
+      Effective Length (m): '.43'
       area: DMPH
       beam_path:
       - CU_HXR
@@ -119,6 +125,7 @@ magnets:
         ctrl: QUAD:DMPH:300:CTRL
       control_name: QUAD:DMPH:300
     metadata:
+      Effective Length (m): '.55'
       area: DMPH
       beam_path:
       - CU_HTXI
@@ -140,6 +147,7 @@ magnets:
         ctrl: QUAD:DMPH:380:CTRL
       control_name: QUAD:DMPH:380
     metadata:
+      Effective Length (m): '.55'
       area: DMPH
       beam_path:
       - CU_HTXI
@@ -161,6 +169,7 @@ magnets:
         ctrl: XCOR:DMPH:392:CTRL
       control_name: XCOR:DMPH:392
     metadata:
+      Effective Length (m): '0'
       area: DMPH
       beam_path:
       - CU_HTXI
@@ -182,6 +191,7 @@ magnets:
         ctrl: XCOR:DMPH:602:CTRL
       control_name: XCOR:DMPH:602
     metadata:
+      Effective Length (m): '0'
       area: DMPH
       beam_path:
       - CU_HXR
@@ -200,6 +210,7 @@ magnets:
         ctrl: XCOR:DMPH:298:CTRL
       control_name: XCOR:DMPH:298
     metadata:
+      Effective Length (m): '0'
       area: DMPH
       beam_path:
       - CU_HTXI
@@ -221,6 +232,7 @@ magnets:
         ctrl: YCOR:DMPH:391:CTRL
       control_name: YCOR:DMPH:391
     metadata:
+      Effective Length (m): '0'
       area: DMPH
       beam_path:
       - CU_HTXI
@@ -242,6 +254,7 @@ magnets:
         ctrl: YCOR:DMPH:440:CTRL
       control_name: YCOR:DMPH:440
     metadata:
+      Effective Length (m): '0'
       area: DMPH
       beam_path:
       - CU_HXR
@@ -260,6 +273,7 @@ magnets:
         ctrl: YCOR:DMPH:201:CTRL
       control_name: YCOR:DMPH:201
     metadata:
+      Effective Length (m): '0'
       area: DMPH
       beam_path:
       - CU_HTXI

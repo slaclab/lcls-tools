@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: KICK:BSYH:475
     metadata:
+      Effective Length (m): '1.055'
       area: BSYA
       beam_path:
       - CU_ALINE
@@ -14,6 +15,7 @@ magnets:
       PVs: {}
       control_name: KICK:BSYH:483
     metadata:
+      Effective Length (m): '1.055'
       area: BSYA
       beam_path:
       - CU_ALINE
@@ -24,6 +26,7 @@ magnets:
       PVs: {}
       control_name: KICK:BSYH:491
     metadata:
+      Effective Length (m): '1.055'
       area: BSYA
       beam_path:
       - CU_ALINE
@@ -34,6 +37,7 @@ magnets:
       PVs: {}
       control_name: KICK:BSYH:499
     metadata:
+      Effective Length (m): '1.055'
       area: BSYA
       beam_path:
       - CU_ALINE
@@ -44,6 +48,7 @@ magnets:
       PVs: {}
       control_name: BEND:BSYA:975
     metadata:
+      Effective Length (m): '1.025'
       area: BSYA
       beam_path:
       - CU_ALINE
@@ -55,6 +60,7 @@ magnets:
       PVs: {}
       control_name: YCOR:BSYA:333
     metadata:
+      Effective Length (m): '0'
       area: BSYA
       beam_path:
       - CU_ALINE

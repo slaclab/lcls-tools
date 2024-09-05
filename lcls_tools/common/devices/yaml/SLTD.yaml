@@ -11,6 +11,7 @@ magnets:
         ctrl: XCOR:SLTD:628:CTRL
       control_name: XCOR:SLTD:628
     metadata:
+      Effective Length (m): '0'
       area: SLTD
       beam_path:
       - SC_BSYD
@@ -28,6 +29,7 @@ magnets:
         ctrl: YCOR:SLTD:631:CTRL
       control_name: YCOR:SLTD:631
     metadata:
+      Effective Length (m): '0'
       area: SLTD
       beam_path:
       - SC_BSYD

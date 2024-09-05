@@ -11,6 +11,7 @@ magnets:
         ctrl: QUAD:COL0:240:CTRL
       control_name: QUAD:COL0:240
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -35,6 +36,7 @@ magnets:
         ctrl: QUAD:COL0:260:CTRL
       control_name: QUAD:COL0:260
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -59,6 +61,7 @@ magnets:
         ctrl: QUAD:COL0:280:CTRL
       control_name: QUAD:COL0:280
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -83,6 +86,7 @@ magnets:
         ctrl: QUAD:COL0:320:CTRL
       control_name: QUAD:COL0:320
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -107,6 +111,7 @@ magnets:
         ctrl: QUAD:COL0:400:CTRL
       control_name: QUAD:COL0:400
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -131,6 +136,7 @@ magnets:
         ctrl: QUAD:COL0:480:CTRL
       control_name: QUAD:COL0:480
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -155,6 +161,7 @@ magnets:
         ctrl: QUAD:COL0:560:CTRL
       control_name: QUAD:COL0:560
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -179,6 +186,7 @@ magnets:
         ctrl: QUAD:COL0:640:CTRL
       control_name: QUAD:COL0:640
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -203,6 +211,7 @@ magnets:
         ctrl: QUAD:COL0:720:CTRL
       control_name: QUAD:COL0:720
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -227,6 +236,7 @@ magnets:
         ctrl: QUAD:COL0:800:CTRL
       control_name: QUAD:COL0:800
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -251,6 +261,7 @@ magnets:
         ctrl: QUAD:COL0:880:CTRL
       control_name: QUAD:COL0:880
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -275,6 +286,7 @@ magnets:
         ctrl: QUAD:COL0:940:CTRL
       control_name: QUAD:COL0:940
     metadata:
+      Effective Length (m): '.108'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -299,6 +311,7 @@ magnets:
         ctrl: XCOR:COL0:235:CTRL
       control_name: XCOR:COL0:235
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -323,6 +336,7 @@ magnets:
         ctrl: XCOR:COL0:328:CTRL
       control_name: XCOR:COL0:328
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -347,6 +361,7 @@ magnets:
         ctrl: XCOR:COL0:488:CTRL
       control_name: XCOR:COL0:488
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -371,6 +386,7 @@ magnets:
         ctrl: XCOR:COL0:648:CTRL
       control_name: XCOR:COL0:648
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -395,6 +411,7 @@ magnets:
         ctrl: XCOR:COL0:808:CTRL
       control_name: XCOR:COL0:808
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -419,6 +436,7 @@ magnets:
         ctrl: XCOR:COL0:932:CTRL
       control_name: XCOR:COL0:932
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -443,6 +461,7 @@ magnets:
         ctrl: YCOR:COL0:235:CTRL
       control_name: YCOR:COL0:235
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -467,6 +486,7 @@ magnets:
         ctrl: YCOR:COL0:289:CTRL
       control_name: YCOR:COL0:289
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -491,6 +511,7 @@ magnets:
         ctrl: YCOR:COL0:409:CTRL
       control_name: YCOR:COL0:409
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -515,6 +536,7 @@ magnets:
         ctrl: YCOR:COL0:569:CTRL
       control_name: YCOR:COL0:569
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -539,6 +561,7 @@ magnets:
         ctrl: YCOR:COL0:729:CTRL
       control_name: YCOR:COL0:729
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD
@@ -563,6 +586,7 @@ magnets:
         ctrl: YCOR:COL0:889:CTRL
       control_name: YCOR:COL0:889
     metadata:
+      Effective Length (m): '0'
       area: COL0
       beam_path:
       - SC_BSYD

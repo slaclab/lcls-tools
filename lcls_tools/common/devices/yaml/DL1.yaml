@@ -11,6 +11,7 @@ magnets:
         ctrl: BEND:IN20:661:CTRL
       control_name: BEND:IN20:661
     metadata:
+      Effective Length (m): '.203992'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -33,6 +34,7 @@ magnets:
         ctrl: BEND:IN20:751:CTRL
       control_name: BEND:IN20:751
     metadata:
+      Effective Length (m): '.203992'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -55,6 +57,7 @@ magnets:
         ctrl: BEND:IN20:451:CTRL
       control_name: BEND:IN20:451
     metadata:
+      Effective Length (m): '.124761'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -78,6 +81,7 @@ magnets:
         ctrl: BEND:IN20:461:CTRL
       control_name: BEND:IN20:461
     metadata:
+      Effective Length (m): '.124761'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -101,6 +105,7 @@ magnets:
         ctrl: BEND:IN20:475:CTRL
       control_name: BEND:IN20:475
     metadata:
+      Effective Length (m): '.124761'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -124,6 +129,7 @@ magnets:
         ctrl: BEND:IN20:481:CTRL
       control_name: BEND:IN20:481
     metadata:
+      Effective Length (m): '.124761'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -147,6 +153,7 @@ magnets:
         ctrl: QUAD:IN20:731:CTRL
       control_name: QUAD:IN20:731
     metadata:
+      Effective Length (m): '.1068'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -169,6 +176,7 @@ magnets:
         ctrl: QUAD:IN20:425:CTRL
       control_name: QUAD:IN20:425
     metadata:
+      Effective Length (m): '.108'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -192,6 +200,7 @@ magnets:
         ctrl: QUAD:IN20:441:CTRL
       control_name: QUAD:IN20:441
     metadata:
+      Effective Length (m): '.108'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -215,6 +224,7 @@ magnets:
         ctrl: QUAD:IN20:511:CTRL
       control_name: QUAD:IN20:511
     metadata:
+      Effective Length (m): '.108'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -238,6 +248,7 @@ magnets:
         ctrl: QUAD:IN20:525:CTRL
       control_name: QUAD:IN20:525
     metadata:
+      Effective Length (m): '.108'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -261,6 +272,7 @@ magnets:
         ctrl: QUAD:IN20:631:CTRL
       control_name: QUAD:IN20:631
     metadata:
+      Effective Length (m): '.108'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -284,6 +296,7 @@ magnets:
         ctrl: QUAD:IN20:651:CTRL
       control_name: QUAD:IN20:651
     metadata:
+      Effective Length (m): '.108'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -307,6 +320,7 @@ magnets:
         ctrl: QUAD:IN20:771:CTRL
       control_name: QUAD:IN20:771
     metadata:
+      Effective Length (m): '.108'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -329,6 +343,7 @@ magnets:
         ctrl: QUAD:IN20:781:CTRL
       control_name: QUAD:IN20:781
     metadata:
+      Effective Length (m): '.108'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -351,6 +366,7 @@ magnets:
         ctrl: XCOR:IN20:491:CTRL
       control_name: XCOR:IN20:491
     metadata:
+      Effective Length (m): '0'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -374,6 +390,7 @@ magnets:
         ctrl: XCOR:IN20:521:CTRL
       control_name: XCOR:IN20:521
     metadata:
+      Effective Length (m): '0'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -397,6 +414,7 @@ magnets:
         ctrl: XCOR:IN20:641:CTRL
       control_name: XCOR:IN20:641
     metadata:
+      Effective Length (m): '0'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -420,6 +438,7 @@ magnets:
         ctrl: XCOR:IN20:721:CTRL
       control_name: XCOR:IN20:721
     metadata:
+      Effective Length (m): '0'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -442,6 +461,7 @@ magnets:
         ctrl: XCOR:IN20:761:CTRL
       control_name: XCOR:IN20:761
     metadata:
+      Effective Length (m): '0'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -464,6 +484,7 @@ magnets:
         ctrl: YCOR:IN20:492:CTRL
       control_name: YCOR:IN20:492
     metadata:
+      Effective Length (m): '0'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -487,6 +508,7 @@ magnets:
         ctrl: YCOR:IN20:522:CTRL
       control_name: YCOR:IN20:522
     metadata:
+      Effective Length (m): '0'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -510,6 +532,7 @@ magnets:
         ctrl: YCOR:IN20:642:CTRL
       control_name: YCOR:IN20:642
     metadata:
+      Effective Length (m): '0'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -533,6 +556,7 @@ magnets:
         ctrl: YCOR:IN20:722:CTRL
       control_name: YCOR:IN20:722
     metadata:
+      Effective Length (m): '0'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -555,6 +579,7 @@ magnets:
         ctrl: YCOR:IN20:762:CTRL
       control_name: YCOR:IN20:762
     metadata:
+      Effective Length (m): '0'
       area: DL1
       beam_path:
       - CU_ALINE
@@ -585,10 +610,10 @@ screens:
   OTR2:
     controls_information:
       PVs:
-        image: OTRS:IN20:571:IMAGE
+        image: OTRS:IN20:571:Image:ArrayData
         n_bits: OTRS:IN20:571:N_OF_BITS
-        n_col: OTRS:IN20:571:N_OF_COL
-        n_row: OTRS:IN20:571:N_OF_ROW
+        n_col: OTRS:IN20:571:Image:ArraySize1_RBV
+        n_row: OTRS:IN20:571:Image:ArraySize0_RBV
         resolution: OTRS:IN20:571:RESOLUTION
       control_name: OTRS:IN20:571
     metadata:
@@ -606,10 +631,10 @@ screens:
   OTR3:
     controls_information:
       PVs:
-        image: OTRS:IN20:621:Image:ArrayData
+        image: OTRS:IN20:621:IMAGE
         n_bits: OTRS:IN20:621:N_OF_BITS
-        n_col: OTRS:IN20:621:Image:ArraySize1_RBV
-        n_row: OTRS:IN20:621:Image:ArraySize0_RBV
+        n_col: OTRS:IN20:621:N_OF_COL
+        n_row: OTRS:IN20:621:N_OF_ROW
         resolution: OTRS:IN20:621:RESOLUTION
       control_name: OTRS:IN20:621
     metadata:

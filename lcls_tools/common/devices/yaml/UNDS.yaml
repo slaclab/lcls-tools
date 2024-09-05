@@ -11,6 +11,7 @@ magnets:
         ctrl: BEND:UNDS:3510:CTRL
       control_name: BEND:UNDS:3510
     metadata:
+      Effective Length (m): '.3636'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -33,6 +34,7 @@ magnets:
         ctrl: BEND:UNDS:3530:CTRL
       control_name: BEND:UNDS:3530
     metadata:
+      Effective Length (m): '.3636'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -55,6 +57,7 @@ magnets:
         ctrl: BEND:UNDS:3550:CTRL
       control_name: BEND:UNDS:3550
     metadata:
+      Effective Length (m): '.3636'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -77,6 +80,7 @@ magnets:
         ctrl: BEND:UNDS:3570:CTRL
       control_name: BEND:UNDS:3570
     metadata:
+      Effective Length (m): '.3636'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -99,6 +103,7 @@ magnets:
         ctrl: QUAD:UNDS:1680:CTRL
       control_name: QUAD:UNDS:1680
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -121,6 +126,7 @@ magnets:
         ctrl: QUAD:UNDS:1980:CTRL
       control_name: QUAD:UNDS:1980
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -143,6 +149,7 @@ magnets:
         ctrl: QUAD:UNDS:2180:CTRL
       control_name: QUAD:UNDS:2180
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -165,6 +172,7 @@ magnets:
         ctrl: QUAD:UNDS:2480:CTRL
       control_name: QUAD:UNDS:2480
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -187,6 +195,7 @@ magnets:
         ctrl: QUAD:UNDS:2680:CTRL
       control_name: QUAD:UNDS:2680
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -209,6 +218,7 @@ magnets:
         ctrl: QUAD:UNDS:2780:CTRL
       control_name: QUAD:UNDS:2780
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -231,6 +241,7 @@ magnets:
         ctrl: QUAD:UNDS:2880:CTRL
       control_name: QUAD:UNDS:2880
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -253,6 +264,7 @@ magnets:
         ctrl: QUAD:UNDS:2980:CTRL
       control_name: QUAD:UNDS:2980
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -275,6 +287,7 @@ magnets:
         ctrl: QUAD:UNDS:3080:CTRL
       control_name: QUAD:UNDS:3080
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -297,6 +310,7 @@ magnets:
         ctrl: QUAD:UNDS:3180:CTRL
       control_name: QUAD:UNDS:3180
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -319,6 +333,7 @@ magnets:
         ctrl: QUAD:UNDS:3280:CTRL
       control_name: QUAD:UNDS:3280
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -341,6 +356,7 @@ magnets:
         ctrl: QUAD:UNDS:3380:CTRL
       control_name: QUAD:UNDS:3380
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -363,6 +379,7 @@ magnets:
         ctrl: QUAD:UNDS:3480:CTRL
       control_name: QUAD:UNDS:3480
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -385,6 +402,7 @@ magnets:
         ctrl: QUAD:UNDS:3580:CTRL
       control_name: QUAD:UNDS:3580
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -407,6 +425,7 @@ magnets:
         ctrl: QUAD:UNDS:3680:CTRL
       control_name: QUAD:UNDS:3680
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -429,6 +448,7 @@ magnets:
         ctrl: QUAD:UNDS:3780:CTRL
       control_name: QUAD:UNDS:3780
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -451,6 +471,7 @@ magnets:
         ctrl: QUAD:UNDS:3880:CTRL
       control_name: QUAD:UNDS:3880
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -473,6 +494,7 @@ magnets:
         ctrl: QUAD:UNDS:3980:CTRL
       control_name: QUAD:UNDS:3980
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -495,6 +517,7 @@ magnets:
         ctrl: QUAD:UNDS:4080:CTRL
       control_name: QUAD:UNDS:4080
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -517,6 +540,7 @@ magnets:
         ctrl: QUAD:UNDS:4180:CTRL
       control_name: QUAD:UNDS:4180
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -539,6 +563,7 @@ magnets:
         ctrl: QUAD:UNDS:4280:CTRL
       control_name: QUAD:UNDS:4280
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -561,6 +586,7 @@ magnets:
         ctrl: QUAD:UNDS:4380:CTRL
       control_name: QUAD:UNDS:4380
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -583,6 +609,7 @@ magnets:
         ctrl: QUAD:UNDS:4480:CTRL
       control_name: QUAD:UNDS:4480
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -605,6 +632,7 @@ magnets:
         ctrl: QUAD:UNDS:4580:CTRL
       control_name: QUAD:UNDS:4580
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -627,6 +655,7 @@ magnets:
         ctrl: QUAD:UNDS:4680:CTRL
       control_name: QUAD:UNDS:4680
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -649,6 +678,7 @@ magnets:
         ctrl: QUAD:UNDS:4780:CTRL
       control_name: QUAD:UNDS:4780
     metadata:
+      Effective Length (m): '.084'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -671,6 +701,7 @@ magnets:
         ctrl: XCOR:UNDS:4982:CTRL
       control_name: XCOR:UNDS:4982
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -693,6 +724,7 @@ magnets:
         ctrl: XCOR:UNDS:5002:CTRL
       control_name: XCOR:UNDS:5002
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -715,6 +747,7 @@ magnets:
         ctrl: XCOR:UNDS:5022:CTRL
       control_name: XCOR:UNDS:5022
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -737,6 +770,7 @@ magnets:
         ctrl: XCOR:UNDS:5038:CTRL
       control_name: XCOR:UNDS:5038
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -759,6 +793,7 @@ magnets:
         ctrl: XCOR:UNDS:1680:CTRL
       control_name: XCOR:UNDS:1680
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -781,6 +816,7 @@ magnets:
         ctrl: XCOR:UNDS:1980:CTRL
       control_name: XCOR:UNDS:1980
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -803,6 +839,7 @@ magnets:
         ctrl: XCOR:UNDS:2180:CTRL
       control_name: XCOR:UNDS:2180
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -825,6 +862,7 @@ magnets:
         ctrl: XCOR:UNDS:2480:CTRL
       control_name: XCOR:UNDS:2480
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -847,6 +885,7 @@ magnets:
         ctrl: XCOR:UNDS:2680:CTRL
       control_name: XCOR:UNDS:2680
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -869,6 +908,7 @@ magnets:
         ctrl: XCOR:UNDS:2780:CTRL
       control_name: XCOR:UNDS:2780
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -891,6 +931,7 @@ magnets:
         ctrl: XCOR:UNDS:2880:CTRL
       control_name: XCOR:UNDS:2880
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -913,6 +954,7 @@ magnets:
         ctrl: XCOR:UNDS:2980:CTRL
       control_name: XCOR:UNDS:2980
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -935,6 +977,7 @@ magnets:
         ctrl: XCOR:UNDS:3080:CTRL
       control_name: XCOR:UNDS:3080
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -957,6 +1000,7 @@ magnets:
         ctrl: XCOR:UNDS:3180:CTRL
       control_name: XCOR:UNDS:3180
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -979,6 +1023,7 @@ magnets:
         ctrl: XCOR:UNDS:3280:CTRL
       control_name: XCOR:UNDS:3280
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1001,6 +1046,7 @@ magnets:
         ctrl: XCOR:UNDS:3380:CTRL
       control_name: XCOR:UNDS:3380
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1023,6 +1069,7 @@ magnets:
         ctrl: XCOR:UNDS:3480:CTRL
       control_name: XCOR:UNDS:3480
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1045,6 +1092,7 @@ magnets:
         ctrl: XCOR:UNDS:3580:CTRL
       control_name: XCOR:UNDS:3580
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1067,6 +1115,7 @@ magnets:
         ctrl: XCOR:UNDS:3680:CTRL
       control_name: XCOR:UNDS:3680
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1089,6 +1138,7 @@ magnets:
         ctrl: XCOR:UNDS:3780:CTRL
       control_name: XCOR:UNDS:3780
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1111,6 +1161,7 @@ magnets:
         ctrl: XCOR:UNDS:3880:CTRL
       control_name: XCOR:UNDS:3880
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1133,6 +1184,7 @@ magnets:
         ctrl: XCOR:UNDS:3980:CTRL
       control_name: XCOR:UNDS:3980
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1155,6 +1207,7 @@ magnets:
         ctrl: XCOR:UNDS:4080:CTRL
       control_name: XCOR:UNDS:4080
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1177,6 +1230,7 @@ magnets:
         ctrl: XCOR:UNDS:4180:CTRL
       control_name: XCOR:UNDS:4180
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1199,6 +1253,7 @@ magnets:
         ctrl: XCOR:UNDS:4280:CTRL
       control_name: XCOR:UNDS:4280
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1221,6 +1276,7 @@ magnets:
         ctrl: XCOR:UNDS:4380:CTRL
       control_name: XCOR:UNDS:4380
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1243,6 +1299,7 @@ magnets:
         ctrl: XCOR:UNDS:4480:CTRL
       control_name: XCOR:UNDS:4480
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1265,6 +1322,7 @@ magnets:
         ctrl: XCOR:UNDS:4580:CTRL
       control_name: XCOR:UNDS:4580
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1287,6 +1345,7 @@ magnets:
         ctrl: XCOR:UNDS:4680:CTRL
       control_name: XCOR:UNDS:4680
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1309,6 +1368,7 @@ magnets:
         ctrl: XCOR:UNDS:4780:CTRL
       control_name: XCOR:UNDS:4780
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1331,6 +1391,7 @@ magnets:
         ctrl: YCOR:UNDS:1680:CTRL
       control_name: YCOR:UNDS:1680
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1353,6 +1414,7 @@ magnets:
         ctrl: YCOR:UNDS:1980:CTRL
       control_name: YCOR:UNDS:1980
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1375,6 +1437,7 @@ magnets:
         ctrl: YCOR:UNDS:2180:CTRL
       control_name: YCOR:UNDS:2180
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1397,6 +1460,7 @@ magnets:
         ctrl: YCOR:UNDS:2480:CTRL
       control_name: YCOR:UNDS:2480
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1419,6 +1483,7 @@ magnets:
         ctrl: YCOR:UNDS:2680:CTRL
       control_name: YCOR:UNDS:2680
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1441,6 +1506,7 @@ magnets:
         ctrl: YCOR:UNDS:2780:CTRL
       control_name: YCOR:UNDS:2780
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1463,6 +1529,7 @@ magnets:
         ctrl: YCOR:UNDS:2880:CTRL
       control_name: YCOR:UNDS:2880
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1485,6 +1552,7 @@ magnets:
         ctrl: YCOR:UNDS:2980:CTRL
       control_name: YCOR:UNDS:2980
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1507,6 +1575,7 @@ magnets:
         ctrl: YCOR:UNDS:3080:CTRL
       control_name: YCOR:UNDS:3080
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1529,6 +1598,7 @@ magnets:
         ctrl: YCOR:UNDS:3180:CTRL
       control_name: YCOR:UNDS:3180
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1551,6 +1621,7 @@ magnets:
         ctrl: YCOR:UNDS:3280:CTRL
       control_name: YCOR:UNDS:3280
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1573,6 +1644,7 @@ magnets:
         ctrl: YCOR:UNDS:3380:CTRL
       control_name: YCOR:UNDS:3380
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1595,6 +1667,7 @@ magnets:
         ctrl: YCOR:UNDS:3480:CTRL
       control_name: YCOR:UNDS:3480
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1617,6 +1690,7 @@ magnets:
         ctrl: YCOR:UNDS:3580:CTRL
       control_name: YCOR:UNDS:3580
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1639,6 +1713,7 @@ magnets:
         ctrl: YCOR:UNDS:3680:CTRL
       control_name: YCOR:UNDS:3680
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1661,6 +1736,7 @@ magnets:
         ctrl: YCOR:UNDS:3780:CTRL
       control_name: YCOR:UNDS:3780
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1683,6 +1759,7 @@ magnets:
         ctrl: YCOR:UNDS:3880:CTRL
       control_name: YCOR:UNDS:3880
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1705,6 +1782,7 @@ magnets:
         ctrl: YCOR:UNDS:3980:CTRL
       control_name: YCOR:UNDS:3980
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1727,6 +1805,7 @@ magnets:
         ctrl: YCOR:UNDS:4080:CTRL
       control_name: YCOR:UNDS:4080
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1749,6 +1828,7 @@ magnets:
         ctrl: YCOR:UNDS:4180:CTRL
       control_name: YCOR:UNDS:4180
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1771,6 +1851,7 @@ magnets:
         ctrl: YCOR:UNDS:4280:CTRL
       control_name: YCOR:UNDS:4280
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1793,6 +1874,7 @@ magnets:
         ctrl: YCOR:UNDS:4380:CTRL
       control_name: YCOR:UNDS:4380
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1815,6 +1897,7 @@ magnets:
         ctrl: YCOR:UNDS:4480:CTRL
       control_name: YCOR:UNDS:4480
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1837,6 +1920,7 @@ magnets:
         ctrl: YCOR:UNDS:4580:CTRL
       control_name: YCOR:UNDS:4580
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1859,6 +1943,7 @@ magnets:
         ctrl: YCOR:UNDS:4680:CTRL
       control_name: YCOR:UNDS:4680
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR
@@ -1881,6 +1966,7 @@ magnets:
         ctrl: YCOR:UNDS:4780:CTRL
       control_name: YCOR:UNDS:4780
     metadata:
+      Effective Length (m): '0'
       area: UNDS
       beam_path:
       - CU_SXR

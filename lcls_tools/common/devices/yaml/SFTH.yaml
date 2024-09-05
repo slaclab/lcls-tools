@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: BEND:DMPH:810
     metadata:
+      Effective Length (m): '.944019'
       area: SFTH
       beam_path:
       - CU_SFTH
@@ -14,6 +15,7 @@ magnets:
       PVs: {}
       control_name: BEND:DMPH:820
     metadata:
+      Effective Length (m): '.944136'
       area: SFTH
       beam_path:
       - CU_SFTH

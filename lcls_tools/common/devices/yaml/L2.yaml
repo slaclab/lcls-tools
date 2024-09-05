@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: KICK:LI21:957
     metadata:
+      Effective Length (m): '.3'
       area: L2
       beam_path:
       - CU_ALINE
@@ -19,6 +20,7 @@ magnets:
       PVs: {}
       control_name: KICK:LI22:957
     metadata:
+      Effective Length (m): '.3'
       area: L2
       beam_path:
       - CU_ALINE
@@ -34,6 +36,7 @@ magnets:
       PVs: {}
       control_name: KICK:LI21:929
     metadata:
+      Effective Length (m): '.3'
       area: L2
       beam_path:
       - CU_ALINE
@@ -49,6 +52,7 @@ magnets:
       PVs: {}
       control_name: KICK:LI22:929
     metadata:
+      Effective Length (m): '.3'
       area: L2
       beam_path:
       - CU_ALINE
@@ -71,6 +75,7 @@ magnets:
         ctrl: QUAD:LI21:401:CTRL
       control_name: QUAD:LI21:401
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -93,6 +98,7 @@ magnets:
         ctrl: QUAD:LI21:501:CTRL
       control_name: QUAD:LI21:501
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -115,6 +121,7 @@ magnets:
         ctrl: QUAD:LI21:601:CTRL
       control_name: QUAD:LI21:601
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -137,6 +144,7 @@ magnets:
         ctrl: QUAD:LI21:701:CTRL
       control_name: QUAD:LI21:701
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -159,6 +167,7 @@ magnets:
         ctrl: QUAD:LI21:801:CTRL
       control_name: QUAD:LI21:801
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -181,6 +190,7 @@ magnets:
         ctrl: QUAD:LI21:901:CTRL
       control_name: QUAD:LI21:901
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -203,6 +213,7 @@ magnets:
         ctrl: QUAD:LI22:201:CTRL
       control_name: QUAD:LI22:201
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -225,6 +236,7 @@ magnets:
         ctrl: QUAD:LI22:301:CTRL
       control_name: QUAD:LI22:301
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -247,6 +259,7 @@ magnets:
         ctrl: QUAD:LI22:401:CTRL
       control_name: QUAD:LI22:401
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -269,6 +282,7 @@ magnets:
         ctrl: QUAD:LI22:501:CTRL
       control_name: QUAD:LI22:501
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -291,6 +305,7 @@ magnets:
         ctrl: QUAD:LI22:601:CTRL
       control_name: QUAD:LI22:601
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -313,6 +328,7 @@ magnets:
         ctrl: QUAD:LI22:701:CTRL
       control_name: QUAD:LI22:701
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -335,6 +351,7 @@ magnets:
         ctrl: QUAD:LI22:801:CTRL
       control_name: QUAD:LI22:801
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -357,6 +374,7 @@ magnets:
         ctrl: QUAD:LI22:901:CTRL
       control_name: QUAD:LI22:901
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -379,6 +397,7 @@ magnets:
         ctrl: QUAD:LI23:201:CTRL
       control_name: QUAD:LI23:201
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -401,6 +420,7 @@ magnets:
         ctrl: QUAD:LI23:301:CTRL
       control_name: QUAD:LI23:301
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -423,6 +443,7 @@ magnets:
         ctrl: QUAD:LI23:401:CTRL
       control_name: QUAD:LI23:401
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -445,6 +466,7 @@ magnets:
         ctrl: QUAD:LI23:501:CTRL
       control_name: QUAD:LI23:501
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -467,6 +489,7 @@ magnets:
         ctrl: QUAD:LI23:601:CTRL
       control_name: QUAD:LI23:601
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -489,6 +512,7 @@ magnets:
         ctrl: QUAD:LI23:701:CTRL
       control_name: QUAD:LI23:701
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -511,6 +535,7 @@ magnets:
         ctrl: QUAD:LI23:801:CTRL
       control_name: QUAD:LI23:801
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -533,6 +558,7 @@ magnets:
         ctrl: QUAD:LI23:901:CTRL
       control_name: QUAD:LI23:901
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -555,6 +581,7 @@ magnets:
         ctrl: QUAD:LI24:201:CTRL
       control_name: QUAD:LI24:201
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -577,6 +604,7 @@ magnets:
         ctrl: QUAD:LI24:301:CTRL
       control_name: QUAD:LI24:301
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -599,6 +627,7 @@ magnets:
         ctrl: QUAD:LI24:401:CTRL
       control_name: QUAD:LI24:401
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -621,6 +650,7 @@ magnets:
         ctrl: QUAD:LI24:501:CTRL
       control_name: QUAD:LI24:501
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -643,6 +673,7 @@ magnets:
         ctrl: QUAD:LI24:601:CTRL
       control_name: QUAD:LI24:601
     metadata:
+      Effective Length (m): '.1068'
       area: L2
       beam_path:
       - CU_ALINE
@@ -665,6 +696,7 @@ magnets:
         ctrl: XCOR:LI21:402:CTRL
       control_name: XCOR:LI21:402
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -687,6 +719,7 @@ magnets:
         ctrl: XCOR:LI21:502:CTRL
       control_name: XCOR:LI21:502
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -709,6 +742,7 @@ magnets:
         ctrl: XCOR:LI21:602:CTRL
       control_name: XCOR:LI21:602
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -731,6 +765,7 @@ magnets:
         ctrl: XCOR:LI21:702:CTRL
       control_name: XCOR:LI21:702
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -753,6 +788,7 @@ magnets:
         ctrl: XCOR:LI21:802:CTRL
       control_name: XCOR:LI21:802
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -775,6 +811,7 @@ magnets:
         ctrl: XCOR:LI21:900:CTRL
       control_name: XCOR:LI21:900
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -797,6 +834,7 @@ magnets:
         ctrl: XCOR:LI22:202:CTRL
       control_name: XCOR:LI22:202
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -819,6 +857,7 @@ magnets:
         ctrl: XCOR:LI22:302:CTRL
       control_name: XCOR:LI22:302
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -841,6 +880,7 @@ magnets:
         ctrl: XCOR:LI22:402:CTRL
       control_name: XCOR:LI22:402
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -863,6 +903,7 @@ magnets:
         ctrl: XCOR:LI22:502:CTRL
       control_name: XCOR:LI22:502
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -885,6 +926,7 @@ magnets:
         ctrl: XCOR:LI22:602:CTRL
       control_name: XCOR:LI22:602
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -907,6 +949,7 @@ magnets:
         ctrl: XCOR:LI22:702:CTRL
       control_name: XCOR:LI22:702
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -929,6 +972,7 @@ magnets:
         ctrl: XCOR:LI22:802:CTRL
       control_name: XCOR:LI22:802
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -951,6 +995,7 @@ magnets:
         ctrl: XCOR:LI22:900:CTRL
       control_name: XCOR:LI22:900
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -973,6 +1018,7 @@ magnets:
         ctrl: XCOR:LI23:202:CTRL
       control_name: XCOR:LI23:202
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -995,6 +1041,7 @@ magnets:
         ctrl: XCOR:LI23:302:CTRL
       control_name: XCOR:LI23:302
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1017,6 +1064,7 @@ magnets:
         ctrl: XCOR:LI23:402:CTRL
       control_name: XCOR:LI23:402
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1039,6 +1087,7 @@ magnets:
         ctrl: XCOR:LI23:502:CTRL
       control_name: XCOR:LI23:502
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1061,6 +1110,7 @@ magnets:
         ctrl: XCOR:LI23:602:CTRL
       control_name: XCOR:LI23:602
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1083,6 +1133,7 @@ magnets:
         ctrl: XCOR:LI23:702:CTRL
       control_name: XCOR:LI23:702
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1105,6 +1156,7 @@ magnets:
         ctrl: XCOR:LI23:802:CTRL
       control_name: XCOR:LI23:802
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1127,6 +1179,7 @@ magnets:
         ctrl: XCOR:LI23:900:CTRL
       control_name: XCOR:LI23:900
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1149,6 +1202,7 @@ magnets:
         ctrl: XCOR:LI24:202:CTRL
       control_name: XCOR:LI24:202
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1171,6 +1225,7 @@ magnets:
         ctrl: XCOR:LI24:302:CTRL
       control_name: XCOR:LI24:302
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1193,6 +1248,7 @@ magnets:
         ctrl: XCOR:LI24:402:CTRL
       control_name: XCOR:LI24:402
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1215,6 +1271,7 @@ magnets:
         ctrl: XCOR:LI24:502:CTRL
       control_name: XCOR:LI24:502
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1237,6 +1294,7 @@ magnets:
         ctrl: XCOR:LI24:602:CTRL
       control_name: XCOR:LI24:602
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1259,6 +1317,7 @@ magnets:
         ctrl: XCOR:LI24:702:CTRL
       control_name: XCOR:LI24:702
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1281,6 +1340,7 @@ magnets:
         ctrl: YCOR:LI21:403:CTRL
       control_name: YCOR:LI21:403
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1303,6 +1363,7 @@ magnets:
         ctrl: YCOR:LI21:503:CTRL
       control_name: YCOR:LI21:503
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1325,6 +1386,7 @@ magnets:
         ctrl: YCOR:LI21:603:CTRL
       control_name: YCOR:LI21:603
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1347,6 +1409,7 @@ magnets:
         ctrl: YCOR:LI21:703:CTRL
       control_name: YCOR:LI21:703
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1369,6 +1432,7 @@ magnets:
         ctrl: YCOR:LI21:803:CTRL
       control_name: YCOR:LI21:803
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1391,6 +1455,7 @@ magnets:
         ctrl: YCOR:LI21:900:CTRL
       control_name: YCOR:LI21:900
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1413,6 +1478,7 @@ magnets:
         ctrl: YCOR:LI22:203:CTRL
       control_name: YCOR:LI22:203
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1435,6 +1501,7 @@ magnets:
         ctrl: YCOR:LI22:303:CTRL
       control_name: YCOR:LI22:303
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1457,6 +1524,7 @@ magnets:
         ctrl: YCOR:LI22:403:CTRL
       control_name: YCOR:LI22:403
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1479,6 +1547,7 @@ magnets:
         ctrl: YCOR:LI22:503:CTRL
       control_name: YCOR:LI22:503
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1501,6 +1570,7 @@ magnets:
         ctrl: YCOR:LI22:603:CTRL
       control_name: YCOR:LI22:603
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1523,6 +1593,7 @@ magnets:
         ctrl: YCOR:LI22:703:CTRL
       control_name: YCOR:LI22:703
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1545,6 +1616,7 @@ magnets:
         ctrl: YCOR:LI22:803:CTRL
       control_name: YCOR:LI22:803
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1567,6 +1639,7 @@ magnets:
         ctrl: YCOR:LI22:900:CTRL
       control_name: YCOR:LI22:900
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1589,6 +1662,7 @@ magnets:
         ctrl: YCOR:LI23:203:CTRL
       control_name: YCOR:LI23:203
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1611,6 +1685,7 @@ magnets:
         ctrl: YCOR:LI23:303:CTRL
       control_name: YCOR:LI23:303
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1633,6 +1708,7 @@ magnets:
         ctrl: YCOR:LI23:403:CTRL
       control_name: YCOR:LI23:403
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1655,6 +1731,7 @@ magnets:
         ctrl: YCOR:LI23:503:CTRL
       control_name: YCOR:LI23:503
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1677,6 +1754,7 @@ magnets:
         ctrl: YCOR:LI23:603:CTRL
       control_name: YCOR:LI23:603
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1699,6 +1777,7 @@ magnets:
         ctrl: YCOR:LI23:703:CTRL
       control_name: YCOR:LI23:703
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1721,6 +1800,7 @@ magnets:
         ctrl: YCOR:LI23:803:CTRL
       control_name: YCOR:LI23:803
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1743,6 +1823,7 @@ magnets:
         ctrl: YCOR:LI23:900:CTRL
       control_name: YCOR:LI23:900
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1765,6 +1846,7 @@ magnets:
         ctrl: YCOR:LI24:203:CTRL
       control_name: YCOR:LI24:203
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1787,6 +1869,7 @@ magnets:
         ctrl: YCOR:LI24:303:CTRL
       control_name: YCOR:LI24:303
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1809,6 +1892,7 @@ magnets:
         ctrl: YCOR:LI24:403:CTRL
       control_name: YCOR:LI24:403
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1831,6 +1915,7 @@ magnets:
         ctrl: YCOR:LI24:503:CTRL
       control_name: YCOR:LI24:503
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1853,6 +1938,7 @@ magnets:
         ctrl: YCOR:LI24:603:CTRL
       control_name: YCOR:LI24:603
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE
@@ -1875,6 +1961,7 @@ magnets:
         ctrl: YCOR:LI24:703:CTRL
       control_name: YCOR:LI24:703
     metadata:
+      Effective Length (m): '0'
       area: L2
       beam_path:
       - CU_ALINE

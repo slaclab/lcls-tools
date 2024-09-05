@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI14:901
     metadata:
+      Effective Length (m): '.1068'
       area: BC14_2
       beam_path:
       - F2_ELEC
@@ -16,6 +17,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI14:891
     metadata:
+      Effective Length (m): '.1068'
       area: BC14_2
       beam_path:
       - F2_ELEC

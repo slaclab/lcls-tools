@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:7240
     metadata:
+      Effective Length (m): ''
       area: LI20
       beam_path: []
       sum_l_meters: null
@@ -13,6 +14,7 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3204
     metadata:
+      Effective Length (m): ''
       area: LI20
       beam_path: []
       sum_l_meters: null

@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:2251
     metadata:
+      Effective Length (m): '.31'
       area: BC20
       beam_path:
       - F2_ELEC
@@ -15,6 +16,7 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2086
     metadata:
+      Effective Length (m): '.3813'
       area: BC20
       beam_path:
       - F2_ELEC
@@ -26,6 +28,7 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:1996
     metadata:
+      Effective Length (m): '0'
       area: BC20
       beam_path:
       - F2_ELEC

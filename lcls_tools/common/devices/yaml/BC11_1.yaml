@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: BEND:LI11:314
     metadata:
+      Effective Length (m): '.2035'
       area: BC11_1
       beam_path:
       - F2_ELEC
@@ -15,6 +16,7 @@ magnets:
       PVs: {}
       control_name: BEND:LI11:331
     metadata:
+      Effective Length (m): '.2035'
       area: BC11_1
       beam_path:
       - F2_ELEC
@@ -26,6 +28,7 @@ magnets:
       PVs: {}
       control_name: BEND:LI11:338
     metadata:
+      Effective Length (m): '.2035'
       area: BC11_1
       beam_path:
       - F2_ELEC
@@ -37,6 +40,7 @@ magnets:
       PVs: {}
       control_name: BEND:LI11:355
     metadata:
+      Effective Length (m): '.2035'
       area: BC11_1
       beam_path:
       - F2_ELEC
@@ -48,6 +52,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:317
     metadata:
+      Effective Length (m): '.108'
       area: BC11_1
       beam_path:
       - F2_ELEC
@@ -59,6 +64,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:352
     metadata:
+      Effective Length (m): '.108'
       area: BC11_1
       beam_path:
       - F2_ELEC
@@ -70,6 +76,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:312
     metadata:
+      Effective Length (m): '.1068'
       area: BC11_1
       beam_path:
       - F2_ELEC
@@ -81,6 +88,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:340
     metadata:
+      Effective Length (m): '.108'
       area: BC11_1
       beam_path:
       - F2_ELEC
@@ -92,6 +100,7 @@ magnets:
       PVs: {}
       control_name: YCOR:LI11:321
     metadata:
+      Effective Length (m): '0'
       area: BC11_1
       beam_path:
       - F2_ELEC

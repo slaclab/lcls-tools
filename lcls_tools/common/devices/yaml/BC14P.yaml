@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: BEND:LI14:1796
     metadata:
+      Effective Length (m): '.549161'
       area: BC14P
       beam_path:
       - F2_POSI
@@ -14,6 +15,7 @@ magnets:
       PVs: {}
       control_name: BEND:LI14:1808
     metadata:
+      Effective Length (m): '.549161'
       area: BC14P
       beam_path:
       - F2_POSI
@@ -24,6 +26,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI14:1738
     metadata:
+      Effective Length (m): '.1759'
       area: BC14P
       beam_path:
       - F2_POSI
@@ -34,6 +37,7 @@ magnets:
       PVs: {}
       control_name: QUAD:LI14:1866
     metadata:
+      Effective Length (m): '.1759'
       area: BC14P
       beam_path:
       - F2_POSI
@@ -44,6 +48,7 @@ magnets:
       PVs: {}
       control_name: YCOR:LI14:1820
     metadata:
+      Effective Length (m): '0'
       area: BC14P
       beam_path:
       - F2_POSI

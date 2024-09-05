@@ -11,6 +11,7 @@ magnets:
         ctrl: BEND:UNDH:2130:CTRL
       control_name: BEND:UNDH:2130
     metadata:
+      Effective Length (m): ''
       area: UNDH
       beam_path: []
       sum_l_meters: null
@@ -20,6 +21,7 @@ magnets:
       PVs: {}
       control_name: BEND:UNDH:2150
     metadata:
+      Effective Length (m): ''
       area: UNDH
       beam_path: []
       sum_l_meters: null
@@ -36,6 +38,7 @@ magnets:
         ctrl: BEND:UNDH:2160:CTRL
       control_name: BEND:UNDH:2160
     metadata:
+      Effective Length (m): ''
       area: UNDH
       beam_path: []
       sum_l_meters: null
@@ -52,6 +55,7 @@ magnets:
         ctrl: BEND:UNDH:2175:CTRL
       control_name: BEND:UNDH:2175
     metadata:
+      Effective Length (m): ''
       area: UNDH
       beam_path: []
       sum_l_meters: null
@@ -68,6 +72,7 @@ magnets:
         ctrl: BEND:UNDH:1330:CTRL
       control_name: BEND:UNDH:1330
     metadata:
+      Effective Length (m): '.368'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -89,6 +94,7 @@ magnets:
         ctrl: BEND:UNDH:1355:CTRL
       control_name: BEND:UNDH:1355
     metadata:
+      Effective Length (m): '.368'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -110,6 +116,7 @@ magnets:
         ctrl: BEND:UNDH:1360:CTRL
       control_name: BEND:UNDH:1360
     metadata:
+      Effective Length (m): '.368'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -131,6 +138,7 @@ magnets:
         ctrl: BEND:UNDH:1375:CTRL
       control_name: BEND:UNDH:1375
     metadata:
+      Effective Length (m): '.368'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -152,6 +160,7 @@ magnets:
         ctrl: BEND:UNDH:2130:CTRL
       control_name: BEND:UNDH:2130
     metadata:
+      Effective Length (m): '.368'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -173,6 +182,7 @@ magnets:
         ctrl: BEND:UNDH:2155:CTRL
       control_name: BEND:UNDH:2155
     metadata:
+      Effective Length (m): '.368'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -194,6 +204,7 @@ magnets:
         ctrl: BEND:UNDH:2160:CTRL
       control_name: BEND:UNDH:2160
     metadata:
+      Effective Length (m): '.368'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -215,6 +226,7 @@ magnets:
         ctrl: BEND:UNDH:2175:CTRL
       control_name: BEND:UNDH:2175
     metadata:
+      Effective Length (m): '.368'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -236,6 +248,7 @@ magnets:
         ctrl: BEND:UNDH:2810:CTRL
       control_name: BEND:UNDH:2810
     metadata:
+      Effective Length (m): '.3636'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -257,6 +270,7 @@ magnets:
         ctrl: BEND:UNDH:2830:CTRL
       control_name: BEND:UNDH:2830
     metadata:
+      Effective Length (m): '.3636'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -278,6 +292,7 @@ magnets:
         ctrl: BEND:UNDH:2850:CTRL
       control_name: BEND:UNDH:2850
     metadata:
+      Effective Length (m): '.3636'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -299,6 +314,7 @@ magnets:
         ctrl: BEND:UNDH:2870:CTRL
       control_name: BEND:UNDH:2870
     metadata:
+      Effective Length (m): '.3636'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -320,6 +336,7 @@ magnets:
         ctrl: QUAD:UNDH:1380:CTRL
       control_name: QUAD:UNDH:1380
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -341,6 +358,7 @@ magnets:
         ctrl: QUAD:UNDH:1480:CTRL
       control_name: QUAD:UNDH:1480
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -362,6 +380,7 @@ magnets:
         ctrl: QUAD:UNDH:1580:CTRL
       control_name: QUAD:UNDH:1580
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -383,6 +402,7 @@ magnets:
         ctrl: QUAD:UNDH:1680:CTRL
       control_name: QUAD:UNDH:1680
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -404,6 +424,7 @@ magnets:
         ctrl: QUAD:UNDH:1780:CTRL
       control_name: QUAD:UNDH:1780
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -425,6 +446,7 @@ magnets:
         ctrl: QUAD:UNDH:1880:CTRL
       control_name: QUAD:UNDH:1880
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -446,6 +468,7 @@ magnets:
         ctrl: QUAD:UNDH:1980:CTRL
       control_name: QUAD:UNDH:1980
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -467,6 +490,7 @@ magnets:
         ctrl: QUAD:UNDH:2080:CTRL
       control_name: QUAD:UNDH:2080
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -488,6 +512,7 @@ magnets:
         ctrl: QUAD:UNDH:2180:CTRL
       control_name: QUAD:UNDH:2180
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -509,6 +534,7 @@ magnets:
         ctrl: QUAD:UNDH:2280:CTRL
       control_name: QUAD:UNDH:2280
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -530,6 +556,7 @@ magnets:
         ctrl: QUAD:UNDH:2380:CTRL
       control_name: QUAD:UNDH:2380
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -551,6 +578,7 @@ magnets:
         ctrl: QUAD:UNDH:2480:CTRL
       control_name: QUAD:UNDH:2480
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -572,6 +600,7 @@ magnets:
         ctrl: QUAD:UNDH:2580:CTRL
       control_name: QUAD:UNDH:2580
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -593,6 +622,7 @@ magnets:
         ctrl: QUAD:UNDH:2680:CTRL
       control_name: QUAD:UNDH:2680
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -614,6 +644,7 @@ magnets:
         ctrl: QUAD:UNDH:2780:CTRL
       control_name: QUAD:UNDH:2780
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -635,6 +666,7 @@ magnets:
         ctrl: QUAD:UNDH:2880:CTRL
       control_name: QUAD:UNDH:2880
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -656,6 +688,7 @@ magnets:
         ctrl: QUAD:UNDH:2980:CTRL
       control_name: QUAD:UNDH:2980
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -677,6 +710,7 @@ magnets:
         ctrl: QUAD:UNDH:3080:CTRL
       control_name: QUAD:UNDH:3080
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -698,6 +732,7 @@ magnets:
         ctrl: QUAD:UNDH:3180:CTRL
       control_name: QUAD:UNDH:3180
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -719,6 +754,7 @@ magnets:
         ctrl: QUAD:UNDH:3280:CTRL
       control_name: QUAD:UNDH:3280
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -740,6 +776,7 @@ magnets:
         ctrl: QUAD:UNDH:3380:CTRL
       control_name: QUAD:UNDH:3380
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -761,6 +798,7 @@ magnets:
         ctrl: QUAD:UNDH:3480:CTRL
       control_name: QUAD:UNDH:3480
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -782,6 +820,7 @@ magnets:
         ctrl: QUAD:UNDH:3580:CTRL
       control_name: QUAD:UNDH:3580
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -803,6 +842,7 @@ magnets:
         ctrl: QUAD:UNDH:3680:CTRL
       control_name: QUAD:UNDH:3680
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -824,6 +864,7 @@ magnets:
         ctrl: QUAD:UNDH:3780:CTRL
       control_name: QUAD:UNDH:3780
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -845,6 +886,7 @@ magnets:
         ctrl: QUAD:UNDH:3880:CTRL
       control_name: QUAD:UNDH:3880
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -866,6 +908,7 @@ magnets:
         ctrl: QUAD:UNDH:3980:CTRL
       control_name: QUAD:UNDH:3980
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -887,6 +930,7 @@ magnets:
         ctrl: QUAD:UNDH:4080:CTRL
       control_name: QUAD:UNDH:4080
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -908,6 +952,7 @@ magnets:
         ctrl: QUAD:UNDH:4180:CTRL
       control_name: QUAD:UNDH:4180
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -929,6 +974,7 @@ magnets:
         ctrl: QUAD:UNDH:4280:CTRL
       control_name: QUAD:UNDH:4280
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -950,6 +996,7 @@ magnets:
         ctrl: QUAD:UNDH:4380:CTRL
       control_name: QUAD:UNDH:4380
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -971,6 +1018,7 @@ magnets:
         ctrl: QUAD:UNDH:4480:CTRL
       control_name: QUAD:UNDH:4480
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -992,6 +1040,7 @@ magnets:
         ctrl: QUAD:UNDH:4580:CTRL
       control_name: QUAD:UNDH:4580
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1013,6 +1062,7 @@ magnets:
         ctrl: QUAD:UNDH:4680:CTRL
       control_name: QUAD:UNDH:4680
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1034,6 +1084,7 @@ magnets:
         ctrl: QUAD:UNDH:4780:CTRL
       control_name: QUAD:UNDH:4780
     metadata:
+      Effective Length (m): '.084'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1048,6 +1099,7 @@ magnets:
       PVs: {}
       control_name: XCOR:UNDH:2150
     metadata:
+      Effective Length (m): ''
       area: UNDH
       beam_path: []
       sum_l_meters: null
@@ -1064,6 +1116,7 @@ magnets:
         ctrl: XCOR:UNDH:1380:CTRL
       control_name: XCOR:UNDH:1380
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1085,6 +1138,7 @@ magnets:
         ctrl: XCOR:UNDH:1480:CTRL
       control_name: XCOR:UNDH:1480
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1106,6 +1160,7 @@ magnets:
         ctrl: XCOR:UNDH:1580:CTRL
       control_name: XCOR:UNDH:1580
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1127,6 +1182,7 @@ magnets:
         ctrl: XCOR:UNDH:1680:CTRL
       control_name: XCOR:UNDH:1680
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1148,6 +1204,7 @@ magnets:
         ctrl: XCOR:UNDH:1780:CTRL
       control_name: XCOR:UNDH:1780
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1169,6 +1226,7 @@ magnets:
         ctrl: XCOR:UNDH:1880:CTRL
       control_name: XCOR:UNDH:1880
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1190,6 +1248,7 @@ magnets:
         ctrl: XCOR:UNDH:1980:CTRL
       control_name: XCOR:UNDH:1980
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1211,6 +1270,7 @@ magnets:
         ctrl: XCOR:UNDH:2080:CTRL
       control_name: XCOR:UNDH:2080
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1232,6 +1292,7 @@ magnets:
         ctrl: XCOR:UNDH:2180:CTRL
       control_name: XCOR:UNDH:2180
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1253,6 +1314,7 @@ magnets:
         ctrl: XCOR:UNDH:2280:CTRL
       control_name: XCOR:UNDH:2280
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1274,6 +1336,7 @@ magnets:
         ctrl: XCOR:UNDH:2380:CTRL
       control_name: XCOR:UNDH:2380
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1295,6 +1358,7 @@ magnets:
         ctrl: XCOR:UNDH:2480:CTRL
       control_name: XCOR:UNDH:2480
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1316,6 +1380,7 @@ magnets:
         ctrl: XCOR:UNDH:2580:CTRL
       control_name: XCOR:UNDH:2580
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1337,6 +1402,7 @@ magnets:
         ctrl: XCOR:UNDH:2680:CTRL
       control_name: XCOR:UNDH:2680
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1358,6 +1424,7 @@ magnets:
         ctrl: XCOR:UNDH:2780:CTRL
       control_name: XCOR:UNDH:2780
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1379,6 +1446,7 @@ magnets:
         ctrl: XCOR:UNDH:2880:CTRL
       control_name: XCOR:UNDH:2880
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1400,6 +1468,7 @@ magnets:
         ctrl: XCOR:UNDH:2980:CTRL
       control_name: XCOR:UNDH:2980
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1421,6 +1490,7 @@ magnets:
         ctrl: XCOR:UNDH:3080:CTRL
       control_name: XCOR:UNDH:3080
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1442,6 +1512,7 @@ magnets:
         ctrl: XCOR:UNDH:3180:CTRL
       control_name: XCOR:UNDH:3180
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1463,6 +1534,7 @@ magnets:
         ctrl: XCOR:UNDH:3280:CTRL
       control_name: XCOR:UNDH:3280
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1484,6 +1556,7 @@ magnets:
         ctrl: XCOR:UNDH:3380:CTRL
       control_name: XCOR:UNDH:3380
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1505,6 +1578,7 @@ magnets:
         ctrl: XCOR:UNDH:3480:CTRL
       control_name: XCOR:UNDH:3480
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1526,6 +1600,7 @@ magnets:
         ctrl: XCOR:UNDH:3580:CTRL
       control_name: XCOR:UNDH:3580
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1547,6 +1622,7 @@ magnets:
         ctrl: XCOR:UNDH:3680:CTRL
       control_name: XCOR:UNDH:3680
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1568,6 +1644,7 @@ magnets:
         ctrl: XCOR:UNDH:3780:CTRL
       control_name: XCOR:UNDH:3780
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1589,6 +1666,7 @@ magnets:
         ctrl: XCOR:UNDH:3880:CTRL
       control_name: XCOR:UNDH:3880
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1610,6 +1688,7 @@ magnets:
         ctrl: XCOR:UNDH:3980:CTRL
       control_name: XCOR:UNDH:3980
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1631,6 +1710,7 @@ magnets:
         ctrl: XCOR:UNDH:4080:CTRL
       control_name: XCOR:UNDH:4080
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1652,6 +1732,7 @@ magnets:
         ctrl: XCOR:UNDH:4180:CTRL
       control_name: XCOR:UNDH:4180
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1673,6 +1754,7 @@ magnets:
         ctrl: XCOR:UNDH:4280:CTRL
       control_name: XCOR:UNDH:4280
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1694,6 +1776,7 @@ magnets:
         ctrl: XCOR:UNDH:4380:CTRL
       control_name: XCOR:UNDH:4380
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1715,6 +1798,7 @@ magnets:
         ctrl: XCOR:UNDH:4480:CTRL
       control_name: XCOR:UNDH:4480
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1736,6 +1820,7 @@ magnets:
         ctrl: XCOR:UNDH:4580:CTRL
       control_name: XCOR:UNDH:4580
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1757,6 +1842,7 @@ magnets:
         ctrl: XCOR:UNDH:4680:CTRL
       control_name: XCOR:UNDH:4680
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1778,6 +1864,7 @@ magnets:
         ctrl: XCOR:UNDH:4780:CTRL
       control_name: XCOR:UNDH:4780
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1792,6 +1879,7 @@ magnets:
       PVs: {}
       control_name: YCOR:UNDH:2150
     metadata:
+      Effective Length (m): ''
       area: UNDH
       beam_path: []
       sum_l_meters: null
@@ -1808,6 +1896,7 @@ magnets:
         ctrl: YCOR:UNDH:1380:CTRL
       control_name: YCOR:UNDH:1380
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1829,6 +1918,7 @@ magnets:
         ctrl: YCOR:UNDH:1480:CTRL
       control_name: YCOR:UNDH:1480
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1850,6 +1940,7 @@ magnets:
         ctrl: YCOR:UNDH:1580:CTRL
       control_name: YCOR:UNDH:1580
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1871,6 +1962,7 @@ magnets:
         ctrl: YCOR:UNDH:1680:CTRL
       control_name: YCOR:UNDH:1680
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1892,6 +1984,7 @@ magnets:
         ctrl: YCOR:UNDH:1780:CTRL
       control_name: YCOR:UNDH:1780
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1913,6 +2006,7 @@ magnets:
         ctrl: YCOR:UNDH:1880:CTRL
       control_name: YCOR:UNDH:1880
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1934,6 +2028,7 @@ magnets:
         ctrl: YCOR:UNDH:1980:CTRL
       control_name: YCOR:UNDH:1980
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1955,6 +2050,7 @@ magnets:
         ctrl: YCOR:UNDH:2080:CTRL
       control_name: YCOR:UNDH:2080
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1976,6 +2072,7 @@ magnets:
         ctrl: YCOR:UNDH:2180:CTRL
       control_name: YCOR:UNDH:2180
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -1997,6 +2094,7 @@ magnets:
         ctrl: YCOR:UNDH:2280:CTRL
       control_name: YCOR:UNDH:2280
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2018,6 +2116,7 @@ magnets:
         ctrl: YCOR:UNDH:2380:CTRL
       control_name: YCOR:UNDH:2380
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2039,6 +2138,7 @@ magnets:
         ctrl: YCOR:UNDH:2480:CTRL
       control_name: YCOR:UNDH:2480
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2060,6 +2160,7 @@ magnets:
         ctrl: YCOR:UNDH:2580:CTRL
       control_name: YCOR:UNDH:2580
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2081,6 +2182,7 @@ magnets:
         ctrl: YCOR:UNDH:2680:CTRL
       control_name: YCOR:UNDH:2680
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2102,6 +2204,7 @@ magnets:
         ctrl: YCOR:UNDH:2780:CTRL
       control_name: YCOR:UNDH:2780
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2123,6 +2226,7 @@ magnets:
         ctrl: YCOR:UNDH:2880:CTRL
       control_name: YCOR:UNDH:2880
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2144,6 +2248,7 @@ magnets:
         ctrl: YCOR:UNDH:2980:CTRL
       control_name: YCOR:UNDH:2980
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2165,6 +2270,7 @@ magnets:
         ctrl: YCOR:UNDH:3080:CTRL
       control_name: YCOR:UNDH:3080
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2186,6 +2292,7 @@ magnets:
         ctrl: YCOR:UNDH:3180:CTRL
       control_name: YCOR:UNDH:3180
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2207,6 +2314,7 @@ magnets:
         ctrl: YCOR:UNDH:3280:CTRL
       control_name: YCOR:UNDH:3280
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2228,6 +2336,7 @@ magnets:
         ctrl: YCOR:UNDH:3380:CTRL
       control_name: YCOR:UNDH:3380
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2249,6 +2358,7 @@ magnets:
         ctrl: YCOR:UNDH:3480:CTRL
       control_name: YCOR:UNDH:3480
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2270,6 +2380,7 @@ magnets:
         ctrl: YCOR:UNDH:3580:CTRL
       control_name: YCOR:UNDH:3580
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2291,6 +2402,7 @@ magnets:
         ctrl: YCOR:UNDH:3680:CTRL
       control_name: YCOR:UNDH:3680
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2312,6 +2424,7 @@ magnets:
         ctrl: YCOR:UNDH:3780:CTRL
       control_name: YCOR:UNDH:3780
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2333,6 +2446,7 @@ magnets:
         ctrl: YCOR:UNDH:3880:CTRL
       control_name: YCOR:UNDH:3880
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2354,6 +2468,7 @@ magnets:
         ctrl: YCOR:UNDH:3980:CTRL
       control_name: YCOR:UNDH:3980
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2375,6 +2490,7 @@ magnets:
         ctrl: YCOR:UNDH:4080:CTRL
       control_name: YCOR:UNDH:4080
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2396,6 +2512,7 @@ magnets:
         ctrl: YCOR:UNDH:4180:CTRL
       control_name: YCOR:UNDH:4180
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2417,6 +2534,7 @@ magnets:
         ctrl: YCOR:UNDH:4280:CTRL
       control_name: YCOR:UNDH:4280
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2438,6 +2556,7 @@ magnets:
         ctrl: YCOR:UNDH:4380:CTRL
       control_name: YCOR:UNDH:4380
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2459,6 +2578,7 @@ magnets:
         ctrl: YCOR:UNDH:4480:CTRL
       control_name: YCOR:UNDH:4480
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2480,6 +2600,7 @@ magnets:
         ctrl: YCOR:UNDH:4580:CTRL
       control_name: YCOR:UNDH:4580
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2501,6 +2622,7 @@ magnets:
         ctrl: YCOR:UNDH:4680:CTRL
       control_name: YCOR:UNDH:4680
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI
@@ -2522,6 +2644,7 @@ magnets:
         ctrl: YCOR:UNDH:4780:CTRL
       control_name: YCOR:UNDH:4780
     metadata:
+      Effective Length (m): '0'
       area: UNDH
       beam_path:
       - CU_HTXI

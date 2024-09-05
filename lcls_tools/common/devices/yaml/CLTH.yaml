@@ -11,6 +11,7 @@ magnets:
         ctrl: QUAD:CLTH:140:CTRL
       control_name: QUAD:CLTH:140
     metadata:
+      Effective Length (m): '.263'
       area: CLTH
       beam_path:
       - CU_ALINE
@@ -33,6 +34,7 @@ magnets:
         ctrl: QUAD:CLTH:170:CTRL
       control_name: QUAD:CLTH:170
     metadata:
+      Effective Length (m): '.324302'
       area: CLTH
       beam_path:
       - CU_ALINE
@@ -55,6 +57,7 @@ magnets:
         ctrl: XCOR:CLTH:168:CTRL
       control_name: XCOR:CLTH:168
     metadata:
+      Effective Length (m): '0'
       area: CLTH
       beam_path:
       - CU_ALINE
@@ -77,6 +80,7 @@ magnets:
         ctrl: YCOR:CLTH:133:CTRL
       control_name: YCOR:CLTH:133
     metadata:
+      Effective Length (m): '0'
       area: CLTH
       beam_path:
       - CU_ALINE

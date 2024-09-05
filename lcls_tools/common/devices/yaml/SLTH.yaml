@@ -11,6 +11,7 @@ magnets:
         ctrl: BEND:SLTH:145:CTRL
       control_name: BEND:SLTH:145
     metadata:
+      Effective Length (m): '1.000002'
       area: SLTH
       beam_path:
       - SC_HXR
@@ -28,6 +29,7 @@ magnets:
         ctrl: BEND:SLTH:435:CTRL
       control_name: BEND:SLTH:435
     metadata:
+      Effective Length (m): '1.000002'
       area: SLTH
       beam_path:
       - SC_HXR
@@ -45,6 +47,7 @@ magnets:
         ctrl: QUAD:SLTH:200:CTRL
       control_name: QUAD:SLTH:200
     metadata:
+      Effective Length (m): '.1068'
       area: SLTH
       beam_path:
       - SC_HXR
@@ -62,6 +65,7 @@ magnets:
         ctrl: QUAD:SLTH:220:CTRL
       control_name: QUAD:SLTH:220
     metadata:
+      Effective Length (m): '.263'
       area: SLTH
       beam_path:
       - SC_HXR
@@ -79,6 +83,7 @@ magnets:
         ctrl: XCOR:SLTH:218:CTRL
       control_name: XCOR:SLTH:218
     metadata:
+      Effective Length (m): '0'
       area: SLTH
       beam_path:
       - SC_HXR
@@ -96,6 +101,7 @@ magnets:
         ctrl: YCOR:SLTH:201:CTRL
       control_name: YCOR:SLTH:201
     metadata:
+      Effective Length (m): '0'
       area: SLTH
       beam_path:
       - SC_HXR

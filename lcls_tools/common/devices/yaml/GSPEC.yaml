@@ -11,6 +11,7 @@ magnets:
         ctrl: BEND:IN20:231:CTRL
       control_name: BEND:IN20:231
     metadata:
+      Effective Length (m): '.291216'
       area: GSPEC
       beam_path:
       - CU_GSPEC
@@ -28,6 +29,7 @@ magnets:
         ctrl: QUAD:IN20:811:CTRL
       control_name: QUAD:IN20:811
     metadata:
+      Effective Length (m): '.076'
       area: GSPEC
       beam_path:
       - CU_GSPEC
@@ -45,6 +47,7 @@ magnets:
         ctrl: QUAD:IN20:831:CTRL
       control_name: QUAD:IN20:831
     metadata:
+      Effective Length (m): '.076'
       area: GSPEC
       beam_path:
       - CU_GSPEC
@@ -62,6 +65,7 @@ magnets:
         ctrl: XCOR:IN20:811:CTRL
       control_name: XCOR:IN20:811
     metadata:
+      Effective Length (m): '0'
       area: GSPEC
       beam_path:
       - CU_GSPEC
@@ -79,6 +83,7 @@ magnets:
         ctrl: XCOR:IN20:831:CTRL
       control_name: XCOR:IN20:831
     metadata:
+      Effective Length (m): '0'
       area: GSPEC
       beam_path:
       - CU_GSPEC
@@ -96,6 +101,7 @@ magnets:
         ctrl: YCOR:IN20:812:CTRL
       control_name: YCOR:IN20:812
     metadata:
+      Effective Length (m): '0'
       area: GSPEC
       beam_path:
       - CU_GSPEC
@@ -113,6 +119,7 @@ magnets:
         ctrl: YCOR:IN20:832:CTRL
       control_name: YCOR:IN20:832
     metadata:
+      Effective Length (m): '0'
       area: GSPEC
       beam_path:
       - CU_GSPEC

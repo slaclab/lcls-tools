@@ -11,6 +11,7 @@ magnets:
         ctrl: BEND:SPD:719:CTRL
       control_name: BEND:SPD:719
     metadata:
+      Effective Length (m): '1.000004'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -28,6 +29,7 @@ magnets:
         ctrl: BEND:SPD:960:CTRL
       control_name: BEND:SPD:960
     metadata:
+      Effective Length (m): '1.000004'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -45,6 +47,7 @@ magnets:
         ctrl: QUAD:SPD:330:CTRL
       control_name: QUAD:SPD:330
     metadata:
+      Effective Length (m): '.263'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -68,6 +71,7 @@ magnets:
         ctrl: QUAD:SPD:690:CTRL
       control_name: QUAD:SPD:690
     metadata:
+      Effective Length (m): '.263'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -85,6 +89,7 @@ magnets:
         ctrl: QUAD:SPD:340:CTRL
       control_name: QUAD:SPD:340
     metadata:
+      Effective Length (m): '.263'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -108,6 +113,7 @@ magnets:
         ctrl: QUAD:SPD:700:CTRL
       control_name: QUAD:SPD:700
     metadata:
+      Effective Length (m): '.263'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -125,6 +131,7 @@ magnets:
         ctrl: XCOR:SPD:334:CTRL
       control_name: XCOR:SPD:334
     metadata:
+      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -148,6 +155,7 @@ magnets:
         ctrl: XCOR:SPD:688:CTRL
       control_name: XCOR:SPD:688
     metadata:
+      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -165,6 +173,7 @@ magnets:
         ctrl: XCOR:SPD:964:CTRL
       control_name: XCOR:SPD:964
     metadata:
+      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -182,6 +191,7 @@ magnets:
         ctrl: YCOR:SPD:343:CTRL
       control_name: YCOR:SPD:343
     metadata:
+      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -205,6 +215,7 @@ magnets:
         ctrl: YCOR:SPD:703:CTRL
       control_name: YCOR:SPD:703
     metadata:
+      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -222,6 +233,7 @@ magnets:
         ctrl: YCOR:SPD:965:CTRL
       control_name: YCOR:SPD:965
     metadata:
+      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD

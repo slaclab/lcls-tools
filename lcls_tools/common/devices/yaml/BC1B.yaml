@@ -11,6 +11,7 @@ magnets:
         ctrl: BEND:BC1B:200:CTRL
       control_name: BEND:BC1B:200
     metadata:
+      Effective Length (m): '.203545'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -35,6 +36,7 @@ magnets:
         ctrl: BEND:BC1B:400:CTRL
       control_name: BEND:BC1B:400
     metadata:
+      Effective Length (m): '.203545'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -59,6 +61,7 @@ magnets:
         ctrl: BEND:BC1B:600:CTRL
       control_name: BEND:BC1B:600
     metadata:
+      Effective Length (m): '.203545'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -83,6 +86,7 @@ magnets:
         ctrl: BEND:BC1B:800:CTRL
       control_name: BEND:BC1B:800
     metadata:
+      Effective Length (m): '.203545'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -107,6 +111,7 @@ magnets:
         ctrl: QUAD:BC1B:250:CTRL
       control_name: QUAD:BC1B:250
     metadata:
+      Effective Length (m): '.108'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -131,6 +136,7 @@ magnets:
         ctrl: QUAD:BC1B:750:CTRL
       control_name: QUAD:BC1B:750
     metadata:
+      Effective Length (m): '.108'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -155,6 +161,7 @@ magnets:
         ctrl: QUAD:BC1B:125:CTRL
       control_name: QUAD:BC1B:125
     metadata:
+      Effective Length (m): '.108'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -179,6 +186,7 @@ magnets:
         ctrl: XCOR:BC1B:100:CTRL
       control_name: XCOR:BC1B:100
     metadata:
+      Effective Length (m): '0'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -203,6 +211,7 @@ magnets:
         ctrl: XCOR:BC1B:722:CTRL
       control_name: XCOR:BC1B:722
     metadata:
+      Effective Length (m): '0'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -227,6 +236,7 @@ magnets:
         ctrl: YCOR:BC1B:100:CTRL
       control_name: YCOR:BC1B:100
     metadata:
+      Effective Length (m): '0'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -251,6 +261,7 @@ magnets:
         ctrl: YCOR:BC1B:277:CTRL
       control_name: YCOR:BC1B:277
     metadata:
+      Effective Length (m): '0'
       area: BC1B
       beam_path:
       - SC_BSYD

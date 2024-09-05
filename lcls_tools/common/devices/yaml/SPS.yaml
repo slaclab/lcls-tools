@@ -11,6 +11,7 @@ magnets:
         ctrl: KICK:SPS:385:CTRL
       control_name: KICK:SPS:385
     metadata:
+      Effective Length (m): '1'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -32,6 +33,7 @@ magnets:
         ctrl: KICK:SPS:390:CTRL
       control_name: KICK:SPS:390
     metadata:
+      Effective Length (m): '1'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -53,6 +55,7 @@ magnets:
         ctrl: KICK:SPS:395:CTRL
       control_name: KICK:SPS:395
     metadata:
+      Effective Length (m): '1'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -74,6 +77,7 @@ magnets:
         ctrl: BEND:SPS:470:CTRL
       control_name: BEND:SPS:470
     metadata:
+      Effective Length (m): '1.000021'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -95,6 +99,7 @@ magnets:
         ctrl: BEND:SPS:610:CTRL
       control_name: BEND:SPS:610
     metadata:
+      Effective Length (m): '1.000006'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -116,6 +121,7 @@ magnets:
         ctrl: BEND:SPS:800:CTRL
       control_name: BEND:SPS:800
     metadata:
+      Effective Length (m): '1.000006'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -137,6 +143,7 @@ magnets:
         ctrl: BEND:SPS:950:CTRL
       control_name: BEND:SPS:950
     metadata:
+      Effective Length (m): '1.000006'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -158,6 +165,7 @@ magnets:
         ctrl: BEND:SPS:530:CTRL
       control_name: BEND:SPS:530
     metadata:
+      Effective Length (m): '.6'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -179,6 +187,7 @@ magnets:
         ctrl: BEND:SPS:560:CTRL
       control_name: BEND:SPS:560
     metadata:
+      Effective Length (m): '.6'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -200,6 +209,7 @@ magnets:
         ctrl: QUAD:SPS:570:CTRL
       control_name: QUAD:SPS:570
     metadata:
+      Effective Length (m): '.32'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -221,6 +231,7 @@ magnets:
         ctrl: QUAD:SPS:580:CTRL
       control_name: QUAD:SPS:580
     metadata:
+      Effective Length (m): '.32'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -242,6 +253,7 @@ magnets:
         ctrl: QUAD:SPS:640:CTRL
       control_name: QUAD:SPS:640
     metadata:
+      Effective Length (m): '.32'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -263,6 +275,7 @@ magnets:
         ctrl: QUAD:SPS:650:CTRL
       control_name: QUAD:SPS:650
     metadata:
+      Effective Length (m): '.263'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -284,6 +297,7 @@ magnets:
         ctrl: QUAD:SPS:710:CTRL
       control_name: QUAD:SPS:710
     metadata:
+      Effective Length (m): '.263'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -305,6 +319,7 @@ magnets:
         ctrl: QUAD:SPS:770:CTRL
       control_name: QUAD:SPS:770
     metadata:
+      Effective Length (m): '.263'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -326,6 +341,7 @@ magnets:
         ctrl: QUAD:SPS:780:CTRL
       control_name: QUAD:SPS:780
     metadata:
+      Effective Length (m): '.32'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -347,6 +363,7 @@ magnets:
         ctrl: QUAD:SPS:830:CTRL
       control_name: QUAD:SPS:830
     metadata:
+      Effective Length (m): '.32'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -368,6 +385,7 @@ magnets:
         ctrl: QUAD:SPS:840:CTRL
       control_name: QUAD:SPS:840
     metadata:
+      Effective Length (m): '.32'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -389,6 +407,7 @@ magnets:
         ctrl: XCOR:SPS:578:CTRL
       control_name: XCOR:SPS:578
     metadata:
+      Effective Length (m): '0'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -410,6 +429,7 @@ magnets:
         ctrl: XCOR:SPS:634:CTRL
       control_name: XCOR:SPS:634
     metadata:
+      Effective Length (m): '0'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -431,6 +451,7 @@ magnets:
         ctrl: XCOR:SPS:706:CTRL
       control_name: XCOR:SPS:706
     metadata:
+      Effective Length (m): '0'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -452,6 +473,7 @@ magnets:
         ctrl: XCOR:SPS:776:CTRL
       control_name: XCOR:SPS:776
     metadata:
+      Effective Length (m): '0'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -473,6 +495,7 @@ magnets:
         ctrl: XCOR:SPS:836:CTRL
       control_name: XCOR:SPS:836
     metadata:
+      Effective Length (m): '0'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -494,6 +517,7 @@ magnets:
         ctrl: YCOR:SPS:587:CTRL
       control_name: YCOR:SPS:587
     metadata:
+      Effective Length (m): '0'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -515,6 +539,7 @@ magnets:
         ctrl: YCOR:SPS:643:CTRL
       control_name: YCOR:SPS:643
     metadata:
+      Effective Length (m): '0'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -536,6 +561,7 @@ magnets:
         ctrl: YCOR:SPS:767:CTRL
       control_name: YCOR:SPS:767
     metadata:
+      Effective Length (m): '0'
       area: SPS
       beam_path:
       - SC_S2_X
@@ -557,6 +583,7 @@ magnets:
         ctrl: YCOR:SPS:827:CTRL
       control_name: YCOR:SPS:827
     metadata:
+      Effective Length (m): '0'
       area: SPS
       beam_path:
       - SC_S2_X

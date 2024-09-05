@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:3330
     metadata:
+      Effective Length (m): '.9779'
       area: SPECT2
       beam_path:
       - F2_ELEC
@@ -15,6 +16,7 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3204
     metadata:
+      Effective Length (m): '1'
       area: SPECT2
       beam_path:
       - F2_ELEC
@@ -26,6 +28,7 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3261
     metadata:
+      Effective Length (m): '1'
       area: SPECT2
       beam_path:
       - F2_ELEC
@@ -37,6 +40,7 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3311
     metadata:
+      Effective Length (m): '1'
       area: SPECT2
       beam_path:
       - F2_ELEC

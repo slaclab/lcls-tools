@@ -11,6 +11,7 @@ magnets:
         ctrl: QUAD:IN20:361:CTRL
       control_name: QUAD:IN20:361
     metadata:
+      Effective Length (m): '.108'
       area: L0
       beam_path:
       - CU_ALINE
@@ -34,6 +35,7 @@ magnets:
         ctrl: QUAD:IN20:371:CTRL
       control_name: QUAD:IN20:371
     metadata:
+      Effective Length (m): '.108'
       area: L0
       beam_path:
       - CU_ALINE
@@ -57,6 +59,7 @@ magnets:
         ctrl: SOLN:IN20:311:CTRL
       control_name: SOLN:IN20:311
     metadata:
+      Effective Length (m): '0'
       area: L0
       beam_path:
       - CU_ALINE
@@ -80,6 +83,7 @@ magnets:
         ctrl: XCOR:IN20:311:CTRL
       control_name: XCOR:IN20:311
     metadata:
+      Effective Length (m): '0'
       area: L0
       beam_path:
       - CU_ALINE
@@ -103,6 +107,7 @@ magnets:
         ctrl: XCOR:IN20:341:CTRL
       control_name: XCOR:IN20:341
     metadata:
+      Effective Length (m): '0'
       area: L0
       beam_path:
       - CU_ALINE
@@ -126,6 +131,7 @@ magnets:
         ctrl: XCOR:IN20:381:CTRL
       control_name: XCOR:IN20:381
     metadata:
+      Effective Length (m): '0'
       area: L0
       beam_path:
       - CU_ALINE
@@ -149,6 +155,7 @@ magnets:
         ctrl: XCOR:IN20:411:CTRL
       control_name: XCOR:IN20:411
     metadata:
+      Effective Length (m): '0'
       area: L0
       beam_path:
       - CU_ALINE
@@ -172,6 +179,7 @@ magnets:
         ctrl: YCOR:IN20:312:CTRL
       control_name: YCOR:IN20:312
     metadata:
+      Effective Length (m): '0'
       area: L0
       beam_path:
       - CU_ALINE
@@ -195,6 +203,7 @@ magnets:
         ctrl: YCOR:IN20:342:CTRL
       control_name: YCOR:IN20:342
     metadata:
+      Effective Length (m): '0'
       area: L0
       beam_path:
       - CU_ALINE
@@ -218,6 +227,7 @@ magnets:
         ctrl: YCOR:IN20:382:CTRL
       control_name: YCOR:IN20:382
     metadata:
+      Effective Length (m): '0'
       area: L0
       beam_path:
       - CU_ALINE
@@ -241,6 +251,7 @@ magnets:
         ctrl: YCOR:IN20:412:CTRL
       control_name: YCOR:IN20:412
     metadata:
+      Effective Length (m): '0'
       area: L0
       beam_path:
       - CU_ALINE

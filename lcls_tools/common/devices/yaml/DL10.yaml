@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:451
     metadata:
+      Effective Length (m): '.12476'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -15,6 +16,7 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:461
     metadata:
+      Effective Length (m): '.12476'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -26,6 +28,7 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:475
     metadata:
+      Effective Length (m): '.12476'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -37,6 +40,7 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:481
     metadata:
+      Effective Length (m): '.12476'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -48,6 +52,7 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:661
     metadata:
+      Effective Length (m): '.203992'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -59,6 +64,7 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:751
     metadata:
+      Effective Length (m): '.203992'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -70,6 +76,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:731
     metadata:
+      Effective Length (m): '.1068'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -81,6 +88,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:425
     metadata:
+      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -92,6 +100,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:441
     metadata:
+      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -103,6 +112,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:511
     metadata:
+      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -114,6 +124,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:525
     metadata:
+      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -125,6 +136,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:631
     metadata:
+      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -136,6 +148,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:651
     metadata:
+      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -147,6 +160,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:771
     metadata:
+      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -158,6 +172,7 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:781
     metadata:
+      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -169,6 +184,7 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:491
     metadata:
+      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -180,6 +196,7 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:521
     metadata:
+      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -191,6 +208,7 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:641
     metadata:
+      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -202,6 +220,7 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:721
     metadata:
+      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -213,6 +232,7 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:761
     metadata:
+      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -224,6 +244,7 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:492
     metadata:
+      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -235,6 +256,7 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:522
     metadata:
+      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -246,6 +268,7 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:642
     metadata:
+      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -257,6 +280,7 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:722
     metadata:
+      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
@@ -268,6 +292,7 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:762
     metadata:
+      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC

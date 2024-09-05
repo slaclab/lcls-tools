@@ -4,6 +4,7 @@ magnets:
       PVs: {}
       control_name: LI11:QUAD:501
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -16,6 +17,7 @@ magnets:
       PVs: {}
       control_name: LI11:QUAD:601
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -28,6 +30,7 @@ magnets:
       PVs: {}
       control_name: LI11:QUAD:701
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -40,6 +43,7 @@ magnets:
       PVs: {}
       control_name: LI11:QUAD:801
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -52,6 +56,7 @@ magnets:
       PVs: {}
       control_name: LI11:QUAD:901
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -64,6 +69,7 @@ magnets:
       PVs: {}
       control_name: LI12:QUAD:201
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -76,6 +82,7 @@ magnets:
       PVs: {}
       control_name: LI12:QUAD:301
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -88,6 +95,7 @@ magnets:
       PVs: {}
       control_name: LI12:QUAD:401
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -100,6 +108,7 @@ magnets:
       PVs: {}
       control_name: LI12:QUAD:501
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -112,6 +121,7 @@ magnets:
       PVs: {}
       control_name: LI12:QUAD:601
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -124,6 +134,7 @@ magnets:
       PVs: {}
       control_name: LI12:QUAD:701
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -136,6 +147,7 @@ magnets:
       PVs: {}
       control_name: LI12:QUAD:801
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -148,6 +160,7 @@ magnets:
       PVs: {}
       control_name: LI12:QUAD:901
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -160,6 +173,7 @@ magnets:
       PVs: {}
       control_name: LI13:QUAD:201
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -172,6 +186,7 @@ magnets:
       PVs: {}
       control_name: LI13:QUAD:301
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -184,6 +199,7 @@ magnets:
       PVs: {}
       control_name: LI13:QUAD:401
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -196,6 +212,7 @@ magnets:
       PVs: {}
       control_name: LI13:QUAD:501
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -208,6 +225,7 @@ magnets:
       PVs: {}
       control_name: LI13:QUAD:601
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -220,6 +238,7 @@ magnets:
       PVs: {}
       control_name: LI13:QUAD:701
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -232,6 +251,7 @@ magnets:
       PVs: {}
       control_name: LI13:QUAD:801
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -244,6 +264,7 @@ magnets:
       PVs: {}
       control_name: LI13:QUAD:901
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -256,6 +277,7 @@ magnets:
       PVs: {}
       control_name: LI14:QUAD:201
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -268,6 +290,7 @@ magnets:
       PVs: {}
       control_name: LI14:QUAD:301
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -280,6 +303,7 @@ magnets:
       PVs: {}
       control_name: LI14:QUAD:401
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -292,6 +316,7 @@ magnets:
       PVs: {}
       control_name: LI14:QUAD:501
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -304,6 +329,7 @@ magnets:
       PVs: {}
       control_name: LI14:QUAD:601
     metadata:
+      Effective Length (m): '.1068'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -316,6 +342,7 @@ magnets:
       PVs: {}
       control_name: LI11:XCOR:402
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -328,6 +355,7 @@ magnets:
       PVs: {}
       control_name: LI11:XCOR:502
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -340,6 +368,7 @@ magnets:
       PVs: {}
       control_name: LI11:XCOR:602
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -352,6 +381,7 @@ magnets:
       PVs: {}
       control_name: LI11:XCOR:702
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -364,6 +394,7 @@ magnets:
       PVs: {}
       control_name: LI11:XCOR:802
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -376,6 +407,7 @@ magnets:
       PVs: {}
       control_name: LI11:XCOR:900
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -388,6 +420,7 @@ magnets:
       PVs: {}
       control_name: LI12:XCOR:202
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -400,6 +433,7 @@ magnets:
       PVs: {}
       control_name: LI12:XCOR:302
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -412,6 +446,7 @@ magnets:
       PVs: {}
       control_name: LI12:XCOR:402
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -424,6 +459,7 @@ magnets:
       PVs: {}
       control_name: LI12:XCOR:502
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -436,6 +472,7 @@ magnets:
       PVs: {}
       control_name: LI12:XCOR:602
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -448,6 +485,7 @@ magnets:
       PVs: {}
       control_name: LI12:XCOR:702
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -460,6 +498,7 @@ magnets:
       PVs: {}
       control_name: LI12:XCOR:802
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -472,6 +511,7 @@ magnets:
       PVs: {}
       control_name: LI12:XCOR:900
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -484,6 +524,7 @@ magnets:
       PVs: {}
       control_name: LI13:XCOR:202
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -496,6 +537,7 @@ magnets:
       PVs: {}
       control_name: LI13:XCOR:302
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -508,6 +550,7 @@ magnets:
       PVs: {}
       control_name: LI13:XCOR:402
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -520,6 +563,7 @@ magnets:
       PVs: {}
       control_name: LI13:XCOR:502
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -532,6 +576,7 @@ magnets:
       PVs: {}
       control_name: LI13:XCOR:602
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -544,6 +589,7 @@ magnets:
       PVs: {}
       control_name: LI13:XCOR:702
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -556,6 +602,7 @@ magnets:
       PVs: {}
       control_name: LI13:XCOR:802
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -568,6 +615,7 @@ magnets:
       PVs: {}
       control_name: LI13:XCOR:900
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -580,6 +628,7 @@ magnets:
       PVs: {}
       control_name: LI14:XCOR:202
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -592,6 +641,7 @@ magnets:
       PVs: {}
       control_name: LI14:XCOR:302
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -604,6 +654,7 @@ magnets:
       PVs: {}
       control_name: LI14:XCOR:402
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -616,6 +667,7 @@ magnets:
       PVs: {}
       control_name: LI14:XCOR:502
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -628,6 +680,7 @@ magnets:
       PVs: {}
       control_name: LI14:XCOR:602
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -640,6 +693,7 @@ magnets:
       PVs: {}
       control_name: LI14:XCOR:702
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -652,6 +706,7 @@ magnets:
       PVs: {}
       control_name: LI11:YCOR:403
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -664,6 +719,7 @@ magnets:
       PVs: {}
       control_name: LI11:YCOR:503
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -676,6 +732,7 @@ magnets:
       PVs: {}
       control_name: LI11:YCOR:603
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -688,6 +745,7 @@ magnets:
       PVs: {}
       control_name: LI11:YCOR:703
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -700,6 +758,7 @@ magnets:
       PVs: {}
       control_name: LI11:YCOR:803
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -712,6 +771,7 @@ magnets:
       PVs: {}
       control_name: LI11:YCOR:900
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -724,6 +784,7 @@ magnets:
       PVs: {}
       control_name: LI12:YCOR:203
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -736,6 +797,7 @@ magnets:
       PVs: {}
       control_name: LI12:YCOR:303
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -748,6 +810,7 @@ magnets:
       PVs: {}
       control_name: LI12:YCOR:403
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -760,6 +823,7 @@ magnets:
       PVs: {}
       control_name: LI12:YCOR:503
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -772,6 +836,7 @@ magnets:
       PVs: {}
       control_name: LI12:YCOR:603
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -784,6 +849,7 @@ magnets:
       PVs: {}
       control_name: LI12:YCOR:703
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -796,6 +862,7 @@ magnets:
       PVs: {}
       control_name: LI12:YCOR:803
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -808,6 +875,7 @@ magnets:
       PVs: {}
       control_name: LI12:YCOR:900
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -820,6 +888,7 @@ magnets:
       PVs: {}
       control_name: LI13:YCOR:203
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -832,6 +901,7 @@ magnets:
       PVs: {}
       control_name: LI13:YCOR:303
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -844,6 +914,7 @@ magnets:
       PVs: {}
       control_name: LI13:YCOR:403
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -856,6 +927,7 @@ magnets:
       PVs: {}
       control_name: LI13:YCOR:503
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -868,6 +940,7 @@ magnets:
       PVs: {}
       control_name: LI13:YCOR:603
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -880,6 +953,7 @@ magnets:
       PVs: {}
       control_name: LI13:YCOR:703
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -892,6 +966,7 @@ magnets:
       PVs: {}
       control_name: LI13:YCOR:803
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -904,6 +979,7 @@ magnets:
       PVs: {}
       control_name: LI13:YCOR:900
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -916,6 +992,7 @@ magnets:
       PVs: {}
       control_name: LI14:YCOR:203
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -928,6 +1005,7 @@ magnets:
       PVs: {}
       control_name: LI14:YCOR:303
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -940,6 +1018,7 @@ magnets:
       PVs: {}
       control_name: LI14:YCOR:403
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -952,6 +1031,7 @@ magnets:
       PVs: {}
       control_name: LI14:YCOR:503
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -964,6 +1044,7 @@ magnets:
       PVs: {}
       control_name: LI14:YCOR:603
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
@@ -976,6 +1057,7 @@ magnets:
       PVs: {}
       control_name: LI14:YCOR:703
     metadata:
+      Effective Length (m): '0'
       area: L2F
       beam_path:
       - F2_ELEC
