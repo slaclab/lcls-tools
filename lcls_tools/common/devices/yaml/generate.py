@@ -13,7 +13,7 @@ from lcls_tools.common.devices.yaml.controls_information import (
     get_screen_controls_information,
     get_wire_controls_information,
 )
-import pprint
+
 
 class YAMLGenerator:
     def __init__(
@@ -36,7 +36,8 @@ class YAMLGenerator:
         self._beam_paths = self.extract_beampaths()
 
     def _filter_elements_by_fields(self, required_fields: List[str]) -> Dict[str, Any]:
-        #TODO: store csv data in dictionary in some arrangement so that this file does need to be parsed so many times.
+        # TODO: store csv data in dictionary in some arrangement so that
+        # this file does need to be parsed so many times.
         # it is referenced by extract devices and extract_metadata
         csv_reader = None
         with open(self.csv_location, "r") as file:
@@ -283,25 +284,17 @@ class YAMLGenerator:
             pv_search_terms=possible_magnet_pvs,
         )
 
-
         if basic_magnet_data:
-
-            magnet_names = [key for key in basic_magnet_data.keys()] 
-            
+            magnet_names = [key for key in basic_magnet_data.keys()]
             additional_metadata_data = get_magnet_metadata(magnet_names,self.extract_metadata_by_device_names)
             # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
             additional_controls_data = get_magnet_controls_information()
-
-            pprint.pprint(basic_magnet_data)
-            pprint.pprint(additional_controls_data)
-
             complete_magnet_data = self.add_extra_data_to_device(
                 device_data=basic_magnet_data,
                 additional_controls_information=additional_controls_data,
                 additional_metadata=additional_metadata_data,
             )
 
-            pprint.pprint(complete_magnet_data)
             return complete_magnet_data
         else:
             return {}
@@ -392,20 +385,21 @@ class YAMLGenerator:
         device_names=Optional[List[str]],
         required_fields=Optional[List[str]]     
     ):
-        #TODO: try not to call filter elements so many times as it parses csv
+        # TODO: try not to call filter elements so many times as it parses csv
         if required_fields:
             elements = self._filter_elements_by_fields(
-            required_fields=required_fields
+                required_fields=required_fields
             )
-        else:        
+        else:
             elements = self._filter_elements_by_fields(
-            required_fields=self._required_fields
+                required_fields=self._required_fields
             )
 
-        device_elements = {element["Element"]: {required_field: element[required_field]
+        device_elements = {
+                element["Element"]: {required_field: element[required_field]
                 for required_field in required_fields if "Element" not in required_field}
                 for element in elements
                 if element["Element"] in device_names
-            }
+                           }
 
         return device_elements

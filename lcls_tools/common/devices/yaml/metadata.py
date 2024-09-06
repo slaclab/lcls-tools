@@ -1,7 +1,7 @@
 from typing import List
 
 
-def get_magnet_metadata(magnet_names: List[str] = [], method: callable = None, **kwargs):
+def get_magnet_metadata(magnet_names: List[str] = [], method: callable = None):
     # return a data structure of the form:
     # {
     #  mag-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
@@ -9,7 +9,7 @@ def get_magnet_metadata(magnet_names: List[str] = [], method: callable = None, *
     #  ...
     # }
     if magnet_names and method:
-        #Add any additional metadata fields here
+        # Add any additional metadata fields here
         additional_fields = ['Element', 'Effective Length (m)']
         device_elements = method(magnet_names, additional_fields)
         return device_elements
