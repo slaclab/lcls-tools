@@ -81,15 +81,15 @@ class LBLM(Device):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+    @property
     def fast(self):
         """get fast data"""
-        print('fast')
-        # return self.controls_information.PVs.fast.get()
+        return "fast"
 
+    @property
     def i0_loss(self):
         """get i0 loss data"""
-        print('i0_loss')
-        # return self.controls_information.PVs.i0_loss.get()
+        return "i0 loss"
 
     # def gated_integral(self):
     #     """get gated integral data"""
