@@ -63,8 +63,7 @@ class GaussianModel(MethodBase):
         amplitude_var = 0.05
         amplitude_alpha = (amplitude_mean**2) / amplitude_var
         amplitude_beta = amplitude_mean / amplitude_var
-        amplitude_prior = gamma(amplitude_alpha, loc=0,
-                                scale=1 / amplitude_beta)
+        amplitude_prior = gamma(amplitude_alpha, loc=0, scale=1 / amplitude_beta)
 
         # Creating a normal distribution of points around the inital mean.
         mean_prior = norm(init_values["mean"], 0.1)
@@ -91,8 +90,7 @@ class GaussianModel(MethodBase):
         sigma = method_parameter_list[1]
         amplitude = method_parameter_list[2]
         offset = method_parameter_list[3]
-        return (np.sqrt(2 * np.pi) * amplitude
-                * norm.pdf((x - mean) / sigma) + offset)
+        return np.sqrt(2 * np.pi) * amplitude * norm.pdf((x - mean) / sigma) + offset
 
     def _log_prior(self, method_parameter_list: np.ndarray) -> float:
         return np.sum(

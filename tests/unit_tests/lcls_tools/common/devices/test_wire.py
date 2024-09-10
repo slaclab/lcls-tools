@@ -1,13 +1,12 @@
-#!/usr/local/lcls/package/python/current/bin/python
-
-# Built in
 # import datetime
 from unittest import TestCase
 from unittest.mock import Mock, patch  # , PropertyMock
+
 # import inspect
 
 # Local imports
 from lcls_tools.common.devices.reader import create_wire
+
 # from lcls_tools.common.devices.wire import WireCollection
 
 

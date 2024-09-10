@@ -20,17 +20,13 @@ class ModelParameters(BaseModel):
     @property
     def bounds(self):
         return np.vstack(
-            [
-                np.array(parameter.bounds)
-                for parameter in self.parameters.values()
-            ]
+            [np.array(parameter.bounds) for parameter in self.parameters.values()]
         )
 
     @property
     def initial_values(self):
         return np.array(
-            [parameter.initial_value
-                for parameter in self.parameters.values()]
+            [parameter.initial_value for parameter in self.parameters.values()]
         )
 
     @initial_values.setter
@@ -51,6 +47,7 @@ class ModelParameters(BaseModel):
 
 
 # TODO: define properties
+
 
 class MethodBase(ABC):
     """
@@ -105,8 +102,7 @@ class MethodBase(ABC):
     def _log_prior(self, params: np.ndarray):
         ...
 
-    def log_likelihood(self, x: np.ndarray, y: np.ndarray,
-                       method_parameter_dict: dict):
+    def log_likelihood(self, x: np.ndarray, y: np.ndarray, method_parameter_dict: dict):
         method_parameter_list = np.array(
             [
                 method_parameter_dict[parameter_name]

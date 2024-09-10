@@ -36,8 +36,7 @@ class ProjectionFit(BaseModel):
         s.t. data is between 0 and 1
         """
         data_copy = data.copy()
-        normalized_data = ((data_copy - np.min(data))
-                           / (np.max(data) - np.min(data)))
+        normalized_data = (data_copy - np.min(data)) / (np.max(data) - np.min(data))
         return normalized_data
 
     def unnormalize_model_params(
@@ -48,15 +47,13 @@ class ProjectionFit(BaseModel):
         to unnormalized values i.e the true fitted values of the distribution
         """
 
-        projection_data_range = (np.max(projection_data)
-                                 - np.min(projection_data))
+        projection_data_range = np.max(projection_data) - np.min(projection_data)
         length = len(projection_data)
         for key, val in method_params_dict.items():
             if "sigma" in key or "mean" in key:
                 true_fitted_val = val * length
             elif "offset" in key:
-                true_fitted_val = (val * projection_data_range
-                                   + np.min(projection_data))
+                true_fitted_val = val * projection_data_range + np.min(projection_data)
             else:
                 true_fitted_val = val * projection_data_range
             temp = {key: true_fitted_val}
@@ -103,6 +100,5 @@ class ProjectionFit(BaseModel):
         for i, param in enumerate(self.model.parameters.parameters):
             fitted_params_dict[param] = (res.x)[i]
         self.model.fitted_params_dict = fitted_params_dict.copy()
-        params_dict = self.unnormalize_model_params(fitted_params_dict,
-                                                    projection_data)
+        params_dict = self.unnormalize_model_params(fitted_params_dict, projection_data)
         return params_dict
