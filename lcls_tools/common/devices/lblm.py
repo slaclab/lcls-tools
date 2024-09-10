@@ -94,11 +94,15 @@ class LBLM(Device):
 
         return decorated
 
+    def fast(self):
+        """get fast data"""
+        self.controls_information.PVs.fast.get()
+
 
 class LBLMCollection(BaseModel):
     lblms: Dict[str, SerializeAsAny[LBLM]]
 
-    @field_validator("wires", mode="before")
+    @field_validator("lblms", mode="before")
     def validate_lblms(cls, v) -> Dict[str, LBLM]:
         for name, lblm in v.items():
             lblm = dict(lblm)
@@ -123,4 +127,3 @@ class LBLMCollection(BaseModel):
         else:
             lblm_names = list(self.lblms.keys())
         return lblm_names
- 
