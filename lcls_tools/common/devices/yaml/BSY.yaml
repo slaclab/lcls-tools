@@ -4,9 +4,9 @@ magnets:
       PVs: {}
       control_name: QUAD:BSY0:84
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   XC6:
@@ -14,9 +14,9 @@ magnets:
       PVs: {}
       control_name: XCOR:BSY0:87
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY09:
@@ -24,9 +24,9 @@ magnets:
       PVs: {}
       control_name: XCOR:BSY0:9
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY26:
@@ -34,9 +34,9 @@ magnets:
       PVs: {}
       control_name: XCOR:BSY0:26
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY34:
@@ -44,9 +44,9 @@ magnets:
       PVs: {}
       control_name: XCOR:BSY0:34
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY36:
@@ -54,9 +54,9 @@ magnets:
       PVs: {}
       control_name: XCOR:BSY0:36
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY60:
@@ -64,9 +64,9 @@ magnets:
       PVs: {}
       control_name: XCOR:BSY0:60
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY71:
@@ -74,9 +74,9 @@ magnets:
       PVs: {}
       control_name: XCOR:BSY0:71
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY81:
@@ -84,9 +84,9 @@ magnets:
       PVs: {}
       control_name: XCOR:BSY0:81
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   YC5:
@@ -94,9 +94,9 @@ magnets:
       PVs: {}
       control_name: YCOR:BSY0:86
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY10:
@@ -104,9 +104,9 @@ magnets:
       PVs: {}
       control_name: YCOR:BSY0:10
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY27:
@@ -114,9 +114,9 @@ magnets:
       PVs: {}
       control_name: YCOR:BSY0:27
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY35:
@@ -124,9 +124,9 @@ magnets:
       PVs: {}
       control_name: YCOR:BSY0:35
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY37:
@@ -134,9 +134,9 @@ magnets:
       PVs: {}
       control_name: YCOR:BSY0:37
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY62:
@@ -144,9 +144,9 @@ magnets:
       PVs: {}
       control_name: YCOR:BSY0:62
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY72:
@@ -154,9 +154,9 @@ magnets:
       PVs: {}
       control_name: YCOR:BSY0:72
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY82:
@@ -164,9 +164,9 @@ magnets:
       PVs: {}
       control_name: YCOR:BSY0:82
     metadata:
-      Effective Length (m): ''
       area: BSY
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
 screens:

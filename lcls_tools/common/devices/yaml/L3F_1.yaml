@@ -4,12 +4,12 @@ magnets:
       PVs: {}
       control_name: LI15:QUAD:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 435.56
       type: QUAD
   Q15301:
@@ -17,12 +17,12 @@ magnets:
       PVs: {}
       control_name: LI15:QUAD:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 447.905
       type: QUAD
   Q15401:
@@ -30,12 +30,12 @@ magnets:
       PVs: {}
       control_name: LI15:QUAD:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 460.249
       type: QUAD
   Q15501:
@@ -43,12 +43,12 @@ magnets:
       PVs: {}
       control_name: LI15:QUAD:501
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 472.594
       type: QUAD
   Q15601:
@@ -56,12 +56,12 @@ magnets:
       PVs: {}
       control_name: LI15:QUAD:601
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 484.938
       type: QUAD
   Q15701:
@@ -69,12 +69,12 @@ magnets:
       PVs: {}
       control_name: LI15:QUAD:701
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 497.282
       type: QUAD
   Q15801:
@@ -82,12 +82,12 @@ magnets:
       PVs: {}
       control_name: LI15:QUAD:801
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 509.627
       type: QUAD
   Q15901:
@@ -95,12 +95,12 @@ magnets:
       PVs: {}
       control_name: LI15:QUAD:901
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 522.29
       type: QUAD
   Q16201:
@@ -108,12 +108,12 @@ magnets:
       PVs: {}
       control_name: LI16:QUAD:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 537.16
       type: QUAD
   Q16301:
@@ -121,12 +121,12 @@ magnets:
       PVs: {}
       control_name: LI16:QUAD:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 549.505
       type: QUAD
   Q16401:
@@ -134,12 +134,12 @@ magnets:
       PVs: {}
       control_name: LI16:QUAD:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 561.849
       type: QUAD
   Q16501:
@@ -147,12 +147,12 @@ magnets:
       PVs: {}
       control_name: LI16:QUAD:501
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 574.194
       type: QUAD
   Q16601:
@@ -160,12 +160,12 @@ magnets:
       PVs: {}
       control_name: LI16:QUAD:601
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 586.538
       type: QUAD
   Q16701:
@@ -173,12 +173,12 @@ magnets:
       PVs: {}
       control_name: LI16:QUAD:701
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 598.882
       type: QUAD
   Q16801:
@@ -186,12 +186,12 @@ magnets:
       PVs: {}
       control_name: LI16:QUAD:801
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 611.227
       type: QUAD
   Q16901:
@@ -199,12 +199,12 @@ magnets:
       PVs: {}
       control_name: LI16:QUAD:901
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 623.89
       type: QUAD
   Q17201:
@@ -212,12 +212,12 @@ magnets:
       PVs: {}
       control_name: LI17:QUAD:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 638.76
       type: QUAD
   Q17301:
@@ -225,12 +225,12 @@ magnets:
       PVs: {}
       control_name: LI17:QUAD:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 651.105
       type: QUAD
   Q17401:
@@ -238,12 +238,12 @@ magnets:
       PVs: {}
       control_name: LI17:QUAD:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 663.449
       type: QUAD
   Q17501:
@@ -251,12 +251,12 @@ magnets:
       PVs: {}
       control_name: LI17:QUAD:501
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 675.794
       type: QUAD
   Q17601:
@@ -264,12 +264,12 @@ magnets:
       PVs: {}
       control_name: LI17:QUAD:601
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 688.138
       type: QUAD
   Q17701:
@@ -277,12 +277,12 @@ magnets:
       PVs: {}
       control_name: LI17:QUAD:701
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 700.482
       type: QUAD
   Q17801:
@@ -290,12 +290,12 @@ magnets:
       PVs: {}
       control_name: LI17:QUAD:801
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 712.827
       type: QUAD
   Q17901:
@@ -303,12 +303,12 @@ magnets:
       PVs: {}
       control_name: LI17:QUAD:901
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 725.49
       type: QUAD
   Q18201:
@@ -316,12 +316,12 @@ magnets:
       PVs: {}
       control_name: LI18:QUAD:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 740.36
       type: QUAD
   Q18301:
@@ -329,12 +329,12 @@ magnets:
       PVs: {}
       control_name: LI18:QUAD:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 752.705
       type: QUAD
   Q18401:
@@ -342,12 +342,12 @@ magnets:
       PVs: {}
       control_name: LI18:QUAD:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 765.049
       type: QUAD
   Q18501:
@@ -355,12 +355,12 @@ magnets:
       PVs: {}
       control_name: LI18:QUAD:501
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 777.394
       type: QUAD
   Q18601:
@@ -368,12 +368,12 @@ magnets:
       PVs: {}
       control_name: LI18:QUAD:601
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 789.738
       type: QUAD
   Q18701:
@@ -381,12 +381,12 @@ magnets:
       PVs: {}
       control_name: LI18:QUAD:701
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 802.082
       type: QUAD
   Q18801:
@@ -394,12 +394,12 @@ magnets:
       PVs: {}
       control_name: LI18:QUAD:801
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 814.427
       type: QUAD
   Q18901:
@@ -407,12 +407,12 @@ magnets:
       PVs: {}
       control_name: LI18:QUAD:901
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 827.09
       type: QUAD
   Q19201:
@@ -420,12 +420,12 @@ magnets:
       PVs: {}
       control_name: LI19:QUAD:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 841.96
       type: QUAD
   Q19301:
@@ -433,12 +433,12 @@ magnets:
       PVs: {}
       control_name: LI19:QUAD:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 854.305
       type: QUAD
   Q19401:
@@ -446,12 +446,12 @@ magnets:
       PVs: {}
       control_name: LI19:QUAD:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 866.649
       type: QUAD
   XC14900:
@@ -459,12 +459,12 @@ magnets:
       PVs: {}
       control_name: LI14:XCOR:900
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 423.626
       type: XCOR
   XC15202:
@@ -472,12 +472,12 @@ magnets:
       PVs: {}
       control_name: LI15:XCOR:202
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 435.966
       type: XCOR
   XC15302:
@@ -485,12 +485,12 @@ magnets:
       PVs: {}
       control_name: LI15:XCOR:302
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 448.316
       type: XCOR
   XC15402:
@@ -498,12 +498,12 @@ magnets:
       PVs: {}
       control_name: LI15:XCOR:402
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 460.656
       type: XCOR
   XC15502:
@@ -511,12 +511,12 @@ magnets:
       PVs: {}
       control_name: LI15:XCOR:502
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 473.006
       type: XCOR
   XC15602:
@@ -524,12 +524,12 @@ magnets:
       PVs: {}
       control_name: LI15:XCOR:602
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 485.346
       type: XCOR
   XC15702:
@@ -537,12 +537,12 @@ magnets:
       PVs: {}
       control_name: LI15:XCOR:702
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 497.696
       type: XCOR
   XC15802:
@@ -550,12 +550,12 @@ magnets:
       PVs: {}
       control_name: LI15:XCOR:802
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 510.036
       type: XCOR
   XC15900:
@@ -563,12 +563,12 @@ magnets:
       PVs: {}
       control_name: LI15:XCOR:900
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 521.226
       type: XCOR
   XC16202:
@@ -576,12 +576,12 @@ magnets:
       PVs: {}
       control_name: LI16:XCOR:202
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 537.566
       type: XCOR
   XC16302:
@@ -589,12 +589,12 @@ magnets:
       PVs: {}
       control_name: LI16:XCOR:302
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 549.916
       type: XCOR
   XC16402:
@@ -602,12 +602,12 @@ magnets:
       PVs: {}
       control_name: LI16:XCOR:402
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 562.256
       type: XCOR
   XC16502:
@@ -615,12 +615,12 @@ magnets:
       PVs: {}
       control_name: LI16:XCOR:502
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 574.606
       type: XCOR
   XC16602:
@@ -628,12 +628,12 @@ magnets:
       PVs: {}
       control_name: LI16:XCOR:602
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 586.946
       type: XCOR
   XC16702:
@@ -641,12 +641,12 @@ magnets:
       PVs: {}
       control_name: LI16:XCOR:702
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 599.296
       type: XCOR
   XC16802:
@@ -654,12 +654,12 @@ magnets:
       PVs: {}
       control_name: LI16:XCOR:802
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 611.636
       type: XCOR
   XC16900:
@@ -667,12 +667,12 @@ magnets:
       PVs: {}
       control_name: LI16:XCOR:900
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 622.826
       type: XCOR
   XC17202:
@@ -680,12 +680,12 @@ magnets:
       PVs: {}
       control_name: LI17:XCOR:202
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 639.166
       type: XCOR
   XC17302:
@@ -693,12 +693,12 @@ magnets:
       PVs: {}
       control_name: LI17:XCOR:302
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 651.516
       type: XCOR
   XC17402:
@@ -706,12 +706,12 @@ magnets:
       PVs: {}
       control_name: LI17:XCOR:402
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 663.856
       type: XCOR
   XC17502:
@@ -719,12 +719,12 @@ magnets:
       PVs: {}
       control_name: LI17:XCOR:502
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 676.206
       type: XCOR
   XC17602:
@@ -732,12 +732,12 @@ magnets:
       PVs: {}
       control_name: LI17:XCOR:602
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 688.546
       type: XCOR
   XC17702:
@@ -745,12 +745,12 @@ magnets:
       PVs: {}
       control_name: LI17:XCOR:702
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 700.896
       type: XCOR
   XC17802:
@@ -758,12 +758,12 @@ magnets:
       PVs: {}
       control_name: LI17:XCOR:802
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 713.236
       type: XCOR
   XC17900:
@@ -771,12 +771,12 @@ magnets:
       PVs: {}
       control_name: LI17:XCOR:900
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 724.325
       type: XCOR
   XC18202:
@@ -784,12 +784,12 @@ magnets:
       PVs: {}
       control_name: LI18:XCOR:202
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 740.766
       type: XCOR
   XC18302:
@@ -797,12 +797,12 @@ magnets:
       PVs: {}
       control_name: LI18:XCOR:302
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 753.116
       type: XCOR
   XC18402:
@@ -810,12 +810,12 @@ magnets:
       PVs: {}
       control_name: LI18:XCOR:402
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 765.456
       type: XCOR
   XC18502:
@@ -823,12 +823,12 @@ magnets:
       PVs: {}
       control_name: LI18:XCOR:502
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 777.806
       type: XCOR
   XC18602:
@@ -836,12 +836,12 @@ magnets:
       PVs: {}
       control_name: LI18:XCOR:602
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 790.146
       type: XCOR
   XC18702:
@@ -849,12 +849,12 @@ magnets:
       PVs: {}
       control_name: LI18:XCOR:702
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 802.496
       type: XCOR
   XC18802:
@@ -862,12 +862,12 @@ magnets:
       PVs: {}
       control_name: LI18:XCOR:802
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 814.836
       type: XCOR
   XC18900:
@@ -875,12 +875,12 @@ magnets:
       PVs: {}
       control_name: LI18:XCOR:900
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 825.912
       type: XCOR
   XC19202:
@@ -888,12 +888,12 @@ magnets:
       PVs: {}
       control_name: LI19:XCOR:202
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 842.366
       type: XCOR
   XC19302:
@@ -901,12 +901,12 @@ magnets:
       PVs: {}
       control_name: LI19:XCOR:302
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 854.716
       type: XCOR
   XC19402:
@@ -914,12 +914,12 @@ magnets:
       PVs: {}
       control_name: LI19:XCOR:402
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 867.056
       type: XCOR
   YC14900:
@@ -927,12 +927,12 @@ magnets:
       PVs: {}
       control_name: LI14:YCOR:900
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 423.876
       type: YCOR
   YC15203:
@@ -940,12 +940,12 @@ magnets:
       PVs: {}
       control_name: LI15:YCOR:203
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 436.216
       type: YCOR
   YC15303:
@@ -953,12 +953,12 @@ magnets:
       PVs: {}
       control_name: LI15:YCOR:303
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 448.721
       type: YCOR
   YC15403:
@@ -966,12 +966,12 @@ magnets:
       PVs: {}
       control_name: LI15:YCOR:403
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 460.906
       type: YCOR
   YC15503:
@@ -979,12 +979,12 @@ magnets:
       PVs: {}
       control_name: LI15:YCOR:503
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 473.4
       type: YCOR
   YC15603:
@@ -992,12 +992,12 @@ magnets:
       PVs: {}
       control_name: LI15:YCOR:603
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 485.596
       type: YCOR
   YC15703:
@@ -1005,12 +1005,12 @@ magnets:
       PVs: {}
       control_name: LI15:YCOR:703
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 497.946
       type: YCOR
   YC15803:
@@ -1018,12 +1018,12 @@ magnets:
       PVs: {}
       control_name: LI15:YCOR:803
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 510.478
       type: YCOR
   YC15900:
@@ -1031,12 +1031,12 @@ magnets:
       PVs: {}
       control_name: LI15:YCOR:900
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 521.476
       type: YCOR
   YC16203:
@@ -1044,12 +1044,12 @@ magnets:
       PVs: {}
       control_name: LI16:YCOR:203
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 537.932
       type: YCOR
   YC16303:
@@ -1057,12 +1057,12 @@ magnets:
       PVs: {}
       control_name: LI16:YCOR:303
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 550.166
       type: YCOR
   YC16403:
@@ -1070,12 +1070,12 @@ magnets:
       PVs: {}
       control_name: LI16:YCOR:403
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 562.624
       type: YCOR
   YC16503:
@@ -1083,12 +1083,12 @@ magnets:
       PVs: {}
       control_name: LI16:YCOR:503
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 574.971
       type: YCOR
   YC16603:
@@ -1096,12 +1096,12 @@ magnets:
       PVs: {}
       control_name: LI16:YCOR:603
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 587.36
       type: YCOR
   YC16703:
@@ -1109,12 +1109,12 @@ magnets:
       PVs: {}
       control_name: LI16:YCOR:703
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 599.686
       type: YCOR
   YC16803:
@@ -1122,12 +1122,12 @@ magnets:
       PVs: {}
       control_name: LI16:YCOR:803
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 611.886
       type: YCOR
   YC16900:
@@ -1135,12 +1135,12 @@ magnets:
       PVs: {}
       control_name: LI16:YCOR:900
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 623.076
       type: YCOR
   YC17203:
@@ -1148,12 +1148,12 @@ magnets:
       PVs: {}
       control_name: LI17:YCOR:203
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 639.548
       type: YCOR
   YC17303:
@@ -1161,12 +1161,12 @@ magnets:
       PVs: {}
       control_name: LI17:YCOR:303
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 651.766
       type: YCOR
   YC17403:
@@ -1174,12 +1174,12 @@ magnets:
       PVs: {}
       control_name: LI17:YCOR:403
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 664.106
       type: YCOR
   YC17503:
@@ -1187,12 +1187,12 @@ magnets:
       PVs: {}
       control_name: LI17:YCOR:503
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 676.59
       type: YCOR
   YC17603:
@@ -1200,12 +1200,12 @@ magnets:
       PVs: {}
       control_name: LI17:YCOR:603
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 688.941
       type: YCOR
   YC17703:
@@ -1213,12 +1213,12 @@ magnets:
       PVs: {}
       control_name: LI17:YCOR:703
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 701.146
       type: YCOR
   YC17803:
@@ -1226,12 +1226,12 @@ magnets:
       PVs: {}
       control_name: LI17:YCOR:803
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 713.486
       type: YCOR
   YC17900:
@@ -1239,12 +1239,12 @@ magnets:
       PVs: {}
       control_name: LI17:YCOR:900
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 724.676
       type: YCOR
   YC18203:
@@ -1252,12 +1252,12 @@ magnets:
       PVs: {}
       control_name: LI18:YCOR:203
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 741.154
       type: YCOR
   YC18303:
@@ -1265,12 +1265,12 @@ magnets:
       PVs: {}
       control_name: LI18:YCOR:303
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 753.366
       type: YCOR
   YC18403:
@@ -1278,12 +1278,12 @@ magnets:
       PVs: {}
       control_name: LI18:YCOR:403
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 765.706
       type: YCOR
   YC18503:
@@ -1291,12 +1291,12 @@ magnets:
       PVs: {}
       control_name: LI18:YCOR:503
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 778.216
       type: YCOR
   YC18603:
@@ -1304,12 +1304,12 @@ magnets:
       PVs: {}
       control_name: LI18:YCOR:603
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 790.535
       type: YCOR
   YC18703:
@@ -1317,12 +1317,12 @@ magnets:
       PVs: {}
       control_name: LI18:YCOR:703
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 802.876
       type: YCOR
   YC18803:
@@ -1330,12 +1330,12 @@ magnets:
       PVs: {}
       control_name: LI18:YCOR:803
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 815.249
       type: YCOR
   YC18900:
@@ -1343,12 +1343,12 @@ magnets:
       PVs: {}
       control_name: LI18:YCOR:900
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 826.276
       type: YCOR
   YC19203:
@@ -1356,12 +1356,12 @@ magnets:
       PVs: {}
       control_name: LI19:YCOR:203
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 842.726
       type: YCOR
   YC19303:
@@ -1369,12 +1369,12 @@ magnets:
       PVs: {}
       control_name: LI19:YCOR:303
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 855.086
       type: YCOR
   YC19403:
@@ -1382,12 +1382,12 @@ magnets:
       PVs: {}
       control_name: LI19:YCOR:403
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 867.446
       type: YCOR
   YC57145:
@@ -1395,12 +1395,12 @@ magnets:
       PVs: {}
       control_name: LI19:YCOR:7145
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 877.457
       type: YCOR
   YC57146:
@@ -1408,12 +1408,12 @@ magnets:
       PVs: {}
       control_name: LI19:YCOR:7146
     metadata:
-      Effective Length (m): '0'
       area: L3F_1
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 877.778
       type: YCOR
 screens:

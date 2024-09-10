@@ -11,7 +11,6 @@ magnets:
         ctrl: QUAD:L2B:0485:CTRL
       control_name: QUAD:L2B:0485
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -22,6 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 201.357
       type: QUAD
   QCM05:
@@ -36,7 +36,6 @@ magnets:
         ctrl: QUAD:L2B:0585:CTRL
       control_name: QUAD:L2B:0585
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -47,6 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 213.577
       type: QUAD
   QCM06:
@@ -61,7 +61,6 @@ magnets:
         ctrl: QUAD:L2B:0685:CTRL
       control_name: QUAD:L2B:0685
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -72,6 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 225.798
       type: QUAD
   QCM07:
@@ -86,7 +86,6 @@ magnets:
         ctrl: QUAD:L2B:0785:CTRL
       control_name: QUAD:L2B:0785
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -97,6 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 238.018
       type: QUAD
   QCM08:
@@ -111,7 +111,6 @@ magnets:
         ctrl: QUAD:L2B:0885:CTRL
       control_name: QUAD:L2B:0885
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -122,6 +121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 250.238
       type: QUAD
   QCM09:
@@ -136,7 +136,6 @@ magnets:
         ctrl: QUAD:L2B:0985:CTRL
       control_name: QUAD:L2B:0985
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -147,6 +146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 262.459
       type: QUAD
   QCM10:
@@ -161,7 +161,6 @@ magnets:
         ctrl: QUAD:L2B:1085:CTRL
       control_name: QUAD:L2B:1085
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -172,6 +171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 274.679
       type: QUAD
   QCM11:
@@ -186,7 +186,6 @@ magnets:
         ctrl: QUAD:L2B:1185:CTRL
       control_name: QUAD:L2B:1185
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -197,6 +196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 286.9
       type: QUAD
   QCM12:
@@ -211,7 +211,6 @@ magnets:
         ctrl: QUAD:L2B:1285:CTRL
       control_name: QUAD:L2B:1285
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -222,6 +221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 299.12
       type: QUAD
   QCM13:
@@ -236,7 +236,6 @@ magnets:
         ctrl: QUAD:L2B:1385:CTRL
       control_name: QUAD:L2B:1385
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -247,6 +246,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 311.34
       type: QUAD
   QCM14:
@@ -261,7 +261,6 @@ magnets:
         ctrl: QUAD:L2B:1485:CTRL
       control_name: QUAD:L2B:1485
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -272,6 +271,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 323.561
       type: QUAD
   QCM15:
@@ -286,7 +286,6 @@ magnets:
         ctrl: QUAD:L2B:1585:CTRL
       control_name: QUAD:L2B:1585
     metadata:
-      Effective Length (m): '.23'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -297,6 +296,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 335.781
       type: QUAD
   XCM04:
@@ -311,7 +311,6 @@ magnets:
         ctrl: XCOR:L2B:0485:CTRL
       control_name: XCOR:L2B:0485
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -322,6 +321,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 201.357
       type: XCOR
   XCM05:
@@ -336,7 +336,6 @@ magnets:
         ctrl: XCOR:L2B:0585:CTRL
       control_name: XCOR:L2B:0585
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -347,6 +346,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 213.577
       type: XCOR
   XCM06:
@@ -361,7 +361,6 @@ magnets:
         ctrl: XCOR:L2B:0685:CTRL
       control_name: XCOR:L2B:0685
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -372,6 +371,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 225.798
       type: XCOR
   XCM07:
@@ -386,7 +386,6 @@ magnets:
         ctrl: XCOR:L2B:0785:CTRL
       control_name: XCOR:L2B:0785
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -397,6 +396,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 238.018
       type: XCOR
   XCM08:
@@ -411,7 +411,6 @@ magnets:
         ctrl: XCOR:L2B:0885:CTRL
       control_name: XCOR:L2B:0885
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -422,6 +421,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 250.238
       type: XCOR
   XCM09:
@@ -436,7 +436,6 @@ magnets:
         ctrl: XCOR:L2B:0985:CTRL
       control_name: XCOR:L2B:0985
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -447,6 +446,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 262.459
       type: XCOR
   XCM10:
@@ -461,7 +461,6 @@ magnets:
         ctrl: XCOR:L2B:1085:CTRL
       control_name: XCOR:L2B:1085
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -472,6 +471,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 274.679
       type: XCOR
   XCM11:
@@ -486,7 +486,6 @@ magnets:
         ctrl: XCOR:L2B:1185:CTRL
       control_name: XCOR:L2B:1185
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -497,6 +496,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 286.9
       type: XCOR
   XCM12:
@@ -511,7 +511,6 @@ magnets:
         ctrl: XCOR:L2B:1285:CTRL
       control_name: XCOR:L2B:1285
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -522,6 +521,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 299.12
       type: XCOR
   XCM13:
@@ -536,7 +536,6 @@ magnets:
         ctrl: XCOR:L2B:1385:CTRL
       control_name: XCOR:L2B:1385
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -547,6 +546,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 311.34
       type: XCOR
   XCM14:
@@ -561,7 +561,6 @@ magnets:
         ctrl: XCOR:L2B:1485:CTRL
       control_name: XCOR:L2B:1485
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -572,6 +571,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 323.561
       type: XCOR
   XCM15:
@@ -586,7 +586,6 @@ magnets:
         ctrl: XCOR:L2B:1585:CTRL
       control_name: XCOR:L2B:1585
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -597,6 +596,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 335.781
       type: XCOR
   YCM04:
@@ -611,7 +611,6 @@ magnets:
         ctrl: YCOR:L2B:0485:CTRL
       control_name: YCOR:L2B:0485
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -622,6 +621,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 201.357
       type: YCOR
   YCM05:
@@ -636,7 +636,6 @@ magnets:
         ctrl: YCOR:L2B:0585:CTRL
       control_name: YCOR:L2B:0585
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -647,6 +646,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 213.577
       type: YCOR
   YCM06:
@@ -661,7 +661,6 @@ magnets:
         ctrl: YCOR:L2B:0685:CTRL
       control_name: YCOR:L2B:0685
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -672,6 +671,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 225.798
       type: YCOR
   YCM07:
@@ -686,7 +686,6 @@ magnets:
         ctrl: YCOR:L2B:0785:CTRL
       control_name: YCOR:L2B:0785
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -697,6 +696,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 238.018
       type: YCOR
   YCM08:
@@ -711,7 +711,6 @@ magnets:
         ctrl: YCOR:L2B:0885:CTRL
       control_name: YCOR:L2B:0885
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -722,6 +721,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 250.238
       type: YCOR
   YCM09:
@@ -736,7 +736,6 @@ magnets:
         ctrl: YCOR:L2B:0985:CTRL
       control_name: YCOR:L2B:0985
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -747,6 +746,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 262.459
       type: YCOR
   YCM10:
@@ -761,7 +761,6 @@ magnets:
         ctrl: YCOR:L2B:1085:CTRL
       control_name: YCOR:L2B:1085
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -772,6 +771,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 274.679
       type: YCOR
   YCM11:
@@ -786,7 +786,6 @@ magnets:
         ctrl: YCOR:L2B:1185:CTRL
       control_name: YCOR:L2B:1185
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -797,6 +796,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 286.9
       type: YCOR
   YCM12:
@@ -811,7 +811,6 @@ magnets:
         ctrl: YCOR:L2B:1285:CTRL
       control_name: YCOR:L2B:1285
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -822,6 +821,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 299.12
       type: YCOR
   YCM13:
@@ -836,7 +836,6 @@ magnets:
         ctrl: YCOR:L2B:1385:CTRL
       control_name: YCOR:L2B:1385
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -847,6 +846,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 311.34
       type: YCOR
   YCM14:
@@ -861,7 +861,6 @@ magnets:
         ctrl: YCOR:L2B:1485:CTRL
       control_name: YCOR:L2B:1485
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -872,6 +871,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 323.561
       type: YCOR
   YCM15:
@@ -886,7 +886,6 @@ magnets:
         ctrl: YCOR:L2B:1585:CTRL
       control_name: YCOR:L2B:1585
     metadata:
-      Effective Length (m): '0'
       area: L2B
       beam_path:
       - SC_BSYD
@@ -897,5 +896,6 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 335.781
       type: YCOR

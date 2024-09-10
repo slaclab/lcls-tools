@@ -4,11 +4,11 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:451
     metadata:
-      Effective Length (m): '.12476'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.12476
       sum_l_meters: 8.697
       type: BEND
   BCX10461:
@@ -16,11 +16,11 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:461
     metadata:
-      Effective Length (m): '.12476'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.12476
       sum_l_meters: 8.963
       type: BEND
   BCX10475:
@@ -28,11 +28,11 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:475
     metadata:
-      Effective Length (m): '.12476'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.12476
       sum_l_meters: 9.919
       type: BEND
   BCX10481:
@@ -40,11 +40,11 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:481
     metadata:
-      Effective Length (m): '.12476'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.12476
       sum_l_meters: 10.186
       type: BEND
   BX10661:
@@ -52,11 +52,11 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:661
     metadata:
-      Effective Length (m): '.203992'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.203992
       sum_l_meters: 16.852
       type: BEND
   BX10751:
@@ -64,11 +64,11 @@ magnets:
       PVs: {}
       control_name: BEND:IN10:751
     metadata:
-      Effective Length (m): '.203992'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.203992
       sum_l_meters: 18.616
       type: BEND
   QB10731:
@@ -76,11 +76,11 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:731
     metadata:
-      Effective Length (m): '.1068'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 17.734
       type: QUAD
   QE10425:
@@ -88,11 +88,11 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:425
     metadata:
-      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 8.052
       type: QUAD
   QE10441:
@@ -100,11 +100,11 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:441
     metadata:
-      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 8.453
       type: QUAD
   QE10511:
@@ -112,11 +112,11 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:511
     metadata:
-      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 11.145
       type: QUAD
   QE10525:
@@ -124,11 +124,11 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:525
     metadata:
-      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 11.535
       type: QUAD
   QM10631:
@@ -136,11 +136,11 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:631
     metadata:
-      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 15.917
       type: QUAD
   QM10651:
@@ -148,11 +148,11 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:651
     metadata:
-      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 16.473
       type: QUAD
   QM10771:
@@ -160,11 +160,11 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:771
     metadata:
-      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 19.134
       type: QUAD
   QM10781:
@@ -172,11 +172,11 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:781
     metadata:
-      Effective Length (m): '.108'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 19.539
       type: QUAD
   XC10491:
@@ -184,11 +184,11 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:491
     metadata:
-      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 10.705
       type: XCOR
   XC10521:
@@ -196,11 +196,11 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:521
     metadata:
-      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 11.345
       type: XCOR
   XC10641:
@@ -208,11 +208,11 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:641
     metadata:
-      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 16.119
       type: XCOR
   XC10721:
@@ -220,11 +220,11 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:721
     metadata:
-      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 17.515
       type: XCOR
   XC10761:
@@ -232,11 +232,11 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:761
     metadata:
-      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 18.939
       type: XCOR
   YC10492:
@@ -244,11 +244,11 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:492
     metadata:
-      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 10.705
       type: YCOR
   YC10522:
@@ -256,11 +256,11 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:522
     metadata:
-      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 11.345
       type: YCOR
   YC10642:
@@ -268,11 +268,11 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:642
     metadata:
-      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 16.119
       type: YCOR
   YC10722:
@@ -280,11 +280,11 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:722
     metadata:
-      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 17.515
       type: YCOR
   YC10762:
@@ -292,11 +292,11 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:762
     metadata:
-      Effective Length (m): '0'
       area: DL10
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 18.939
       type: YCOR
 screens:

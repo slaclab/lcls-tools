@@ -11,7 +11,6 @@ magnets:
         ctrl: BEND:BC1B:200:CTRL
       control_name: BEND:BC1B:200
     metadata:
-      Effective Length (m): '.203545'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -22,6 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.203545
       sum_l_meters: 132.223
       type: BEND
   BCX12:
@@ -36,7 +36,6 @@ magnets:
         ctrl: BEND:BC1B:400:CTRL
       control_name: BEND:BC1B:400
     metadata:
-      Effective Length (m): '.203545'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -47,6 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.203545
       sum_l_meters: 134.874
       type: BEND
   BCX13:
@@ -61,7 +61,6 @@ magnets:
         ctrl: BEND:BC1B:600:CTRL
       control_name: BEND:BC1B:600
     metadata:
-      Effective Length (m): '.203545'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -72,6 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.203545
       sum_l_meters: 136.827
       type: BEND
   BCX14:
@@ -86,7 +86,6 @@ magnets:
         ctrl: BEND:BC1B:800:CTRL
       control_name: BEND:BC1B:800
     metadata:
-      Effective Length (m): '.203545'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -97,6 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.203545
       sum_l_meters: 139.478
       type: BEND
   CQ11B:
@@ -111,7 +111,6 @@ magnets:
         ctrl: QUAD:BC1B:250:CTRL
       control_name: QUAD:BC1B:250
     metadata:
-      Effective Length (m): '.108'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -122,6 +121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 132.625
       type: QUAD
   CQ12B:
@@ -136,7 +136,6 @@ magnets:
         ctrl: QUAD:BC1B:750:CTRL
       control_name: QUAD:BC1B:750
     metadata:
-      Effective Length (m): '.108'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -147,6 +146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 139.076
       type: QUAD
   Q1C01:
@@ -161,7 +161,6 @@ magnets:
         ctrl: QUAD:BC1B:125:CTRL
       control_name: QUAD:BC1B:125
     metadata:
-      Effective Length (m): '.108'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -172,6 +171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 131.589
       type: QUAD
   XC1C00:
@@ -186,7 +186,6 @@ magnets:
         ctrl: XCOR:BC1B:100:CTRL
       control_name: XCOR:BC1B:100
     metadata:
-      Effective Length (m): '0'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -197,6 +196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 131.391
       type: XCOR
   XCM12B:
@@ -211,7 +211,6 @@ magnets:
         ctrl: XCOR:BC1B:722:CTRL
       control_name: XCOR:BC1B:722
     metadata:
-      Effective Length (m): '0'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -222,6 +221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 138.463
       type: XCOR
   YC1C00:
@@ -236,7 +236,6 @@ magnets:
         ctrl: YCOR:BC1B:100:CTRL
       control_name: YCOR:BC1B:100
     metadata:
-      Effective Length (m): '0'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -247,6 +246,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 131.391
       type: YCOR
   YCM12B:
@@ -261,7 +261,6 @@ magnets:
         ctrl: YCOR:BC1B:277:CTRL
       control_name: YCOR:BC1B:277
     metadata:
-      Effective Length (m): '0'
       area: BC1B
       beam_path:
       - SC_BSYD
@@ -272,6 +271,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 133.239
       type: YCOR
 screens:

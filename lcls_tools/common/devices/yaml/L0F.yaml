@@ -4,9 +4,9 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:361
     metadata:
-      Effective Length (m): '.108'
       area: L0F
       beam_path: []
+      l_eff: 0.108
       sum_l_meters: 4.412
       type: QUAD
   QA10371:
@@ -14,9 +14,9 @@ magnets:
       PVs: {}
       control_name: QUAD:IN10:371
     metadata:
-      Effective Length (m): '.108'
       area: L0F
       beam_path: []
+      l_eff: 0.108
       sum_l_meters: 4.741
       type: QUAD
   XC10311:
@@ -24,9 +24,9 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:311
     metadata:
-      Effective Length (m): '0'
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 1.94
       type: XCOR
   XC10381:
@@ -34,9 +34,9 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:381
     metadata:
-      Effective Length (m): '0'
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 5.256
       type: XCOR
   XC10411:
@@ -44,9 +44,9 @@ magnets:
       PVs: {}
       control_name: XCOR:IN10:411
     metadata:
-      Effective Length (m): '0'
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 7.56
       type: XCOR
   YC10312:
@@ -54,9 +54,9 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:312
     metadata:
-      Effective Length (m): '0'
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 1.94
       type: YCOR
   YC10382:
@@ -64,9 +64,9 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:382
     metadata:
-      Effective Length (m): '0'
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 5.256
       type: YCOR
   YC10412:
@@ -74,8 +74,8 @@ magnets:
       PVs: {}
       control_name: YCOR:IN10:412
     metadata:
-      Effective Length (m): '0'
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 7.56
       type: YCOR

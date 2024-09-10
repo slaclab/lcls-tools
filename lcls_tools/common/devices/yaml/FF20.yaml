@@ -4,11 +4,11 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3151
     metadata:
-      Effective Length (m): '.7142'
       area: FF20
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.7142
       sum_l_meters: 991.828
       type: QUAD
   Q1FF:
@@ -16,11 +16,11 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3141
     metadata:
-      Effective Length (m): '.7142'
       area: FF20
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.7142
       sum_l_meters: 990.25
       type: QUAD
   Q2FF:
@@ -28,11 +28,11 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3091
     metadata:
-      Effective Length (m): '.7142'
       area: FF20
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.7142
       sum_l_meters: 988.671
       type: QUAD
   SQ2:
@@ -40,8 +40,8 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:3015
     metadata:
-      Effective Length (m): ''
       area: FF20
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD

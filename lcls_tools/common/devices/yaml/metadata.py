@@ -12,6 +12,15 @@ def get_magnet_metadata(magnet_names: List[str] = [], method: callable = None):
         # Add any additional metadata fields here
         additional_fields = ['Element', 'Effective Length (m)']
         device_elements = method(magnet_names, additional_fields)
+        # change field names and values to be in different format
+        # if needed
+        for magnet in device_elements:
+            if 'Effective Length (m)' in device_elements[magnet]:
+                if device_elements[magnet]['Effective Length (m)'] == '':
+                    device_elements[magnet]['Effective Length (m)'] = 0
+                device_elements[magnet]['l_eff'] = float(
+                    device_elements[magnet]['Effective Length (m)'])
+                del device_elements[magnet]['Effective Length (m)']
         return device_elements
     else:
         return {}

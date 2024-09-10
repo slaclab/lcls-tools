@@ -11,7 +11,6 @@ magnets:
         ctrl: QUAD:EMIT2:150:CTRL
       control_name: QUAD:EMIT2:150
     metadata:
-      Effective Length (m): '.108'
       area: EMIT2
       beam_path:
       - SC_BSYD
@@ -22,6 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 368.187
       type: QUAD
   QE202:
@@ -36,7 +36,6 @@ magnets:
         ctrl: QUAD:EMIT2:300:CTRL
       control_name: QUAD:EMIT2:300
     metadata:
-      Effective Length (m): '.108'
       area: EMIT2
       beam_path:
       - SC_BSYD
@@ -47,6 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 373.201
       type: QUAD
   QE203:
@@ -61,7 +61,6 @@ magnets:
         ctrl: QUAD:EMIT2:800:CTRL
       control_name: QUAD:EMIT2:800
     metadata:
-      Effective Length (m): '.108'
       area: EMIT2
       beam_path:
       - SC_BSYD
@@ -72,6 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 392.11
       type: QUAD
   QE204:
@@ -86,7 +86,6 @@ magnets:
         ctrl: QUAD:EMIT2:900:CTRL
       control_name: QUAD:EMIT2:900
     metadata:
-      Effective Length (m): '.108'
       area: EMIT2
       beam_path:
       - SC_BSYD
@@ -97,6 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 395.218
       type: QUAD
   XCE202:
@@ -111,7 +111,6 @@ magnets:
         ctrl: XCOR:EMIT2:310:CTRL
       control_name: XCOR:EMIT2:310
     metadata:
-      Effective Length (m): '0'
       area: EMIT2
       beam_path:
       - SC_BSYD
@@ -122,6 +121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 373.577
       type: XCOR
   XCE204:
@@ -136,7 +136,6 @@ magnets:
         ctrl: XCOR:EMIT2:912:CTRL
       control_name: XCOR:EMIT2:912
     metadata:
-      Effective Length (m): '0'
       area: EMIT2
       beam_path:
       - SC_BSYD
@@ -147,6 +146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 395.594
       type: XCOR
   YCE201:
@@ -161,7 +161,6 @@ magnets:
         ctrl: YCOR:EMIT2:161:CTRL
       control_name: YCOR:EMIT2:161
     metadata:
-      Effective Length (m): '0'
       area: EMIT2
       beam_path:
       - SC_BSYD
@@ -172,6 +171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 368.562
       type: YCOR
   YCE203:
@@ -186,7 +186,6 @@ magnets:
         ctrl: YCOR:EMIT2:811:CTRL
       control_name: YCOR:EMIT2:811
     metadata:
-      Effective Length (m): '0'
       area: EMIT2
       beam_path:
       - SC_BSYD
@@ -197,6 +196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 392.485
       type: YCOR
 wires:

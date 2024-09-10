@@ -11,10 +11,10 @@ magnets:
         ctrl: BEND:SLTH:145:CTRL
       control_name: BEND:SLTH:145
     metadata:
-      Effective Length (m): '1.000002'
       area: SLTH
       beam_path:
       - SC_HXR
+      l_eff: 1.000002
       sum_l_meters: 3061.743
       type: BEND
   BXSP1H:
@@ -29,10 +29,10 @@ magnets:
         ctrl: BEND:SLTH:435:CTRL
       control_name: BEND:SLTH:435
     metadata:
-      Effective Length (m): '1.000002'
       area: SLTH
       beam_path:
       - SC_HXR
+      l_eff: 1.000002
       sum_l_meters: 3120.583
       type: BEND
   QSP12H:
@@ -47,10 +47,10 @@ magnets:
         ctrl: QUAD:SLTH:200:CTRL
       control_name: QUAD:SLTH:200
     metadata:
-      Effective Length (m): '.1068'
       area: SLTH
       beam_path:
       - SC_HXR
+      l_eff: 0.1068
       sum_l_meters: 3071.821
       type: QUAD
   QSP13H:
@@ -65,10 +65,10 @@ magnets:
         ctrl: QUAD:SLTH:220:CTRL
       control_name: QUAD:SLTH:220
     metadata:
-      Effective Length (m): '.263'
       area: SLTH
       beam_path:
       - SC_HXR
+      l_eff: 0.263
       sum_l_meters: 3076.667
       type: QUAD
   XCSP13H:
@@ -83,10 +83,10 @@ magnets:
         ctrl: XCOR:SLTH:218:CTRL
       control_name: XCOR:SLTH:218
     metadata:
-      Effective Length (m): '0'
       area: SLTH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 3076.174
       type: XCOR
   YCSP12H:
@@ -101,9 +101,9 @@ magnets:
         ctrl: YCOR:SLTH:201:CTRL
       control_name: YCOR:SLTH:201
     metadata:
-      Effective Length (m): '0'
       area: SLTH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 3072.275
       type: YCOR

@@ -4,11 +4,11 @@ magnets:
       PVs: {}
       control_name: BEND:LI11:314
     metadata:
-      Effective Length (m): '.2035'
       area: BC11_1
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.2035
       sum_l_meters: 40.514
       type: BEND
   BCX11331:
@@ -16,11 +16,11 @@ magnets:
       PVs: {}
       control_name: BEND:LI11:331
     metadata:
-      Effective Length (m): '.2035'
       area: BC11_1
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.2035
       sum_l_meters: 43.163
       type: BEND
   BCX11338:
@@ -28,11 +28,11 @@ magnets:
       PVs: {}
       control_name: BEND:LI11:338
     metadata:
-      Effective Length (m): '.2035'
       area: BC11_1
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.2035
       sum_l_meters: 44.197
       type: BEND
   BCX11355:
@@ -40,11 +40,11 @@ magnets:
       PVs: {}
       control_name: BEND:LI11:355
     metadata:
-      Effective Length (m): '.2035'
       area: BC11_1
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.2035
       sum_l_meters: 46.846
       type: BEND
   CQ11317:
@@ -52,11 +52,11 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:317
     metadata:
-      Effective Length (m): '.108'
       area: BC11_1
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 41.529
       type: QUAD
   CQ11352:
@@ -64,11 +64,11 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:352
     metadata:
-      Effective Length (m): '.108'
       area: BC11_1
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 45.954
       type: QUAD
   QM11312:
@@ -76,11 +76,11 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:312
     metadata:
-      Effective Length (m): '.1068'
       area: BC11_1
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 40.015
       type: QUAD
   SQ11340:
@@ -88,11 +88,11 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:340
     metadata:
-      Effective Length (m): '.108'
       area: BC11_1
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 45.677
       type: QUAD
   YC11321:
@@ -100,11 +100,11 @@ magnets:
       PVs: {}
       control_name: YCOR:LI11:321
     metadata:
-      Effective Length (m): '0'
       area: BC11_1
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 41.91
       type: YCOR
 screens:

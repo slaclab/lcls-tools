@@ -11,11 +11,11 @@ magnets:
         ctrl: BEND:DMPS:400:CTRL
       control_name: BEND:DMPS:400
     metadata:
-      Effective Length (m): '1.45203'
       area: DMPS
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 1.45203
       sum_l_meters: 3746.094
       type: BEND
   BYD2B:
@@ -30,11 +30,11 @@ magnets:
         ctrl: BEND:DMPS:410:CTRL
       control_name: BEND:DMPS:410
     metadata:
-      Effective Length (m): '1.45203'
       area: DMPS
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 1.45203
       sum_l_meters: 3747.794
       type: BEND
   BYD3B:
@@ -49,11 +49,11 @@ magnets:
         ctrl: BEND:DMPS:420:CTRL
       control_name: BEND:DMPS:420
     metadata:
-      Effective Length (m): '1.45203'
       area: DMPS
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 1.45203
       sum_l_meters: 3749.494
       type: BEND
   BYDSS:
@@ -68,11 +68,11 @@ magnets:
         ctrl: BEND:DMPS:395:CTRL
       control_name: BEND:DMPS:395
     metadata:
-      Effective Length (m): '.5'
       area: DMPS
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 0.5
       sum_l_meters: 3744.802
       type: BEND
   QDMP1B:
@@ -87,11 +87,11 @@ magnets:
         ctrl: QUAD:DMPS:500:CTRL
       control_name: QUAD:DMPS:500
     metadata:
-      Effective Length (m): '.43'
       area: DMPS
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 0.43
       sum_l_meters: 3761.951
       type: QUAD
   QDMP2B:
@@ -106,11 +106,11 @@ magnets:
         ctrl: QUAD:DMPS:600:CTRL
       control_name: QUAD:DMPS:600
     metadata:
-      Effective Length (m): '.43'
       area: DMPS
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 0.43
       sum_l_meters: 3763.001
       type: QUAD
   QUE1B:
@@ -125,7 +125,6 @@ magnets:
         ctrl: QUAD:DMPS:300:CTRL
       control_name: QUAD:DMPS:300
     metadata:
-      Effective Length (m): '.263'
       area: DMPS
       beam_path:
       - CU_SXR
@@ -134,6 +133,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3733.799
       type: QUAD
   QUE2B:
@@ -148,7 +148,6 @@ magnets:
         ctrl: QUAD:DMPS:380:CTRL
       control_name: QUAD:DMPS:380
     metadata:
-      Effective Length (m): '.263'
       area: DMPS
       beam_path:
       - CU_SXR
@@ -157,6 +156,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3741.589
       type: QUAD
   XCD3B:
@@ -171,7 +171,6 @@ magnets:
         ctrl: XCOR:DMPS:392:CTRL
       control_name: XCOR:DMPS:392
     metadata:
-      Effective Length (m): '0'
       area: DMPS
       beam_path:
       - CU_SXR
@@ -180,6 +179,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3743.997
       type: XCOR
   XCDDB:
@@ -194,11 +194,11 @@ magnets:
         ctrl: XCOR:DMPS:602:CTRL
       control_name: XCOR:DMPS:602
     metadata:
-      Effective Length (m): '0'
       area: DMPS
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3763.691
       type: XCOR
   XCUE2B:
@@ -213,7 +213,6 @@ magnets:
         ctrl: XCOR:DMPS:298:CTRL
       control_name: XCOR:DMPS:298
     metadata:
-      Effective Length (m): '0'
       area: DMPS
       beam_path:
       - CU_SXR
@@ -222,6 +221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3732.969
       type: XCOR
   YCD3B:
@@ -236,7 +236,6 @@ magnets:
         ctrl: YCOR:DMPS:391:CTRL
       control_name: YCOR:DMPS:391
     metadata:
-      Effective Length (m): '0'
       area: DMPS
       beam_path:
       - CU_SXR
@@ -245,6 +244,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3743.653
       type: YCOR
   YCDDB:
@@ -259,11 +259,11 @@ magnets:
         ctrl: YCOR:DMPS:440:CTRL
       control_name: YCOR:DMPS:440
     metadata:
-      Effective Length (m): '0'
       area: DMPS
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3761.001
       type: YCOR
   YCUE1B:
@@ -278,7 +278,6 @@ magnets:
         ctrl: YCOR:DMPS:201:CTRL
       control_name: YCOR:DMPS:201
     metadata:
-      Effective Length (m): '0'
       area: DMPS
       beam_path:
       - CU_SXR
@@ -287,6 +286,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3731.228
       type: YCOR
 screens:

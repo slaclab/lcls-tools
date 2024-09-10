@@ -11,10 +11,10 @@ magnets:
         ctrl: KICK:SPH:110:CTRL
       control_name: KICK:SPH:110
     metadata:
-      Effective Length (m): '1'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 1.0
       sum_l_meters: 2792.194
       type: BEND
   BKYSP2H:
@@ -29,10 +29,10 @@ magnets:
         ctrl: KICK:SPH:115:CTRL
       control_name: KICK:SPH:115
     metadata:
-      Effective Length (m): '1'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 1.0
       sum_l_meters: 2793.494
       type: BEND
   BKYSP3H:
@@ -47,10 +47,10 @@ magnets:
         ctrl: KICK:SPH:120:CTRL
       control_name: KICK:SPH:120
     metadata:
-      Effective Length (m): '1'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 1.0
       sum_l_meters: 2794.794
       type: BEND
   BLXSPH:
@@ -65,10 +65,10 @@ magnets:
         ctrl: BEND:SPH:170:CTRL
       control_name: BEND:SPH:170
     metadata:
-      Effective Length (m): '1.000006'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 1.000006
       sum_l_meters: 2813.494
       type: BEND
   BRSP1H:
@@ -83,10 +83,10 @@ magnets:
         ctrl: BEND:SPH:370:CTRL
       control_name: BEND:SPH:370
     metadata:
-      Effective Length (m): '1.000002'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 1.000002
       sum_l_meters: 2872.334
       type: BEND
   BYSP1H:
@@ -101,10 +101,10 @@ magnets:
         ctrl: BEND:SPH:270:CTRL
       control_name: BEND:SPH:270
     metadata:
-      Effective Length (m): '.6'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.6
       sum_l_meters: 2845.85
       type: BEND
   BYSP2H:
@@ -119,10 +119,10 @@ magnets:
         ctrl: BEND:SPH:310:CTRL
       control_name: BEND:SPH:310
     metadata:
-      Effective Length (m): '.6'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.6
       sum_l_meters: 2856.45
       type: BEND
   QSP10H:
@@ -137,10 +137,10 @@ magnets:
         ctrl: QUAD:SPH:920:CTRL
       control_name: QUAD:SPH:920
     metadata:
-      Effective Length (m): '.263'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.263
       sum_l_meters: 3037.415
       type: QUAD
   QSP11H:
@@ -155,10 +155,10 @@ magnets:
         ctrl: QUAD:SPH:940:CTRL
       control_name: QUAD:SPH:940
     metadata:
-      Effective Length (m): '.32'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.32
       sum_l_meters: 3046.498
       type: QUAD
   QSP1H:
@@ -173,10 +173,10 @@ magnets:
         ctrl: QUAD:SPH:320:CTRL
       control_name: QUAD:SPH:320
     metadata:
-      Effective Length (m): '.263'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.263
       sum_l_meters: 2857.41
       type: QUAD
   QSP2H:
@@ -191,10 +191,10 @@ magnets:
         ctrl: QUAD:SPH:345:CTRL
       control_name: QUAD:SPH:345
     metadata:
-      Effective Length (m): '.1068'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.1068
       sum_l_meters: 2862.256
       type: QUAD
   QSP3H:
@@ -209,10 +209,10 @@ magnets:
         ctrl: QUAD:SPH:420:CTRL
       control_name: QUAD:SPH:420
     metadata:
-      Effective Length (m): '.32'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.32
       sum_l_meters: 2887.579
       type: QUAD
   QSP4H:
@@ -227,10 +227,10 @@ magnets:
         ctrl: QUAD:SPH:450:CTRL
       control_name: QUAD:SPH:450
     metadata:
-      Effective Length (m): '.263'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.263
       sum_l_meters: 2896.662
       type: QUAD
   QSP5H:
@@ -245,10 +245,10 @@ magnets:
         ctrl: QUAD:SPH:520:CTRL
       control_name: QUAD:SPH:520
     metadata:
-      Effective Length (m): '.263'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.263
       sum_l_meters: 2918.721
       type: QUAD
   QSP6H:
@@ -263,10 +263,10 @@ magnets:
         ctrl: QUAD:SPH:600:CTRL
       control_name: QUAD:SPH:600
     metadata:
-      Effective Length (m): '.263'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.263
       sum_l_meters: 2942.78
       type: QUAD
   QSP7H:
@@ -281,10 +281,10 @@ magnets:
         ctrl: QUAD:SPH:675:CTRL
       control_name: QUAD:SPH:675
     metadata:
-      Effective Length (m): '.1068'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.1068
       sum_l_meters: 2967.038
       type: QUAD
   QSP8H:
@@ -299,10 +299,10 @@ magnets:
         ctrl: QUAD:SPH:760:CTRL
       control_name: QUAD:SPH:760
     metadata:
-      Effective Length (m): '.263'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.263
       sum_l_meters: 2991.297
       type: QUAD
   QSP9H:
@@ -317,10 +317,10 @@ magnets:
         ctrl: QUAD:SPH:840:CTRL
       control_name: QUAD:SPH:840
     metadata:
-      Effective Length (m): '.263'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.263
       sum_l_meters: 3015.356
       type: QUAD
   XCSP11H:
@@ -335,10 +335,10 @@ magnets:
         ctrl: XCOR:SPH:938:CTRL
       control_name: XCOR:SPH:938
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 3044.7
       type: XCOR
   XCSP1H:
@@ -353,10 +353,10 @@ magnets:
         ctrl: XCOR:SPH:324:CTRL
       control_name: XCOR:SPH:324
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 2858.879
       type: XCOR
   XCSP3H:
@@ -371,10 +371,10 @@ magnets:
         ctrl: XCOR:SPH:414:CTRL
       control_name: XCOR:SPH:414
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 2886.619
       type: XCOR
   XCSP5H:
@@ -389,10 +389,10 @@ magnets:
         ctrl: XCOR:SPH:516:CTRL
       control_name: XCOR:SPH:516
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 2918.227
       type: XCOR
   XCSP7H:
@@ -407,10 +407,10 @@ magnets:
         ctrl: XCOR:SPH:684:CTRL
       control_name: XCOR:SPH:684
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 2967.492
       type: XCOR
   XCSP9H:
@@ -425,10 +425,10 @@ magnets:
         ctrl: XCOR:SPH:844:CTRL
       control_name: XCOR:SPH:844
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 3016.579
       type: XCOR
   YCSP10H:
@@ -443,10 +443,10 @@ magnets:
         ctrl: YCOR:SPH:917:CTRL
       control_name: YCOR:SPH:917
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 3036.952
       type: YCOR
   YCSP2H:
@@ -461,10 +461,10 @@ magnets:
         ctrl: YCOR:SPH:346:CTRL
       control_name: YCOR:SPH:346
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 2862.709
       type: YCOR
   YCSP4H:
@@ -479,10 +479,10 @@ magnets:
         ctrl: YCOR:SPH:447:CTRL
       control_name: YCOR:SPH:447
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 2896.169
       type: YCOR
   YCSP6H:
@@ -497,10 +497,10 @@ magnets:
         ctrl: YCOR:SPH:597:CTRL
       control_name: YCOR:SPH:597
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 2942.286
       type: YCOR
   YCSP8H:
@@ -515,9 +515,9 @@ magnets:
         ctrl: YCOR:SPH:757:CTRL
       control_name: YCOR:SPH:757
     metadata:
-      Effective Length (m): '0'
       area: SPH
       beam_path:
       - SC_HXR
+      l_eff: 0.0
       sum_l_meters: 2990.804
       type: YCOR

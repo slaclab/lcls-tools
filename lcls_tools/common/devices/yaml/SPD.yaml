@@ -11,10 +11,10 @@ magnets:
         ctrl: BEND:SPD:719:CTRL
       control_name: BEND:SPD:719
     metadata:
-      Effective Length (m): '1.000004'
       area: SPD
       beam_path:
       - SC_BSYD
+      l_eff: 1.000004
       sum_l_meters: 2978.345
       type: BEND
   BYSP2D:
@@ -29,10 +29,10 @@ magnets:
         ctrl: BEND:SPD:960:CTRL
       control_name: BEND:SPD:960
     metadata:
-      Effective Length (m): '1.000004'
       area: SPD
       beam_path:
       - SC_BSYD
+      l_eff: 1.000004
       sum_l_meters: 3052.345
       type: BEND
   QSP1:
@@ -47,7 +47,6 @@ magnets:
         ctrl: QUAD:SPD:330:CTRL
       control_name: QUAD:SPD:330
     metadata:
-      Effective Length (m): '.263'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -57,6 +56,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 2859.252
       type: QUAD
   QSP1D:
@@ -71,10 +71,10 @@ magnets:
         ctrl: QUAD:SPD:690:CTRL
       control_name: QUAD:SPD:690
     metadata:
-      Effective Length (m): '.263'
       area: SPD
       beam_path:
       - SC_BSYD
+      l_eff: 0.263
       sum_l_meters: 2969.625
       type: QUAD
   QSP2:
@@ -89,7 +89,6 @@ magnets:
         ctrl: QUAD:SPD:340:CTRL
       control_name: QUAD:SPD:340
     metadata:
-      Effective Length (m): '.263'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -99,6 +98,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 2861.315
       type: QUAD
   QSP2D:
@@ -113,10 +113,10 @@ magnets:
         ctrl: QUAD:SPD:700:CTRL
       control_name: QUAD:SPD:700
     metadata:
-      Effective Length (m): '.263'
       area: SPD
       beam_path:
       - SC_BSYD
+      l_eff: 0.263
       sum_l_meters: 2973.205
       type: QUAD
   XCSP1:
@@ -131,7 +131,6 @@ magnets:
         ctrl: XCOR:SPD:334:CTRL
       control_name: XCOR:SPD:334
     metadata:
-      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -141,6 +140,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2859.974
       type: XCOR
   XCSP1D:
@@ -155,10 +155,10 @@ magnets:
         ctrl: XCOR:SPD:688:CTRL
       control_name: XCOR:SPD:688
     metadata:
-      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
+      l_eff: 0.0
       sum_l_meters: 2968.675
       type: XCOR
   XCSP3D:
@@ -173,10 +173,10 @@ magnets:
         ctrl: XCOR:SPD:964:CTRL
       control_name: XCOR:SPD:964
     metadata:
-      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
+      l_eff: 0.0
       sum_l_meters: 3053.345
       type: XCOR
   YCSP2:
@@ -191,7 +191,6 @@ magnets:
         ctrl: YCOR:SPD:343:CTRL
       control_name: YCOR:SPD:343
     metadata:
-      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
@@ -201,6 +200,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2861.875
       type: YCOR
   YCSP2D:
@@ -215,10 +215,10 @@ magnets:
         ctrl: YCOR:SPD:703:CTRL
       control_name: YCOR:SPD:703
     metadata:
-      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
+      l_eff: 0.0
       sum_l_meters: 2973.765
       type: YCOR
   YCSP4D:
@@ -233,10 +233,10 @@ magnets:
         ctrl: YCOR:SPD:965:CTRL
       control_name: YCOR:SPD:965
     metadata:
-      Effective Length (m): '0'
       area: SPD
       beam_path:
       - SC_BSYD
+      l_eff: 0.0
       sum_l_meters: 3053.845
       type: YCOR
 wires:

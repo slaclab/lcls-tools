@@ -11,7 +11,6 @@ magnets:
         ctrl: QUAD:L3B:1685:CTRL
       control_name: QUAD:L3B:1685
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -22,6 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 412.526
       type: QUAD
   QCM17:
@@ -36,7 +36,6 @@ magnets:
         ctrl: QUAD:L3B:1785:CTRL
       control_name: QUAD:L3B:1785
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -47,6 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 424.746
       type: QUAD
   QCM18:
@@ -61,7 +61,6 @@ magnets:
         ctrl: QUAD:L3B:1885:CTRL
       control_name: QUAD:L3B:1885
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -72,6 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 436.966
       type: QUAD
   QCM19:
@@ -86,7 +86,6 @@ magnets:
         ctrl: QUAD:L3B:1985:CTRL
       control_name: QUAD:L3B:1985
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -97,6 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 449.187
       type: QUAD
   QCM20:
@@ -111,7 +111,6 @@ magnets:
         ctrl: QUAD:L3B:2085:CTRL
       control_name: QUAD:L3B:2085
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -122,6 +121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 461.407
       type: QUAD
   QCM21:
@@ -136,7 +136,6 @@ magnets:
         ctrl: QUAD:L3B:2185:CTRL
       control_name: QUAD:L3B:2185
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -147,6 +146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 473.628
       type: QUAD
   QCM22:
@@ -161,7 +161,6 @@ magnets:
         ctrl: QUAD:L3B:2285:CTRL
       control_name: QUAD:L3B:2285
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -172,6 +171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 485.848
       type: QUAD
   QCM23:
@@ -186,7 +186,6 @@ magnets:
         ctrl: QUAD:L3B:2385:CTRL
       control_name: QUAD:L3B:2385
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -197,6 +196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 498.068
       type: QUAD
   QCM24:
@@ -211,7 +211,6 @@ magnets:
         ctrl: QUAD:L3B:2485:CTRL
       control_name: QUAD:L3B:2485
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -222,6 +221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 510.289
       type: QUAD
   QCM25:
@@ -236,7 +236,6 @@ magnets:
         ctrl: QUAD:L3B:2585:CTRL
       control_name: QUAD:L3B:2585
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -247,6 +246,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 522.509
       type: QUAD
   QCM26:
@@ -261,7 +261,6 @@ magnets:
         ctrl: QUAD:L3B:2685:CTRL
       control_name: QUAD:L3B:2685
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -272,6 +271,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 537.279
       type: QUAD
   QCM27:
@@ -286,7 +286,6 @@ magnets:
         ctrl: QUAD:L3B:2785:CTRL
       control_name: QUAD:L3B:2785
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -297,6 +296,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 549.499
       type: QUAD
   QCM28:
@@ -311,7 +311,6 @@ magnets:
         ctrl: QUAD:L3B:2885:CTRL
       control_name: QUAD:L3B:2885
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -322,6 +321,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 561.72
       type: QUAD
   QCM29:
@@ -336,7 +336,6 @@ magnets:
         ctrl: QUAD:L3B:2985:CTRL
       control_name: QUAD:L3B:2985
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -347,6 +346,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 573.94
       type: QUAD
   QCM30:
@@ -361,7 +361,6 @@ magnets:
         ctrl: QUAD:L3B:3085:CTRL
       control_name: QUAD:L3B:3085
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -372,6 +371,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 586.16
       type: QUAD
   QCM31:
@@ -386,7 +386,6 @@ magnets:
         ctrl: QUAD:L3B:3185:CTRL
       control_name: QUAD:L3B:3185
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -397,6 +396,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 598.381
       type: QUAD
   QCM32:
@@ -411,7 +411,6 @@ magnets:
         ctrl: QUAD:L3B:3285:CTRL
       control_name: QUAD:L3B:3285
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -422,6 +421,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 610.601
       type: QUAD
   QCM33:
@@ -436,7 +436,6 @@ magnets:
         ctrl: QUAD:L3B:3385:CTRL
       control_name: QUAD:L3B:3385
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -447,6 +446,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 622.822
       type: QUAD
   QCM34:
@@ -461,7 +461,6 @@ magnets:
         ctrl: QUAD:L3B:3485:CTRL
       control_name: QUAD:L3B:3485
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -472,6 +471,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 635.042
       type: QUAD
   QCM35:
@@ -486,7 +486,6 @@ magnets:
         ctrl: QUAD:L3B:3585:CTRL
       control_name: QUAD:L3B:3585
     metadata:
-      Effective Length (m): '.23'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -497,6 +496,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 647.262
       type: QUAD
   XCM16:
@@ -511,7 +511,6 @@ magnets:
         ctrl: XCOR:L3B:1685:CTRL
       control_name: XCOR:L3B:1685
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -522,6 +521,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 412.526
       type: XCOR
   XCM17:
@@ -536,7 +536,6 @@ magnets:
         ctrl: XCOR:L3B:1785:CTRL
       control_name: XCOR:L3B:1785
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -547,6 +546,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 424.746
       type: XCOR
   XCM18:
@@ -561,7 +561,6 @@ magnets:
         ctrl: XCOR:L3B:1885:CTRL
       control_name: XCOR:L3B:1885
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -572,6 +571,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 436.966
       type: XCOR
   XCM19:
@@ -586,7 +586,6 @@ magnets:
         ctrl: XCOR:L3B:1985:CTRL
       control_name: XCOR:L3B:1985
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -597,6 +596,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 449.187
       type: XCOR
   XCM20:
@@ -611,7 +611,6 @@ magnets:
         ctrl: XCOR:L3B:2085:CTRL
       control_name: XCOR:L3B:2085
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -622,6 +621,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 461.407
       type: XCOR
   XCM21:
@@ -636,7 +636,6 @@ magnets:
         ctrl: XCOR:L3B:2185:CTRL
       control_name: XCOR:L3B:2185
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -647,6 +646,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 473.628
       type: XCOR
   XCM22:
@@ -661,7 +661,6 @@ magnets:
         ctrl: XCOR:L3B:2285:CTRL
       control_name: XCOR:L3B:2285
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -672,6 +671,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 485.848
       type: XCOR
   XCM23:
@@ -686,7 +686,6 @@ magnets:
         ctrl: XCOR:L3B:2385:CTRL
       control_name: XCOR:L3B:2385
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -697,6 +696,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 498.068
       type: XCOR
   XCM24:
@@ -711,7 +711,6 @@ magnets:
         ctrl: XCOR:L3B:2485:CTRL
       control_name: XCOR:L3B:2485
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -722,6 +721,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 510.289
       type: XCOR
   XCM25:
@@ -736,7 +736,6 @@ magnets:
         ctrl: XCOR:L3B:2585:CTRL
       control_name: XCOR:L3B:2585
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -747,6 +746,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 522.509
       type: XCOR
   XCM26:
@@ -761,7 +761,6 @@ magnets:
         ctrl: XCOR:L3B:2685:CTRL
       control_name: XCOR:L3B:2685
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -772,6 +771,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 537.279
       type: XCOR
   XCM27:
@@ -786,7 +786,6 @@ magnets:
         ctrl: XCOR:L3B:2785:CTRL
       control_name: XCOR:L3B:2785
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -797,6 +796,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 549.499
       type: XCOR
   XCM28:
@@ -811,7 +811,6 @@ magnets:
         ctrl: XCOR:L3B:2885:CTRL
       control_name: XCOR:L3B:2885
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -822,6 +821,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 561.72
       type: XCOR
   XCM29:
@@ -836,7 +836,6 @@ magnets:
         ctrl: XCOR:L3B:2985:CTRL
       control_name: XCOR:L3B:2985
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -847,6 +846,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 573.94
       type: XCOR
   XCM30:
@@ -861,7 +861,6 @@ magnets:
         ctrl: XCOR:L3B:3085:CTRL
       control_name: XCOR:L3B:3085
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -872,6 +871,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 586.16
       type: XCOR
   XCM31:
@@ -886,7 +886,6 @@ magnets:
         ctrl: XCOR:L3B:3185:CTRL
       control_name: XCOR:L3B:3185
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -897,6 +896,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 598.381
       type: XCOR
   XCM32:
@@ -911,7 +911,6 @@ magnets:
         ctrl: XCOR:L3B:3285:CTRL
       control_name: XCOR:L3B:3285
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -922,6 +921,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 610.601
       type: XCOR
   XCM33:
@@ -936,7 +936,6 @@ magnets:
         ctrl: XCOR:L3B:3385:CTRL
       control_name: XCOR:L3B:3385
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -947,6 +946,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 622.822
       type: XCOR
   XCM34:
@@ -961,7 +961,6 @@ magnets:
         ctrl: XCOR:L3B:3485:CTRL
       control_name: XCOR:L3B:3485
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -972,6 +971,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 635.042
       type: XCOR
   XCM35:
@@ -986,7 +986,6 @@ magnets:
         ctrl: XCOR:L3B:3585:CTRL
       control_name: XCOR:L3B:3585
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -997,6 +996,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 647.262
       type: XCOR
   YCM16:
@@ -1011,7 +1011,6 @@ magnets:
         ctrl: YCOR:L3B:1685:CTRL
       control_name: YCOR:L3B:1685
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1022,6 +1021,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 412.526
       type: YCOR
   YCM17:
@@ -1036,7 +1036,6 @@ magnets:
         ctrl: YCOR:L3B:1785:CTRL
       control_name: YCOR:L3B:1785
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1047,6 +1046,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 424.746
       type: YCOR
   YCM18:
@@ -1061,7 +1061,6 @@ magnets:
         ctrl: YCOR:L3B:1885:CTRL
       control_name: YCOR:L3B:1885
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1072,6 +1071,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 436.966
       type: YCOR
   YCM19:
@@ -1086,7 +1086,6 @@ magnets:
         ctrl: YCOR:L3B:1985:CTRL
       control_name: YCOR:L3B:1985
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1097,6 +1096,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 449.187
       type: YCOR
   YCM20:
@@ -1111,7 +1111,6 @@ magnets:
         ctrl: YCOR:L3B:2085:CTRL
       control_name: YCOR:L3B:2085
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1122,6 +1121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 461.407
       type: YCOR
   YCM21:
@@ -1136,7 +1136,6 @@ magnets:
         ctrl: YCOR:L3B:2185:CTRL
       control_name: YCOR:L3B:2185
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1147,6 +1146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 473.628
       type: YCOR
   YCM22:
@@ -1161,7 +1161,6 @@ magnets:
         ctrl: YCOR:L3B:2285:CTRL
       control_name: YCOR:L3B:2285
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1172,6 +1171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 485.848
       type: YCOR
   YCM23:
@@ -1186,7 +1186,6 @@ magnets:
         ctrl: YCOR:L3B:2385:CTRL
       control_name: YCOR:L3B:2385
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1197,6 +1196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 498.068
       type: YCOR
   YCM24:
@@ -1211,7 +1211,6 @@ magnets:
         ctrl: YCOR:L3B:2485:CTRL
       control_name: YCOR:L3B:2485
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1222,6 +1221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 510.289
       type: YCOR
   YCM25:
@@ -1236,7 +1236,6 @@ magnets:
         ctrl: YCOR:L3B:2585:CTRL
       control_name: YCOR:L3B:2585
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1247,6 +1246,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 522.509
       type: YCOR
   YCM26:
@@ -1261,7 +1261,6 @@ magnets:
         ctrl: YCOR:L3B:2685:CTRL
       control_name: YCOR:L3B:2685
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1272,6 +1271,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 537.279
       type: YCOR
   YCM27:
@@ -1286,7 +1286,6 @@ magnets:
         ctrl: YCOR:L3B:2785:CTRL
       control_name: YCOR:L3B:2785
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1297,6 +1296,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 549.499
       type: YCOR
   YCM28:
@@ -1311,7 +1311,6 @@ magnets:
         ctrl: YCOR:L3B:2885:CTRL
       control_name: YCOR:L3B:2885
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1322,6 +1321,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 561.72
       type: YCOR
   YCM29:
@@ -1336,7 +1336,6 @@ magnets:
         ctrl: YCOR:L3B:2985:CTRL
       control_name: YCOR:L3B:2985
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1347,6 +1346,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 573.94
       type: YCOR
   YCM30:
@@ -1361,7 +1361,6 @@ magnets:
         ctrl: YCOR:L3B:3085:CTRL
       control_name: YCOR:L3B:3085
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1372,6 +1371,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 586.16
       type: YCOR
   YCM31:
@@ -1386,7 +1386,6 @@ magnets:
         ctrl: YCOR:L3B:3185:CTRL
       control_name: YCOR:L3B:3185
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1397,6 +1396,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 598.381
       type: YCOR
   YCM32:
@@ -1411,7 +1411,6 @@ magnets:
         ctrl: YCOR:L3B:3285:CTRL
       control_name: YCOR:L3B:3285
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1422,6 +1421,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 610.601
       type: YCOR
   YCM33:
@@ -1436,7 +1436,6 @@ magnets:
         ctrl: YCOR:L3B:3385:CTRL
       control_name: YCOR:L3B:3385
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1447,6 +1446,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 622.822
       type: YCOR
   YCM34:
@@ -1461,7 +1461,6 @@ magnets:
         ctrl: YCOR:L3B:3485:CTRL
       control_name: YCOR:L3B:3485
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1472,6 +1471,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 635.042
       type: YCOR
   YCM35:
@@ -1486,7 +1486,6 @@ magnets:
         ctrl: YCOR:L3B:3585:CTRL
       control_name: YCOR:L3B:3585
     metadata:
-      Effective Length (m): '0'
       area: L3B
       beam_path:
       - SC_BSYD
@@ -1497,5 +1496,6 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 647.262
       type: YCOR

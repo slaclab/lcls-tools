@@ -11,7 +11,6 @@ magnets:
         ctrl: BEND:LI21:215:CTRL
       control_name: BEND:LI21:215
     metadata:
-      Effective Length (m): '.203497'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -20,6 +19,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.203497
       sum_l_meters: 31.488
       type: BEND
   BX12:
@@ -34,7 +34,6 @@ magnets:
         ctrl: BEND:LI21:231:CTRL
       control_name: BEND:LI21:231
     metadata:
-      Effective Length (m): '.203497'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -43,6 +42,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.203497
       sum_l_meters: 34.137
       type: BEND
   BX13:
@@ -57,7 +57,6 @@ magnets:
         ctrl: BEND:LI21:241:CTRL
       control_name: BEND:LI21:241
     metadata:
-      Effective Length (m): '.203497'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -66,6 +65,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.203497
       sum_l_meters: 35.171
       type: BEND
   BX14:
@@ -80,7 +80,6 @@ magnets:
         ctrl: BEND:LI21:261:CTRL
       control_name: BEND:LI21:261
     metadata:
-      Effective Length (m): '.203497'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -89,6 +88,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.203497
       sum_l_meters: 37.82
       type: BEND
   CQ11:
@@ -103,7 +103,6 @@ magnets:
         ctrl: QUAD:LI21:221:CTRL
       control_name: QUAD:LI21:221
     metadata:
-      Effective Length (m): '.108'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -112,6 +111,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 31.89
       type: QUAD
   CQ12:
@@ -126,7 +126,6 @@ magnets:
         ctrl: QUAD:LI21:251:CTRL
       control_name: QUAD:LI21:251
     metadata:
-      Effective Length (m): '.108'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -135,6 +134,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 37.418
       type: QUAD
   Q21201:
@@ -149,7 +149,6 @@ magnets:
         ctrl: QUAD:LI21:201:CTRL
       control_name: QUAD:LI21:201
     metadata:
-      Effective Length (m): '.1068'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -158,6 +157,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 30.732
       type: QUAD
   Q21301:
@@ -172,7 +172,6 @@ magnets:
         ctrl: QUAD:LI21:301:CTRL
       control_name: QUAD:LI21:301
     metadata:
-      Effective Length (m): '.1068'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -181,6 +180,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 43.182
       type: QUAD
   QM11:
@@ -195,7 +195,6 @@ magnets:
         ctrl: QUAD:LI21:211:CTRL
       control_name: QUAD:LI21:211
     metadata:
-      Effective Length (m): '.108'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -204,6 +203,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 31.204
       type: QUAD
   QM12:
@@ -218,7 +218,6 @@ magnets:
         ctrl: QUAD:LI21:271:CTRL
       control_name: QUAD:LI21:271
     metadata:
-      Effective Length (m): '.108'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -227,6 +226,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 38.299
       type: QUAD
   QM13:
@@ -241,7 +241,6 @@ magnets:
         ctrl: QUAD:LI21:278:CTRL
       control_name: QUAD:LI21:278
     metadata:
-      Effective Length (m): '.108'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -250,6 +249,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 38.97
       type: QUAD
   QM14:
@@ -264,7 +264,6 @@ magnets:
         ctrl: QUAD:LI21:315:CTRL
       control_name: QUAD:LI21:315
     metadata:
-      Effective Length (m): '.108'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -273,6 +272,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 44.338
       type: QUAD
   QM15:
@@ -287,7 +287,6 @@ magnets:
         ctrl: QUAD:LI21:335:CTRL
       control_name: QUAD:LI21:335
     metadata:
-      Effective Length (m): '.108'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -296,6 +295,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 44.903
       type: QUAD
   SQ13:
@@ -310,7 +310,6 @@ magnets:
         ctrl: QUAD:LI21:243:CTRL
       control_name: QUAD:LI21:243
     metadata:
-      Effective Length (m): '.16'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -319,6 +318,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.16
       sum_l_meters: 35.615
       type: QUAD
   XC21191:
@@ -333,7 +333,6 @@ magnets:
         ctrl: XCOR:LI21:191:CTRL
       control_name: XCOR:LI21:191
     metadata:
-      Effective Length (m): '0'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -342,6 +341,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 30.056
       type: XCOR
   XC21275:
@@ -356,7 +356,6 @@ magnets:
         ctrl: XCOR:LI21:275:CTRL
       control_name: XCOR:LI21:275
     metadata:
-      Effective Length (m): '0'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -365,6 +364,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 39.325
       type: XCOR
   XC21302:
@@ -379,7 +379,6 @@ magnets:
         ctrl: XCOR:LI21:302:CTRL
       control_name: XCOR:LI21:302
     metadata:
-      Effective Length (m): '0'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -388,6 +387,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 42.229
       type: XCOR
   XC21325:
@@ -402,7 +402,6 @@ magnets:
         ctrl: XCOR:LI21:325:CTRL
       control_name: XCOR:LI21:325
     metadata:
-      Effective Length (m): '0'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -411,6 +410,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 44.618
       type: XCOR
   YC21192:
@@ -425,7 +425,6 @@ magnets:
         ctrl: YCOR:LI21:192:CTRL
       control_name: YCOR:LI21:192
     metadata:
-      Effective Length (m): '0'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -434,6 +433,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 30.056
       type: YCOR
   YC21276:
@@ -448,7 +448,6 @@ magnets:
         ctrl: YCOR:LI21:276:CTRL
       control_name: YCOR:LI21:276
     metadata:
-      Effective Length (m): '0'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -457,6 +456,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 39.325
       type: YCOR
   YC21303:
@@ -471,7 +471,6 @@ magnets:
         ctrl: YCOR:LI21:303:CTRL
       control_name: YCOR:LI21:303
     metadata:
-      Effective Length (m): '0'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -480,6 +479,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 42.575
       type: YCOR
   YC21325:
@@ -494,7 +494,6 @@ magnets:
         ctrl: YCOR:LI21:325:CTRL
       control_name: YCOR:LI21:325
     metadata:
-      Effective Length (m): '0'
       area: BC1
       beam_path:
       - CU_ALINE
@@ -503,6 +502,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 44.618
       type: YCOR
 screens:

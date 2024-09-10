@@ -11,7 +11,6 @@ magnets:
         ctrl: QUAD:BPN13:400:CTRL
       control_name: QUAD:BPN13:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -22,6 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 1264.649
       type: QUAD
   QBP14:
@@ -36,7 +36,6 @@ magnets:
         ctrl: QUAD:BPN14:400:CTRL
       control_name: QUAD:BPN14:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -47,6 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 1366.249
       type: QUAD
   QBP15:
@@ -61,7 +61,6 @@ magnets:
         ctrl: QUAD:BPN15:400:CTRL
       control_name: QUAD:BPN15:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -72,6 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 1467.849
       type: QUAD
   QBP16:
@@ -86,7 +86,6 @@ magnets:
         ctrl: QUAD:BPN16:400:CTRL
       control_name: QUAD:BPN16:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -97,6 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 1569.449
       type: QUAD
   QBP17:
@@ -111,7 +111,6 @@ magnets:
         ctrl: QUAD:BPN17:400:CTRL
       control_name: QUAD:BPN17:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -122,6 +121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 1671.049
       type: QUAD
   QBP18:
@@ -136,7 +136,6 @@ magnets:
         ctrl: QUAD:BPN18:400:CTRL
       control_name: QUAD:BPN18:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -147,6 +146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 1772.649
       type: QUAD
   QBP19:
@@ -161,7 +161,6 @@ magnets:
         ctrl: QUAD:BPN19:400:CTRL
       control_name: QUAD:BPN19:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -172,6 +171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 1874.249
       type: QUAD
   QBP20:
@@ -186,7 +186,6 @@ magnets:
         ctrl: QUAD:BPN20:400:CTRL
       control_name: QUAD:BPN20:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -197,6 +196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 1975.849
       type: QUAD
   QBP21:
@@ -211,7 +211,6 @@ magnets:
         ctrl: QUAD:BPN21:400:CTRL
       control_name: QUAD:BPN21:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -222,6 +221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 2077.449
       type: QUAD
   QBP22:
@@ -236,7 +236,6 @@ magnets:
         ctrl: QUAD:BPN22:400:CTRL
       control_name: QUAD:BPN22:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -247,6 +246,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 2179.049
       type: QUAD
   QBP23:
@@ -261,7 +261,6 @@ magnets:
         ctrl: QUAD:BPN23:400:CTRL
       control_name: QUAD:BPN23:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -272,6 +271,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 2280.649
       type: QUAD
   QBP24:
@@ -286,7 +286,6 @@ magnets:
         ctrl: QUAD:BPN24:400:CTRL
       control_name: QUAD:BPN24:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -297,6 +296,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 2382.249
       type: QUAD
   QBP25:
@@ -311,7 +311,6 @@ magnets:
         ctrl: QUAD:BPN25:400:CTRL
       control_name: QUAD:BPN25:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -322,6 +321,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 2483.849
       type: QUAD
   QBP26:
@@ -336,7 +336,6 @@ magnets:
         ctrl: QUAD:BPN26:400:CTRL
       control_name: QUAD:BPN26:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -347,6 +346,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 2585.449
       type: QUAD
   QBP27:
@@ -361,7 +361,6 @@ magnets:
         ctrl: QUAD:BPN27:400:CTRL
       control_name: QUAD:BPN27:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -372,6 +371,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 2687.049
       type: QUAD
   QBP28:
@@ -386,7 +386,6 @@ magnets:
         ctrl: QUAD:BPN28:400:CTRL
       control_name: QUAD:BPN28:400
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -397,6 +396,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 2788.349
       type: QUAD
   QBP35:
@@ -411,7 +411,6 @@ magnets:
         ctrl: QUAD:BPN28:200:CTRL
       control_name: QUAD:BPN28:200
     metadata:
-      Effective Length (m): '.1244'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -422,6 +421,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 2766.349
       type: QUAD
   XCBP13:
@@ -436,7 +436,6 @@ magnets:
         ctrl: XCOR:BPN13:406:CTRL
       control_name: XCOR:BPN13:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -447,6 +446,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1265.785
       type: XCOR
   XCBP14:
@@ -461,7 +461,6 @@ magnets:
         ctrl: XCOR:BPN14:406:CTRL
       control_name: XCOR:BPN14:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -472,6 +471,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1367.385
       type: XCOR
   XCBP15:
@@ -486,7 +486,6 @@ magnets:
         ctrl: XCOR:BPN15:406:CTRL
       control_name: XCOR:BPN15:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -497,6 +496,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1468.985
       type: XCOR
   XCBP16:
@@ -511,7 +511,6 @@ magnets:
         ctrl: XCOR:BPN16:406:CTRL
       control_name: XCOR:BPN16:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -522,6 +521,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1570.585
       type: XCOR
   XCBP17:
@@ -536,7 +536,6 @@ magnets:
         ctrl: XCOR:BPN17:406:CTRL
       control_name: XCOR:BPN17:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -547,6 +546,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1672.185
       type: XCOR
   XCBP18:
@@ -561,7 +561,6 @@ magnets:
         ctrl: XCOR:BPN18:406:CTRL
       control_name: XCOR:BPN18:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -572,6 +571,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1773.785
       type: XCOR
   XCBP19:
@@ -586,7 +586,6 @@ magnets:
         ctrl: XCOR:BPN19:406:CTRL
       control_name: XCOR:BPN19:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -597,6 +596,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1875.385
       type: XCOR
   XCBP20:
@@ -611,7 +611,6 @@ magnets:
         ctrl: XCOR:BPN20:406:CTRL
       control_name: XCOR:BPN20:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -622,6 +621,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1976.985
       type: XCOR
   XCBP21:
@@ -636,7 +636,6 @@ magnets:
         ctrl: XCOR:BPN21:406:CTRL
       control_name: XCOR:BPN21:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -647,6 +646,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2078.585
       type: XCOR
   XCBP22:
@@ -661,7 +661,6 @@ magnets:
         ctrl: XCOR:BPN22:406:CTRL
       control_name: XCOR:BPN22:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -672,6 +671,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2180.185
       type: XCOR
   XCBP23:
@@ -686,7 +686,6 @@ magnets:
         ctrl: XCOR:BPN23:406:CTRL
       control_name: XCOR:BPN23:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -697,6 +696,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2281.785
       type: XCOR
   XCBP24:
@@ -711,7 +711,6 @@ magnets:
         ctrl: XCOR:BPN24:406:CTRL
       control_name: XCOR:BPN24:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -722,6 +721,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2383.385
       type: XCOR
   XCBP25:
@@ -736,7 +736,6 @@ magnets:
         ctrl: XCOR:BPN25:406:CTRL
       control_name: XCOR:BPN25:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -747,6 +746,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2484.985
       type: XCOR
   XCBP26:
@@ -761,7 +761,6 @@ magnets:
         ctrl: XCOR:BPN26:406:CTRL
       control_name: XCOR:BPN26:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -772,6 +771,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2586.585
       type: XCOR
   XCBP27:
@@ -786,7 +786,6 @@ magnets:
         ctrl: XCOR:BPN27:406:CTRL
       control_name: XCOR:BPN27:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -797,6 +796,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2688.185
       type: XCOR
   XCBP28:
@@ -811,7 +811,6 @@ magnets:
         ctrl: XCOR:BPN28:406:CTRL
       control_name: XCOR:BPN28:406
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -822,6 +821,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2789.615
       type: XCOR
   XCBP35:
@@ -836,7 +836,6 @@ magnets:
         ctrl: XCOR:BPN28:206:CTRL
       control_name: XCOR:BPN28:206
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -847,6 +846,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2767.615
       type: XCOR
   YCBP13:
@@ -861,7 +861,6 @@ magnets:
         ctrl: YCOR:BPN13:409:CTRL
       control_name: YCOR:BPN13:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -872,6 +871,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1266.014
       type: YCOR
   YCBP14:
@@ -886,7 +886,6 @@ magnets:
         ctrl: YCOR:BPN14:409:CTRL
       control_name: YCOR:BPN14:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -897,6 +896,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1367.614
       type: YCOR
   YCBP15:
@@ -911,7 +911,6 @@ magnets:
         ctrl: YCOR:BPN15:409:CTRL
       control_name: YCOR:BPN15:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -922,6 +921,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1469.214
       type: YCOR
   YCBP16:
@@ -936,7 +936,6 @@ magnets:
         ctrl: YCOR:BPN16:409:CTRL
       control_name: YCOR:BPN16:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -947,6 +946,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1570.814
       type: YCOR
   YCBP17:
@@ -961,7 +961,6 @@ magnets:
         ctrl: YCOR:BPN17:409:CTRL
       control_name: YCOR:BPN17:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -972,6 +971,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1672.414
       type: YCOR
   YCBP18:
@@ -986,7 +986,6 @@ magnets:
         ctrl: YCOR:BPN18:409:CTRL
       control_name: YCOR:BPN18:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -997,6 +996,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1774.014
       type: YCOR
   YCBP19:
@@ -1011,7 +1011,6 @@ magnets:
         ctrl: YCOR:BPN19:409:CTRL
       control_name: YCOR:BPN19:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1022,6 +1021,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1875.614
       type: YCOR
   YCBP20:
@@ -1036,7 +1036,6 @@ magnets:
         ctrl: YCOR:BPN20:409:CTRL
       control_name: YCOR:BPN20:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1047,6 +1046,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 1977.214
       type: YCOR
   YCBP21:
@@ -1061,7 +1061,6 @@ magnets:
         ctrl: YCOR:BPN21:409:CTRL
       control_name: YCOR:BPN21:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1072,6 +1071,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2078.814
       type: YCOR
   YCBP22:
@@ -1086,7 +1086,6 @@ magnets:
         ctrl: YCOR:BPN22:409:CTRL
       control_name: YCOR:BPN22:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1097,6 +1096,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2180.414
       type: YCOR
   YCBP23:
@@ -1111,7 +1111,6 @@ magnets:
         ctrl: YCOR:BPN23:409:CTRL
       control_name: YCOR:BPN23:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1122,6 +1121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2282.014
       type: YCOR
   YCBP24:
@@ -1136,7 +1136,6 @@ magnets:
         ctrl: YCOR:BPN24:409:CTRL
       control_name: YCOR:BPN24:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1147,6 +1146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2383.614
       type: YCOR
   YCBP25:
@@ -1161,7 +1161,6 @@ magnets:
         ctrl: YCOR:BPN25:409:CTRL
       control_name: YCOR:BPN25:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1172,6 +1171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2485.214
       type: YCOR
   YCBP26:
@@ -1186,7 +1186,6 @@ magnets:
         ctrl: YCOR:BPN26:409:CTRL
       control_name: YCOR:BPN26:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1197,6 +1196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2586.814
       type: YCOR
   YCBP27:
@@ -1211,7 +1211,6 @@ magnets:
         ctrl: YCOR:BPN27:409:CTRL
       control_name: YCOR:BPN27:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1222,6 +1221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2688.414
       type: YCOR
   YCBP28:
@@ -1236,7 +1236,6 @@ magnets:
         ctrl: YCOR:BPN28:409:CTRL
       control_name: YCOR:BPN28:409
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1247,6 +1246,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2789.894
       type: YCOR
   YCBP35:
@@ -1261,7 +1261,6 @@ magnets:
         ctrl: YCOR:BPN28:209:CTRL
       control_name: YCOR:BPN28:209
     metadata:
-      Effective Length (m): '0'
       area: BYP
       beam_path:
       - SC_BSYD
@@ -1272,6 +1271,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 2767.894
       type: YCOR
 wires:

@@ -4,10 +4,10 @@ magnets:
       PVs: {}
       control_name: BEND:DMPS:810
     metadata:
-      Effective Length (m): '.944078'
       area: SFTS
       beam_path:
       - SC_SFTS
+      l_eff: 0.944078
       sum_l_meters: 3759.142
       type: BEND
 screens:

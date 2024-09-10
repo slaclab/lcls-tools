@@ -11,10 +11,10 @@ magnets:
         ctrl: BEND:IN20:931:CTRL
       control_name: BEND:IN20:931
     metadata:
-      Effective Length (m): '.5435'
       area: SPEC
       beam_path:
       - CU_SPEC
+      l_eff: 0.5435
       sum_l_meters: 19.284
       type: BEND
   DX01:
@@ -29,9 +29,9 @@ magnets:
         ctrl: BEND:IN20:661:CTRL
       control_name: BEND:IN20:661
     metadata:
-      Effective Length (m): ''
       area: SPEC
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   QS01:
@@ -46,10 +46,10 @@ magnets:
         ctrl: QUAD:IN20:941:CTRL
       control_name: QUAD:IN20:941
     metadata:
-      Effective Length (m): '.108'
       area: SPEC
       beam_path:
       - CU_SPEC
+      l_eff: 0.108
       sum_l_meters: 20.088
       type: QUAD
   QS02:
@@ -64,10 +64,10 @@ magnets:
         ctrl: QUAD:IN20:961:CTRL
       control_name: QUAD:IN20:961
     metadata:
-      Effective Length (m): '.108'
       area: SPEC
       beam_path:
       - CU_SPEC
+      l_eff: 0.108
       sum_l_meters: 20.596
       type: QUAD
   XCS1:
@@ -82,10 +82,10 @@ magnets:
         ctrl: XCOR:IN20:911:CTRL
       control_name: XCOR:IN20:911
     metadata:
-      Effective Length (m): '0'
       area: SPEC
       beam_path:
       - CU_SPEC
+      l_eff: 0.0
       sum_l_meters: 17.954
       type: XCOR
   XCS2:
@@ -100,10 +100,10 @@ magnets:
         ctrl: XCOR:IN20:951:CTRL
       control_name: XCOR:IN20:951
     metadata:
-      Effective Length (m): '0'
       area: SPEC
       beam_path:
       - CU_SPEC
+      l_eff: 0.0
       sum_l_meters: 20.341
       type: XCOR
   YCS1:
@@ -118,10 +118,10 @@ magnets:
         ctrl: YCOR:IN20:912:CTRL
       control_name: YCOR:IN20:912
     metadata:
-      Effective Length (m): '0'
       area: SPEC
       beam_path:
       - CU_SPEC
+      l_eff: 0.0
       sum_l_meters: 17.954
       type: YCOR
   YCS2:
@@ -136,10 +136,10 @@ magnets:
         ctrl: YCOR:IN20:952:CTRL
       control_name: YCOR:IN20:952
     metadata:
-      Effective Length (m): '0'
       area: SPEC
       beam_path:
       - CU_SPEC
+      l_eff: 0.0
       sum_l_meters: 20.341
       type: YCOR
 screens:

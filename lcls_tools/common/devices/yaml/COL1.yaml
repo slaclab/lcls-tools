@@ -11,7 +11,6 @@ magnets:
         ctrl: QUAD:COL1:120:CTRL
       control_name: QUAD:COL1:120
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -22,6 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 140.271
       type: QUAD
   QC102:
@@ -36,7 +36,6 @@ magnets:
         ctrl: QUAD:COL1:260:CTRL
       control_name: QUAD:COL1:260
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -47,6 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 148.329
       type: QUAD
   QC103:
@@ -61,7 +61,6 @@ magnets:
         ctrl: QUAD:COL1:280:CTRL
       control_name: QUAD:COL1:280
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -72,6 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 149.237
       type: QUAD
   QC104:
@@ -86,7 +86,6 @@ magnets:
         ctrl: QUAD:COL1:320:CTRL
       control_name: QUAD:COL1:320
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -97,6 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 152.095
       type: QUAD
   QC105:
@@ -111,7 +111,6 @@ magnets:
         ctrl: QUAD:COL1:400:CTRL
       control_name: QUAD:COL1:400
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -122,6 +121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 156.52
       type: QUAD
   QC106:
@@ -136,7 +136,6 @@ magnets:
         ctrl: QUAD:COL1:480:CTRL
       control_name: QUAD:COL1:480
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -147,6 +146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 160.52
       type: QUAD
   QC107:
@@ -161,7 +161,6 @@ magnets:
         ctrl: QUAD:COL1:560:CTRL
       control_name: QUAD:COL1:560
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -172,6 +171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 164.52
       type: QUAD
   QC108:
@@ -186,7 +186,6 @@ magnets:
         ctrl: QUAD:COL1:640:CTRL
       control_name: QUAD:COL1:640
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -197,6 +196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 168.52
       type: QUAD
   QC109:
@@ -211,7 +211,6 @@ magnets:
         ctrl: QUAD:COL1:720:CTRL
       control_name: QUAD:COL1:720
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -222,6 +221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 172.52
       type: QUAD
   QC110:
@@ -236,7 +236,6 @@ magnets:
         ctrl: QUAD:COL1:800:CTRL
       control_name: QUAD:COL1:800
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -247,6 +246,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 176.52
       type: QUAD
   QC111:
@@ -261,7 +261,6 @@ magnets:
         ctrl: QUAD:COL1:880:CTRL
       control_name: QUAD:COL1:880
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -272,6 +271,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 180.52
       type: QUAD
   QC112:
@@ -286,7 +286,6 @@ magnets:
         ctrl: QUAD:COL1:960:CTRL
       control_name: QUAD:COL1:960
     metadata:
-      Effective Length (m): '.108'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -297,6 +296,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 184.52
       type: QUAD
   XCC101:
@@ -311,7 +311,6 @@ magnets:
         ctrl: XCOR:COL1:128:CTRL
       control_name: XCOR:COL1:128
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -322,6 +321,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 140.709
       type: XCOR
   XCC104:
@@ -336,7 +336,6 @@ magnets:
         ctrl: XCOR:COL1:328:CTRL
       control_name: XCOR:COL1:328
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -347,6 +346,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 152.533
       type: XCOR
   XCC106:
@@ -361,7 +361,6 @@ magnets:
         ctrl: XCOR:COL1:488:CTRL
       control_name: XCOR:COL1:488
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -372,6 +371,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 160.958
       type: XCOR
   XCC108:
@@ -386,7 +386,6 @@ magnets:
         ctrl: XCOR:COL1:648:CTRL
       control_name: XCOR:COL1:648
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -397,6 +396,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 168.958
       type: XCOR
   XCC110:
@@ -411,7 +411,6 @@ magnets:
         ctrl: XCOR:COL1:808:CTRL
       control_name: XCOR:COL1:808
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -422,6 +421,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 176.958
       type: XCOR
   XCC112:
@@ -436,7 +436,6 @@ magnets:
         ctrl: XCOR:COL1:968:CTRL
       control_name: XCOR:COL1:968
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -447,6 +446,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 184.958
       type: XCOR
   YCC101:
@@ -461,7 +461,6 @@ magnets:
         ctrl: YCOR:COL1:129:CTRL
       control_name: YCOR:COL1:129
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -472,6 +471,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 140.959
       type: YCOR
   YCC105:
@@ -486,7 +486,6 @@ magnets:
         ctrl: YCOR:COL1:409:CTRL
       control_name: YCOR:COL1:409
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -497,6 +496,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 156.958
       type: YCOR
   YCC107:
@@ -511,7 +511,6 @@ magnets:
         ctrl: YCOR:COL1:569:CTRL
       control_name: YCOR:COL1:569
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -522,6 +521,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 164.958
       type: YCOR
   YCC109:
@@ -536,7 +536,6 @@ magnets:
         ctrl: YCOR:COL1:729:CTRL
       control_name: YCOR:COL1:729
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -547,6 +546,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 172.958
       type: YCOR
   YCC111:
@@ -561,7 +561,6 @@ magnets:
         ctrl: YCOR:COL1:889:CTRL
       control_name: YCOR:COL1:889
     metadata:
-      Effective Length (m): '0'
       area: COL1
       beam_path:
       - SC_BSYD
@@ -572,6 +571,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 180.958
       type: YCOR
 wires:

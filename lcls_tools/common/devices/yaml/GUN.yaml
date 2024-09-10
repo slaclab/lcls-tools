@@ -11,7 +11,6 @@ magnets:
         ctrl: QUAD:IN20:121:CTRL
       control_name: QUAD:IN20:121
     metadata:
-      Effective Length (m): '0'
       area: GUN
       beam_path:
       - CU_ALINE
@@ -22,6 +21,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 0.196
       type: QUAD
   SOL1:
@@ -36,7 +36,6 @@ magnets:
         ctrl: SOLN:IN20:121:CTRL
       control_name: SOLN:IN20:121
     metadata:
-      Effective Length (m): '.2'
       area: GUN
       beam_path:
       - CU_ALINE
@@ -47,6 +46,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      l_eff: 0.2
       sum_l_meters: 0.196
       type: SOLE
   SOL1BK:
@@ -61,7 +61,6 @@ magnets:
         ctrl: SOLN:IN20:111:CTRL
       control_name: SOLN:IN20:111
     metadata:
-      Effective Length (m): '0'
       area: GUN
       beam_path:
       - CU_ALINE
@@ -72,6 +71,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 0.0
       type: SOLE
   SQ01:
@@ -86,7 +86,6 @@ magnets:
         ctrl: QUAD:IN20:122:CTRL
       control_name: QUAD:IN20:122
     metadata:
-      Effective Length (m): '0'
       area: GUN
       beam_path:
       - CU_ALINE
@@ -97,6 +96,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 0.196
       type: QUAD
   XC00:
@@ -111,7 +111,6 @@ magnets:
         ctrl: XCOR:IN20:121:CTRL
       control_name: XCOR:IN20:121
     metadata:
-      Effective Length (m): '0'
       area: GUN
       beam_path:
       - CU_ALINE
@@ -122,6 +121,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 0.196
       type: XCOR
   XC01:
@@ -136,7 +136,6 @@ magnets:
         ctrl: XCOR:IN20:221:CTRL
       control_name: XCOR:IN20:221
     metadata:
-      Effective Length (m): '0'
       area: GUN
       beam_path:
       - CU_ALINE
@@ -147,6 +146,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 0.834
       type: XCOR
   YC00:
@@ -161,7 +161,6 @@ magnets:
         ctrl: YCOR:IN20:122:CTRL
       control_name: YCOR:IN20:122
     metadata:
-      Effective Length (m): '0'
       area: GUN
       beam_path:
       - CU_ALINE
@@ -172,6 +171,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 0.196
       type: YCOR
   YC01:
@@ -186,7 +186,6 @@ magnets:
         ctrl: YCOR:IN20:222:CTRL
       control_name: YCOR:IN20:222
     metadata:
-      Effective Length (m): '0'
       area: GUN
       beam_path:
       - CU_ALINE
@@ -197,6 +196,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 0.834
       type: YCOR
 screens:

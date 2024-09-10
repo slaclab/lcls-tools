@@ -4,9 +4,9 @@ magnets:
       PVs: {}
       control_name: XCOR:DMP1:201
     metadata:
-      Effective Length (m): ''
       area: DUMP
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   YCUE2:
@@ -14,8 +14,8 @@ magnets:
       PVs: {}
       control_name: YCOR:DMP1:298
     metadata:
-      Effective Length (m): ''
       area: DUMP
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR

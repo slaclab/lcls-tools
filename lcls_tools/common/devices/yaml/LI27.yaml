@@ -4,9 +4,9 @@ magnets:
       PVs: {}
       control_name: LI27:XCOR:90
     metadata:
-      Effective Length (m): ''
       area: LI27
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   YC29090:
@@ -14,9 +14,9 @@ magnets:
       PVs: {}
       control_name: LI27:YCOR:90
     metadata:
-      Effective Length (m): ''
       area: LI27
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
 wires:

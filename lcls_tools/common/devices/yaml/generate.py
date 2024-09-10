@@ -286,8 +286,9 @@ class YAMLGenerator:
 
         if basic_magnet_data:
             magnet_names = [key for key in basic_magnet_data.keys()]
-            additional_metadata_data = get_magnet_metadata(magnet_names,self.extract_metadata_by_device_names)
-            # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+            additional_metadata_data = get_magnet_metadata(
+                                        magnet_names,
+                                        self.extract_metadata_by_device_names)
             additional_controls_data = get_magnet_controls_information()
             complete_magnet_data = self.add_extra_data_to_device(
                 device_data=basic_magnet_data,
@@ -397,7 +398,8 @@ class YAMLGenerator:
 
         device_elements = {
                 element["Element"]: {required_field: element[required_field]
-                for required_field in required_fields if "Element" not in required_field}
+                for required_field in required_fields
+                if "Element" not in required_field}
                 for element in elements
                 if element["Element"] in device_names
                            }

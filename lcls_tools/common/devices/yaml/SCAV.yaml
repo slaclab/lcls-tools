@@ -4,10 +4,10 @@ magnets:
       PVs: {}
       control_name: LI20:KICK:170
     metadata:
-      Effective Length (m): '.5'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.5
       sum_l_meters: 878.374
       type: BEND
   BLX57172:
@@ -15,10 +15,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7172
     metadata:
-      Effective Length (m): '2'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 2.0
       sum_l_meters: 905.682
       type: BEND
   BLY57174:
@@ -26,10 +26,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7174
     metadata:
-      Effective Length (m): '2'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 2.0
       sum_l_meters: 908.038
       type: BEND
   BX57205:
@@ -37,10 +37,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7205
     metadata:
-      Effective Length (m): '3.2766'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 3.2766
       sum_l_meters: 933.686
       type: BEND
   BX57215:
@@ -48,10 +48,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7215
     metadata:
-      Effective Length (m): '3.2766'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 3.2766
       sum_l_meters: 938.131
       type: BEND
   BX57225:
@@ -59,10 +59,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7225
     metadata:
-      Effective Length (m): '3.2766'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 3.2766
       sum_l_meters: 942.576
       type: BEND
   BX57235:
@@ -70,10 +70,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7235
     metadata:
-      Effective Length (m): '3.2766'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 3.2766
       sum_l_meters: 947.021
       type: BEND
   BX57245:
@@ -81,10 +81,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7245
     metadata:
-      Effective Length (m): '3.2766'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 3.2766
       sum_l_meters: 951.466
       type: BEND
   BX57255:
@@ -92,10 +92,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7255
     metadata:
-      Effective Length (m): '3.2766'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 3.2766
       sum_l_meters: 955.911
       type: BEND
   BX57265:
@@ -103,10 +103,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7265
     metadata:
-      Effective Length (m): '3.2766'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 3.2766
       sum_l_meters: 960.356
       type: BEND
   BX57275:
@@ -114,10 +114,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7275
     metadata:
-      Effective Length (m): '3.2766'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 3.2766
       sum_l_meters: 964.801
       type: BEND
   BY57202:
@@ -125,10 +125,10 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:7202
     metadata:
-      Effective Length (m): '1.5596'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 1.5596
       sum_l_meters: 930.099
       type: BEND
   Q57186:
@@ -136,10 +136,10 @@ magnets:
       PVs: {}
       control_name: LI19:QUAD:7186
     metadata:
-      Effective Length (m): '.4972'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.4972
       sum_l_meters: 920.334
       type: QUAD
   Q57190:
@@ -147,10 +147,10 @@ magnets:
       PVs: {}
       control_name: LI19:QUAD:7190
     metadata:
-      Effective Length (m): '.5598'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.5598
       sum_l_meters: 922.862
       type: QUAD
   Q57204:
@@ -158,10 +158,10 @@ magnets:
       PVs: {}
       control_name: LI19:QUAD:7204
     metadata:
-      Effective Length (m): '.6154'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.6154
       sum_l_meters: 931.463
       type: QUAD
   Q57210:
@@ -169,10 +169,10 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:7210
     metadata:
-      Effective Length (m): '.6154'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.6154
       sum_l_meters: 935.908
       type: QUAD
   Q57220:
@@ -180,10 +180,10 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:7220
     metadata:
-      Effective Length (m): '.6154'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.6154
       sum_l_meters: 940.353
       type: QUAD
   Q57230:
@@ -191,10 +191,10 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:7230
     metadata:
-      Effective Length (m): '.6154'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.6154
       sum_l_meters: 944.798
       type: QUAD
   Q57250:
@@ -202,10 +202,10 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:7250
     metadata:
-      Effective Length (m): '.6154'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.6154
       sum_l_meters: 953.688
       type: QUAD
   Q57260:
@@ -213,10 +213,10 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:7260
     metadata:
-      Effective Length (m): '.6154'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.6154
       sum_l_meters: 958.133
       type: QUAD
   Q57270:
@@ -224,10 +224,10 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:7270
     metadata:
-      Effective Length (m): '.6154'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.6154
       sum_l_meters: 962.578
       type: QUAD
   Q57280:
@@ -235,10 +235,10 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:7280
     metadata:
-      Effective Length (m): '.6154'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.6154
       sum_l_meters: 967.023
       type: QUAD
   XC57175:
@@ -246,10 +246,10 @@ magnets:
       PVs: {}
       control_name: LI19:XCOR:7175
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 910.028
       type: XCOR
   XC57185:
@@ -257,10 +257,10 @@ magnets:
       PVs: {}
       control_name: LI19:XCOR:7185
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 919.338
       type: XCOR
   XC57205:
@@ -268,10 +268,10 @@ magnets:
       PVs: {}
       control_name: LI19:XCOR:7205
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 933.686
       type: XCOR
   XC57215:
@@ -279,10 +279,10 @@ magnets:
       PVs: {}
       control_name: LI19:XCOR:7215
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 938.131
       type: XCOR
   XC57225:
@@ -290,10 +290,10 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:7225
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 942.576
       type: XCOR
   XC57235:
@@ -301,10 +301,10 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:7235
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 947.021
       type: XCOR
   XC57245:
@@ -312,10 +312,10 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:7245
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 951.466
       type: XCOR
   XC57255:
@@ -323,10 +323,10 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:7255
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 955.911
       type: XCOR
   XC57265:
@@ -334,10 +334,10 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:7265
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 960.356
       type: XCOR
   XC57275:
@@ -345,10 +345,10 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:7275
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 964.801
       type: XCOR
   XC57282:
@@ -356,10 +356,10 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:7282
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 968.344
       type: XCOR
   YC57183:
@@ -367,10 +367,10 @@ magnets:
       PVs: {}
       control_name: LI19:YCOR:7183
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 918.239
       type: YCOR
   YC57184:
@@ -378,10 +378,10 @@ magnets:
       PVs: {}
       control_name: LI19:YCOR:7184
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 918.64
       type: YCOR
   YC57210:
@@ -389,10 +389,10 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:7210
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 935.908
       type: YCOR
   YC57220:
@@ -400,10 +400,10 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:7220
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 940.353
       type: YCOR
   YC57230:
@@ -411,10 +411,10 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:7230
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 944.798
       type: YCOR
   YC57240:
@@ -422,10 +422,10 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:7240
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 949.243
       type: YCOR
   YC57250:
@@ -433,10 +433,10 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:7250
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 953.688
       type: YCOR
   YC57260:
@@ -444,10 +444,10 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:7260
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 958.133
       type: YCOR
   YC57270:
@@ -455,10 +455,10 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:7270
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 962.578
       type: YCOR
   YC57280:
@@ -466,10 +466,10 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:7280
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 967.023
       type: YCOR
   YC57282:
@@ -477,10 +477,10 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:7282
     metadata:
-      Effective Length (m): '0'
       area: SCAV
       beam_path:
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 968.128
       type: YCOR
 screens:

@@ -11,10 +11,10 @@ magnets:
         ctrl: BEND:IN20:231:CTRL
       control_name: BEND:IN20:231
     metadata:
-      Effective Length (m): '.291216'
       area: GSPEC
       beam_path:
       - CU_GSPEC
+      l_eff: 0.291216
       sum_l_meters: 1.123
       type: BEND
   QG02:
@@ -29,10 +29,10 @@ magnets:
         ctrl: QUAD:IN20:811:CTRL
       control_name: QUAD:IN20:811
     metadata:
-      Effective Length (m): '.076'
       area: GSPEC
       beam_path:
       - CU_GSPEC
+      l_eff: 0.076
       sum_l_meters: 1.443
       type: QUAD
   QG03:
@@ -47,10 +47,10 @@ magnets:
         ctrl: QUAD:IN20:831:CTRL
       control_name: QUAD:IN20:831
     metadata:
-      Effective Length (m): '.076'
       area: GSPEC
       beam_path:
       - CU_GSPEC
+      l_eff: 0.076
       sum_l_meters: 1.673
       type: QUAD
   XCG1:
@@ -65,10 +65,10 @@ magnets:
         ctrl: XCOR:IN20:811:CTRL
       control_name: XCOR:IN20:811
     metadata:
-      Effective Length (m): '0'
       area: GSPEC
       beam_path:
       - CU_GSPEC
+      l_eff: 0.0
       sum_l_meters: 1.443
       type: XCOR
   XCG2:
@@ -83,10 +83,10 @@ magnets:
         ctrl: XCOR:IN20:831:CTRL
       control_name: XCOR:IN20:831
     metadata:
-      Effective Length (m): '0'
       area: GSPEC
       beam_path:
       - CU_GSPEC
+      l_eff: 0.0
       sum_l_meters: 1.673
       type: XCOR
   YCG1:
@@ -101,10 +101,10 @@ magnets:
         ctrl: YCOR:IN20:812:CTRL
       control_name: YCOR:IN20:812
     metadata:
-      Effective Length (m): '0'
       area: GSPEC
       beam_path:
       - CU_GSPEC
+      l_eff: 0.0
       sum_l_meters: 1.443
       type: YCOR
   YCG2:
@@ -119,10 +119,10 @@ magnets:
         ctrl: YCOR:IN20:832:CTRL
       control_name: YCOR:IN20:832
     metadata:
-      Effective Length (m): '0'
       area: GSPEC
       beam_path:
       - CU_GSPEC
+      l_eff: 0.0
       sum_l_meters: 1.673
       type: YCOR
 screens:

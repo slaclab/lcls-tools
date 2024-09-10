@@ -4,9 +4,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:7240
     metadata:
-      Effective Length (m): ''
       area: LI20
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   QS0:
@@ -14,9 +14,9 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3204
     metadata:
-      Effective Length (m): ''
       area: LI20
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
 wires:

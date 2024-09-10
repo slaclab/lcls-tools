@@ -4,8 +4,8 @@ magnets:
       PVs: {}
       control_name: BEND:DMP1:830
     metadata:
-      Effective Length (m): ''
       area: SFTDMP
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND

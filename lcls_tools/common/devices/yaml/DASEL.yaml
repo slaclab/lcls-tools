@@ -11,10 +11,10 @@ magnets:
         ctrl: KICK:DASEL:105:CTRL
       control_name: KICK:DASEL:105
     metadata:
-      Effective Length (m): '1'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 1.0
       sum_l_meters: 2921.87
       type: BEND
   BKRDAS2:
@@ -29,10 +29,10 @@ magnets:
         ctrl: KICK:DASEL:110:CTRL
       control_name: KICK:DASEL:110
     metadata:
-      Effective Length (m): '1'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 1.0
       sum_l_meters: 2923.17
       type: BEND
   BKRDAS3:
@@ -47,10 +47,10 @@ magnets:
         ctrl: KICK:DASEL:115:CTRL
       control_name: KICK:DASEL:115
     metadata:
-      Effective Length (m): '1'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 1.0
       sum_l_meters: 2924.47
       type: BEND
   BKRDAS4:
@@ -65,10 +65,10 @@ magnets:
         ctrl: KICK:DASEL:120:CTRL
       control_name: KICK:DASEL:120
     metadata:
-      Effective Length (m): '1'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 1.0
       sum_l_meters: 2925.77
       type: BEND
   BKRDAS5:
@@ -83,10 +83,10 @@ magnets:
         ctrl: KICK:DASEL:122:CTRL
       control_name: KICK:DASEL:122
     metadata:
-      Effective Length (m): '1'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 1.0
       sum_l_meters: 2927.07
       type: BEND
   BKRDAS6:
@@ -101,10 +101,10 @@ magnets:
         ctrl: KICK:DASEL:125:CTRL
       control_name: KICK:DASEL:125
     metadata:
-      Effective Length (m): '1'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 1.0
       sum_l_meters: 2928.37
       type: BEND
   BLRDAS:
@@ -119,10 +119,10 @@ magnets:
         ctrl: BEND:DASEL:210:CTRL
       control_name: BEND:DASEL:210
     metadata:
-      Effective Length (m): '1.000058'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 1.000058
       sum_l_meters: 2951.805
       type: BEND
   BRDAS1:
@@ -137,10 +137,10 @@ magnets:
         ctrl: BEND:DASEL:415:CTRL
       control_name: BEND:DASEL:415
     metadata:
-      Effective Length (m): '1.000016'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 1.000016
       sum_l_meters: 3008.128
       type: BEND
   BRDAS2:
@@ -155,10 +155,10 @@ magnets:
         ctrl: BEND:DASEL:995:CTRL
       control_name: BEND:DASEL:995
     metadata:
-      Effective Length (m): '1.000006'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 1.000006
       sum_l_meters: 3166.694
       type: BEND
   QDAS11:
@@ -173,10 +173,10 @@ magnets:
         ctrl: QUAD:DASEL:434:CTRL
       control_name: QUAD:DASEL:434
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 3012.928
       type: QUAD
   QDAS12:
@@ -191,10 +191,10 @@ magnets:
         ctrl: QUAD:DASEL:489:CTRL
       control_name: QUAD:DASEL:489
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 3027.852
       type: QUAD
   QDAS13:
@@ -209,10 +209,10 @@ magnets:
         ctrl: QUAD:DASEL:557:CTRL
       control_name: QUAD:DASEL:557
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 3046.605
       type: QUAD
   QDAS14:
@@ -227,10 +227,10 @@ magnets:
         ctrl: QUAD:DASEL:625:CTRL
       control_name: QUAD:DASEL:625
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 3065.157
       type: QUAD
   QDAS15:
@@ -245,10 +245,10 @@ magnets:
         ctrl: QUAD:DASEL:690:CTRL
       control_name: QUAD:DASEL:690
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 3083.41
       type: QUAD
   QDAS16:
@@ -263,10 +263,10 @@ magnets:
         ctrl: QUAD:DASEL:758:CTRL
       control_name: QUAD:DASEL:758
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 3101.663
       type: QUAD
   QDAS17:
@@ -281,10 +281,10 @@ magnets:
         ctrl: QUAD:DASEL:822:CTRL
       control_name: QUAD:DASEL:822
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 3119.115
       type: QUAD
   QDAS18A:
@@ -299,10 +299,10 @@ magnets:
         ctrl: QUAD:DASEL:880:CTRL
       control_name: QUAD:DASEL:880
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 3134.78
       type: QUAD
   QDAS18B:
@@ -317,10 +317,10 @@ magnets:
         ctrl: QUAD:DASEL:882:CTRL
       control_name: QUAD:DASEL:882
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 3135.04
       type: QUAD
   QDAS19:
@@ -335,10 +335,10 @@ magnets:
         ctrl: QUAD:DASEL:910:CTRL
       control_name: QUAD:DASEL:910
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 3144.144
       type: QUAD
   QDAS1A:
@@ -353,10 +353,10 @@ magnets:
         ctrl: QUAD:DASEL:304:CTRL
       control_name: QUAD:DASEL:304
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 2977.336
       type: QUAD
   QDAS1B:
@@ -371,10 +371,10 @@ magnets:
         ctrl: QUAD:DASEL:300:CTRL
       control_name: QUAD:DASEL:300
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 2977.076
       type: QUAD
   QDAS2A:
@@ -389,10 +389,10 @@ magnets:
         ctrl: QUAD:DASEL:312:CTRL
       control_name: QUAD:DASEL:312
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 2979.36
       type: QUAD
   QDAS2B:
@@ -407,10 +407,10 @@ magnets:
         ctrl: QUAD:DASEL:314:CTRL
       control_name: QUAD:DASEL:314
     metadata:
-      Effective Length (m): '.1244'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.1244
       sum_l_meters: 2979.621
       type: QUAD
   RCDAS11:
@@ -425,10 +425,10 @@ magnets:
         ctrl: XCOR:DASEL:422:CTRL
       control_name: XCOR:DASEL:422
     metadata:
-      Effective Length (m): '0'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.0
       sum_l_meters: 3009.428
       type: XCOR
   RCDAS19:
@@ -443,10 +443,10 @@ magnets:
         ctrl: XCOR:DASEL:998:CTRL
       control_name: XCOR:DASEL:998
     metadata:
-      Effective Length (m): '0'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.0
       sum_l_meters: 3167.694
       type: XCOR
   XCDAS1:
@@ -461,10 +461,10 @@ magnets:
         ctrl: XCOR:DASEL:294:CTRL
       control_name: XCOR:DASEL:294
     metadata:
-      Effective Length (m): '0'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.0
       sum_l_meters: 2974.752
       type: XCOR
   XCDAS14:
@@ -479,10 +479,10 @@ magnets:
         ctrl: XCOR:DASEL:622:CTRL
       control_name: XCOR:DASEL:622
     metadata:
-      Effective Length (m): '0'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.0
       sum_l_meters: 3064.595
       type: XCOR
   YCDAS1:
@@ -497,10 +497,10 @@ magnets:
         ctrl: YCOR:DASEL:297:CTRL
       control_name: YCOR:DASEL:297
     metadata:
-      Effective Length (m): '0'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.0
       sum_l_meters: 2975.252
       type: YCOR
   YCDAS17:
@@ -515,10 +515,10 @@ magnets:
         ctrl: YCOR:DASEL:821:CTRL
       control_name: YCOR:DASEL:821
     metadata:
-      Effective Length (m): '0'
       area: DASEL
       beam_path:
       - SC_DASEL
+      l_eff: 0.0
       sum_l_meters: 3118.553
       type: YCOR
 screens:

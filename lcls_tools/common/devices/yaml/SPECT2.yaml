@@ -4,11 +4,11 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:3330
     metadata:
-      Effective Length (m): '.9779'
       area: SPECT2
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.9779
       sum_l_meters: 1006.843
       type: BEND
   Q0D:
@@ -16,11 +16,11 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3204
     metadata:
-      Effective Length (m): '1'
       area: SPECT2
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 1.0
       sum_l_meters: 997.885
       type: QUAD
   Q1D:
@@ -28,11 +28,11 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3261
     metadata:
-      Effective Length (m): '1'
       area: SPECT2
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 1.0
       sum_l_meters: 1000.109
       type: QUAD
   Q2D:
@@ -40,11 +40,11 @@ magnets:
       PVs: {}
       control_name: LI20:LGPS:3311
     metadata:
-      Effective Length (m): '1'
       area: SPECT2
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 1.0
       sum_l_meters: 1002.334
       type: QUAD
 screens:

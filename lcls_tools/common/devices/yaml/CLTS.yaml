@@ -11,10 +11,10 @@ magnets:
         ctrl: KICK:CLTS:185:CTRL
       control_name: KICK:CLTS:185
     metadata:
-      Effective Length (m): '1.0601'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 1.0601
       sum_l_meters: 1044.943
       type: BEND
   BLRCUS:
@@ -29,10 +29,10 @@ magnets:
         ctrl: BEND:CLTS:280:CTRL
       control_name: BEND:CLTS:280
     metadata:
-      Effective Length (m): '1.000014'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 1.000014
       sum_l_meters: 1062.12
       type: BEND
   BRCUS1:
@@ -47,10 +47,10 @@ magnets:
         ctrl: BEND:CLTS:765:CTRL
       control_name: BEND:CLTS:765
     metadata:
-      Effective Length (m): '1.000004'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 1.000004
       sum_l_meters: 1162.489
       type: BEND
   BRCUSDC1:
@@ -65,10 +65,10 @@ magnets:
         ctrl: BEND:CLTS:180:CTRL
       control_name: BEND:CLTS:180
     metadata:
-      Effective Length (m): '.2691'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.2691
       sum_l_meters: 1043.926
       type: BEND
   BRCUSDC2:
@@ -83,10 +83,10 @@ magnets:
         ctrl: BEND:CLTS:190:CTRL
       control_name: BEND:CLTS:190
     metadata:
-      Effective Length (m): '.2691'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.2691
       sum_l_meters: 1045.96
       type: BEND
   BYCUS1:
@@ -101,10 +101,10 @@ magnets:
         ctrl: BEND:CLTS:505:CTRL
       control_name: BEND:CLTS:505
     metadata:
-      Effective Length (m): '.2691'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.2691
       sum_l_meters: 1110.623
       type: BEND
   BYCUS2:
@@ -119,10 +119,10 @@ magnets:
         ctrl: BEND:CLTS:535:CTRL
       control_name: BEND:CLTS:535
     metadata:
-      Effective Length (m): '.2691'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.2691
       sum_l_meters: 1113.986
       type: BEND
   QCUS1:
@@ -137,10 +137,10 @@ magnets:
         ctrl: QUAD:CLTS:420:CTRL
       control_name: QUAD:CLTS:420
     metadata:
-      Effective Length (m): '.263'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.263
       sum_l_meters: 1092.151
       type: QUAD
   QCUS10:
@@ -155,10 +155,10 @@ magnets:
         ctrl: QUAD:CLTS:620:CTRL
       control_name: QUAD:CLTS:620
     metadata:
-      Effective Length (m): '.263'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.263
       sum_l_meters: 1132.457
       type: QUAD
   QCUS2:
@@ -173,10 +173,10 @@ magnets:
         ctrl: QUAD:CLTS:450:CTRL
       control_name: QUAD:CLTS:450
     metadata:
-      Effective Length (m): '.263'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.263
       sum_l_meters: 1097.548
       type: QUAD
   QCUS3:
@@ -191,10 +191,10 @@ magnets:
         ctrl: QUAD:CLTS:470:CTRL
       control_name: QUAD:CLTS:470
     metadata:
-      Effective Length (m): '.263'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.263
       sum_l_meters: 1102.045
       type: QUAD
   QCUS4:
@@ -209,10 +209,10 @@ magnets:
         ctrl: QUAD:CLTS:500:CTRL
       control_name: QUAD:CLTS:500
     metadata:
-      Effective Length (m): '.1068'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 1109.101
       type: QUAD
   QCUS5:
@@ -227,10 +227,10 @@ magnets:
         ctrl: QUAD:CLTS:510:CTRL
       control_name: QUAD:CLTS:510
     metadata:
-      Effective Length (m): '.1068'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 1112.101
       type: QUAD
   QCUS6:
@@ -245,10 +245,10 @@ magnets:
         ctrl: QUAD:CLTS:530:CTRL
       control_name: QUAD:CLTS:530
     metadata:
-      Effective Length (m): '.1068'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 1112.508
       type: QUAD
   QCUS7:
@@ -263,10 +263,10 @@ magnets:
         ctrl: QUAD:CLTS:540:CTRL
       control_name: QUAD:CLTS:540
     metadata:
-      Effective Length (m): '.1068'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 1115.507
       type: QUAD
   QCUS8:
@@ -281,10 +281,10 @@ magnets:
         ctrl: QUAD:CLTS:570:CTRL
       control_name: QUAD:CLTS:570
     metadata:
-      Effective Length (m): '.263'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.263
       sum_l_meters: 1122.564
       type: QUAD
   QCUS9:
@@ -299,10 +299,10 @@ magnets:
         ctrl: QUAD:CLTS:590:CTRL
       control_name: QUAD:CLTS:590
     metadata:
-      Effective Length (m): '.263'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.263
       sum_l_meters: 1127.061
       type: QUAD
   XCCUS1:
@@ -317,10 +317,10 @@ magnets:
         ctrl: XCOR:CLTS:426:CTRL
       control_name: XCOR:CLTS:426
     metadata:
-      Effective Length (m): '0'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1093.494
       type: XCOR
   XCCUS10:
@@ -335,10 +335,10 @@ magnets:
         ctrl: XCOR:CLTS:614:CTRL
       control_name: XCOR:CLTS:614
     metadata:
-      Effective Length (m): '0'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1131.115
       type: XCOR
   XCCUS4:
@@ -353,10 +353,10 @@ magnets:
         ctrl: XCOR:CLTS:504:CTRL
       control_name: XCOR:CLTS:504
     metadata:
-      Effective Length (m): '0'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1109.555
       type: XCOR
   XCCUS7:
@@ -371,10 +371,10 @@ magnets:
         ctrl: XCOR:CLTS:542:CTRL
       control_name: XCOR:CLTS:542
     metadata:
-      Effective Length (m): '0'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1115.961
       type: XCOR
   YCCUS2:
@@ -389,10 +389,10 @@ magnets:
         ctrl: YCOR:CLTS:453:CTRL
       control_name: YCOR:CLTS:453
     metadata:
-      Effective Length (m): '0'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1098.89
       type: YCOR
   YCCUS3:
@@ -407,10 +407,10 @@ magnets:
         ctrl: YCOR:CLTS:471:CTRL
       control_name: YCOR:CLTS:471
     metadata:
-      Effective Length (m): '0'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1102.605
       type: YCOR
   YCCUS6:
@@ -425,10 +425,10 @@ magnets:
         ctrl: YCOR:CLTS:533:CTRL
       control_name: YCOR:CLTS:533
     metadata:
-      Effective Length (m): '0'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1112.961
       type: YCOR
   YCCUS8:
@@ -443,10 +443,10 @@ magnets:
         ctrl: YCOR:CLTS:573:CTRL
       control_name: YCOR:CLTS:573
     metadata:
-      Effective Length (m): '0'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1123.124
       type: YCOR
   YCCUS9:
@@ -461,9 +461,9 @@ magnets:
         ctrl: YCOR:CLTS:597:CTRL
       control_name: YCOR:CLTS:597
     metadata:
-      Effective Length (m): '0'
       area: CLTS
       beam_path:
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1127.621
       type: YCOR

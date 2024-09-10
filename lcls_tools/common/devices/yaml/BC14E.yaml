@@ -4,11 +4,11 @@ magnets:
       PVs: {}
       control_name: BEND:LI14:720
     metadata:
-      Effective Length (m): '.549161'
       area: BC14E
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.549161
       sum_l_meters: 398.543
       type: BEND
   BCX14796:
@@ -16,11 +16,11 @@ magnets:
       PVs: {}
       control_name: BEND:LI14:796
     metadata:
-      Effective Length (m): '.549161'
       area: BC14E
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.549161
       sum_l_meters: 408.963
       type: BEND
   BCX14808:
@@ -28,11 +28,11 @@ magnets:
       PVs: {}
       control_name: BEND:LI14:808
     metadata:
-      Effective Length (m): '.549161'
       area: BC14E
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.549161
       sum_l_meters: 410.604
       type: BEND
   BCX14883:
@@ -40,11 +40,11 @@ magnets:
       PVs: {}
       control_name: BEND:LI14:883
     metadata:
-      Effective Length (m): '.549161'
       area: BC14E
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.549161
       sum_l_meters: 421.025
       type: BEND
   CQ14738:
@@ -52,11 +52,11 @@ magnets:
       PVs: {}
       control_name: QUAD:LI14:738
     metadata:
-      Effective Length (m): '.1759'
       area: BC14E
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.1759
       sum_l_meters: 400.832
       type: QUAD
   CQ14866:
@@ -64,11 +64,11 @@ magnets:
       PVs: {}
       control_name: QUAD:LI14:866
     metadata:
-      Effective Length (m): '.1759'
       area: BC14E
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.1759
       sum_l_meters: 418.735
       type: QUAD
   YC14780:
@@ -76,11 +76,11 @@ magnets:
       PVs: {}
       control_name: YCOR:LI14:780
     metadata:
-      Effective Length (m): '0'
       area: BC14E
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 407.75
       type: YCOR
   YC14820:
@@ -88,9 +88,9 @@ magnets:
       PVs: {}
       control_name: YCOR:LI14:820
     metadata:
-      Effective Length (m): ''
       area: BC14E
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
 screens:

@@ -4,12 +4,12 @@ magnets:
       PVs: {}
       control_name: LI11:QUAD:401
     metadata:
-      Effective Length (m): '.1068'
       area: BC11_2
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 53.831
       type: QUAD
   QM11358:
@@ -17,12 +17,12 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:358
     metadata:
-      Effective Length (m): '.1068'
       area: BC11_2
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 47.341
       type: QUAD
   QM11362:
@@ -30,12 +30,12 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:362
     metadata:
-      Effective Length (m): '.1068'
       area: BC11_2
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 47.996
       type: QUAD
   QM11393:
@@ -43,12 +43,12 @@ magnets:
       PVs: {}
       control_name: QUAD:LI11:393
     metadata:
-      Effective Length (m): '.1068'
       area: BC11_2
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 52.917
       type: QUAD
   XC11398:
@@ -56,12 +56,12 @@ magnets:
       PVs: {}
       control_name: XCOR:LI11:398
     metadata:
-      Effective Length (m): '0'
       area: BC11_2
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 53.547
       type: XCOR
   YC11365:
@@ -69,12 +69,12 @@ magnets:
       PVs: {}
       control_name: YCOR:LI11:365
     metadata:
-      Effective Length (m): '0'
       area: BC11_2
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 48.402
       type: YCOR
   YC11399:
@@ -82,12 +82,12 @@ magnets:
       PVs: {}
       control_name: YCOR:LI11:399
     metadata:
-      Effective Length (m): '0'
       area: BC11_2
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 53.547
       type: YCOR
 screens:

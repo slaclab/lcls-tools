@@ -4,9 +4,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2570
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202600:
@@ -14,9 +14,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2600
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202700:
@@ -24,9 +24,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2700
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202710:
@@ -34,9 +34,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2710
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202720:
@@ -44,9 +44,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2720
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202730:
@@ -54,9 +54,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2730
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202770:
@@ -64,9 +64,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2770
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202780:
@@ -74,9 +74,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2780
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202790:
@@ -84,9 +84,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2790
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202800:
@@ -94,9 +94,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2800
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202900:
@@ -104,9 +104,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2900
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202930:
@@ -114,9 +114,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2930
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202940:
@@ -124,9 +124,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2940
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202950:
@@ -134,9 +134,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2950
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202960:
@@ -144,9 +144,9 @@ magnets:
       PVs: {}
       control_name: LI20:BEND:2960
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   Q202591T:
@@ -154,9 +154,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2591
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202641T:
@@ -164,9 +164,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2641
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202651T:
@@ -174,9 +174,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2651
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202671T:
@@ -184,9 +184,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2671
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202681T:
@@ -194,9 +194,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2681
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202691T:
@@ -204,9 +204,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2691
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202751T:
@@ -214,9 +214,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2751
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202811T:
@@ -224,9 +224,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2811
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202821T:
@@ -234,9 +234,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2821
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202831T:
@@ -244,9 +244,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2831
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202851T:
@@ -254,9 +254,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2851
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202861T:
@@ -264,9 +264,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2861
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202921T:
@@ -274,9 +274,9 @@ magnets:
       PVs: {}
       control_name: LI20:QUAD:2921
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   X202566T:
@@ -284,9 +284,9 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:2566
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   X202626T:
@@ -294,9 +294,9 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:2626
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   X202866T:
@@ -304,9 +304,9 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:2866
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   X202936T:
@@ -314,9 +314,9 @@ magnets:
       PVs: {}
       control_name: LI20:XCOR:2936
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   Y202647T:
@@ -324,9 +324,9 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:2647
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   Y202677T:
@@ -334,9 +334,9 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:2677
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   Y202827T:
@@ -344,9 +344,9 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:2827
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   Y202857T:
@@ -354,8 +354,8 @@ magnets:
       PVs: {}
       control_name: LI20:YCOR:2857
     metadata:
-      Effective Length (m): ''
       area: POSITR
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR

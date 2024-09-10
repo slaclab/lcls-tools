@@ -11,7 +11,6 @@ magnets:
         ctrl: BEND:LTUS:165:CTRL
       control_name: BEND:LTUS:165
     metadata:
-      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -20,6 +19,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.350014
       sum_l_meters: 3255.366
       type: BEND
   BCX31B2:
@@ -34,7 +34,6 @@ magnets:
         ctrl: BEND:LTUS:166:CTRL
       control_name: BEND:LTUS:166
     metadata:
-      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -43,6 +42,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.350014
       sum_l_meters: 3255.916
       type: BEND
   BCX31B3:
@@ -57,7 +57,6 @@ magnets:
         ctrl: BEND:LTUS:167:CTRL
       control_name: BEND:LTUS:167
     metadata:
-      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -66,6 +65,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.350014
       sum_l_meters: 3256.466
       type: BEND
   BCX31B4:
@@ -80,7 +80,6 @@ magnets:
         ctrl: BEND:LTUS:168:CTRL
       control_name: BEND:LTUS:168
     metadata:
-      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -89,6 +88,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.350014
       sum_l_meters: 3257.016
       type: BEND
   BCX32B1:
@@ -103,7 +103,6 @@ magnets:
         ctrl: BEND:LTUS:475:CTRL
       control_name: BEND:LTUS:475
     metadata:
-      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -112,6 +111,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.350014
       sum_l_meters: 3364.117
       type: BEND
   BCX32B2:
@@ -126,7 +126,6 @@ magnets:
         ctrl: BEND:LTUS:476:CTRL
       control_name: BEND:LTUS:476
     metadata:
-      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -135,6 +134,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.350014
       sum_l_meters: 3364.667
       type: BEND
   BCX32B3:
@@ -149,7 +149,6 @@ magnets:
         ctrl: BEND:LTUS:477:CTRL
       control_name: BEND:LTUS:477
     metadata:
-      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -158,6 +157,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.350014
       sum_l_meters: 3365.217
       type: BEND
   BCX32B4:
@@ -172,7 +172,6 @@ magnets:
         ctrl: BEND:LTUS:478:CTRL
       control_name: BEND:LTUS:478
     metadata:
-      Effective Length (m): '.350014'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -181,6 +180,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.350014
       sum_l_meters: 3365.767
       type: BEND
   BCXXL1:
@@ -195,7 +195,6 @@ magnets:
         ctrl: BEND:LTUS:763:CTRL
       control_name: BEND:LTUS:763
     metadata:
-      Effective Length (m): '.364'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -204,6 +203,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.364
       sum_l_meters: 3517.587
       type: BEND
   BCXXL2:
@@ -218,7 +218,6 @@ magnets:
         ctrl: BEND:LTUS:764:CTRL
       control_name: BEND:LTUS:764
     metadata:
-      Effective Length (m): '.364'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -227,6 +226,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.364
       sum_l_meters: 3518.633
       type: BEND
   BCXXL3:
@@ -241,7 +241,6 @@ magnets:
         ctrl: BEND:LTUS:765:CTRL
       control_name: BEND:LTUS:765
     metadata:
-      Effective Length (m): '.364'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -250,6 +249,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.364
       sum_l_meters: 3519.153
       type: BEND
   BCXXL4:
@@ -264,7 +264,6 @@ magnets:
         ctrl: BEND:LTUS:766:CTRL
       control_name: BEND:LTUS:766
     metadata:
-      Effective Length (m): '.364'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -273,6 +272,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.364
       sum_l_meters: 3520.199
       type: BEND
   BX31B:
@@ -287,7 +287,6 @@ magnets:
         ctrl: BEND:LTUS:175:CTRL
       control_name: BEND:LTUS:175
     metadata:
-      Effective Length (m): '2.656038'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -296,6 +295,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 2.656038
       sum_l_meters: 3259.019
       type: BEND
   BX32B:
@@ -310,7 +310,6 @@ magnets:
         ctrl: BEND:LTUS:460:CTRL
       control_name: BEND:LTUS:460
     metadata:
-      Effective Length (m): '2.656038'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -319,6 +318,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 2.656038
       sum_l_meters: 3361.019
       type: BEND
   BY1B:
@@ -333,7 +333,6 @@ magnets:
         ctrl: BEND:LTUS:525:CTRL
       control_name: BEND:LTUS:525
     metadata:
-      Effective Length (m): '1.025'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -342,6 +341,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 1.025
       sum_l_meters: 3380.571
       type: BEND
   BY2B:
@@ -356,7 +356,6 @@ magnets:
         ctrl: BEND:LTUS:565:CTRL
       control_name: BEND:LTUS:565
     metadata:
-      Effective Length (m): '1.025'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -365,6 +364,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 1.025
       sum_l_meters: 3397.499
       type: BEND
   BYKIK1S:
@@ -379,7 +379,6 @@ magnets:
         ctrl: KICK:LTUS:350:CTRL
       control_name: KICK:LTUS:350
     metadata:
-      Effective Length (m): '1.0601'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -388,6 +387,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 1.0601
       sum_l_meters: 3319.988
       type: BEND
   BYKIK2S:
@@ -402,7 +402,6 @@ magnets:
         ctrl: KICK:LTUS:360:CTRL
       control_name: KICK:LTUS:360
     metadata:
-      Effective Length (m): '1.0601'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -411,6 +410,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 1.0601
       sum_l_meters: 3321.167
       type: BEND
   QDBL1:
@@ -425,7 +425,6 @@ magnets:
         ctrl: QUAD:LTUS:110:CTRL
       control_name: QUAD:LTUS:110
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -434,6 +433,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3234.806
       type: QUAD
   QDBL2:
@@ -448,7 +448,6 @@ magnets:
         ctrl: QUAD:LTUS:120:CTRL
       control_name: QUAD:LTUS:120
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -457,6 +456,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3236.986
       type: QUAD
   QDL11:
@@ -471,7 +471,6 @@ magnets:
         ctrl: QUAD:LTUS:150:CTRL
       control_name: QUAD:LTUS:150
     metadata:
-      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -480,6 +479,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3250.738
       type: QUAD
   QDL12:
@@ -494,7 +494,6 @@ magnets:
         ctrl: QUAD:LTUS:180:CTRL
       control_name: QUAD:LTUS:180
     metadata:
-      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -503,6 +502,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3263.488
       type: QUAD
   QDL13:
@@ -517,7 +517,6 @@ magnets:
         ctrl: QUAD:LTUS:235:CTRL
       control_name: QUAD:LTUS:235
     metadata:
-      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -526,6 +525,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3276.238
       type: QUAD
   QDL14:
@@ -540,7 +540,6 @@ magnets:
         ctrl: QUAD:LTUS:270:CTRL
       control_name: QUAD:LTUS:270
     metadata:
-      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -549,6 +548,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3288.988
       type: QUAD
   QDL15:
@@ -563,7 +563,6 @@ magnets:
         ctrl: QUAD:LTUS:300:CTRL
       control_name: QUAD:LTUS:300
     metadata:
-      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -572,6 +571,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3301.738
       type: QUAD
   QDL16:
@@ -586,7 +586,6 @@ magnets:
         ctrl: QUAD:LTUS:345:CTRL
       control_name: QUAD:LTUS:345
     metadata:
-      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -595,6 +594,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3314.488
       type: QUAD
   QDL17:
@@ -609,7 +609,6 @@ magnets:
         ctrl: QUAD:LTUS:370:CTRL
       control_name: QUAD:LTUS:370
     metadata:
-      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -618,6 +617,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3327.238
       type: QUAD
   QDL18:
@@ -632,7 +632,6 @@ magnets:
         ctrl: QUAD:LTUS:430:CTRL
       control_name: QUAD:LTUS:430
     metadata:
-      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -641,6 +640,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3339.988
       type: QUAD
   QDL19:
@@ -655,7 +655,6 @@ magnets:
         ctrl: QUAD:LTUS:450:CTRL
       control_name: QUAD:LTUS:450
     metadata:
-      Effective Length (m): '.263'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -664,6 +663,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3352.738
       type: QUAD
   QDL20:
@@ -678,7 +678,6 @@ magnets:
         ctrl: QUAD:LTUS:470:CTRL
       control_name: QUAD:LTUS:470
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -687,6 +686,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3362.989
       type: QUAD
   QDL21:
@@ -701,7 +701,6 @@ magnets:
         ctrl: QUAD:LTUS:500:CTRL
       control_name: QUAD:LTUS:500
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -710,6 +709,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3374.423
       type: QUAD
   QDL22:
@@ -724,7 +724,6 @@ magnets:
         ctrl: QUAD:LTUS:510:CTRL
       control_name: QUAD:LTUS:510
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -733,6 +732,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3376.739
       type: QUAD
   QE31B:
@@ -747,7 +747,6 @@ magnets:
         ctrl: QUAD:LTUS:720:CTRL
       control_name: QUAD:LTUS:720
     metadata:
-      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -756,6 +755,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 3443.324
       type: QUAD
   QE32B:
@@ -770,7 +770,6 @@ magnets:
         ctrl: QUAD:LTUS:730:CTRL
       control_name: QUAD:LTUS:730
     metadata:
-      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -779,6 +778,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 3460.956
       type: QUAD
   QE33B:
@@ -793,7 +793,6 @@ magnets:
         ctrl: QUAD:LTUS:740:CTRL
       control_name: QUAD:LTUS:740
     metadata:
-      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -802,6 +801,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 3478.588
       type: QUAD
   QE34B:
@@ -816,7 +816,6 @@ magnets:
         ctrl: QUAD:LTUS:750:CTRL
       control_name: QUAD:LTUS:750
     metadata:
-      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -825,6 +824,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 3496.219
       type: QUAD
   QE35B:
@@ -839,7 +839,6 @@ magnets:
         ctrl: QUAD:LTUS:760:CTRL
       control_name: QUAD:LTUS:760
     metadata:
-      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -848,6 +847,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 3513.851
       type: QUAD
   QE36B:
@@ -862,7 +862,6 @@ magnets:
         ctrl: QUAD:LTUS:780:CTRL
       control_name: QUAD:LTUS:780
     metadata:
-      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -871,6 +870,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 3531.483
       type: QUAD
   QEM1B:
@@ -885,7 +885,6 @@ magnets:
         ctrl: QUAD:LTUS:620:CTRL
       control_name: QUAD:LTUS:620
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -894,6 +893,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3410.895
       type: QUAD
   QEM2B:
@@ -908,7 +908,6 @@ magnets:
         ctrl: QUAD:LTUS:640:CTRL
       control_name: QUAD:LTUS:640
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -917,6 +916,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3415.356
       type: QUAD
   QEM3B:
@@ -931,7 +931,6 @@ magnets:
         ctrl: QUAD:LTUS:660:CTRL
       control_name: QUAD:LTUS:660
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -940,6 +939,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3427.817
       type: QUAD
   QEM3VB:
@@ -954,7 +954,6 @@ magnets:
         ctrl: QUAD:LTUS:665:CTRL
       control_name: QUAD:LTUS:665
     metadata:
-      Effective Length (m): '.108'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -963,6 +962,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 3428.804
       type: QUAD
   QEM4B:
@@ -977,7 +977,6 @@ magnets:
         ctrl: QUAD:LTUS:680:CTRL
       control_name: QUAD:LTUS:680
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -986,6 +985,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3432.278
       type: QUAD
   QFXL1:
@@ -1000,7 +1000,6 @@ magnets:
         ctrl: QUAD:LTUS:725:CTRL
       control_name: QUAD:LTUS:725
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1009,6 +1008,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3448.346
       type: QUAD
   QFXL2:
@@ -1023,7 +1023,6 @@ magnets:
         ctrl: QUAD:LTUS:772:CTRL
       control_name: QUAD:LTUS:772
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1032,6 +1031,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3525.248
       type: QUAD
   QUM1B:
@@ -1046,7 +1046,6 @@ magnets:
         ctrl: QUAD:LTUS:820:CTRL
       control_name: QUAD:LTUS:820
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1055,6 +1054,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3547.779
       type: QUAD
   QUM2B:
@@ -1069,7 +1069,6 @@ magnets:
         ctrl: QUAD:LTUS:840:CTRL
       control_name: QUAD:LTUS:840
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1078,6 +1077,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3552.99
       type: QUAD
   QUM3B:
@@ -1092,7 +1092,6 @@ magnets:
         ctrl: QUAD:LTUS:860:CTRL
       control_name: QUAD:LTUS:860
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1101,6 +1100,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3561.451
       type: QUAD
   QUM4B:
@@ -1115,7 +1115,6 @@ magnets:
         ctrl: QUAD:LTUS:880:CTRL
       control_name: QUAD:LTUS:880
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1124,6 +1123,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3565.912
       type: QUAD
   QVB1B:
@@ -1138,7 +1138,6 @@ magnets:
         ctrl: QUAD:LTUS:540:CTRL
       control_name: QUAD:LTUS:540
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1147,6 +1146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3386.631
       type: QUAD
   QVB2B:
@@ -1161,7 +1161,6 @@ magnets:
         ctrl: QUAD:LTUS:550:CTRL
       control_name: QUAD:LTUS:550
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1170,6 +1169,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3389.035
       type: QUAD
   QVB3B:
@@ -1184,7 +1184,6 @@ magnets:
         ctrl: QUAD:LTUS:560:CTRL
       control_name: QUAD:LTUS:560
     metadata:
-      Effective Length (m): '.1068'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1193,6 +1192,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1068
       sum_l_meters: 3391.438
       type: QUAD
   QVM3B:
@@ -1207,7 +1207,6 @@ magnets:
         ctrl: QUAD:LTUS:570:CTRL
       control_name: QUAD:LTUS:570
     metadata:
-      Effective Length (m): '.32'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1216,6 +1215,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.32
       sum_l_meters: 3399.742
       type: QUAD
   QVM4B:
@@ -1230,7 +1230,6 @@ magnets:
         ctrl: QUAD:LTUS:580:CTRL
       control_name: QUAD:LTUS:580
     metadata:
-      Effective Length (m): '.32'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1239,6 +1238,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.32
       sum_l_meters: 3401.703
       type: QUAD
   XCDBL2:
@@ -1253,7 +1253,6 @@ magnets:
         ctrl: XCOR:LTUS:118:CTRL
       control_name: XCOR:LTUS:118
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1262,6 +1261,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3236.533
       type: XCOR
   XCDL11:
@@ -1276,7 +1276,6 @@ magnets:
         ctrl: XCOR:LTUS:148:CTRL
       control_name: XCOR:LTUS:148
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1285,6 +1284,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3250.207
       type: XCOR
   XCDL13:
@@ -1299,7 +1299,6 @@ magnets:
         ctrl: XCOR:LTUS:228:CTRL
       control_name: XCOR:LTUS:228
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1308,6 +1307,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3275.707
       type: XCOR
   XCDL15:
@@ -1322,7 +1322,6 @@ magnets:
         ctrl: XCOR:LTUS:296:CTRL
       control_name: XCOR:LTUS:296
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1331,6 +1330,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3301.207
       type: XCOR
   XCDL17:
@@ -1345,7 +1345,6 @@ magnets:
         ctrl: XCOR:LTUS:368:CTRL
       control_name: XCOR:LTUS:368
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1354,6 +1353,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3326.057
       type: XCOR
   XCDL19:
@@ -1368,7 +1368,6 @@ magnets:
         ctrl: XCOR:LTUS:448:CTRL
       control_name: XCOR:LTUS:448
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1377,6 +1376,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3352.207
       type: XCOR
   XCDL22:
@@ -1391,7 +1391,6 @@ magnets:
         ctrl: XCOR:LTUS:508:CTRL
       control_name: XCOR:LTUS:508
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1400,6 +1399,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3376.285
       type: XCOR
   XCE31B:
@@ -1414,7 +1414,6 @@ magnets:
         ctrl: XCOR:LTUS:718:CTRL
       control_name: XCOR:LTUS:718
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1423,6 +1422,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3442.844
       type: XCOR
   XCE33B:
@@ -1437,7 +1437,6 @@ magnets:
         ctrl: XCOR:LTUS:738:CTRL
       control_name: XCOR:LTUS:738
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1446,6 +1445,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3478.078
       type: XCOR
   XCE35B:
@@ -1460,7 +1460,6 @@ magnets:
         ctrl: XCOR:LTUS:758:CTRL
       control_name: XCOR:LTUS:758
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1469,6 +1468,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3513.191
       type: XCOR
   XCEM1B:
@@ -1483,7 +1483,6 @@ magnets:
         ctrl: XCOR:LTUS:616:CTRL
       control_name: XCOR:LTUS:616
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1492,6 +1491,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3410.472
       type: XCOR
   XCEM3B:
@@ -1506,7 +1506,6 @@ magnets:
         ctrl: XCOR:LTUS:658:CTRL
       control_name: XCOR:LTUS:658
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1515,6 +1514,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3427.394
       type: XCOR
   XCUM1B:
@@ -1529,7 +1529,6 @@ magnets:
         ctrl: XCOR:LTUS:826:CTRL
       control_name: XCOR:LTUS:826
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1538,6 +1537,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3548.303
       type: XCOR
   XCUM3B:
@@ -1552,7 +1552,6 @@ magnets:
         ctrl: XCOR:LTUS:858:CTRL
       control_name: XCOR:LTUS:858
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1561,6 +1560,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3561.018
       type: XCOR
   XCVB2B:
@@ -1575,7 +1575,6 @@ magnets:
         ctrl: XCOR:LTUS:548:CTRL
       control_name: XCOR:LTUS:548
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1584,6 +1583,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3388.581
       type: XCOR
   XCVM3B:
@@ -1598,7 +1598,6 @@ magnets:
         ctrl: XCOR:LTUS:568:CTRL
       control_name: XCOR:LTUS:568
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1607,6 +1606,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3399.332
       type: XCOR
   XCXL1:
@@ -1621,7 +1621,6 @@ magnets:
         ctrl: XCOR:LTUS:722:CTRL
       control_name: XCOR:LTUS:722
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1630,6 +1629,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3444.179
       type: XCOR
   XCXL2:
@@ -1644,7 +1644,6 @@ magnets:
         ctrl: XCOR:LTUS:768:CTRL
       control_name: XCOR:LTUS:768
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1653,6 +1652,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3521.099
       type: XCOR
   YCDBL1:
@@ -1667,7 +1667,6 @@ magnets:
         ctrl: YCOR:LTUS:111:CTRL
       control_name: YCOR:LTUS:111
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1676,6 +1675,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3235.26
       type: YCOR
   YCDL12:
@@ -1690,7 +1690,6 @@ magnets:
         ctrl: YCOR:LTUS:183:CTRL
       control_name: YCOR:LTUS:183
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1699,6 +1698,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3264.02
       type: YCOR
   YCDL14:
@@ -1713,7 +1713,6 @@ magnets:
         ctrl: YCOR:LTUS:267:CTRL
       control_name: YCOR:LTUS:267
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1722,6 +1721,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3288.457
       type: YCOR
   YCDL16:
@@ -1736,7 +1736,6 @@ magnets:
         ctrl: YCOR:LTUS:341:CTRL
       control_name: YCOR:LTUS:341
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1745,6 +1744,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3313.957
       type: YCOR
   YCDL18:
@@ -1759,7 +1759,6 @@ magnets:
         ctrl: YCOR:LTUS:427:CTRL
       control_name: YCOR:LTUS:427
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1768,6 +1767,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3339.457
       type: YCOR
   YCDL20:
@@ -1782,7 +1782,6 @@ magnets:
         ctrl: YCOR:LTUS:471:CTRL
       control_name: YCOR:LTUS:471
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1791,6 +1790,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3363.442
       type: YCOR
   YCDL21:
@@ -1805,7 +1805,6 @@ magnets:
         ctrl: YCOR:LTUS:499:CTRL
       control_name: YCOR:LTUS:499
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1814,6 +1813,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3373.969
       type: YCOR
   YCE32B:
@@ -1828,7 +1828,6 @@ magnets:
         ctrl: YCOR:LTUS:729:CTRL
       control_name: YCOR:LTUS:729
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1837,6 +1836,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3460.466
       type: YCOR
   YCE34B:
@@ -1851,7 +1851,6 @@ magnets:
         ctrl: YCOR:LTUS:749:CTRL
       control_name: YCOR:LTUS:749
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1860,6 +1859,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3495.739
       type: YCOR
   YCE36B:
@@ -1874,7 +1874,6 @@ magnets:
         ctrl: YCOR:LTUS:777:CTRL
       control_name: YCOR:LTUS:777
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1883,6 +1882,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3531.003
       type: YCOR
   YCEM2B:
@@ -1897,7 +1897,6 @@ magnets:
         ctrl: YCOR:LTUS:641:CTRL
       control_name: YCOR:LTUS:641
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1906,6 +1905,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3415.909
       type: YCOR
   YCEM4B:
@@ -1920,7 +1920,6 @@ magnets:
         ctrl: YCOR:LTUS:677:CTRL
       control_name: YCOR:LTUS:677
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1929,6 +1928,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3431.725
       type: YCOR
   YCUM2B:
@@ -1943,7 +1943,6 @@ magnets:
         ctrl: YCOR:LTUS:839:CTRL
       control_name: YCOR:LTUS:839
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1952,6 +1951,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3552.567
       type: YCOR
   YCUM4B:
@@ -1966,7 +1966,6 @@ magnets:
         ctrl: YCOR:LTUS:877:CTRL
       control_name: YCOR:LTUS:877
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1975,6 +1974,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3565.359
       type: YCOR
   YCVB1B:
@@ -1989,7 +1989,6 @@ magnets:
         ctrl: YCOR:LTUS:547:CTRL
       control_name: YCOR:LTUS:547
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -1998,6 +1997,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3387.085
       type: YCOR
   YCVB3B:
@@ -2012,7 +2012,6 @@ magnets:
         ctrl: YCOR:LTUS:561:CTRL
       control_name: YCOR:LTUS:561
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -2021,6 +2020,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3391.892
       type: YCOR
   YCVM4B:
@@ -2035,7 +2035,6 @@ magnets:
         ctrl: YCOR:LTUS:577:CTRL
       control_name: YCOR:LTUS:577
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -2044,6 +2043,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3401.216
       type: YCOR
   YCXL1:
@@ -2058,7 +2058,6 @@ magnets:
         ctrl: YCOR:LTUS:721:CTRL
       control_name: YCOR:LTUS:721
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -2067,6 +2066,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3443.783
       type: YCOR
   YCXL2:
@@ -2081,7 +2081,6 @@ magnets:
         ctrl: YCOR:LTUS:767:CTRL
       control_name: YCOR:LTUS:767
     metadata:
-      Effective Length (m): '0'
       area: LTUS
       beam_path:
       - CU_SXR
@@ -2090,6 +2089,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3520.705
       type: YCOR
 screens:

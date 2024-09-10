@@ -11,7 +11,6 @@ magnets:
         ctrl: QUAD:L1B:0285:CTRL
       control_name: QUAD:L1B:0285
     metadata:
-      Effective Length (m): '.23'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -22,6 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 100.213
       type: QUAD
   QCM03:
@@ -36,7 +36,6 @@ magnets:
         ctrl: QUAD:L1B:0385:CTRL
       control_name: QUAD:L1B:0385
     metadata:
-      Effective Length (m): '.23'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -47,6 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.23
       sum_l_meters: 112.434
       type: QUAD
   XCM02:
@@ -61,7 +61,6 @@ magnets:
         ctrl: XCOR:L1B:0285:CTRL
       control_name: XCOR:L1B:0285
     metadata:
-      Effective Length (m): '0'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -72,6 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 100.213
       type: XCOR
   XCM03:
@@ -86,7 +86,6 @@ magnets:
         ctrl: XCOR:L1B:0385:CTRL
       control_name: XCOR:L1B:0385
     metadata:
-      Effective Length (m): '0'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -97,6 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 112.434
       type: XCOR
   YCM02:
@@ -111,7 +111,6 @@ magnets:
         ctrl: YCOR:L1B:0285:CTRL
       control_name: YCOR:L1B:0285
     metadata:
-      Effective Length (m): '0'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -122,6 +121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 100.213
       type: YCOR
   YCM03:
@@ -136,7 +136,6 @@ magnets:
         ctrl: YCOR:L1B:0385:CTRL
       control_name: YCOR:L1B:0385
     metadata:
-      Effective Length (m): '0'
       area: L1B
       beam_path:
       - SC_BSYD
@@ -147,5 +146,6 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 112.434
       type: YCOR

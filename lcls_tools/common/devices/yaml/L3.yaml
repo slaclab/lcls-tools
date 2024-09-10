@@ -11,7 +11,6 @@ magnets:
         ctrl: QUAD:LI25:201:CTRL
       control_name: QUAD:LI25:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -20,6 +19,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 435.999
       type: QUAD
   Q25301:
@@ -34,7 +34,6 @@ magnets:
         ctrl: QUAD:LI25:301:CTRL
       control_name: QUAD:LI25:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -43,6 +42,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 448.343
       type: QUAD
   Q25401:
@@ -57,7 +57,6 @@ magnets:
         ctrl: QUAD:LI25:401:CTRL
       control_name: QUAD:LI25:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -66,6 +65,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 460.687
       type: QUAD
   Q25501:
@@ -80,7 +80,6 @@ magnets:
         ctrl: QUAD:LI25:501:CTRL
       control_name: QUAD:LI25:501
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -89,6 +88,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 473.032
       type: QUAD
   Q25601:
@@ -103,7 +103,6 @@ magnets:
         ctrl: QUAD:LI25:601:CTRL
       control_name: QUAD:LI25:601
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -112,6 +111,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 485.376
       type: QUAD
   Q25701:
@@ -126,7 +126,6 @@ magnets:
         ctrl: QUAD:LI25:701:CTRL
       control_name: QUAD:LI25:701
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -135,6 +134,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 497.721
       type: QUAD
   Q25801:
@@ -149,7 +149,6 @@ magnets:
         ctrl: QUAD:LI25:801:CTRL
       control_name: QUAD:LI25:801
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -158,6 +157,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 510.065
       type: QUAD
   Q25901:
@@ -172,7 +172,6 @@ magnets:
         ctrl: QUAD:LI25:901:CTRL
       control_name: QUAD:LI25:901
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -181,6 +180,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 522.65
       type: QUAD
   Q26201:
@@ -195,7 +195,6 @@ magnets:
         ctrl: QUAD:LI26:201:CTRL
       control_name: QUAD:LI26:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -204,6 +203,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 537.599
       type: QUAD
   Q26301:
@@ -218,7 +218,6 @@ magnets:
         ctrl: QUAD:LI26:301:CTRL
       control_name: QUAD:LI26:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -227,6 +226,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 549.943
       type: QUAD
   Q26401:
@@ -241,7 +241,6 @@ magnets:
         ctrl: QUAD:LI26:401:CTRL
       control_name: QUAD:LI26:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -250,6 +249,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 562.287
       type: QUAD
   Q26501:
@@ -264,7 +264,6 @@ magnets:
         ctrl: QUAD:LI26:501:CTRL
       control_name: QUAD:LI26:501
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -273,6 +272,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 574.632
       type: QUAD
   Q26601:
@@ -287,7 +287,6 @@ magnets:
         ctrl: QUAD:LI26:601:CTRL
       control_name: QUAD:LI26:601
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -296,6 +295,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 586.976
       type: QUAD
   Q26701:
@@ -310,7 +310,6 @@ magnets:
         ctrl: QUAD:LI26:701:CTRL
       control_name: QUAD:LI26:701
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -319,6 +318,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 599.321
       type: QUAD
   Q26801:
@@ -333,7 +333,6 @@ magnets:
         ctrl: QUAD:LI26:801:CTRL
       control_name: QUAD:LI26:801
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -342,6 +341,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 611.665
       type: QUAD
   Q26901:
@@ -356,7 +356,6 @@ magnets:
         ctrl: QUAD:LI26:901:CTRL
       control_name: QUAD:LI26:901
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -365,6 +364,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 624.25
       type: QUAD
   Q27201:
@@ -379,7 +379,6 @@ magnets:
         ctrl: QUAD:LI27:201:CTRL
       control_name: QUAD:LI27:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -388,6 +387,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 639.199
       type: QUAD
   Q27301:
@@ -402,7 +402,6 @@ magnets:
         ctrl: QUAD:LI27:301:CTRL
       control_name: QUAD:LI27:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -411,6 +410,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 651.543
       type: QUAD
   Q27401:
@@ -425,7 +425,6 @@ magnets:
         ctrl: QUAD:LI27:401:CTRL
       control_name: QUAD:LI27:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -434,6 +433,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 663.887
       type: QUAD
   Q27501:
@@ -448,7 +448,6 @@ magnets:
         ctrl: QUAD:LI27:501:CTRL
       control_name: QUAD:LI27:501
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -457,6 +456,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 676.232
       type: QUAD
   Q27601:
@@ -471,7 +471,6 @@ magnets:
         ctrl: QUAD:LI27:601:CTRL
       control_name: QUAD:LI27:601
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -480,6 +479,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 688.576
       type: QUAD
   Q27701:
@@ -494,7 +494,6 @@ magnets:
         ctrl: QUAD:LI27:701:CTRL
       control_name: QUAD:LI27:701
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -503,6 +502,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 700.921
       type: QUAD
   Q27801:
@@ -517,7 +517,6 @@ magnets:
         ctrl: QUAD:LI27:801:CTRL
       control_name: QUAD:LI27:801
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -526,6 +525,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 713.265
       type: QUAD
   Q27901:
@@ -540,7 +540,6 @@ magnets:
         ctrl: QUAD:LI27:901:CTRL
       control_name: QUAD:LI27:901
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -549,6 +548,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 725.85
       type: QUAD
   Q28201:
@@ -563,7 +563,6 @@ magnets:
         ctrl: QUAD:LI28:201:CTRL
       control_name: QUAD:LI28:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -572,6 +571,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 740.799
       type: QUAD
   Q28301:
@@ -586,7 +586,6 @@ magnets:
         ctrl: QUAD:LI28:301:CTRL
       control_name: QUAD:LI28:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -595,6 +594,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 753.143
       type: QUAD
   Q28401:
@@ -609,7 +609,6 @@ magnets:
         ctrl: QUAD:LI28:401:CTRL
       control_name: QUAD:LI28:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -618,6 +617,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 765.487
       type: QUAD
   Q28501:
@@ -632,7 +632,6 @@ magnets:
         ctrl: QUAD:LI28:501:CTRL
       control_name: QUAD:LI28:501
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -641,6 +640,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 777.832
       type: QUAD
   Q28601:
@@ -655,7 +655,6 @@ magnets:
         ctrl: QUAD:LI28:601:CTRL
       control_name: QUAD:LI28:601
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -664,6 +663,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 790.176
       type: QUAD
   Q28701:
@@ -678,7 +678,6 @@ magnets:
         ctrl: QUAD:LI28:701:CTRL
       control_name: QUAD:LI28:701
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -687,6 +686,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 802.521
       type: QUAD
   Q28801:
@@ -701,7 +701,6 @@ magnets:
         ctrl: QUAD:LI28:801:CTRL
       control_name: QUAD:LI28:801
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -710,6 +709,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 814.865
       type: QUAD
   Q28901:
@@ -724,7 +724,6 @@ magnets:
         ctrl: QUAD:LI28:901:CTRL
       control_name: QUAD:LI28:901
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -733,6 +732,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 827.45
       type: QUAD
   Q29201:
@@ -747,7 +747,6 @@ magnets:
         ctrl: QUAD:LI29:201:CTRL
       control_name: QUAD:LI29:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -756,6 +755,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 842.399
       type: QUAD
   Q29301:
@@ -770,7 +770,6 @@ magnets:
         ctrl: QUAD:LI29:301:CTRL
       control_name: QUAD:LI29:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -779,6 +778,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 854.743
       type: QUAD
   Q29401:
@@ -793,7 +793,6 @@ magnets:
         ctrl: QUAD:LI29:401:CTRL
       control_name: QUAD:LI29:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -802,6 +801,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 867.087
       type: QUAD
   Q29501:
@@ -816,7 +816,6 @@ magnets:
         ctrl: QUAD:LI29:501:CTRL
       control_name: QUAD:LI29:501
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -825,6 +824,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 879.432
       type: QUAD
   Q29601:
@@ -839,7 +839,6 @@ magnets:
         ctrl: QUAD:LI29:601:CTRL
       control_name: QUAD:LI29:601
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -848,6 +847,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 891.776
       type: QUAD
   Q29701:
@@ -862,7 +862,6 @@ magnets:
         ctrl: QUAD:LI29:701:CTRL
       control_name: QUAD:LI29:701
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -871,6 +870,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 904.121
       type: QUAD
   Q29801:
@@ -885,7 +885,6 @@ magnets:
         ctrl: QUAD:LI29:801:CTRL
       control_name: QUAD:LI29:801
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -894,6 +893,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 916.465
       type: QUAD
   Q29901:
@@ -908,7 +908,6 @@ magnets:
         ctrl: QUAD:LI29:901:CTRL
       control_name: QUAD:LI29:901
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -917,6 +916,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 929.129
       type: QUAD
   Q30201:
@@ -931,7 +931,6 @@ magnets:
         ctrl: QUAD:LI30:201:CTRL
       control_name: QUAD:LI30:201
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -940,6 +939,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 943.999
       type: QUAD
   Q30301:
@@ -954,7 +954,6 @@ magnets:
         ctrl: QUAD:LI30:301:CTRL
       control_name: QUAD:LI30:301
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -963,6 +962,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 956.343
       type: QUAD
   Q30401:
@@ -977,7 +977,6 @@ magnets:
         ctrl: QUAD:LI30:401:CTRL
       control_name: QUAD:LI30:401
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -986,6 +985,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 968.687
       type: QUAD
   Q30501:
@@ -1000,7 +1000,6 @@ magnets:
         ctrl: QUAD:LI30:501:CTRL
       control_name: QUAD:LI30:501
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1009,6 +1008,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 981.032
       type: QUAD
   Q30601:
@@ -1023,7 +1023,6 @@ magnets:
         ctrl: QUAD:LI30:601:CTRL
       control_name: QUAD:LI30:601
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1032,6 +1031,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 993.175
       type: QUAD
   Q30701:
@@ -1046,7 +1046,6 @@ magnets:
         ctrl: QUAD:LI30:701:CTRL
       control_name: QUAD:LI30:701
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1055,6 +1054,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 1005.535
       type: QUAD
   Q30801:
@@ -1069,7 +1069,6 @@ magnets:
         ctrl: QUAD:LI30:801:CTRL
       control_name: QUAD:LI30:801
     metadata:
-      Effective Length (m): '.1068'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1078,6 +1077,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 1017.865
       type: QUAD
   XC24900:
@@ -1092,7 +1092,6 @@ magnets:
         ctrl: XCOR:LI24:900:CTRL
       control_name: XCOR:LI24:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1101,6 +1100,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 424.06
       type: XCOR
   XC25202:
@@ -1115,7 +1115,6 @@ magnets:
         ctrl: XCOR:LI25:202:CTRL
       control_name: XCOR:LI25:202
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1124,6 +1123,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 436.532
       type: XCOR
   XC25302:
@@ -1138,7 +1138,6 @@ magnets:
         ctrl: XCOR:LI25:302:CTRL
       control_name: XCOR:LI25:302
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1147,6 +1146,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 448.755
       type: XCOR
   XC25402:
@@ -1161,7 +1161,6 @@ magnets:
         ctrl: XCOR:LI25:402:CTRL
       control_name: XCOR:LI25:402
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1170,6 +1169,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 461.095
       type: XCOR
   XC25502:
@@ -1184,7 +1184,6 @@ magnets:
         ctrl: XCOR:LI25:502:CTRL
       control_name: XCOR:LI25:502
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1193,6 +1192,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 473.439
       type: XCOR
   XC25602:
@@ -1207,7 +1207,6 @@ magnets:
         ctrl: XCOR:LI25:602:CTRL
       control_name: XCOR:LI25:602
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1216,6 +1215,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 485.785
       type: XCOR
   XC25702:
@@ -1230,7 +1230,6 @@ magnets:
         ctrl: XCOR:LI25:702:CTRL
       control_name: XCOR:LI25:702
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1239,6 +1238,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 498.135
       type: XCOR
   XC25802:
@@ -1253,7 +1253,6 @@ magnets:
         ctrl: XCOR:LI25:802:CTRL
       control_name: XCOR:LI25:802
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1262,6 +1261,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 510.475
       type: XCOR
   XC25900:
@@ -1276,7 +1276,6 @@ magnets:
         ctrl: XCOR:LI25:900:CTRL
       control_name: XCOR:LI25:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1285,6 +1284,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 521.665
       type: XCOR
   XC26202:
@@ -1299,7 +1299,6 @@ magnets:
         ctrl: XCOR:LI26:202:CTRL
       control_name: XCOR:LI26:202
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1308,6 +1307,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 538.005
       type: XCOR
   XC26302:
@@ -1322,7 +1322,6 @@ magnets:
         ctrl: XCOR:LI26:302:CTRL
       control_name: XCOR:LI26:302
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1331,6 +1330,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 550.355
       type: XCOR
   XC26402:
@@ -1345,7 +1345,6 @@ magnets:
         ctrl: XCOR:LI26:402:CTRL
       control_name: XCOR:LI26:402
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1354,6 +1353,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 562.695
       type: XCOR
   XC26502:
@@ -1368,7 +1368,6 @@ magnets:
         ctrl: XCOR:LI26:502:CTRL
       control_name: XCOR:LI26:502
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1377,6 +1376,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 575.045
       type: XCOR
   XC26602:
@@ -1391,7 +1391,6 @@ magnets:
         ctrl: XCOR:LI26:602:CTRL
       control_name: XCOR:LI26:602
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1400,6 +1399,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 587.385
       type: XCOR
   XC26702:
@@ -1414,7 +1414,6 @@ magnets:
         ctrl: XCOR:LI26:702:CTRL
       control_name: XCOR:LI26:702
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1423,6 +1422,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 599.735
       type: XCOR
   XC26802:
@@ -1437,7 +1437,6 @@ magnets:
         ctrl: XCOR:LI26:802:CTRL
       control_name: XCOR:LI26:802
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1446,6 +1445,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 612.075
       type: XCOR
   XC26900:
@@ -1460,7 +1460,6 @@ magnets:
         ctrl: XCOR:LI26:900:CTRL
       control_name: XCOR:LI26:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1469,6 +1468,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 623.265
       type: XCOR
   XC27202:
@@ -1483,7 +1483,6 @@ magnets:
         ctrl: XCOR:LI27:202:CTRL
       control_name: XCOR:LI27:202
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1492,6 +1491,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 639.605
       type: XCOR
   XC27302:
@@ -1506,7 +1506,6 @@ magnets:
         ctrl: XCOR:LI27:302:CTRL
       control_name: XCOR:LI27:302
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1515,6 +1514,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 651.955
       type: XCOR
   XC27402:
@@ -1529,7 +1529,6 @@ magnets:
         ctrl: XCOR:LI27:402:CTRL
       control_name: XCOR:LI27:402
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1538,6 +1537,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 664.295
       type: XCOR
   XC27502:
@@ -1552,7 +1552,6 @@ magnets:
         ctrl: XCOR:LI27:502:CTRL
       control_name: XCOR:LI27:502
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1561,6 +1560,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 676.645
       type: XCOR
   XC27602:
@@ -1575,7 +1575,6 @@ magnets:
         ctrl: XCOR:LI27:602:CTRL
       control_name: XCOR:LI27:602
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1584,6 +1583,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 688.985
       type: XCOR
   XC27702:
@@ -1598,7 +1598,6 @@ magnets:
         ctrl: XCOR:LI27:702:CTRL
       control_name: XCOR:LI27:702
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1607,6 +1606,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 701.335
       type: XCOR
   XC27802:
@@ -1621,7 +1621,6 @@ magnets:
         ctrl: XCOR:LI27:802:CTRL
       control_name: XCOR:LI27:802
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1630,6 +1629,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 713.675
       type: XCOR
   XC27900:
@@ -1644,7 +1644,6 @@ magnets:
         ctrl: XCOR:LI27:900:CTRL
       control_name: XCOR:LI27:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1653,6 +1652,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 724.719
       type: XCOR
   XC28202:
@@ -1667,7 +1667,6 @@ magnets:
         ctrl: XCOR:LI28:202:CTRL
       control_name: XCOR:LI28:202
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1676,6 +1675,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 741.205
       type: XCOR
   XC28302:
@@ -1690,7 +1690,6 @@ magnets:
         ctrl: XCOR:LI28:302:CTRL
       control_name: XCOR:LI28:302
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1699,6 +1698,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 753.555
       type: XCOR
   XC28402:
@@ -1713,7 +1713,6 @@ magnets:
         ctrl: XCOR:LI28:402:CTRL
       control_name: XCOR:LI28:402
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1722,6 +1721,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 765.948
       type: XCOR
   XC28502:
@@ -1736,7 +1736,6 @@ magnets:
         ctrl: XCOR:LI28:502:CTRL
       control_name: XCOR:LI28:502
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1745,6 +1744,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 778.308
       type: XCOR
   XC28602:
@@ -1759,7 +1759,6 @@ magnets:
         ctrl: XCOR:LI28:602:CTRL
       control_name: XCOR:LI28:602
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1768,6 +1767,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 790.585
       type: XCOR
   XC28702:
@@ -1782,7 +1782,6 @@ magnets:
         ctrl: XCOR:LI28:702:CTRL
       control_name: XCOR:LI28:702
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1791,6 +1790,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 802.935
       type: XCOR
   XC28802:
@@ -1805,7 +1805,6 @@ magnets:
         ctrl: XCOR:LI28:802:CTRL
       control_name: XCOR:LI28:802
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1814,6 +1813,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 815.275
       type: XCOR
   XC28900:
@@ -1828,7 +1828,6 @@ magnets:
         ctrl: XCOR:LI28:900:CTRL
       control_name: XCOR:LI28:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1837,6 +1836,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 826.465
       type: XCOR
   XC29202:
@@ -1851,7 +1851,6 @@ magnets:
         ctrl: XCOR:LI29:202:CTRL
       control_name: XCOR:LI29:202
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1860,6 +1859,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 842.805
       type: XCOR
   XC29302:
@@ -1874,7 +1874,6 @@ magnets:
         ctrl: XCOR:LI29:302:CTRL
       control_name: XCOR:LI29:302
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1883,6 +1882,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 855.155
       type: XCOR
   XC29402:
@@ -1897,7 +1897,6 @@ magnets:
         ctrl: XCOR:LI29:402:CTRL
       control_name: XCOR:LI29:402
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1906,6 +1905,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 867.495
       type: XCOR
   XC29502:
@@ -1920,7 +1920,6 @@ magnets:
         ctrl: XCOR:LI29:502:CTRL
       control_name: XCOR:LI29:502
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1929,6 +1928,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 879.892
       type: XCOR
   XC29602:
@@ -1943,7 +1943,6 @@ magnets:
         ctrl: XCOR:LI29:602:CTRL
       control_name: XCOR:LI29:602
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1952,6 +1951,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 892.306
       type: XCOR
   XC29702:
@@ -1966,7 +1966,6 @@ magnets:
         ctrl: XCOR:LI29:702:CTRL
       control_name: XCOR:LI29:702
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1975,6 +1974,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 904.535
       type: XCOR
   XC29802:
@@ -1989,7 +1989,6 @@ magnets:
         ctrl: XCOR:LI29:802:CTRL
       control_name: XCOR:LI29:802
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -1998,6 +1997,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 916.935
       type: XCOR
   XC29900:
@@ -2012,7 +2012,6 @@ magnets:
         ctrl: XCOR:LI29:900:CTRL
       control_name: XCOR:LI29:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2021,6 +2020,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 928.134
       type: XCOR
   XC30202:
@@ -2035,7 +2035,6 @@ magnets:
         ctrl: XCOR:LI30:202:CTRL
       control_name: XCOR:LI30:202
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2044,6 +2043,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 944.58
       type: XCOR
   XC30302:
@@ -2058,7 +2058,6 @@ magnets:
         ctrl: XCOR:LI30:302:CTRL
       control_name: XCOR:LI30:302
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2067,6 +2066,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 956.822
       type: XCOR
   XC30402:
@@ -2081,7 +2081,6 @@ magnets:
         ctrl: XCOR:LI30:402:CTRL
       control_name: XCOR:LI30:402
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2090,6 +2089,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 969.153
       type: XCOR
   XC30502:
@@ -2104,7 +2104,6 @@ magnets:
         ctrl: XCOR:LI30:502:CTRL
       control_name: XCOR:LI30:502
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2113,6 +2112,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 981.485
       type: XCOR
   XC30602:
@@ -2127,7 +2127,6 @@ magnets:
         ctrl: XCOR:LI30:602:CTRL
       control_name: XCOR:LI30:602
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2136,6 +2135,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 993.851
       type: XCOR
   XC30702:
@@ -2150,7 +2150,6 @@ magnets:
         ctrl: XCOR:LI30:702:CTRL
       control_name: XCOR:LI30:702
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2159,6 +2158,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1006.182
       type: XCOR
   XC30802:
@@ -2173,7 +2173,6 @@ magnets:
         ctrl: XCOR:LI30:802:CTRL
       control_name: XCOR:LI30:802
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2182,6 +2181,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1018.531
       type: XCOR
   XC30900:
@@ -2196,7 +2196,6 @@ magnets:
         ctrl: XCOR:LI30:900:CTRL
       control_name: XCOR:LI30:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2205,6 +2204,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1026.463
       type: XCOR
   YC24900:
@@ -2219,7 +2219,6 @@ magnets:
         ctrl: YCOR:LI24:900:CTRL
       control_name: YCOR:LI24:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2228,6 +2227,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 424.385
       type: YCOR
   YC25203:
@@ -2242,7 +2242,6 @@ magnets:
         ctrl: YCOR:LI25:203:CTRL
       control_name: YCOR:LI25:203
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2251,6 +2250,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 436.85
       type: YCOR
   YC25303:
@@ -2265,7 +2265,6 @@ magnets:
         ctrl: YCOR:LI25:303:CTRL
       control_name: YCOR:LI25:303
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2274,6 +2273,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 449.105
       type: YCOR
   YC25403:
@@ -2288,7 +2288,6 @@ magnets:
         ctrl: YCOR:LI25:403:CTRL
       control_name: YCOR:LI25:403
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2297,6 +2296,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 461.345
       type: YCOR
   YC25503:
@@ -2311,7 +2311,6 @@ magnets:
         ctrl: YCOR:LI25:503:CTRL
       control_name: YCOR:LI25:503
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2320,6 +2319,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 473.689
       type: YCOR
   YC25603:
@@ -2334,7 +2334,6 @@ magnets:
         ctrl: YCOR:LI25:603:CTRL
       control_name: YCOR:LI25:603
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2343,6 +2342,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 486.167
       type: YCOR
   YC25703:
@@ -2357,7 +2357,6 @@ magnets:
         ctrl: YCOR:LI25:703:CTRL
       control_name: YCOR:LI25:703
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2366,6 +2365,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 498.385
       type: YCOR
   YC25803:
@@ -2380,7 +2380,6 @@ magnets:
         ctrl: YCOR:LI25:803:CTRL
       control_name: YCOR:LI25:803
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2389,6 +2388,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 510.725
       type: YCOR
   YC25900:
@@ -2403,7 +2403,6 @@ magnets:
         ctrl: YCOR:LI25:900:CTRL
       control_name: YCOR:LI25:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2412,6 +2411,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 521.915
       type: YCOR
   YC26203:
@@ -2426,7 +2426,6 @@ magnets:
         ctrl: YCOR:LI26:203:CTRL
       control_name: YCOR:LI26:203
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2435,6 +2434,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 538.377
       type: YCOR
   YC26303:
@@ -2449,7 +2449,6 @@ magnets:
         ctrl: YCOR:LI26:303:CTRL
       control_name: YCOR:LI26:303
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2458,6 +2457,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 550.605
       type: YCOR
   YC26403:
@@ -2472,7 +2472,6 @@ magnets:
         ctrl: YCOR:LI26:403:CTRL
       control_name: YCOR:LI26:403
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2481,6 +2480,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 562.945
       type: YCOR
   YC26503:
@@ -2495,7 +2495,6 @@ magnets:
         ctrl: YCOR:LI26:503:CTRL
       control_name: YCOR:LI26:503
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2504,6 +2503,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 575.295
       type: YCOR
   YC26603:
@@ -2518,7 +2518,6 @@ magnets:
         ctrl: YCOR:LI26:603:CTRL
       control_name: YCOR:LI26:603
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2527,6 +2526,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 587.795
       type: YCOR
   YC26703:
@@ -2541,7 +2541,6 @@ magnets:
         ctrl: YCOR:LI26:703:CTRL
       control_name: YCOR:LI26:703
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2550,6 +2549,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 599.985
       type: YCOR
   YC26803:
@@ -2564,7 +2564,6 @@ magnets:
         ctrl: YCOR:LI26:803:CTRL
       control_name: YCOR:LI26:803
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2573,6 +2572,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 612.456
       type: YCOR
   YC26900:
@@ -2587,7 +2587,6 @@ magnets:
         ctrl: YCOR:LI26:900:CTRL
       control_name: YCOR:LI26:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2596,6 +2595,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 623.515
       type: YCOR
   YC27203:
@@ -2610,7 +2610,6 @@ magnets:
         ctrl: YCOR:LI27:203:CTRL
       control_name: YCOR:LI27:203
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2619,6 +2618,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 639.855
       type: YCOR
   YC27303:
@@ -2633,7 +2633,6 @@ magnets:
         ctrl: YCOR:LI27:303:CTRL
       control_name: YCOR:LI27:303
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2642,6 +2641,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 652.324
       type: YCOR
   YC27403:
@@ -2656,7 +2656,6 @@ magnets:
         ctrl: YCOR:LI27:403:CTRL
       control_name: YCOR:LI27:403
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2665,6 +2664,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 664.545
       type: YCOR
   YC27503:
@@ -2679,7 +2679,6 @@ magnets:
         ctrl: YCOR:LI27:503:CTRL
       control_name: YCOR:LI27:503
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2688,6 +2687,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 677.013
       type: YCOR
   YC27603:
@@ -2702,7 +2702,6 @@ magnets:
         ctrl: YCOR:LI27:603:CTRL
       control_name: YCOR:LI27:603
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2711,6 +2710,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 689.235
       type: YCOR
   YC27703:
@@ -2725,7 +2725,6 @@ magnets:
         ctrl: YCOR:LI27:703:CTRL
       control_name: YCOR:LI27:703
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2734,6 +2733,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 701.686
       type: YCOR
   YC27803:
@@ -2748,7 +2748,6 @@ magnets:
         ctrl: YCOR:LI27:803:CTRL
       control_name: YCOR:LI27:803
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2757,6 +2756,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 713.925
       type: YCOR
   YC27900:
@@ -2771,7 +2771,6 @@ magnets:
         ctrl: YCOR:LI27:900:CTRL
       control_name: YCOR:LI27:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2780,6 +2779,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 725.115
       type: YCOR
   YC28203:
@@ -2794,7 +2794,6 @@ magnets:
         ctrl: YCOR:LI28:203:CTRL
       control_name: YCOR:LI28:203
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2803,6 +2802,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 741.455
       type: YCOR
   YC28303:
@@ -2817,7 +2817,6 @@ magnets:
         ctrl: YCOR:LI28:303:CTRL
       control_name: YCOR:LI28:303
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2826,6 +2825,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 753.805
       type: YCOR
   YC28403:
@@ -2840,7 +2840,6 @@ magnets:
         ctrl: YCOR:LI28:403:CTRL
       control_name: YCOR:LI28:403
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2849,6 +2848,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 766.24
       type: YCOR
   YC28503:
@@ -2863,7 +2863,6 @@ magnets:
         ctrl: YCOR:LI28:503:CTRL
       control_name: YCOR:LI28:503
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2872,6 +2871,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 778.619
       type: YCOR
   YC28603:
@@ -2886,7 +2886,6 @@ magnets:
         ctrl: YCOR:LI28:603:CTRL
       control_name: YCOR:LI28:603
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2895,6 +2894,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 790.945
       type: YCOR
   YC28703:
@@ -2909,7 +2909,6 @@ magnets:
         ctrl: YCOR:LI28:703:CTRL
       control_name: YCOR:LI28:703
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2918,6 +2917,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 803.34
       type: YCOR
   YC28803:
@@ -2932,7 +2932,6 @@ magnets:
         ctrl: YCOR:LI28:803:CTRL
       control_name: YCOR:LI28:803
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2941,6 +2940,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 815.525
       type: YCOR
   YC28900:
@@ -2955,7 +2955,6 @@ magnets:
         ctrl: YCOR:LI28:900:CTRL
       control_name: YCOR:LI28:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2964,6 +2963,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 826.715
       type: YCOR
   YC29203:
@@ -2978,7 +2978,6 @@ magnets:
         ctrl: YCOR:LI29:203:CTRL
       control_name: YCOR:LI29:203
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -2987,6 +2986,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 843.157
       type: YCOR
   YC29303:
@@ -3001,7 +3001,6 @@ magnets:
         ctrl: YCOR:LI29:303:CTRL
       control_name: YCOR:LI29:303
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3010,6 +3009,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 855.515
       type: YCOR
   YC29403:
@@ -3024,7 +3024,6 @@ magnets:
         ctrl: YCOR:LI29:403:CTRL
       control_name: YCOR:LI29:403
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3033,6 +3032,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 867.745
       type: YCOR
   YC29503:
@@ -3047,7 +3047,6 @@ magnets:
         ctrl: YCOR:LI29:503:CTRL
       control_name: YCOR:LI29:503
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3056,6 +3055,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 880.168
       type: YCOR
   YC29603:
@@ -3070,7 +3070,6 @@ magnets:
         ctrl: YCOR:LI29:603:CTRL
       control_name: YCOR:LI29:603
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3079,6 +3078,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 892.678
       type: YCOR
   YC29703:
@@ -3093,7 +3093,6 @@ magnets:
         ctrl: YCOR:LI29:703:CTRL
       control_name: YCOR:LI29:703
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3102,6 +3101,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 904.933
       type: YCOR
   YC29803:
@@ -3116,7 +3116,6 @@ magnets:
         ctrl: YCOR:LI29:803:CTRL
       control_name: YCOR:LI29:803
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3125,6 +3124,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 917.214
       type: YCOR
   YC29900:
@@ -3139,7 +3139,6 @@ magnets:
         ctrl: YCOR:LI29:900:CTRL
       control_name: YCOR:LI29:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3148,6 +3147,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 928.414
       type: YCOR
   YC30203:
@@ -3162,7 +3162,6 @@ magnets:
         ctrl: YCOR:LI30:203:CTRL
       control_name: YCOR:LI30:203
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3171,6 +3170,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 944.91
       type: YCOR
   YC30303:
@@ -3185,7 +3185,6 @@ magnets:
         ctrl: YCOR:LI30:303:CTRL
       control_name: YCOR:LI30:303
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3194,6 +3193,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 957.152
       type: YCOR
   YC30403:
@@ -3208,7 +3208,6 @@ magnets:
         ctrl: YCOR:LI30:403:CTRL
       control_name: YCOR:LI30:403
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3217,6 +3216,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 969.432
       type: YCOR
   YC30503:
@@ -3231,7 +3231,6 @@ magnets:
         ctrl: YCOR:LI30:503:CTRL
       control_name: YCOR:LI30:503
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3240,6 +3239,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 981.777
       type: YCOR
   YC30603:
@@ -3254,7 +3254,6 @@ magnets:
         ctrl: YCOR:LI30:603:CTRL
       control_name: YCOR:LI30:603
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3263,6 +3262,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 994.651
       type: YCOR
   YC30703:
@@ -3277,7 +3277,6 @@ magnets:
         ctrl: YCOR:LI30:703:CTRL
       control_name: YCOR:LI30:703
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3286,6 +3285,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1006.988
       type: YCOR
   YC30803:
@@ -3300,7 +3300,6 @@ magnets:
         ctrl: YCOR:LI30:803:CTRL
       control_name: YCOR:LI30:803
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3309,6 +3308,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1018.912
       type: YCOR
   YC30900:
@@ -3323,7 +3323,6 @@ magnets:
         ctrl: YCOR:LI30:900:CTRL
       control_name: YCOR:LI30:900
     metadata:
-      Effective Length (m): '0'
       area: L3
       beam_path:
       - CU_ALINE
@@ -3332,6 +3331,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 1024.996
       type: YCOR
 screens:

@@ -11,7 +11,6 @@ magnets:
         ctrl: BEND:LI24:720:CTRL
       control_name: BEND:LI24:720
     metadata:
-      Effective Length (m): '.549125'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -20,6 +19,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.549125
       sum_l_meters: 398.987
       type: BEND
   BX22:
@@ -34,7 +34,6 @@ magnets:
         ctrl: BEND:LI24:790:CTRL
       control_name: BEND:LI24:790
     metadata:
-      Effective Length (m): '.549125'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -43,6 +42,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.549125
       sum_l_meters: 409.403
       type: BEND
   BX23:
@@ -57,7 +57,6 @@ magnets:
         ctrl: BEND:LI24:810:CTRL
       control_name: BEND:LI24:810
     metadata:
-      Effective Length (m): '.549125'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -66,6 +65,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.549125
       sum_l_meters: 411.045
       type: BEND
   BX24:
@@ -80,7 +80,6 @@ magnets:
         ctrl: BEND:LI24:880:CTRL
       control_name: BEND:LI24:880
     metadata:
-      Effective Length (m): '.549125'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -89,6 +88,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.549125
       sum_l_meters: 421.461
       type: BEND
   CQ21:
@@ -103,7 +103,6 @@ magnets:
         ctrl: QUAD:LI24:740:CTRL
       control_name: QUAD:LI24:740
     metadata:
-      Effective Length (m): '.108'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -112,6 +111,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 401.272
       type: QUAD
   CQ22:
@@ -126,7 +126,6 @@ magnets:
         ctrl: QUAD:LI24:860:CTRL
       control_name: QUAD:LI24:860
     metadata:
-      Effective Length (m): '.108'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -135,6 +134,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 419.175
       type: QUAD
   Q24701A:
@@ -149,7 +149,6 @@ magnets:
         ctrl: QUAD:LI24:701:CTRL
       control_name: QUAD:LI24:701
     metadata:
-      Effective Length (m): '.1068'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -158,6 +157,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 396.107
       type: QUAD
   Q24701B:
@@ -172,7 +172,6 @@ magnets:
         ctrl: QUAD:LI24:702:CTRL
       control_name: QUAD:LI24:702
     metadata:
-      Effective Length (m): '.1068'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -181,6 +180,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 396.34
       type: QUAD
   Q24901A:
@@ -195,7 +195,6 @@ magnets:
         ctrl: QUAD:LI24:901:CTRL
       control_name: QUAD:LI24:901
     metadata:
-      Effective Length (m): '.1068'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -204,6 +203,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 423.308
       type: QUAD
   Q24901B:
@@ -218,7 +218,6 @@ magnets:
         ctrl: QUAD:LI24:902:CTRL
       control_name: QUAD:LI24:902
     metadata:
-      Effective Length (m): '.1068'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -227,6 +226,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 423.521
       type: QUAD
   QM21:
@@ -241,7 +241,6 @@ magnets:
         ctrl: QUAD:LI24:713:CTRL
       control_name: QUAD:LI24:713
     metadata:
-      Effective Length (m): '.46092'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -250,6 +249,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.46092
       sum_l_meters: 398.147
       type: QUAD
   QM22:
@@ -264,7 +264,6 @@ magnets:
         ctrl: QUAD:LI24:892:CTRL
       control_name: QUAD:LI24:892
     metadata:
-      Effective Length (m): '.46092'
       area: BC2
       beam_path:
       - CU_ALINE
@@ -273,6 +272,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.46092
       sum_l_meters: 422.646
       type: QUAD
 screens:
