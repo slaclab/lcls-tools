@@ -42,6 +42,7 @@ class LBLMPVSet(PVSet):
 
     @field_validator("*", mode="before")
     def validate_pv_fields(cls, v: str) -> PV:
+        print("here")
         return PV(v)
 
 
