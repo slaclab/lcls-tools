@@ -380,30 +380,30 @@ class YAMLGenerator:
             return {}
 
 
-def extract_lblms(self, area: Union[str, List[str]] = ["HTR"]):
-    required_lblm_types = ["LBLM"]
-    # PV suffix as the key, the name we want to store it as in yaml file as the value
-    # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
-    possible_lblm_pvs = {
-        "FAST": "fast",
-        "GATED_INTEGRAL": "gated_integral",
-        "I0_LOSS": "i0_loss",
-    }
-    # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-    additional_metadata_data = get_lblm_metadata()
-    # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-    additional_controls_data = get_lblm_controls_information()
-    basic_lblm_data = self.extract_devices(
-        area=area,
-        required_types=required_lblm_types,
-        pv_search_terms=possible_lblm_pvs,
-    )
-    if basic_lblm_data:
-        complete_lblm_data = self.add_extra_data_to_device(
-            device_data=basic_lblm_data,
-            additional_controls_information=additional_controls_data,
-            additional_metadata=additional_metadata_data,
+    def extract_lblms(self, area: Union[str, List[str]] = ["HTR"]):
+        required_lblm_types = ["LBLM"]
+        # PV suffix as the key, the name we want to store it as in yaml file as the value
+        # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
+        possible_lblm_pvs = {
+            "FAST": "fast",
+            "GATED_INTEGRAL": "gated_integral",
+            "I0_LOSS": "i0_loss",
+        }
+        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        additional_metadata_data = get_lblm_metadata()
+        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        additional_controls_data = get_lblm_controls_information()
+        basic_lblm_data = self.extract_devices(
+            area=area,
+            required_types=required_lblm_types,
+            pv_search_terms=possible_lblm_pvs,
         )
-        return complete_lblm_data
-    else:
-        return {}
+        if basic_lblm_data:
+            complete_lblm_data = self.add_extra_data_to_device(
+                device_data=basic_lblm_data,
+                additional_controls_information=additional_controls_data,
+                additional_metadata=additional_metadata_data,
+            )
+            return complete_lblm_data
+        else:
+            return {}
