@@ -96,15 +96,18 @@ class LBLM(Device):
 
     def fast(self):
         """get fast data"""
-        return self.controls_information.PVs.fast.get()
+        print('fast')
+        # return self.controls_information.PVs.fast.get()
 
     def i0_loss(self):
         """get i0 loss data"""
-        return self.controls_information.PVs.i0_loss.get()
+        print('i0_loss')
+        # return self.controls_information.PVs.i0_loss.get()
 
     def gated_integral(self):
         """get gated integral data"""
-        return self.controls_information.PVs.gated_integral.get()
+        print('gated integral')
+        # return self.controls_information.PVs.gated_integral.get()
 
 
 class LBLMCollection(BaseModel):
