@@ -386,7 +386,7 @@ class YAMLGenerator:
         possible_lblm_pvs = {
             "FAST": "fast",
             # "GATED_INTEGRAL": "gated_integral",
-            "I0_LOSS": "i0_loss",
+            # "I0_LOSS": "i0_loss",
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_metadata_data = get_lblm_metadata()

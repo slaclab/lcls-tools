@@ -35,7 +35,7 @@ class IntegerModel(BaseModel):
 class LBLMPVSet(PVSet):
     fast: PV
     # gated_integral: PV
-    i0_loss: PV
+    # i0_loss: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -87,10 +87,10 @@ class LBLM(Device):
         """get fast data"""
         return "fast"
 
-    @property
-    def i0_loss(self):
-        """get i0 loss data"""
-        return "i0 loss"
+    # @property
+    # def i0_loss(self):
+    #     """get i0 loss data"""
+    #     return "i0 loss"
 
     # def gated_integral(self):
     #     """get gated integral data"""
