@@ -7,11 +7,13 @@ from lcls_tools.common.devices.yaml.metadata import (
     get_magnet_metadata,
     get_screen_metadata,
     get_wire_metadata,
+    get_lblm_metadata,
 )
 from lcls_tools.common.devices.yaml.controls_information import (
     get_magnet_controls_information,
     get_screen_controls_information,
     get_wire_controls_information,
+    get_lblm_controls_information,
 )
 
 
