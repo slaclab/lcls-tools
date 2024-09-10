@@ -53,16 +53,16 @@ class LBLMControlInformation(ControlInformation):
     def __init__(self, *args, **kwargs):
         super(LBLMControlInformation, self).__init__(*args, **kwargs)
         # Get possible options for LBLM, empty dict by default.
-        options = self.PVs.position.get_ctrlvars(timeout=1)
-        if "enum_strs" in options:
-            [
-                self._ctrl_options.update({option: i})
-                for i, option in enumerate(options["enum_strs"])
-            ]
+    #     options = self.PVs.position.get_ctrlvars(timeout=1)
+    #     if "enum_strs" in options:
+    #         [
+    #             self._ctrl_options.update({option: i})
+    #             for i, option in enumerate(options["enum_strs"])
+    #         ]
 
-    @property
-    def ctrl_options(self):
-        return self._ctrl_options
+    # @property
+    # def ctrl_options(self):
+    #     return self._ctrl_options
 
 
 class LBLMMetadata(Metadata):
