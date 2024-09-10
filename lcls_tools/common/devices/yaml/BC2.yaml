@@ -288,22 +288,23 @@ wires:
   WS24:
     controls_information:
       PVs:
-        abort: WIRE:LI24:705:MOTR.STOP
+        abort_scan: WIRE:LI24:705:MOTR.STOP
         enabled: WIRE:LI24:705:MOTR_ENABLED_STS
-        initialized: WIRE:LI24:705:MOTR_INIT_STS
-        motr: WIRE:LI24:705:MOTR
-        rbv: WIRE:LI24:705:MOTR.RBV
-        startscan: WIRE:LI24:705:STARTSCAN
-        useuwire: WIRE:LI24:705:USEUWIRE
-        usexwire: WIRE:LI24:705:USEXWIRE
-        useywire: WIRE:LI24:705:USEYWIRE
-        uwireinner: WIRE:LI24:705:UWIREINNER
-        uwireouter: WIRE:LI24:705:UWIREOUTER
-        velo: WIRE:LI24:705:MOTR.VELO
-        xwireinner: WIRE:LI24:705:XWIREINNER
-        xwireouter: WIRE:LI24:705:XWIREOUTER
-        ywireinner: WIRE:LI24:705:YWIREINNER
-        ywireouter: WIRE:LI24:705:YWIREOUTER
+        initialize_status: WIRE:LI24:705:MOTR_INIT_STS
+        motor: WIRE:LI24:705:MOTR
+        position: WIRE:LI24:705:MOTR.RBV
+        scan_pulses: WIRE:LI24:705:SCANPULSES
+        speed: WIRE:LI24:705:MOTR.VELO
+        start_scan: WIRE:LI24:705:STARTSCAN
+        u_wire_inner: WIRE:LI24:705:UWIREINNER
+        u_wire_outer: WIRE:LI24:705:UWIREOUTER
+        use_u_wire: WIRE:LI24:705:USEUWIRE
+        use_x_wire: WIRE:LI24:705:USEXWIRE
+        use_y_wire: WIRE:LI24:705:USEYWIRE
+        x_wire_inner: WIRE:LI24:705:XWIREINNER
+        x_wire_outer: WIRE:LI24:705:XWIREOUTER
+        y_wire_inner: WIRE:LI24:705:YWIREINNER
+        y_wire_outer: WIRE:LI24:705:YWIREOUTER
       control_name: WIRE:LI24:705
     metadata:
       area: BC2
