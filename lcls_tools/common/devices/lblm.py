@@ -34,7 +34,7 @@ class IntegerModel(BaseModel):
 
 class LBLMPVSet(PVSet):
     fast: PV
-    gated_integral: PV
+    # gated_integral: PV
     i0_loss: PV
 
     def __init__(self, **kwargs):
@@ -51,7 +51,7 @@ class LBLMControlInformation(ControlInformation):
 
     def __init__(self, *args, **kwargs):
         super(LBLMControlInformation, self).__init__(*args, **kwargs)
-        # Get possible options for LBLM motr PV, empty dict by default.
+        # Get possible options for LBLM, empty dict by default.
         options = self.PVs.position.get_ctrlvars(timeout=1)
         if "enum_strs" in options:
             [
@@ -104,10 +104,10 @@ class LBLM(Device):
         print('i0_loss')
         # return self.controls_information.PVs.i0_loss.get()
 
-    def gated_integral(self):
-        """get gated integral data"""
-        print('gated integral')
-        # return self.controls_information.PVs.gated_integral.get()
+    # def gated_integral(self):
+    #     """get gated integral data"""
+    #     print('gated integral')
+    #     # return self.controls_information.PVs.gated_integral.get()
 
 
 class LBLMCollection(BaseModel):
