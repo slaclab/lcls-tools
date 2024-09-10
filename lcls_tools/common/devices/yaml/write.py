@@ -17,23 +17,34 @@ class YAMLWriter:
 
     def _constuct_yaml_contents(self, area: str) -> Dict[str, str]:
         file_contents = {}
+
+        # Generate Magnet content
         magnets = self.generator.extract_magnets(
             area=area,
         )
         if magnets:
             file_contents["magnets"] = magnets
 
+        # Generate Screens content
         screens = self.generator.extract_screens(
             area=area,
         )
         if screens:
             file_contents["screens"] = screens
 
+        # Generate Wire content
         wires = self.generator.extract_wires(
             area=area,
         )
         if wires:
             file_contents["wires"] = wires
+
+        # Generate LBLM content
+        lblms = self.generator.extract_lblms(
+            area=area,
+        )
+        if lblms:
+            file_contents["lblms"] = lblms
 
         if file_contents:
             return file_contents

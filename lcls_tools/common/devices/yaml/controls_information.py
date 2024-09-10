@@ -45,3 +45,19 @@ def get_wire_controls_information(wire_names: List[str] = None):
             "No method of getting additional controls_information for wires."
         )
     return {}
+
+
+def get_lblm_controls_information(lblm_names: List[str] = None):
+    # return a data structure of the form:
+    # {
+    #  scr-name-1 : {controls-information-field-1 : value-1, controls-information-field-2 : value-2, ...},
+    #  scr-name-2 : {controls-information-field-1 : value-1, controls-information-field-2 : value-2, ...},
+    #  ...
+    # }
+
+    # Stuff like Device-Position mappings for motor/ladder-based screens
+    if lblm_names:
+        raise NotImplementedError(
+            "No method of getting additional controls_information for LBLMs."
+        )
+    return {}
