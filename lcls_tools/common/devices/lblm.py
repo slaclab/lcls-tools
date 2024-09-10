@@ -81,19 +81,6 @@ class LBLM(Device):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    """ Decorators """
-
-    def check_state(f):
-        """Decorator to only allow transitions in 'Initialized' state"""
-
-        def decorated(self, *args, **kwargs):
-            if self.initialize_status is not True:
-                print(f"Unable to perform action, {self} not in Initialized state")
-                return
-            return f(self, *args, **kwargs)
-
-        return decorated
-
     def fast(self):
         """get fast data"""
         print('fast')
