@@ -735,6 +735,7 @@ wires:
   WS02:
     controls_information:
       PVs:
+
         abort_scan: WIRE:IN20:561:MOTR.STOP
         enabled: WIRE:IN20:561:MOTR_ENABLED_STS
         homed: WIRE:IN20:561:MOTR_HOMED_STS
