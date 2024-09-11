@@ -328,6 +328,8 @@ class MagnetCollection(DeviceCollection):
         self,
         scan_settings: List[Dict[str, float]],
         function: Optional[callable] = None,
+        *args,
+        **kwargs
     ) -> None:
         """
         Scans magnets given a list of magnet settings (Dict[magnet_name, bdes_value])
@@ -335,7 +337,7 @@ class MagnetCollection(DeviceCollection):
         """
         for setting in scan_settings:
             self.set_bdes(setting)
-            function() if function else None
+            function(*args, **kwargs) if function else None
 
     def turn_off(
         self,
