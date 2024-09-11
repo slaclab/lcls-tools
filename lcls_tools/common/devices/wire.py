@@ -10,7 +10,7 @@ from pydantic import (
 from typing import (
     Dict,
     List,
-    Optional,
+    # Optional,
     Union,
 )
 from lcls_tools.common.devices.device import (
@@ -67,6 +67,8 @@ class WirePVSet(PVSet):
     retract: PV
     scan_pulses: PV
     speed: PV
+    speed_max: PV
+    speed_min: PV
     start_scan: PV
     temperature: PV
     timeout: PV
@@ -93,21 +95,21 @@ class WirePVSet(PVSet):
 
 class WireControlInformation(ControlInformation):
     PVs: SerializeAsAny[WirePVSet]
-    _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
+    # _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
 
     def __init__(self, *args, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
         # Get possible options for wire motr PV, empty dict by default.
-        options = self.PVs.position.get_ctrlvars(timeout=1)
-        if "enum_strs" in options:
-            [
-                self._ctrl_options.update({option: i})
-                for i, option in enumerate(options["enum_strs"])
-            ]
+    #     options = self.PVs.position.get_ctrlvars(timeout=1)
+    #     if "enum_strs" in options:
+    #         [
+    #             self._ctrl_options.update({option: i})
+    #             for i, option in enumerate(options["enum_strs"])
+    #         ]
 
-    @property
-    def ctrl_options(self):
-        return self._ctrl_options
+    # @property
+    # def ctrl_options(self):
+    #     return self._ctrl_options
 
 
 class WireMetadata(Metadata):
@@ -135,6 +137,20 @@ class Wire(Device):
         def decorated(self, *args, **kwargs):
             if self.initialize_status is not True:
                 print(f"Unable to perform action, {self} not in Initialized state")
+                return
+            return f(self, *args, **kwargs)
+
+        return decorated
+
+    def check_speed(f):
+        """Check that wire speed is sufficient for beam rate and sample size"""
+
+        def decorated(self, *args, **kwargs):
+            wire_range = self.wire.x_range[1] - self.wire.x_range[0]
+            speed_calc = int(self.wire.beam_rate * (wire_range / self.wire.scan_pulses))
+            speed_check = int(self.wire.speed_min) < speed_calc < int(self.wire.speed_max)
+            if speed_check is not True:
+                print(f"Unable to perform action. {self} failed speed check")
                 return
             return f(self, *args, **kwargs)
 
@@ -243,6 +259,16 @@ class Wire(Device):
     def speed(self):
         """Returns the current calculated speed of the wire scanner."""
         return self.controls_information.PVs.speed.get()
+
+    @property
+    def speed_max(self):
+        """Returns the wire scanner maximum speed in um/s"""
+        return self.controls_information.PVs.speed_max.get()
+
+    @property
+    def speed_min(self):
+        """Returns the wire scanner minimum speed in um/s"""
+        return self.controls_information.PVs.speed_min.get()
 
     def start_scan(self):
         """Starts a wire scan using current parameters"""

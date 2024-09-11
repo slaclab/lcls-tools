@@ -342,6 +342,8 @@ class YAMLGenerator:
             "MOTR_RETRACT": "retract",
             "SCANPULSES": "scan_pulses",
             "MOTR.VELO": "speed",
+            "MOTR.VMAX": "speed_max",
+            "MOTR.VBAS": "speed_min",
             "STARTSCAN": "start_scan",
             "TEMP": "temperature",
             "MOTR_TIMEOUTEN": "timeout",

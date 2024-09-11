@@ -8,7 +8,7 @@ import inspect
 
 # Local imports
 from lcls_tools.common.devices.reader import create_wire
-from lcls_tools.common.devices.wire import WireCollection
+# from lcls_tools.common.devices.wire import WireCollection
 
 
 class WireTest(TestCase):
@@ -16,6 +16,8 @@ class WireTest(TestCase):
         # Set up some mocks that are needed for all test-cases.
         self.options_and_getter_function = {
             "MOTR.VELO": None,
+            "MOTR.VMAX": None,
+            "MOTR.VBAS": None,
             "MOTR.RBV": None,
             "MOTR_INIT": None,
             "MOTR_INIT_STS": None,
@@ -59,6 +61,8 @@ class WireTest(TestCase):
             "MOTR_RETRACT": self.wire.retract,
             "SCANPULSES": self.wire.scan_pulses,
             "MOTR.VELO": self.wire.speed,
+            "MOTR.VMAX": self.wire.speed_max,
+            "MOTR.VBAS": self.wire.speed_min,
             "STARTSCAN": self.wire.start_scan,
             "TEMP": self.wire.temperature,
             "MOTR_TIMEOUTEN": self.wire.timeout,
@@ -235,9 +239,9 @@ class WireTest(TestCase):
         mock_pv_get.assert_called_once()
 
     @patch("epics.PV.get", new_callable=Mock)
-    def test_initialized(self, mock_pv_get) -> None:
+    def test_initialize_status(self, mock_pv_get) -> None:
         mock_pv_get.return_value = 1
-        self.assertEqual(self.wire.initialized, 1)
+        self.assertEqual(self.wire.initialize_status, 1)
         mock_pv_get.assert_called_once()
 
     @patch("epics.PV.get", new_callable=Mock)
