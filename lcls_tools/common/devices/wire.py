@@ -477,6 +477,7 @@ class Wire(Device):
         except ValidationError as e:
             print("Range value must be an int:", e)
 
+
 class WireCollection(BaseModel):
     wires: Dict[str, SerializeAsAny[Wire]]
 
