@@ -8,7 +8,7 @@ import inspect
 
 # Local imports
 from lcls_tools.common.devices.reader import create_wire
-from lcls_tools.common.devices.wire import WireCollection
+# from lcls_tools.common.devices.wire import WireCollection
 
 
 class WireTest(TestCase):
