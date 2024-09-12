@@ -148,35 +148,26 @@ class WireTest(TestCase):
         """Test we get expected default"""
         self.assertEqual(self.wire.name, "WSBP2")
 
-    def test_use_x_wire(self) -> None:
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_use_x_wire(self, mock_pv_get) -> None:
         """Test use x wire validation"""
-        self.assertIsNone(self.wire.use_x_wire)
-        self.wire.use_x_wire = "a"
-        self.assertIsNone(self.wire.use_x_wire)
-        self.wire.use_x_wire = 0.1
-        self.assertIsNone(self.wire.use_x_wire)
-        self.wire.use_x_wire = 1
+        mock_pv_get.return_value = 1
         self.assertEqual(self.wire.use_x_wire, 1)
+        mock_pv_get.assert_called_once()
 
-    def test_use_y_wire(self) -> None:
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_use_y_wire(self, mock_pv_get) -> None:
         """Test use y wire validation"""
-        self.assertIsNone(self.wire.use_y_wire)
-        self.wire.use_y_wire = "a"
-        self.assertIsNone(self.wire.use_y_wire)
-        self.wire.use_y_wire = 0.1
-        self.assertIsNone(self.wire.use_y_wire)
-        self.wire.use_y_wire = 1
+        mock_pv_get.return_value = 1
         self.assertEqual(self.wire.use_y_wire, 1)
+        mock_pv_get.assert_called_once()
 
-    def test_use_u_wire(self) -> None:
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_use_u_wire(self, mock_pv_get) -> None:
         """Test use u wire validation"""
-        self.assertIsNone(self.wire.use_u_wire)
-        self.wire.use_u_wire = "a"
-        self.assertIsNone(self.wire.use_u_wire)
-        self.wire.use_u_wire = 0.1
-        self.assertIsNone(self.wire.use_u_wire)
-        self.wire.use_u_wire = 1
+        mock_pv_get.return_value = 1
         self.assertEqual(self.wire.use_u_wire, 1)
+        mock_pv_get.assert_called_once()
 
     @patch("epics.PV.get", new_callable=Mock)
     def test_position(self, mock_pv_get) -> None:
@@ -261,3 +252,39 @@ class WireTest(TestCase):
         mock_pv_get.return_value = 350
         self.assertEqual(self.wire.scan_pulses, 350)
         mock_pv_get.assert_called_once()
+
+    def test_all(self) -> None:
+        print("Setting up...")
+        self.setUp()
+        print("Testing properties exist...")
+        self.test_properties_exist()
+        print("Testing methods...")
+        self.test_methods()
+        print("Testing name...")
+        self.test_name()
+        print("Testing use x/y/u wire...")
+        self.test_use_u_wire()
+        self.test_use_x_wire()
+        self.test_use_y_wire()
+        print("Testing position...")
+        self.test_position()
+        print("Testing x/y/u size")
+        self.test_u_size()
+        self.test_x_size()
+        self.test_y_size()
+        print("Testing inner/outer range...")
+        self.test_u_wire_inner()
+        self.test_u_wire_outer()
+        self.test_x_wire_inner()
+        self.test_x_wire_outer()
+        self.test_y_wire_inner()
+        self.test_y_wire_outer()
+        print("Testing initialized...")
+        self.test_initialize_status()
+        print("Testing homed...")
+        self.test_homed()
+        print("Testing speed...")
+        self.test_speed()
+        print("Testing scan pulses...")
+        self.test_scan_pulses()
+        print("Tests done!")
