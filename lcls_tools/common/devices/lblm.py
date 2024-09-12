@@ -42,7 +42,6 @@ class LBLMPVSet(PVSet):
 
     @field_validator("*", mode="before")
     def validate_pv_fields(cls, v: str) -> PV:
-        print("here")
         return PV(v)
 
 
@@ -78,6 +77,7 @@ class LBLMMetadata(Metadata):
 class LBLM(Device):
     controls_information: SerializeAsAny[LBLMControlInformation]
     metadata: SerializeAsAny[LBLMMetadata]
+    buffer: Optional[int]
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
