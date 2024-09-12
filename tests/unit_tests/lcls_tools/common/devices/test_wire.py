@@ -226,9 +226,9 @@ class WireTest(TestCase):
         mock_pv_get.assert_called_once()
 
     @patch("epics.PV.get", new_callable=Mock)
-    def test_initialize(self, mock_pv_get) -> None:
+    def test_initialize_status(self, mock_pv_get) -> None:
         mock_pv_get.return_value = 1
-        self.assertEqual(self.wire.initialize, 1)
+        self.assertEqual(self.wire.initialize_status, 1)
         mock_pv_get.assert_called_once()
 
     @patch("epics.PV.get", new_callable=Mock)
