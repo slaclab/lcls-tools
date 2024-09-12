@@ -226,9 +226,9 @@ class WireTest(TestCase):
         mock_pv_get.assert_called_once()
 
     @patch("epics.PV.get", new_callable=Mock)
-    def test_initialized(self, mock_pv_get) -> None:
+    def test_initialize(self, mock_pv_get) -> None:
         mock_pv_get.return_value = 1
-        self.assertEqual(self.wire.initialized, 1)
+        self.assertEqual(self.wire.initialize, 1)
         mock_pv_get.assert_called_once()
 
     @patch("epics.PV.get", new_callable=Mock)
@@ -252,7 +252,7 @@ class WireTest(TestCase):
     def test_all(self) -> None:
         print("Setting up...")
         self.setUp()
-        print("Test properties exist...")
+        print("Testing properties exist...")
         self.test_properties_exist()
         print("Testing methods...")
         self.test_methods()
@@ -276,7 +276,7 @@ class WireTest(TestCase):
         self.test_y_wire_inner()
         self.test_y_wire_outer()
         print("Testing initialized...")
-        self.test_initialized()
+        self.test_initialize()
         print("Testing homed...")
         self.test_homed()
         print("Testing speed...")
