@@ -276,7 +276,7 @@ class WireTest(TestCase):
         self.test_y_wire_inner()
         self.test_y_wire_outer()
         print("Testing initialized...")
-        self.test_initialize()
+        self.test_initialize_status()
         print("Testing homed...")
         self.test_homed()
         print("Testing speed...")
