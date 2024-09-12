@@ -269,32 +269,17 @@ class Wire(Device):
     @property
     def x_size(self):
         """Returns the x wire thickness in um."""
-        # Try to grab from PV first, then if fails, get from yaml
-        # Make sure to print statement saying if yaml values used
-        try:
-            return self.metadata.PVs.x_size.get()
-        except Exception:
-            print(EPICS_ERROR_MESSAGE)
-            # TODO: Returning wire size from yaml file instead
-            return
+        return self.controls_information.PVs.x_size.get()
 
     @property
     def y_size(self):
         """Returns the y wire thickness in um."""
-        try:
-            return self.metadata.PVs.y_size.get()
-        except Exception:
-            print(EPICS_ERROR_MESSAGE)
-            # TODO: Returning wire size from yaml file instead
+        return self.controls_information.PVs.y_size.get()
 
     @property
     def u_size(self):
         """Returns the u wire thickness in um."""
-        try:
-            return self.metadata.PVs.u_size.get()
-        except Exception:
-            print(EPICS_ERROR_MESSAGE)
-            # TODO: Returning wire size from yaml file instead
+        return self.controls_information.PVs.u_size.get()
 
     def use(self, plane: str, val: bool) -> None:
         try:
