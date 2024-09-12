@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from lcls_live.datamaps import get_datamaps
 from lcls_live.archiver import lcls_archiver_restore
 
-YAML_LOCATION = "./lcls_tools/common/data_analysis/bmad_modeling/yaml/"
+YAML_LOCATION = os.path.join(os.path.dirname(__file__), 'yaml/')
 
 
 def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
@@ -78,22 +78,6 @@ def clean_up_none_values(x, val_type='Ampl', ampl_reject=0.5, none_value=0):
     if val_type == 'Phas':
         x_np = np.deg2rad(x_np)
     return x_np
-
-
-def bmag(twiss, twiss_reference):
-    """Calculates BMAG from imput twiss and reference twiss"""
-    beta_a, alpha_a, beta_b, alpha_b = twiss
-    beta_a_ref, alpha_a_ref, beta_b_ref, alpha_b_ref = twiss_reference
-    bmag_a = bmag_func(beta_a, alpha_a, beta_a_ref, alpha_a_ref)
-    bmag_b = bmag_func(beta_b, alpha_b, beta_b_ref, alpha_b_ref)
-    return (bmag_a, bmag_b)
-
-
-def bmag_func(bb, ab, bl, al):
-    """Calculates the BMAG miss match parameter.  bb and ab are the modeled
-    beta and alpha functions at a given element and bl and al are the
-    reference (most of the time desing) values """
-    return 1 / 2 * (bl / bb + bb / bl + bb * bl * (ab / bb - al / bl) ** 2)
 
 
 def get_bmad_bdes(tao, element, b1_gradient=[]):
@@ -171,20 +155,6 @@ def get_machine_values(data_source, pv_list, date_time=''):
             if 'DSTA' in pv:
                 pvdata[pv] = np.array([0, 0])
     return pvdata
-
-
-def kmod_to_bdes(tao, element, K=0):
-    """Returns BDES given K1 in the Bmad model"""
-    ele = tao.ele_gen_attribs(element)
-    bp = ele["E_TOT"] / 1e9 / 299.792458 * 1e4  # kG m
-    return ele["K1"] * bp * ele["L"]
-
-
-def bdes_to_kmod(tao, element, bdes):
-    """Returns K1 given BDES"""
-    ele = tao.ele_gen_attribs(element)
-    bp = ele["E_TOT"] / 1e9 / 299.792458 * 1e4  # kG m
-    return bdes / ele["L"] / bp  # kG / m / kG m = 1/m^2
 
 
 def get_output(tao):
