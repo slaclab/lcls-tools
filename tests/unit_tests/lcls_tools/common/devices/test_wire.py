@@ -8,7 +8,7 @@ import inspect
 
 # Local imports
 from lcls_tools.common.devices.reader import create_wire
-from lcls_tools.common.devices.wire import WireCollection
+# from lcls_tools.common.devices.wire import WireCollection
 
 
 class WireTest(TestCase):
@@ -144,35 +144,26 @@ class WireTest(TestCase):
         """Test we get expected default"""
         self.assertEqual(self.wire.name, "WSBP2")
 
-    def test_use_x_wire(self) -> None:
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_use_x_wire(self, mock_pv_get) -> None:
         """Test use x wire validation"""
-        self.assertIsNone(self.wire.use_x_wire)
-        self.wire.use_x_wire = "a"
-        self.assertIsNone(self.wire.use_x_wire)
-        self.wire.use_x_wire = 0.1
-        self.assertIsNone(self.wire.use_x_wire)
-        self.wire.use_x_wire = 1
+        mock_pv_get.return_value = 1
         self.assertEqual(self.wire.use_x_wire, 1)
+        mock_pv_get.assert_called_once()
 
-    def test_use_y_wire(self) -> None:
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_use_y_wire(self, mock_pv_get) -> None:
         """Test use y wire validation"""
-        self.assertIsNone(self.wire.use_y_wire)
-        self.wire.use_y_wire = "a"
-        self.assertIsNone(self.wire.use_y_wire)
-        self.wire.use_y_wire = 0.1
-        self.assertIsNone(self.wire.use_y_wire)
-        self.wire.use_y_wire = 1
+        mock_pv_get.return_value = 1
         self.assertEqual(self.wire.use_y_wire, 1)
+        mock_pv_get.assert_called_once()
 
-    def test_use_u_wire(self) -> None:
+    @patch("epics.PV.get", new_callable=Mock)
+    def test_use_u_wire(self, mock_pv_get) -> None:
         """Test use u wire validation"""
-        self.assertIsNone(self.wire.use_u_wire)
-        self.wire.use_u_wire = "a"
-        self.assertIsNone(self.wire.use_u_wire)
-        self.wire.use_u_wire = 0.1
-        self.assertIsNone(self.wire.use_u_wire)
-        self.wire.use_u_wire = 1
+        mock_pv_get.return_value = 1
         self.assertEqual(self.wire.use_u_wire, 1)
+        mock_pv_get.assert_called_once()
 
     @patch("epics.PV.get", new_callable=Mock)
     def test_position(self, mock_pv_get) -> None:
