@@ -528,12 +528,13 @@ wires:
   WS11:
     controls_information:
       PVs:
-        uwireinner: WIRE:LI21:285:UWIREINNER
-        uwireouter: WIRE:LI21:285:UWIREOUTER
-        xwireinner: WIRE:LI21:285:XWIREINNER
-        xwireouter: WIRE:LI21:285:XWIREOUTER
-        ywireinner: WIRE:LI21:285:YWIREINNER
-        ywireouter: WIRE:LI21:285:YWIREOUTER
+        temperature: WIRE:LI21:285:TEMP
+        u_wire_inner: WIRE:LI21:285:UWIREINNER
+        u_wire_outer: WIRE:LI21:285:UWIREOUTER
+        x_wire_inner: WIRE:LI21:285:XWIREINNER
+        x_wire_outer: WIRE:LI21:285:XWIREOUTER
+        y_wire_inner: WIRE:LI21:285:YWIREINNER
+        y_wire_outer: WIRE:LI21:285:YWIREOUTER
       control_name: WIRE:LI21:285
     metadata:
       area: BC1
@@ -549,12 +550,13 @@ wires:
   WS12:
     controls_information:
       PVs:
-        uwireinner: WIRE:LI21:293:UWIREINNER
-        uwireouter: WIRE:LI21:293:UWIREOUTER
-        xwireinner: WIRE:LI21:293:XWIREINNER
-        xwireouter: WIRE:LI21:293:XWIREOUTER
-        ywireinner: WIRE:LI21:293:YWIREINNER
-        ywireouter: WIRE:LI21:293:YWIREOUTER
+        temperature: WIRE:LI21:293:TEMP
+        u_wire_inner: WIRE:LI21:293:UWIREINNER
+        u_wire_outer: WIRE:LI21:293:UWIREOUTER
+        x_wire_inner: WIRE:LI21:293:XWIREINNER
+        x_wire_outer: WIRE:LI21:293:XWIREOUTER
+        y_wire_inner: WIRE:LI21:293:YWIREINNER
+        y_wire_outer: WIRE:LI21:293:YWIREOUTER
       control_name: WIRE:LI21:293
     metadata:
       area: BC1
@@ -578,21 +580,23 @@ wires:
         motr: WIRE:LI21:301:MOTR
         rbv: WIRE:LI21:301:MOTR.RBV
         retract: WIRE:LI21:301:MOTR_RETRACT
-        startscan: WIRE:LI21:301:STARTSCAN
+        scan_pulses: WIRE:LI21:301:SCANPULSES
+        speed: WIRE:LI21:301:MOTR.VELO
+        start_scan: WIRE:LI21:301:STARTSCAN
+        temperature: WIRE:LI21:301:TEMP
         timeout: WIRE:LI21:301:MOTR_TIMEOUTEN
-        useuwire: WIRE:LI21:301:USEUWIRE
-        usexwire: WIRE:LI21:301:USEXWIRE
-        useywire: WIRE:LI21:301:USEYWIRE
-        usize: WIRE:LI21:301:UWIRESIZE
-        uwireinner: WIRE:LI21:301:UWIREINNER
-        uwireouter: WIRE:LI21:301:UWIREOUTER
-        velo: WIRE:LI21:301:MOTR.VELO
-        xsize: WIRE:LI21:301:XWIRESIZE
-        xwireinner: WIRE:LI21:301:XWIREINNER
-        xwireouter: WIRE:LI21:301:XWIREOUTER
-        ysize: WIRE:LI21:301:YWIRESIZE
-        ywireinner: WIRE:LI21:301:YWIREINNER
-        ywireouter: WIRE:LI21:301:YWIREOUTER
+        u_size: WIRE:LI21:301:UWIRESIZE
+        u_wire_inner: WIRE:LI21:301:UWIREINNER
+        u_wire_outer: WIRE:LI21:301:UWIREOUTER
+        use_u_wire: WIRE:LI21:301:USEUWIRE
+        use_x_wire: WIRE:LI21:301:USEXWIRE
+        use_y_wire: WIRE:LI21:301:USEYWIRE
+        x_size: WIRE:LI21:301:XWIRESIZE
+        x_wire_inner: WIRE:LI21:301:XWIREINNER
+        x_wire_outer: WIRE:LI21:301:XWIREOUTER
+        y_size: WIRE:LI21:301:YWIRESIZE
+        y_wire_inner: WIRE:LI21:301:YWIREINNER
+        y_wire_outer: WIRE:LI21:301:YWIREOUTER
       control_name: WIRE:LI21:301
     metadata:
       area: BC1
