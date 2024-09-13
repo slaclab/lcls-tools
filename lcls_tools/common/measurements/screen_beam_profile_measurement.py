@@ -21,6 +21,7 @@ class ScreenBeamProfileMeasurement(Measurement):
              profiles
 
     #TODO: DumpController?
+    #TODO: return images flag
     """
     model_config = ConfigDict(arbitrary_types_allowed=True)
     name: str = "beam_profile"
@@ -53,6 +54,7 @@ class ScreenBeamProfileMeasurement(Measurement):
         shot number
         """
         images = {}
+        #TODO: make images a list
         while len(images) < n_shots:
             measurement = self.single_measure()
             images[len(images)] = measurement
@@ -62,5 +64,5 @@ class ScreenBeamProfileMeasurement(Measurement):
                 self.beam_fit.image = measurement["processed_image"]
                 measurement.update(self.beam_fit.beamsize)
         results = copy.deepcopy(images)
-
+        #dictionary of lists 
         return results
