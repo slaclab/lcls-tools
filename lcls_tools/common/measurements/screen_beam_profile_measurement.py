@@ -2,7 +2,6 @@ from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.data_analysis.fit.gaussian_fit import GaussianFit
 from lcls_tools.common.measurements.measurement import Measurement
 from pydantic import ConfigDict
-import copy
 
 
 class ScreenBeamProfileMeasurement(Measurement):
@@ -30,6 +29,7 @@ class ScreenBeamProfileMeasurement(Measurement):
     # layer before GaussianFit so that beam_fit_tool is a generic fit tool
     # not constrained to be of gaussian fit type
     fit_profile: bool = True
+    # return_images: bool = True
 
     def single_measure(self) -> dict:
         """
@@ -53,16 +53,26 @@ class ScreenBeamProfileMeasurement(Measurement):
         and concatenates results with the image dictionary sorted by
         shot number
         """
-        images = {}
-        #TODO: make images a list
+        images = []
         while len(images) < n_shots:
-            measurement = self.single_measure()
-            images[len(images)] = measurement
+            images.append(self.single_measure())
 
         if self.fit_profile:
-            for measurement in images.values():
-                self.beam_fit.image = measurement["processed_image"]
-                measurement.update(self.beam_fit.beamsize)
-        results = copy.deepcopy(images)
-        #dictionary of lists 
-        return results
+            for image_measurement in images:
+                self.beam_fit.image = image_measurement["processed_image"]
+                image_measurement.update(self.beam_fit.beamsize)
+            '''
+            results = {}
+            for image_measurement in images:
+                for key, val in image_measurement.items():
+                    if key in results:
+                        results[key].append(val)
+                    else:
+                        results[key] = [val]
+            '''
+            results = {
+                key: [d.get(key) for d in images]
+                for key in {k for meas in images for k in meas}
+                    }
+
+            return results
