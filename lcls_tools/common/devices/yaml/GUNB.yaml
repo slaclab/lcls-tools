@@ -48,7 +48,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.0453
+      l_eff: 0.045
       sum_l_meters: 1.57
       type: QUAD
   SOL1B:
@@ -74,7 +74,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.0861
+      l_eff: 0.086
       sum_l_meters: 0.247
       type: SOLE
   SOL1BKB:
@@ -126,7 +126,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.0869
+      l_eff: 0.087
       sum_l_meters: 1.646
       type: SOLE
   SQ01B:

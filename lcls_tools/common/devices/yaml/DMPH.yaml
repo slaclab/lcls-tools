@@ -15,7 +15,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 1.45203
+      l_eff: 1.452
       sum_l_meters: 1721.298
       type: BEND
   BYD2:
@@ -34,7 +34,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 1.45203
+      l_eff: 1.452
       sum_l_meters: 1722.998
       type: BEND
   BYD3:
@@ -53,7 +53,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 1.45203
+      l_eff: 1.452
       sum_l_meters: 1724.698
       type: BEND
   BYDSH:

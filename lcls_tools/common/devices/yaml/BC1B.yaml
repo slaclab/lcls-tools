@@ -21,7 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.203545
+      l_eff: 0.204
       sum_l_meters: 132.223
       type: BEND
   BCX12:
@@ -46,7 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.203545
+      l_eff: 0.204
       sum_l_meters: 134.874
       type: BEND
   BCX13:
@@ -71,7 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.203545
+      l_eff: 0.204
       sum_l_meters: 136.827
       type: BEND
   BCX14:
@@ -96,7 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.203545
+      l_eff: 0.204
       sum_l_meters: 139.478
       type: BEND
   CQ11B:

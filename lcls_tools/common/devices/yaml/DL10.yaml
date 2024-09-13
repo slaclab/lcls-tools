@@ -8,7 +8,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.12476
+      l_eff: 0.125
       sum_l_meters: 8.697
       type: BEND
   BCX10461:
@@ -20,7 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.12476
+      l_eff: 0.125
       sum_l_meters: 8.963
       type: BEND
   BCX10475:
@@ -32,7 +32,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.12476
+      l_eff: 0.125
       sum_l_meters: 9.919
       type: BEND
   BCX10481:
@@ -44,7 +44,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.12476
+      l_eff: 0.125
       sum_l_meters: 10.186
       type: BEND
   BX10661:
@@ -56,7 +56,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.203992
+      l_eff: 0.204
       sum_l_meters: 16.852
       type: BEND
   BX10751:
@@ -68,7 +68,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.203992
+      l_eff: 0.204
       sum_l_meters: 18.616
       type: BEND
   QB10731:
@@ -80,7 +80,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 17.734
       type: QUAD
   QE10425:

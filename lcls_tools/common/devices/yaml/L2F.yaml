@@ -9,7 +9,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 66.176
       type: QUAD
   Q11601:
@@ -22,7 +22,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 78.52
       type: QUAD
   Q11701:
@@ -35,7 +35,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 90.864
       type: QUAD
   Q11801:
@@ -48,7 +48,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 103.209
       type: QUAD
   Q11901:
@@ -61,7 +61,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 115.872
       type: QUAD
   Q12201:
@@ -74,7 +74,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 130.742
       type: QUAD
   Q12301:
@@ -87,7 +87,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 143.087
       type: QUAD
   Q12401:
@@ -100,7 +100,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 155.431
       type: QUAD
   Q12501:
@@ -113,7 +113,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 167.776
       type: QUAD
   Q12601:
@@ -126,7 +126,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 180.12
       type: QUAD
   Q12701:
@@ -139,7 +139,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 192.464
       type: QUAD
   Q12801:
@@ -152,7 +152,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 204.809
       type: QUAD
   Q12901:
@@ -165,7 +165,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 217.472
       type: QUAD
   Q13201:
@@ -178,7 +178,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 232.342
       type: QUAD
   Q13301:
@@ -191,7 +191,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 244.687
       type: QUAD
   Q13401:
@@ -204,7 +204,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 257.031
       type: QUAD
   Q13501:
@@ -217,7 +217,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 269.376
       type: QUAD
   Q13601:
@@ -230,7 +230,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 281.72
       type: QUAD
   Q13701:
@@ -243,7 +243,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 294.064
       type: QUAD
   Q13801:
@@ -256,7 +256,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 306.409
       type: QUAD
   Q13901:
@@ -269,7 +269,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 319.072
       type: QUAD
   Q14201:
@@ -282,7 +282,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 333.942
       type: QUAD
   Q14301:
@@ -295,7 +295,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 346.287
       type: QUAD
   Q14401:
@@ -308,7 +308,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 358.631
       type: QUAD
   Q14501:
@@ -321,7 +321,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 370.976
       type: QUAD
   Q14601:
@@ -334,7 +334,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 383.32
       type: QUAD
   XC11402:

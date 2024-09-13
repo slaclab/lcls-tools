@@ -14,7 +14,7 @@ magnets:
       area: DIAG0
       beam_path:
       - SC_DIAG0
-      l_eff: 1.000011
+      l_eff: 1.0
       sum_l_meters: 42.73
       type: BEND
   BLRDG0:
@@ -32,7 +32,7 @@ magnets:
       area: DIAG0
       beam_path:
       - SC_DIAG0
-      l_eff: 0.400748
+      l_eff: 0.401
       sum_l_meters: 44.73
       type: BEND
   BXDG0:
@@ -50,7 +50,7 @@ magnets:
       area: DIAG0
       beam_path:
       - SC_DIAG0
-      l_eff: 0.400182
+      l_eff: 0.4
       sum_l_meters: 49.486
       type: BEND
   BYDG0:
@@ -68,7 +68,7 @@ magnets:
       area: DIAG0
       beam_path:
       - SC_DIAG0
-      l_eff: 0.5435
+      l_eff: 0.543
       sum_l_meters: 60.964
       type: BEND
   QDG001:

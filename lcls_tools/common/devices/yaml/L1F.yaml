@@ -8,7 +8,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 29.111
       type: QUAD
   Q11301:
@@ -20,7 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 38.433
       type: QUAD
   QA11132:
@@ -32,7 +32,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 22.851
       type: QUAD
   QA11265:
@@ -44,7 +44,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 35.192
       type: QUAD
   XC11104:

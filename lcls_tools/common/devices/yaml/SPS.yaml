@@ -84,7 +84,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 1.000021
+      l_eff: 1.0
       sum_l_meters: 2900.67
       type: BEND
   BXSP1S:
@@ -106,7 +106,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 1.000006
+      l_eff: 1.0
       sum_l_meters: 2945.898
       type: BEND
   BXSP2S:
@@ -128,7 +128,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 1.000006
+      l_eff: 1.0
       sum_l_meters: 3003.644
       type: BEND
   BXSP3S:
@@ -150,7 +150,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 1.000006
+      l_eff: 1.0
       sum_l_meters: 3048.871
       type: BEND
   BYSP1S:

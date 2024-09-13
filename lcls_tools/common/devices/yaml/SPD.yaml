@@ -14,7 +14,7 @@ magnets:
       area: SPD
       beam_path:
       - SC_BSYD
-      l_eff: 1.000004
+      l_eff: 1.0
       sum_l_meters: 2978.345
       type: BEND
   BYSP2D:
@@ -32,7 +32,7 @@ magnets:
       area: SPD
       beam_path:
       - SC_BSYD
-      l_eff: 1.000004
+      l_eff: 1.0
       sum_l_meters: 3052.345
       type: BEND
   QSP1:

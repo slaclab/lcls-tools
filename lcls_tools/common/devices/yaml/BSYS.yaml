@@ -19,7 +19,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 3197.224
       type: QUAD
   QBP34:
@@ -42,7 +42,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 3207.253
       type: QUAD
   XCBP33:

@@ -19,7 +19,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.350014
+      l_eff: 0.35
       sum_l_meters: 3255.366
       type: BEND
   BCX31B2:
@@ -42,7 +42,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.350014
+      l_eff: 0.35
       sum_l_meters: 3255.916
       type: BEND
   BCX31B3:
@@ -65,7 +65,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.350014
+      l_eff: 0.35
       sum_l_meters: 3256.466
       type: BEND
   BCX31B4:
@@ -88,7 +88,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.350014
+      l_eff: 0.35
       sum_l_meters: 3257.016
       type: BEND
   BCX32B1:
@@ -111,7 +111,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.350014
+      l_eff: 0.35
       sum_l_meters: 3364.117
       type: BEND
   BCX32B2:
@@ -134,7 +134,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.350014
+      l_eff: 0.35
       sum_l_meters: 3364.667
       type: BEND
   BCX32B3:
@@ -157,7 +157,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.350014
+      l_eff: 0.35
       sum_l_meters: 3365.217
       type: BEND
   BCX32B4:
@@ -180,7 +180,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.350014
+      l_eff: 0.35
       sum_l_meters: 3365.767
       type: BEND
   BCXXL1:
@@ -295,7 +295,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 2.656038
+      l_eff: 2.656
       sum_l_meters: 3259.019
       type: BEND
   BX32B:
@@ -318,7 +318,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 2.656038
+      l_eff: 2.656
       sum_l_meters: 3361.019
       type: BEND
   BY1B:
@@ -387,7 +387,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 1.0601
+      l_eff: 1.06
       sum_l_meters: 3319.988
       type: BEND
   BYKIK2S:
@@ -410,7 +410,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 1.0601
+      l_eff: 1.06
       sum_l_meters: 3321.167
       type: BEND
   QDBL1:
@@ -433,7 +433,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3234.806
       type: QUAD
   QDBL2:
@@ -456,7 +456,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3236.986
       type: QUAD
   QDL11:
@@ -686,7 +686,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3362.989
       type: QUAD
   QDL21:
@@ -709,7 +709,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3374.423
       type: QUAD
   QDL22:
@@ -732,7 +732,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3376.739
       type: QUAD
   QE31B:
@@ -893,7 +893,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3410.895
       type: QUAD
   QEM2B:
@@ -916,7 +916,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3415.356
       type: QUAD
   QEM3B:
@@ -939,7 +939,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3427.817
       type: QUAD
   QEM3VB:
@@ -985,7 +985,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3432.278
       type: QUAD
   QFXL1:
@@ -1008,7 +1008,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3448.346
       type: QUAD
   QFXL2:
@@ -1031,7 +1031,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3525.248
       type: QUAD
   QUM1B:
@@ -1054,7 +1054,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3547.779
       type: QUAD
   QUM2B:
@@ -1077,7 +1077,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3552.99
       type: QUAD
   QUM3B:
@@ -1100,7 +1100,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3561.451
       type: QUAD
   QUM4B:
@@ -1123,7 +1123,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3565.912
       type: QUAD
   QVB1B:
@@ -1146,7 +1146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3386.631
       type: QUAD
   QVB2B:
@@ -1169,7 +1169,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3389.035
       type: QUAD
   QVB3B:
@@ -1192,7 +1192,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3391.438
       type: QUAD
   QVM3B:

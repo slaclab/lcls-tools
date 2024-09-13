@@ -19,7 +19,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.203497
+      l_eff: 0.203
       sum_l_meters: 31.488
       type: BEND
   BX12:
@@ -42,7 +42,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.203497
+      l_eff: 0.203
       sum_l_meters: 34.137
       type: BEND
   BX13:
@@ -65,7 +65,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.203497
+      l_eff: 0.203
       sum_l_meters: 35.171
       type: BEND
   BX14:
@@ -88,7 +88,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.203497
+      l_eff: 0.203
       sum_l_meters: 37.82
       type: BEND
   CQ11:
@@ -157,7 +157,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 30.732
       type: QUAD
   Q21301:
@@ -180,7 +180,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 43.182
       type: QUAD
   QM11:

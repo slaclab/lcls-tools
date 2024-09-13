@@ -18,7 +18,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350006
+      l_eff: 0.35
       sum_l_meters: 1278.025
       type: BEND
   BCX322:
@@ -40,7 +40,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350006
+      l_eff: 0.35
       sum_l_meters: 1278.575
       type: BEND
   BCX323:
@@ -62,7 +62,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350006
+      l_eff: 0.35
       sum_l_meters: 1279.125
       type: BEND
   BCX324:
@@ -84,7 +84,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350006
+      l_eff: 0.35
       sum_l_meters: 1279.675
       type: BEND
   BCX351:
@@ -106,7 +106,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350003
+      l_eff: 0.35
       sum_l_meters: 1305.538
       type: BEND
   BCX352:
@@ -128,7 +128,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350003
+      l_eff: 0.35
       sum_l_meters: 1306.088
       type: BEND
   BCX353:
@@ -150,7 +150,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350003
+      l_eff: 0.35
       sum_l_meters: 1306.638
       type: BEND
   BCX354:
@@ -172,7 +172,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350003
+      l_eff: 0.35
       sum_l_meters: 1307.188
       type: BEND
   BCX361:
@@ -194,7 +194,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350003
+      l_eff: 0.35
       sum_l_meters: 1348.502
       type: BEND
   BCX362:
@@ -216,7 +216,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350003
+      l_eff: 0.35
       sum_l_meters: 1349.052
       type: BEND
   BCX363:
@@ -238,7 +238,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350003
+      l_eff: 0.35
       sum_l_meters: 1349.602
       type: BEND
   BCX364:
@@ -260,7 +260,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.350003
+      l_eff: 0.35
       sum_l_meters: 1350.152
       type: BEND
   BX31:
@@ -282,7 +282,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 2.623008
+      l_eff: 2.623
       sum_l_meters: 1241.935
       type: BEND
   BX32:
@@ -304,7 +304,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 2.623008
+      l_eff: 2.623
       sum_l_meters: 1270.74
       type: BEND
   BX35:
@@ -326,7 +326,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 2.623008
+      l_eff: 2.623
       sum_l_meters: 1313.557
       type: BEND
   BX36:
@@ -348,7 +348,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 2.623008
+      l_eff: 2.623
       sum_l_meters: 1342.363
       type: BEND
   BY1:
@@ -414,7 +414,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 1.0601
+      l_eff: 1.06
       sum_l_meters: 1284.878
       type: BEND
   BYKIK2:
@@ -436,7 +436,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 1.0601
+      l_eff: 1.06
       sum_l_meters: 1286.097
       type: BEND
   CQ31:
@@ -832,7 +832,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1272.782
       type: QUAD
   QT12:
@@ -854,7 +854,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1274.243
       type: QUAD
   QT13:
@@ -876,7 +876,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1275.704
       type: QUAD
   QT21:
@@ -898,7 +898,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1308.594
       type: QUAD
   QT22:
@@ -920,7 +920,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1310.054
       type: QUAD
   QT23:
@@ -942,7 +942,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1311.515
       type: QUAD
   QT31:
@@ -964,7 +964,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1344.405
       type: QUAD
   QT32:
@@ -986,7 +986,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1345.866
       type: QUAD
   QT33:
@@ -1008,7 +1008,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1347.327
       type: QUAD
   QT41:
@@ -1030,7 +1030,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1380.216
       type: QUAD
   QT42:
@@ -1052,7 +1052,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1381.677
       type: QUAD
   QT43:
@@ -1074,7 +1074,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1383.138
       type: QUAD
   QUM1:
@@ -1184,7 +1184,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1220.649
       type: QUAD
   QVB2:
@@ -1206,7 +1206,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1225.11
       type: QUAD
   QVB3:
@@ -1228,7 +1228,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1229.571
       type: QUAD
   QVM1:
@@ -1250,7 +1250,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1210.328
       type: QUAD
   QVM2:
@@ -1272,7 +1272,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1211.288
       type: QUAD
   QVM3:
@@ -1294,7 +1294,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1238.932
       type: QUAD
   QVM4:
@@ -1316,7 +1316,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.46092
+      l_eff: 0.461
       sum_l_meters: 1239.893
       type: QUAD
   XCDL1:

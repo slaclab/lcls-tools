@@ -68,7 +68,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 1.000006
+      l_eff: 1.0
       sum_l_meters: 2813.494
       type: BEND
   BRSP1H:
@@ -86,7 +86,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 1.000002
+      l_eff: 1.0
       sum_l_meters: 2872.334
       type: BEND
   BYSP1H:
@@ -194,7 +194,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 2862.256
       type: QUAD
   QSP3H:
@@ -284,7 +284,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 2967.038
       type: QUAD
   QSP8H:

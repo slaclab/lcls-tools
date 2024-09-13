@@ -14,7 +14,7 @@ magnets:
       area: GSPEC
       beam_path:
       - CU_GSPEC
-      l_eff: 0.291216
+      l_eff: 0.291
       sum_l_meters: 1.123
       type: BEND
   QG02:

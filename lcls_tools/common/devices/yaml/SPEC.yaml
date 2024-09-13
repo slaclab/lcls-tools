@@ -14,7 +14,7 @@ magnets:
       area: SPEC
       beam_path:
       - CU_SPEC
-      l_eff: 0.5435
+      l_eff: 0.543
       sum_l_meters: 19.284
       type: BEND
   DX01:

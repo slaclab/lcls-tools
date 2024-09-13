@@ -14,7 +14,7 @@ magnets:
       area: SLTH
       beam_path:
       - SC_HXR
-      l_eff: 1.000002
+      l_eff: 1.0
       sum_l_meters: 3061.743
       type: BEND
   BXSP1H:
@@ -32,7 +32,7 @@ magnets:
       area: SLTH
       beam_path:
       - SC_HXR
-      l_eff: 1.000002
+      l_eff: 1.0
       sum_l_meters: 3120.583
       type: BEND
   QSP12H:
@@ -50,7 +50,7 @@ magnets:
       area: SLTH
       beam_path:
       - SC_HXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 3071.821
       type: QUAD
   QSP13H:

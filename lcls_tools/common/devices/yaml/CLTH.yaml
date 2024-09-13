@@ -42,7 +42,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.324302
+      l_eff: 0.324
       sum_l_meters: 1041.751
       type: QUAD
   XCBSYQ2:

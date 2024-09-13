@@ -20,7 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
-      l_eff: 0.3813
+      l_eff: 0.381
       sum_l_meters: 938.351
       type: QUAD
   XC1996:

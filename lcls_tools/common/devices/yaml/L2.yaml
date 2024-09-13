@@ -83,7 +83,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 54.273
       type: QUAD
   Q21501:
@@ -106,7 +106,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 66.618
       type: QUAD
   Q21601:
@@ -129,7 +129,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 78.962
       type: QUAD
   Q21701:
@@ -152,7 +152,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 91.307
       type: QUAD
   Q21801:
@@ -175,7 +175,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 103.651
       type: QUAD
   Q21901:
@@ -198,7 +198,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 116.315
       type: QUAD
   Q22201:
@@ -221,7 +221,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 131.185
       type: QUAD
   Q22301:
@@ -244,7 +244,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 143.529
       type: QUAD
   Q22401:
@@ -267,7 +267,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 155.873
       type: QUAD
   Q22501:
@@ -290,7 +290,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 168.218
       type: QUAD
   Q22601:
@@ -313,7 +313,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 180.562
       type: QUAD
   Q22701:
@@ -336,7 +336,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 192.907
       type: QUAD
   Q22801:
@@ -359,7 +359,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 205.251
       type: QUAD
   Q22901:
@@ -382,7 +382,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 217.915
       type: QUAD
   Q23201:
@@ -405,7 +405,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 232.785
       type: QUAD
   Q23301:
@@ -428,7 +428,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 245.129
       type: QUAD
   Q23401:
@@ -451,7 +451,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 257.473
       type: QUAD
   Q23501:
@@ -474,7 +474,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 269.818
       type: QUAD
   Q23601:
@@ -497,7 +497,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 282.162
       type: QUAD
   Q23701:
@@ -520,7 +520,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 294.507
       type: QUAD
   Q23801:
@@ -543,7 +543,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 306.851
       type: QUAD
   Q23901:
@@ -566,7 +566,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 319.515
       type: QUAD
   Q24201:
@@ -589,7 +589,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 334.385
       type: QUAD
   Q24301:
@@ -612,7 +612,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 346.729
       type: QUAD
   Q24401:
@@ -635,7 +635,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 359.073
       type: QUAD
   Q24501:
@@ -658,7 +658,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 371.418
       type: QUAD
   Q24601:
@@ -681,7 +681,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0.107
       sum_l_meters: 383.762
       type: QUAD
   XC21402:

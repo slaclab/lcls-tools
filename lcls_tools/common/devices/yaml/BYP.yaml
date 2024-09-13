@@ -21,7 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 1264.649
       type: QUAD
   QBP14:
@@ -46,7 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 1366.249
       type: QUAD
   QBP15:
@@ -71,7 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 1467.849
       type: QUAD
   QBP16:
@@ -96,7 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 1569.449
       type: QUAD
   QBP17:
@@ -121,7 +121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 1671.049
       type: QUAD
   QBP18:
@@ -146,7 +146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 1772.649
       type: QUAD
   QBP19:
@@ -171,7 +171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 1874.249
       type: QUAD
   QBP20:
@@ -196,7 +196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 1975.849
       type: QUAD
   QBP21:
@@ -221,7 +221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 2077.449
       type: QUAD
   QBP22:
@@ -246,7 +246,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 2179.049
       type: QUAD
   QBP23:
@@ -271,7 +271,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 2280.649
       type: QUAD
   QBP24:
@@ -296,7 +296,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 2382.249
       type: QUAD
   QBP25:
@@ -321,7 +321,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 2483.849
       type: QUAD
   QBP26:
@@ -346,7 +346,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 2585.449
       type: QUAD
   QBP27:
@@ -371,7 +371,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 2687.049
       type: QUAD
   QBP28:
@@ -396,7 +396,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 2788.349
       type: QUAD
   QBP35:
@@ -421,7 +421,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.1244
+      l_eff: 0.124
       sum_l_meters: 2766.349
       type: QUAD
   XCBP13:

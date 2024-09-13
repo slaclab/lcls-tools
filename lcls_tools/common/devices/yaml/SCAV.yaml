@@ -40,7 +40,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3.277
       sum_l_meters: 933.686
       type: BEND
   BX57215:
@@ -51,7 +51,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3.277
       sum_l_meters: 938.131
       type: BEND
   BX57225:
@@ -62,7 +62,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3.277
       sum_l_meters: 942.576
       type: BEND
   BX57235:
@@ -73,7 +73,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3.277
       sum_l_meters: 947.021
       type: BEND
   BX57245:
@@ -84,7 +84,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3.277
       sum_l_meters: 951.466
       type: BEND
   BX57255:
@@ -95,7 +95,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3.277
       sum_l_meters: 955.911
       type: BEND
   BX57265:
@@ -106,7 +106,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3.277
       sum_l_meters: 960.356
       type: BEND
   BX57275:
@@ -117,7 +117,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3.277
       sum_l_meters: 964.801
       type: BEND
   BY57202:
@@ -128,7 +128,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 1.5596
+      l_eff: 1.56
       sum_l_meters: 930.099
       type: BEND
   Q57186:
@@ -139,7 +139,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.4972
+      l_eff: 0.497
       sum_l_meters: 920.334
       type: QUAD
   Q57190:
@@ -150,7 +150,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.5598
+      l_eff: 0.56
       sum_l_meters: 922.862
       type: QUAD
   Q57204:
@@ -161,7 +161,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 0.615
       sum_l_meters: 931.463
       type: QUAD
   Q57210:
@@ -172,7 +172,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 0.615
       sum_l_meters: 935.908
       type: QUAD
   Q57220:
@@ -183,7 +183,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 0.615
       sum_l_meters: 940.353
       type: QUAD
   Q57230:
@@ -194,7 +194,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 0.615
       sum_l_meters: 944.798
       type: QUAD
   Q57250:
@@ -205,7 +205,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 0.615
       sum_l_meters: 953.688
       type: QUAD
   Q57260:
@@ -216,7 +216,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 0.615
       sum_l_meters: 958.133
       type: QUAD
   Q57270:
@@ -227,7 +227,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 0.615
       sum_l_meters: 962.578
       type: QUAD
   Q57280:
@@ -238,7 +238,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 0.615
       sum_l_meters: 967.023
       type: QUAD
   XC57175:
