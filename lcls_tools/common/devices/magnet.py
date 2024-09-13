@@ -59,7 +59,7 @@ class MagnetControlInformation(ControlInformation):
 
 
 class MagnetMetadata(Metadata):
-    length: Optional[PositiveFloat] = None
+    l_eff: Optional[PositiveFloat] = None
     b_tolerance: Optional[PositiveFloat] = None
 
     def __init__(self, *args, **kwargs):
@@ -125,13 +125,13 @@ class Magnet(Device):
     @property
     def length(self):
         """Returns the effective length in meters"""
-        return self.metadata.length
+        return self.metadata.l_eff
 
     @length.setter
     def length(self, value):
         if not isinstance(value, float):
             return
-        self.metadata.length = value
+        self.metadata.l_eff = value
 
     @property
     def bctrl(self) -> Union[float, int]:
