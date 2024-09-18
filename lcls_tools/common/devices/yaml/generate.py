@@ -386,9 +386,9 @@ class YAMLGenerator:
         # PV suffix as the key, the name we want to store it as in yaml file as the value
         # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
         possible_lblm_pvs = {
-            "FAST": "fast",
-            # "GATED_INTEGRAL": "gated_integral",
-            # "I0_LOSS": "i0_loss",
+            # "FAST": "fast",
+            "GATED_INTEGRAL": "gated_integral",
+            "I0_LOSS": "i0_loss",
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_metadata_data = get_lblm_metadata()
