@@ -33,9 +33,9 @@ class IntegerModel(BaseModel):
 
 
 class LBLMPVSet(PVSet):
-    fast: PV
-    # gated_integral: PV
-    # i0_loss: PV
+    # fast: PV
+    gated_integral: PV
+    i0_loss: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
