@@ -48,11 +48,6 @@ class ScreenPVSet(PVSet):
         return PV(v)
 
 
-class ScreenMetadata(Metadata):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-
 class ScreenControlInformation(ControlInformation):
     PVs: SerializeAsAny[ScreenPVSet]
 
@@ -62,7 +57,7 @@ class ScreenControlInformation(ControlInformation):
 
 class Screen(Device):
     controls_information: SerializeAsAny[ScreenControlInformation]
-    metadata: SerializeAsAny[ScreenMetadata]
+    metadata: SerializeAsAny[Metadata]
     _saving_images: Optional[bool] = False
     _root_hdf5_location: Optional[str] = "."
     _last_save_filepath: Optional[str] = ""
