@@ -134,6 +134,9 @@ class YAMLGenerator:
         # Use the control system name to get all PVs associated with device
         pv_dict = {}
         for search_term, handle in search_with_handles.items():
+            field = str()
+            if "." in search_term:
+                search_term, field = search_term.split(".")
             # End of the PV name is implied in search_term
             try:
                 pv_list = meme.names.list_pvs(name + ":" + search_term, sort_by="z")
@@ -141,7 +144,7 @@ class YAMLGenerator:
                 if pv_list != list():
                     if len(pv_list) == 1:
                         # get the pv out of the results
-                        pv = pv_list[0]
+                        pv = f"{pv_list[0]}.{field}" if field else pv_list[0]
                         if not handle:
                             # if the user has not provided their own handle then
                             # split by colon, grab the last part of the string as a handle
@@ -327,28 +330,31 @@ class YAMLGenerator:
         # PV suffix as the key, the name we want to store it as in yaml file as the value
         # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
         possible_wire_pvs = {
-            "MOTR": "motr",
-            # "MOTR.VELO": "velo",
-            # "MOTR.RBV": "rbv",
-            "MOTR_INIT": "initialize",
-            "MOTR_INIT_STS": "initialized",
-            "MOTR_RETRACT": "retract",
-            "STARTSCAN": "startscan",
-            "XWIRESIZE": "xsize",
-            "YWIRESIZE": "ysize",
-            "UWIRESIZE": "usize",
-            "USEXWIRE": "usexwire",
-            "USEYWIRE": "useywire",
-            "USEUWIRE": "useuwire",
-            "XWIREINNER": "xwireinner",
-            "XWIREOUTER": "xwireouter",
-            "YWIREINNER": "ywireinner",
-            "YWIREOUTER": "ywireouter",
-            "UWIREINNER": "uwireinner",
-            "UWIREOUTER": "uwireouter",
+            "MOTR.STOP": "abort_scan",
             "MOTR_ENABLED_STS": "enabled",
             "MOTR_HOMED_STS": "homed",
+            "MOTR_INIT": "initialize",
+            "MOTR_INIT_STS": "initialize_status",
+            "MOTR": "motor",
+            "MOTR.RBV": "position",
+            "MOTR_RETRACT": "retract",
+            "SCANPULSES": "scan_pulses",
+            "STARTSCAN": "start_scan",
+            "TEMP": "temperature",
             "MOTR_TIMEOUTEN": "timeout",
+            "USEUWIRE": "use_u_wire",
+            "USEXWIRE": "use_x_wire",
+            "USEYWIRE": "use_y_wire",
+            "UWIRESIZE": "u_size",
+            "UWIREINNER": "u_wire_inner",
+            "UWIREOUTER": "u_wire_outer",
+            "MOTR.VELO": "speed",
+            "XWIRESIZE": "x_size",
+            "XWIREINNER": "x_wire_inner",
+            "XWIREOUTER": "x_wire_outer",
+            "YWIRESIZE": "y_size",
+            "YWIREINNER": "y_wire_inner",
+            "YWIREOUTER": "y_wire_outer",
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_metadata_data = get_wire_metadata()

@@ -585,10 +585,10 @@ screens:
   OTR2:
     controls_information:
       PVs:
-        image: OTRS:IN20:571:IMAGE
+        image: OTRS:IN20:571:Image:ArrayData
         n_bits: OTRS:IN20:571:N_OF_BITS
-        n_col: OTRS:IN20:571:N_OF_COL
-        n_row: OTRS:IN20:571:N_OF_ROW
+        n_col: OTRS:IN20:571:Image:ArraySize1_RBV
+        n_row: OTRS:IN20:571:Image:ArraySize0_RBV
         resolution: OTRS:IN20:571:RESOLUTION
       control_name: OTRS:IN20:571
     metadata:
@@ -606,10 +606,10 @@ screens:
   OTR3:
     controls_information:
       PVs:
-        image: OTRS:IN20:621:Image:ArrayData
+        image: OTRS:IN20:621:IMAGE
         n_bits: OTRS:IN20:621:N_OF_BITS
-        n_col: OTRS:IN20:621:Image:ArraySize1_RBV
-        n_row: OTRS:IN20:621:Image:ArraySize0_RBV
+        n_col: OTRS:IN20:621:N_OF_COL
+        n_row: OTRS:IN20:621:N_OF_ROW
         resolution: OTRS:IN20:621:RESOLUTION
       control_name: OTRS:IN20:621
     metadata:
@@ -699,22 +699,26 @@ wires:
   WS01:
     controls_information:
       PVs:
+        abort_scan: WIRE:IN20:531:MOTR.STOP
         enabled: WIRE:IN20:531:MOTR_ENABLED_STS
-        initialized: WIRE:IN20:531:MOTR_INIT_STS
-        motr: WIRE:IN20:531:MOTR
-        startscan: WIRE:IN20:531:STARTSCAN
-        useuwire: WIRE:IN20:531:USEUWIRE
-        usexwire: WIRE:IN20:531:USEXWIRE
-        useywire: WIRE:IN20:531:USEYWIRE
-        usize: WIRE:IN20:531:UWIRESIZE
-        uwireinner: WIRE:IN20:531:UWIREINNER
-        uwireouter: WIRE:IN20:531:UWIREOUTER
-        xsize: WIRE:IN20:531:XWIRESIZE
-        xwireinner: WIRE:IN20:531:XWIREINNER
-        xwireouter: WIRE:IN20:531:XWIREOUTER
-        ysize: WIRE:IN20:531:YWIRESIZE
-        ywireinner: WIRE:IN20:531:YWIREINNER
-        ywireouter: WIRE:IN20:531:YWIREOUTER
+        initialize_status: WIRE:IN20:531:MOTR_INIT_STS
+        motor: WIRE:IN20:531:MOTR
+        position: WIRE:IN20:531:MOTR.RBV
+        scan_pulses: WIRE:IN20:531:SCANPULSES
+        speed: WIRE:IN20:531:MOTR.VELO
+        start_scan: WIRE:IN20:531:STARTSCAN
+        u_size: WIRE:IN20:531:UWIRESIZE
+        u_wire_inner: WIRE:IN20:531:UWIREINNER
+        u_wire_outer: WIRE:IN20:531:UWIREOUTER
+        use_u_wire: WIRE:IN20:531:USEUWIRE
+        use_x_wire: WIRE:IN20:531:USEXWIRE
+        use_y_wire: WIRE:IN20:531:USEYWIRE
+        x_size: WIRE:IN20:531:XWIRESIZE
+        x_wire_inner: WIRE:IN20:531:XWIREINNER
+        x_wire_outer: WIRE:IN20:531:XWIREOUTER
+        y_size: WIRE:IN20:531:YWIRESIZE
+        y_wire_inner: WIRE:IN20:531:YWIREINNER
+        y_wire_outer: WIRE:IN20:531:YWIREOUTER
       control_name: WIRE:IN20:531
     metadata:
       area: DL1
@@ -731,26 +735,32 @@ wires:
   WS02:
     controls_information:
       PVs:
+
+        abort_scan: WIRE:IN20:561:MOTR.STOP
         enabled: WIRE:IN20:561:MOTR_ENABLED_STS
         homed: WIRE:IN20:561:MOTR_HOMED_STS
         initialize: WIRE:IN20:561:MOTR_INIT
-        initialized: WIRE:IN20:561:MOTR_INIT_STS
-        motr: WIRE:IN20:561:MOTR
+        initialize_status: WIRE:IN20:561:MOTR_INIT_STS
+        motor: WIRE:IN20:561:MOTR
+        position: WIRE:IN20:561:MOTR.RBV
         retract: WIRE:IN20:561:MOTR_RETRACT
-        startscan: WIRE:IN20:561:STARTSCAN
+        scan_pulses: WIRE:IN20:561:SCANPULSES
+        speed: WIRE:IN20:561:MOTR.VELO
+        start_scan: WIRE:IN20:561:STARTSCAN
+        temperature: WIRE:IN20:561:TEMP
         timeout: WIRE:IN20:561:MOTR_TIMEOUTEN
-        useuwire: WIRE:IN20:561:USEUWIRE
-        usexwire: WIRE:IN20:561:USEXWIRE
-        useywire: WIRE:IN20:561:USEYWIRE
-        usize: WIRE:IN20:561:UWIRESIZE
-        uwireinner: WIRE:IN20:561:UWIREINNER
-        uwireouter: WIRE:IN20:561:UWIREOUTER
-        xsize: WIRE:IN20:561:XWIRESIZE
-        xwireinner: WIRE:IN20:561:XWIREINNER
-        xwireouter: WIRE:IN20:561:XWIREOUTER
-        ysize: WIRE:IN20:561:YWIRESIZE
-        ywireinner: WIRE:IN20:561:YWIREINNER
-        ywireouter: WIRE:IN20:561:YWIREOUTER
+        u_size: WIRE:IN20:561:UWIRESIZE
+        u_wire_inner: WIRE:IN20:561:UWIREINNER
+        u_wire_outer: WIRE:IN20:561:UWIREOUTER
+        use_u_wire: WIRE:IN20:561:USEUWIRE
+        use_x_wire: WIRE:IN20:561:USEXWIRE
+        use_y_wire: WIRE:IN20:561:USEYWIRE
+        x_size: WIRE:IN20:561:XWIRESIZE
+        x_wire_inner: WIRE:IN20:561:XWIREINNER
+        x_wire_outer: WIRE:IN20:561:XWIREOUTER
+        y_size: WIRE:IN20:561:YWIRESIZE
+        y_wire_inner: WIRE:IN20:561:YWIREINNER
+        y_wire_outer: WIRE:IN20:561:YWIREOUTER
       control_name: WIRE:IN20:561
     metadata:
       area: DL1
@@ -767,26 +777,31 @@ wires:
   WS03:
     controls_information:
       PVs:
+        abort_scan: WIRE:IN20:611:MOTR.STOP
         enabled: WIRE:IN20:611:MOTR_ENABLED_STS
         homed: WIRE:IN20:611:MOTR_HOMED_STS
         initialize: WIRE:IN20:611:MOTR_INIT
-        initialized: WIRE:IN20:611:MOTR_INIT_STS
-        motr: WIRE:IN20:611:MOTR
+        initialize_status: WIRE:IN20:611:MOTR_INIT_STS
+        motor: WIRE:IN20:611:MOTR
+        position: WIRE:IN20:611:MOTR.RBV
         retract: WIRE:IN20:611:MOTR_RETRACT
-        startscan: WIRE:IN20:611:STARTSCAN
+        scan_pulses: WIRE:IN20:611:SCANPULSES
+        speed: WIRE:IN20:611:MOTR.VELO
+        start_scan: WIRE:IN20:611:STARTSCAN
+        temperature: WIRE:IN20:611:TEMP
         timeout: WIRE:IN20:611:MOTR_TIMEOUTEN
-        useuwire: WIRE:IN20:611:USEUWIRE
-        usexwire: WIRE:IN20:611:USEXWIRE
-        useywire: WIRE:IN20:611:USEYWIRE
-        usize: WIRE:IN20:611:UWIRESIZE
-        uwireinner: WIRE:IN20:611:UWIREINNER
-        uwireouter: WIRE:IN20:611:UWIREOUTER
-        xsize: WIRE:IN20:611:XWIRESIZE
-        xwireinner: WIRE:IN20:611:XWIREINNER
-        xwireouter: WIRE:IN20:611:XWIREOUTER
-        ysize: WIRE:IN20:611:YWIRESIZE
-        ywireinner: WIRE:IN20:611:YWIREINNER
-        ywireouter: WIRE:IN20:611:YWIREOUTER
+        u_size: WIRE:IN20:611:UWIRESIZE
+        u_wire_inner: WIRE:IN20:611:UWIREINNER
+        u_wire_outer: WIRE:IN20:611:UWIREOUTER
+        use_u_wire: WIRE:IN20:611:USEUWIRE
+        use_x_wire: WIRE:IN20:611:USEXWIRE
+        use_y_wire: WIRE:IN20:611:USEYWIRE
+        x_size: WIRE:IN20:611:XWIRESIZE
+        x_wire_inner: WIRE:IN20:611:XWIREINNER
+        x_wire_outer: WIRE:IN20:611:XWIREOUTER
+        y_size: WIRE:IN20:611:YWIRESIZE
+        y_wire_inner: WIRE:IN20:611:YWIREINNER
+        y_wire_outer: WIRE:IN20:611:YWIREOUTER
       control_name: WIRE:IN20:611
     metadata:
       area: DL1
@@ -803,22 +818,26 @@ wires:
   WS04:
     controls_information:
       PVs:
+        abort_scan: WIRE:IN20:741:MOTR.STOP
         enabled: WIRE:IN20:741:MOTR_ENABLED_STS
-        initialized: WIRE:IN20:741:MOTR_INIT_STS
-        motr: WIRE:IN20:741:MOTR
-        startscan: WIRE:IN20:741:STARTSCAN
-        useuwire: WIRE:IN20:741:USEUWIRE
-        usexwire: WIRE:IN20:741:USEXWIRE
-        useywire: WIRE:IN20:741:USEYWIRE
-        usize: WIRE:IN20:741:UWIRESIZE
-        uwireinner: WIRE:IN20:741:UWIREINNER
-        uwireouter: WIRE:IN20:741:UWIREOUTER
-        xsize: WIRE:IN20:741:XWIRESIZE
-        xwireinner: WIRE:IN20:741:XWIREINNER
-        xwireouter: WIRE:IN20:741:XWIREOUTER
-        ysize: WIRE:IN20:741:YWIRESIZE
-        ywireinner: WIRE:IN20:741:YWIREINNER
-        ywireouter: WIRE:IN20:741:YWIREOUTER
+        initialize_status: WIRE:IN20:741:MOTR_INIT_STS
+        motor: WIRE:IN20:741:MOTR
+        position: WIRE:IN20:741:MOTR.RBV
+        scan_pulses: WIRE:IN20:741:SCANPULSES
+        speed: WIRE:IN20:741:MOTR.VELO
+        start_scan: WIRE:IN20:741:STARTSCAN
+        u_size: WIRE:IN20:741:UWIRESIZE
+        u_wire_inner: WIRE:IN20:741:UWIREINNER
+        u_wire_outer: WIRE:IN20:741:UWIREOUTER
+        use_u_wire: WIRE:IN20:741:USEUWIRE
+        use_x_wire: WIRE:IN20:741:USEXWIRE
+        use_y_wire: WIRE:IN20:741:USEYWIRE
+        x_size: WIRE:IN20:741:XWIRESIZE
+        x_wire_inner: WIRE:IN20:741:XWIREINNER
+        x_wire_outer: WIRE:IN20:741:XWIREOUTER
+        y_size: WIRE:IN20:741:YWIRESIZE
+        y_wire_inner: WIRE:IN20:741:YWIREINNER
+        y_wire_outer: WIRE:IN20:741:YWIREOUTER
       control_name: WIRE:IN20:741
     metadata:
       area: DL1

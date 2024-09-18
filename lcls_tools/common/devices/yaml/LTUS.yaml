@@ -2021,26 +2021,31 @@ wires:
   WS31B:
     controls_information:
       PVs:
+        abort_scan: WIRE:LTUS:715:MOTR.STOP
         enabled: WIRE:LTUS:715:MOTR_ENABLED_STS
         homed: WIRE:LTUS:715:MOTR_HOMED_STS
         initialize: WIRE:LTUS:715:MOTR_INIT
-        initialized: WIRE:LTUS:715:MOTR_INIT_STS
-        motr: WIRE:LTUS:715:MOTR
+        initialize_status: WIRE:LTUS:715:MOTR_INIT_STS
+        motor: WIRE:LTUS:715:MOTR
+        position: WIRE:LTUS:715:MOTR.RBV
         retract: WIRE:LTUS:715:MOTR_RETRACT
-        startscan: WIRE:LTUS:715:STARTSCAN
+        scan_pulses: WIRE:LTUS:715:SCANPULSES
+        speed: WIRE:LTUS:715:MOTR.VELO
+        start_scan: WIRE:LTUS:715:STARTSCAN
+        temperature: WIRE:LTUS:715:TEMP
         timeout: WIRE:LTUS:715:MOTR_TIMEOUTEN
-        useuwire: WIRE:LTUS:715:USEUWIRE
-        usexwire: WIRE:LTUS:715:USEXWIRE
-        useywire: WIRE:LTUS:715:USEYWIRE
-        usize: WIRE:LTUS:715:UWIRESIZE
-        uwireinner: WIRE:LTUS:715:UWIREINNER
-        uwireouter: WIRE:LTUS:715:UWIREOUTER
-        xsize: WIRE:LTUS:715:XWIRESIZE
-        xwireinner: WIRE:LTUS:715:XWIREINNER
-        xwireouter: WIRE:LTUS:715:XWIREOUTER
-        ysize: WIRE:LTUS:715:YWIRESIZE
-        ywireinner: WIRE:LTUS:715:YWIREINNER
-        ywireouter: WIRE:LTUS:715:YWIREOUTER
+        u_size: WIRE:LTUS:715:UWIRESIZE
+        u_wire_inner: WIRE:LTUS:715:UWIREINNER
+        u_wire_outer: WIRE:LTUS:715:UWIREOUTER
+        use_u_wire: WIRE:LTUS:715:USEUWIRE
+        use_x_wire: WIRE:LTUS:715:USEXWIRE
+        use_y_wire: WIRE:LTUS:715:USEYWIRE
+        x_size: WIRE:LTUS:715:XWIRESIZE
+        x_wire_inner: WIRE:LTUS:715:XWIREINNER
+        x_wire_outer: WIRE:LTUS:715:XWIREOUTER
+        y_size: WIRE:LTUS:715:YWIRESIZE
+        y_wire_inner: WIRE:LTUS:715:YWIREINNER
+        y_wire_outer: WIRE:LTUS:715:YWIREOUTER
       control_name: WIRE:LTUS:715
     metadata:
       area: LTUS
@@ -2056,26 +2061,31 @@ wires:
   WS32B:
     controls_information:
       PVs:
+        abort_scan: WIRE:LTUS:735:MOTR.STOP
         enabled: WIRE:LTUS:735:MOTR_ENABLED_STS
         homed: WIRE:LTUS:735:MOTR_HOMED_STS
         initialize: WIRE:LTUS:735:MOTR_INIT
-        initialized: WIRE:LTUS:735:MOTR_INIT_STS
-        motr: WIRE:LTUS:735:MOTR
+        initialize_status: WIRE:LTUS:735:MOTR_INIT_STS
+        motor: WIRE:LTUS:735:MOTR
+        position: WIRE:LTUS:735:MOTR.RBV
         retract: WIRE:LTUS:735:MOTR_RETRACT
-        startscan: WIRE:LTUS:735:STARTSCAN
+        scan_pulses: WIRE:LTUS:735:SCANPULSES
+        speed: WIRE:LTUS:735:MOTR.VELO
+        start_scan: WIRE:LTUS:735:STARTSCAN
+        temperature: WIRE:LTUS:735:TEMP
         timeout: WIRE:LTUS:735:MOTR_TIMEOUTEN
-        useuwire: WIRE:LTUS:735:USEUWIRE
-        usexwire: WIRE:LTUS:735:USEXWIRE
-        useywire: WIRE:LTUS:735:USEYWIRE
-        usize: WIRE:LTUS:735:UWIRESIZE
-        uwireinner: WIRE:LTUS:735:UWIREINNER
-        uwireouter: WIRE:LTUS:735:UWIREOUTER
-        xsize: WIRE:LTUS:735:XWIRESIZE
-        xwireinner: WIRE:LTUS:735:XWIREINNER
-        xwireouter: WIRE:LTUS:735:XWIREOUTER
-        ysize: WIRE:LTUS:735:YWIRESIZE
-        ywireinner: WIRE:LTUS:735:YWIREINNER
-        ywireouter: WIRE:LTUS:735:YWIREOUTER
+        u_size: WIRE:LTUS:735:UWIRESIZE
+        u_wire_inner: WIRE:LTUS:735:UWIREINNER
+        u_wire_outer: WIRE:LTUS:735:UWIREOUTER
+        use_u_wire: WIRE:LTUS:735:USEUWIRE
+        use_x_wire: WIRE:LTUS:735:USEXWIRE
+        use_y_wire: WIRE:LTUS:735:USEYWIRE
+        x_size: WIRE:LTUS:735:XWIRESIZE
+        x_wire_inner: WIRE:LTUS:735:XWIREINNER
+        x_wire_outer: WIRE:LTUS:735:XWIREOUTER
+        y_size: WIRE:LTUS:735:YWIRESIZE
+        y_wire_inner: WIRE:LTUS:735:YWIREINNER
+        y_wire_outer: WIRE:LTUS:735:YWIREOUTER
       control_name: WIRE:LTUS:735
     metadata:
       area: LTUS
@@ -2091,26 +2101,31 @@ wires:
   WS33B:
     controls_information:
       PVs:
+        abort_scan: WIRE:LTUS:755:MOTR.STOP
         enabled: WIRE:LTUS:755:MOTR_ENABLED_STS
         homed: WIRE:LTUS:755:MOTR_HOMED_STS
         initialize: WIRE:LTUS:755:MOTR_INIT
-        initialized: WIRE:LTUS:755:MOTR_INIT_STS
-        motr: WIRE:LTUS:755:MOTR
+        initialize_status: WIRE:LTUS:755:MOTR_INIT_STS
+        motor: WIRE:LTUS:755:MOTR
+        position: WIRE:LTUS:755:MOTR.RBV
         retract: WIRE:LTUS:755:MOTR_RETRACT
-        startscan: WIRE:LTUS:755:STARTSCAN
+        scan_pulses: WIRE:LTUS:755:SCANPULSES
+        speed: WIRE:LTUS:755:MOTR.VELO
+        start_scan: WIRE:LTUS:755:STARTSCAN
+        temperature: WIRE:LTUS:755:TEMP
         timeout: WIRE:LTUS:755:MOTR_TIMEOUTEN
-        useuwire: WIRE:LTUS:755:USEUWIRE
-        usexwire: WIRE:LTUS:755:USEXWIRE
-        useywire: WIRE:LTUS:755:USEYWIRE
-        usize: WIRE:LTUS:755:UWIRESIZE
-        uwireinner: WIRE:LTUS:755:UWIREINNER
-        uwireouter: WIRE:LTUS:755:UWIREOUTER
-        xsize: WIRE:LTUS:755:XWIRESIZE
-        xwireinner: WIRE:LTUS:755:XWIREINNER
-        xwireouter: WIRE:LTUS:755:XWIREOUTER
-        ysize: WIRE:LTUS:755:YWIRESIZE
-        ywireinner: WIRE:LTUS:755:YWIREINNER
-        ywireouter: WIRE:LTUS:755:YWIREOUTER
+        u_size: WIRE:LTUS:755:UWIRESIZE
+        u_wire_inner: WIRE:LTUS:755:UWIREINNER
+        u_wire_outer: WIRE:LTUS:755:UWIREOUTER
+        use_u_wire: WIRE:LTUS:755:USEUWIRE
+        use_x_wire: WIRE:LTUS:755:USEXWIRE
+        use_y_wire: WIRE:LTUS:755:USEYWIRE
+        x_size: WIRE:LTUS:755:XWIRESIZE
+        x_wire_inner: WIRE:LTUS:755:XWIREINNER
+        x_wire_outer: WIRE:LTUS:755:XWIREOUTER
+        y_size: WIRE:LTUS:755:YWIRESIZE
+        y_wire_inner: WIRE:LTUS:755:YWIREINNER
+        y_wire_outer: WIRE:LTUS:755:YWIREOUTER
       control_name: WIRE:LTUS:755
     metadata:
       area: LTUS
@@ -2126,26 +2141,31 @@ wires:
   WS34B:
     controls_information:
       PVs:
+        abort_scan: WIRE:LTUS:785:MOTR.STOP
         enabled: WIRE:LTUS:785:MOTR_ENABLED_STS
         homed: WIRE:LTUS:785:MOTR_HOMED_STS
         initialize: WIRE:LTUS:785:MOTR_INIT
-        initialized: WIRE:LTUS:785:MOTR_INIT_STS
-        motr: WIRE:LTUS:785:MOTR
+        initialize_status: WIRE:LTUS:785:MOTR_INIT_STS
+        motor: WIRE:LTUS:785:MOTR
+        position: WIRE:LTUS:785:MOTR.RBV
         retract: WIRE:LTUS:785:MOTR_RETRACT
-        startscan: WIRE:LTUS:785:STARTSCAN
+        scan_pulses: WIRE:LTUS:785:SCANPULSES
+        speed: WIRE:LTUS:785:MOTR.VELO
+        start_scan: WIRE:LTUS:785:STARTSCAN
+        temperature: WIRE:LTUS:785:TEMP
         timeout: WIRE:LTUS:785:MOTR_TIMEOUTEN
-        useuwire: WIRE:LTUS:785:USEUWIRE
-        usexwire: WIRE:LTUS:785:USEXWIRE
-        useywire: WIRE:LTUS:785:USEYWIRE
-        usize: WIRE:LTUS:785:UWIRESIZE
-        uwireinner: WIRE:LTUS:785:UWIREINNER
-        uwireouter: WIRE:LTUS:785:UWIREOUTER
-        xsize: WIRE:LTUS:785:XWIRESIZE
-        xwireinner: WIRE:LTUS:785:XWIREINNER
-        xwireouter: WIRE:LTUS:785:XWIREOUTER
-        ysize: WIRE:LTUS:785:YWIRESIZE
-        ywireinner: WIRE:LTUS:785:YWIREINNER
-        ywireouter: WIRE:LTUS:785:YWIREOUTER
+        u_size: WIRE:LTUS:785:UWIRESIZE
+        u_wire_inner: WIRE:LTUS:785:UWIREINNER
+        u_wire_outer: WIRE:LTUS:785:UWIREOUTER
+        use_u_wire: WIRE:LTUS:785:USEUWIRE
+        use_x_wire: WIRE:LTUS:785:USEXWIRE
+        use_y_wire: WIRE:LTUS:785:USEYWIRE
+        x_size: WIRE:LTUS:785:XWIRESIZE
+        x_wire_inner: WIRE:LTUS:785:XWIREINNER
+        x_wire_outer: WIRE:LTUS:785:XWIREOUTER
+        y_size: WIRE:LTUS:785:YWIRESIZE
+        y_wire_inner: WIRE:LTUS:785:YWIREINNER
+        y_wire_outer: WIRE:LTUS:785:YWIREOUTER
       control_name: WIRE:LTUS:785
     metadata:
       area: LTUS

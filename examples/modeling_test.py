@@ -26,7 +26,7 @@ output_design = mod.get_output(tao)
 rf_quads_pv_list = mod.get_rf_quads_pvlist(tao, bm.all_data_maps)
 
 # The desired energy gain comes from LEM EDES pvs as stored in
-# ./lcls_tools/common/data_analysis/bmad_modeling/yaml/energy_measurements.yml
+# ./lcls_tools/common/data/bmad_modeling/yaml/energy_measurements.yml
 energy_gain_pv_list = mod.get_energy_gain_pvlist(bm.beam_path)
 
 # pvdata from Archive, DES or ACT
@@ -43,22 +43,18 @@ figs = outfn.plot_betas(output_design, output)
 figs = outfn.plot_betas(output_design, output)
 
 # Other output functions
-outfn.disp_twiss(tao, 'HTRUNDB', 'HTR')
+outfn.disp_twiss(tao, "HTRUNDB", "HTR")
 outfn.quad_table(tao)
 outfn.plot_twiss(tao, output_design)
 
-expected_energy_gain = mod.get_expected_energy_gain(pvdata, 'L3', bm.beam_path)
+expected_energy_gain = mod.get_expected_energy_gain(pvdata, "L3", bm.beam_path)
 
 # Calculate a fudge factor and update Lcavities to have the Bmad model energy match
-mod.update_energy_gain_sc(tao, pvdata, 'L1', bm)
-mod.update_energy_gain_sc(tao, pvdata, 'L2', bm)
-mod.update_energy_gain_sc(tao, pvdata, 'L3', bm)
+mod.update_energy_gain_sc(tao, pvdata, "L1", bm)
+mod.update_energy_gain_sc(tao, pvdata, "L2", bm)
+mod.update_energy_gain_sc(tao, pvdata, "L3", bm)
 output = mod.get_output(tao)
 
-
-# For developers:
-# This is a way to reload your modules after edits without having to exit python
-"""
 import importlib
 importlib.reload(mod)
 importlib.reload(outfn)

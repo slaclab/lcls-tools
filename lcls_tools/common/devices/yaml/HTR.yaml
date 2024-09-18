@@ -773,26 +773,30 @@ wires:
   WS0H04:
     controls_information:
       PVs:
+        abort_scan: WIRE:HTR:340:MOTR.STOP
         enabled: WIRE:HTR:340:MOTR_ENABLED_STS
         homed: WIRE:HTR:340:MOTR_HOMED_STS
         initialize: WIRE:HTR:340:MOTR_INIT
-        initialized: WIRE:HTR:340:MOTR_INIT_STS
-        motr: WIRE:HTR:340:MOTR
+        initialize_status: WIRE:HTR:340:MOTR_INIT_STS
+        motor: WIRE:HTR:340:MOTR
+        position: WIRE:HTR:340:MOTR.RBV
         retract: WIRE:HTR:340:MOTR_RETRACT
-        startscan: WIRE:HTR:340:STARTSCAN
+        scan_pulses: WIRE:HTR:340:SCANPULSES
+        speed: WIRE:HTR:340:MOTR.VELO
+        start_scan: WIRE:HTR:340:STARTSCAN
         timeout: WIRE:HTR:340:MOTR_TIMEOUTEN
-        useuwire: WIRE:HTR:340:USEUWIRE
-        usexwire: WIRE:HTR:340:USEXWIRE
-        useywire: WIRE:HTR:340:USEYWIRE
-        usize: WIRE:HTR:340:UWIRESIZE
-        uwireinner: WIRE:HTR:340:UWIREINNER
-        uwireouter: WIRE:HTR:340:UWIREOUTER
-        xsize: WIRE:HTR:340:XWIRESIZE
-        xwireinner: WIRE:HTR:340:XWIREINNER
-        xwireouter: WIRE:HTR:340:XWIREOUTER
-        ysize: WIRE:HTR:340:YWIRESIZE
-        ywireinner: WIRE:HTR:340:YWIREINNER
-        ywireouter: WIRE:HTR:340:YWIREOUTER
+        u_size: WIRE:HTR:340:UWIRESIZE
+        u_wire_inner: WIRE:HTR:340:UWIREINNER
+        u_wire_outer: WIRE:HTR:340:UWIREOUTER
+        use_u_wire: WIRE:HTR:340:USEUWIRE
+        use_x_wire: WIRE:HTR:340:USEXWIRE
+        use_y_wire: WIRE:HTR:340:USEYWIRE
+        x_size: WIRE:HTR:340:XWIRESIZE
+        x_wire_inner: WIRE:HTR:340:XWIREINNER
+        x_wire_outer: WIRE:HTR:340:XWIREOUTER
+        y_size: WIRE:HTR:340:YWIRESIZE
+        y_wire_inner: WIRE:HTR:340:YWIREINNER
+        y_wire_outer: WIRE:HTR:340:YWIREOUTER
       control_name: WIRE:HTR:340
     metadata:
       area: HTR

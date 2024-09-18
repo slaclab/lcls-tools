@@ -1,7 +1,7 @@
 from datetime import datetime
 from pydantic import (
     BaseModel,
-    PositiveFloat,
+    # PositiveFloat,
     SerializeAsAny,
     field_validator,
     conint,
@@ -45,29 +45,43 @@ class IntegerModel(BaseModel):
     value: conint(strict=True)
 
 
+class PlaneModel(BaseModel):
+    plane: str
+
+    @field_validator('plane')
+    def x_y_u_plane(cls, v):
+        if v.lower() in ['x', 'y', 'u']:
+            return v
+        else:
+            raise ValueError("basePlane must be X, Y, or U")
+
+
 class WirePVSet(PVSet):
-    motr: PV
-    # velo: PV
-    # rbv: PV
-    initialize: PV
-    initialized: PV
-    retract: PV
-    startscan: PV
-    xsize: PV
-    ysize: PV
-    usize: PV
-    usexwire: PV
-    useywire: PV
-    useuwire: PV
-    xwireinner: PV
-    xwireouter: PV
-    ywireinner: PV
-    ywireouter: PV
-    uwireinner: PV
-    uwireouter: PV
+    abort_scan: PV
     enabled: PV
     homed: PV
+    initialize: PV
+    initialize_status: PV
+    motor: PV
+    position: PV
+    retract: PV
+    scan_pulses: PV
+    speed: PV
+    start_scan: PV
+    temperature: PV
     timeout: PV
+    use_u_wire: PV
+    use_x_wire: PV
+    use_y_wire: PV
+    u_size: PV
+    u_wire_inner: PV
+    u_wire_outer: PV
+    x_size: PV
+    x_wire_inner: PV
+    x_wire_outer: PV
+    y_size: PV
+    y_wire_inner: PV
+    y_wire_outer: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -84,7 +98,7 @@ class WireControlInformation(ControlInformation):
     def __init__(self, *args, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
         # Get possible options for wire motr PV, empty dict by default.
-        options = self.PVs.motr.get_ctrlvars(timeout=1)
+        options = self.PVs.position.get_ctrlvars(timeout=1)
         if "enum_strs" in options:
             [
                 self._ctrl_options.update({option: i})
@@ -97,8 +111,8 @@ class WireControlInformation(ControlInformation):
 
 
 class WireMetadata(Metadata):
-    material: Optional[str] = None
-    sum_l: Optional[PositiveFloat] = None
+    # material: Optional[str] = None
+    # sum_l: Optional[PositiveFloat] = None
     # TODO: Add LBLM and BPM infomration here?
     # TODO: Add info on locations for X, Y, U wires
 
@@ -113,47 +127,181 @@ class Wire(Device):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+    """ Decorators """
+
+    def check_state(f):
+        """Decorator to only allow transitions in 'Initialized' state"""
+
+        def decorated(self, *args, **kwargs):
+            if self.initialize_status is not True:
+                print(f"Unable to perform action, {self} not in Initialized state")
+                return
+            return f(self, *args, **kwargs)
+
+        return decorated
+
+    def abort_scan(self):
+        """Aborts active wire scan"""
+        self.controls_information.PVs.abort_scan.put(value=1)
+
     @property
-    def xsize(self):
+    def enabled(self):
+        """Returns the enabled state of the wire sacnner"""
+        return self.controls_information.PVs.enabled.get()
+
+    @property
+    def homed(self):
+        """Checks if the wire is in the home position."""
+        return self.controls_information.PVs.homed.get()
+
+    @property
+    def initialize_status(self):
+        """
+        Checks if the wire scanner device has been intialized..
+        """
+        return self.controls_information.PVs.initialize_status.get()
+
+    def initialize(self) -> None:
+        self.controls_information.PVs.initialize.put(value=1)
+
+    @property
+    def motor(self):
+        """Returns the readback from the MOTR PV"""
+        return self.controls_information.PVs.motor.get()
+
+    @property
+    def position(self):
+        """Returns the readback value from the MOTR PV."""
+        return self.controls_information.PVs.motor.get()
+
+    @position.setter
+    @check_state
+    def position(self, val: int) -> None:
+        try:
+            IntegerModel(value=val)
+            self.controls_information.PVs.position.put(value=val)
+        except ValidationError as e:
+            print("Position value must be an int:", e)
+
+    def retract(self):
+        """Retracts the wire scanner"""
+        self.controls_information.PVs.retract.put(value=1)
+
+    @property
+    def scan_pulses(self):
+        """Returns the number of scan pulses requested"""
+        return self.controls_information.PVs.scan_pulses.get()
+
+    @scan_pulses.setter
+    def scan_pulses(self, val: int) -> None:
+        try:
+            IntegerModel(value=val)
+            self.controls_information.PVs.scan_pulses.put(value=val)
+        except ValidationError as e:
+            print("Scan pulses value must be an integer:", e)
+
+    def set_range(self, plane: str, val: list) -> None:
+        try:
+            PlaneModel(value=plane)
+            RangeModel(value=val)
+            property_name = plane.lower() + "_range"
+            setattr(self, property_name, val)
+        except ValidationError as e:
+            print("Plane must be X, Y, or U:", e)
+
+    def set_inner_range(self, plane: str, val: int) -> None:
+        try:
+            PlaneModel(value=plane)
+            IntegerModel(value=val)
+            property_name = plane.lower() + "_wire_inner"
+            outer_property = plane.lower() + "_wire_outer"
+            outer_range = getattr(self, outer_property)
+            if val < outer_range:
+                setattr(self, property_name, val)
+            else:
+                print("Scan range value failed validation")
+                raise ValidationError
+        except ValidationError as e:
+            print("Plane must be X, Y, or U:", e)
+
+    def set_outer_range(self, plane: str, val: int) -> None:
+        try:
+            PlaneModel(value=plane)
+            IntegerModel(value=val)
+            property_name = plane.lower() + "_wire_outer"
+            inner_property = plane.lower() + "_wire_inner"
+            inner_range = getattr(self, inner_property)
+            if val > inner_range:
+                setattr(self, property_name, val)
+            else:
+                print("Scan range value failed validation")
+                raise ValidationError
+        except ValidationError as e:
+            print("Plane must be X, Y, or U:", e)
+
+    @property
+    def speed(self):
+        """Returns the current calculated speed of the wire scanner."""
+        return self.controls_information.PVs.speed.get()
+
+    def start_scan(self):
+        """Starts a wire scan using current parameters"""
+        self.controls_information.PVs.start_scan.put(value=1)
+
+    @property
+    def temperature(self):
+        """Returns RTD temperature"""
+        return self.controls_information.PVs.temperature.get()
+
+    @property
+    def timeout(self):
+        """Returns enabled status of device timeout"""
+        return self.controls_information.PVs.timeout.get()
+
+    @timeout.setter
+    def timeout(self, val: bool) -> None:
+        try:
+            BooleanModel(value=val)
+            self.controls_information.PVs.timeout.put(value=val)
+        except ValidationError as e:
+            print("Input must be 1 or 0:", e)
+
+    @property
+    def x_size(self):
         """Returns the x wire thickness in um."""
-        # Try to grab from PV first, then if fails, get from yaml
-        # Make sure to print statement saying if yaml values used
-        try:
-            return self.metadata.PVs.xsize.get()
-        except Exception:
-            print(EPICS_ERROR_MESSAGE)
-            # TODO: Returning wire size from yaml file instead
-            return
+        return self.controls_information.PVs.x_size.get()
 
     @property
-    def ysize(self):
+    def y_size(self):
         """Returns the y wire thickness in um."""
-        try:
-            return self.metadata.PVs.ysize.get()
-        except Exception:
-            print(EPICS_ERROR_MESSAGE)
-            # TODO: Returning wire size from yaml file instead
+        return self.controls_information.PVs.y_size.get()
 
     @property
-    def usize(self):
+    def u_size(self):
         """Returns the u wire thickness in um."""
+        return self.controls_information.PVs.u_size.get()
+
+    def use(self, plane: str, val: bool) -> None:
         try:
-            return self.metadata.PVs.usize.get()
-        except Exception:
-            print(EPICS_ERROR_MESSAGE)
-            # TODO: Returning wire size from yaml file instead
+            PlaneModel(value=plane)
+            BooleanModel(value=val)
+        except ValidationError as e:
+            print("Plane must be X, Y, or U:", e)
+            return
+        property_name = "use_" + plane.lower() + "_wire"
+        setattr(self, property_name, val)
 
     @property
     def use_x_wire(self):
         """Checks if the X plane will be scanned."""
-        return self.controls_information.PVs.usexwire.get()
+        return self.controls_information.PVs.use_x_wire.get()
 
     @use_x_wire.setter
     def use_x_wire(self, val: bool) -> None:
         try:
             BooleanModel(value=val)
             int_val = int(val)
-            self.controls_information.PVs.usexwire.put(value=int_val)
+            self.controls_information.PVs.use_x_wire.put(value=int_val)
         except ValidationError as e:
             print("Input value must be a bool:", e)
 
@@ -177,40 +325,40 @@ class Wire(Device):
     @property
     def x_wire_inner(self):
         """Returns the inner point of the X plane scan range."""
-        return self.controls_information.PVs.xwireinner.get()
+        return self.controls_information.PVs.x_wire_inner.get()
 
     @x_wire_inner.setter
     def x_wire_inner(self, val: int) -> None:
         try:
             IntegerModel(value=val)
-            self.controls_information.PVs.xwireinner.put(value=val)
+            self.controls_information.PVs.x_wire_inner.put(value=val)
         except ValidationError as e:
             print("Range value must be an int:", e)
 
     @property
     def x_wire_outer(self):
         """Returns the outer point of the X plane scan range."""
-        return self.controls_information.PVs.xwireouter.get()
+        return self.controls_information.PVs.x_wire_outer.get()
 
     @x_wire_outer.setter
     def x_wire_outer(self, val: int) -> None:
         try:
             IntegerModel(value=val)
-            self.controls_information.PVs.xwireouter.put(value=val)
+            self.controls_information.PVs.x_wire_outer.put(value=val)
         except ValidationError as e:
             print("Range value must be an int:", e)
 
     @property
     def use_y_wire(self):
         """Checks if the Y plane will be scanned."""
-        return self.metadata.PVs.useywire.get()
+        return self.controls_information.PVs.use_y_wire.get()
 
     @use_y_wire.setter
     def use_y_wire(self, val: bool) -> None:
         try:
             BooleanModel(value=val)
             int_val = int(val)
-            self.controls_information.PVs.useywire.put(value=int_val)
+            self.controls_information.PVs.use_y_wire.put(value=int_val)
         except ValidationError as e:
             print("Input value must be a bool:", e)
 
@@ -234,40 +382,40 @@ class Wire(Device):
     @property
     def y_wire_inner(self):
         """Returns the inner point of the Y plane scan range."""
-        return self.controls_information.PVs.ywireinner.get()
+        return self.controls_information.PVs.y_wire_inner.get()
 
     @y_wire_inner.setter
     def y_wire_inner(self, val: int) -> None:
         try:
             IntegerModel(value=val)
-            self.controls_information.PVs.ywireinner.put(value=val)
+            self.controls_information.PVs.y_wire_inner.put(value=val)
         except ValidationError as e:
             print("Range value must be an int:", e)
 
     @property
     def y_wire_outer(self):
         """Returns the outer point of the Y plane scan range."""
-        return self.controls_information.PVs.ywireouter.get()
+        return self.controls_information.PVs.y_wire_outer.get()
 
     @y_wire_outer.setter
     def y_wire_outer(self, val: int) -> None:
         try:
             IntegerModel(value=val)
-            self.controls_information.PVs.ywireouter.put(value=val)
+            self.controls_information.PVs.y_wire_outer.put(value=val)
         except ValidationError as e:
             print("Range value must be an int:", e)
 
     @property
     def use_u_wire(self):
         """Checks if the U plane will be scanned."""
-        return self.metadata.PVs.useuwire.get()
+        return self.controls_information.PVs.use_u_wire.get()
 
     @use_u_wire.setter
     def use_u_wire(self, val: bool) -> None:
         try:
             BooleanModel(value=val)
             int_val = int(val)
-            self.controls_information.PVs.useuwire.put(value=int_val)
+            self.controls_information.PVs.use_u_wire.put(value=int_val)
         except ValidationError as e:
             print("Input value must be a bool:", e)
 
@@ -291,61 +439,28 @@ class Wire(Device):
     @property
     def u_wire_inner(self):
         """Returns the inner point of the U plane scan range."""
-        return self.controls_information.PVs.uwireinner.get()
+        return self.controls_information.PVs.u_wire_inner.get()
 
     @u_wire_inner.setter
     def u_wire_inner(self, val: int) -> None:
         try:
             IntegerModel(value=val)
-            self.controls_information.PVs.uwireinner.put(value=val)
+            self.controls_information.PVs.u_wire_inner.put(value=val)
         except ValidationError as e:
             print("Range value must be an int:", e)
 
     @property
     def u_wire_outer(self):
         """Returns the outer point of the U plane scan range."""
-        return self.controls_information.PVs.uwireouter.get()
+        return self.controls_information.PVs.u_wire_outer.get()
 
     @u_wire_outer.setter
     def u_wire_outer(self, val: int) -> None:
         try:
             IntegerModel(value=val)
-            self.controls_information.PVs.uwireouter.put(value=val)
+            self.controls_information.PVs.u_wire_outer.put(value=val)
         except ValidationError as e:
             print("Range value must be an int:", e)
-
-    @property
-    def initialized(self):
-        """
-        Checks if the wire scanner device has been intialized..
-        """
-        return self.controls_information.PVs.initialized.get()
-
-    def initalize(self) -> None:
-        self.controls_information.PVs.initialize.put(value=1)
-
-    @property
-    def homed(self):
-        """Checks if the wire is in the home position."""
-        return self.controls_information.PVs.homed.get()
-
-    @property
-    def position(self):
-        """Returns the readback value from the MOTR PV."""
-        return self.controls_information.PVs.rbv.get()
-
-    @position.setter
-    def position(self, val: int) -> None:
-        self.controls_information.PVs.motr.put(value=val)
-
-    @property
-    def speed(self):
-        """Returns the current calculated speed of the wire scanner."""
-        return self.controls_information.PVs.velo.get()
-
-    def retract(self):
-        """Retracts the wire scanner"""
-        self.controls_information.PVs.retract.put(value=1)
 
 
 class WireCollection(BaseModel):
