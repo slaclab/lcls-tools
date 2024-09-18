@@ -73,6 +73,6 @@ class ScreenBeamProfileMeasurement(Measurement):
             results = {
                 key: [d.get(key) for d in images]
                 for key in {k for meas in images for k in meas}
-                    }
+            }
 
             return results
