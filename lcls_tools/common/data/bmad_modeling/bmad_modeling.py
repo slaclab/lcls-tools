@@ -6,16 +6,16 @@ from datetime import datetime, timedelta
 from lcls_live.datamaps import get_datamaps
 from lcls_live.archiver import lcls_archiver_restore
 
-YAML_LOCATION = os.path.join(os.path.dirname(__file__), 'yaml/')
+YAML_LOCATION = os.path.join(os.path.dirname(__file__), "yaml/")
 
 
 def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
     """Returns pvlist from lcls_live datamaps for given beam_path
-    for Cu beampaths beam_code can be 1 or 2 """
+    for Cu beampaths beam_code can be 1 or 2"""
     pvlist = set()
     for dm_key, map in all_data_maps.items():
         if dm_key in ["cavities", "quad"]:
-            elements = (map.data["bmad_name"].to_list())
+            elements = map.data["bmad_name"].to_list()
             pvs = map.pvlist
             model_elements = []
             full_model_elements = tao.lat_list("*", "ele.name")
@@ -27,7 +27,7 @@ def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
             for indx, ele in enumerate(elements):
                 if ele in model_elements:
                     pvlist.add(pvs[indx])
-        if dm_key.startswith('K'):  # One for each Klystron station
+        if dm_key.startswith("K"):  # One for each Klystron station
             for pv in map.pvlist:
                 if "BEAMCODE" in pv:
                     pv = map.accelerate_pvname
@@ -38,9 +38,9 @@ def get_rf_quads_pvlist(tao, all_data_maps, beam_code=1):
 def get_energy_gain_pvlist(beam_path):
     """Interim function to get list of EDES PVs from YAML file"""
     pvlist = []
-    yaml_file_name = YAML_LOCATION + 'energy_measurements.yml'
+    yaml_file_name = YAML_LOCATION + "energy_measurements.yml"
     try:
-        with open(yaml_file_name, 'r') as file:
+        with open(yaml_file_name, "r") as file:
             engy_meas = yaml.safe_load(file)[beam_path[0:2]]
     except FileNotFoundError:
         print(f"Could not find yaml file {yaml_file_name}")
@@ -67,15 +67,15 @@ def get_twiss(tao, element, which="design"):
     return [result[p] for p in ["beta_a", "alpha_a", "beta_b", "alpha_b"]]
 
 
-def clean_up_none_values(x, val_type='Ampl', ampl_reject=0.5, none_value=0):
+def clean_up_none_values(x, val_type="Ampl", ampl_reject=0.5, none_value=0):
     """Convert None to 0.0 for values in x, if is_phase convert to radians
     if is_ampl set values less than 0.5 Mev to zero"""
     x_np = np.array(x)
     x_np = np.where(x is None, np.nan, x).astype(float)
     x_np = np.nan_to_num(x_np, nan=0.0)
-    if val_type == 'Ampl':
+    if val_type == "Ampl":
         x_np = np.where(x_np < ampl_reject, 0, x_np)
-    if val_type == 'Phas':
+    if val_type == "Phas":
         x_np = np.deg2rad(x_np)
     return x_np
 
@@ -92,13 +92,12 @@ def set_bmad_bdes(tao, element, bdes):
     """Update element B1_GRADIENT from given bdes"""
     ele_attr = tao.ele_gen_attribs(element)
     b1_gradient = -bdes / (10 * ele_attr["L"])
-    tao.cmd(f'set ele {element} B1_GRADIENT = {b1_gradient}')
+    tao.cmd(f"set ele {element} B1_GRADIENT = {b1_gradient}")
 
 
 def match_twiss(tao, variable, datum):
     """Performs optimization for given variable and datum"""
-    match_cmds = ["veto var *", "veto dat *@*",
-                  "set global n_opti_cycles = 912"]
+    match_cmds = ["veto var *", "veto dat *@*", "set global n_opti_cycles = 912"]
     match_cmds.append(f"use var {variable}[1:4]")
     match_cmds.append(f"use dat {datum}[1:4]")
     tao.cmds(match_cmds)
@@ -139,20 +138,20 @@ def get_tao(pvdata, mdl_obj):
     return lines_rf + lines_quads
 
 
-def get_machine_values(data_source, pv_list, date_time=''):
+def get_machine_values(data_source, pv_list, date_time=""):
     """Returns pvdata, a dictionary with keys containing the PV name and values from Actual, Desired or Archive"""
     data_sources = ["DES", "ACT", "ARCHIVE"]
     if data_source not in data_sources:
-        print(f'data_source should be one of {data_sources}')
+        print(f"data_source should be one of {data_sources}")
     if data_source in ["DES", "ACT"]:
         pvdata = get_live(pv_list)
     elif "ARCHIVE" in data_source:
         pvdata = lcls_archiver_restore(pv_list, date_time)
     if "DES" in data_source:
         for pv, val in pvdata.items():
-            if any(k in pv for k in ['HDSC', 'SWRD', 'STAT']):
+            if any(k in pv for k in ["HDSC", "SWRD", "STAT"]):
                 pvdata[pv] = 0
-            if 'DSTA' in pv:
+            if "DSTA" in pv:
                 pvdata[pv] = np.array([0, 0])
     return pvdata
 
@@ -162,8 +161,8 @@ def get_output(tao):
     Returns dictionary of modeled parameters, including element name,
     twiss and Rmats
     """
-    with open(YAML_LOCATION + 'outkeys.yml', 'r') as file:
-        outkeys = yaml.safe_load(file)['outkeys'].split()
+    with open(YAML_LOCATION + "outkeys.yml", "r") as file:
+        outkeys = yaml.safe_load(file)["outkeys"].split()
     output = {k: tao.lat_list("*", k) for k in outkeys}
     return output
 
@@ -180,11 +179,11 @@ def get_live(pvlist):
 
 def use_klys_when_beam_off(tao_cmds, pvdata, beam_code="1"):
     """Modifies tao_cmds, in_use set to 1 if station active on
-        beam_code"""
+    beam_code"""
     # use = {}
     new_cmd = []
     for cmd in tao_cmds:
-        if 'in_use' in cmd:
+        if "in_use" in cmd:
             ele = cmd.split()[2]
             [sector, station] = ele[1:].split("_")
             pv = f"KLYS:LI{sector}:{station}1:BEAMCODE{beam_code}_STAT"
@@ -246,14 +245,13 @@ def get_expected_energy_gain(pvdata, region, beam_path):
     expected gain PV NOT from lcls-live
     region is one of L0, L1, L2, L3
     """
-    with open(YAML_LOCATION + 'energy_measurements.yml', 'r') as file:
+    with open(YAML_LOCATION + "energy_measurements.yml", "r") as file:
         engy_meas = yaml.safe_load(file)[beam_path[0:2]]
-    if region == 'L1':
-        previous_region = 'GUN'
+    if region == "L1":
+        previous_region = "GUN"
     else:
-        previous_region = 'L' + str(int(region[1]) - 1)
-    expected_gain = pvdata[engy_meas[region]] - \
-        pvdata[engy_meas[previous_region]]
+        previous_region = "L" + str(int(region[1]) - 1)
+    expected_gain = pvdata[engy_meas[region]] - pvdata[engy_meas[previous_region]]
     return expected_gain
 
 
@@ -263,8 +261,7 @@ def update_energy_gain_sc(tao, pvdata, region, mdl_obj):
     calculates a fudge and modifies model's cavity amplitudes and phases
     """
     expected_gain = get_expected_energy_gain(pvdata, region, mdl_obj.beam_path)
-    cavities = tao.lat_list(
-        f"LCAV::BEG{region}B:END{region}B", "ele.name")
+    cavities = tao.lat_list(f"LCAV::BEG{region}B:END{region}B", "ele.name")
     for indx, cav in enumerate(cavities):
         cavities[indx] = cav.split("#")[0]
     cavities = list(set(cavities))
@@ -276,7 +273,7 @@ def update_energy_gain_sc(tao, pvdata, region, mdl_obj):
     ampl = [pvdata[dev + ":A" + attr] for dev in devices]
     phas = [pvdata[dev + ":P" + attr] for dev in devices]
     amplNp = clean_up_none_values(ampl)
-    phasNp = clean_up_none_values(phas, val_type='Phas')
+    phasNp = clean_up_none_values(phas, val_type="Phas")
     gainMeasured = amplNp * np.cos(phasNp)
     dF = (expected_gain - sum(gainMeasured)) / amplNp.sum()
     # fudge = 1 + dF
@@ -307,14 +304,12 @@ def update_energy_gain_cu(tao, pvdata, mdl_obj):
     init_cmds = ["veto dat *", "veto var *"]
     if mdl_obj.region == "L2":
         tao.cmd(f"set dat BC1.energy[2]|meas = {expected_gain} ")
-        optimize_cmds = init_cmds + [
-            "use dat BC2.energy[1]",
-            "use var linac_fudge[2]"]
+        optimize_cmds = init_cmds + ["use dat BC2.energy[1]",
+                                     "use var linac_fudge[2]"]
     if mdl_obj.region == "L3":
         tao.cmd(f"set dat L3[2]|meas ={expected_gain} ")
-        optimize_cmds = init_cmds + [
-            "use dat L3.energy[2]",
-            "use var linac_fudge[3]"]
+        optimize_cmds = init_cmds + ["use dat L3.energy[2]",
+                                     "use var linac_fudge[3]"]
     tao.cmds(optimize_cmds)
     r = tao.cmd("run")
     print(r)
@@ -324,8 +319,8 @@ def update_datum_meas(tao, datum, mdl_obj, useDesing=True):
     """
     Updates datum with EPICS or design twiss values
     """
-    [d2_name, d1_name] = datum.split('.')
-    element = tao.data(d2_name, d1_name)['ele_name']
+    [d2_name, d1_name] = datum.split(".")
+    element = tao.data(d2_name, d1_name)["ele_name"]
     TWISS = ["beta_a", "alpha_a", "beta_b", "alpha_b"]
     cmd = []
     if useDesing:
@@ -341,8 +336,7 @@ def update_datum_meas(tao, datum, mdl_obj, useDesing=True):
         elif mdl_obj.data_source == "ARCHIVE":
             measured = lcls_archiver_restore(pvs, mdl_obj.date_time)
         for ii, pv in enumerate(pvs):
-            cmd.append(
-                f"set dat {datum}[{ii + 1}]|meas = {measured[pvs[ii]]}")
+            cmd.append(f"set dat {datum}[{ii + 1}]|meas = {measured[pvs[ii]]}")
     tao.cmds(cmd)
     tao.cmd(f"show dat {datum}")
 
@@ -357,7 +351,7 @@ class BmadModeling:
     def __init__(self, beam_path, data_source):
         self.beam_path: str = beam_path
         self.data_source: str = data_source
-        self.beam_code = ['1' if beam_path == 'cu_hxr' else '2'][0]
+        self.beam_code = ["1" if beam_path == "cu_hxr" else "2"][0]
         now = datetime.now()
         one_our_ago = now - timedelta(hours=1)
         self.date_time: str = one_our_ago.strftime("%Y-%m-%dT%H:%M:%S.00-8:00")
