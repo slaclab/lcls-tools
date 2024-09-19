@@ -20,6 +20,7 @@ from lcls_tools.common.devices.device import (
     PVSet,
 )
 from epics import PV
+import edef
 
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
@@ -81,20 +82,20 @@ class LBLM(Device):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    @property
-    def fast(self):
-        """get fast data"""
-        return "fast"
-
     # @property
-    # def i0_loss(self):
-    #     """get i0 loss data"""
-    #     return "i0 loss"
+    # def fast(self):
+    #     """get fast data"""
+    #     return "fast"
 
-    # def gated_integral(self):
-    #     """get gated integral data"""
-    #     print('gated integral')
-    #     # return self.controls_information.PVs.gated_integral.get()
+    @property
+    def i0_loss(self):
+        """get i0 loss data"""
+        return self.controls_information.PVs.i0_loss.get()
+
+    def gated_integral(self):
+        """get gated integral data"""
+        print('gated integral')
+        return self.controls_information.PVs.gated_integral.get()
 
 
 class LBLMCollection(BaseModel):
