@@ -54,7 +54,3 @@ mod.update_energy_gain_sc(tao, pvdata, "L1", bm)
 mod.update_energy_gain_sc(tao, pvdata, "L2", bm)
 mod.update_energy_gain_sc(tao, pvdata, "L3", bm)
 output = mod.get_output(tao)
-
-import importlib
-importlib.reload(mod)
-importlib.reload(outfn)
