@@ -1,12 +1,14 @@
 from pytao import Tao
-from lcls_tools.common.data_analysis.bmad_modeling import bmad_modeling as mod
-from lcls_tools.common.data_analysis.bmad_modeling.outputs import bmad_modeling_outputs as outfn
+from lcls_tools.common.data.bmad_modeling import bmad_modeling as mod
+from lcls_tools.common.data.bmad_modeling.outputs import (
+    bmad_modeling_outputs as outfn,
+)
 
 # Instaintiate a tao object
-OPTIONS = '-slice BEGINNING:END -noplot '
-INIT = f'-init $LCLS_LATTICE/bmad/models/sc_sxr/tao.init {OPTIONS}'
+OPTIONS = "-slice BEGINNING:END -noplot "
+INIT = f"-init $LCLS_LATTICE/bmad/models/sc_sxr/tao.init {OPTIONS}"
 tao = Tao(INIT)
-tao.cmd('set ele BEGINNING:ENDCOL0 field_master=True')
+tao.cmd("set ele BEGINNING:ENDCOL0 field_master=True")
 
 
 # Short cut command for user readable output
@@ -15,10 +17,10 @@ def tc(cmd):
 
 
 # Instantiate a modeling class with mod.BmadModeling(<beam path>, <'ACT','DES', or 'ARCHIVE'>
-bm = mod.BmadModeling('sc_sxr', 'DES')
-bm.date_time = '2024-04-02T09:00:00.000000-08:00'
+bm = mod.BmadModeling("sc_sxr", "DES")
+bm.date_time = "2024-04-02T09:00:00.000000-08:00"
 
-# See ./lcls_tools/common/data_analysis/bmad_modeling/yaml/outkeys.yml
+# See ./lcls_tools/common/data/bmad_modeling/yaml/outkeys.yml
 # for list of outputs provided by get_output()
 output_design = mod.get_output(tao)
 
