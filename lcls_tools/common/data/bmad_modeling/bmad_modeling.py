@@ -80,22 +80,6 @@ def clean_up_none_values(x, val_type="Ampl", ampl_reject=0.5, none_value=0):
     return x_np
 
 
-def bmag(twiss, twiss_reference):
-    """Calculates BMAG from imput twiss and reference twiss"""
-    beta_a, alpha_a, beta_b, alpha_b = twiss
-    beta_a_ref, alpha_a_ref, beta_b_ref, alpha_b_ref = twiss_reference
-    bmag_a = bmag_func(beta_a, alpha_a, beta_a_ref, alpha_a_ref)
-    bmag_b = bmag_func(beta_b, alpha_b, beta_b_ref, alpha_b_ref)
-    return (bmag_a, bmag_b)
-
-
-def bmag_func(bb, ab, bl, al):
-    """Calculates the BMAG miss match parameter.  bb and ab are the modeled
-    beta and alpha functions at a given element and bl and al are the
-    reference (most of the time desing) values"""
-    return 1 / 2 * (bl / bb + bb / bl + bb * bl * (ab / bb - al / bl) ** 2)
-
-
 def get_bmad_bdes(tao, element, b1_gradient=[]):
     """Returns BDES from Bmad B1_GRADIENT or given gradient"""
     ele_attr = tao.ele_gen_attribs(element)
@@ -170,20 +154,6 @@ def get_machine_values(data_source, pv_list, date_time=""):
             if "DSTA" in pv:
                 pvdata[pv] = np.array([0, 0])
     return pvdata
-
-
-def kmod_to_bdes(tao, element, K=0):
-    """Returns BDES given K1 in the Bmad model"""
-    ele = tao.ele_gen_attribs(element)
-    bp = ele["E_TOT"] / 1e9 / 299.792458 * 1e4  # kG m
-    return ele["K1"] * bp * ele["L"]
-
-
-def bdes_to_kmod(tao, element, bdes):
-    """Returns K1 given BDES"""
-    ele = tao.ele_gen_attribs(element)
-    bp = ele["E_TOT"] / 1e9 / 299.792458 * 1e4  # kG m
-    return bdes / ele["L"] / bp  # kG / m / kG m = 1/m^2
 
 
 def get_output(tao):
@@ -334,10 +304,12 @@ def update_energy_gain_cu(tao, pvdata, mdl_obj):
     init_cmds = ["veto dat *", "veto var *"]
     if mdl_obj.region == "L2":
         tao.cmd(f"set dat BC1.energy[2]|meas = {expected_gain} ")
-        optimize_cmds = init_cmds + ["use dat BC2.energy[1]", "use var linac_fudge[2]"]
+        optimize_cmds = init_cmds + ["use dat BC2.energy[1]",
+                                     "use var linac_fudge[2]"]
     if mdl_obj.region == "L3":
         tao.cmd(f"set dat L3[2]|meas ={expected_gain} ")
-        optimize_cmds = init_cmds + ["use dat L3.energy[2]", "use var linac_fudge[3]"]
+        optimize_cmds = init_cmds + ["use dat L3.energy[2]",
+                                     "use var linac_fudge[3]"]
     tao.cmds(optimize_cmds)
     r = tao.cmd("run")
     print(r)
