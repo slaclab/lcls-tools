@@ -36,7 +36,7 @@ class ControlInformation(BaseModel):
 class Metadata(BaseModel):
     area: str
     beam_path: List[str]
-    sum_l_meters: float
+    sum_l_meters: Union[float, None]
 
     def __init__(
         self,
