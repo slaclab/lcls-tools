@@ -126,7 +126,8 @@ def create_wire(
 
 
 def create_lblm(
-    area: str = None, name: str = None
+    area: str = None, name: str = None,
+    buffer: str = None
 ) -> Union[None, LBLM, LBLMCollection]:
     device_data = _device_data(area=area, device_type="lblms", name=name)
     if not device_data:
@@ -135,7 +136,7 @@ def create_lblm(
         try:
             # this data is not available from YAML directly in this form, so we add it here.
             device_data.update({"name": name})
-            return LBLM(**device_data)
+            return LBLM(buffer, **device_data)
         except ValidationError as field_error:
             print(field_error)
             return None

@@ -78,6 +78,7 @@ class LBLMMetadata(Metadata):
 class LBLM(Device):
     controls_information: SerializeAsAny[LBLMControlInformation]
     metadata: SerializeAsAny[LBLMMetadata]
+    buffer: Optional[int]
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -92,9 +93,9 @@ class LBLM(Device):
         """get i0 loss data"""
         return self.controls_information.PVs.i0_loss.get()
 
+    @property
     def gated_integral(self):
         """get gated integral data"""
-        print('gated integral')
         return self.controls_information.PVs.gated_integral.get()
 
 
