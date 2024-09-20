@@ -1101,29 +1101,31 @@ wires:
   WSBP1:
     controls_information:
       PVs:
-        abort: WIRE:DOG:655:MOTR.STOP
+        abort_scan: WIRE:DOG:655:MOTR.STOP
         enabled: WIRE:DOG:655:MOTR_ENABLED_STS
         homed: WIRE:DOG:655:MOTR_HOMED_STS
         initialize: WIRE:DOG:655:MOTR_INIT
-        initialized: WIRE:DOG:655:MOTR_INIT_STS
-        motr: WIRE:DOG:655:MOTR
-        rbv: WIRE:DOG:655:MOTR.RBV
+        initialize_status: WIRE:DOG:655:MOTR_INIT_STS
+        motor: WIRE:DOG:655:MOTR
+        position: WIRE:DOG:655:MOTR.RBV
         retract: WIRE:DOG:655:MOTR_RETRACT
-        startscan: WIRE:DOG:655:STARTSCAN
+        scan_pulses: WIRE:DOG:655:SCANPULSES
+        speed: WIRE:DOG:655:MOTR.VELO
+        start_scan: WIRE:DOG:655:STARTSCAN
+        temperature: WIRE:DOG:655:TEMP
         timeout: WIRE:DOG:655:MOTR_TIMEOUTEN
-        useuwire: WIRE:DOG:655:USEUWIRE
-        usexwire: WIRE:DOG:655:USEXWIRE
-        useywire: WIRE:DOG:655:USEYWIRE
-        usize: WIRE:DOG:655:UWIRESIZE
-        uwireinner: WIRE:DOG:655:UWIREINNER
-        uwireouter: WIRE:DOG:655:UWIREOUTER
-        velo: WIRE:DOG:655:MOTR.VELO
-        xsize: WIRE:DOG:655:XWIRESIZE
-        xwireinner: WIRE:DOG:655:XWIREINNER
-        xwireouter: WIRE:DOG:655:XWIREOUTER
-        ysize: WIRE:DOG:655:YWIRESIZE
-        ywireinner: WIRE:DOG:655:YWIREINNER
-        ywireouter: WIRE:DOG:655:YWIREOUTER
+        u_size: WIRE:DOG:655:UWIRESIZE
+        u_wire_inner: WIRE:DOG:655:UWIREINNER
+        u_wire_outer: WIRE:DOG:655:UWIREOUTER
+        use_u_wire: WIRE:DOG:655:USEUWIRE
+        use_x_wire: WIRE:DOG:655:USEXWIRE
+        use_y_wire: WIRE:DOG:655:USEYWIRE
+        x_size: WIRE:DOG:655:XWIRESIZE
+        x_wire_inner: WIRE:DOG:655:XWIREINNER
+        x_wire_outer: WIRE:DOG:655:XWIREOUTER
+        y_size: WIRE:DOG:655:YWIRESIZE
+        y_wire_inner: WIRE:DOG:655:YWIREINNER
+        y_wire_outer: WIRE:DOG:655:YWIREOUTER
       control_name: WIRE:DOG:655
     metadata:
       area: DOG

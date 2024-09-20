@@ -23,29 +23,31 @@ wires:
   WS144:
     controls_information:
       PVs:
-        abort: WIRE:LI28:144:MOTR.STOP
+        abort_scan: WIRE:LI28:144:MOTR.STOP
         enabled: WIRE:LI28:144:MOTR_ENABLED_STS
         homed: WIRE:LI28:144:MOTR_HOMED_STS
         initialize: WIRE:LI28:144:MOTR_INIT
-        initialized: WIRE:LI28:144:MOTR_INIT_STS
-        motr: WIRE:LI28:144:MOTR
-        rbv: WIRE:LI28:144:MOTR.RBV
+        initialize_status: WIRE:LI28:144:MOTR_INIT_STS
+        motor: WIRE:LI28:144:MOTR
+        position: WIRE:LI28:144:MOTR.RBV
         retract: WIRE:LI28:144:MOTR_RETRACT
-        startscan: WIRE:LI28:144:STARTSCAN
+        scan_pulses: WIRE:LI28:144:SCANPULSES
+        speed: WIRE:LI28:144:MOTR.VELO
+        start_scan: WIRE:LI28:144:STARTSCAN
+        temperature: WIRE:LI28:144:TEMP
         timeout: WIRE:LI28:144:MOTR_TIMEOUTEN
-        useuwire: WIRE:LI28:144:USEUWIRE
-        usexwire: WIRE:LI28:144:USEXWIRE
-        useywire: WIRE:LI28:144:USEYWIRE
-        usize: WIRE:LI28:144:UWIRESIZE
-        uwireinner: WIRE:LI28:144:UWIREINNER
-        uwireouter: WIRE:LI28:144:UWIREOUTER
-        velo: WIRE:LI28:144:MOTR.VELO
-        xsize: WIRE:LI28:144:XWIRESIZE
-        xwireinner: WIRE:LI28:144:XWIREINNER
-        xwireouter: WIRE:LI28:144:XWIREOUTER
-        ysize: WIRE:LI28:144:YWIRESIZE
-        ywireinner: WIRE:LI28:144:YWIREINNER
-        ywireouter: WIRE:LI28:144:YWIREOUTER
+        u_size: WIRE:LI28:144:UWIRESIZE
+        u_wire_inner: WIRE:LI28:144:UWIREINNER
+        u_wire_outer: WIRE:LI28:144:UWIREOUTER
+        use_u_wire: WIRE:LI28:144:USEUWIRE
+        use_x_wire: WIRE:LI28:144:USEXWIRE
+        use_y_wire: WIRE:LI28:144:USEYWIRE
+        x_size: WIRE:LI28:144:XWIRESIZE
+        x_wire_inner: WIRE:LI28:144:XWIREINNER
+        x_wire_outer: WIRE:LI28:144:XWIREOUTER
+        y_size: WIRE:LI28:144:YWIRESIZE
+        y_wire_inner: WIRE:LI28:144:YWIREINNER
+        y_wire_outer: WIRE:LI28:144:YWIREOUTER
       control_name: WIRE:LI28:144
     metadata:
       area: LI28
@@ -55,29 +57,31 @@ wires:
   WS444:
     controls_information:
       PVs:
-        abort: WIRE:LI28:444:MOTR.STOP
+        abort_scan: WIRE:LI28:444:MOTR.STOP
         enabled: WIRE:LI28:444:MOTR_ENABLED_STS
         homed: WIRE:LI28:444:MOTR_HOMED_STS
         initialize: WIRE:LI28:444:MOTR_INIT
-        initialized: WIRE:LI28:444:MOTR_INIT_STS
-        motr: WIRE:LI28:444:MOTR
-        rbv: WIRE:LI28:444:MOTR.RBV
+        initialize_status: WIRE:LI28:444:MOTR_INIT_STS
+        motor: WIRE:LI28:444:MOTR
+        position: WIRE:LI28:444:MOTR.RBV
         retract: WIRE:LI28:444:MOTR_RETRACT
-        startscan: WIRE:LI28:444:STARTSCAN
+        scan_pulses: WIRE:LI28:444:SCANPULSES
+        speed: WIRE:LI28:444:MOTR.VELO
+        start_scan: WIRE:LI28:444:STARTSCAN
+        temperature: WIRE:LI28:444:TEMP
         timeout: WIRE:LI28:444:MOTR_TIMEOUTEN
-        useuwire: WIRE:LI28:444:USEUWIRE
-        usexwire: WIRE:LI28:444:USEXWIRE
-        useywire: WIRE:LI28:444:USEYWIRE
-        usize: WIRE:LI28:444:UWIRESIZE
-        uwireinner: WIRE:LI28:444:UWIREINNER
-        uwireouter: WIRE:LI28:444:UWIREOUTER
-        velo: WIRE:LI28:444:MOTR.VELO
-        xsize: WIRE:LI28:444:XWIRESIZE
-        xwireinner: WIRE:LI28:444:XWIREINNER
-        xwireouter: WIRE:LI28:444:XWIREOUTER
-        ysize: WIRE:LI28:444:YWIRESIZE
-        ywireinner: WIRE:LI28:444:YWIREINNER
-        ywireouter: WIRE:LI28:444:YWIREOUTER
+        u_size: WIRE:LI28:444:UWIRESIZE
+        u_wire_inner: WIRE:LI28:444:UWIREINNER
+        u_wire_outer: WIRE:LI28:444:UWIREOUTER
+        use_u_wire: WIRE:LI28:444:USEUWIRE
+        use_x_wire: WIRE:LI28:444:USEXWIRE
+        use_y_wire: WIRE:LI28:444:USEYWIRE
+        x_size: WIRE:LI28:444:XWIRESIZE
+        x_wire_inner: WIRE:LI28:444:XWIREINNER
+        x_wire_outer: WIRE:LI28:444:XWIREOUTER
+        y_size: WIRE:LI28:444:YWIRESIZE
+        y_wire_inner: WIRE:LI28:444:YWIREINNER
+        y_wire_outer: WIRE:LI28:444:YWIREOUTER
       control_name: WIRE:LI28:444
     metadata:
       area: LI28
@@ -87,29 +91,31 @@ wires:
   WS544:
     controls_information:
       PVs:
-        abort: WIRE:LI28:744:MOTR.STOP
+        abort_scan: WIRE:LI28:744:MOTR.STOP
         enabled: WIRE:LI28:744:MOTR_ENABLED_STS
         homed: WIRE:LI28:744:MOTR_HOMED_STS
         initialize: WIRE:LI28:744:MOTR_INIT
-        initialized: WIRE:LI28:744:MOTR_INIT_STS
-        motr: WIRE:LI28:744:MOTR
-        rbv: WIRE:LI28:744:MOTR.RBV
+        initialize_status: WIRE:LI28:744:MOTR_INIT_STS
+        motor: WIRE:LI28:744:MOTR
+        position: WIRE:LI28:744:MOTR.RBV
         retract: WIRE:LI28:744:MOTR_RETRACT
-        startscan: WIRE:LI28:744:STARTSCAN
+        scan_pulses: WIRE:LI28:744:SCANPULSES
+        speed: WIRE:LI28:744:MOTR.VELO
+        start_scan: WIRE:LI28:744:STARTSCAN
+        temperature: WIRE:LI28:744:TEMP
         timeout: WIRE:LI28:744:MOTR_TIMEOUTEN
-        useuwire: WIRE:LI28:744:USEUWIRE
-        usexwire: WIRE:LI28:744:USEXWIRE
-        useywire: WIRE:LI28:744:USEYWIRE
-        usize: WIRE:LI28:744:UWIRESIZE
-        uwireinner: WIRE:LI28:744:UWIREINNER
-        uwireouter: WIRE:LI28:744:UWIREOUTER
-        velo: WIRE:LI28:744:MOTR.VELO
-        xsize: WIRE:LI28:744:XWIRESIZE
-        xwireinner: WIRE:LI28:744:XWIREINNER
-        xwireouter: WIRE:LI28:744:XWIREOUTER
-        ysize: WIRE:LI28:744:YWIRESIZE
-        ywireinner: WIRE:LI28:744:YWIREINNER
-        ywireouter: WIRE:LI28:744:YWIREOUTER
+        u_size: WIRE:LI28:744:UWIRESIZE
+        u_wire_inner: WIRE:LI28:744:UWIREINNER
+        u_wire_outer: WIRE:LI28:744:UWIREOUTER
+        use_u_wire: WIRE:LI28:744:USEUWIRE
+        use_x_wire: WIRE:LI28:744:USEXWIRE
+        use_y_wire: WIRE:LI28:744:USEYWIRE
+        x_size: WIRE:LI28:744:XWIRESIZE
+        x_wire_inner: WIRE:LI28:744:XWIREINNER
+        x_wire_outer: WIRE:LI28:744:XWIREOUTER
+        y_size: WIRE:LI28:744:YWIRESIZE
+        y_wire_inner: WIRE:LI28:744:YWIREINNER
+        y_wire_outer: WIRE:LI28:744:YWIREOUTER
       control_name: WIRE:LI28:744
     metadata:
       area: LI28

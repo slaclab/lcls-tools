@@ -1278,29 +1278,31 @@ wires:
   WSBP2:
     controls_information:
       PVs:
-        abort: WIRE:BPN12:850:MOTR.STOP
+        abort_scan: WIRE:BPN12:850:MOTR.STOP
         enabled: WIRE:BPN12:850:MOTR_ENABLED_STS
         homed: WIRE:BPN12:850:MOTR_HOMED_STS
         initialize: WIRE:BPN12:850:MOTR_INIT
-        initialized: WIRE:BPN12:850:MOTR_INIT_STS
-        motr: WIRE:BPN12:850:MOTR
-        rbv: WIRE:BPN12:850:MOTR.RBV
+        initialize_status: WIRE:BPN12:850:MOTR_INIT_STS
+        motor: WIRE:BPN12:850:MOTR
+        position: WIRE:BPN12:850:MOTR.RBV
         retract: WIRE:BPN12:850:MOTR_RETRACT
-        startscan: WIRE:BPN12:850:STARTSCAN
+        scan_pulses: WIRE:BPN12:850:SCANPULSES
+        speed: WIRE:BPN12:850:MOTR.VELO
+        start_scan: WIRE:BPN12:850:STARTSCAN
+        temperature: WIRE:BPN12:850:TEMP
         timeout: WIRE:BPN12:850:MOTR_TIMEOUTEN
-        useuwire: WIRE:BPN12:850:USEUWIRE
-        usexwire: WIRE:BPN12:850:USEXWIRE
-        useywire: WIRE:BPN12:850:USEYWIRE
-        usize: WIRE:BPN12:850:UWIRESIZE
-        uwireinner: WIRE:BPN12:850:UWIREINNER
-        uwireouter: WIRE:BPN12:850:UWIREOUTER
-        velo: WIRE:BPN12:850:MOTR.VELO
-        xsize: WIRE:BPN12:850:XWIRESIZE
-        xwireinner: WIRE:BPN12:850:XWIREINNER
-        xwireouter: WIRE:BPN12:850:XWIREOUTER
-        ysize: WIRE:BPN12:850:YWIRESIZE
-        ywireinner: WIRE:BPN12:850:YWIREINNER
-        ywireouter: WIRE:BPN12:850:YWIREOUTER
+        u_size: WIRE:BPN12:850:UWIRESIZE
+        u_wire_inner: WIRE:BPN12:850:UWIREINNER
+        u_wire_outer: WIRE:BPN12:850:UWIREOUTER
+        use_u_wire: WIRE:BPN12:850:USEUWIRE
+        use_x_wire: WIRE:BPN12:850:USEXWIRE
+        use_y_wire: WIRE:BPN12:850:USEYWIRE
+        x_size: WIRE:BPN12:850:XWIRESIZE
+        x_wire_inner: WIRE:BPN12:850:XWIREINNER
+        x_wire_outer: WIRE:BPN12:850:XWIREOUTER
+        y_size: WIRE:BPN12:850:YWIRESIZE
+        y_wire_inner: WIRE:BPN12:850:YWIREINNER
+        y_wire_outer: WIRE:BPN12:850:YWIREOUTER
       control_name: WIRE:BPN12:850
     metadata:
       area: BYP
@@ -1318,29 +1320,31 @@ wires:
   WSBP3:
     controls_information:
       PVs:
-        abort: WIRE:BPN14:850:MOTR.STOP
+        abort_scan: WIRE:BPN14:850:MOTR.STOP
         enabled: WIRE:BPN14:850:MOTR_ENABLED_STS
         homed: WIRE:BPN14:850:MOTR_HOMED_STS
         initialize: WIRE:BPN14:850:MOTR_INIT
-        initialized: WIRE:BPN14:850:MOTR_INIT_STS
-        motr: WIRE:BPN14:850:MOTR
-        rbv: WIRE:BPN14:850:MOTR.RBV
+        initialize_status: WIRE:BPN14:850:MOTR_INIT_STS
+        motor: WIRE:BPN14:850:MOTR
+        position: WIRE:BPN14:850:MOTR.RBV
         retract: WIRE:BPN14:850:MOTR_RETRACT
-        startscan: WIRE:BPN14:850:STARTSCAN
+        scan_pulses: WIRE:BPN14:850:SCANPULSES
+        speed: WIRE:BPN14:850:MOTR.VELO
+        start_scan: WIRE:BPN14:850:STARTSCAN
+        temperature: WIRE:BPN14:850:TEMP
         timeout: WIRE:BPN14:850:MOTR_TIMEOUTEN
-        useuwire: WIRE:BPN14:850:USEUWIRE
-        usexwire: WIRE:BPN14:850:USEXWIRE
-        useywire: WIRE:BPN14:850:USEYWIRE
-        usize: WIRE:BPN14:850:UWIRESIZE
-        uwireinner: WIRE:BPN14:850:UWIREINNER
-        uwireouter: WIRE:BPN14:850:UWIREOUTER
-        velo: WIRE:BPN14:850:MOTR.VELO
-        xsize: WIRE:BPN14:850:XWIRESIZE
-        xwireinner: WIRE:BPN14:850:XWIREINNER
-        xwireouter: WIRE:BPN14:850:XWIREOUTER
-        ysize: WIRE:BPN14:850:YWIRESIZE
-        ywireinner: WIRE:BPN14:850:YWIREINNER
-        ywireouter: WIRE:BPN14:850:YWIREOUTER
+        u_size: WIRE:BPN14:850:UWIRESIZE
+        u_wire_inner: WIRE:BPN14:850:UWIREINNER
+        u_wire_outer: WIRE:BPN14:850:UWIREOUTER
+        use_u_wire: WIRE:BPN14:850:USEUWIRE
+        use_x_wire: WIRE:BPN14:850:USEXWIRE
+        use_y_wire: WIRE:BPN14:850:USEYWIRE
+        x_size: WIRE:BPN14:850:XWIRESIZE
+        x_wire_inner: WIRE:BPN14:850:XWIREINNER
+        x_wire_outer: WIRE:BPN14:850:XWIREOUTER
+        y_size: WIRE:BPN14:850:YWIRESIZE
+        y_wire_inner: WIRE:BPN14:850:YWIREINNER
+        y_wire_outer: WIRE:BPN14:850:YWIREOUTER
       control_name: WIRE:BPN14:850
     metadata:
       area: BYP
@@ -1358,29 +1362,31 @@ wires:
   WSBP4:
     controls_information:
       PVs:
-        abort: WIRE:BPN16:850:MOTR.STOP
+        abort_scan: WIRE:BPN16:850:MOTR.STOP
         enabled: WIRE:BPN16:850:MOTR_ENABLED_STS
         homed: WIRE:BPN16:850:MOTR_HOMED_STS
         initialize: WIRE:BPN16:850:MOTR_INIT
-        initialized: WIRE:BPN16:850:MOTR_INIT_STS
-        motr: WIRE:BPN16:850:MOTR
-        rbv: WIRE:BPN16:850:MOTR.RBV
+        initialize_status: WIRE:BPN16:850:MOTR_INIT_STS
+        motor: WIRE:BPN16:850:MOTR
+        position: WIRE:BPN16:850:MOTR.RBV
         retract: WIRE:BPN16:850:MOTR_RETRACT
-        startscan: WIRE:BPN16:850:STARTSCAN
+        scan_pulses: WIRE:BPN16:850:SCANPULSES
+        speed: WIRE:BPN16:850:MOTR.VELO
+        start_scan: WIRE:BPN16:850:STARTSCAN
+        temperature: WIRE:BPN16:850:TEMP
         timeout: WIRE:BPN16:850:MOTR_TIMEOUTEN
-        useuwire: WIRE:BPN16:850:USEUWIRE
-        usexwire: WIRE:BPN16:850:USEXWIRE
-        useywire: WIRE:BPN16:850:USEYWIRE
-        usize: WIRE:BPN16:850:UWIRESIZE
-        uwireinner: WIRE:BPN16:850:UWIREINNER
-        uwireouter: WIRE:BPN16:850:UWIREOUTER
-        velo: WIRE:BPN16:850:MOTR.VELO
-        xsize: WIRE:BPN16:850:XWIRESIZE
-        xwireinner: WIRE:BPN16:850:XWIREINNER
-        xwireouter: WIRE:BPN16:850:XWIREOUTER
-        ysize: WIRE:BPN16:850:YWIRESIZE
-        ywireinner: WIRE:BPN16:850:YWIREINNER
-        ywireouter: WIRE:BPN16:850:YWIREOUTER
+        u_size: WIRE:BPN16:850:UWIRESIZE
+        u_wire_inner: WIRE:BPN16:850:UWIREINNER
+        u_wire_outer: WIRE:BPN16:850:UWIREOUTER
+        use_u_wire: WIRE:BPN16:850:USEUWIRE
+        use_x_wire: WIRE:BPN16:850:USEXWIRE
+        use_y_wire: WIRE:BPN16:850:USEYWIRE
+        x_size: WIRE:BPN16:850:XWIRESIZE
+        x_wire_inner: WIRE:BPN16:850:XWIREINNER
+        x_wire_outer: WIRE:BPN16:850:XWIREOUTER
+        y_size: WIRE:BPN16:850:YWIRESIZE
+        y_wire_inner: WIRE:BPN16:850:YWIREINNER
+        y_wire_outer: WIRE:BPN16:850:YWIREOUTER
       control_name: WIRE:BPN16:850
     metadata:
       area: BYP
