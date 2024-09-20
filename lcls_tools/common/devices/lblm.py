@@ -20,7 +20,6 @@ from lcls_tools.common.devices.device import (
     PVSet,
 )
 from epics import PV
-import edef
 
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
@@ -29,14 +28,19 @@ class BooleanModel(BaseModel):
     value: bool
 
 
+class FloatModel(BaseModel):
+    value: float
+
+
 class IntegerModel(BaseModel):
     value: conint(strict=True)
 
 
 class LBLMPVSet(PVSet):
-    # fast: PV
     gated_integral: PV
     i0_loss: PV
+    gain: PV
+    bypass: PV
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -52,24 +56,9 @@ class LBLMControlInformation(ControlInformation):
 
     def __init__(self, *args, **kwargs):
         super(LBLMControlInformation, self).__init__(*args, **kwargs)
-        # Get possible options for LBLM, empty dict by default.
-    #     options = self.PVs.position.get_ctrlvars(timeout=1)
-    #     if "enum_strs" in options:
-    #         [
-    #             self._ctrl_options.update({option: i})
-    #             for i, option in enumerate(options["enum_strs"])
-    #         ]
-
-    # @property
-    # def ctrl_options(self):
-    #     return self._ctrl_options
 
 
 class LBLMMetadata(Metadata):
-    # material: Optional[str] = None
-    # sum_l: Optional[PositiveFloat] = None
-    # TODO: Add LBLM and BPM infomration here?
-    # TODO: Add info on locations for X, Y, U wires
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -82,20 +71,53 @@ class LBLM(Device):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    # @property
-    # def fast(self):
-    #     """get fast data"""
-    #     return "fast"
+    def fast_buffer(self, buffer):
+        """Retrieve fast signal data from timing buffer"""
+        return buffer.get_buffer_data(f"{self.controls_information.control_name}FAST")
 
     @property
     def i0_loss(self):
-        """get i0 loss data"""
+        """Get I0 Loss value"""
         return self.controls_information.PVs.i0_loss.get()
 
     @property
     def gated_integral(self):
-        """get gated integral data"""
+        """Get Gated Integral value"""
         return self.controls_information.PVs.gated_integral.get()
+
+    @property
+    def gain(self):
+        """Get gain value"""
+        return self.controls_information.PVs.gain.get()
+
+    @gain.setter
+    def gain(self, val: float) -> None:
+        try:
+            FloatModel(value=val)
+            self.controls_information.PVs.gain.put(value=val)
+        except ValidationError as e:
+            print("Gain must be a float:", e)
+
+    @property
+    def bypass(self):
+        """Get bypass state"""
+        return self.controls_information.PVs.bypass.get()
+
+    @bypass.setter
+    def bypass(self, val: bool) -> None:
+        try:
+            BooleanModel(value=val)
+            self.controls_information.PVs.bypass.put(value=val)
+        except ValidationError as e:
+            print("Bypass must be a boolean:", e)
+
+    def i0_loss_buffer(self, buffer):
+        """Retrieve I0 Loss data from timing buffer"""
+        return buffer.get_buffer_data(f"{self.controls_information.PVs.i0_loss.pvname}{buffer.number}")
+
+    def gated_integral_buffer(self, buffer):
+        """Get Gated Integral data from timing buffer"""
+        return buffer.get_buffer_data(self.controls_information.PVs.gated_integral)
 
 
 class LBLMCollection(BaseModel):
