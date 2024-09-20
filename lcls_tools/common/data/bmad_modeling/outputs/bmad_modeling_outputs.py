@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import epics
-from lcls_tools.common.data_analysis.bmad_modeling import bmad_modeling as mod
+from lcls_tools.common.data.bmad_modeling import bmad_modeling as mod
 
 
 def plot_betas(output1, output2, **kwargs):
@@ -16,12 +16,9 @@ def plot_betas(output1, output2, **kwargs):
     opt = plot_beta_options
     fig1, ax1 = plt.subplots(figsize=(8, 4))
     ax1.plot(
-        output1["ele.s"], output1["ele.a.beta"],
-        label=opt["label1"], linestyle="--"
+        output1["ele.s"], output1["ele.a.beta"], label=opt["label1"], linestyle="--"
     )
-    ax1.plot(output2["ele.s"],
-             output2["ele.a.beta"],
-             label=opt["label2"])
+    ax1.plot(output2["ele.s"], output2["ele.a.beta"], label=opt["label2"])
     plt.legend()
     # Add energy to the rhs
     ax12 = ax1.twinx()
@@ -34,11 +31,9 @@ def plot_betas(output1, output2, **kwargs):
     # itime = isotime()
     fig2, ax2 = plt.subplots(figsize=(8, 4))
     ax2.plot(
-        output1["ele.s"], output1["ele.b.beta"],
-        label=opt["label1"], linestyle="--"
+        output1["ele.s"], output1["ele.b.beta"], label=opt["label1"], linestyle="--"
     )
-    ax2.plot(output2["ele.s"], output2["ele.b.beta"],
-             label=opt["label2"])
+    ax2.plot(output2["ele.s"], output2["ele.b.beta"], label=opt["label2"])
     plt.legend()
     ax22 = ax2.twinx()
     ax22.plot(output2["ele.s"], output2["ele.e_tot"] / 1e9, color="red")
@@ -57,7 +52,7 @@ def disp_twiss(tao, element, datum=[]):
     """If datum is given, bmag with respect to model is calculated"""
     # parameters = ["beta_a", "alpha_a", "beta_b", "alpha_b"]
     if not datum == []:
-        twiss_datum = tao.data_parameter(datum, "meas_value")[0]['data'][0:4]
+        twiss_datum = tao.data_parameter(datum, "meas_value")[0]["data"][0:4]
         twiss_datum = [float(val) for val in twiss_datum]
         twiss_model = mod.get_twiss(tao, element, which="model")
         twiss_design = mod.get_twiss(tao, element)
@@ -103,13 +98,9 @@ def quad_table(tao, pct_lim=1, show_energy=False):
 
         model_bdes = mod.get_bmad_bdes(tao, element)
         if show_energy:
-            print(
-                f"{element:7s} {device:15s} {eact:7.3f}"
-                f"{edes:7.3f} {e_tot:7.3f}"
-            )
+            print(f"{element:7s} {device:15s} {eact:7.3f}" f"{edes:7.3f} {e_tot:7.3f}")
         else:
-            percent = (
-                100 * abs((bmod - model_bdes) / bmod) if bmod != 0 else 0)
+            percent = 100 * abs((bmod - model_bdes) / bmod) if bmod != 0 else 0
             if percent > pct_lim:
                 print(
                     f"{element:7s} {device:15s} {bdes:7.3f}"
@@ -118,9 +109,7 @@ def quad_table(tao, pct_lim=1, show_energy=False):
 
 
 def plot_twiss(tao, output, info="", xoff=0):
-
-    """Plot twiss parameters for one output as well as element lables
-    """
+    """Plot twiss parameters for one output as well as element lables"""
     fig, ax = plt.subplots(figsize=(8, 4))
     ax.plot(output["ele.s"], output["ele.a.beta"], label=r"$\beta_a$")
     ax.plot(output["ele.s"], output["ele.b.beta"], label=r"$\beta_b$")

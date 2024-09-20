@@ -1,4 +1,4 @@
-from lcls_tools.common.data_analysis.fit.methods import GaussianModel
+from lcls_tools.common.data.fit.methods import GaussianModel
 import numpy as np
 import unittest
 import os
