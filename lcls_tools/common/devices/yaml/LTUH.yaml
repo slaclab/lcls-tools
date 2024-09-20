@@ -1,3 +1,73 @@
+lblms:
+  LBLM30A:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUH:433:A:FAST_AMP_BYP
+        gain: LBLM:LTUH:433:A:FAST_AMP_GAIN
+        gated_integral: LBLM:LTUH:433:A:GATED_INTEGRAL
+      control_name: LBLM:LTUH:433:A
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM30B:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUH:433:B:FAST_AMP_BYP
+        gain: LBLM:LTUH:433:B:FAST_AMP_GAIN
+      control_name: LBLM:LTUH:433:B
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM32A:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUH:738:A:FAST_AMP_BYP
+        gain: LBLM:LTUH:738:A:FAST_AMP_GAIN
+        gated_integral: LBLM:LTUH:738:A:GATED_INTEGRAL
+      control_name: LBLM:LTUH:738:A
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM32B:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUH:738:B:FAST_AMP_BYP
+        gain: LBLM:LTUH:738:B:FAST_AMP_GAIN
+      control_name: LBLM:LTUH:738:B
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM34A:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUH:846:A:FAST_AMP_BYP
+        gain: LBLM:LTUH:846:A:FAST_AMP_GAIN
+      control_name: LBLM:LTUH:846:A
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLMS26B:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUH:105:B:FAST_AMP_BYP
+        gain: LBLM:LTUH:105:B:FAST_AMP_GAIN
+        gated_integral: LBLM:LTUH:105:B:GATED_INTEGRAL
+      control_name: LBLM:LTUH:105:B
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   BCX321:
     controls_information:
@@ -2098,6 +2168,8 @@ wires:
         retract: WIRE:LTUH:715:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:715:SCANPULSES
         speed: WIRE:LTUH:715:MOTR.VELO
+        speed_max: WIRE:LTUH:715:MOTR.VMAX
+        speed_min: WIRE:LTUH:715:MOTR.VBAS
         start_scan: WIRE:LTUH:715:STARTSCAN
         temperature: WIRE:LTUH:715:TEMP
         timeout: WIRE:LTUH:715:MOTR_TIMEOUTEN
@@ -2137,6 +2209,8 @@ wires:
         retract: WIRE:LTUH:735:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:735:SCANPULSES
         speed: WIRE:LTUH:735:MOTR.VELO
+        speed_max: WIRE:LTUH:735:MOTR.VMAX
+        speed_min: WIRE:LTUH:735:MOTR.VBAS
         start_scan: WIRE:LTUH:735:STARTSCAN
         temperature: WIRE:LTUH:735:TEMP
         timeout: WIRE:LTUH:735:MOTR_TIMEOUTEN
@@ -2176,6 +2250,8 @@ wires:
         retract: WIRE:LTUH:755:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:755:SCANPULSES
         speed: WIRE:LTUH:755:MOTR.VELO
+        speed_max: WIRE:LTUH:755:MOTR.VMAX
+        speed_min: WIRE:LTUH:755:MOTR.VBAS
         start_scan: WIRE:LTUH:755:STARTSCAN
         temperature: WIRE:LTUH:755:TEMP
         timeout: WIRE:LTUH:755:MOTR_TIMEOUTEN
@@ -2215,6 +2291,8 @@ wires:
         retract: WIRE:LTUH:775:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:775:SCANPULSES
         speed: WIRE:LTUH:775:MOTR.VELO
+        speed_max: WIRE:LTUH:775:MOTR.VMAX
+        speed_min: WIRE:LTUH:775:MOTR.VBAS
         start_scan: WIRE:LTUH:775:STARTSCAN
         temperature: WIRE:LTUH:775:TEMP
         timeout: WIRE:LTUH:775:MOTR_TIMEOUTEN
@@ -2254,6 +2332,8 @@ wires:
         retract: WIRE:LTUH:246:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:246:SCANPULSES
         speed: WIRE:LTUH:246:MOTR.VELO
+        speed_max: WIRE:LTUH:246:MOTR.VMAX
+        speed_min: WIRE:LTUH:246:MOTR.VBAS
         start_scan: WIRE:LTUH:246:STARTSCAN
         temperature: WIRE:LTUH:246:TEMP
         timeout: WIRE:LTUH:246:MOTR_TIMEOUTEN
@@ -2288,6 +2368,8 @@ wires:
         position: WIRE:LTUH:538:MOTR.RBV
         scan_pulses: WIRE:LTUH:538:SCANPULSES
         speed: WIRE:LTUH:538:MOTR.VELO
+        speed_max: WIRE:LTUH:538:MOTR.VMAX
+        speed_min: WIRE:LTUH:538:MOTR.VBAS
         start_scan: WIRE:LTUH:538:STARTSCAN
         u_size: WIRE:LTUH:538:UWIRESIZE
         u_wire_inner: WIRE:LTUH:538:UWIREINNER
@@ -2325,6 +2407,8 @@ wires:
         retract: WIRE:LTUH:122:MOTR_RETRACT
         scan_pulses: WIRE:LTUH:122:SCANPULSES
         speed: WIRE:LTUH:122:MOTR.VELO
+        speed_max: WIRE:LTUH:122:MOTR.VMAX
+        speed_min: WIRE:LTUH:122:MOTR.VBAS
         start_scan: WIRE:LTUH:122:STARTSCAN
         temperature: WIRE:LTUH:122:TEMP
         timeout: WIRE:LTUH:122:MOTR_TIMEOUTEN

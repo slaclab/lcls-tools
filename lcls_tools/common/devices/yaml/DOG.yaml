@@ -1,3 +1,30 @@
+lblms:
+  LBLM10A:
+    controls_information:
+      PVs:
+        bypass: LBLM:DOG:381:A:FAST_AMP_BYP
+        gain: LBLM:DOG:381:A:FAST_AMP_GAIN
+        gated_integral: LBLM:DOG:381:A:GATED_INTEGRAL
+        i0_loss: LBLM:DOG:381:A:I0_LOSS
+      control_name: LBLM:DOG:381:A
+    metadata:
+      area: DOG
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM11A:
+    controls_information:
+      PVs:
+        bypass: LBLM:DOG:740:A:FAST_AMP_BYP
+        gain: LBLM:DOG:740:A:FAST_AMP_GAIN
+        gated_integral: LBLM:DOG:740:A:GATED_INTEGRAL
+        i0_loss: LBLM:DOG:740:A:I0_LOSS
+      control_name: LBLM:DOG:740:A
+    metadata:
+      area: DOG
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   BCXDLD1:
     controls_information:
@@ -1068,6 +1095,8 @@ wires:
         retract: WIRE:DOG:655:MOTR_RETRACT
         scan_pulses: WIRE:DOG:655:SCANPULSES
         speed: WIRE:DOG:655:MOTR.VELO
+        speed_max: WIRE:DOG:655:MOTR.VMAX
+        speed_min: WIRE:DOG:655:MOTR.VBAS
         start_scan: WIRE:DOG:655:STARTSCAN
         temperature: WIRE:DOG:655:TEMP
         timeout: WIRE:DOG:655:MOTR_TIMEOUTEN

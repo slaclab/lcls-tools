@@ -205,9 +205,10 @@ wires:
         retract: WIRE:EMIT2:600:MOTR_RETRACT
         scan_pulses: WIRE:EMIT2:600:SCANPULSES
         speed: WIRE:EMIT2:600:MOTR.VELO
+        speed_max: WIRE:EMIT2:600:MOTR.VMAX
+        speed_min: WIRE:EMIT2:600:MOTR.VBAS
         start_scan: WIRE:EMIT2:600:STARTSCAN
         timeout: WIRE:EMIT2:600:MOTR_TIMEOUTEN
-
         u_size: WIRE:EMIT2:600:UWIRESIZE
         u_wire_inner: WIRE:EMIT2:600:UWIREINNER
         u_wire_outer: WIRE:EMIT2:600:UWIREOUTER
