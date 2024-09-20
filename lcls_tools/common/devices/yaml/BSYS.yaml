@@ -1,3 +1,13 @@
+lblms:
+  LBLMS24A:
+    controls_information:
+      PVs: {}
+      control_name: LBLM:BSYS:247:A
+    metadata:
+      area: BSYS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   QBP33:
     controls_information:

@@ -1,3 +1,65 @@
+lblms:
+  LBLM07A:
+    controls_information:
+      PVs:
+        bypass: LBLM:L3B:1600:A:FAST_AMP_BYP
+        gain: LBLM:L3B:1600:A:FAST_AMP_GAIN
+        gated_integral: LBLM:L3B:1600:A:GATED_INTEGRAL
+        i0_loss: LBLM:L3B:1600:A:I0_LOSS
+      control_name: LBLM:L3B:1600:A
+    metadata:
+      area: L3B
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM07B:
+    controls_information:
+      PVs:
+        bypass: LBLM:L3B:1600:B:FAST_AMP_BYP
+        gain: LBLM:L3B:1600:B:FAST_AMP_GAIN
+        i0_loss: LBLM:L3B:1600:B:I0_LOSS
+      control_name: LBLM:L3B:1600:B
+    metadata:
+      area: L3B
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM08A:
+    controls_information:
+      PVs:
+        bypass: LBLM:L3B:2600:A:FAST_AMP_BYP
+        gain: LBLM:L3B:2600:A:FAST_AMP_GAIN
+        i0_loss: LBLM:L3B:2600:A:I0_LOSS
+      control_name: LBLM:L3B:2600:A
+    metadata:
+      area: L3B
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM08B:
+    controls_information:
+      PVs:
+        bypass: LBLM:L3B:2600:B:FAST_AMP_BYP
+        gain: LBLM:L3B:2600:B:FAST_AMP_GAIN
+        i0_loss: LBLM:L3B:2600:B:I0_LOSS
+      control_name: LBLM:L3B:2600:B
+    metadata:
+      area: L3B
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM09A:
+    controls_information:
+      PVs:
+        bypass: LBLM:L3B:3578:A:FAST_AMP_BYP
+        gain: LBLM:L3B:3578:A:FAST_AMP_GAIN
+        i0_loss: LBLM:L3B:3578:A:I0_LOSS
+      control_name: LBLM:L3B:3578:A
+    metadata:
+      area: L3B
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   QCM16:
     controls_information:

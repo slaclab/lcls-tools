@@ -498,6 +498,8 @@ wires:
         position: WIRE:DIAG0:424:MOTR.RBV
         scan_pulses: WIRE:DIAG0:424:SCANPULSES
         speed: WIRE:DIAG0:424:MOTR.VELO
+        speed_max: WIRE:DIAG0:424:MOTR.VMAX
+        speed_min: WIRE:DIAG0:424:MOTR.VBAS
         start_scan: WIRE:DIAG0:424:STARTSCAN
         u_size: WIRE:DIAG0:424:UWIRESIZE
         u_wire_inner: WIRE:DIAG0:424:UWIREINNER
