@@ -16,6 +16,8 @@ class WireTest(TestCase):
         # Set up some mocks that are needed for all test-cases.
         self.options_and_getter_function = {
             "MOTR.VELO": None,
+            "MOTR.VMAX": None,
+            "MOTR.VBAS": None,
             "MOTR.RBV": None,
             "MOTR_INIT": None,
             "MOTR_INIT_STS": None,
@@ -59,6 +61,8 @@ class WireTest(TestCase):
             "MOTR_RETRACT": self.wire.retract,
             "SCANPULSES": self.wire.scan_pulses,
             "MOTR.VELO": self.wire.speed,
+            "MOTR.VMAX": self.wire.speed_max,
+            "MOTR.VBAS": self.wire.speed_min,
             "STARTSCAN": self.wire.start_scan,
             "TEMP": self.wire.temperature,
             "MOTR_TIMEOUTEN": self.wire.timeout,
