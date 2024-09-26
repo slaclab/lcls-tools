@@ -1,48 +1,65 @@
-from typing import Callable
-
 from lcls_tools.common.devices.reader import create_magnet, create_screen, create_wire
 from lcls_tools.common.devices.magnet import MagnetCollection
-from lcls_tools.common.devices.screen import Screen
-from lcls_tools.common.devices.wire import Wire
+from lcls_tools.common.devices.device import Device
 from lcls_tools.common.measurements.measurement import Measurement
+
 from meme.model import Model
 
 class QuadScanEmittance(Measurement):
-    model: Model
-    magnet_collection: MagnetCollection
-    magnet_settings: dict
+    model_beamline: str
+    magnet_area: str
+    magnet_name: str
+    scan_values: list[float]
     rmats: list
-    acquire_data: Callable[..., None]
+    _model: Model = None
+    _magnet_collection: MagnetCollection = None
+    _magnet_settings: list[dict] = None
 
-    screen: Screen
-    image_file_locations: list
+    to_device_area: str
+    to_device_name: str
+    beam_sizes: list
+    _to_device: Device = None
 
-    wire: Wire
+    def __init__(self):
+        super().__init__()
 
-    def __init__(self, model_beamline: str, magnet_area: str, magnet_settings: dict, 
-                 to_device_area: str, to_device_name: str):
-        self.model = Model(model_beamline)
-        self.magnet_collection = create_magnet(area=magnet_area)
-        self.magnet_settings = magnet_settings
-        if to_device_name.startswith(('YAG','OTR')):
-            self.screen = create_screen(area=to_device_area, name=to_device_name)
-            self.acquire_data = self.acquire_profmon
-        else:
-            self.wire = create_wire(area=to_device_area, name=to_device_name)
-            self.acquire_data = self.acquire_wire
-
+    @property
+    def model(self) -> Model:
+        if self._model is None:
+            self._model = Model(self.model_beamline)
+        return self._model
+    
+    @property
+    def magnet_collection(self) -> MagnetCollection:
+        if self._magnet_collection is None:
+            self._magnet_collection = create_magnet(area=self.magnet_area)
+        return self._magnet_collection
+    
+    @property
+    def magnet_settings(self) -> list[dict]:
+        if self._magnet_settings is None:
+            self._magnet_settings = [{self.magnet_name:value} for value in self.scan_values]
+        return self._magnet_settings
+    
+    @property
+    def to_device(self) -> Device:
+        if self._to_device is None:
+            if self.to_device_name.startswith('OTR','YAG'):
+                self.to_device = create_screen(area=self.to_device_area, name=self.to_device_name)
+            else:
+                self.to_device = create_wire(area=self.to_device_area, name=self.to_device_name)
 
     def measure(self):
-        self.magnet_collection.scan(scan_settings=self.settings, function=self.acquire_data)
-        beam_sizes = self.get_beamsize(image_file = self.image_file_locations)  # x_rms, y_rms, x_stdz, y_stdz
+        self.magnet_collection.scan(scan_settings=self.magnet_settings, function=self.measure_beamsize)
 
-        emittance, bmag, sig, is_valid = self.compute_emit_bmag(k = [-6,-3,0],
-                                              beamsize_squared = [beam_sizes['x_rms'],beam_sizes['y_rms']],
-                                              q_len = 0.221,
-                                              rmat = self.rmats,
-                                              beta0 = 0.0001,
-                                              alpha0 = 0.0002,
-                                              get_bmag = True)
+        emittance, bmag, sig, is_valid = compute_emit_bmag(
+                                            k = self.scan_values,
+                                            beamsize_squared = self.beam_sizes, # [beam_sizes['x_rms'],beam_sizes['y_rms']],
+                                            q_len = 0.221, # self.to_device magnet length?
+                                            rmat = self.rmats,
+                                            beta0 = 0.0001, # ?
+                                            alpha0 = 0.0002, # ?
+                                            get_bmag = True)
 
         results = {
             "emittance": emittance,
@@ -51,16 +68,12 @@ class QuadScanEmittance(Measurement):
 
         return results
     
-    def acquire_profmon(self, magnet_name, to_device_name, num_to_capture=10):
-        latest_image_filepath = self.screen.save_images(num_to_capture=num_to_capture)
-        self.rmats.append(self.model.get_rmat(from_device=magnet_name, to_device=to_device_name))
-        self.image_file_locations.append(latest_image_filepath)
+    def measure_beamsize(self):
+        self.beam_sizes.append(self.to_device.get_beamsize())
+        self.rmats.append(self.model.get_rmat(from_device=self.magnet_collection.name, to_device=self.to_device.name))
     
-    def acquire_wire(self, magnet_name, to_device_name):
-        pass
+class MultiDeviceEmittance(Measurement):
+    pass
 
-    def get_beamsize(self, image_file):
-        pass
-
-    def compute_emit_bmag(self, k, beamsize_squared, q_len, rmat, beta0, alpha0, get_bmag):
-        pass                                      
+def compute_emit_bmag(self, k, beamsize_squared, q_len, rmat, beta0, alpha0, get_bmag):
+    pass                                      
