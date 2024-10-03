@@ -17,7 +17,7 @@ def propagate_twiss(twiss_init: np.ndarray, rmat: np.ndarray):
     )  # result shape (batchshape x 3 x 3)
 
     twiss_final = twiss_transport @ twiss_init
-    # result shape (batchshape x nsteps x 3 x 1)
+    # result shape (batchshape x 3 x 1)
 
     return twiss_final
 
@@ -30,7 +30,7 @@ def twiss_transport_mat_from_rmat(rmat: np.ndarray):
         rmat: numpy array shape batchshape x 2 x 2
 
     Outputs:
-        result: numpy array shape batchshape x 3 x 1
+        result: numpy array shape batchshape x 3 x 3
     """
     # Converts from 2x2 rmats to 3x3 twiss transport matrices.
     c, s, cp, sp = rmat[..., 0, 0], rmat[..., 0, 1], rmat[..., 1, 0], rmat[..., 1, 1]
@@ -41,7 +41,7 @@ def twiss_transport_mat_from_rmat(rmat: np.ndarray):
             np.stack((cp**2, -2 * cp * sp, sp**2), axis=-1),
         ),
         axis=-2,
-    )  # result shape (*rmat.shape, 3, 3)
+    )  # result shape (batchshape, 3, 3)
     return result
 
 
