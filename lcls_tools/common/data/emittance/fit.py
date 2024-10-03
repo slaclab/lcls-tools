@@ -4,6 +4,7 @@ import importlib.util
 from matrix_calcs import propagate_twiss, twiss_transport_mat_from_rmat, build_quad_rmat
 from lcls_tools.common.data.model_general_calcs import bmag_func
 
+
 def compute_emit_bmag(
     k: np.ndarray,
     beamsize_squared: np.ndarray,
@@ -32,9 +33,8 @@ def compute_emit_bmag(
                 containing the 2x2 R matrices describing the transport from the end of the
                 measurement quad to the observation screen.
 
-        beta0: float or numpy array shape (batchshape x 1) designating the design beta twiss parameter at the screen
-
-        alpha0: float or numpy array shape (batchshape x 1) designating the design alpha twiss parameter at the screen
+        twiss_design: numpy array shape (2,) or (batchshape x 2) designating the design (beta, alpha) 
+                        twiss parameters at the screen.
 
         thin_lens: boolean specifying whether or not to use thin lens approximation for measurement quad.
 
@@ -69,7 +69,7 @@ def compute_emit_bmag(
             params[..., 0, :]
             * params[..., 1, :]
             * params[..., 2, :],  # lambda1*lambda2*c = sig12
-            params[..., 1, :] ** 2, # lamba2^2 = sig22
+            params[..., 1, :] ** 2,  # lamba2^2 = sig22
         )
 
     # check if torch is available to be imported
@@ -145,30 +145,29 @@ def compute_emit_bmag(
     )  # result shape (batchshape)
 
     if twiss_design is not None:
-        beta_design, alpha_design = twiss_design[...,0:1], twiss_design[...,1:]
+        beta_design, alpha_design = twiss_design[..., 0:1], twiss_design[..., 1:]
         # results shape batchshape x 1 (last dim will be broadcast)
 
         # get twiss at measurement quad from beam_matrix
-        twiss_upstream = np.stack((beam_matrix[...,0,0:], 
-                                   -1*beam_matrix[...,1,0:], 
-                                   beam_matrix[...,2,0:]
-                                  ), axis=-2) / np.expand_dims(emit, axis=(-1,-2))
+        twiss_upstream = np.stack(
+            (
+                beam_matrix[..., 0, 0:],
+                -1 * beam_matrix[..., 1, 0:],
+                beam_matrix[..., 2, 0:],
+            ),
+            axis=-2,
+        ) / np.expand_dims(emit, axis=(-1, -2))
         twiss = propagate_twiss(np.expand_dims(twiss_upstream, axis=-3), total_rmat)
         # result shape (batchshape x nsteps x 3 x 1)
-        beta, alpha = twiss[...,0,0], twiss[...,1,0]
+        beta, alpha = twiss[..., 0, 0], twiss[..., 1, 0]
         # shapes batchshape x nsteps
 
-        bmag = bmag_func(beta, alpha, beta_design, alpha_design) # result batchshape
+        bmag = bmag_func(beta, alpha, beta_design, alpha_design)  # result batchshape
     else:
         bmag = None
 
     return emit, bmag, beam_matrix
 
-# def bmag_func(bb, ab, bl, al):
-#     """Calculates the BMAG miss match parameter.  bb and ab are the modeled
-#     beta and alpha functions at a given element and bl and al are the
-#     reference (most of the time desing) values """
-#     return 1 / 2 * (bl / bb + bb / bl + bb * bl * (ab / bb - al / bl) ** 2)
 
 def normalize_emittance(emit, energy):
     gamma = energy / (
