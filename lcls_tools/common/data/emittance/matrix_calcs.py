@@ -45,7 +45,7 @@ def twiss_transport_mat_from_rmat(rmat: np.ndarray):
     return result
 
 
-def build_quad_rmat(k, q_len, thin_lens=False):
+def build_quad_rmat(k: np.ndarray, q_len: float, thin_lens: bool=False):
     """
     Constructs quad rmat transport matrices for a quadrupole of length q_len with geometric focusing strengths
     given by k.
