@@ -6,8 +6,8 @@ def propagate_twiss(twiss_init: np.ndarray, rmat: np.ndarray):
     Propagates twiss parameters downstream given a transport rmat.
 
     Parameters:
-        twiss_init: numpy array shape batchshape x 3 x 1
-        rmat: numpy array shape batchshape x 2 x 2
+        twiss_init: numpy array shape batchshape x 3 x 1 containing the initial twiss params
+        rmat: numpy array shape batchshape x 2 x 2 containing 2x2 transport rmats
 
     Outputs:
         twiss_final: numpy array shape batchshape x 3 x 1

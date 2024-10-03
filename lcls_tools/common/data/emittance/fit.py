@@ -157,6 +157,8 @@ def compute_emit_bmag(
             ),
             axis=-2,
         ) / np.expand_dims(emit, axis=(-1, -2))
+
+        # propagate twiss params to screen
         twiss = propagate_twiss(np.expand_dims(twiss_upstream, axis=-3), total_rmat)
         # result shape (batchshape x nsteps x 3 x 1)
         beta, alpha = twiss[..., 0, 0], twiss[..., 1, 0]
