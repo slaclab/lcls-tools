@@ -1,5 +1,5 @@
 from lcls_tools.common.devices.screen import Screen
-from lcls_tools.common.data_analysis.fit.gaussian_fit import GaussianFit
+from lcls_tools.common.data.fit.gaussian_fit import GaussianFit
 from lcls_tools.common.measurements.measurement import Measurement
 from pydantic import ConfigDict
 
