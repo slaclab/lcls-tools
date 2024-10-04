@@ -41,10 +41,12 @@ def compute_emit_bmag(
         max_iter: maximum number of iterations to perform in nonlinear fitting (minimization algorithm)
 
     Returns:
-        emit: numpy array shape (batchshape) containing the geometric emittance fit results for each scan in mm-mrad
+        emit: numpy array shape (batchshape x 1) containing the geometric emittance fit results for each scan in mm-mrad
         bmag: numpy array shape (batchshape x n_steps) containing the bmag corresponding to each point in each scan
-        beam_matrix: numpy array shape (batchshape x 3 x 1) containing column vectors of [sig11, sig12, sig22]
-                     where sig11, sig12, sig22 are the beam matrix parameters
+        beam_matrix: numpy array shape (batchshape x 3) containing [sig11, sig12, sig22] where sig11, sig12, sig22
+                        are the reconstructed beam matrix parameters at the entrance of the measurement quad
+        twiss_at_screen: numpy array shape (batchshape x nsteps x 3) containing the reconstructed twiss parameters
+                            at the measurement screen for each step in each quad scan.
 
     SOURCE PAPER: http://www-library.desy.de/preparch/desy/thesis/desy-thesis-05-014.pdf
     """
@@ -63,13 +65,17 @@ def compute_emit_bmag(
     beamsize_squared = np.expand_dims(beamsize_squared, -1)
 
     def beam_matrix_tuple(params):
-        # converts fit parameters to beam matrix parameters and packages for stacking
+        '''
+        converts fit parameters (batchshape x 3), containing [lambda1, lambda2, c],
+        to tuple of beam matrix parameters (sig11, sig12, sig22) where each
+        element in the tuple is shape batchshape, for stacking.
+        '''
         return (
-            params[..., 0, :] ** 2,  # lamba1^2 = sig11
-            params[..., 0, :]
-            * params[..., 1, :]
-            * params[..., 2, :],  # lambda1*lambda2*c = sig12
-            params[..., 1, :] ** 2,  # lamba2^2 = sig22
+            params[..., 0] ** 2,  # lamba1^2 = sig11
+            params[..., 0]
+            * params[..., 1]
+            * params[..., 2],  # lambda1*lambda2*c = sig12
+            params[..., 1] ** 2,  # lamba2^2 = sig22
         )
 
     # check if torch is available to be imported
@@ -83,9 +89,9 @@ def compute_emit_bmag(
         beamsize_squared = torch.from_numpy(beamsize_squared)
 
         def loss_torch(params):
-            params = torch.reshape(params, [*beamsize_squared.shape[:-2], 3, 1])
-            sig = torch.stack(beam_matrix_tuple(params), dim=-2)
-            # sig should now be shape batchshape x 3 x 1
+            params = torch.reshape(params, [*beamsize_squared.shape[:-2], 3])
+            sig = torch.stack(beam_matrix_tuple(params), dim=-1).unsqueeze(-1)
+            # sig should now be shape batchshape x 3 x 1 (column vectors)
             total_squared_error = (amat @ sig - beamsize_squared).pow(2).sum()
             return total_squared_error
 
@@ -101,14 +107,16 @@ def compute_emit_bmag(
     else:
         # define loss function in numpy without jacobian
         def loss(params):
-            params = np.reshape(params, [*beamsize_squared.shape[:-2], 3, 1])
-            sig = np.stack(beam_matrix_tuple(params), axis=-2)
-            # sig should now be shape batchshape x 3 x 1
+            params = np.reshape(params, [*beamsize_squared.shape[:-2], 3])
+            sig = np.expand_dims(np.stack(beam_matrix_tuple(params), axis=-1),
+                                 axis=-1)
+            # sig should now be shape batchshape x 3 x 1 (column vectors)
             total_squared_error = np.sum((amat @ sig - beamsize_squared) ** 2)
             return total_squared_error
 
         loss_jacobian = None
 
+    # for numerical stability
     eps = 1.0e-6
 
     # get initial guesses for lambda1, lambda2, c, from pseudo-inverse method
@@ -134,15 +142,15 @@ def compute_emit_bmag(
     res = minimize(loss, init_params, jac=loss_jacobian, bounds=bounds, options=options)
 
     fit_params = res.x
-    fit_params = np.reshape(fit_params, [*beamsize_squared.shape[:-2], 3, 1])
+    fit_params = np.reshape(fit_params, [*beamsize_squared.shape[:-2], 3])
 
     # convert fit params back to beam matrix params
-    beam_matrix = np.stack(beam_matrix_tuple(fit_params), axis=-2)
-    # result shape (batchshape x 3 x 1) containing column vectors of [sig11, sig12, sig22]
+    beam_matrix = np.stack(beam_matrix_tuple(fit_params), axis=-1)
+    # result shape (batchshape x 3) containing [sig11, sig12, sig22]
 
     emit = np.sqrt(
-        beam_matrix[..., 0, 0:] * beam_matrix[..., 2, 0:] - beam_matrix[..., 1, 0:] ** 2
-    )  # result shape (batchshape x 1)
+        beam_matrix[..., 0:1] * beam_matrix[..., 2:3] - beam_matrix[..., 1:2] ** 2
+    ) # result shape (batchshape x 1)
 
     if twiss_design is not None:
         beta_design, alpha_design = twiss_design[..., 0:1], twiss_design[..., 1:2]
@@ -151,25 +159,25 @@ def compute_emit_bmag(
         # get twiss at measurement quad from beam_matrix
         twiss_upstream = np.stack(
             (
-                beam_matrix[..., 0, 0],
-                -1 * beam_matrix[..., 1, 0],
-                beam_matrix[..., 2, 0],
+                beam_matrix[..., 0],
+                -1 * beam_matrix[..., 1],
+                beam_matrix[..., 2],
             ),
             axis=-1,
         ) / emit
-        # result batchshape x 3
-        print(twiss_upstream.shape)
-        # propagate twiss params to screen
-        twiss = propagate_twiss(np.expand_dims(twiss_upstream, axis=(-3,-1)), total_rmat)
-        # result shape (batchshape x nsteps x 3 x 1)
-        beta, alpha = twiss[..., 0, 0], twiss[..., 1, 0]
+        # result batchshape x 3 containing [beta, alpha, gamma]
+
+        # propagate twiss params to screen (expand_dims for broadcasting)
+        twiss_at_screen = propagate_twiss(np.expand_dims(twiss_upstream, axis=-2), total_rmat)
+        # result shape (batchshape x nsteps x 3)
+        beta, alpha = twiss_at_screen[..., 0], twiss_at_screen[..., 1]
         # shapes batchshape x nsteps
 
         bmag = bmag_func(beta, alpha, beta_design, alpha_design)  # result batchshape x nsteps
     else:
         bmag = None
 
-    return emit, bmag, beam_matrix
+    return emit, bmag, beam_matrix, twiss_at_screen
 
 
 def normalize_emittance(emit, energy):
