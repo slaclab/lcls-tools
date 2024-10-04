@@ -141,30 +141,31 @@ def compute_emit_bmag(
     # result shape (batchshape x 3 x 1) containing column vectors of [sig11, sig12, sig22]
 
     emit = np.sqrt(
-        beam_matrix[..., 0, 0] * beam_matrix[..., 2, 0] - beam_matrix[..., 1, 0] ** 2
-    )  # result shape (batchshape)
+        beam_matrix[..., 0, 0:] * beam_matrix[..., 2, 0:] - beam_matrix[..., 1, 0:] ** 2
+    )  # result shape (batchshape x 1)
 
     if twiss_design is not None:
-        beta_design, alpha_design = twiss_design[..., 0:1], twiss_design[..., 1:]
-        # results shape batchshape x 1 (last dim will be broadcast)
+        beta_design, alpha_design = twiss_design[..., 0:1], twiss_design[..., 1:2]
+        # results shape batchshape x 1
 
         # get twiss at measurement quad from beam_matrix
         twiss_upstream = np.stack(
             (
-                beam_matrix[..., 0, 0:],
-                -1 * beam_matrix[..., 1, 0:],
-                beam_matrix[..., 2, 0:],
+                beam_matrix[..., 0, 0],
+                -1 * beam_matrix[..., 1, 0],
+                beam_matrix[..., 2, 0],
             ),
-            axis=-2,
-        ) / np.expand_dims(emit, axis=(-1, -2))
-
+            axis=-1,
+        ) / emit
+        # result batchshape x 3
+        print(twiss_upstream.shape)
         # propagate twiss params to screen
-        twiss = propagate_twiss(np.expand_dims(twiss_upstream, axis=-3), total_rmat)
+        twiss = propagate_twiss(np.expand_dims(twiss_upstream, axis=(-3,-1)), total_rmat)
         # result shape (batchshape x nsteps x 3 x 1)
         beta, alpha = twiss[..., 0, 0], twiss[..., 1, 0]
         # shapes batchshape x nsteps
 
-        bmag = bmag_func(beta, alpha, beta_design, alpha_design)  # result batchshape
+        bmag = bmag_func(beta, alpha, beta_design, alpha_design)  # result batchshape x nsteps
     else:
         bmag = None
 
