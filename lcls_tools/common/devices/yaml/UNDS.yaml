@@ -19,6 +19,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.364
       sum_l_meters: 3657.705
       type: BEND
   BCXSS2:
@@ -41,6 +42,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.364
       sum_l_meters: 3658.898
       type: BEND
   BCXSS3:
@@ -63,6 +65,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.364
       sum_l_meters: 3659.418
       type: BEND
   BCXSS4:
@@ -85,6 +88,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.364
       sum_l_meters: 3660.611
       type: BEND
   QSXH16:
@@ -107,6 +111,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3577.758
       type: QUAD
   QSXH19:
@@ -129,6 +134,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3590.958
       type: QUAD
   QSXH21:
@@ -151,6 +157,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3599.758
       type: QUAD
   QSXH24:
@@ -173,6 +180,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3612.958
       type: QUAD
   QSXH26:
@@ -195,6 +203,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3621.758
       type: QUAD
   QSXH27:
@@ -217,6 +226,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3626.158
       type: QUAD
   QSXH28:
@@ -239,6 +249,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3630.558
       type: QUAD
   QSXH29:
@@ -261,6 +272,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3634.958
       type: QUAD
   QSXH30:
@@ -283,6 +295,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3639.358
       type: QUAD
   QSXH31:
@@ -305,6 +318,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3643.758
       type: QUAD
   QSXH32:
@@ -327,6 +341,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3648.158
       type: QUAD
   QSXH33:
@@ -349,6 +364,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3652.558
       type: QUAD
   QSXH34:
@@ -371,6 +387,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3656.958
       type: QUAD
   QSXH35:
@@ -393,6 +410,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3661.358
       type: QUAD
   QSXH36:
@@ -415,6 +433,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3665.758
       type: QUAD
   QSXH37:
@@ -437,6 +456,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3670.158
       type: QUAD
   QSXH38:
@@ -459,6 +479,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3674.558
       type: QUAD
   QSXH39:
@@ -481,6 +502,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3678.958
       type: QUAD
   QSXH40:
@@ -503,6 +525,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3683.358
       type: QUAD
   QSXH41:
@@ -525,6 +548,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3687.758
       type: QUAD
   QSXH42:
@@ -547,6 +571,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3692.158
       type: QUAD
   QSXH43:
@@ -569,6 +594,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3696.558
       type: QUAD
   QSXH44:
@@ -591,6 +617,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3700.958
       type: QUAD
   QSXH45:
@@ -613,6 +640,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3705.358
       type: QUAD
   QSXH46:
@@ -635,6 +663,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3709.758
       type: QUAD
   QSXH47:
@@ -657,6 +686,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.084
       sum_l_meters: 3714.158
       type: QUAD
   XCPEPX1:
@@ -679,6 +709,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3722.572
       type: XCOR
   XCPEPX2:
@@ -701,6 +732,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3723.522
       type: XCOR
   XCPEPX3:
@@ -723,6 +755,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3724.622
       type: XCOR
   XCPEPX4:
@@ -745,6 +778,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3725.572
       type: XCOR
   XCSX16:
@@ -767,6 +801,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3577.758
       type: XCOR
   XCSX19:
@@ -789,6 +824,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3590.958
       type: XCOR
   XCSX21:
@@ -811,6 +847,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3599.758
       type: XCOR
   XCSX24:
@@ -833,6 +870,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3612.958
       type: XCOR
   XCSX26:
@@ -855,6 +893,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3621.758
       type: XCOR
   XCSX27:
@@ -877,6 +916,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3626.158
       type: XCOR
   XCSX28:
@@ -899,6 +939,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3630.558
       type: XCOR
   XCSX29:
@@ -921,6 +962,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3634.958
       type: XCOR
   XCSX30:
@@ -943,6 +985,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3639.358
       type: XCOR
   XCSX31:
@@ -965,6 +1008,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3643.758
       type: XCOR
   XCSX32:
@@ -987,6 +1031,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3648.158
       type: XCOR
   XCSX33:
@@ -1009,6 +1054,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3652.558
       type: XCOR
   XCSX34:
@@ -1031,6 +1077,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3656.958
       type: XCOR
   XCSX35:
@@ -1053,6 +1100,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3661.358
       type: XCOR
   XCSX36:
@@ -1075,6 +1123,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3665.758
       type: XCOR
   XCSX37:
@@ -1097,6 +1146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3670.158
       type: XCOR
   XCSX38:
@@ -1119,6 +1169,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3674.558
       type: XCOR
   XCSX39:
@@ -1141,6 +1192,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3678.958
       type: XCOR
   XCSX40:
@@ -1163,6 +1215,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3683.358
       type: XCOR
   XCSX41:
@@ -1185,6 +1238,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3687.758
       type: XCOR
   XCSX42:
@@ -1207,6 +1261,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3692.158
       type: XCOR
   XCSX43:
@@ -1229,6 +1284,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3696.558
       type: XCOR
   XCSX44:
@@ -1251,6 +1307,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3700.958
       type: XCOR
   XCSX45:
@@ -1273,6 +1330,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3705.358
       type: XCOR
   XCSX46:
@@ -1295,6 +1353,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3709.758
       type: XCOR
   XCSX47:
@@ -1317,6 +1376,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3714.158
       type: XCOR
   YCSX16:
@@ -1339,6 +1399,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3577.758
       type: YCOR
   YCSX19:
@@ -1361,6 +1422,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3590.958
       type: YCOR
   YCSX21:
@@ -1383,6 +1445,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3599.758
       type: YCOR
   YCSX24:
@@ -1405,6 +1468,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3612.958
       type: YCOR
   YCSX26:
@@ -1427,6 +1491,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3621.758
       type: YCOR
   YCSX27:
@@ -1449,6 +1514,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3626.158
       type: YCOR
   YCSX28:
@@ -1471,6 +1537,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3630.558
       type: YCOR
   YCSX29:
@@ -1493,6 +1560,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3634.958
       type: YCOR
   YCSX30:
@@ -1515,6 +1583,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3639.358
       type: YCOR
   YCSX31:
@@ -1537,6 +1606,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3643.758
       type: YCOR
   YCSX32:
@@ -1559,6 +1629,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3648.158
       type: YCOR
   YCSX33:
@@ -1581,6 +1652,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3652.558
       type: YCOR
   YCSX34:
@@ -1603,6 +1675,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3656.958
       type: YCOR
   YCSX35:
@@ -1625,6 +1698,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3661.358
       type: YCOR
   YCSX36:
@@ -1647,6 +1721,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3665.758
       type: YCOR
   YCSX37:
@@ -1669,6 +1744,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3670.158
       type: YCOR
   YCSX38:
@@ -1691,6 +1767,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3674.558
       type: YCOR
   YCSX39:
@@ -1713,6 +1790,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3678.958
       type: YCOR
   YCSX40:
@@ -1735,6 +1813,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3683.358
       type: YCOR
   YCSX41:
@@ -1757,6 +1836,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3687.758
       type: YCOR
   YCSX42:
@@ -1779,6 +1859,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3692.158
       type: YCOR
   YCSX43:
@@ -1801,6 +1882,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3696.558
       type: YCOR
   YCSX44:
@@ -1823,6 +1905,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3700.958
       type: YCOR
   YCSX45:
@@ -1845,6 +1928,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3705.358
       type: YCOR
   YCSX46:
@@ -1867,6 +1951,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3709.758
       type: YCOR
   YCSX47:
@@ -1889,6 +1974,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3714.158
       type: YCOR
 screens:
