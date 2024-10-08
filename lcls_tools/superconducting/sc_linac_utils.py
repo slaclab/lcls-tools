@@ -181,6 +181,8 @@ def stepper_tol_factor(num_steps) -> float:
     that goes.
     """
 
+    num_steps = abs(num_steps)
+
     if num_steps <= 50000:
         return 10
 
@@ -232,6 +234,14 @@ class SSACalibrationToleranceError(Exception):
 class CavityQLoadedCalibrationError(Exception):
     """
     Exception thrown during cavity loaded Q measurement
+    """
+
+    pass
+
+
+class CavityCharacterizationError(Exception):
+    """
+    Exception thrown during cavity characterization
     """
 
     pass

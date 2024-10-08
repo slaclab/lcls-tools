@@ -330,7 +330,7 @@ class MagnetCollectionTest(TestCase):
 
     def test_seconds_since(self) -> None:
         one_second_in_the_past = datetime.datetime.now() - datetime.timedelta(seconds=1)
-        time_passed = self.magnet_collection.seconds_since(
+        time_passed = self.magnet_collection._seconds_since(
             time_to_check=one_second_in_the_past
         )
         self.assertEqual(
@@ -342,7 +342,7 @@ class MagnetCollectionTest(TestCase):
     def test_seconds_since_throws_if_given_non_datetime_arg(self) -> None:
         time_to_check = 1000
         with self.assertRaises(TypeError):
-            self.magnet_collection.seconds_since(time_to_check=time_to_check)
+            self.magnet_collection._seconds_since(time_to_check=time_to_check)
 
     @patch(
         "lcls_tools.common.devices.magnet.Magnet.is_bact_settled",
@@ -474,13 +474,13 @@ class MagnetCollectionTest(TestCase):
     @patch("epics.PV.put", new_callable=Mock)
     @patch("lcls_tools.common.devices.magnet.Magnet.trim", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.MagnetCollection.seconds_since",
+        "lcls_tools.common.devices.magnet.MagnetCollection._seconds_since",
         new_callable=Mock,
     )
     def test_set_bdes_when_timeout_happens(
         self, mock_timer_count, mock_trim, mock_put, mock_bact_settle
     ) -> None:
-        # make sure that magnet_collection.seconds_since()
+        # make sure that magnet_collection._seconds_since()
         # always returns > settle_timeout for set_bdes()
         mock_timer_count.side_effect = [6 for i in range(2)]
         # Make sure bact never settles to bdes
@@ -503,13 +503,13 @@ class MagnetCollectionTest(TestCase):
     @patch("epics.PV.put", new_callable=Mock)
     @patch("lcls_tools.common.devices.magnet.Magnet.trim", new_callable=Mock)
     @patch(
-        "lcls_tools.common.devices.magnet.MagnetCollection.seconds_since",
+        "lcls_tools.common.devices.magnet.MagnetCollection._seconds_since",
         new_callable=Mock,
     )
     def test_set_bdes_when_timeout_happens_after_first_call(
         self, mock_timer_count, mock_trim, mock_put, mock_bact_settle
     ) -> None:
-        # make sure that magnet_collection.seconds_since()
+        # make sure that magnet_collection._seconds_since()
         # always returns > settle_timeout for set_bdes()
         mock_timer_count.side_effect = [i + 4 for i in range(10)]
         # Make sure bact never settles to bdes

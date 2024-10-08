@@ -524,3 +524,88 @@ screens:
       - CU_SXR
       sum_l_meters: 41.512
       type: PROF
+wires:
+  WS11:
+    controls_information:
+      PVs:
+        temperature: WIRE:LI21:285:TEMP
+        u_wire_inner: WIRE:LI21:285:UWIREINNER
+        u_wire_outer: WIRE:LI21:285:UWIREOUTER
+        x_wire_inner: WIRE:LI21:285:XWIREINNER
+        x_wire_outer: WIRE:LI21:285:XWIREOUTER
+        y_wire_inner: WIRE:LI21:285:YWIREINNER
+        y_wire_outer: WIRE:LI21:285:YWIREOUTER
+      control_name: WIRE:LI21:285
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 39.56
+      type: WIRE
+  WS12:
+    controls_information:
+      PVs:
+        temperature: WIRE:LI21:293:TEMP
+        u_wire_inner: WIRE:LI21:293:UWIREINNER
+        u_wire_outer: WIRE:LI21:293:UWIREOUTER
+        x_wire_inner: WIRE:LI21:293:XWIREINNER
+        x_wire_outer: WIRE:LI21:293:XWIREOUTER
+        y_wire_inner: WIRE:LI21:293:YWIREINNER
+        y_wire_outer: WIRE:LI21:293:YWIREOUTER
+      control_name: WIRE:LI21:293
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 41.217
+      type: WIRE
+  WS13:
+    controls_information:
+      PVs:
+        abort: WIRE:LI21:301:MOTR.STOP
+        enabled: WIRE:LI21:301:MOTR_ENABLED_STS
+        homed: WIRE:LI21:301:MOTR_HOMED_STS
+        initialize: WIRE:LI21:301:MOTR_INIT
+        initialized: WIRE:LI21:301:MOTR_INIT_STS
+        motr: WIRE:LI21:301:MOTR
+        rbv: WIRE:LI21:301:MOTR.RBV
+        retract: WIRE:LI21:301:MOTR_RETRACT
+        scan_pulses: WIRE:LI21:301:SCANPULSES
+        speed: WIRE:LI21:301:MOTR.VELO
+        start_scan: WIRE:LI21:301:STARTSCAN
+        temperature: WIRE:LI21:301:TEMP
+        timeout: WIRE:LI21:301:MOTR_TIMEOUTEN
+        u_size: WIRE:LI21:301:UWIRESIZE
+        u_wire_inner: WIRE:LI21:301:UWIREINNER
+        u_wire_outer: WIRE:LI21:301:UWIREOUTER
+        use_u_wire: WIRE:LI21:301:USEUWIRE
+        use_x_wire: WIRE:LI21:301:USEXWIRE
+        use_y_wire: WIRE:LI21:301:USEYWIRE
+        x_size: WIRE:LI21:301:XWIRESIZE
+        x_wire_inner: WIRE:LI21:301:XWIREINNER
+        x_wire_outer: WIRE:LI21:301:XWIREOUTER
+        y_size: WIRE:LI21:301:YWIRESIZE
+        y_wire_inner: WIRE:LI21:301:YWIREINNER
+        y_wire_outer: WIRE:LI21:301:YWIREOUTER
+      control_name: WIRE:LI21:301
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 42.873
+      type: WIRE

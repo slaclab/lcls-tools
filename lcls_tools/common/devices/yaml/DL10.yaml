@@ -297,3 +297,15 @@ screens:
       - F2_SCAV
       sum_l_meters: 17.354
       type: PROF
+wires:
+  WS10561:
+    controls_information:
+      PVs: {}
+      control_name: WIRE:IN10:561
+    metadata:
+      area: DL10
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 14.021
+      type: WIRE

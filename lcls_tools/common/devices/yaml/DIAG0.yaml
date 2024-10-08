@@ -489,3 +489,32 @@ screens:
       - SC_DIAG0
       sum_l_meters: 61.871
       type: PROF
+wires:
+  WSDG01:
+    controls_information:
+      PVs:
+        abort_scan: WIRE:DIAG0:424:MOTR.STOP
+        motor: WIRE:DIAG0:424:MOTR
+        position: WIRE:DIAG0:424:MOTR.RBV
+        scan_pulses: WIRE:DIAG0:424:SCANPULSES
+        speed: WIRE:DIAG0:424:MOTR.VELO
+        start_scan: WIRE:DIAG0:424:STARTSCAN
+        u_size: WIRE:DIAG0:424:UWIRESIZE
+        u_wire_inner: WIRE:DIAG0:424:UWIREINNER
+        u_wire_outer: WIRE:DIAG0:424:UWIREOUTER
+        use_u_wire: WIRE:DIAG0:424:USEUWIRE
+        use_x_wire: WIRE:DIAG0:424:USEXWIRE
+        use_y_wire: WIRE:DIAG0:424:USEYWIRE
+        x_size: WIRE:DIAG0:424:XWIRESIZE
+        x_wire_inner: WIRE:DIAG0:424:XWIREINNER
+        x_wire_outer: WIRE:DIAG0:424:XWIREOUTER
+        y_size: WIRE:DIAG0:424:YWIRESIZE
+        y_wire_inner: WIRE:DIAG0:424:YWIREINNER
+        y_wire_outer: WIRE:DIAG0:424:YWIREOUTER
+      control_name: WIRE:DIAG0:424
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 57.113
+      type: WIRE

@@ -1,5 +1,5 @@
-from pydantic import BaseModel, SerializeAsAny, ConfigDict
-from typing import List, Union, Callable, Optional
+from pydantic import BaseModel, SerializeAsAny, ConfigDict, field_validator
+from typing import List, Union, Callable, Dict
 from epics import PV
 
 
@@ -19,8 +19,18 @@ class ControlInformation(BaseModel):
     control_name: str
     PVs: PVSet
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(
+        self,
+        *args,
+        **kwargs,
+    ):
+        super(
+            ControlInformation,
+            self,
+        ).__init__(
+            *args,
+            **kwargs,
+        )
 
 
 class Metadata(BaseModel):
@@ -28,48 +38,100 @@ class Metadata(BaseModel):
     beam_path: List[str]
     sum_l_meters: float
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(
+        self,
+        *args,
+        **kwargs,
+    ):
+        super(
+            Metadata,
+            self,
+        ).__init__(
+            *args,
+            **kwargs,
+        )
 
 
 class ApplyDeviceCallbackError(Exception):
-    def __init__(self, message: str) -> None:
-        super().__init__(message)
+    def __init__(
+        self,
+        message: str,
+        *args,
+        **kwargs,
+    ) -> None:
+        super(
+            ApplyDeviceCallbackError,
+            self,
+        ).__init__(
+            message,
+            *args,
+            **kwargs,
+        )
 
 
 class RemoveDeviceCallbackError(Exception):
-    def __init__(self, message: str) -> None:
-        super().__init__(message)
+    def __init__(
+        self,
+        message: str,
+        *args,
+        **kwargs,
+    ) -> None:
+        super(
+            RemoveDeviceCallbackError,
+            self,
+        ).__init__(
+            message,
+            *args,
+            **kwargs,
+        )
 
 
 class Device(BaseModel):
-    name: Optional[str] = None
+    name: str = None
     controls_information: SerializeAsAny[ControlInformation]
     metadata: SerializeAsAny[Metadata]
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(
+        self,
+        *args,
+        **kwargs,
+    ):
+        super(Device, self).__init__(
+            *args,
+            **kwargs,
+        )
 
     @property
-    def area(self):
+    def area(self) -> str:
+        """The machine area for this device"""
         return self.metadata.area
 
     @property
-    def sum_l_meters(self):
+    def sum_l_meters(self) -> float:
+        """The position for this device in the design in meters"""
         return self.metadata.sum_l_meters
 
     @property
-    def beam_path(self):
+    def z_location(self) -> float:
+        """The position for this device in the design in meters (alias for sum_l_meters)"""
+        return self.metadata.sum_l_meters
+
+    @property
+    def beam_path(self) -> List[str]:
+        """The list of beampaths that include this device"""
         return self.metadata.beam_path
 
     def get_callbacks(self, pv: str) -> Union[None, dict]:
+        """Find which callbacks are tied for the given PV"""
         pv_obj = self._get_pv_object_from_str(pv)
         if pv_obj:
             return pv_obj.callbacks
         return None
 
     def _is_callback_already_assigned(
-        self, pv: PV, callback_function: Callable
+        self,
+        pv: PV,
+        callback_function: Callable,
     ) -> bool:
         """
         Check if a given callback function is already applied to a PV object
@@ -87,7 +149,9 @@ class Device(BaseModel):
         return callback_exists
 
     def _get_callback_index(
-        self, pv: PV, callback_function: Callable
+        self,
+        pv: PV,
+        callback_function: Callable,
     ) -> Union[None, int]:
         for index, callback in pv.callbacks.items():
             f, _ = callback
@@ -106,7 +170,12 @@ class Device(BaseModel):
         pv_obj = self._get_attribute("_" + pv)
         return pv_obj
 
-    def add_callback_to_pv(self, pv: str, function: Callable):
+    def add_callback_to_pv(
+        self,
+        pv: str,
+        function: Callable,
+    ) -> None:
+        """Add a callback function to a given PV that is called upon PV-value change."""
         # check function args
         if not isinstance(pv, str):
             raise ApplyDeviceCallbackError(f"variable {pv} must be of type str")
@@ -124,7 +193,12 @@ class Device(BaseModel):
         # callback not assigned, so lets add the callback:
         pv_obj.add_callback(function)
 
-    def remove_callback_from_pv(self, pv: str, function: Callable):
+    def remove_callback_from_pv(
+        self,
+        pv: str,
+        function: Callable,
+    ) -> None:
+        """Remove a callback function to a given PV."""
         if not isinstance(pv, str):
             raise RemoveDeviceCallbackError(f"variable {pv} must be of type str")
         if not isinstance(function, Callable):
@@ -141,3 +215,37 @@ class Device(BaseModel):
         index = self._get_callback_index(pv_obj, function)
         if index:
             pv_obj.remove_callback(index)
+
+
+class DeviceCollection(BaseModel):
+    devices: Dict[str, SerializeAsAny[Device]] = None
+
+    @field_validator("devices", mode="before")
+    def _validate_devices(cls, v):
+        """
+        Add name field to data that will be passed to Device class
+        and then use that dictionary to create each Device.
+        """
+        for name, device in v.items():
+            device = dict(device)
+            device.update({"name": name})
+            v.update({name: device})
+        return v
+
+    def __init__(
+        self,
+        *args,
+        **kwargs,
+    ):
+        super(
+            DeviceCollection,
+            self,
+        ).__init__(
+            *args,
+            **kwargs,
+        )
+
+    @property
+    def device_names(self) -> List[str]:
+        """Get all device names in the collection"""
+        return list(self.devices.keys())

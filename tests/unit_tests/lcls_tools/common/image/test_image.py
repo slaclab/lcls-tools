@@ -1,13 +1,11 @@
 import os
 import unittest
 import numpy as np
-from lcls_tools.common.image_processing.image import Image
-
-FILE = "test_image.npy"
+from lcls_tools.common.image import Image
 
 
 class ImageTest(unittest.TestCase):
-    data_location: str = "/tests/datasets/images/numpy/"
+    data_location: str = "tests/datasets/images/numpy/"
 
     def setUp(self):
         self.file = os.path.join(self.data_location, "test_image.npy")
@@ -16,11 +14,11 @@ class ImageTest(unittest.TestCase):
                 raise FileNotFoundError(f"Could not find {self.file}, aborting test.")
         except FileNotFoundError:
             self.skipTest("Invalid dataset location")
-        self.image_obj = Image(np.load(FILE))
+        self.image_obj = Image(np.load(self.file))
 
     def test_image(self):
         """Make sure image array not altered after initialization"""
-        test_img = np.load("test_image.npy")
+        test_img = np.load(self.file)
         obj_img = self.image_obj.image
         self.assertEqual(np.array_equal(test_img, obj_img), True)
 

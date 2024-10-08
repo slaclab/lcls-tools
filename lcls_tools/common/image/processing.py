@@ -1,8 +1,7 @@
 import numpy as np
-from matplotlib import pyplot as plt
 from scipy.ndimage import gaussian_filter
 from pydantic import BaseModel, PositiveFloat, ConfigDict
-from lcls_tools.common.image_processing.roi import ROI
+from lcls_tools.common.image.roi import ROI
 
 
 class ImageProcessor(BaseModel):
@@ -39,7 +38,7 @@ class ImageProcessor(BaseModel):
     def clip_image(self, image):
         return np.clip(image, 0, None)
 
-    def process(self, raw_image: np.ndarray) -> np.ndarray:
+    def auto_process(self, raw_image: np.ndarray) -> np.ndarray:
         """Process image by subtracting background pixel intensity
         from a raw image, crop, and filter"""
         image = self.subtract_background(raw_image)
@@ -55,11 +54,3 @@ class ImageProcessor(BaseModel):
         # TODO: extend to other types of filters? Change the way we pass sigma?
         filtered_data = gaussian_filter(unfiltered_image, sigma)
         return filtered_data
-
-    def plot_raw_and_processed_image(self, raw_image: np.ndarray, processed_image):
-        fig, ax = plt.subplots(2, 1)
-        c = ax[0].imshow(raw_image > 0, origin="lower")
-        rect = self.roi.get_patch()
-        ax[0].add_patch(rect)
-        ax[1].imshow(processed_image > 0, origin="lower")
-        fig.colorbar(c)

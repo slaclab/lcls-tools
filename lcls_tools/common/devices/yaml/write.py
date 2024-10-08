@@ -1,7 +1,7 @@
 import yaml
 import os
 from lcls_tools.common.devices.yaml.generate import YAMLGenerator
-from typing import Optional
+from typing import Optional, List, Dict
 
 
 class YAMLWriter:
@@ -9,24 +9,31 @@ class YAMLWriter:
         self.generator = YAMLGenerator()
 
     @property
-    def areas(self):
+    def areas(self) -> List[str]:
         return self.generator.areas
 
-    def _is_area(self, area: str):
+    def _is_area(self, area: str) -> bool:
         return area in self.generator.areas
 
-    def _constuct_yaml_contents(self, area: str) -> dict:
+    def _constuct_yaml_contents(self, area: str) -> Dict[str, str]:
         file_contents = {}
         magnets = self.generator.extract_magnets(
             area=area,
         )
         if magnets:
             file_contents["magnets"] = magnets
+
         screens = self.generator.extract_screens(
             area=area,
         )
         if screens:
             file_contents["screens"] = screens
+
+        wires = self.generator.extract_wires(
+            area=area,
+        )
+        if wires:
+            file_contents["wires"] = wires
 
         if file_contents:
             return file_contents

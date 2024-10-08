@@ -137,7 +137,14 @@ magnets:
       type: BEND
   BRDAS2:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: BEND:DASEL:995:BACT
+        bcon: BEND:DASEL:995:BCON
+        bctrl: BEND:DASEL:995:BCTRL
+        bdes: BEND:DASEL:995:BDES
+        bmax: BEND:DASEL:995:BMAX
+        bmin: BEND:DASEL:995:BMIN
+        ctrl: BEND:DASEL:995:CTRL
       control_name: BEND:DASEL:995
     metadata:
       area: DASEL
@@ -164,7 +171,14 @@ magnets:
       type: QUAD
   QDAS12:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: QUAD:DASEL:489:BACT
+        bcon: QUAD:DASEL:489:BCON
+        bctrl: QUAD:DASEL:489:BCTRL
+        bdes: QUAD:DASEL:489:BDES
+        bmax: QUAD:DASEL:489:BMAX
+        bmin: QUAD:DASEL:489:BMIN
+        ctrl: QUAD:DASEL:489:CTRL
       control_name: QUAD:DASEL:489
     metadata:
       area: DASEL
@@ -174,7 +188,14 @@ magnets:
       type: QUAD
   QDAS13:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: QUAD:DASEL:557:BACT
+        bcon: QUAD:DASEL:557:BCON
+        bctrl: QUAD:DASEL:557:BCTRL
+        bdes: QUAD:DASEL:557:BDES
+        bmax: QUAD:DASEL:557:BMAX
+        bmin: QUAD:DASEL:557:BMIN
+        ctrl: QUAD:DASEL:557:CTRL
       control_name: QUAD:DASEL:557
     metadata:
       area: DASEL
@@ -184,7 +205,14 @@ magnets:
       type: QUAD
   QDAS14:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: QUAD:DASEL:625:BACT
+        bcon: QUAD:DASEL:625:BCON
+        bctrl: QUAD:DASEL:625:BCTRL
+        bdes: QUAD:DASEL:625:BDES
+        bmax: QUAD:DASEL:625:BMAX
+        bmin: QUAD:DASEL:625:BMIN
+        ctrl: QUAD:DASEL:625:CTRL
       control_name: QUAD:DASEL:625
     metadata:
       area: DASEL
@@ -194,7 +222,14 @@ magnets:
       type: QUAD
   QDAS15:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: QUAD:DASEL:690:BACT
+        bcon: QUAD:DASEL:690:BCON
+        bctrl: QUAD:DASEL:690:BCTRL
+        bdes: QUAD:DASEL:690:BDES
+        bmax: QUAD:DASEL:690:BMAX
+        bmin: QUAD:DASEL:690:BMIN
+        ctrl: QUAD:DASEL:690:CTRL
       control_name: QUAD:DASEL:690
     metadata:
       area: DASEL
@@ -204,7 +239,14 @@ magnets:
       type: QUAD
   QDAS16:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: QUAD:DASEL:758:BACT
+        bcon: QUAD:DASEL:758:BCON
+        bctrl: QUAD:DASEL:758:BCTRL
+        bdes: QUAD:DASEL:758:BDES
+        bmax: QUAD:DASEL:758:BMAX
+        bmin: QUAD:DASEL:758:BMIN
+        ctrl: QUAD:DASEL:758:CTRL
       control_name: QUAD:DASEL:758
     metadata:
       area: DASEL
@@ -214,7 +256,14 @@ magnets:
       type: QUAD
   QDAS17:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: QUAD:DASEL:822:BACT
+        bcon: QUAD:DASEL:822:BCON
+        bctrl: QUAD:DASEL:822:BCTRL
+        bdes: QUAD:DASEL:822:BDES
+        bmax: QUAD:DASEL:822:BMAX
+        bmin: QUAD:DASEL:822:BMIN
+        ctrl: QUAD:DASEL:822:CTRL
       control_name: QUAD:DASEL:822
     metadata:
       area: DASEL
@@ -224,7 +273,14 @@ magnets:
       type: QUAD
   QDAS18A:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: QUAD:DASEL:880:BACT
+        bcon: QUAD:DASEL:880:BCON
+        bctrl: QUAD:DASEL:880:BCTRL
+        bdes: QUAD:DASEL:880:BDES
+        bmax: QUAD:DASEL:880:BMAX
+        bmin: QUAD:DASEL:880:BMIN
+        ctrl: QUAD:DASEL:880:CTRL
       control_name: QUAD:DASEL:880
     metadata:
       area: DASEL
@@ -234,7 +290,14 @@ magnets:
       type: QUAD
   QDAS18B:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: QUAD:DASEL:882:BACT
+        bcon: QUAD:DASEL:882:BCON
+        bctrl: QUAD:DASEL:882:BCTRL
+        bdes: QUAD:DASEL:882:BDES
+        bmax: QUAD:DASEL:882:BMAX
+        bmin: QUAD:DASEL:882:BMIN
+        ctrl: QUAD:DASEL:882:CTRL
       control_name: QUAD:DASEL:882
     metadata:
       area: DASEL
@@ -244,7 +307,14 @@ magnets:
       type: QUAD
   QDAS19:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: QUAD:DASEL:910:BACT
+        bcon: QUAD:DASEL:910:BCON
+        bctrl: QUAD:DASEL:910:BCTRL
+        bdes: QUAD:DASEL:910:BDES
+        bmax: QUAD:DASEL:910:BMAX
+        bmin: QUAD:DASEL:910:BMIN
+        ctrl: QUAD:DASEL:910:CTRL
       control_name: QUAD:DASEL:910
     metadata:
       area: DASEL
@@ -339,7 +409,14 @@ magnets:
       type: XCOR
   RCDAS19:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: XCOR:DASEL:998:BACT
+        bcon: XCOR:DASEL:998:BCON
+        bctrl: XCOR:DASEL:998:BCTRL
+        bdes: XCOR:DASEL:998:BDES
+        bmax: XCOR:DASEL:998:BMAX
+        bmin: XCOR:DASEL:998:BMIN
+        ctrl: XCOR:DASEL:998:CTRL
       control_name: XCOR:DASEL:998
     metadata:
       area: DASEL
@@ -366,7 +443,14 @@ magnets:
       type: XCOR
   XCDAS14:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: XCOR:DASEL:622:BACT
+        bcon: XCOR:DASEL:622:BCON
+        bctrl: XCOR:DASEL:622:BCTRL
+        bdes: XCOR:DASEL:622:BDES
+        bmax: XCOR:DASEL:622:BMAX
+        bmin: XCOR:DASEL:622:BMIN
+        ctrl: XCOR:DASEL:622:CTRL
       control_name: XCOR:DASEL:622
     metadata:
       area: DASEL
@@ -393,7 +477,14 @@ magnets:
       type: YCOR
   YCDAS17:
     controls_information:
-      PVs: {}
+      PVs:
+        bact: YCOR:DASEL:821:BACT
+        bcon: YCOR:DASEL:821:BCON
+        bctrl: YCOR:DASEL:821:BCTRL
+        bdes: YCOR:DASEL:821:BDES
+        bmax: YCOR:DASEL:821:BMAX
+        bmin: YCOR:DASEL:821:BMIN
+        ctrl: YCOR:DASEL:821:CTRL
       control_name: YCOR:DASEL:821
     metadata:
       area: DASEL
