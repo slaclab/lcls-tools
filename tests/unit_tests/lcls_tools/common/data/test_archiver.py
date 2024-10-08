@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 import requests
 
-from lcls_tools.common.data_analysis.archiver import (
+from lcls_tools.common.data.archiver import (
     ArchiveDataHandler,
     ArchiverValue,
     get_data_at_time,
@@ -368,7 +368,7 @@ class TestArchiver(unittest.TestCase):
                 "test_get_data_with_time_interval connection unsuccessful as network was unreachable."
             )
 
-    @mock.patch("lcls_tools.common.data_analysis.archiver.get_data_at_time")
+    @mock.patch("lcls_tools.common.data.archiver.get_data_at_time")
     def test_get_data_with_time_interval_mocked(self, mocked_get_data: mock.MagicMock):
         """
         We want to overload the call to get_data_at_time that
