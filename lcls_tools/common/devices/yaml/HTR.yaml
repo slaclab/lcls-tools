@@ -1,3 +1,29 @@
+lblms:
+  LBLM01A:
+    controls_information:
+      PVs:
+        bypass: LBLM:HTR:167:A:FAST_AMP_BYP
+        gain: LBLM:HTR:167:A:FAST_AMP_GAIN
+        gated_integral: LBLM:HTR:167:A:GATED_INTEGRAL
+        i0_loss: LBLM:HTR:167:A:I0_LOSS
+      control_name: LBLM:HTR:167:A
+    metadata:
+      area: HTR
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM01B:
+    controls_information:
+      PVs:
+        bypass: LBLM:HTR:167:B:FAST_AMP_BYP
+        gain: LBLM:HTR:167:B:FAST_AMP_GAIN
+        i0_loss: LBLM:HTR:167:B:I0_LOSS
+      control_name: LBLM:HTR:167:B
+    metadata:
+      area: HTR
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   BCXH1:
     controls_information:
@@ -783,6 +809,8 @@ wires:
         retract: WIRE:HTR:340:MOTR_RETRACT
         scan_pulses: WIRE:HTR:340:SCANPULSES
         speed: WIRE:HTR:340:MOTR.VELO
+        speed_max: WIRE:HTR:340:MOTR.VMAX
+        speed_min: WIRE:HTR:340:MOTR.VBAS
         start_scan: WIRE:HTR:340:STARTSCAN
         timeout: WIRE:HTR:340:MOTR_TIMEOUTEN
         u_size: WIRE:HTR:340:UWIRESIZE
