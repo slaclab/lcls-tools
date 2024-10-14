@@ -572,16 +572,18 @@ wires:
   WS13:
     controls_information:
       PVs:
-        abort: WIRE:LI21:301:MOTR.STOP
+        abort_scan: WIRE:LI21:301:MOTR.STOP
         enabled: WIRE:LI21:301:MOTR_ENABLED_STS
         homed: WIRE:LI21:301:MOTR_HOMED_STS
         initialize: WIRE:LI21:301:MOTR_INIT
-        initialized: WIRE:LI21:301:MOTR_INIT_STS
-        motr: WIRE:LI21:301:MOTR
-        rbv: WIRE:LI21:301:MOTR.RBV
+        initialize_status: WIRE:LI21:301:MOTR_INIT_STS
+        motor: WIRE:LI21:301:MOTR
+        position: WIRE:LI21:301:MOTR.RBV
         retract: WIRE:LI21:301:MOTR_RETRACT
         scan_pulses: WIRE:LI21:301:SCANPULSES
         speed: WIRE:LI21:301:MOTR.VELO
+        speed_max: WIRE:LI21:301:MOTR.VMAX
+        speed_min: WIRE:LI21:301:MOTR.VBAS
         start_scan: WIRE:LI21:301:STARTSCAN
         temperature: WIRE:LI21:301:TEMP
         timeout: WIRE:LI21:301:MOTR_TIMEOUTEN

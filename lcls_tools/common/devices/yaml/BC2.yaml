@@ -295,6 +295,8 @@ wires:
         position: WIRE:LI24:705:MOTR.RBV
         scan_pulses: WIRE:LI24:705:SCANPULSES
         speed: WIRE:LI24:705:MOTR.VELO
+        speed_max: WIRE:LI24:705:MOTR.VMAX
+        speed_min: WIRE:LI24:705:MOTR.VBAS
         start_scan: WIRE:LI24:705:STARTSCAN
         u_wire_inner: WIRE:LI24:705:UWIREINNER
         u_wire_outer: WIRE:LI24:705:UWIREOUTER

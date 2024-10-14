@@ -706,6 +706,8 @@ wires:
         position: WIRE:IN20:531:MOTR.RBV
         scan_pulses: WIRE:IN20:531:SCANPULSES
         speed: WIRE:IN20:531:MOTR.VELO
+        speed_max: WIRE:IN20:531:MOTR.VMAX
+        speed_min: WIRE:IN20:531:MOTR.VBAS
         start_scan: WIRE:IN20:531:STARTSCAN
         u_size: WIRE:IN20:531:UWIRESIZE
         u_wire_inner: WIRE:IN20:531:UWIREINNER
@@ -735,7 +737,6 @@ wires:
   WS02:
     controls_information:
       PVs:
-
         abort_scan: WIRE:IN20:561:MOTR.STOP
         enabled: WIRE:IN20:561:MOTR_ENABLED_STS
         homed: WIRE:IN20:561:MOTR_HOMED_STS
@@ -746,6 +747,8 @@ wires:
         retract: WIRE:IN20:561:MOTR_RETRACT
         scan_pulses: WIRE:IN20:561:SCANPULSES
         speed: WIRE:IN20:561:MOTR.VELO
+        speed_max: WIRE:IN20:561:MOTR.VMAX
+        speed_min: WIRE:IN20:561:MOTR.VBAS
         start_scan: WIRE:IN20:561:STARTSCAN
         temperature: WIRE:IN20:561:TEMP
         timeout: WIRE:IN20:561:MOTR_TIMEOUTEN
@@ -787,6 +790,8 @@ wires:
         retract: WIRE:IN20:611:MOTR_RETRACT
         scan_pulses: WIRE:IN20:611:SCANPULSES
         speed: WIRE:IN20:611:MOTR.VELO
+        speed_max: WIRE:IN20:611:MOTR.VMAX
+        speed_min: WIRE:IN20:611:MOTR.VBAS
         start_scan: WIRE:IN20:611:STARTSCAN
         temperature: WIRE:IN20:611:TEMP
         timeout: WIRE:IN20:611:MOTR_TIMEOUTEN
@@ -825,6 +830,8 @@ wires:
         position: WIRE:IN20:741:MOTR.RBV
         scan_pulses: WIRE:IN20:741:SCANPULSES
         speed: WIRE:IN20:741:MOTR.VELO
+        speed_max: WIRE:IN20:741:MOTR.VMAX
+        speed_min: WIRE:IN20:741:MOTR.VBAS
         start_scan: WIRE:IN20:741:STARTSCAN
         u_size: WIRE:IN20:741:UWIRESIZE
         u_wire_inner: WIRE:IN20:741:UWIREINNER
