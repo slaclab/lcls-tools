@@ -241,6 +241,8 @@ wires:
         retract: WIRE:SPD:872:MOTR_RETRACT
         scan_pulses: WIRE:SPD:872:SCANPULSES
         speed: WIRE:SPD:872:MOTR.VELO
+        speed_max: WIRE:SPD:872:MOTR.VMAX
+        speed_min: WIRE:SPD:872:MOTR.VBAS
         start_scan: WIRE:SPD:872:STARTSCAN
         temperature: WIRE:SPD:872:TEMP
         timeout: WIRE:SPD:872:MOTR_TIMEOUTEN

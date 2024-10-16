@@ -1,3 +1,115 @@
+lblms:
+  LBLM11A_1:
+    controls_information:
+      PVs:
+        bypass: LBLM:BPN13:410:A:FAST_AMP_BYP
+        gain: LBLM:BPN13:410:A:FAST_AMP_GAIN
+        gated_integral: LBLM:BPN13:410:A:GATED_INTEGRAL
+        i0_loss: LBLM:BPN13:410:A:I0_LOSS
+      control_name: LBLM:BPN13:410:A
+    metadata:
+      area: BYP
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM11A_2:
+    controls_information:
+      PVs:
+        bypass: LBLM:BPN15:410:A:FAST_AMP_BYP
+        gain: LBLM:BPN15:410:A:FAST_AMP_GAIN
+        gated_integral: LBLM:BPN15:410:A:GATED_INTEGRAL
+        i0_loss: LBLM:BPN15:410:A:I0_LOSS
+      control_name: LBLM:BPN15:410:A
+    metadata:
+      area: BYP
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM11A_3:
+    controls_information:
+      PVs:
+        bypass: LBLM:BPN17:517:A:FAST_AMP_BYP
+        gain: LBLM:BPN17:517:A:FAST_AMP_GAIN
+        gated_integral: LBLM:BPN17:517:A:GATED_INTEGRAL
+        i0_loss: LBLM:BPN17:517:A:I0_LOSS
+      control_name: LBLM:BPN17:517:A
+    metadata:
+      area: BYP
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM11A_4:
+    controls_information:
+      PVs:
+        bypass: LBLM:BPN19:635:A:FAST_AMP_BYP
+        gain: LBLM:BPN19:635:A:FAST_AMP_GAIN
+        i0_loss: LBLM:BPN19:635:A:I0_LOSS
+      control_name: LBLM:BPN19:635:A
+    metadata:
+      area: BYP
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM12A:
+    controls_information:
+      PVs:
+        bypass: LBLM:BPN21:635:A:FAST_AMP_BYP
+        gain: LBLM:BPN21:635:A:FAST_AMP_GAIN
+        i0_loss: LBLM:BPN21:635:A:I0_LOSS
+      control_name: LBLM:BPN21:635:A
+    metadata:
+      area: BYP
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM14A:
+    controls_information:
+      PVs:
+        bypass: LBLM:BPN23:739:A:FAST_AMP_BYP
+        gain: LBLM:BPN23:739:A:FAST_AMP_GAIN
+        i0_loss: LBLM:BPN23:739:A:I0_LOSS
+      control_name: LBLM:BPN23:739:A
+    metadata:
+      area: BYP
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM16A:
+    controls_information:
+      PVs:
+        bypass: LBLM:BPN25:739:A:FAST_AMP_BYP
+        gain: LBLM:BPN25:739:A:FAST_AMP_GAIN
+        i0_loss: LBLM:BPN25:739:A:I0_LOSS
+      control_name: LBLM:BPN25:739:A
+    metadata:
+      area: BYP
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM18A:
+    controls_information:
+      PVs:
+        bypass: LBLM:BPN27:739:A:FAST_AMP_BYP
+        gain: LBLM:BPN27:739:A:FAST_AMP_GAIN
+        i0_loss: LBLM:BPN27:739:A:I0_LOSS
+      control_name: LBLM:BPN27:739:A
+    metadata:
+      area: BYP
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM20B:
+    controls_information:
+      PVs:
+        bypass: LBLM:BPN28:739:B:FAST_AMP_BYP
+        gain: LBLM:BPN28:739:B:FAST_AMP_GAIN
+        i0_loss: LBLM:BPN28:739:B:I0_LOSS
+      control_name: LBLM:BPN28:739:B
+    metadata:
+      area: BYP
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   QBP13:
     controls_information:
@@ -1237,6 +1349,8 @@ wires:
         retract: WIRE:BPN12:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN12:850:SCANPULSES
         speed: WIRE:BPN12:850:MOTR.VELO
+        speed_max: WIRE:BPN12:850:MOTR.VMAX
+        speed_min: WIRE:BPN12:850:MOTR.VBAS
         start_scan: WIRE:BPN12:850:STARTSCAN
         temperature: WIRE:BPN12:850:TEMP
         timeout: WIRE:BPN12:850:MOTR_TIMEOUTEN
@@ -1279,6 +1393,8 @@ wires:
         retract: WIRE:BPN14:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN14:850:SCANPULSES
         speed: WIRE:BPN14:850:MOTR.VELO
+        speed_max: WIRE:BPN14:850:MOTR.VMAX
+        speed_min: WIRE:BPN14:850:MOTR.VBAS
         start_scan: WIRE:BPN14:850:STARTSCAN
         temperature: WIRE:BPN14:850:TEMP
         timeout: WIRE:BPN14:850:MOTR_TIMEOUTEN
@@ -1321,6 +1437,8 @@ wires:
         retract: WIRE:BPN16:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN16:850:SCANPULSES
         speed: WIRE:BPN16:850:MOTR.VELO
+        speed_max: WIRE:BPN16:850:MOTR.VMAX
+        speed_min: WIRE:BPN16:850:MOTR.VBAS
         start_scan: WIRE:BPN16:850:STARTSCAN
         temperature: WIRE:BPN16:850:TEMP
         timeout: WIRE:BPN16:850:MOTR_TIMEOUTEN

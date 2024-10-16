@@ -1,3 +1,28 @@
+lblms:
+  LBLM22A:
+    controls_information:
+      PVs:
+        bypass: LBLM:SPS:443:A:FAST_AMP_BYP
+        gain: LBLM:SPS:443:A:FAST_AMP_GAIN
+        gated_integral: LBLM:SPS:443:A:GATED_INTEGRAL
+        i0_loss: LBLM:SPS:443:A:I0_LOSS
+      control_name: LBLM:SPS:443:A
+    metadata:
+      area: SPS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM23B:
+    controls_information:
+      PVs:
+        bypass: LBLM:SPS:870:B:FAST_AMP_BYP
+        gain: LBLM:SPS:870:B:FAST_AMP_GAIN
+      control_name: LBLM:SPS:870:B
+    metadata:
+      area: SPS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   BKYSP1S:
     controls_information:

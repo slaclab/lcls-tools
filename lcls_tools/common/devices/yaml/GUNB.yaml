@@ -1,3 +1,28 @@
+lblms:
+  LBLM00A:
+    controls_information:
+      PVs:
+        bypass: LBLM:GUNB:212:A:FAST_AMP_BYP
+        gain: LBLM:GUNB:212:A:FAST_AMP_GAIN
+        i0_loss: LBLM:GUNB:212:A:I0_LOSS
+      control_name: LBLM:GUNB:212:A
+    metadata:
+      area: GUNB
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM00B:
+    controls_information:
+      PVs:
+        bypass: LBLM:GUNB:212:B:FAST_AMP_BYP
+        gain: LBLM:GUNB:212:B:FAST_AMP_GAIN
+        i0_loss: LBLM:GUNB:212:B:I0_LOSS
+      control_name: LBLM:GUNB:212:B
+    metadata:
+      area: GUNB
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   CQ01B:
     controls_information:

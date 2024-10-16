@@ -1,3 +1,29 @@
+lblms:
+  LBLM03A:
+    controls_information:
+      PVs:
+        bypass: LBLM:L1B:H282:A:FAST_AMP_BYP
+        gain: LBLM:L1B:H282:A:FAST_AMP_GAIN
+        gated_integral: LBLM:L1B:H282:A:GATED_INTEGRAL
+        i0_loss: LBLM:L1B:H282:A:I0_LOSS
+      control_name: LBLM:L1B:H282:A
+    metadata:
+      area: L1B
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM03B:
+    controls_information:
+      PVs:
+        bypass: LBLM:L1B:H282:B:FAST_AMP_BYP
+        gain: LBLM:L1B:H282:B:FAST_AMP_GAIN
+        i0_loss: LBLM:L1B:H282:B:I0_LOSS
+      control_name: LBLM:L1B:H282:B
+    metadata:
+      area: L1B
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   QCM02:
     controls_information:
