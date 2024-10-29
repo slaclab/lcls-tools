@@ -1,3 +1,37 @@
+lblms:
+  LBLMS40A:
+    controls_information:
+      PVs:
+        bypass: LBLM:UNDS:4050:A:FAST_AMP_BYP
+        gain: LBLM:UNDS:4050:A:FAST_AMP_GAIN
+      control_name: LBLM:UNDS:4050:A
+    metadata:
+      area: UNDS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLMS46A:
+    controls_information:
+      PVs:
+        bypass: LBLM:UNDS:4650:A:FAST_AMP_BYP
+        gain: LBLM:UNDS:4650:A:FAST_AMP_GAIN
+      control_name: LBLM:UNDS:4650:A
+    metadata:
+      area: UNDS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLMS46B:
+    controls_information:
+      PVs:
+        bypass: LBLM:UNDS:4650:B:FAST_AMP_BYP
+        gain: LBLM:UNDS:4650:B:FAST_AMP_GAIN
+      control_name: LBLM:UNDS:4650:B
+    metadata:
+      area: UNDS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   BCXSS1:
     controls_information:

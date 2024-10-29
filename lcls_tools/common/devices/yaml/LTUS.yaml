@@ -1,3 +1,71 @@
+lblms:
+  LBLMS26A:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUS:105:A:FAST_AMP_BYP
+        gain: LBLM:LTUS:105:A:FAST_AMP_GAIN
+      control_name: LBLM:LTUS:105:A
+    metadata:
+      area: LTUS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLMS30A:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUS:433:A:FAST_AMP_BYP
+        gain: LBLM:LTUS:433:A:FAST_AMP_GAIN
+      control_name: LBLM:LTUS:433:A
+    metadata:
+      area: LTUS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLMS30B:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUS:433:B:FAST_AMP_BYP
+        gain: LBLM:LTUS:433:B:FAST_AMP_GAIN
+      control_name: LBLM:LTUS:433:B
+    metadata:
+      area: LTUS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLMS32A:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUS:738:A:FAST_AMP_BYP
+        gain: LBLM:LTUS:738:A:FAST_AMP_GAIN
+        gated_integral: LBLM:LTUS:738:A:GATED_INTEGRAL
+      control_name: LBLM:LTUS:738:A
+    metadata:
+      area: LTUS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLMS32B:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUS:738:B:FAST_AMP_BYP
+        gain: LBLM:LTUS:738:B:FAST_AMP_GAIN
+      control_name: LBLM:LTUS:738:B
+    metadata:
+      area: LTUS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLMS34A:
+    controls_information:
+      PVs:
+        bypass: LBLM:LTUS:846:A:FAST_AMP_BYP
+        gain: LBLM:LTUS:846:A:FAST_AMP_GAIN
+      control_name: LBLM:LTUS:846:A
+    metadata:
+      area: LTUS
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   BCX31B1:
     controls_information:
@@ -2031,6 +2099,8 @@ wires:
         retract: WIRE:LTUS:715:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:715:SCANPULSES
         speed: WIRE:LTUS:715:MOTR.VELO
+        speed_max: WIRE:LTUS:715:MOTR.VMAX
+        speed_min: WIRE:LTUS:715:MOTR.VBAS
         start_scan: WIRE:LTUS:715:STARTSCAN
         temperature: WIRE:LTUS:715:TEMP
         timeout: WIRE:LTUS:715:MOTR_TIMEOUTEN
@@ -2071,6 +2141,8 @@ wires:
         retract: WIRE:LTUS:735:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:735:SCANPULSES
         speed: WIRE:LTUS:735:MOTR.VELO
+        speed_max: WIRE:LTUS:735:MOTR.VMAX
+        speed_min: WIRE:LTUS:735:MOTR.VBAS
         start_scan: WIRE:LTUS:735:STARTSCAN
         temperature: WIRE:LTUS:735:TEMP
         timeout: WIRE:LTUS:735:MOTR_TIMEOUTEN
@@ -2111,6 +2183,8 @@ wires:
         retract: WIRE:LTUS:755:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:755:SCANPULSES
         speed: WIRE:LTUS:755:MOTR.VELO
+        speed_max: WIRE:LTUS:755:MOTR.VMAX
+        speed_min: WIRE:LTUS:755:MOTR.VBAS
         start_scan: WIRE:LTUS:755:STARTSCAN
         temperature: WIRE:LTUS:755:TEMP
         timeout: WIRE:LTUS:755:MOTR_TIMEOUTEN
@@ -2151,6 +2225,8 @@ wires:
         retract: WIRE:LTUS:785:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:785:SCANPULSES
         speed: WIRE:LTUS:785:MOTR.VELO
+        speed_max: WIRE:LTUS:785:MOTR.VMAX
+        speed_min: WIRE:LTUS:785:MOTR.VBAS
         start_scan: WIRE:LTUS:785:STARTSCAN
         temperature: WIRE:LTUS:785:TEMP
         timeout: WIRE:LTUS:785:MOTR_TIMEOUTEN

@@ -1,3 +1,37 @@
+lblms:
+  LBLMH40A:
+    controls_information:
+      PVs:
+        bypass: LBLM:UNDH:4050:A:FAST_AMP_BYP
+        gain: LBLM:UNDH:4050:A:FAST_AMP_GAIN
+      control_name: LBLM:UNDH:4050:A
+    metadata:
+      area: UNDH
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLMH47A:
+    controls_information:
+      PVs:
+        bypass: LBLM:UNDH:4750:A:FAST_AMP_BYP
+        gain: LBLM:UNDH:4750:A:FAST_AMP_GAIN
+      control_name: LBLM:UNDH:4750:A
+    metadata:
+      area: UNDH
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLMH47B:
+    controls_information:
+      PVs:
+        bypass: LBLM:UNDH:4750:B:FAST_AMP_BYP
+        gain: LBLM:UNDH:4750:B:FAST_AMP_GAIN
+      control_name: LBLM:UNDH:4750:B
+    metadata:
+      area: UNDH
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
 magnets:
   BCXCB21:
     controls_information:
