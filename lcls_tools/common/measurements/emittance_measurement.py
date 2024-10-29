@@ -8,6 +8,21 @@ from typing import Optional
 
 
 class QuadScanEmittance(Measurement):
+    """Use a quad and profile monitor/wire scanner to perform an emittance measurement
+    ------------------------
+    Arguments:
+    beamline: beamline where the devices are located
+    energy: beam energy
+    magnet_collection: MagnetCollection object of magnets for an area of the beamline (use create_magnet())
+    magnet_name: name of magnet
+    scan_values: BDES values of magnet to scan over
+    device_measurement: Measurement object of profile monitor/wire scanner
+    ------------------------
+    Methods:
+    measure: does the quad scan, getting the beam sizes at each scan value,
+    gets the rmats and twiss parameters, then computes and returns the emittance and BMAG
+    measure_beamsize: take measurement from measurement device, store beam sizes
+    """
     beamline: str
     energy: float
     magnet_collection: MagnetCollection
@@ -31,8 +46,8 @@ class QuadScanEmittance(Measurement):
         Perform the scan, measuring beam sizes at each scan value
         Compute the emittance and BMAG using the geometric focusing strengths,
         beam sizes squared, magnet length, rmats, and twiss betas and alphas"""
-        self.rmats, self.twiss = get_optics(self.magnet_name, self.device_measurement.device.name, self.beamline)
         self.magnet_collection.scan(scan_settings=self.magnet_settings, function=self.measure_beamsize)
+        self.rmats, self.twiss = get_optics(self.magnet_name, self.device_measurement.device.name, self.beamline)
         beamsize_squared = np.vstack((self.beam_sizes["x_rms"], self.beam_sizes["y_rms"]))**2
         magnet_length = self.magnet_collection.magnets[self.magnet_name].length
         twiss_betas_alphas = np.array([[self.twiss["beta_x"], self.twiss["alpha_x"]],
