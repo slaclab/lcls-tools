@@ -1,3 +1,5 @@
+from meme.model import Model
+
 def bmag(twiss, twiss_reference):
     """Calculates BMAG from imput twiss and reference twiss"""
     beta_a, alpha_a, beta_b, alpha_b = twiss
@@ -49,3 +51,10 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None,
         bp = ele["E_TOT"] / 1e9 / 299.792458 * 1e4  # kG m
         effective_length = ele["L"]
     return bdes / effective_length / bp  # kG / m / kG m = 1/m^2
+
+def get_optics(magnet: str, measurement_device: str, beamline: str):
+    """Get rmats and twiss for a given beamline, magnet and measurement device"""
+    model = Model(beamline)
+    rmats = model.get_rmat(from_device=magnet, to_device=measurement_device)
+    twiss = model.get_twiss(magnet)
+    return rmats, twiss
