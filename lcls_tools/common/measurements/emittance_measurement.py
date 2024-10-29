@@ -29,21 +29,21 @@ class QuadScanEmittance(Measurement):
         """Returns the emittance and BMAG
         Get the rmats and twiss parameters
         Perform the scan, measuring beam sizes at each scan value
-        Compute the emittance and BMAG using the geometric focusing strengths, 
+        Compute the emittance and BMAG using the geometric focusing strengths,
         beam sizes squared, magnet length, rmats, and twiss betas and alphas"""
         self.rmats, self.twiss = get_optics(self.magnet_name, self.device_measurement.device.name, self.beamline)
         self.magnet_collection.scan(scan_settings=self.magnet_settings, function=self.measure_beamsize)
         beamsize_squared = np.vstack((self.beam_sizes["x_rms"], self.beam_sizes["y_rms"]))**2
         magnet_length = self.magnet_collection.magnets[self.magnet_name].length
-        twiss_betas_alphas = np.array([[self.twiss["beta_x"], self.twiss["alpha_x"]], 
+        twiss_betas_alphas = np.array([[self.twiss["beta_x"], self.twiss["alpha_x"]],
                                        [self.twiss["beta_y"], self.twiss["alpha_y"]]])
         kmod = bdes_to_kmod(self.energy, magnet_length, self.scan_values)
         emittance, bmag, _, _ = compute_emit_bmag(
-            k = kmod,
-            beamsize_squared = beamsize_squared,
-            q_len = magnet_length,
-            rmat = self.rmats,
-            twiss_design = twiss_betas_alphas
+            k=kmod,
+            beamsize_squared=beamsize_squared,
+            q_len=magnet_length,
+            rmat=self.rmats,
+            twiss_design=twiss_betas_alphas
         )
 
         results = {
@@ -52,7 +52,7 @@ class QuadScanEmittance(Measurement):
         }
 
         return results
-    
+
     def measure_beamsize(self):
         """Take measurement from measurement device, store beam sizes in self.beam_sizes"""
         results = self.device_measurement.measure()
@@ -62,9 +62,11 @@ class QuadScanEmittance(Measurement):
             self.beam_sizes["y_rms"] = []
         self.beam_sizes["x_rms"].append(results["Sx"])
         self.beam_sizes["y_rms"].append(results["Sy"])
-    
+
+
 class MultiDeviceEmittance(Measurement):
     pass
+
 
 def compute_emit_bmag(self, k, beamsize_squared, q_len, rmat, twiss_design, thin_lens, maxiter):
     pass
