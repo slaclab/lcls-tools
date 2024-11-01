@@ -107,7 +107,7 @@ class MethodBase(ABC):
     @property
     def priors(self):
         """
-        Initial Priors store in a dictionary where the keys are the 
+        Initial Priors store in a dictionary where the keys are the
         complete set of parameters of the Model
         """
         return self._priors
