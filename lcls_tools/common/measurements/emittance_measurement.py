@@ -1,4 +1,5 @@
 import numpy as np
+from pydantic import ConfigDict
 
 from lcls_tools.common.devices.magnet import MagnetCollection
 from lcls_tools.common.measurements.measurement import Measurement
@@ -20,21 +21,23 @@ class QuadScanEmittance(Measurement):
     ------------------------
     Methods:
     measure: does the quad scan, getting the beam sizes at each scan value,
-    gets the rmats and twiss parameters, then computes and returns the emittance and BMAG
+    gets the rmat and twiss parameters, then computes and returns the emittance and BMAG
     measure_beamsize: take measurement from measurement device, store beam sizes
     """
+    name: str = "emittance_profile"
     beamline: str
     energy: float
     magnet_collection: MagnetCollection
     magnet_name: str
+    #TODO: remove magnet_length once lengths added to yaml files
+    magnet_length: float
     scan_values: list[float]
     device_measurement: Measurement
-    rmats: Optional[np.ndarray]
-    twiss: Optional[np.ndarray]
-    beam_sizes: Optional[dict]
+    rmat: Optional[np.ndarray] = None
+    twiss: Optional[np.ndarray] = None
+    beam_sizes: Optional[dict] = {}
 
-    def __init__(self):
-        super().__init__()
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
     @property
     def magnet_settings(self) -> list[dict]:
@@ -42,22 +45,23 @@ class QuadScanEmittance(Measurement):
 
     def measure(self):
         """Returns the emittance and BMAG
-        Get the rmats and twiss parameters
+        Get the rmat and twiss parameters
         Perform the scan, measuring beam sizes at each scan value
         Compute the emittance and BMAG using the geometric focusing strengths,
-        beam sizes squared, magnet length, rmats, and twiss betas and alphas"""
+        beam sizes squared, magnet length, rmat, and twiss betas and alphas"""
         self.magnet_collection.scan(scan_settings=self.magnet_settings, function=self.measure_beamsize)
-        self.rmats, self.twiss = get_optics(self.magnet_name, self.device_measurement.device.name, self.beamline)
+        self.rmat, self.twiss = get_optics(self.magnet_name, self.device_measurement.device.name, self.beamline)
         beamsize_squared = np.vstack((self.beam_sizes["x_rms"], self.beam_sizes["y_rms"]))**2
-        magnet_length = self.magnet_collection.magnets[self.magnet_name].length
+        #TODO: uncomment once lengths added to yaml files
+        # magnet_length = self.magnet_collection.magnets[self.magnet_name].length
         twiss_betas_alphas = np.array([[self.twiss["beta_x"], self.twiss["alpha_x"]],
                                        [self.twiss["beta_y"], self.twiss["alpha_y"]]])
-        kmod = bdes_to_kmod(self.energy, magnet_length, self.scan_values)
+        kmod = bdes_to_kmod(self.energy, self.magnet_length, np.array(self.scan_values))
         emittance, bmag, _, _ = compute_emit_bmag(
             k=kmod,
             beamsize_squared=beamsize_squared,
-            q_len=magnet_length,
-            rmat=self.rmats,
+            q_len=self.magnet_length,
+            rmat=self.rmat,
             twiss_design=twiss_betas_alphas
         )
 
@@ -75,13 +79,13 @@ class QuadScanEmittance(Measurement):
             self.beam_sizes["x_rms"] = []
         if "y_rms" not in self.beam_sizes:
             self.beam_sizes["y_rms"] = []
-        self.beam_sizes["x_rms"].append(results["Sx"])
-        self.beam_sizes["y_rms"].append(results["Sy"])
+        self.beam_sizes["x_rms"].append(np.mean(results["Sx"]))
+        self.beam_sizes["y_rms"].append(np.mean(results["Sy"]))
 
 
 class MultiDeviceEmittance(Measurement):
     pass
 
-
+#TODO: delete and import actual compute_emit_bmag
 def compute_emit_bmag(self, k, beamsize_squared, q_len, rmat, twiss_design, thin_lens, maxiter):
     pass
