@@ -1,10 +1,10 @@
 from lcls_tools.common.measurements.screen_beam_profile_measurement import (
     ScreenBeamProfileMeasurement,
 )
-from lcls_tools.common.data_analysis.fit.projection import ProjectionFit
-from lcls_tools.common.data_analysis.fit.methods import GaussianModel
-from lcls_tools.common.image_processing.image_processing import ImageProcessor
-from lcls_tools.common.image_processing.roi import RectangularROI
+from lcls_tools.common.data.fit.projection import ProjectionFit
+from lcls_tools.common.data.fit.methods import GaussianModel
+from lcls_tools.common.image.processing import ImageProcessor
+from lcls_tools.common.image.roi import ROI
 from lcls_tools.common.devices.device import Metadata
 from lcls_tools.common.devices.screen import (
     ScreenControlInformation,
@@ -47,13 +47,12 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
         self.radius = 50
         self.size = (800, 800)
         self.center = [400, 400]
-        self.xwidth = 300
-        self.ywidth = 300
+        self.extent = [300, 300]
         self.means = [150, 150]
         self.sigmas = [30, 30]
         self.amplitude = [99, 99]
         self.offsets = [1, 1]
-        self.roi = RectangularROI(center=[400, 400], xwidth=300, ywidth=300)
+        self.roi = ROI(center=[400, 400], extent=[300, 300])
         self.image_processor = ImageProcessor(roi=self.roi)
 
         self.pvs = {

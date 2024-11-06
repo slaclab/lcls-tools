@@ -1,6 +1,6 @@
 from lcls_tools.common.devices.screen import Screen
-from lcls_tools.common.image_processing.image_processing import ImageProcessor
-from lcls_tools.common.data_analysis.fit.projection import ProjectionFit
+from lcls_tools.common.image.processing import ImageProcessor
+from lcls_tools.common.data.fit.projection import ProjectionFit
 from lcls_tools.common.measurements.measurement import Measurement
 import numpy as np
 
@@ -95,5 +95,5 @@ class ScreenBeamProfileMeasurement(Measurement):
         # if self.charge_window is not None:
         # if not self.charge_window.in_window():
         # return {}
-        processed_image = self.image_processor.process(raw_image)
+        processed_image = self.image_processor.auto_process(raw_image)
         return {"raw_image": raw_image, "processed_image": processed_image}
