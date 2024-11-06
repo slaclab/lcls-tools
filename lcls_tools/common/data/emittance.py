@@ -178,7 +178,12 @@ def compute_emit_bmag(
     else:
         bmag = None
 
-    return emit, bmag, beam_matrix, twiss_at_screen
+    results = {}
+    results["emittance"] = emit
+    results["BMAG"] = bmag
+    results["beam_matrix"] = beam_matrix
+    results["twiss_at_screen"] = twiss_at_screen
+    return results
 
 
 def normalize_emittance(emit, energy):
