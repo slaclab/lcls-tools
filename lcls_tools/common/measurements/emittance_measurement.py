@@ -29,7 +29,7 @@ class QuadScanEmittance(Measurement):
     energy: float
     magnet_collection: MagnetCollection
     magnet_name: str
-    #TODO: remove magnet_length once lengths added to yaml files
+    # TODO: remove magnet_length once lengths added to yaml files
     magnet_length: float
     scan_values: list[float]
     device_measurement: Measurement
@@ -52,7 +52,7 @@ class QuadScanEmittance(Measurement):
         self.magnet_collection.scan(scan_settings=self.magnet_settings, function=self.measure_beamsize)
         self.rmat, self.twiss = get_optics(self.magnet_name, self.device_measurement.device.name, self.beamline)
         beamsize_squared = np.vstack((self.beam_sizes["x_rms"], self.beam_sizes["y_rms"]))**2
-        #TODO: uncomment once lengths added to yaml files
+        # TODO: uncomment once lengths added to yaml files
         # magnet_length = self.magnet_collection.magnets[self.magnet_name].length
         twiss_betas_alphas = np.array([[self.twiss["beta_x"], self.twiss["alpha_x"]],
                                        [self.twiss["beta_y"], self.twiss["alpha_y"]]])
@@ -86,6 +86,7 @@ class QuadScanEmittance(Measurement):
 class MultiDeviceEmittance(Measurement):
     pass
 
-#TODO: delete and import actual compute_emit_bmag
+
+# TODO: delete and import actual compute_emit_bmag
 def compute_emit_bmag(self, k, beamsize_squared, q_len, rmat, twiss_design, thin_lens, maxiter):
     pass
