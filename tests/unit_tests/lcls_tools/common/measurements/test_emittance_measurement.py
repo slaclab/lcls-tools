@@ -54,8 +54,8 @@ class EmittanceMeasurementTest(TestCase):
                                 ('alpha_y', 'float32'), ('beta_y', 'float32'), ('eta_y', 'float32'),
                                 ('etap_y', 'float32'), ('psi_y', 'float32')])
         twiss_mock = np.array([(11.977644, 2027.7198, 0.054, 1.3499904e+08, 3.9888208, 5.5319443,
-            -6.172034e-18, 1.2438233e-17, 5.954487, 0.01185468, 5.314966, 0., 0., 3.5827537)],
-            dtype=twiss_dtype)
+                                -6.172034e-18, 1.2438233e-17, 5.954487, 0.01185468, 5.314966, 0., 0., 3.5827537)],
+                                dtype=twiss_dtype)
         mock_get_optics.return_value = (rmat_mock, twiss_mock)
         mock_compute_emit_bmag.return_value = (1.5e-9, 1.5, None, None)
         mock_bact_settle.return_value = True
