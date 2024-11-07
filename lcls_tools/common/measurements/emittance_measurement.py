@@ -24,7 +24,7 @@ class QuadScanEmittance(Measurement):
     gets the rmat and twiss parameters, then computes and returns the emittance and BMAG
     measure_beamsize: take measurement from measurement device, store beam sizes
     """
-    name: str = "emittance_profile"
+    name: str = "quad_scan_emittance"
     beamline: str
     energy: float
     magnet_collection: MagnetCollection
@@ -44,8 +44,8 @@ class QuadScanEmittance(Measurement):
         return [{self.magnet_name: value} for value in self.scan_values]
 
     def measure(self):
-        """Returns the emittance and BMAG
-        Get the rmat and twiss parameters
+        """Returns the emittance, BMAG, x_rms and y_rms
+        Get the rmat, twiss parameters, and measured beam sizes
         Perform the scan, measuring beam sizes at each scan value
         Compute the emittance and BMAG using the geometric focusing strengths,
         beam sizes squared, magnet length, rmat, and twiss betas and alphas"""
@@ -67,7 +67,9 @@ class QuadScanEmittance(Measurement):
 
         results = {
             "emittance": emittance,
-            "BMAG": bmag
+            "BMAG": bmag,
+            "x_rms": self.beam_sizes["x_rms"],
+            "y_rms": self.beam_sizes["y_rms"]
         }
 
         return results
@@ -84,9 +86,12 @@ class QuadScanEmittance(Measurement):
 
 
 class MultiDeviceEmittance(Measurement):
-    pass
+    name: str = "multi_device_emittance"
+
+    def measure(self):
+        raise NotImplementedError("Multi-device emittance not yet implemented")
 
 
 # TODO: delete and import actual compute_emit_bmag
 def compute_emit_bmag(self, k, beamsize_squared, q_len, rmat, twiss_design, thin_lens, maxiter):
-    pass
+    raise NotImplementedError("compute_emit_bmag to be implemented elsewhere")

@@ -41,12 +41,12 @@ class EmittanceMeasurementTest(TestCase):
     def test_quad_scan(self, mock_trim, mock_put, mock_bact_settle, mock_compute_emit_bmag, mock_get_optics):
         """Test quad scan emittance measurement"""
         rmat_mock = np.array([
-            [2.52667046e+00, 4.21817732e+00, 0.00000000e+00, 0.00000000e+00, 1.68300181e-24, -1.03180226e-24],
-            [3.67866188e-01, 1.00991619e+00, 0.00000000e+00, 0.00000000e+00, 3.83090380e-25, -6.94484939e-25],
-            [0.00000000e+00, 0.00000000e+00, -5.16660571e-01, 4.13618612e+00, 0.00000000e+00, 0.00000000e+00],
-            [0.00000000e+00, 0.00000000e+00, -3.65446389e-01, 9.90116596e-01, 0.00000000e+00, 0.00000000e+00],
-            [3.50100414e-25, -2.58633175e-25, 0.00000000e+00, 0.00000000e+00, 1.00000000e+00, 5.98659826e-05],
-            [-1.07994072e-24, -1.25510334e-25, 0.00000000e+00, 0.00000000e+00, -4.92137957e-08, 1.00000000e+00]
+            [2.5, 4.2, 0.0, 0.0, 1.6, -1.0],
+            [3.6, 1.0, 0.0, 0.0, 3.8, -6.9],
+            [0.0, 0.0, -5.1, 4.1, 0.0, 0.0],
+            [0.0, 0.0, -3.6, 9.9, 0.0, 0.0],
+            [3.5, -2.5, 0.0, 0.0, 1.0, 5.9],
+            [-1.0, -1.2, 0.0, 0.0, -4.9, 1.0]
         ])
         twiss_dtype = np.dtype([('s', 'float32'), ('z', 'float32'), ('length', 'float32'),
                                 ('p0c', 'float32'), ('alpha_x', 'float32'), ('beta_x', 'float32'),
@@ -54,8 +54,8 @@ class EmittanceMeasurementTest(TestCase):
                                 ('alpha_y', 'float32'), ('beta_y', 'float32'), ('eta_y', 'float32'),
                                 ('etap_y', 'float32'), ('psi_y', 'float32')])
         twiss_mock = np.array(
-            [(11.977644, 2027.7198, 0.054, 1.3499904e+08, 3.9888208, 5.5319443,
-              -6.172034e-18, 1.2438233e-17, 5.954487, 0.01185468, 5.314966, 0., 0., 3.5827537)],
+            [(11.9, 2027.7, 0.05, 1.3, 3.9, 5.5,
+              -6.1, 1.2, 5.9, 0.01, 5.3, 0., 0., 3.5)],
             dtype=twiss_dtype
         )
         mock_get_optics.return_value = (rmat_mock, twiss_mock)
@@ -66,6 +66,7 @@ class EmittanceMeasurementTest(TestCase):
         magnet_name = "CQ01B"
         magnet_length = 1.0
         scan_values = [-6.0, -3.0, 0.0]
+        number_scan_values = len(scan_values)
         profmon_measurement = Mock(spec=ScreenBeamProfileMeasurement)
         profmon_measurement.device = Mock()
         profmon_measurement.device.name = "YAG01B"
@@ -83,9 +84,10 @@ class EmittanceMeasurementTest(TestCase):
         result_dict = quad_scan.measure()
         assert result_dict["emittance"] == mock_compute_emit_bmag.return_value[0]
         assert result_dict["BMAG"] == mock_compute_emit_bmag.return_value[1]
+        assert result_dict["x_rms"] == [profmon_measurement.measure.return_value["Sx"]] * number_scan_values
+        assert result_dict["y_rms"] == [profmon_measurement.measure.return_value["Sy"]] * number_scan_values
         mock_compute_emit_bmag.assert_called_once()
         mock_get_optics.assert_called_once()
-        number_scan_values = len(scan_values)
         self.assertEqual(mock_put.call_count, number_scan_values)
         self.assertEqual(mock_trim.call_count, number_scan_values)
         self.assertEqual(mock_bact_settle.call_count, number_scan_values)
