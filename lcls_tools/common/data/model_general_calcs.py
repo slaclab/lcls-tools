@@ -57,6 +57,6 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None,
 def get_optics(magnet: str, measurement_device: str, beamline: str):
     """Get rmats and twiss for a given beamline, magnet and measurement device"""
     model = Model(beamline)
-    rmats = model.get_rmat(from_device=magnet, to_device=measurement_device)
-    twiss = model.get_twiss(magnet)
+    rmats = model.get_rmat(from_device=magnet, to_device=measurement_device, from_device_pos='mid')
+    twiss = model.get_twiss(measurement_device)
     return rmats, twiss

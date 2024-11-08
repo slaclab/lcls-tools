@@ -16,6 +16,7 @@ class QuadScanEmittance(Measurement):
     energy: beam energy
     magnet_collection: MagnetCollection object of magnets for an area of the beamline (use create_magnet())
     magnet_name: name of magnet
+    magnet_length: length of magnet
     scan_values: BDES values of magnet to scan over
     device_measurement: Measurement object of profile monitor/wire scanner
     ------------------------
@@ -24,7 +25,6 @@ class QuadScanEmittance(Measurement):
     gets the rmat and twiss parameters, then computes and returns the emittance and BMAG
     measure_beamsize: take measurement from measurement device, store beam sizes
     """
-    name: str = "quad_scan_emittance"
     beamline: str
     energy: float
     magnet_collection: MagnetCollection
@@ -33,10 +33,12 @@ class QuadScanEmittance(Measurement):
     magnet_length: float
     scan_values: list[float]
     device_measurement: Measurement
+    
     rmat: Optional[np.ndarray] = None
     twiss: Optional[np.ndarray] = None
     beam_sizes: Optional[dict] = {}
 
+    name: str = "quad_scan_emittance"
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     @property
@@ -54,6 +56,7 @@ class QuadScanEmittance(Measurement):
         beamsize_squared = np.vstack((self.beam_sizes["x_rms"], self.beam_sizes["y_rms"]))**2
         # TODO: uncomment once lengths added to yaml files
         # magnet_length = self.magnet_collection.magnets[self.magnet_name].length
+        rmat = np.array([self.rmat[0:2, 0:2], self.rmat[2:4, 2:4]]) # x rmat and y rmat
         twiss_betas_alphas = np.array([[self.twiss["beta_x"], self.twiss["alpha_x"]],
                                        [self.twiss["beta_y"], self.twiss["alpha_y"]]])
         kmod = bdes_to_kmod(self.energy, self.magnet_length, np.array(self.scan_values))
@@ -61,7 +64,7 @@ class QuadScanEmittance(Measurement):
             k=kmod,
             beamsize_squared=beamsize_squared,
             q_len=self.magnet_length,
-            rmat=self.rmat,
+            rmat=rmat,
             twiss_design=twiss_betas_alphas
         )
 
