@@ -33,7 +33,7 @@ class QuadScanEmittance(Measurement):
     magnet_length: float
     scan_values: list[float]
     device_measurement: Measurement
-    
+
     rmat: Optional[np.ndarray] = None
     twiss: Optional[np.ndarray] = None
     beam_sizes: Optional[dict] = {}
@@ -56,7 +56,7 @@ class QuadScanEmittance(Measurement):
         beamsize_squared = np.vstack((self.beam_sizes["x_rms"], self.beam_sizes["y_rms"]))**2
         # TODO: uncomment once lengths added to yaml files
         # magnet_length = self.magnet_collection.magnets[self.magnet_name].length
-        rmat = np.array([self.rmat[0:2, 0:2], self.rmat[2:4, 2:4]]) # x rmat and y rmat
+        rmat = np.array([self.rmat[0:2, 0:2], self.rmat[2:4, 2:4]])  # x rmat and y rmat
         twiss_betas_alphas = np.array([[self.twiss["beta_x"], self.twiss["alpha_x"]],
                                        [self.twiss["beta_y"], self.twiss["alpha_y"]]])
         kmod = bdes_to_kmod(self.energy, self.magnet_length, np.array(self.scan_values))
