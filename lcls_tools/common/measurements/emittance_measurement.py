@@ -1,6 +1,7 @@
 import numpy as np
 from pydantic import ConfigDict
 
+from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
@@ -79,7 +80,6 @@ class QuadScanEmittance(Measurement):
             q_len=magnet_length,
             rmat=rmat,
             twiss_design=twiss_betas_alphas,
-            thin_lens=True
         )
 
         results = {
@@ -92,7 +92,8 @@ class QuadScanEmittance(Measurement):
         return results
 
     def measure_beamsize(self):
-        """Take measurement from measurement device, store beam sizes in self.beam_sizes"""
+        """Take measurement from measurement device,
+        store beam sizes in self.beam_sizes"""
         results = self.device_measurement.measure()
         if "x_rms" not in self.beam_sizes:
             self.beam_sizes["x_rms"] = []
@@ -107,9 +108,3 @@ class MultiDeviceEmittance(Measurement):
 
     def measure(self):
         raise NotImplementedError("Multi-device emittance not yet implemented")
-
-
-# TODO: delete and import actual compute_emit_bmag
-def compute_emit_bmag(self, k, beamsize_squared, q_len, rmat, twiss_design, thin_lens,
-                      maxiter):
-    raise NotImplementedError("compute_emit_bmag to be implemented elsewhere")

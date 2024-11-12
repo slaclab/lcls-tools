@@ -1,8 +1,8 @@
-from meme.model import Model
+import numpy as np
 
+from meme.model import Model
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
-
 
 
 def bmag(twiss, twiss_reference):
@@ -70,6 +70,7 @@ def get_optics(magnet: Magnet, measurement: Measurement):
     twiss = model.get_twiss(measurement.device.name)
     return rmats, twiss
 
+
 def propagate_twiss(twiss_init: np.ndarray, rmat: np.ndarray):
     """
     Propagates twiss parameters downstream given a transport rmat.
@@ -107,9 +108,9 @@ def twiss_transport_mat_from_rmat(rmat: np.ndarray):
     c, s, cp, sp = rmat[..., 0, 0], rmat[..., 0, 1], rmat[..., 1, 0], rmat[..., 1, 1]
     result = np.stack(
         (
-            np.stack((c**2, -2 * c * s, s**2), axis=-1),
+            np.stack((c ** 2, -2 * c * s, s ** 2), axis=-1),
             np.stack((-c * cp, c * sp + cp * s, -s * sp), axis=-1),
-            np.stack((cp**2, -2 * cp * sp, sp**2), axis=-1),
+            np.stack((cp ** 2, -2 * cp * sp, sp ** 2), axis=-1),
         ),
         axis=-2,
     )  # result shape (batchshape, 3, 3)
