@@ -54,10 +54,12 @@ class QuadScanEmittance(Measurement):
 
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
-        self.rmat, self.twiss = get_optics(
+        optics = get_optics(
             self.magnet_name,
             self.device_measurement.device.name,
         )
+        self.rmat = optics["rmat"]
+        self.twiss = optics["design_twiss"]
         beamsize_squared = np.vstack((
             self.beam_sizes["x_rms"], self.beam_sizes["y_rms"]
         )) ** 2

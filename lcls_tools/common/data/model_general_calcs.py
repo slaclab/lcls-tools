@@ -1,3 +1,5 @@
+from typing import Dict
+
 import numpy as np
 
 from meme.model import Model
@@ -58,7 +60,7 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None,
     return bdes / effective_length / bp  # kG / m / kG m = 1/m^2
 
 
-def get_optics(magnet: Magnet, measurement: Measurement):
+def get_optics(magnet: Magnet, measurement: Measurement) -> Dict:
     """Get rmats and twiss for a given beamline, magnet and measurement device"""
     # TODO: get optics from arbitrary devices (potentially in different beam lines)
     model = Model(magnet.metadata.area)
@@ -68,7 +70,7 @@ def get_optics(magnet: Magnet, measurement: Measurement):
         from_device_pos='mid'
     )
     twiss = model.get_twiss(measurement.device.name)
-    return rmats, twiss
+    return {"rmats": rmats,"design_twiss": twiss}
 
 
 def propagate_twiss(twiss_init: np.ndarray, rmat: np.ndarray):
