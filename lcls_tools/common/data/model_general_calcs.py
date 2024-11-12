@@ -1,5 +1,8 @@
 from meme.model import Model
 
+from lcls_tools.common.devices.magnet import Magnet
+from lcls_tools.common.measurements.measurement import Measurement
+
 
 def bmag(twiss, twiss_reference):
     """Calculates BMAG from imput twiss and reference twiss"""
@@ -54,9 +57,14 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None,
     return bdes / effective_length / bp  # kG / m / kG m = 1/m^2
 
 
-def get_optics(magnet: str, measurement_device: str, beamline: str):
+def get_optics(magnet: Magnet, measurement: Measurement):
     """Get rmats and twiss for a given beamline, magnet and measurement device"""
-    model = Model(beamline)
-    rmats = model.get_rmat(from_device=magnet, to_device=measurement_device, from_device_pos='mid')
-    twiss = model.get_twiss(measurement_device)
+    # TODO: get optics from arbitrary devices (potentially in different beam lines)
+    model = Model(magnet.metadata.area)
+    rmats = model.get_rmat(
+        from_device=magnet.name,
+        to_device=measurement.device.name,
+        from_device_pos='mid'
+    )
+    twiss = model.get_twiss(measurement.device.name)
     return rmats, twiss
