@@ -70,7 +70,7 @@ def get_optics(magnet: Magnet, measurement: Measurement) -> Dict:
         from_device_pos='mid'
     )
     twiss = model.get_twiss(measurement.device.name)
-    return {"rmats": rmats,"design_twiss": twiss}
+    return {"rmats": rmats, "design_twiss": twiss}
 
 
 def propagate_twiss(twiss_init: np.ndarray, rmat: np.ndarray):
