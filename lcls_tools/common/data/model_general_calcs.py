@@ -1,4 +1,10 @@
+from typing import Dict
+
 import numpy as np
+
+from meme.model import Model
+from lcls_tools.common.devices.magnet import Magnet
+from lcls_tools.common.measurements.measurement import Measurement
 
 
 def bmag(twiss, twiss_reference):
@@ -54,6 +60,19 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None,
     return bdes / effective_length / bp  # kG / m / kG m = 1/m^2
 
 
+def get_optics(magnet: Magnet, measurement: Measurement) -> Dict:
+    """Get rmats and twiss for a given beamline, magnet and measurement device"""
+    # TODO: get optics from arbitrary devices (potentially in different beam lines)
+    model = Model(magnet.metadata.area)
+    rmats = model.get_rmat(
+        from_device=magnet.name,
+        to_device=measurement.device.name,
+        from_device_pos='mid'
+    )
+    twiss = model.get_twiss(measurement.device.name)
+    return {"rmats": rmats, "design_twiss": twiss}
+
+
 def propagate_twiss(twiss_init: np.ndarray, rmat: np.ndarray):
     """
     Propagates twiss parameters downstream given a transport rmat.
@@ -91,9 +110,9 @@ def twiss_transport_mat_from_rmat(rmat: np.ndarray):
     c, s, cp, sp = rmat[..., 0, 0], rmat[..., 0, 1], rmat[..., 1, 0], rmat[..., 1, 1]
     result = np.stack(
         (
-            np.stack((c**2, -2 * c * s, s**2), axis=-1),
+            np.stack((c ** 2, -2 * c * s, s ** 2), axis=-1),
             np.stack((-c * cp, c * sp + cp * s, -s * sp), axis=-1),
-            np.stack((cp**2, -2 * cp * sp, sp**2), axis=-1),
+            np.stack((cp ** 2, -2 * cp * sp, sp ** 2), axis=-1),
         ),
         axis=-2,
     )  # result shape (batchshape, 3, 3)
