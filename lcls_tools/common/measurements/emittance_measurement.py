@@ -14,7 +14,6 @@ class QuadScanEmittance(Measurement):
     """Use a quad and profile monitor/wire scanner to perform an emittance measurement
     ------------------------
     Arguments:
-    beamline: beamline where the devices are located
     energy: beam energy
     magnet_collection: MagnetCollection object of magnets for an area of the beamline (use create_magnet())
     magnet_name: name of magnet
@@ -27,7 +26,6 @@ class QuadScanEmittance(Measurement):
     gets the rmat and twiss parameters, then computes and returns the emittance and BMAG
     measure_beamsize: take measurement from measurement device, store beam sizes
     """
-    beamline: str
     energy: float
     scan_values: list[float]
     magnet: Magnet
