@@ -73,7 +73,7 @@ class Screen(Device):
         the camera associated with this screen
         """
         return self.controls_information.PVs.image.get(as_numpy=True).reshape(
-            self.n_rows, self.n_columns
+            self.n_columns, self.n_rows
         )
 
     @property
