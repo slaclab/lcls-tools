@@ -161,12 +161,15 @@ class ImageProjectionFit(ImageFit):
     """
     projection_fit_method: Optional[MethodBase] = GaussianModel(use_priors=True)
     model_config = ConfigDict(arbitrary_types_allowed=True)
+    visualize: Optional[bool] = False
 
     def _fit_image(self, image: ndarray) -> dict:
         x_projection = np.array(np.sum(image, axis=0))
         y_projection = np.array(np.sum(image, axis=1))
 
-        proj_fit = ProjectionFit(model=self.projection_fit_method)
+        proj_fit = ProjectionFit(
+            model=self.projection_fit_method, visualize=self.visualize
+        )
 
         x_parameters = proj_fit.fit_projection(x_projection)
         y_parameters = proj_fit.fit_projection(y_projection)

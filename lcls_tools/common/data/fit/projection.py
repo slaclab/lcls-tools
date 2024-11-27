@@ -1,3 +1,6 @@
+from typing import Optional
+
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy.optimize
 import scipy.signal
@@ -27,7 +30,8 @@ class ProjectionFit(BaseModel):
 
     # TODO: come up with better name
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    model: MethodBase = GaussianModel()
+    model: Optional[MethodBase] = GaussianModel()
+    visualize: Optional[bool] = False
 
     def normalize(self, data: np.ndarray) -> np.ndarray:
         """
@@ -40,7 +44,7 @@ class ProjectionFit(BaseModel):
 
     def unnormalize_model_params(
         self, method_params_dict: dict, projection_data: np.ndarray
-    ) -> np.ndarray:
+    ) -> dict:
         """
         Takes fitted and normalized params and returns them
         to unnormalized values i.e the true fitted values of the distribution
@@ -85,7 +89,7 @@ class ProjectionFit(BaseModel):
 
     def fit_projection(self, projection_data: np.ndarray) -> dict:
         """
-        type is dict[str, float]
+        Return type is dict[str, float]
         Wrapper function that does all necessary steps to fit 1d array.
         Returns a dictionary where the keys are the model params and their
         values are the params fitted to the data
@@ -100,4 +104,13 @@ class ProjectionFit(BaseModel):
             fitted_params_dict[param] = (res.x)[i]
         self.model.fitted_params_dict = fitted_params_dict.copy()
         params_dict = self.unnormalize_model_params(fitted_params_dict, projection_data)
+
+        if self.visualize:
+            # plot data and model fit
+            fig,ax = plt.subplots()
+            x = np.linspace(0, 1, len(self.model.profile_data))
+
+            ax.plot(projection_data, label="data")
+            ax.plot(self.model._forward(x, res.x), label="model fit")
+
         return params_dict
