@@ -31,7 +31,6 @@ class ProjectionFit(BaseModel):
     # TODO: come up with better name
     model_config = ConfigDict(arbitrary_types_allowed=True)
     model: Optional[MethodBase] = GaussianModel()
-    visualize: Optional[bool] = False
 
     def normalize(self, data: np.ndarray) -> np.ndarray:
         """
@@ -43,7 +42,7 @@ class ProjectionFit(BaseModel):
         return normalized_data
 
     def unnormalize_model_params(
-        self, method_params_dict: dict, projection_data: np.ndarray
+            self, method_params_dict: dict, projection_data: np.ndarray
     ) -> dict:
         """
         Takes fitted and normalized params and returns them
@@ -104,13 +103,5 @@ class ProjectionFit(BaseModel):
             fitted_params_dict[param] = (res.x)[i]
         self.model.fitted_params_dict = fitted_params_dict.copy()
         params_dict = self.unnormalize_model_params(fitted_params_dict, projection_data)
-
-        if self.visualize:
-            # plot data and model fit
-            fig,ax = plt.subplots()
-            x = np.linspace(0, 1, len(self.model.profile_data))
-
-            ax.plot(projection_data, label="data")
-            ax.plot(self.model._forward(x, res.x), label="model fit")
 
         return params_dict
