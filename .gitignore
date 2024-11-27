@@ -191,3 +191,6 @@ dkms.conf
 
 # Added by vscode
 .vscode
+
+# development folder
+dev

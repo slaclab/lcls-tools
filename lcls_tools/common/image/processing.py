@@ -1,6 +1,9 @@
+from copy import copy
+from typing import Optional
+
 import numpy as np
 from scipy.ndimage import gaussian_filter
-from pydantic import BaseModel, PositiveFloat, ConfigDict
+from pydantic import BaseModel, PositiveFloat, ConfigDict, PositiveInt
 from lcls_tools.common.image.roi import ROI
 
 
@@ -23,9 +26,10 @@ class ImageProcessor(BaseModel):
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    roi: ROI = None
-    background_image: np.ndarray = None
-    threshold: PositiveFloat = 0.0
+    roi: Optional[ROI] = None
+    background_image: Optional[np.ndarray] = None
+    threshold: Optional[PositiveFloat] = 0.0
+    smoothing_factor: Optional[PositiveInt] = None
 
     def subtract_background(self, raw_image: np.ndarray) -> np.ndarray:
         """Subtract background pixel intensity from a raw image"""
@@ -33,24 +37,20 @@ class ImageProcessor(BaseModel):
             image = raw_image - self.background_image
         else:
             image = raw_image - self.threshold
-        return image
 
-    def clip_image(self, image):
+        # clip images to make sure values are positive
         return np.clip(image, 0, None)
 
     def auto_process(self, raw_image: np.ndarray) -> np.ndarray:
         """Process image by subtracting background pixel intensity
         from a raw image, crop, and filter"""
+        raw_image = copy(raw_image)
         image = self.subtract_background(raw_image)
-        clipped_image = self.clip_image(image)
         if self.roi is not None:
-            cropped_image = self.roi.crop_image(clipped_image)
-        else:
-            cropped_image = clipped_image
-        processed_image = self.filter(cropped_image)
-        return processed_image
+            image = self.roi.crop_image(image)
 
-    def filter(self, unfiltered_image: np.ndarray, sigma=5) -> np.ndarray:
-        # TODO: extend to other types of filters? Change the way we pass sigma?
-        filtered_data = gaussian_filter(unfiltered_image, sigma)
-        return filtered_data
+        # apply smoothing filter if smoothing_factor is specified
+        if self.smoothing_factor is not None:
+            image = gaussian_filter(image, self.smoothing_factor)
+
+        return image

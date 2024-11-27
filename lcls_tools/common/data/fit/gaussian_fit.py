@@ -1,11 +1,8 @@
 import numpy as np
 from pydantic import BaseModel, ConfigDict, PositiveFloat
 from typing import Optional
-from lcls_tools.common.data.fit.projection import ProjectionFit
-from lcls_tools.common.image.processing import ImageProcessor
 
-
-class GaussianFit(BaseModel):
+class ProjectionImageFit(BaseModel):
     # should rename to BeamsizeEvaluator or something ?
     """
     Gaussian Fitting class that takes in a fitting tool (with method),
@@ -27,7 +24,7 @@ class GaussianFit(BaseModel):
         return beamsize
 
     def gaussian_fit(self, image):
-        self.processor.auto_process(image)
+        image = self.processor.auto_process(image)
         x_proj, y_proj = self.get_projections(image)
         x_parameters = self.fit.fit_projection(x_proj)
         y_parameters = self.fit.fit_projection(y_proj)

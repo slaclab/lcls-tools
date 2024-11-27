@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from typing import Optional
+
 import numpy as np
 
 from pydantic import BaseModel, ConfigDict
@@ -49,7 +51,7 @@ class ModelParameters(BaseModel):
 # TODO: define properties
 
 
-class MethodBase(ABC):
+class MethodBase(ABC, BaseModel):
     """
     Base abstract class for all fit methods, which serves as the bare minimum
     skeleton code needed. Should be used only as a parent class to all method
@@ -63,7 +65,9 @@ class MethodBase(ABC):
         and upper bound on for acceptable values of each parameter)
     """
 
-    parameters: ModelParameters = None
+    parameters: ModelParameters
+    use_priors: Optional[bool] = False
+    fitted_params_dict: Optional[dict] = None
 
     @abstractmethod
     def find_init_values(self) -> list:
@@ -121,10 +125,9 @@ class MethodBase(ABC):
         method_parameter_list: np.ndarray,
         x: np.ndarray,
         y: np.ndarray,
-        use_priors: bool = False,
     ):
         loss_temp = -self._log_likelihood(x, y, method_parameter_list)
-        if use_priors:
+        if self.use_priors:
             loss_temp = loss_temp - self._log_prior(method_parameter_list)
         return loss_temp
 

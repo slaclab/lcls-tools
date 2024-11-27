@@ -28,7 +28,6 @@ class ProjectionFit(BaseModel):
     # TODO: come up with better name
     model_config = ConfigDict(arbitrary_types_allowed=True)
     model: MethodBase = GaussianModel()
-    use_priors: bool = False
 
     def normalize(self, data: np.ndarray) -> np.ndarray:
         """
@@ -78,7 +77,7 @@ class ProjectionFit(BaseModel):
         res = scipy.optimize.minimize(
             self.model.loss,
             init_values,
-            args=(x, y, self.use_priors),
+            args=(x, y),
             bounds=bounds,
             method="Powell",
         )
