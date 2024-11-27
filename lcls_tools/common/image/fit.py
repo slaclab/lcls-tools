@@ -2,6 +2,7 @@ import warnings
 from abc import ABC, abstractmethod
 
 import numpy as np
+from matplotlib import pyplot as plt, patches
 from numpy import ndarray
 from pydantic import BaseModel, ConfigDict, PositiveFloat
 from typing import Optional
@@ -16,7 +17,7 @@ class ImageFit(BaseModel, ABC):
     """
     Abstract class for determining beam properties from an image
     """
-    processor: Optional[ImageProcessor] = ImageProcessor()
+    image_processor: Optional[ImageProcessor] = ImageProcessor()
     min_log_intensity: Optional[float] = 4.0
     bounding_box_half_width: Optional[PositiveFloat] = 3.0
     apply_bounding_box_constraint: Optional[bool] = False
@@ -29,9 +30,10 @@ class ImageFit(BaseModel, ABC):
         image processing, internal image fitting method, and image validation.
 
         """
-        image = self.processor.auto_process(image)
+        image = self.image_processor.auto_process(image)
         fit_result = self._fit_image(image)
         fit_result = self._validate_results(image, fit_result)
+        fit_result.update({"processed_image": image})
         return fit_result
 
     @abstractmethod
@@ -63,15 +65,10 @@ class ImageFit(BaseModel, ABC):
                         + "below threshold"
                 )
             )
-            result = {
-                "Cx": np.NaN,
-                "Cy": np.NaN,
-                "Sx": np.NaN,
-                "Sy": np.NaN,
-                "bb_penalty": np.NaN,
-                "total_intensity": fit_results["total_intensity"],
-            }
-            return result
+            fit_results["centroid"] = np.array((np.Nan, np.Nan))
+            fit_results["rms_sizes"] = np.array((np.Nan, np.Nan))
+            fit_results["bb_penalty"] = np.Nan
+
         else:
             centroid = fit_results["centroid"]
             sizes = fit_results["rms_sizes"]
@@ -81,21 +78,13 @@ class ImageFit(BaseModel, ABC):
                 bounding_box_penalty = self._calculate_bounding_box_penalty(
                     image, centroid, sizes,
                 )
-
-                result = {
-                    "Cx": centroid[0],
-                    "Cy": centroid[1],
-                    "Sx": sizes[0],
-                    "Sy": sizes[1],
-                    "bb_penalty": bounding_box_penalty,
-                    "total_intensity": fit_results["total_intensity"],
-                }
+                fit_results["bb_penalty"] = bounding_box_penalty
 
                 # set results to none if the beam extends beyond the roi
                 # and the bounding box constraint is active
                 if bounding_box_penalty > 0 and self.apply_bounding_box_constraint:
-                    for name in ["Cx", "Cy", "Sx", "Sy"]:
-                        result[name] = np.NaN
+                    fit_results["centroid"] = np.array((np.Nan, np.Nan))
+                    fit_results["rms_sizes"] = np.array((np.Nan, np.Nan))
 
                     warnings.warn(
                         f"Beam bounding box is outside the image, penalty value: "
@@ -103,20 +92,15 @@ class ImageFit(BaseModel, ABC):
                     )
 
             else:
-                result = {
-                    "Cx": np.NaN,
-                    "Cy": np.NaN,
-                    "Sx": np.NaN,
-                    "Sy": np.NaN,
-                    "bb_penalty": np.NaN,
-                    "total_intensity": fit_results["total_intensity"],
-                }
+                fit_results["centroid"] = np.array((np.Nan, np.Nan))
+                fit_results["rms_sizes"] = np.array((np.Nan, np.Nan))
+                fit_results["bb_penalty"] = np.Nan
 
                 warnings.warn(
                     f"Image fits returned Nan values"
                 )
 
-            return result
+        return fit_results
 
     def _calculate_bounding_box_penalty(self, image, centroid, sizes):
         """
@@ -138,8 +122,8 @@ class ImageFit(BaseModel, ABC):
             )
         )
 
-        if self.processor.roi is not None:
-            roi_radius = self.processor.roi.radius
+        if self.image_processor.roi is not None:
+            roi_radius = self.image_processor.roi.radius
         else:
             roi_radius = np.min(np.array(image.shape) / 1.5)
             # TODO: maybe need to change this ^^^
@@ -161,24 +145,24 @@ class ImageProjectionFit(ImageFit):
     """
     projection_fit_method: Optional[MethodBase] = GaussianModel(use_priors=True)
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    visualize: Optional[bool] = False
 
     def _fit_image(self, image: ndarray) -> dict:
         x_projection = np.array(np.sum(image, axis=0))
         y_projection = np.array(np.sum(image, axis=1))
 
-        proj_fit = ProjectionFit(
-            model=self.projection_fit_method, visualize=self.visualize
-        )
+        proj_fit = ProjectionFit(model=self.projection_fit_method)
 
         x_parameters = proj_fit.fit_projection(x_projection)
         y_parameters = proj_fit.fit_projection(y_projection)
 
-        return {
+        results = {
             "centroid": np.array((x_parameters["mean"], y_parameters["mean"])),
             "rms_sizes": np.array((x_parameters["sigma"], y_parameters["sigma"])),
             "total_intensity": image.sum(),
+            "projection_fit_parameters": {"x": x_parameters, "y": y_parameters},
         }
+
+        return results
 
 
 
