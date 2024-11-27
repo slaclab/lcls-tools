@@ -31,6 +31,8 @@ wires:
         retract: WIRE:LI27:644:MOTR_RETRACT
         scan_pulses: WIRE:LI27:644:SCANPULSES
         speed: WIRE:LI27:644:MOTR.VELO
+        speed_max: WIRE:LI27:644:MOTR.VMAX
+        speed_min: WIRE:LI27:644:MOTR.VBAS
         start_scan: WIRE:LI27:644:STARTSCAN
         temperature: WIRE:LI27:644:TEMP
         timeout: WIRE:LI27:644:MOTR_TIMEOUTEN

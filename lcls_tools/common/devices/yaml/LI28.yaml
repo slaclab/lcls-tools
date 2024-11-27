@@ -31,6 +31,8 @@ wires:
         retract: WIRE:LI28:144:MOTR_RETRACT
         scan_pulses: WIRE:LI28:144:SCANPULSES
         speed: WIRE:LI28:144:MOTR.VELO
+        speed_max: WIRE:LI28:144:MOTR.VMAX
+        speed_min: WIRE:LI28:144:MOTR.VBAS
         start_scan: WIRE:LI28:144:STARTSCAN
         temperature: WIRE:LI28:144:TEMP
         timeout: WIRE:LI28:144:MOTR_TIMEOUTEN
@@ -65,6 +67,8 @@ wires:
         retract: WIRE:LI28:444:MOTR_RETRACT
         scan_pulses: WIRE:LI28:444:SCANPULSES
         speed: WIRE:LI28:444:MOTR.VELO
+        speed_max: WIRE:LI28:444:MOTR.VMAX
+        speed_min: WIRE:LI28:444:MOTR.VBAS
         start_scan: WIRE:LI28:444:STARTSCAN
         temperature: WIRE:LI28:444:TEMP
         timeout: WIRE:LI28:444:MOTR_TIMEOUTEN
@@ -99,6 +103,8 @@ wires:
         retract: WIRE:LI28:744:MOTR_RETRACT
         scan_pulses: WIRE:LI28:744:SCANPULSES
         speed: WIRE:LI28:744:MOTR.VELO
+        speed_max: WIRE:LI28:744:MOTR.VMAX
+        speed_min: WIRE:LI28:744:MOTR.VBAS
         start_scan: WIRE:LI28:744:STARTSCAN
         temperature: WIRE:LI28:744:TEMP
         timeout: WIRE:LI28:744:MOTR_TIMEOUTEN

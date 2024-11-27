@@ -1,5 +1,5 @@
 from pydantic import BaseModel, SerializeAsAny, ConfigDict, field_validator
-from typing import List, Union, Callable, Dict
+from typing import List, Union, Callable, Dict, Optional
 from epics import PV
 
 
@@ -36,7 +36,7 @@ class ControlInformation(BaseModel):
 class Metadata(BaseModel):
     area: str
     beam_path: List[str]
-    sum_l_meters: float
+    sum_l_meters: Union[float, None]
 
     def __init__(
         self,
@@ -215,6 +215,17 @@ class Device(BaseModel):
         index = self._get_callback_index(pv_obj, function)
         if index:
             pv_obj.remove_callback(index)
+
+    def scan(
+            self,
+            scan_settings: List[float],
+            function: Optional[callable] = None,
+    ) -> None:
+        """
+        Scans device parameters and calls the provided function after each setting
+        is achieved.
+        """
+        raise NotImplementedError
 
 
 class DeviceCollection(BaseModel):

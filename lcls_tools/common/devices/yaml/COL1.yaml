@@ -565,6 +565,8 @@ wires:
         retract: WIRE:COL1:360:MOTR_RETRACT
         scan_pulses: WIRE:COL1:360:SCANPULSES
         speed: WIRE:COL1:360:MOTR.VELO
+        speed_max: WIRE:COL1:360:MOTR.VMAX
+        speed_min: WIRE:COL1:360:MOTR.VBAS
         start_scan: WIRE:COL1:360:STARTSCAN
         timeout: WIRE:COL1:360:MOTR_TIMEOUTEN
         u_size: WIRE:COL1:360:UWIRESIZE
@@ -606,6 +608,8 @@ wires:
         retract: WIRE:COL1:520:MOTR_RETRACT
         scan_pulses: WIRE:COL1:520:SCANPULSES
         speed: WIRE:COL1:520:MOTR.VELO
+        speed_max: WIRE:COL1:520:MOTR.VMAX
+        speed_min: WIRE:COL1:520:MOTR.VBAS
         start_scan: WIRE:COL1:520:STARTSCAN
         timeout: WIRE:COL1:520:MOTR_TIMEOUTEN
         u_size: WIRE:COL1:520:UWIRESIZE
@@ -647,6 +651,8 @@ wires:
         retract: WIRE:COL1:680:MOTR_RETRACT
         scan_pulses: WIRE:COL1:680:SCANPULSES
         speed: WIRE:COL1:680:MOTR.VELO
+        speed_max: WIRE:COL1:680:MOTR.VMAX
+        speed_min: WIRE:COL1:680:MOTR.VBAS
         start_scan: WIRE:COL1:680:STARTSCAN
         timeout: WIRE:COL1:680:MOTR_TIMEOUTEN
         u_size: WIRE:COL1:680:UWIRESIZE
@@ -688,6 +694,8 @@ wires:
         retract: WIRE:COL1:840:MOTR_RETRACT
         scan_pulses: WIRE:COL1:840:SCANPULSES
         speed: WIRE:COL1:840:MOTR.VELO
+        speed_max: WIRE:COL1:840:MOTR.VMAX
+        speed_min: WIRE:COL1:840:MOTR.VBAS
         start_scan: WIRE:COL1:840:STARTSCAN
         timeout: WIRE:COL1:840:MOTR_TIMEOUTEN
         u_size: WIRE:COL1:840:UWIRESIZE
