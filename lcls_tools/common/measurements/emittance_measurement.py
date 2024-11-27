@@ -42,6 +42,7 @@ class QuadScanEmittance(Measurement):
     @field_validator("rmat")
     def validate_rmat(cls, v, info):
         assert v.shape == (4, 4)
+        return v
 
     def measure(self):
         """Returns the emittance, BMAG, x_rms and y_rms
@@ -58,7 +59,7 @@ class QuadScanEmittance(Measurement):
 
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
-        if self.rmat is None and self.twiss is None:
+        if self.rmat is None and self.design_twiss is None:
             optics = get_optics(
                 self.magnet_name,
                 self.device_measurement.device.name,
@@ -85,7 +86,7 @@ class QuadScanEmittance(Measurement):
         kmod = bdes_to_kmod(self.energy, magnet_length, np.array(self.scan_values))
 
         # compute emittance and bmag
-        emittance, bmag, _, _ = compute_emit_bmag(
+        results = compute_emit_bmag(
             k=kmod,
             beamsize_squared=beamsize_squared,
             q_len=magnet_length,
@@ -93,12 +94,10 @@ class QuadScanEmittance(Measurement):
             twiss_design=twiss_betas_alphas,
         )
 
-        results = {
-            "emittance": emittance,
-            "BMAG": bmag,
+        results.update({
             "x_rms": self.beam_sizes["x_rms"],
             "y_rms": self.beam_sizes["y_rms"]
-        }
+        })
 
         return results
 
