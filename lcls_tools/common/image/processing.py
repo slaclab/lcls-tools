@@ -2,7 +2,7 @@ from copy import copy
 from typing import Optional
 
 import numpy as np
-from scipy.ndimage import gaussian_filter
+from scipy.ndimage import gaussian_filter, median_filter
 from pydantic import BaseModel, PositiveFloat, ConfigDict, PositiveInt
 from lcls_tools.common.image.roi import ROI
 
@@ -29,7 +29,8 @@ class ImageProcessor(BaseModel):
     roi: Optional[ROI] = None
     background_image: Optional[np.ndarray] = None
     threshold: Optional[PositiveFloat] = 0.0
-    smoothing_factor: Optional[PositiveInt] = None
+    gaussian_filter_size: Optional[PositiveFloat] = None
+    median_filter_size: Optional[PositiveFloat] = None
 
     def subtract_background(self, raw_image: np.ndarray) -> np.ndarray:
         """Subtract background pixel intensity from a raw image"""
@@ -49,8 +50,11 @@ class ImageProcessor(BaseModel):
         if self.roi is not None:
             image = self.roi.crop_image(image)
 
+        if self.median_filter_size is not None:
+            image = median_filter(image, self.median_filter_size)
+
         # apply smoothing filter if smoothing_factor is specified
-        if self.smoothing_factor is not None:
-            image = gaussian_filter(image, self.smoothing_factor)
+        if self.gaussian_filter_size is not None:
+            image = gaussian_filter(image, self.gaussian_filter_size)
 
         return image
