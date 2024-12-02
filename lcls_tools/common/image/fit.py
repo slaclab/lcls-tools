@@ -1,11 +1,10 @@
 import warnings
 from abc import ABC, abstractmethod
+from typing import Optional
 
 import numpy as np
-from matplotlib import pyplot as plt, patches
 from numpy import ndarray
 from pydantic import BaseModel, ConfigDict, PositiveFloat
-from typing import Optional
 
 from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.data.fit.methods import GaussianModel
@@ -60,9 +59,9 @@ class ImageFit(BaseModel, ABC):
             # TODO: character count is really not liking this one line
             warnings.warn(
                 (
-                        "log10 image intensity"
-                        + f"{np.log10(fit_results['total_intensity'])}"
-                        + "below threshold"
+                    "log10 image intensity"
+                    + f"{np.log10(fit_results['total_intensity'])}"
+                    + "below threshold"
                 )
             )
             fit_results["centroid"] = np.array((np.Nan, np.Nan))
@@ -97,7 +96,7 @@ class ImageFit(BaseModel, ABC):
                 fit_results["bb_penalty"] = np.Nan
 
                 warnings.warn(
-                    f"Image fits returned Nan values"
+                    "Image fits returned Nan values"
                 )
 
         return fit_results
@@ -163,6 +162,3 @@ class ImageProjectionFit(ImageFit):
         }
 
         return results
-
-
-

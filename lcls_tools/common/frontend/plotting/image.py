@@ -27,17 +27,18 @@ def plot_image_projection_fit(fit_object, results, n_stds=3):
     # plot data and model fit
     for i, name in enumerate(["x", "y"]):
         fit_params = results["projection_fit_parameters"][name]
-        ax[i+1].text(0.01, 0.99,
-                   "\n".join([
-                       f"{name}: {val: 4.2}" for name, val in fit_params.items()
-                   ]),
-                   transform=ax[i+1].transAxes,
-                   ha='left', va='top', fontsize=10)
+        ax[i + 1].text(0.01, 0.99,
+                       "\n".join([
+                           f"{name}: {val: 4.2}" for name, val in fit_params.items()
+                       ]),
+                       transform=ax[i + 1].transAxes,
+                       ha='left', va='top', fontsize=10)
         x = np.arange(len(projections[name]))
 
-        ax[i+1].plot(projections[name], label="data")
+        ax[i + 1].plot(projections[name], label="data")
         fit_param_numpy = np.array([fit_params[name] for name in
                                     fit_object.projection_fit_method.parameters.parameters])
-        ax[i+1].plot(fit_object.projection_fit_method._forward(x, fit_param_numpy), label="model fit")
+        ax[i + 1].plot(fit_object.projection_fit_method._forward(x, fit_param_numpy),
+                       label="model fit")
 
     return fig, ax

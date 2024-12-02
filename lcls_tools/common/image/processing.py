@@ -3,7 +3,7 @@ from typing import Optional
 
 import numpy as np
 from scipy.ndimage import gaussian_filter, median_filter
-from pydantic import BaseModel, PositiveFloat, ConfigDict, PositiveInt
+from pydantic import BaseModel, PositiveFloat, ConfigDict
 from lcls_tools.common.image.roi import ROI
 
 
