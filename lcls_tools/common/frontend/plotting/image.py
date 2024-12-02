@@ -29,7 +29,8 @@ def plot_image_projection_fit(fit_object, results, n_stds=3):
         fit_params = results["projection_fit_parameters"][name]
         ax[i + 1].text(0.01, 0.99,
                        "\n".join([
-                           f"{name}: {val: 4.2}" for name, val in fit_params.items()
+                           f"{name}: {int(val)}" for name, val in
+                           fit_params.items()
                        ]),
                        transform=ax[i + 1].transAxes,
                        ha='left', va='top', fontsize=10)
