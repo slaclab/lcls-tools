@@ -53,7 +53,7 @@ class TestImageProcessing(unittest.TestCase):
         image_processor = ImageProcessor(background_image=background_image)
         image = image_processor.subtract_background(self.image)
         image = image
-        background = (self.image - 1)
+        background = np.clip(self.image - 1, 0, None)
         np.testing.assert_array_equal(
             image, background,
             err_msg=("expected image to equal background "
@@ -67,7 +67,7 @@ class TestImageProcessing(unittest.TestCase):
         image_processor = ImageProcessor(threshold=1)
         image = image_processor.subtract_background(self.image)
         image = image
-        background = (self.image - 1)
+        background = np.clip(self.image - 1, 0, None)
         np.testing.assert_array_equal(
             image, background,
             err_msg=("expected image to equal background "
