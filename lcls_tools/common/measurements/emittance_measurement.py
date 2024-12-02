@@ -94,7 +94,7 @@ class QuadScanEmittance(Measurement):
             twiss_design=twiss_betas_alphas,
         )
 
-        results = results.update({
+        results.update({
             "x_rms": self.beam_sizes["x_rms"],
             "y_rms": self.beam_sizes["y_rms"]
         })
