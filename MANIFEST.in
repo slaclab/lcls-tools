@@ -1,1 +1,2 @@
 global-include *.ui
+include lcls_tools/common/devices/yaml/*.yaml
