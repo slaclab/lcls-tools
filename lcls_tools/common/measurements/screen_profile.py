@@ -1,6 +1,5 @@
 from lcls_tools.common.devices.screen import Screen
-from lcls_tools.common.data.fit.gaussian_fit import ImageFit
-from lcls_tools.common.image.fit import ImageProjectionFit
+from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.measurements.measurement import Measurement
 from pydantic import ConfigDict
 

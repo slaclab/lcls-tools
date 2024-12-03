@@ -1,15 +1,17 @@
 import numpy as np
-from matplotlib import pyplot as plt, patches
+from matplotlib import pyplot as plt
+
+from lcls_tools.common.image.fit import ImageProjectionFitResult
 
 
-def plot_image_projection_fit(fit_object, results, n_stds=3):
+def plot_image_projection_fit(result: ImageProjectionFitResult):
     """
     plot image and projection data for validation
     """
     fig, ax = plt.subplots(3, 1)
     fig.set_size_inches(4, 9)
 
-    image = results["processed_image"]
+    image = result.processed_image
     ax[0].imshow(image)
 
     projections = {
@@ -17,16 +19,11 @@ def plot_image_projection_fit(fit_object, results, n_stds=3):
         "y": np.array(np.sum(image, axis=1))
     }
 
-    ax[0].plot(*results["centroid"], "+r")
-    p0 = results["centroid"] - results["rms_sizes"] * n_stds
-    rect = patches.Rectangle(
-        p0, *results["rms_sizes"] * 2.0 * n_stds, facecolor="none", edgecolor="r"
-    )
-    ax[0].add_patch(rect)
+    ax[0].plot(*result.centroid, "+r")
 
     # plot data and model fit
     for i, name in enumerate(["x", "y"]):
-        fit_params = results["projection_fit_parameters"][name]
+        fit_params = getattr(result, f"{name}_projection_fit_parameters")
         ax[i + 1].text(0.01, 0.99,
                        "\n".join([
                            f"{name}: {int(val)}" for name, val in
@@ -38,8 +35,8 @@ def plot_image_projection_fit(fit_object, results, n_stds=3):
 
         ax[i + 1].plot(projections[name], label="data")
         fit_param_numpy = np.array([fit_params[name] for name in
-                                    fit_object.projection_fit_method.parameters.parameters])
-        ax[i + 1].plot(fit_object.projection_fit_method._forward(x, fit_param_numpy),
+                                    result.projection_fit_method.parameters.parameters])
+        ax[i + 1].plot(result.projection_fit_method._forward(x, fit_param_numpy),
                        label="model fit")
 
     return fig, ax
