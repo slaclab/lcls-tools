@@ -15,11 +15,11 @@ class QuadScanEmittance(Measurement):
     ------------------------
     Arguments:
     energy: beam energy
-    magnet_collection: MagnetCollection object of magnets for an area of the beamline (use create_magnet())
-    magnet_name: name of magnet
-    magnet_length: length of magnet
     scan_values: BDES values of magnet to scan over
-    device_measurement: Measurement object of profile monitor/wire scanner
+    magnet: Magnet object used to conduct scan
+    beamsize_measurement: BeamsizeMeasurement object from profile monitor/wire scanner
+    n_measurement_shots: number of beamsize measurements to make per individual quad
+    strength
     ------------------------
     Methods:
     measure: does the quad scan, getting the beam sizes at each scan value,

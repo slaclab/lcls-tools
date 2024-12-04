@@ -53,7 +53,7 @@ class TestImageProcessing(unittest.TestCase):
         image_processor = ImageProcessor(background_image=background_image)
         image = image_processor.subtract_background(self.image)
         image = image
-        background = (self.image - 1)
+        background = np.clip(self.image - 1, 0, None)
         np.testing.assert_array_equal(
             image, background,
             err_msg=("expected image to equal background "
@@ -67,24 +67,9 @@ class TestImageProcessing(unittest.TestCase):
         image_processor = ImageProcessor(threshold=1)
         image = image_processor.subtract_background(self.image)
         image = image
-        background = (self.image - 1)
+        background = np.clip(self.image - 1, 0, None)
         np.testing.assert_array_equal(
             image, background,
             err_msg=("expected image to equal background "
                      + "when applying threshold")
-        )
-
-    def test_clip(self):
-        """
-        Given an np.ndarray check that when the image_processor
-        is passed a threshold check that the np.ndarray elements
-        are clipped at to not drop below zero
-        """
-        image_processor = ImageProcessor(threshold=100)
-        image = image_processor.subtract_background(self.image)
-        clipped_image = image_processor.clip_image(image)
-        np.testing.assert_array_equal(
-            clipped_image, np.zeros(self.size),
-            err_msg=("expected clipped image to equal zero "
-                     + "when subtracting background with threshold")
         )

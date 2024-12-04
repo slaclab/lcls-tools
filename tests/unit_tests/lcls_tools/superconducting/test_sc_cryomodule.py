@@ -6,7 +6,7 @@ from lcls_tools.superconducting.sc_linac import MACHINE
 
 class TestCryomodule(TestCase):
     def test_is_harmonic_linearizer_true(self):
-        hl = MACHINE.cryomodules[f"H{randint(1,2)}"]
+        hl = MACHINE.cryomodules[f"H{randint(1, 2)}"]
         self.assertTrue(
             hl.is_harmonic_linearizer, msg=f"{hl} is_harmonic_linearizer is not true"
         )

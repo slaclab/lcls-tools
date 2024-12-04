@@ -1,7 +1,10 @@
+from typing import Optional
+
 import numpy as np
 import scipy.optimize
 import scipy.signal
 from pydantic import BaseModel, ConfigDict
+
 from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.data.fit.methods import GaussianModel
 
@@ -27,8 +30,7 @@ class ProjectionFit(BaseModel):
 
     # TODO: come up with better name
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    model: MethodBase = GaussianModel()
-    use_priors: bool = False
+    model: Optional[MethodBase] = GaussianModel()
 
     def normalize(self, data: np.ndarray) -> np.ndarray:
         """
@@ -40,8 +42,8 @@ class ProjectionFit(BaseModel):
         return normalized_data
 
     def unnormalize_model_params(
-        self, method_params_dict: dict, projection_data: np.ndarray
-    ) -> np.ndarray:
+            self, method_params_dict: dict, projection_data: np.ndarray
+    ) -> dict:
         """
         Takes fitted and normalized params and returns them
         to unnormalized values i.e the true fitted values of the distribution
@@ -78,7 +80,7 @@ class ProjectionFit(BaseModel):
         res = scipy.optimize.minimize(
             self.model.loss,
             init_values,
-            args=(x, y, self.use_priors),
+            args=(x, y),
             bounds=bounds,
             method="Powell",
         )
@@ -86,7 +88,7 @@ class ProjectionFit(BaseModel):
 
     def fit_projection(self, projection_data: np.ndarray) -> dict:
         """
-        type is dict[str, float]
+        Return type is dict[str, float]
         Wrapper function that does all necessary steps to fit 1d array.
         Returns a dictionary where the keys are the model params and their
         values are the params fitted to the data
@@ -101,4 +103,5 @@ class ProjectionFit(BaseModel):
             fitted_params_dict[param] = (res.x)[i]
         self.model.fitted_params_dict = fitted_params_dict.copy()
         params_dict = self.unnormalize_model_params(fitted_params_dict, projection_data)
+
         return params_dict
