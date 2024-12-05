@@ -15,7 +15,6 @@ from lcls_tools.common.devices.yaml.controls_information import (
     get_wire_controls_information,
     get_lblm_controls_information,
 )
-import pprint
 
 class YAMLGenerator:
     def __init__(
@@ -293,16 +292,12 @@ class YAMLGenerator:
             # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
             additional_controls_data = get_magnet_controls_information()
 
-            pprint.pprint(basic_magnet_data)
-            pprint.pprint(additional_controls_data)
-
             complete_magnet_data = self.add_extra_data_to_device(
                 device_data=basic_magnet_data,
                 additional_controls_information=additional_controls_data,
                 additional_metadata=additional_metadata_data,
             )
 
-            pprint.pprint(complete_magnet_data)
             return complete_magnet_data
         else:
             return {}
