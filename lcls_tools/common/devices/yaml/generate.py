@@ -7,11 +7,13 @@ from lcls_tools.common.devices.yaml.metadata import (
     get_magnet_metadata,
     get_screen_metadata,
     get_wire_metadata,
+    get_lblm_metadata,
 )
 from lcls_tools.common.devices.yaml.controls_information import (
     get_magnet_controls_information,
     get_screen_controls_information,
     get_wire_controls_information,
+    get_lblm_controls_information,
 )
 import pprint
 
@@ -36,8 +38,6 @@ class YAMLGenerator:
         self._beam_paths = self.extract_beampaths()
 
     def _filter_elements_by_fields(self, required_fields: List[str]) -> Dict[str, Any]:
-        #TODO: store csv data in dictionary in some arrangement so that this file does need to be parsed so many times.
-        # it is referenced by extract devices and extract_metadata
         csv_reader = None
         with open(self.csv_location, "r") as file:
             # convert csv file into dictionary for filtering
@@ -262,6 +262,7 @@ class YAMLGenerator:
         )
         return complete_device_data
 
+
     def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
         required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
         # PV suffix as the key, the name we want to store it as in yaml file as the value
@@ -344,29 +345,35 @@ class YAMLGenerator:
         # PV suffix as the key, the name we want to store it as in yaml file as the value
         # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
         possible_wire_pvs = {
-            "MOTR": "motr",
-            "MOTR.VELO": "velo",
-            "MOTR.RBV": "rbv",
-            "MOTR_INIT": "initialize",
-            "MOTR_INIT_STS": "initialized",
-            "MOTR_RETRACT": "retract",
-            "STARTSCAN": "startscan",
-            "XWIRESIZE": "xsize",
-            "YWIRESIZE": "ysize",
-            "UWIRESIZE": "usize",
-            "USEXWIRE": "usexwire",
-            "USEYWIRE": "useywire",
-            "USEUWIRE": "useuwire",
-            "XWIREINNER": "xwireinner",
-            "XWIREOUTER": "xwireouter",
-            "YWIREINNER": "ywireinner",
-            "YWIREOUTER": "ywireouter",
-            "UWIREINNER": "uwireinner",
-            "UWIREOUTER": "uwireouter",
+            "MOTR.STOP": "abort_scan",
             "MOTR_ENABLED_STS": "enabled",
             "MOTR_HOMED_STS": "homed",
+            "MOTR_INIT": "initialize",
+            "MOTR_INIT_STS": "initialize_status",
+            "MOTR": "motor",
+            "MOTR.RBV": "position",
+            "MOTR_RETRACT": "retract",
+            "SCANPULSES": "scan_pulses",
+            "MOTR.VELO": "speed",
+            "MOTR.VMAX": "speed_max",
+            "MOTR.VBAS": "speed_min",
+            "STARTSCAN": "start_scan",
+            "TEMP": "temperature",
             "MOTR_TIMEOUTEN": "timeout",
-            "MOTR.STOP": "abort",
+            "USEUWIRE": "use_u_wire",
+            "USEXWIRE": "use_x_wire",
+            "USEYWIRE": "use_y_wire",
+            "UWIRESIZE": "u_size",
+            "UWIREINNER": "u_wire_inner",
+            "UWIREOUTER": "u_wire_outer",
+            "MOTR.VMAX": "speed_max",
+            "MOTR.VBAS": "speed_min",
+            "XWIRESIZE": "x_size",
+            "XWIREINNER": "x_wire_inner",
+            "XWIREOUTER": "x_wire_outer",
+            "YWIRESIZE": "y_size",
+            "YWIREINNER": "y_wire_inner",
+            "YWIREOUTER": "y_wire_outer",
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_metadata_data = get_wire_metadata()
@@ -387,6 +394,35 @@ class YAMLGenerator:
         else:
             return {}
 
+    def extract_lblms(self, area: Union[str, List[str]] = ["HTR"]):
+        required_lblm_types = ["LBLM"]
+        # PV suffix as the key, the name we want to store it as in yaml file as the value
+        # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
+        possible_lblm_pvs = {
+            "GATED_INTEGRAL": "gated_integral",
+            "I0_LOSS": "i0_loss",
+            "FAST_AMP_GAIN": "gain",
+            "FAST_AMP_BYP": "bypass",
+        }
+        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        additional_metadata_data = get_lblm_metadata()
+        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        additional_controls_data = get_lblm_controls_information()
+        basic_lblm_data = self.extract_devices(
+            area=area,
+            required_types=required_lblm_types,
+            pv_search_terms=possible_lblm_pvs,
+        )
+        if basic_lblm_data:
+            complete_lblm_data = self.add_extra_data_to_device(
+                device_data=basic_lblm_data,
+                additional_controls_information=additional_controls_data,
+                additional_metadata=additional_metadata_data,
+            )
+            return complete_lblm_data
+        else:
+            return {}
+        
     def extract_metadata_by_device_names(
         self,
         device_names=Optional[List[str]],
