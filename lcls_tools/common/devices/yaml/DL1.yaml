@@ -19,7 +19,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.203992
+      l_eff: 0
       sum_l_meters: 17.295
       type: BEND
   BX02:
@@ -42,7 +42,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.203992
+      l_eff: 0
       sum_l_meters: 19.058
       type: BEND
   BXH1:
@@ -66,7 +66,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.124761
+      l_eff: 0
       sum_l_meters: 9.139
       type: BEND
   BXH2:
@@ -90,7 +90,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.124761
+      l_eff: 0
       sum_l_meters: 9.406
       type: BEND
   BXH3:
@@ -114,7 +114,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.124761
+      l_eff: 0
       sum_l_meters: 10.361
       type: BEND
   BXH4:
@@ -138,7 +138,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.124761
+      l_eff: 0
       sum_l_meters: 10.628
       type: BEND
   QB:
@@ -161,7 +161,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0
       sum_l_meters: 18.177
       type: QUAD
   QE01:
@@ -185,7 +185,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 8.494
       type: QUAD
   QE02:
@@ -209,7 +209,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 8.896
       type: QUAD
   QE03:
@@ -233,7 +233,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 11.571
       type: QUAD
   QE04:
@@ -257,7 +257,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 11.978
       type: QUAD
   QM01:
@@ -281,7 +281,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 16.36
       type: QUAD
   QM02:
@@ -305,7 +305,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 16.915
       type: QUAD
   QM03:
@@ -328,7 +328,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 19.576
       type: QUAD
   QM04:
@@ -351,7 +351,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 19.982
       type: QUAD
   XC06:
@@ -375,7 +375,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 11.147
       type: XCOR
   XC07:
@@ -399,7 +399,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 11.787
       type: XCOR
   XC08:
@@ -423,7 +423,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 16.561
       type: XCOR
   XC09:
@@ -446,7 +446,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 17.958
       type: XCOR
   XC10:
@@ -469,7 +469,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 19.382
       type: XCOR
   YC06:
@@ -493,7 +493,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 11.147
       type: YCOR
   YC07:
@@ -517,7 +517,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 11.787
       type: YCOR
   YC08:
@@ -541,7 +541,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 16.561
       type: YCOR
   YC09:
@@ -564,7 +564,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 17.958
       type: YCOR
   YC10:
@@ -587,7 +587,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 19.382
       type: YCOR
 screens:

@@ -7,7 +7,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.5
+      l_eff: 0
       sum_l_meters: 878.374
       type: BEND
   BLX57172:
@@ -18,7 +18,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 2.0
+      l_eff: 2
       sum_l_meters: 905.682
       type: BEND
   BLY57174:
@@ -29,7 +29,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 2.0
+      l_eff: 2
       sum_l_meters: 908.038
       type: BEND
   BX57205:
@@ -40,7 +40,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3
       sum_l_meters: 933.686
       type: BEND
   BX57215:
@@ -51,7 +51,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3
       sum_l_meters: 938.131
       type: BEND
   BX57225:
@@ -62,7 +62,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3
       sum_l_meters: 942.576
       type: BEND
   BX57235:
@@ -73,7 +73,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3
       sum_l_meters: 947.021
       type: BEND
   BX57245:
@@ -84,7 +84,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3
       sum_l_meters: 951.466
       type: BEND
   BX57255:
@@ -95,7 +95,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3
       sum_l_meters: 955.911
       type: BEND
   BX57265:
@@ -106,7 +106,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3
       sum_l_meters: 960.356
       type: BEND
   BX57275:
@@ -117,7 +117,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 3.2766
+      l_eff: 3
       sum_l_meters: 964.801
       type: BEND
   BY57202:
@@ -128,7 +128,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 1.5596
+      l_eff: 2
       sum_l_meters: 930.099
       type: BEND
   Q57186:
@@ -139,7 +139,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.4972
+      l_eff: 0
       sum_l_meters: 920.334
       type: QUAD
   Q57190:
@@ -150,7 +150,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.5598
+      l_eff: 1
       sum_l_meters: 922.862
       type: QUAD
   Q57204:
@@ -161,7 +161,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 1
       sum_l_meters: 931.463
       type: QUAD
   Q57210:
@@ -172,7 +172,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 1
       sum_l_meters: 935.908
       type: QUAD
   Q57220:
@@ -183,7 +183,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 1
       sum_l_meters: 940.353
       type: QUAD
   Q57230:
@@ -194,7 +194,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 1
       sum_l_meters: 944.798
       type: QUAD
   Q57250:
@@ -205,7 +205,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 1
       sum_l_meters: 953.688
       type: QUAD
   Q57260:
@@ -216,7 +216,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 1
       sum_l_meters: 958.133
       type: QUAD
   Q57270:
@@ -227,7 +227,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 1
       sum_l_meters: 962.578
       type: QUAD
   Q57280:
@@ -238,7 +238,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.6154
+      l_eff: 1
       sum_l_meters: 967.023
       type: QUAD
   XC57175:
@@ -249,7 +249,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 910.028
       type: XCOR
   XC57185:
@@ -260,7 +260,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 919.338
       type: XCOR
   XC57205:
@@ -271,7 +271,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 933.686
       type: XCOR
   XC57215:
@@ -282,7 +282,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 938.131
       type: XCOR
   XC57225:
@@ -293,7 +293,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 942.576
       type: XCOR
   XC57235:
@@ -304,7 +304,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 947.021
       type: XCOR
   XC57245:
@@ -315,7 +315,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 951.466
       type: XCOR
   XC57255:
@@ -326,7 +326,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 955.911
       type: XCOR
   XC57265:
@@ -337,7 +337,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 960.356
       type: XCOR
   XC57275:
@@ -348,7 +348,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 964.801
       type: XCOR
   XC57282:
@@ -359,7 +359,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 968.344
       type: XCOR
   YC57183:
@@ -370,7 +370,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 918.239
       type: YCOR
   YC57184:
@@ -381,7 +381,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 918.64
       type: YCOR
   YC57210:
@@ -392,7 +392,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 935.908
       type: YCOR
   YC57220:
@@ -403,7 +403,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 940.353
       type: YCOR
   YC57230:
@@ -414,7 +414,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 944.798
       type: YCOR
   YC57240:
@@ -425,7 +425,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 949.243
       type: YCOR
   YC57250:
@@ -436,7 +436,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 953.688
       type: YCOR
   YC57260:
@@ -447,7 +447,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 958.133
       type: YCOR
   YC57270:
@@ -458,7 +458,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 962.578
       type: YCOR
   YC57280:
@@ -469,7 +469,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 967.023
       type: YCOR
   YC57282:
@@ -480,7 +480,7 @@ magnets:
       area: SCAV
       beam_path:
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 968.128
       type: YCOR
 screens:

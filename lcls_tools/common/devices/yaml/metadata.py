@@ -12,7 +12,6 @@ def get_magnet_metadata(magnet_names: List[str] = [], method: callable = None, *
         # Add any additional metadata fields here
         additional_fields = ['Element', 'Effective Length (m)']
         device_elements = method(magnet_names, additional_fields)
-        print(device_elements)
         # change field names and values to be in different format
         # if needed
         for magnet in device_elements:

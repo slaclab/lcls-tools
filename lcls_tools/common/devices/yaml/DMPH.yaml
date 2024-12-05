@@ -15,7 +15,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 1.45203
+      l_eff: 1
       sum_l_meters: 1721.298
       type: BEND
   BYD2:
@@ -34,7 +34,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 1.45203
+      l_eff: 1
       sum_l_meters: 1722.998
       type: BEND
   BYD3:
@@ -53,7 +53,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 1.45203
+      l_eff: 1
       sum_l_meters: 1724.698
       type: BEND
   BYDSH:
@@ -72,7 +72,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 0.5
+      l_eff: 0
       sum_l_meters: 1720.006
       type: BEND
   QDMP1:
@@ -91,7 +91,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 0.43
+      l_eff: 0
       sum_l_meters: 1737.155
       type: QUAD
   QDMP2:
@@ -110,7 +110,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 0.43
+      l_eff: 0
       sum_l_meters: 1738.205
       type: QUAD
   QUE1:
@@ -132,7 +132,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.55
+      l_eff: 1
       sum_l_meters: 1709.002
       type: QUAD
   QUE2:
@@ -154,7 +154,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.55
+      l_eff: 1
       sum_l_meters: 1716.792
       type: QUAD
   XCD3:
@@ -176,7 +176,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1719.2
       type: XCOR
   XCDD:
@@ -195,7 +195,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1738.895
       type: XCOR
   XCUE2:
@@ -217,7 +217,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1708.172
       type: XCOR
   YCD3:
@@ -239,7 +239,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1718.856
       type: YCOR
   YCDD:
@@ -258,7 +258,7 @@ magnets:
       beam_path:
       - CU_HXR
       - SC_HXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1736.205
       type: YCOR
   YCUE1:
@@ -280,7 +280,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1706.432
       type: YCOR
 screens:

@@ -8,7 +8,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
-      l_eff: 0.9779
+      l_eff: 1
       sum_l_meters: 1006.843
       type: BEND
   Q0D:
@@ -20,7 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
-      l_eff: 1.0
+      l_eff: 1
       sum_l_meters: 997.885
       type: QUAD
   Q1D:
@@ -32,7 +32,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
-      l_eff: 1.0
+      l_eff: 1
       sum_l_meters: 1000.109
       type: QUAD
   Q2D:
@@ -44,7 +44,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
-      l_eff: 1.0
+      l_eff: 1
       sum_l_meters: 1002.334
       type: QUAD
 screens:

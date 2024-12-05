@@ -19,7 +19,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.263
+      l_eff: 0
       sum_l_meters: 1035.479
       type: QUAD
   Q50Q2:
@@ -42,7 +42,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.324302
+      l_eff: 0
       sum_l_meters: 1041.751
       type: QUAD
   XCBSYQ2:
@@ -65,7 +65,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1041.089
       type: XCOR
   YCBSYQ1:
@@ -88,6 +88,6 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1033.913
       type: YCOR

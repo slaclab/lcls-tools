@@ -14,7 +14,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 1.0601
+      l_eff: 1
       sum_l_meters: 1044.943
       type: BEND
   BLRCUS:
@@ -32,7 +32,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 1.000014
+      l_eff: 1
       sum_l_meters: 1062.12
       type: BEND
   BRCUS1:
@@ -50,7 +50,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 1.000004
+      l_eff: 1
       sum_l_meters: 1162.489
       type: BEND
   BRCUSDC1:
@@ -68,7 +68,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.2691
+      l_eff: 0
       sum_l_meters: 1043.926
       type: BEND
   BRCUSDC2:
@@ -86,7 +86,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.2691
+      l_eff: 0
       sum_l_meters: 1045.96
       type: BEND
   BYCUS1:
@@ -104,7 +104,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.2691
+      l_eff: 0
       sum_l_meters: 1110.623
       type: BEND
   BYCUS2:
@@ -122,7 +122,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.2691
+      l_eff: 0
       sum_l_meters: 1113.986
       type: BEND
   QCUS1:
@@ -140,7 +140,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.263
+      l_eff: 0
       sum_l_meters: 1092.151
       type: QUAD
   QCUS10:
@@ -158,7 +158,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.263
+      l_eff: 0
       sum_l_meters: 1132.457
       type: QUAD
   QCUS2:
@@ -176,7 +176,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.263
+      l_eff: 0
       sum_l_meters: 1097.548
       type: QUAD
   QCUS3:
@@ -194,7 +194,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.263
+      l_eff: 0
       sum_l_meters: 1102.045
       type: QUAD
   QCUS4:
@@ -212,7 +212,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0
       sum_l_meters: 1109.101
       type: QUAD
   QCUS5:
@@ -230,7 +230,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0
       sum_l_meters: 1112.101
       type: QUAD
   QCUS6:
@@ -248,7 +248,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0
       sum_l_meters: 1112.508
       type: QUAD
   QCUS7:
@@ -266,7 +266,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.1068
+      l_eff: 0
       sum_l_meters: 1115.507
       type: QUAD
   QCUS8:
@@ -284,7 +284,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.263
+      l_eff: 0
       sum_l_meters: 1122.564
       type: QUAD
   QCUS9:
@@ -302,7 +302,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.263
+      l_eff: 0
       sum_l_meters: 1127.061
       type: QUAD
   XCCUS1:
@@ -320,7 +320,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1093.494
       type: XCOR
   XCCUS10:
@@ -338,7 +338,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1131.115
       type: XCOR
   XCCUS4:
@@ -356,7 +356,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1109.555
       type: XCOR
   XCCUS7:
@@ -374,7 +374,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1115.961
       type: XCOR
   YCCUS2:
@@ -392,7 +392,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1098.89
       type: YCOR
   YCCUS3:
@@ -410,7 +410,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1102.605
       type: YCOR
   YCCUS6:
@@ -428,7 +428,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1112.961
       type: YCOR
   YCCUS8:
@@ -446,7 +446,7 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1123.124
       type: YCOR
   YCCUS9:
@@ -464,6 +464,6 @@ magnets:
       area: CLTS
       beam_path:
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1127.621
       type: YCOR

@@ -8,7 +8,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.549161
+      l_eff: 1
       sum_l_meters: 398.543
       type: BEND
   BCX14796:
@@ -20,7 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.549161
+      l_eff: 1
       sum_l_meters: 408.963
       type: BEND
   BCX14808:
@@ -32,7 +32,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.549161
+      l_eff: 1
       sum_l_meters: 410.604
       type: BEND
   BCX14883:
@@ -44,7 +44,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.549161
+      l_eff: 1
       sum_l_meters: 421.025
       type: BEND
   CQ14738:
@@ -56,7 +56,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.1759
+      l_eff: 0
       sum_l_meters: 400.832
       type: QUAD
   CQ14866:
@@ -68,7 +68,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.1759
+      l_eff: 0
       sum_l_meters: 418.735
       type: QUAD
   YC14780:
@@ -80,7 +80,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 407.75
       type: YCOR
   YC14820:
@@ -90,7 +90,7 @@ magnets:
     metadata:
       area: BC14E
       beam_path: []
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: null
       type: YCOR
 screens:

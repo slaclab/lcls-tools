@@ -22,7 +22,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.23
+      l_eff: 0
       sum_l_meters: 14.104
       type: QUAD
   XCM01:
@@ -48,7 +48,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 14.104
       type: XCOR
   YCM01:
@@ -74,6 +74,6 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 14.104
       type: YCOR

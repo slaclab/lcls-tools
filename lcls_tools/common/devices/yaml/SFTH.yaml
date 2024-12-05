@@ -7,7 +7,7 @@ magnets:
       area: SFTH
       beam_path:
       - CU_SFTH
-      l_eff: 0.944019
+      l_eff: 1
       sum_l_meters: 1734.345
       type: BEND
   BXPM2:
@@ -18,7 +18,7 @@ magnets:
       area: SFTH
       beam_path:
       - CU_SFTH
-      l_eff: 0.944136
+      l_eff: 1
       sum_l_meters: 1735.59
       type: BEND
 screens:

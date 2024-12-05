@@ -6,7 +6,7 @@ magnets:
     metadata:
       area: LI28
       beam_path: []
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: null
       type: XCOR
   YC29096:
@@ -16,7 +16,7 @@ magnets:
     metadata:
       area: LI28
       beam_path: []
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: null
       type: YCOR
 wires:

@@ -14,7 +14,7 @@ magnets:
       area: SPEC
       beam_path:
       - CU_SPEC
-      l_eff: 0.5435
+      l_eff: 1
       sum_l_meters: 19.284
       type: BEND
   DX01:
@@ -31,7 +31,7 @@ magnets:
     metadata:
       area: SPEC
       beam_path: []
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: null
       type: BEND
   QS01:
@@ -49,7 +49,7 @@ magnets:
       area: SPEC
       beam_path:
       - CU_SPEC
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 20.088
       type: QUAD
   QS02:
@@ -67,7 +67,7 @@ magnets:
       area: SPEC
       beam_path:
       - CU_SPEC
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 20.596
       type: QUAD
   XCS1:
@@ -85,7 +85,7 @@ magnets:
       area: SPEC
       beam_path:
       - CU_SPEC
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 17.954
       type: XCOR
   XCS2:
@@ -103,7 +103,7 @@ magnets:
       area: SPEC
       beam_path:
       - CU_SPEC
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 20.341
       type: XCOR
   YCS1:
@@ -121,7 +121,7 @@ magnets:
       area: SPEC
       beam_path:
       - CU_SPEC
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 17.954
       type: YCOR
   YCS2:
@@ -139,7 +139,7 @@ magnets:
       area: SPEC
       beam_path:
       - CU_SPEC
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 20.341
       type: YCOR
 screens:

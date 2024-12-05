@@ -14,7 +14,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 1.0
+      l_eff: 1
       sum_l_meters: 2921.87
       type: BEND
   BKRDAS2:
@@ -32,7 +32,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 1.0
+      l_eff: 1
       sum_l_meters: 2923.17
       type: BEND
   BKRDAS3:
@@ -50,7 +50,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 1.0
+      l_eff: 1
       sum_l_meters: 2924.47
       type: BEND
   BKRDAS4:
@@ -68,7 +68,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 1.0
+      l_eff: 1
       sum_l_meters: 2925.77
       type: BEND
   BKRDAS5:
@@ -86,7 +86,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 1.0
+      l_eff: 1
       sum_l_meters: 2927.07
       type: BEND
   BKRDAS6:
@@ -104,7 +104,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 1.0
+      l_eff: 1
       sum_l_meters: 2928.37
       type: BEND
   BLRDAS:
@@ -122,7 +122,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 1.000058
+      l_eff: 1
       sum_l_meters: 2951.805
       type: BEND
   BRDAS1:
@@ -140,7 +140,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 1.000016
+      l_eff: 1
       sum_l_meters: 3008.128
       type: BEND
   BRDAS2:
@@ -158,7 +158,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 1.000006
+      l_eff: 1
       sum_l_meters: 3166.694
       type: BEND
   QDAS11:
@@ -176,7 +176,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 3012.928
       type: QUAD
   QDAS12:
@@ -194,7 +194,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 3027.852
       type: QUAD
   QDAS13:
@@ -212,7 +212,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 3046.605
       type: QUAD
   QDAS14:
@@ -230,7 +230,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 3065.157
       type: QUAD
   QDAS15:
@@ -248,7 +248,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 3083.41
       type: QUAD
   QDAS16:
@@ -266,7 +266,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 3101.663
       type: QUAD
   QDAS17:
@@ -284,7 +284,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 3119.115
       type: QUAD
   QDAS18A:
@@ -302,7 +302,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 3134.78
       type: QUAD
   QDAS18B:
@@ -320,7 +320,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 3135.04
       type: QUAD
   QDAS19:
@@ -338,7 +338,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 3144.144
       type: QUAD
   QDAS1A:
@@ -356,7 +356,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 2977.336
       type: QUAD
   QDAS1B:
@@ -374,7 +374,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 2977.076
       type: QUAD
   QDAS2A:
@@ -392,7 +392,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 2979.36
       type: QUAD
   QDAS2B:
@@ -410,7 +410,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.1244
+      l_eff: 0
       sum_l_meters: 2979.621
       type: QUAD
   RCDAS11:
@@ -428,7 +428,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 3009.428
       type: XCOR
   RCDAS19:
@@ -446,7 +446,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 3167.694
       type: XCOR
   XCDAS1:
@@ -464,7 +464,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 2974.752
       type: XCOR
   XCDAS14:
@@ -482,7 +482,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 3064.595
       type: XCOR
   YCDAS1:
@@ -500,7 +500,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 2975.252
       type: YCOR
   YCDAS17:
@@ -518,7 +518,7 @@ magnets:
       area: DASEL
       beam_path:
       - SC_DASEL
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 3118.553
       type: YCOR
 screens:

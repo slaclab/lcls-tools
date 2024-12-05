@@ -20,7 +20,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 4.855
       type: QUAD
   QA02:
@@ -44,7 +44,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.108
+      l_eff: 0
       sum_l_meters: 5.183
       type: QUAD
   SOL2:
@@ -68,7 +68,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 1.717
       type: SOLE
   XC02:
@@ -92,7 +92,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 2.366
       type: XCOR
   XC03:
@@ -116,7 +116,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 4.158
       type: XCOR
   XC04:
@@ -140,7 +140,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 5.699
       type: XCOR
   XC05:
@@ -164,7 +164,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 8.002
       type: XCOR
   YC02:
@@ -188,7 +188,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 2.366
       type: YCOR
   YC03:
@@ -212,7 +212,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 4.158
       type: YCOR
   YC04:
@@ -236,7 +236,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 5.699
       type: YCOR
   YC05:
@@ -260,7 +260,7 @@ magnets:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      l_eff: 0.0
+      l_eff: 0
       sum_l_meters: 8.002
       type: YCOR
 screens:
