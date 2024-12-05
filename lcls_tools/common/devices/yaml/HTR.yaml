@@ -48,6 +48,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.12441
       sum_l_meters: 28.309
       type: BEND
   BCXH2:
@@ -73,6 +74,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.12441
       sum_l_meters: 31.7
       type: BEND
   BCXH3:
@@ -98,6 +100,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.12441
       sum_l_meters: 33.833
       type: BEND
   BCXH4:
@@ -123,6 +126,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.12441
       sum_l_meters: 37.223
       type: BEND
   Q0H01:
@@ -148,6 +152,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 18.645
       type: QUAD
   Q0H02:
@@ -173,6 +178,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 19.197
       type: QUAD
   Q0H03:
@@ -198,6 +204,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 23.501
       type: QUAD
   Q0H04:
@@ -223,6 +230,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 24.035
       type: QUAD
   Q0H05:
@@ -248,6 +256,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 25.257
       type: QUAD
   Q0H06:
@@ -273,6 +282,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 25.792
       type: QUAD
   Q0H07:
@@ -298,6 +308,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 27.282
       type: QUAD
   Q0H08:
@@ -323,6 +334,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 27.816
       type: QUAD
   QHD01:
@@ -348,6 +360,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 37.729
       type: QUAD
   QHD02:
@@ -373,6 +386,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 38.51
       type: QUAD
   QHD03:
@@ -398,6 +412,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 41.215
       type: QUAD
   QHD04:
@@ -423,6 +438,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.1244
       sum_l_meters: 41.799
       type: QUAD
   XC0H01:
@@ -448,6 +464,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 19.464
       type: XCOR
   XC0H03:
@@ -473,6 +490,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 23.234
       type: XCOR
   XC0H05:
@@ -498,6 +516,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 26.059
       type: XCOR
   XC0H07:
@@ -523,6 +542,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 27.015
       type: XCOR
   XCHD01:
@@ -548,6 +568,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 38.243
       type: XCOR
   XCHD03:
@@ -573,6 +594,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 41.532
       type: XCOR
   YC0H01:
@@ -598,6 +620,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 18.921
       type: YCOR
   YC0H03:
@@ -623,6 +646,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 23.768
       type: YCOR
   YC0H05:
@@ -648,6 +672,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 25.525
       type: YCOR
   YC0H07:
@@ -673,6 +698,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 27.549
       type: YCOR
   YCHD01:
@@ -698,6 +724,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 37.996
       type: YCOR
   YCHD03:
@@ -723,6 +750,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 40.948
       type: YCOR
 screens:
@@ -812,6 +840,7 @@ wires:
         speed_max: WIRE:HTR:340:MOTR.VMAX
         speed_min: WIRE:HTR:340:MOTR.VBAS
         start_scan: WIRE:HTR:340:STARTSCAN
+        temperature: WIRE:HTR:340:TEMP
         timeout: WIRE:HTR:340:MOTR_TIMEOUTEN
         u_size: WIRE:HTR:340:UWIRESIZE
         u_wire_inner: WIRE:HTR:340:UWIREINNER

@@ -8,6 +8,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.31
       sum_l_meters: 954.079
       type: QUAD
   SQ1:
@@ -19,6 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.3813
       sum_l_meters: 938.351
       type: QUAD
   XC1996:
@@ -30,5 +32,6 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.0
       sum_l_meters: 933.421
       type: XCOR

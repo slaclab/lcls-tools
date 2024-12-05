@@ -15,6 +15,7 @@ magnets:
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 1.45203
       sum_l_meters: 3746.094
       type: BEND
   BYD2B:
@@ -33,6 +34,7 @@ magnets:
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 1.45203
       sum_l_meters: 3747.794
       type: BEND
   BYD3B:
@@ -51,6 +53,7 @@ magnets:
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 1.45203
       sum_l_meters: 3749.494
       type: BEND
   BYDSS:
@@ -69,6 +72,7 @@ magnets:
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 0.5
       sum_l_meters: 3744.802
       type: BEND
   QDMP1B:
@@ -87,6 +91,7 @@ magnets:
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 0.43
       sum_l_meters: 3761.951
       type: QUAD
   QDMP2B:
@@ -105,6 +110,7 @@ magnets:
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 0.43
       sum_l_meters: 3763.001
       type: QUAD
   QUE1B:
@@ -127,6 +133,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3733.799
       type: QUAD
   QUE2B:
@@ -149,6 +156,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.263
       sum_l_meters: 3741.589
       type: QUAD
   XCD3B:
@@ -171,6 +179,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3743.997
       type: XCOR
   XCDDB:
@@ -189,6 +198,7 @@ magnets:
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3763.691
       type: XCOR
   XCUE2B:
@@ -211,6 +221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3732.969
       type: XCOR
   YCD3B:
@@ -233,6 +244,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3743.653
       type: YCOR
   YCDDB:
@@ -251,6 +263,7 @@ magnets:
       beam_path:
       - CU_SXR
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3761.001
       type: YCOR
   YCUE1B:
@@ -273,6 +286,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 3731.228
       type: YCOR
 screens:

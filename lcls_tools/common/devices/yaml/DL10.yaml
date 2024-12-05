@@ -8,6 +8,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.12476
       sum_l_meters: 8.697
       type: BEND
   BCX10461:
@@ -19,6 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.12476
       sum_l_meters: 8.963
       type: BEND
   BCX10475:
@@ -30,6 +32,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.12476
       sum_l_meters: 9.919
       type: BEND
   BCX10481:
@@ -41,6 +44,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.12476
       sum_l_meters: 10.186
       type: BEND
   BX10661:
@@ -52,6 +56,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.203992
       sum_l_meters: 16.852
       type: BEND
   BX10751:
@@ -63,6 +68,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.203992
       sum_l_meters: 18.616
       type: BEND
   QB10731:
@@ -74,6 +80,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 17.734
       type: QUAD
   QE10425:
@@ -85,6 +92,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 8.052
       type: QUAD
   QE10441:
@@ -96,6 +104,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 8.453
       type: QUAD
   QE10511:
@@ -107,6 +116,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 11.145
       type: QUAD
   QE10525:
@@ -118,6 +128,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 11.535
       type: QUAD
   QM10631:
@@ -129,6 +140,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 15.917
       type: QUAD
   QM10651:
@@ -140,6 +152,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 16.473
       type: QUAD
   QM10771:
@@ -151,6 +164,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 19.134
       type: QUAD
   QM10781:
@@ -162,6 +176,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.108
       sum_l_meters: 19.539
       type: QUAD
   XC10491:
@@ -173,6 +188,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 10.705
       type: XCOR
   XC10521:
@@ -184,6 +200,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 11.345
       type: XCOR
   XC10641:
@@ -195,6 +212,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 16.119
       type: XCOR
   XC10721:
@@ -206,6 +224,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 17.515
       type: XCOR
   XC10761:
@@ -217,6 +236,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 18.939
       type: XCOR
   YC10492:
@@ -228,6 +248,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 10.705
       type: YCOR
   YC10522:
@@ -239,6 +260,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 11.345
       type: YCOR
   YC10642:
@@ -250,6 +272,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 16.119
       type: YCOR
   YC10722:
@@ -261,6 +284,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 17.515
       type: YCOR
   YC10762:
@@ -272,6 +296,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 18.939
       type: YCOR
 screens:

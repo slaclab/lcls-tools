@@ -8,6 +8,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.1068
       sum_l_meters: 878.994
       type: QUAD
   Q19601:
@@ -19,6 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.1068
       sum_l_meters: 891.338
       type: QUAD
   Q19701:
@@ -30,6 +32,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.1068
       sum_l_meters: 903.682
       type: QUAD
   Q19801:
@@ -41,6 +44,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.1068
       sum_l_meters: 916.027
       type: QUAD
   Q19851:
@@ -52,6 +56,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.1068
       sum_l_meters: 922.411
       type: QUAD
   Q19871:
@@ -63,6 +68,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.1068
       sum_l_meters: 924.604
       type: QUAD
   XC19502:
@@ -74,6 +80,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.0
       sum_l_meters: 879.406
       type: XCOR
   XC19602:
@@ -85,6 +92,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.0
       sum_l_meters: 891.746
       type: XCOR
   XC19700:
@@ -96,6 +104,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.0
       sum_l_meters: 902.856
       type: XCOR
   XC19802:
@@ -105,6 +114,7 @@ magnets:
     metadata:
       area: L3F_2
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XC19900:
@@ -116,6 +126,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.0
       sum_l_meters: 923.192
       type: XCOR
   YC19503:
@@ -127,6 +138,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.0
       sum_l_meters: 879.81
       type: YCOR
   YC19603:
@@ -138,6 +150,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.0
       sum_l_meters: 892.132
       type: YCOR
   YC19700:
@@ -149,6 +162,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.0
       sum_l_meters: 901.393
       type: YCOR
   YC19803:
@@ -158,6 +172,7 @@ magnets:
     metadata:
       area: L3F_2
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YC19900:
@@ -169,5 +184,6 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      l_eff: 0.0
       sum_l_meters: 923.535
       type: YCOR

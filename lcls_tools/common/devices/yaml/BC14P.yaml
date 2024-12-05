@@ -7,6 +7,7 @@ magnets:
       area: BC14P
       beam_path:
       - F2_POSI
+      l_eff: 0.549161
       sum_l_meters: 362.015
       type: BEND
   BCX141808:
@@ -17,6 +18,7 @@ magnets:
       area: BC14P
       beam_path:
       - F2_POSI
+      l_eff: 0.549161
       sum_l_meters: 363.656
       type: BEND
   CQ141738:
@@ -27,6 +29,7 @@ magnets:
       area: BC14P
       beam_path:
       - F2_POSI
+      l_eff: 0.1759
       sum_l_meters: 353.884
       type: QUAD
   CQ141866:
@@ -37,6 +40,7 @@ magnets:
       area: BC14P
       beam_path:
       - F2_POSI
+      l_eff: 0.1759
       sum_l_meters: 371.787
       type: QUAD
   YC141820:
@@ -47,6 +51,7 @@ magnets:
       area: BC14P
       beam_path:
       - F2_POSI
+      l_eff: 0.0
       sum_l_meters: 364.131
       type: YCOR
 screens:

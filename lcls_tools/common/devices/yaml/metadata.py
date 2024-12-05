@@ -52,3 +52,17 @@ def get_wire_metadata(wire_names: List[str] = []):
             "No method of getting additional metadata for wires."
         )
     return {}
+
+
+def get_lblm_metadata(lblm_names: List[str] = []):
+    # return a data structure of the form:
+    # {
+    #  lblm-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
+    #  lblm-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
+    #  ...
+    # }
+    if lblm_names:
+        raise NotImplementedError(
+            "No method of getting additional metadata for wires."
+        )
+    return {}

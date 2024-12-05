@@ -8,6 +8,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 29.111
       type: QUAD
   Q11301:
@@ -19,6 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 38.433
       type: QUAD
   QA11132:
@@ -30,6 +32,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 22.851
       type: QUAD
   QA11265:
@@ -41,6 +44,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.1068
       sum_l_meters: 35.192
       type: QUAD
   XC11104:
@@ -52,6 +56,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 20.344
       type: XCOR
   XC11140:
@@ -63,6 +68,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 23.604
       type: XCOR
   XC11202:
@@ -74,6 +80,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 29.517
       type: XCOR
   XC11272:
@@ -85,6 +92,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 35.779
       type: XCOR
   XC11304:
@@ -96,6 +104,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 39.082
       type: XCOR
   YC11105:
@@ -107,6 +116,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 20.344
       type: YCOR
   YC11141:
@@ -118,6 +128,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 23.604
       type: YCOR
   YC11203:
@@ -129,6 +140,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 29.804
       type: YCOR
   YC11273:
@@ -140,6 +152,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 35.779
       type: YCOR
   YC11305:
@@ -151,5 +164,6 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 39.082
       type: YCOR

@@ -19,6 +19,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.203497
       sum_l_meters: 31.488
       type: BEND
   BX12:
@@ -41,6 +42,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.203497
       sum_l_meters: 34.137
       type: BEND
   BX13:
@@ -63,6 +65,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.203497
       sum_l_meters: 35.171
       type: BEND
   BX14:
@@ -85,6 +88,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.203497
       sum_l_meters: 37.82
       type: BEND
   CQ11:
@@ -107,6 +111,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 31.89
       type: QUAD
   CQ12:
@@ -129,6 +134,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 37.418
       type: QUAD
   Q21201:
@@ -151,6 +157,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 30.732
       type: QUAD
   Q21301:
@@ -173,6 +180,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.1068
       sum_l_meters: 43.182
       type: QUAD
   QM11:
@@ -195,6 +203,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 31.204
       type: QUAD
   QM12:
@@ -217,6 +226,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 38.299
       type: QUAD
   QM13:
@@ -239,6 +249,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 38.97
       type: QUAD
   QM14:
@@ -261,6 +272,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 44.338
       type: QUAD
   QM15:
@@ -283,6 +295,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.108
       sum_l_meters: 44.903
       type: QUAD
   SQ13:
@@ -305,6 +318,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.16
       sum_l_meters: 35.615
       type: QUAD
   XC21191:
@@ -327,6 +341,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 30.056
       type: XCOR
   XC21275:
@@ -349,6 +364,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 39.325
       type: XCOR
   XC21302:
@@ -371,6 +387,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 42.229
       type: XCOR
   XC21325:
@@ -393,6 +410,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 44.618
       type: XCOR
   YC21192:
@@ -415,6 +433,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 30.056
       type: YCOR
   YC21276:
@@ -437,6 +456,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 39.325
       type: YCOR
   YC21303:
@@ -459,6 +479,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 42.575
       type: YCOR
   YC21325:
@@ -481,6 +502,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 0.0
       sum_l_meters: 44.618
       type: YCOR
 screens:
