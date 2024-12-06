@@ -6,7 +6,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   XC6:
@@ -16,7 +16,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY09:
@@ -26,7 +26,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY26:
@@ -36,7 +36,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY34:
@@ -46,7 +46,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY36:
@@ -56,7 +56,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY60:
@@ -66,7 +66,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY71:
@@ -76,7 +76,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   XCBSY81:
@@ -86,7 +86,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   YC5:
@@ -96,7 +96,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY10:
@@ -106,7 +106,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY27:
@@ -116,7 +116,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY35:
@@ -126,7 +126,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY37:
@@ -136,7 +136,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY62:
@@ -146,7 +146,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY72:
@@ -156,7 +156,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   YCBSY82:
@@ -166,7 +166,7 @@ magnets:
     metadata:
       area: BSY
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
 screens:

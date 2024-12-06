@@ -14,7 +14,7 @@ magnets:
       area: SPD
       beam_path:
       - SC_BSYD
-      l_eff: 1
+      l_eff: 1.0
       sum_l_meters: 2978.345
       type: BEND
   BYSP2D:
@@ -32,7 +32,7 @@ magnets:
       area: SPD
       beam_path:
       - SC_BSYD
-      l_eff: 1
+      l_eff: 1.0
       sum_l_meters: 3052.345
       type: BEND
   QSP1:
@@ -56,7 +56,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 2859.252
       type: QUAD
   QSP1D:
@@ -74,7 +74,7 @@ magnets:
       area: SPD
       beam_path:
       - SC_BSYD
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 2969.625
       type: QUAD
   QSP2:
@@ -98,7 +98,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 2861.315
       type: QUAD
   QSP2D:
@@ -116,7 +116,7 @@ magnets:
       area: SPD
       beam_path:
       - SC_BSYD
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 2973.205
       type: QUAD
   XCSP1:
@@ -140,7 +140,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2859.974
       type: XCOR
   XCSP1D:
@@ -158,7 +158,7 @@ magnets:
       area: SPD
       beam_path:
       - SC_BSYD
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2968.675
       type: XCOR
   XCSP3D:
@@ -176,7 +176,7 @@ magnets:
       area: SPD
       beam_path:
       - SC_BSYD
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 3053.345
       type: XCOR
   YCSP2:
@@ -200,7 +200,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2861.875
       type: YCOR
   YCSP2D:
@@ -218,7 +218,7 @@ magnets:
       area: SPD
       beam_path:
       - SC_BSYD
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2973.765
       type: YCOR
   YCSP4D:
@@ -236,7 +236,7 @@ magnets:
       area: SPD
       beam_path:
       - SC_BSYD
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 3053.845
       type: YCOR
 wires:

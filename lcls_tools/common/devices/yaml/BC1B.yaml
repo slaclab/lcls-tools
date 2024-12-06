@@ -21,7 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.204
       sum_l_meters: 132.223
       type: BEND
   BCX12:
@@ -46,7 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.204
       sum_l_meters: 134.874
       type: BEND
   BCX13:
@@ -71,7 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.204
       sum_l_meters: 136.827
       type: BEND
   BCX14:
@@ -96,7 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.204
       sum_l_meters: 139.478
       type: BEND
   CQ11B:
@@ -121,7 +121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.108
       sum_l_meters: 132.625
       type: QUAD
   CQ12B:
@@ -146,7 +146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.108
       sum_l_meters: 139.076
       type: QUAD
   Q1C01:
@@ -171,7 +171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.108
       sum_l_meters: 131.589
       type: QUAD
   XC1C00:
@@ -196,7 +196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 131.391
       type: XCOR
   XCM12B:
@@ -221,7 +221,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 138.463
       type: XCOR
   YC1C00:
@@ -246,7 +246,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 131.391
       type: YCOR
   YCM12B:
@@ -271,7 +271,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 133.239
       type: YCOR
 screens:

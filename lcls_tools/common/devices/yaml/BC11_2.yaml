@@ -9,7 +9,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0
+      l_eff: 0.107
       sum_l_meters: 53.831
       type: QUAD
   QM11358:
@@ -22,7 +22,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0
+      l_eff: 0.107
       sum_l_meters: 47.341
       type: QUAD
   QM11362:
@@ -35,7 +35,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0
+      l_eff: 0.107
       sum_l_meters: 47.996
       type: QUAD
   QM11393:
@@ -48,7 +48,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0
+      l_eff: 0.107
       sum_l_meters: 52.917
       type: QUAD
   XC11398:
@@ -61,7 +61,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 53.547
       type: XCOR
   YC11365:
@@ -74,7 +74,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 48.402
       type: YCOR
   YC11399:
@@ -87,7 +87,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 53.547
       type: YCOR
 screens:

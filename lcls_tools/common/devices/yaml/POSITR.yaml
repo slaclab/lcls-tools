@@ -6,7 +6,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202600:
@@ -16,7 +16,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202700:
@@ -26,7 +26,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202710:
@@ -36,7 +36,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202720:
@@ -46,7 +46,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202730:
@@ -56,7 +56,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202770:
@@ -66,7 +66,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202780:
@@ -76,7 +76,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202790:
@@ -86,7 +86,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202800:
@@ -96,7 +96,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202900:
@@ -106,7 +106,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202930:
@@ -116,7 +116,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202940:
@@ -126,7 +126,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202950:
@@ -136,7 +136,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   B202960:
@@ -146,7 +146,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: BEND
   Q202591T:
@@ -156,7 +156,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202641T:
@@ -166,7 +166,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202651T:
@@ -176,7 +176,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202671T:
@@ -186,7 +186,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202681T:
@@ -196,7 +196,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202691T:
@@ -206,7 +206,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202751T:
@@ -216,7 +216,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202811T:
@@ -226,7 +226,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202821T:
@@ -236,7 +236,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202831T:
@@ -246,7 +246,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202851T:
@@ -256,7 +256,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202861T:
@@ -266,7 +266,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   Q202921T:
@@ -276,7 +276,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   X202566T:
@@ -286,7 +286,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   X202626T:
@@ -296,7 +296,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   X202866T:
@@ -306,7 +306,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   X202936T:
@@ -316,7 +316,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: XCOR
   Y202647T:
@@ -326,7 +326,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   Y202677T:
@@ -336,7 +336,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   Y202827T:
@@ -346,7 +346,7 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR
   Y202857T:
@@ -356,6 +356,6 @@ magnets:
     metadata:
       area: POSITR
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: YCOR

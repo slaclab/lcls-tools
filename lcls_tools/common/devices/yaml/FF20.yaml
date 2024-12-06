@@ -8,7 +8,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
-      l_eff: 1
+      l_eff: 0.714
       sum_l_meters: 991.828
       type: QUAD
   Q1FF:
@@ -20,7 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
-      l_eff: 1
+      l_eff: 0.714
       sum_l_meters: 990.25
       type: QUAD
   Q2FF:
@@ -32,7 +32,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_POSI
-      l_eff: 1
+      l_eff: 0.714
       sum_l_meters: 988.671
       type: QUAD
   SQ2:
@@ -42,6 +42,6 @@ magnets:
     metadata:
       area: FF20
       beam_path: []
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD

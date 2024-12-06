@@ -133,7 +133,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 1264.649
       type: QUAD
   QBP14:
@@ -158,7 +158,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 1366.249
       type: QUAD
   QBP15:
@@ -183,7 +183,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 1467.849
       type: QUAD
   QBP16:
@@ -208,7 +208,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 1569.449
       type: QUAD
   QBP17:
@@ -233,7 +233,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 1671.049
       type: QUAD
   QBP18:
@@ -258,7 +258,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 1772.649
       type: QUAD
   QBP19:
@@ -283,7 +283,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 1874.249
       type: QUAD
   QBP20:
@@ -308,7 +308,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 1975.849
       type: QUAD
   QBP21:
@@ -333,7 +333,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 2077.449
       type: QUAD
   QBP22:
@@ -358,7 +358,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 2179.049
       type: QUAD
   QBP23:
@@ -383,7 +383,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 2280.649
       type: QUAD
   QBP24:
@@ -408,7 +408,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 2382.249
       type: QUAD
   QBP25:
@@ -433,7 +433,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 2483.849
       type: QUAD
   QBP26:
@@ -458,7 +458,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 2585.449
       type: QUAD
   QBP27:
@@ -483,7 +483,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 2687.049
       type: QUAD
   QBP28:
@@ -508,7 +508,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 2788.349
       type: QUAD
   QBP35:
@@ -533,7 +533,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.124
       sum_l_meters: 2766.349
       type: QUAD
   XCBP13:
@@ -558,7 +558,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1265.785
       type: XCOR
   XCBP14:
@@ -583,7 +583,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1367.385
       type: XCOR
   XCBP15:
@@ -608,7 +608,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1468.985
       type: XCOR
   XCBP16:
@@ -633,7 +633,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1570.585
       type: XCOR
   XCBP17:
@@ -658,7 +658,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1672.185
       type: XCOR
   XCBP18:
@@ -683,7 +683,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1773.785
       type: XCOR
   XCBP19:
@@ -708,7 +708,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1875.385
       type: XCOR
   XCBP20:
@@ -733,7 +733,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1976.985
       type: XCOR
   XCBP21:
@@ -758,7 +758,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2078.585
       type: XCOR
   XCBP22:
@@ -783,7 +783,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2180.185
       type: XCOR
   XCBP23:
@@ -808,7 +808,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2281.785
       type: XCOR
   XCBP24:
@@ -833,7 +833,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2383.385
       type: XCOR
   XCBP25:
@@ -858,7 +858,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2484.985
       type: XCOR
   XCBP26:
@@ -883,7 +883,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2586.585
       type: XCOR
   XCBP27:
@@ -908,7 +908,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2688.185
       type: XCOR
   XCBP28:
@@ -933,7 +933,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2789.615
       type: XCOR
   XCBP35:
@@ -958,7 +958,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2767.615
       type: XCOR
   YCBP13:
@@ -983,7 +983,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1266.014
       type: YCOR
   YCBP14:
@@ -1008,7 +1008,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1367.614
       type: YCOR
   YCBP15:
@@ -1033,7 +1033,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1469.214
       type: YCOR
   YCBP16:
@@ -1058,7 +1058,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1570.814
       type: YCOR
   YCBP17:
@@ -1083,7 +1083,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1672.414
       type: YCOR
   YCBP18:
@@ -1108,7 +1108,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1774.014
       type: YCOR
   YCBP19:
@@ -1133,7 +1133,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1875.614
       type: YCOR
   YCBP20:
@@ -1158,7 +1158,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1977.214
       type: YCOR
   YCBP21:
@@ -1183,7 +1183,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2078.814
       type: YCOR
   YCBP22:
@@ -1208,7 +1208,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2180.414
       type: YCOR
   YCBP23:
@@ -1233,7 +1233,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2282.014
       type: YCOR
   YCBP24:
@@ -1258,7 +1258,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2383.614
       type: YCOR
   YCBP25:
@@ -1283,7 +1283,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2485.214
       type: YCOR
   YCBP26:
@@ -1308,7 +1308,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2586.814
       type: YCOR
   YCBP27:
@@ -1333,7 +1333,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2688.414
       type: YCOR
   YCBP28:
@@ -1358,7 +1358,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2789.894
       type: YCOR
   YCBP35:
@@ -1383,7 +1383,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2767.894
       type: YCOR
 wires:

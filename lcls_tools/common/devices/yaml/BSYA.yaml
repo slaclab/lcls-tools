@@ -7,7 +7,7 @@ magnets:
       area: BSYA
       beam_path:
       - CU_ALINE
-      l_eff: 1
+      l_eff: 1.055
       sum_l_meters: 1103.271
       type: BEND
   BKRAPM2:
@@ -18,7 +18,7 @@ magnets:
       area: BSYA
       beam_path:
       - CU_ALINE
-      l_eff: 1
+      l_eff: 1.055
       sum_l_meters: 1104.921
       type: BEND
   BKRAPM3:
@@ -29,7 +29,7 @@ magnets:
       area: BSYA
       beam_path:
       - CU_ALINE
-      l_eff: 1
+      l_eff: 1.055
       sum_l_meters: 1106.571
       type: BEND
   BKRAPM4:
@@ -40,7 +40,7 @@ magnets:
       area: BSYA
       beam_path:
       - CU_ALINE
-      l_eff: 1
+      l_eff: 1.055
       sum_l_meters: 1108.221
       type: BEND
   BRAM1:
@@ -52,7 +52,7 @@ magnets:
       beam_path:
       - CU_ALINE
       - SC_DASEL
-      l_eff: 1
+      l_eff: 1.025
       sum_l_meters: 1164.244
       type: BEND
   YCBSYA:
@@ -63,6 +63,6 @@ magnets:
       area: BSYA
       beam_path:
       - CU_ALINE
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 1114.68
       type: YCOR

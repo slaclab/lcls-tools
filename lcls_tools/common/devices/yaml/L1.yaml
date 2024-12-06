@@ -19,7 +19,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0
+      l_eff: 0.108
       sum_l_meters: 23.293
       type: QUAD
   QA12:
@@ -42,7 +42,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0
+      l_eff: 0.108
       sum_l_meters: 26.334
       type: QUAD
   XC21101:
@@ -65,7 +65,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 20.787
       type: XCOR
   XC21135:
@@ -88,7 +88,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 23.831
       type: XCOR
   XC21165:
@@ -111,7 +111,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 26.791
       type: XCOR
   XC21175:
@@ -134,7 +134,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 29.086
       type: XCOR
   YC21102:
@@ -157,7 +157,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 20.787
       type: YCOR
   YC21136:
@@ -180,7 +180,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 23.831
       type: YCOR
   YC21166:
@@ -203,7 +203,7 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 26.791
       type: YCOR
   YC21174:
@@ -226,6 +226,6 @@ magnets:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 28.798
       type: YCOR

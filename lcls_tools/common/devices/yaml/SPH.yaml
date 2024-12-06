@@ -14,7 +14,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 1
+      l_eff: 1.0
       sum_l_meters: 2792.194
       type: BEND
   BKYSP2H:
@@ -32,7 +32,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 1
+      l_eff: 1.0
       sum_l_meters: 2793.494
       type: BEND
   BKYSP3H:
@@ -50,7 +50,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 1
+      l_eff: 1.0
       sum_l_meters: 2794.794
       type: BEND
   BLXSPH:
@@ -68,7 +68,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 1
+      l_eff: 1.0
       sum_l_meters: 2813.494
       type: BEND
   BRSP1H:
@@ -86,7 +86,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 1
+      l_eff: 1.0
       sum_l_meters: 2872.334
       type: BEND
   BYSP1H:
@@ -104,7 +104,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 1
+      l_eff: 0.6
       sum_l_meters: 2845.85
       type: BEND
   BYSP2H:
@@ -122,7 +122,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 1
+      l_eff: 0.6
       sum_l_meters: 2856.45
       type: BEND
   QSP10H:
@@ -140,7 +140,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 3037.415
       type: QUAD
   QSP11H:
@@ -158,7 +158,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.32
       sum_l_meters: 3046.498
       type: QUAD
   QSP1H:
@@ -176,7 +176,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 2857.41
       type: QUAD
   QSP2H:
@@ -194,7 +194,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.107
       sum_l_meters: 2862.256
       type: QUAD
   QSP3H:
@@ -212,7 +212,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.32
       sum_l_meters: 2887.579
       type: QUAD
   QSP4H:
@@ -230,7 +230,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 2896.662
       type: QUAD
   QSP5H:
@@ -248,7 +248,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 2918.721
       type: QUAD
   QSP6H:
@@ -266,7 +266,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 2942.78
       type: QUAD
   QSP7H:
@@ -284,7 +284,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.107
       sum_l_meters: 2967.038
       type: QUAD
   QSP8H:
@@ -302,7 +302,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 2991.297
       type: QUAD
   QSP9H:
@@ -320,7 +320,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.263
       sum_l_meters: 3015.356
       type: QUAD
   XCSP11H:
@@ -338,7 +338,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 3044.7
       type: XCOR
   XCSP1H:
@@ -356,7 +356,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2858.879
       type: XCOR
   XCSP3H:
@@ -374,7 +374,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2886.619
       type: XCOR
   XCSP5H:
@@ -392,7 +392,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2918.227
       type: XCOR
   XCSP7H:
@@ -410,7 +410,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2967.492
       type: XCOR
   XCSP9H:
@@ -428,7 +428,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 3016.579
       type: XCOR
   YCSP10H:
@@ -446,7 +446,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 3036.952
       type: YCOR
   YCSP2H:
@@ -464,7 +464,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2862.709
       type: YCOR
   YCSP4H:
@@ -482,7 +482,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2896.169
       type: YCOR
   YCSP6H:
@@ -500,7 +500,7 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2942.286
       type: YCOR
   YCSP8H:
@@ -518,6 +518,6 @@ magnets:
       area: SPH
       beam_path:
       - SC_HXR
-      l_eff: 0
+      l_eff: 0.0
       sum_l_meters: 2990.804
       type: YCOR

@@ -9,7 +9,7 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0
+      l_eff: 0.107
       sum_l_meters: 422.869
       type: QUAD
   QM14891:
@@ -22,6 +22,6 @@ magnets:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
-      l_eff: 0
+      l_eff: 0.107
       sum_l_meters: 422.207
       type: QUAD
