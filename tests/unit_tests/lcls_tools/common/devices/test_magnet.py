@@ -9,7 +9,7 @@ import inspect
 # Local imports
 from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.magnet import MagnetCollection
-from pydantic import ValidationError
+
 
 class MagnetTest(TestCase):
     def setUp(self) -> None:
@@ -136,12 +136,12 @@ class MagnetTest(TestCase):
         # SOL1B -> l_eff: 0.086
         self.assertEqual(self.magnet.l_eff, .086)
         # might need validate_assignment = True in magnet class
-        #with self.assertRaises(ValidationError):
-            #self.magnet.l_eff = "a"
+        # with self.assertRaises(ValidationError):
+        # self.magnet.l_eff = "a"
         # some trouble with this.... need to change config later. its not forcing
         # revalidation after reassignment since type is optional I believe.
         self.magnet.l_eff = 1.0
-        self.assertEqual(self.magnet.l_eff,1.0)
+        self.assertEqual(self.magnet.l_eff, 1.0)
         self.magnet.l_eff = 0.05
         self.assertEqual(self.magnet.l_eff, 0.05)
 
