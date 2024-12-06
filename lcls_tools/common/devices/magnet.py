@@ -3,6 +3,7 @@ from functools import wraps
 from pydantic import (
     Field,
     PositiveFloat,
+    NonNegativeFloat,
     SerializeAsAny,
     field_validator,
 )
@@ -59,7 +60,7 @@ class MagnetControlInformation(ControlInformation):
 
 
 class MagnetMetadata(Metadata):
-    l_eff: Optional[PositiveFloat] = None
+    l_eff: Optional[NonNegativeFloat] = None
     b_tolerance: Optional[PositiveFloat] = None
 
     def __init__(self, *args, **kwargs):
