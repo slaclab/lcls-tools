@@ -6,6 +6,7 @@ magnets:
     metadata:
       area: L0F
       beam_path: []
+      l_eff: 0.108
       sum_l_meters: 4.412
       type: QUAD
   QA10371:
@@ -15,6 +16,7 @@ magnets:
     metadata:
       area: L0F
       beam_path: []
+      l_eff: 0.108
       sum_l_meters: 4.741
       type: QUAD
   XC10311:
@@ -24,6 +26,7 @@ magnets:
     metadata:
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 1.94
       type: XCOR
   XC10381:
@@ -33,6 +36,7 @@ magnets:
     metadata:
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 5.256
       type: XCOR
   XC10411:
@@ -42,6 +46,7 @@ magnets:
     metadata:
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 7.56
       type: XCOR
   YC10312:
@@ -51,6 +56,7 @@ magnets:
     metadata:
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 1.94
       type: YCOR
   YC10382:
@@ -60,6 +66,7 @@ magnets:
     metadata:
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 5.256
       type: YCOR
   YC10412:
@@ -69,5 +76,6 @@ magnets:
     metadata:
       area: L0F
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: 7.56
       type: YCOR

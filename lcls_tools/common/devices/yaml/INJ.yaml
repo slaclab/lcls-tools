@@ -8,6 +8,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 0.197
       type: QUAD
   SOL10111:
@@ -19,6 +20,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 0.0
       type: SOLE
   SOL10121:
@@ -30,6 +32,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.2
       sum_l_meters: 0.197
       type: SOLE
   SQ10122:
@@ -41,6 +44,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 0.197
       type: QUAD
   XC10121:
@@ -52,6 +56,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 0.197
       type: XCOR
   XC10221:
@@ -63,6 +68,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 0.708
       type: XCOR
   YC10122:
@@ -74,6 +80,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 0.197
       type: YCOR
   YC10222:
@@ -85,6 +92,7 @@ magnets:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      l_eff: 0.0
       sum_l_meters: 0.708
       type: YCOR
 screens:

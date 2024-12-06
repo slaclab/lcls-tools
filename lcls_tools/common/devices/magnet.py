@@ -3,6 +3,7 @@ from functools import wraps
 from pydantic import (
     Field,
     PositiveFloat,
+    NonNegativeFloat,
     SerializeAsAny,
     field_validator,
 )
@@ -59,7 +60,7 @@ class MagnetControlInformation(ControlInformation):
 
 
 class MagnetMetadata(Metadata):
-    length: Optional[PositiveFloat] = None
+    l_eff: Optional[NonNegativeFloat] = None
     b_tolerance: Optional[PositiveFloat] = None
 
     def __init__(self, *args, **kwargs):
@@ -123,15 +124,15 @@ class Magnet(Device):
         self.metadata.b_tolerance = value
 
     @property
-    def length(self):
+    def l_eff(self):
         """Returns the effective length in meters"""
-        return self.metadata.length
+        return self.metadata.l_eff
 
-    @length.setter
-    def length(self, value):
+    @l_eff.setter
+    def l_eff(self, value):
         if not isinstance(value, float):
             return
-        self.metadata.length = value
+        self.metadata.l_eff = value
 
     @property
     def bctrl(self) -> Union[float, int]:

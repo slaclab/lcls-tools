@@ -21,6 +21,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 368.187
       type: QUAD
   QE202:
@@ -45,6 +46,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 373.201
       type: QUAD
   QE203:
@@ -69,6 +71,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 392.11
       type: QUAD
   QE204:
@@ -93,6 +96,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.108
       sum_l_meters: 395.218
       type: QUAD
   XCE202:
@@ -117,6 +121,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 373.577
       type: XCOR
   XCE204:
@@ -141,6 +146,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 395.594
       type: XCOR
   YCE201:
@@ -165,6 +171,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 368.562
       type: YCOR
   YCE203:
@@ -189,6 +196,7 @@ magnets:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      l_eff: 0.0
       sum_l_meters: 392.485
       type: YCOR
 wires:
@@ -208,6 +216,7 @@ wires:
         speed_max: WIRE:EMIT2:600:MOTR.VMAX
         speed_min: WIRE:EMIT2:600:MOTR.VBAS
         start_scan: WIRE:EMIT2:600:STARTSCAN
+        temperature: WIRE:EMIT2:600:TEMP
         timeout: WIRE:EMIT2:600:MOTR_TIMEOUTEN
         u_size: WIRE:EMIT2:600:UWIRESIZE
         u_wire_inner: WIRE:EMIT2:600:UWIREINNER
