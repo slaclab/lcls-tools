@@ -16,6 +16,7 @@ from lcls_tools.common.devices.yaml.controls_information import (
     get_lblm_controls_information,
 )
 
+
 class YAMLGenerator:
     def __init__(
         self,
@@ -261,7 +262,6 @@ class YAMLGenerator:
         )
         return complete_device_data
 
-
     def extract_magnets(self, area: Union[str, List[str]] = "GUNB") -> dict:
         required_magnet_types = ["SOLE", "QUAD", "XCOR", "YCOR", "BEND"]
         # PV suffix as the key, the name we want to store it as in yaml file as the value
@@ -283,11 +283,9 @@ class YAMLGenerator:
             pv_search_terms=possible_magnet_pvs,
         )
 
-
         if basic_magnet_data:
 
-            magnet_names = [key for key in basic_magnet_data.keys()] 
-            
+            magnet_names = [key for key in basic_magnet_data.keys()]
             additional_metadata_data = get_magnet_metadata(magnet_names,self.extract_metadata_by_device_names)
             # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
             additional_controls_data = get_magnet_controls_information()
@@ -417,26 +415,30 @@ class YAMLGenerator:
             return complete_lblm_data
         else:
             return {}
-        
+
     def extract_metadata_by_device_names(
         self,
         device_names=Optional[List[str]],
-        required_fields=Optional[List[str]]     
+        required_fields=Optional[List[str]]
     ):
-        #TODO: try not to call filter elements so many times as it parses csv
+        # TODO: try not to call filter elements so many times as it parses csv
         if required_fields:
             elements = self._filter_elements_by_fields(
-            required_fields=required_fields
+                required_fields=required_fields
             )
-        else:        
+        else:
             elements = self._filter_elements_by_fields(
-            required_fields=self._required_fields
+                required_fields=self._required_fields
             )
 
-        device_elements = {element["Element"]: {required_field: element[required_field]
-                for required_field in required_fields if "Element" not in required_field}
-                for element in elements
-                if element["Element"] in device_names
+        device_elements = {
+            element["Element"]: {
+                required_field: element[required_field]
+                for required_field in required_fields
+                if "Element" not in required_field
             }
+            for element in elements
+            if element["Element"] in device_names
+        }
 
         return device_elements
