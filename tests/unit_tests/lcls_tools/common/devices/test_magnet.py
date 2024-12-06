@@ -88,7 +88,7 @@ class MagnetTest(TestCase):
             "bctrl",
             "bact",
             "ctrl",
-            "length",
+            "l_eff",
             "b_tolerance",
             "bmax",
             "bmin",
@@ -132,14 +132,14 @@ class MagnetTest(TestCase):
         self.assertEqual(self.magnet.b_tolerance, 0.1)
 
     def test_length(self) -> None:
-        """Test length float validation"""
-        self.assertIsNone(self.magnet.length)
-        self.magnet.length = "a"
-        self.assertIsNone(self.magnet.length)
-        self.magnet.length = 1
-        self.assertIsNone(self.magnet.length)
-        self.magnet.length = 0.05
-        self.assertEqual(self.magnet.length, 0.05)
+        """Test effective length float validation"""
+        self.assertIsNone(self.magnet.l_eff)
+        self.magnet.l_eff = "a"
+        self.assertIsNone(self.magnet.l_eff)
+        self.magnet.l_eff = 1
+        self.assertIsNone(self.magnet.l_eff)
+        self.magnet.l_eff = 0.05
+        self.assertEqual(self.magnet.l_eff, 0.05)
 
     @patch("epics.PV.get", new_callable=Mock)
     def test_bact(self, mock_pv_get) -> None:
