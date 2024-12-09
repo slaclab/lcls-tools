@@ -6,6 +6,7 @@ magnets:
     metadata:
       area: LI20
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
   QS0:
@@ -15,6 +16,7 @@ magnets:
     metadata:
       area: LI20
       beam_path: []
+      l_eff: 0.0
       sum_l_meters: null
       type: QUAD
 wires:

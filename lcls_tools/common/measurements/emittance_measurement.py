@@ -49,7 +49,7 @@ class QuadScanEmittance(Measurement):
         Get the rmat, twiss parameters, and measured beam sizes
         Perform the scan, measuring beam sizes at each scan value
         Compute the emittance and BMAG using the geometric focusing strengths,
-        beam sizes squared, magnet length, rmat, and twiss betas and alphas"""
+        beam sizes squared, magnet length (l_eff), rmat, and twiss betas and alphas"""
 
         # scan magnet strength and measure beamsize
         self.magnet.scan(
@@ -72,7 +72,7 @@ class QuadScanEmittance(Measurement):
             self.beam_sizes["x_rms"], self.beam_sizes["y_rms"]
         )) ** 2
 
-        magnet_length = self.magnet.metadata.length
+        magnet_length = self.magnet.l_eff
         if magnet_length is None:
             raise ValueError("magnet length needs to be specified for magnet "
                              f"{self.magnet.name} to be used in emittance measurement")

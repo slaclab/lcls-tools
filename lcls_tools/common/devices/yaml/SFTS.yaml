@@ -7,6 +7,7 @@ magnets:
       area: SFTS
       beam_path:
       - SC_SFTS
+      l_eff: 0.944
       sum_l_meters: 3759.142
       type: BEND
 screens:

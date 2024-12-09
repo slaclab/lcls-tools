@@ -276,20 +276,26 @@ class YAMLGenerator:
             "BMAX": None,
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-        additional_metadata_data = get_magnet_metadata()
-        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-        additional_controls_data = get_magnet_controls_information()
+
         basic_magnet_data = self.extract_devices(
             area=area,
             required_types=required_magnet_types,
             pv_search_terms=possible_magnet_pvs,
         )
+
         if basic_magnet_data:
+
+            magnet_names = [key for key in basic_magnet_data.keys()]
+            additional_metadata_data = get_magnet_metadata(magnet_names, self.extract_metadata_by_device_names)
+            # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+            additional_controls_data = get_magnet_controls_information()
+
             complete_magnet_data = self.add_extra_data_to_device(
                 device_data=basic_magnet_data,
                 additional_controls_information=additional_controls_data,
                 additional_metadata=additional_metadata_data,
             )
+
             return complete_magnet_data
         else:
             return {}
@@ -409,3 +415,30 @@ class YAMLGenerator:
             return complete_lblm_data
         else:
             return {}
+
+    def extract_metadata_by_device_names(
+        self,
+        device_names=Optional[List[str]],
+        required_fields=Optional[List[str]]
+    ):
+        # TODO: try not to call filter elements so many times as it parses csv
+        if required_fields:
+            elements = self._filter_elements_by_fields(
+                required_fields=required_fields
+            )
+        else:
+            elements = self._filter_elements_by_fields(
+                required_fields=self._required_fields
+            )
+
+        device_elements = {
+            element["Element"]: {
+                required_field: element[required_field]
+                for required_field in required_fields
+                if "Element" not in required_field
+            }
+            for element in elements
+            if element["Element"] in device_names
+        }
+
+        return device_elements
