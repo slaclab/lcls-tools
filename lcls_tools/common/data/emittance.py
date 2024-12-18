@@ -177,12 +177,10 @@ def compute_emit_bmag(
         bmag = bmag_func(beta, alpha, beta_design, alpha_design)  # result batchshape x nsteps
     else:
         bmag = None
+        twiss_at_screen = None
 
-    results = {}
-    results["emittance"] = emit
-    results["BMAG"] = bmag
-    results["beam_matrix"] = beam_matrix
-    results["twiss_at_screen"] = twiss_at_screen
+    results = {"emittance": emit, "BMAG": bmag, "beam_matrix": beam_matrix,
+               "twiss_at_screen": twiss_at_screen}
     return results
 
 

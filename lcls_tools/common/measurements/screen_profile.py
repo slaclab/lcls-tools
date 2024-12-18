@@ -46,11 +46,13 @@ class ScreenBeamProfileMeasurement(Measurement):
             images.append(self.device.image)
             # TODO: need to add a wait statement in here for images to update
 
-        results = {"raw_images": images}
+        results = {"raw_images": images, "fit_results": None}
 
         if self.fit_profile:
+            fit_results = []
             for image in images:
-                results.update(self.beam_fit.fit_image(image))
+                fit_results += [self.beam_fit.fit_image(image)]
+
             '''
             results = {}
             for image_measurement in images:
@@ -59,10 +61,11 @@ class ScreenBeamProfileMeasurement(Measurement):
                         results[key].append(val)
                     else:
                         results[key] = [val]
-            '''
             results = {
                 key: [d.get(key) for d in images]
                 for key in {k for meas in images for k in meas}
             }
+            '''
+            results["fit_results"] = fit_results
 
         return results
