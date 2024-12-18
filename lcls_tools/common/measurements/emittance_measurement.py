@@ -1,3 +1,4 @@
+import time
 from typing import Optional
 
 import numpy as np
@@ -41,7 +42,7 @@ class QuadScanEmittance(Measurement):
 
     @field_validator("rmat")
     def validate_rmat(cls, v, info):
-        assert v.shape == (4, 4)
+        assert v.shape == (2, 2, 2)
         return v
 
     def measure(self):
@@ -49,8 +50,9 @@ class QuadScanEmittance(Measurement):
         Get the rmat, twiss parameters, and measured beam sizes
         Perform the scan, measuring beam sizes at each scan value
         Compute the emittance and BMAG using the geometric focusing strengths,
-        beam sizes squared, magnet length (l_eff), rmat, and twiss betas and alphas"""
+        beam sizes squared, magnet length, rmat, and twiss betas and alphas"""
 
+        self._info = []
         # scan magnet strength and measure beamsize
         self.magnet.scan(
             scan_settings=self.scan_values,
@@ -72,25 +74,28 @@ class QuadScanEmittance(Measurement):
             self.beam_sizes["x_rms"], self.beam_sizes["y_rms"]
         )) ** 2
 
-        magnet_length = self.magnet.l_eff
+        magnet_length = self.magnet.metadata.l_eff
         if magnet_length is None:
             raise ValueError("magnet length needs to be specified for magnet "
                              f"{self.magnet.name} to be used in emittance measurement")
 
         # organize data into arrays for use in `compute_emit_bmag`
-        rmat = np.stack([self.rmat[0:2, 0:2], self.rmat[2:4, 2:4]])
-        twiss_betas_alphas = np.array(
-            [[self.design_twiss["beta_x"], self.design_twiss["alpha_x"]],
-             [self.design_twiss["beta_y"], self.design_twiss["alpha_y"]]]
-        )
+        twiss_betas_alphas = None
+        if self.design_twiss is not None:
+            twiss_betas_alphas = np.array(
+                [[self.design_twiss["beta_x"], self.design_twiss["alpha_x"]],
+                 [self.design_twiss["beta_y"], self.design_twiss["alpha_y"]]]
+            )
         kmod = bdes_to_kmod(self.energy, magnet_length, np.array(self.scan_values))
+
+        print(self.beam_sizes)
 
         # compute emittance and bmag
         results = compute_emit_bmag(
             k=kmod,
             beamsize_squared=beamsize_squared,
             q_len=magnet_length,
-            rmat=rmat,
+            rmat=self.rmat,
             twiss_design=twiss_betas_alphas,
         )
 
@@ -98,19 +103,31 @@ class QuadScanEmittance(Measurement):
             "x_rms": self.beam_sizes["x_rms"],
             "y_rms": self.beam_sizes["y_rms"]
         })
+        results.update({"info": self._info})
 
         return results
 
     def measure_beamsize(self):
         """Take measurement from measurement device,
         store beam sizes in self.beam_sizes"""
+        time.sleep(2)
+
         results = self.beamsize_measurement.measure(self.n_measurement_shots)
         if "x_rms" not in self.beam_sizes:
             self.beam_sizes["x_rms"] = []
         if "y_rms" not in self.beam_sizes:
             self.beam_sizes["y_rms"] = []
-        self.beam_sizes["x_rms"].append(np.mean(results["Sx"]))
-        self.beam_sizes["y_rms"].append(np.mean(results["Sy"]))
+
+        sigmas = []
+        for ele in results["fit_results"]:
+            sigmas += [ele.rms_size]
+        sigmas = np.array(sigmas)
+        print(sigmas)
+
+        self.beam_sizes["x_rms"].append(np.mean(sigmas[:, 0]))
+        self.beam_sizes["y_rms"].append(np.mean(sigmas[:, 1]))
+
+        self._info += [results]
 
 
 class MultiDeviceEmittance(Measurement):
