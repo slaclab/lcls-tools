@@ -70,8 +70,10 @@ class QuadScanEmittance(Measurement):
             self.rmat = optics["rmat"]
             self.design_twiss = optics["design_twiss"]
 
+        # calculate beam size squared in units of mm
         beamsize_squared = np.vstack((
-            self.beam_sizes["x_rms"], self.beam_sizes["y_rms"]
+            np.array(self.beam_sizes["x_rms"]) * 1e3,
+            np.array(self.beam_sizes["y_rms"]) * 1e3
         )) ** 2
 
         magnet_length = self.magnet.metadata.l_eff
@@ -80,15 +82,12 @@ class QuadScanEmittance(Measurement):
                              f"{self.magnet.name} to be used in emittance measurement")
 
         # organize data into arrays for use in `compute_emit_bmag`
-        twiss_betas_alphas = None
-        if self.design_twiss is not None:
-            twiss_betas_alphas = np.array(
-                [[self.design_twiss["beta_x"], self.design_twiss["alpha_x"]],
-                 [self.design_twiss["beta_y"], self.design_twiss["alpha_y"]]]
-            )
+        # rmat = np.stack([self.rmat[0:2, 0:2], self.rmat[2:4, 2:4]])
+        twiss_betas_alphas = np.array(
+            [[self.design_twiss["beta_x"], self.design_twiss["alpha_x"]],
+             [self.design_twiss["beta_y"], self.design_twiss["alpha_y"]]]
+        )
         kmod = bdes_to_kmod(self.energy, magnet_length, np.array(self.scan_values))
-
-        print(self.beam_sizes)
 
         # compute emittance and bmag
         results = compute_emit_bmag(
@@ -110,7 +109,7 @@ class QuadScanEmittance(Measurement):
     def measure_beamsize(self):
         """Take measurement from measurement device,
         store beam sizes in self.beam_sizes"""
-        time.sleep(2)
+        time.sleep(5)
 
         results = self.beamsize_measurement.measure(self.n_measurement_shots)
         if "x_rms" not in self.beam_sizes:
@@ -122,10 +121,12 @@ class QuadScanEmittance(Measurement):
         for ele in results["fit_results"]:
             sigmas += [ele.rms_size]
         sigmas = np.array(sigmas)
-        print(sigmas)
 
-        self.beam_sizes["x_rms"].append(np.mean(sigmas[:, 0]))
-        self.beam_sizes["y_rms"].append(np.mean(sigmas[:, 1]))
+        # note beamsizes here are in m
+        self.beam_sizes["x_rms"].append(
+            np.mean(sigmas[:, 0]) * self.beamsize_measurement.device.resolution * 1e-6)
+        self.beam_sizes["y_rms"].append(
+            np.mean(sigmas[:, 1]) * self.beamsize_measurement.device.resolution * 1e-6)
 
         self._info += [results]
 
