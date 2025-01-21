@@ -3,7 +3,7 @@ from typing import Optional
 
 import numpy as np
 from numpy import ndarray
-from pydantic import ConfigDict, PositiveInt, field_validator
+from pydantic import ConfigDict, PositiveInt, field_validator, PositiveFloat
 
 from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
@@ -36,6 +36,8 @@ class QuadScanEmittance(Measurement):
     rmat: Optional[ndarray] = None  # 4 x 4 beam transport matrix
     design_twiss: Optional[dict] = None  # design twiss values
     beam_sizes: Optional[dict] = {}
+
+    wait_time: PositiveFloat = 5.0
 
     name: str = "quad_scan_emittance"
     model_config = ConfigDict(arbitrary_types_allowed=True)
@@ -87,7 +89,11 @@ class QuadScanEmittance(Measurement):
             [[self.design_twiss["beta_x"], self.design_twiss["alpha_x"]],
              [self.design_twiss["beta_y"], self.design_twiss["alpha_y"]]]
         )
+
+        # compute quadrupole focusing strengths
+        # note: need to create negative k values for vertical dimension
         kmod = bdes_to_kmod(self.energy, magnet_length, np.array(self.scan_values))
+        kmod = np.stack((kmod, -kmod))
 
         # compute emittance and bmag
         results = compute_emit_bmag(
@@ -109,7 +115,7 @@ class QuadScanEmittance(Measurement):
     def measure_beamsize(self):
         """Take measurement from measurement device,
         store beam sizes in self.beam_sizes"""
-        time.sleep(5)
+        time.sleep(self.wait_time)
 
         results = self.beamsize_measurement.measure(self.n_measurement_shots)
         if "x_rms" not in self.beam_sizes:
