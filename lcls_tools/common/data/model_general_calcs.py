@@ -2,7 +2,7 @@ from typing import Dict
 
 import numpy as np
 
-# from meme.model import Model
+from meme.model import Model
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 
