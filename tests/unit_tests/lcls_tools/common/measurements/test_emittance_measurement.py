@@ -1,12 +1,11 @@
 from unittest import TestCase
 from unittest.mock import patch, Mock, MagicMock
+
 import numpy as np
 
-from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.devices.magnet import Magnet, MagnetMetadata
 from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
-from lcls_tools.common.image.fit import ImageProjectionFitResult
 from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 
@@ -86,12 +85,14 @@ class EmittanceMeasurementTest(TestCase):
         mock_magnet.scan = mock_function
 
         # define rmat and design twiss
+        # design twiss set such that the 5th element of the quad scan is the design
+        # setting
         rmat = np.array([[[1, 1.0], [0, 1]], [[1, 1.0], [0, 1]]])
         design_twiss = {
-            "beta_x": 10.0,
-            "alpha_x": 0.5,
-            "beta_y": 12.0,
-            "alpha_y": 0.3,
+            "beta_x": 0.2452,
+            "alpha_x": -0.1726,
+            "beta_y": 0.5323,
+            "alpha_y": -1.0615,
         }
 
         # Instantiate the QuadScanEmittance object
@@ -124,3 +125,4 @@ class EmittanceMeasurementTest(TestCase):
             [[5.0e-2, -5.0e-2, 5.2e-2],
              [0.3, -0.3, 0.33333328]]
         ))
+        assert np.allclose(results["BMAG"][:, 4], 1.0)
