@@ -168,8 +168,6 @@ class EmittanceMeasurementTest(TestCase):
                 # External list to return beam sizes
                 external_list = iter(mock_beamsize_measurements)
         quad_scan_dump = json.loads(quad_scan.model_dump_json())
-        with open('data.yml', 'w') as outfile:
-            yaml.dump(quad_scan_dump, outfile, default_flow_style=False)
 
         # recreate the QuadScanEmittance object from the dump info
         recreated_quad_scan = QuadScanEmittance.model_validate(quad_scan_dump)
