@@ -16,6 +16,7 @@ from pydantic import (
 from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
 from lcls_tools.common.devices.magnet import Magnet
+from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 import lcls_tools
@@ -182,17 +183,31 @@ class QuadScanEmittance(Measurement):
 
     wait_time: PositiveFloat = 5.0
 
-    name: str = "quad_scan_emittance"
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
-    @field_validator("rmat")
+    @field_validator("rmat", mode="before")
     def validate_rmat(cls, v, info):
+        if not isinstance(v, np.ndarray):
+            v = np.array(v)
+
         assert v.shape == (2, 2, 2)
         return v
+
+    @field_validator("beamsize_measurement", mode="before")
+    def validate_beamsize_measurement(cls, v, info):
+        if isinstance(v, Measurement):
+            return v
+        elif isinstance(v, dict):
+            class_ = globals()[v.pop("type")]
+            return class_(**v)
 
     @field_serializer("rmat")
     def rmat_to_list(self, val, _info):
         return val.tolist()
+
+    @field_serializer("beamsize_measurement")
+    def ser_fld(self, ele, _info):
+        return {"type": ele.__class__.__name__} | ele.model_dump()
 
     def measure(self):
         """

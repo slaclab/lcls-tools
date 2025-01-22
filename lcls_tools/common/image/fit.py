@@ -57,6 +57,18 @@ class ImageProjectionFit(ImageFit):
 
     projection_fit_method: Optional[MethodBase] = GaussianModel(use_priors=True)
 
+    @field_validator("projection_fit_method", mode="before")
+    def validate_beam_fit(cls, v, info):
+        if isinstance(v, MethodBase):
+            return v
+        elif isinstance(v, dict):
+            class_ = globals()[v.pop("type")]
+            return class_(**v)
+
+    @field_serializer("projection_fit_method")
+    def ser_fld(self, ele, _info):
+        return {"type": ele.__class__.__name__} | ele.model_dump()
+
     def _fit_image(self, image: ndarray) -> ImageProjectionFitResult:
         x_projection = np.array(np.sum(image, axis=0))
         y_projection = np.array(np.sum(image, axis=1))
