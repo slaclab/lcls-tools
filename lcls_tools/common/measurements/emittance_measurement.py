@@ -13,18 +13,48 @@ from lcls_tools.common.measurements.measurement import Measurement
 
 class QuadScanEmittance(Measurement):
     """Use a quad and profile monitor/wire scanner to perform an emittance measurement
-    ------------------------
+
     Arguments:
-    energy: beam energy
-    scan_values: BDES values of magnet to scan over
-    magnet: Magnet object used to conduct scan
-    beamsize_measurement: BeamsizeMeasurement object from profile monitor/wire scanner
-    n_measurement_shots: number of beamsize measurements to make per individual quad
-    strength
     ------------------------
+    energy: float
+        Beam energy in GeV
+
+    scan_values: List[float]
+        BDES values of magnet to scan over
+
+    magnet: Magnet
+        Magnet object used to conduct scan
+
+    beamsize_measurement: BeamsizeMeasurement
+        Beamsize measurement object from profile monitor/wire scanner
+
+    n_measurement_shots: int
+        number of beamsize measurements to make per individual quad strength
+
+    rmat: ndarray, optional
+        Transport matricies for the horizontal and vertical phase space from
+        the end of the scanning magnet to the screen, array shape should be 2 x 2 x 2 (
+        first element is the horizontal transport matrix, second is the vertical),
+        if not provided meme is used to calculate the transport matricies
+
+    design_twiss: dict[str, float], optional
+        Dictionary containing design twiss values with the following keys (`beta_x`,
+        `beta_y`, `alpha_x`, `alpha_y`) where the beta/alpha values are in units of [m]/[]
+        respectively
+
+    beam_sizes, dict[str, list[float]], optional
+        Dictionary contraining X-rms and Y-rms beam sizes (keys:`x_rms`,`y_rms`)
+        measured during the quadrupole scan in units of [m].
+
+    wait_time, float, optional
+        Wait time in seconds between changing quadrupole settings and making beamsize
+        measurements.
+
     Methods:
+    ------------------------
     measure: does the quad scan, getting the beam sizes at each scan value,
     gets the rmat and twiss parameters, then computes and returns the emittance and BMAG
+
     measure_beamsize: take measurement from measurement device, store beam sizes
     """
     energy: float
@@ -33,7 +63,7 @@ class QuadScanEmittance(Measurement):
     beamsize_measurement: Measurement
     n_measurement_shots: PositiveInt = 1
 
-    rmat: Optional[ndarray] = None  # 4 x 4 beam transport matrix
+    rmat: Optional[ndarray] = None
     design_twiss: Optional[dict] = None  # design twiss values
     beam_sizes: Optional[dict] = {}
 
@@ -48,11 +78,21 @@ class QuadScanEmittance(Measurement):
         return v
 
     def measure(self):
-        """Returns the emittance, BMAG, x_rms and y_rms
-        Get the rmat, twiss parameters, and measured beam sizes
-        Perform the scan, measuring beam sizes at each scan value
-        Compute the emittance and BMAG using the geometric focusing strengths,
-        beam sizes squared, magnet length, rmat, and twiss betas and alphas"""
+        """
+        Conduct quadrupole scan to measure the beam phase space.
+
+        Returns:
+        -------
+        result : dict
+            Dictonary containing the following keys
+            - `emittance`: geometric emittance in x/y in units of [mm.mrad]
+            - `BMAG`: Twiss mismatch parameter for each quadrupole strength (unitless)
+            - `twiss_parameters`: Twiss parameters (beta, alpha, gamma) calculated at
+                the screen for each quadrupole strength in each plane
+            - `x_rms`: Measured beam sizes in horizontal direction in [m]
+            - `y_rms`: Measured beam sizes in vertical direction in [m]
+            - `info`: Measurement information for each beamsize measurement
+            """
 
         self._info = []
         # scan magnet strength and measure beamsize
