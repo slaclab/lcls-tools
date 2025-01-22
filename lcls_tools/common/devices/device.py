@@ -10,7 +10,13 @@ class PVSet(lcls_tools.common.BaseModel):
         arbitrary_types_allowed=True,
         extra="forbid",
         frozen=True,
+        json_encoders={PV: lambda pv: pv.pvname}
     )
+
+    @field_serializer("*")
+    def serialize_pv(self, pv: PV, _info):
+        return pv.pvname
+
     ...
 
 

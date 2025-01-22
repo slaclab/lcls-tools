@@ -1,10 +1,12 @@
+# Built in
+import json
 from unittest import TestCase
 from unittest.mock import MagicMock, patch, Mock
 from matplotlib import pyplot as plt
 import numpy as np
+import yaml
 
 from lcls_tools.common.devices.magnet import Magnet, MagnetMetadata
-from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.frontend.plotting.emittance import plot_quad_scan_result
 from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
@@ -14,29 +16,10 @@ from lcls_tools.common.measurements.screen_profile import (
 )
 
 
-class EmittanceMeasurementTest(TestCase):
-    def setUp(self) -> None:
-        self.options = [
-            "TRIM",
-            "PERTURB",
-            "BCON_TO_BDES",
-            "SAVE_BDES",
-            "LOAD_BDES",
-            "UNDO_BDES",
-            "DAC_ZERO",
-            "CALIB",
-            "STDZ",
-            "RESET",
-            "TURN_OFF",
-            "TURN_ON",
-            "DEGAUSS",
-        ]
-        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=Mock)
-        self.mock_ctrl_options = self.ctrl_options_patch.start()
-        self.mock_ctrl_options.return_value = {"enum_strs": tuple(self.options)}
-        self.magnet_collection = create_magnet(area="GUNB")
-        return super().setUp()
+# Local imports
 
+
+class EmittanceMeasurementTest(TestCase):
     def test_measure_with_mocked_beamsize_measurement(self):
         """
         Test to verify correct emittance calculation based on data generated from a

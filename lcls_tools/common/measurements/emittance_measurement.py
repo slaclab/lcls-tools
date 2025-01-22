@@ -172,8 +172,8 @@ class QuadScanEmittance(Measurement):
 
     energy: float
     scan_values: list[float]
-    magnet: Magnet
-    beamsize_measurement: Measurement
+    magnet: SerializeAsAny[Magnet]
+    beamsize_measurement: SerializeAsAny[Measurement]
     n_measurement_shots: PositiveInt = 1
     _info: Optional[list] = []
 
@@ -189,6 +189,10 @@ class QuadScanEmittance(Measurement):
     def validate_rmat(cls, v, info):
         assert v.shape == (2, 2, 2)
         return v
+
+    @field_serializer("rmat")
+    def rmat_to_list(self, val, _info):
+        return val.tolist()
 
     def measure(self):
         """

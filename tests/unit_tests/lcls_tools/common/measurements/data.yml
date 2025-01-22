@@ -1,0 +1,118 @@
+beam_sizes: {}
+beamsize_measurement:
+  beam_fit:
+    image_processor:
+      background_image: null
+      gaussian_filter_size: null
+      median_filter_size: null
+      roi: null
+      threshold: 0.0
+    projection_fit_method:
+      fitted_params_dict: null
+      parameters:
+        name: Gaussian Parameters
+        parameters:
+          amplitude:
+            bounds:
+            - 0.01
+            - 1.0
+            initial_value: null
+            prior: null
+          mean:
+            bounds:
+            - 0.01
+            - 1.0
+            initial_value: null
+            prior: null
+          offset:
+            bounds:
+            - 0.01
+            - 1.0
+            initial_value: null
+            prior: null
+          sigma:
+            bounds:
+            - 0.01
+            - 5.0
+            initial_value: null
+            prior: null
+      use_priors: true
+  device:
+    controls_information:
+      PVs:
+        image: OTRS:LI21:237:IMAGE
+        n_bits: OTRS:LI21:237:N_OF_BITS
+        n_col: OTRS:LI21:237:N_OF_COL
+        n_row: OTRS:LI21:237:N_OF_ROW
+        resolution: OTRS:LI21:237:RESOLUTION
+      control_name: OTRS:LI21:237
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 34.834
+    name: null
+  fit_profile: true
+  name: beam_profile
+  save_data: true
+  save_location: null
+design_twiss:
+  alpha_x: -0.1726
+  alpha_y: -1.0615
+  beta_x: 0.2452
+  beta_y: 0.5323
+energy: 299792458.0
+magnet:
+  controls_information:
+    PVs:
+      bact: QUAD:LI21:221:BACT
+      bcon: QUAD:LI21:221:BCON
+      bctrl: QUAD:LI21:221:BCTRL
+      bdes: QUAD:LI21:221:BDES
+      bmax: QUAD:LI21:221:BMAX
+      bmin: QUAD:LI21:221:BMIN
+      ctrl: QUAD:LI21:221:CTRL
+    control_name: QUAD:LI21:221
+  metadata:
+    area: BC1
+    b_tolerance: null
+    beam_path:
+    - CU_ALINE
+    - CU_HTXI
+    - CU_HXR
+    - CU_HXTES
+    - CU_SFTH
+    - CU_SXR
+    l_eff: 0.108
+    sum_l_meters: 31.89
+  name: null
+n_measurement_shots: 1
+name: quad_scan_emittance
+rmat:
+- - - 1.0
+    - 1.0
+  - - 0.0
+    - 1.0
+- - - 1.0
+    - 1.0
+  - - 0.0
+    - 1.0
+save_data: true
+save_location: null
+scan_values:
+- -10.0
+- -7.777777777777778
+- -5.555555555555555
+- -3.333333333333333
+- -1.1111111111111107
+- 1.1111111111111107
+- 3.333333333333334
+- 5.555555555555557
+- 7.777777777777779
+- 10.0
+wait_time: 0.001
