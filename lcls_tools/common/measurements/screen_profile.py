@@ -65,16 +65,13 @@ class ScreenBeamProfileMeasurement(Measurement):
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-<<<<<<< HEAD
     name: str = "beam_profile"
     device: Screen
     image_processor: Optional[ImageProcessor] = ImageProcessor()
     beam_fit: ImageFit = ImageProjectionFit()
-=======
-    device: SerializeAsAny[Screen]
-    beam_fit: SerializeAsAny[ImageFit] = ImageProjectionFit()
->>>>>>> 3a0184b (optimize serialization to be able to create objects from json)
     fit_profile: bool = True
+    save_data: bool = True
+    filepath: str = "beam_profile.h5" # TODO: adjust
 
     @field_serializer("beam_fit")
     def ser_fld(self, ele, _info):
