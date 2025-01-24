@@ -68,33 +68,36 @@ class ScreenBeamProfileMeasurement(Measurement):
         results["raw_images"] = {f"image_{i}": image for i, image in enumerate(images)}
 
         if self.save_data:
-            with h5py.File(self.filepath, 'w') as f:
-                self.save_h5(results, f)
+            self.save_h5(results, self.filepath)
 
         return results
 
     # TODO: move to utils
     @staticmethod
-    def save_h5(d, f):
-        for key, val in d.items():
-            if key == 'attrs':
-                f.attrs.update(val)
-            elif isinstance(val, dict):
-                group = f.create_group(key, track_order=True)
-                save_h5(group, val)
-            else:
-                f.create_dataset(key, data=val, track_order=True)
+    def save_h5(data, filepath):
+        def recursive_save(d, f):
+            for key, val in d.items():
+                if key == 'attrs':
+                    f.attrs.update(val)
+                elif isinstance(val, dict):
+                    group = f.create_group(key, track_order=True)
+                    recursive_save(val, group)
+                else:
+                    f.create_dataset(key, data=val, track_order=True)
+
+        with h5py.File(filepath, 'w') as file:
+            recursive_save(data, file)
 
     @staticmethod
     def load_h5(filepath):
-        def recursive(f):
+        def recursive_load(f):
             d = {'attrs': dict(f.attrs)} if f.attrs else {}
             for key, val in f.items():
                 if isinstance(val, h5py.Group):
-                    d[key] = recursive(val)
+                    d[key] = recursive_load(val)
                 elif isinstance(val, h5py.Dataset):
                     d[key] = val[()]
             return d
 
         with h5py.File(filepath, 'r') as file:
-            return recursive(file)
+            return recursive_load(file)
