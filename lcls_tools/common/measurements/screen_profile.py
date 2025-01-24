@@ -26,6 +26,8 @@ class ScreenBeamProfileMeasurement(Measurement):
     device: SerializeAsAny[Screen]
     beam_fit: SerializeAsAny[ImageFit] = ImageProjectionFit()
     fit_profile: bool = True
+    save_data: bool = True
+    filepath: str = "beam_profile.h5" # TODO: adjust
 
     @field_serializer("beam_fit")
     def ser_fld(self, ele, _info):
@@ -61,6 +63,38 @@ class ScreenBeamProfileMeasurement(Measurement):
             for image in images:
                 fit_results += [self.beam_fit.fit_image(image)]
 
-            results["fit_results"] = fit_results
+            results["fit_results"] = {f"image_{i}": res.model_dump() for i, res in enumerate(fit_results)}
+
+        results["raw_images"] = {f"image_{i}": image for i, image in enumerate(images)}
+
+        if self.save_data:
+            with h5py.File(self.filepath, 'w') as f:
+                self.save_h5(results, f)
 
         return results
+
+    # TODO: move to utils
+    @staticmethod
+    def save_h5(d, f):
+        for key, val in d.items():
+            if key == 'attrs':
+                f.attrs.update(val)
+            elif isinstance(val, dict):
+                group = f.create_group(key, track_order=True)
+                save_h5(group, val)
+            else:
+                f.create_dataset(key, data=val, track_order=True)
+
+    @staticmethod
+    def load_h5(filepath):
+        def recursive(f):
+            d = {'attrs': dict(f.attrs)} if f.attrs else {}
+            for key, val in f.items():
+                if isinstance(val, h5py.Group):
+                    d[key] = recursive(val)
+                elif isinstance(val, h5py.Dataset):
+                    d[key] = val[()]
+            return d
+
+        with h5py.File(filepath, 'r') as file:
+            return recursive(file)
