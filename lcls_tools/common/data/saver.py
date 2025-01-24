@@ -1,5 +1,6 @@
 from typing import Dict, Any
 import h5py
+import numpy as np
 from pydantic import validate_call
 
 
@@ -22,6 +23,7 @@ class H5Saver:
         """
 
         self.string_dtype = 'utf-8'
+        self.supported_types = (bool, int, float, np.ndarray, np.integer, np.floating)
 
     @validate_call
     def save_to_h5(self, data: Dict[str, Any], filepath: str):
@@ -47,10 +49,13 @@ class H5Saver:
                 elif isinstance(val, dict):
                     group = f.create_group(key, track_order=True)
                     recursive_save(val, group)
+                elif isinstance(val, self.supported_types):
+                    f.create_dataset(key, data=val, track_order=True)
                 elif isinstance(val, str):
+                    # specify string dtype to avoid issues with encodings
                     f.create_dataset(key, data=val, dtype=dt, track_order=True)
                 else:
-                    f.create_dataset(key, data=val, track_order=True)
+                    f.create_dataset(key, data=str(val), track_order=True)
 
         with h5py.File(filepath, 'w') as file:
             recursive_save(data, file)
