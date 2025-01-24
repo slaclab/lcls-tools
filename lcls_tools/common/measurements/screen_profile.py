@@ -1,6 +1,7 @@
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.measurements.measurement import Measurement
+from lcls_tools.common.data.saver import H5Saver
 from pydantic import ConfigDict, SerializeAsAny, field_serializer, field_validator
 
 
@@ -27,6 +28,7 @@ class ScreenBeamProfileMeasurement(Measurement):
     beam_fit: SerializeAsAny[ImageFit] = ImageProjectionFit()
     fit_profile: bool = True
     save_data: bool = True
+    saver: SerializeAsAny[H5Saver] = H5Saver()
     filepath: str = "beam_profile.h5" # TODO: adjust
 
     @field_serializer("beam_fit")
@@ -68,36 +70,6 @@ class ScreenBeamProfileMeasurement(Measurement):
         results["raw_images"] = {f"image_{i}": image for i, image in enumerate(images)}
 
         if self.save_data:
-            self.save_h5(results, self.filepath)
+            self.saver.save_to_h5(results, self.filepath)
 
         return results
-
-    # TODO: move to utils
-    @staticmethod
-    def save_h5(data, filepath):
-        def recursive_save(d, f):
-            for key, val in d.items():
-                if key == 'attrs':
-                    f.attrs.update(val)
-                elif isinstance(val, dict):
-                    group = f.create_group(key, track_order=True)
-                    recursive_save(val, group)
-                else:
-                    f.create_dataset(key, data=val, track_order=True)
-
-        with h5py.File(filepath, 'w') as file:
-            recursive_save(data, file)
-
-    @staticmethod
-    def load_h5(filepath):
-        def recursive_load(f):
-            d = {'attrs': dict(f.attrs)} if f.attrs else {}
-            for key, val in f.items():
-                if isinstance(val, h5py.Group):
-                    d[key] = recursive_load(val)
-                elif isinstance(val, h5py.Dataset):
-                    d[key] = val[()]
-            return d
-
-        with h5py.File(filepath, 'r') as file:
-            return recursive_load(file)
