@@ -47,11 +47,10 @@ class H5Saver:
                 elif isinstance(val, dict):
                     group = f.create_group(key, track_order=True)
                     recursive_save(val, group)
+                elif isinstance(val, str):
+                    f.create_dataset(key, data=val, dtype=dt, track_order=True)
                 else:
-                    if isinstance(val, str):
-                        f.create_dataset(key, data=val, dtype=dt, track_order=True)
-                    else:
-                        f.create_dataset(key, data=val, track_order=True)
+                    f.create_dataset(key, data=val, track_order=True)
 
         with h5py.File(filepath, 'w') as file:
             recursive_save(data, file)
