@@ -25,6 +25,7 @@ class ScreenBeamProfileMeasurement(Measurement):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     name: str = "beam_profile"
     device: Screen
+    image_processor: Optional[ImageProcessor] = ImageProcessor()
     beam_fit: ImageFit = ImageProjectionFit()
     fit_profile: bool = True
 
@@ -48,7 +49,8 @@ class ScreenBeamProfileMeasurement(Measurement):
         if self.fit_profile:
             fit_results = []
             for image in images:
-                fit_results += [self.beam_fit.fit_image(image)]
+                processed_image = self.image_processor.auto_process(image)
+                fit_results += [self.beam_fit.fit_image(processed_image)]
 
             results["fit_results"] = fit_results
 
