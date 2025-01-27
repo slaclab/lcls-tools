@@ -28,7 +28,7 @@ class GaussianModel(MethodBase):
     density functions to match that data.
     """
 
-    parameters = gaussian_parameters
+    parameters: ModelParameters = gaussian_parameters
 
     def find_init_values(self) -> dict:
         """Fit data without optimization, return values."""
@@ -50,7 +50,7 @@ class GaussianModel(MethodBase):
         self.parameters.initial_values = init_values
         return init_values
 
-    def find_priors(self) -> dict:
+    def find_priors(self, **kwargs) -> dict:
         """
         Do initial guesses based on data and make distribution from that guess.
         """

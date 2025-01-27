@@ -1,5 +1,5 @@
 from lcls_tools.common.devices.screen import Screen
-from lcls_tools.common.data.fit.gaussian_fit import GaussianFit
+from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.measurements.measurement import Measurement
 from pydantic import ConfigDict
 
@@ -25,23 +25,8 @@ class ScreenBeamProfileMeasurement(Measurement):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     name: str = "beam_profile"
     device: Screen
-    beam_fit: GaussianFit = GaussianFit()  # actually want an additional
-    # layer before GaussianFit so that beam_fit_tool is a generic fit tool
-    # not constrained to be of gaussian fit type
+    beam_fit: ImageFit = ImageProjectionFit()
     fit_profile: bool = True
-    # return_images: bool = True
-
-    def single_measure(self) -> dict:
-        """
-        Function that grabs a single image from the device class
-        (typically live beam images) and passes it to the
-        image processing class embedded with beam_fit for
-        processing (subtraction and cropping)
-        returns a dictionary with both the raw and processed dictionary
-        """
-        raw_image = self.device.image
-        processed_image = self.beam_fit.processor.auto_process(raw_image)
-        return {"raw_image": raw_image, "processed_image": processed_image}
 
     def measure(self, n_shots: int = 1) -> dict:
         """
@@ -55,24 +40,16 @@ class ScreenBeamProfileMeasurement(Measurement):
         """
         images = []
         while len(images) < n_shots:
-            images.append(self.single_measure())
+            images.append(self.device.image)
+            # TODO: need to add a wait statement in here for images to update
+
+        results = {"raw_images": images, "fit_results": None}
 
         if self.fit_profile:
-            for image_measurement in images:
-                self.beam_fit.image = image_measurement["processed_image"]
-                image_measurement.update(self.beam_fit.beamsize)
-            '''
-            results = {}
-            for image_measurement in images:
-                for key, val in image_measurement.items():
-                    if key in results:
-                        results[key].append(val)
-                    else:
-                        results[key] = [val]
-            '''
-            results = {
-                key: [d.get(key) for d in images]
-                for key in {k for meas in images for k in meas}
-            }
+            fit_results = []
+            for image in images:
+                fit_results += [self.beam_fit.fit_image(image)]
 
-            return results
+            results["fit_results"] = fit_results
+
+        return results
