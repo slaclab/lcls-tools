@@ -8,7 +8,6 @@ from pydantic import BaseModel, ConfigDict, PositiveFloat, Field
 from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.data.fit.methods import GaussianModel
 from lcls_tools.common.data.fit.projection import ProjectionFit
-from lcls_tools.common.image.processing import ImageProcessor
 
 
 class ImageFitResult(BaseModel):
