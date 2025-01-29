@@ -98,7 +98,6 @@ class QuadScanEmittance(Measurement):
         # scan magnet strength and measure beamsize
         self.perform_beamsize_measurements()
 
-
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
         if self.rmat is None and self.design_twiss is None:
