@@ -36,4 +36,16 @@ Python 2 is no longer supported. Please write all new modules in Python 3.9 or a
 * Update documentation
 * Make a robust and somewhat flexible logger module that knows about SLAC things
 
-# Dependencies: See requirements.txt
+# Dependencies and Installation
+
+For a local development install, clone the repository and run the following commands:
+```bash
+pip install -e .
+```
+
+If you'd like to install the `meme` package requirement as well, run:
+```bash
+pip install -e ".[meme]"
+```
+
+The full list of dependencies can be found in the `requirements.txt` file.
