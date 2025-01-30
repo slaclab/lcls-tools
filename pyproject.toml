@@ -37,7 +37,7 @@ meme  = [
 meme-ssh  = [
     "meme @ git+ssh://git@github.com/slaclab/meme.git"
 ]
-doc = [
+docs = [
     "sphinx",
     "sphinx_rtd_theme",
     "myst_parser"
