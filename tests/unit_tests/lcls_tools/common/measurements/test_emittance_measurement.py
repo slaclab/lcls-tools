@@ -6,8 +6,15 @@ import numpy as np
 from lcls_tools.common.devices.magnet import Magnet, MagnetMetadata
 from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
-from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
+try:
+    import meme
+    from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
+except ImportError as e:
+    raise unittest.SkipTest(
+        "Meme package not installed. ",
+        "Skipping all tests in test_emittance.py."
+    )
 
 
 class EmittanceMeasurementTest(TestCase):
