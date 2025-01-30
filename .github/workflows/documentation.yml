@@ -19,6 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install ".[docs]"
+          pip list
       - name: Sphinx build
         run: |
           cd ./docs && make html 
