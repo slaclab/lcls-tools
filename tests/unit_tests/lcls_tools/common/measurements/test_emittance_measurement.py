@@ -8,9 +8,10 @@ from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 try:
-    import meme
+    import meme # noqa: F401
     from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
-except ImportError as e:
+except ImportError:
+    import unittest
     raise unittest.SkipTest(
         "Meme package not installed. ",
         "Skipping all tests in test_emittance.py."
