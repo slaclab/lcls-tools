@@ -30,7 +30,6 @@ jobs:
     - name: Install dependencies
       run: |
         eval `ssh-agent -s`
-        echo "${{ secrets.MEME_KEY }}"
         ssh-add - <<< '${{ secrets.MEME_KEY }}'
         python -m pip install --upgrade pip
         pip install flake8 pytest
