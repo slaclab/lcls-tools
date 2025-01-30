@@ -8,7 +8,7 @@ from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 try:
-    import meme # noqa: F401
+    import meme  # noqa: F401
     from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
 except ImportError:
     import unittest
