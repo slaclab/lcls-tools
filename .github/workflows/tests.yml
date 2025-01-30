@@ -41,7 +41,7 @@ jobs:
     - name: Test with unittest
       run: |
         echo -e '## Test results\n\n```' >> "$GITHUB_STEP_SUMMARY"
-        python -m  tests/unit_tests/ -v 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+        python -m unittest tests/unit_tests/ -v 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
         echo '```' >> "$GITHUB_STEP_SUMMARY"
 
 
@@ -72,5 +72,5 @@ jobs:
       - name: Test with unittest
         run: |
           echo -e '## Test results\n\n```' >> "$GITHUB_STEP_SUMMARY"
-          python -m  tests/unit_tests/ -v 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
+          python -m unittest tests/unit_tests/ -v 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
           echo '```' >> "$GITHUB_STEP_SUMMARY"
