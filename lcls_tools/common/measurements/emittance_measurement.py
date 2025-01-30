@@ -96,10 +96,7 @@ class QuadScanEmittance(Measurement):
 
         self._info = []
         # scan magnet strength and measure beamsize
-        self.magnet.scan(
-            scan_settings=self.scan_values,
-            function=self.measure_beamsize
-        )
+        self.perform_beamsize_measurements()
 
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
@@ -151,6 +148,12 @@ class QuadScanEmittance(Measurement):
         results.update({"info": self._info})
 
         return results
+
+    def perform_beamsize_measurements(self):
+        self.magnet.scan(
+            scan_settings=self.scan_values,
+            function=self.measure_beamsize
+        )
 
     def measure_beamsize(self):
         """Take measurement from measurement device,

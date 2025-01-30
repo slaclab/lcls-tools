@@ -2,7 +2,6 @@ from typing import Dict
 
 import numpy as np
 
-from meme.model import Model
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 
@@ -63,6 +62,8 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None,
 def get_optics(magnet: Magnet, measurement: Measurement) -> Dict:
     """Get rmats and twiss for a given beamline, magnet and measurement device"""
     # TODO: get optics from arbitrary devices (potentially in different beam lines)
+    from meme.model import Model
+
     model = Model(magnet.metadata.area)
     rmats = model.get_rmat(
         from_device=magnet.name,

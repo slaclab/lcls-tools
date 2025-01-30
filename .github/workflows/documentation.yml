@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-python@v3
       - name: Install dependencies
         run: |
+          eval `ssh-agent -s`
+          ssh-add - <<< '${{ secrets.MEME_KEY }}'
           pip install -r requirements.txt
       - name: Sphinx build
         run: |
