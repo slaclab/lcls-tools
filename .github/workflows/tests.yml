@@ -14,7 +14,7 @@ permissions:
 jobs:
   test-main:
 
-    if: ${{ github.repository == 'slaclab/lcls-tools' }}
+    if: ${{ github.repository_owner == github.event.pull_request.head.repo.owner.login }}
 
     runs-on: ubuntu-latest
     strategy:
@@ -47,7 +47,7 @@ jobs:
 
   test-general:
 
-    if: ${{ github.repository != 'slaclab/lcls-tools' }}
+    if: ${{ github.event.pull_request.head.repo.fork == true || github.repository_owner != github.event.pull_request.head.repo.owner.login }}
 
     runs-on: ubuntu-latest
     strategy:
