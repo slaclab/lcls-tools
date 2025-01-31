@@ -43,9 +43,14 @@ For a local development install, clone the repository and run the following comm
 pip install -e .
 ```
 
-If you'd like to install the `meme` package requirement as well, run:
+If you'd like to install the `meme` package requirement as well, run the following to install through HTTPS
 ```bash
 pip install -e ".[meme]"
+```
+
+or the following to install through SSH
+```bash
+pip install -e ".[meme-ssh]"
 ```
 
 The full list of dependencies can be found in the `requirements.txt` file.
