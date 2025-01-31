@@ -14,7 +14,7 @@ permissions:
 jobs:
   test-main:
 
-    if: ${{ github.repository_owner == github.event.pull_request.head.repo.owner.login }}
+    if: ${{ github.event.repository.fork == false }}
 
     runs-on: ubuntu-latest
     strategy:
@@ -47,7 +47,7 @@ jobs:
 
   test-general:
 
-    if: ${{ github.event.pull_request.head.repo.fork == true || github.repository_owner != github.event.pull_request.head.repo.owner.login }}
+    if: ${{ github.event.repository.fork == true }}
 
     runs-on: ubuntu-latest
     strategy:
