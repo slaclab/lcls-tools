@@ -10,6 +10,7 @@ from lcls_tools.common.measurements.emittance_measurement import EmittanceMeasur
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 from lcls_tools.common.frontend.plotting.emittance import plot_quad_scan_result
 import matplotlib.pyplot as plt
+from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 
 class EmittanceMeasurementTest(TestCase):
     def setUp(self) -> None:
@@ -33,6 +34,17 @@ class EmittanceMeasurementTest(TestCase):
         self.mock_ctrl_options.return_value = {"enum_strs": tuple(self.options)}
         self.magnet_collection = create_magnet(area="GUNB")
         return super().setUp()
+        
+    def test_with_meme(self):
+        try:
+            import meme  # noqa: F401
+            from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
+        except ImportError:
+            import unittest
+            raise unittest.SkipTest(
+                "Meme package not installed. ",
+                "Skipping all tests in test_emittance.py."
+            )
 
     def test_measure_with_mocked_beamsize_measurement(self):
         """

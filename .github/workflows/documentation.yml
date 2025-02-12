@@ -1,4 +1,4 @@
-name: documentation
+name: Documentation
 
 on:
   push:
@@ -11,15 +11,15 @@ permissions:
 
 jobs:
   docs:
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
       - name: Install dependencies
         run: |
-          eval `ssh-agent -s`
-          ssh-add - <<< '${{ secrets.MEME_KEY }}'
-          pip install -r requirements.txt
+          pip install ".[docs]"
+          pip list
       - name: Sphinx build
         run: |
           cd ./docs && make html 
