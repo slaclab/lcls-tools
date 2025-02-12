@@ -1,14 +1,24 @@
 import time
-from typing import Optional
+from typing import List, Optional
 
 import numpy as np
 from numpy import ndarray
-from pydantic import ConfigDict, PositiveInt, field_validator, PositiveFloat
+from pydantic import BaseModel, ConfigDict, PositiveInt, field_validator, PositiveFloat
 
 from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
+
+
+class EmittanceMeasurementResult(BaseModel):
+    emittance: List[float]
+    BMAG: List[float]
+    twiss_at_screen: List[List[float]]
+    quadrupole_strengths: List[float]
+    x_rms: List[float]
+    y_rms: List[float]
+    info: List[dict]
 
 
 class QuadScanEmittance(Measurement):
