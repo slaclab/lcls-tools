@@ -1,5 +1,5 @@
 import time
-from typing import List, Optional
+from typing import Any, List, Optional
 
 import numpy as np
 from numpy import ndarray
@@ -12,13 +12,16 @@ from lcls_tools.common.measurements.measurement import Measurement
 
 
 class EmittanceMeasurementResult(BaseModel):
-    emittance: List[float]
-    BMAG: List[float]
-    twiss_at_screen: List[List[float]]
-    quadrupole_strengths: List[float]
-    x_rms: List[float]
-    y_rms: List[float]
-    info: List[dict]
+    emittance: np.ndarray
+    BMAG: np.ndarray
+    twiss_at_screen: np.ndarray
+    quadrupole_strengths: np.ndarray
+    x_rms: np.ndarray
+    y_rms: np.ndarray
+    beam_matrix: np.ndarray
+    info: Any
+
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class QuadScanEmittance(Measurement):
@@ -152,12 +155,14 @@ class QuadScanEmittance(Measurement):
         )
 
         results.update({
-            "x_rms": self.beam_sizes["x_rms"],
-            "y_rms": self.beam_sizes["y_rms"]
+            "x_rms": np.array(self.beam_sizes["x_rms"]),
+            "y_rms": np.array(self.beam_sizes["y_rms"])
         })
         results.update({"info": self._info})
+        results.update({"quadrupole_strengths": np.array(self.scan_values)})
 
-        return results
+        # collect information into EmittanceMeasurementResult object
+        return EmittanceMeasurementResult(**results)
 
     def perform_beamsize_measurements(self):
         self.magnet.scan(

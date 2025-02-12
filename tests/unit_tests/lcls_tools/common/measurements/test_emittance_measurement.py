@@ -6,9 +6,9 @@ import numpy as np
 from lcls_tools.common.devices.magnet import Magnet, MagnetMetadata
 from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
-from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
+from lcls_tools.common.measurements.emittance_measurement import EmittanceMeasurementResult, QuadScanEmittance
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
-
+from lcls_tools.common.frontend.plotting.emittance import plot_quad_scan_result
 
 class EmittanceMeasurementTest(TestCase):
     def setUp(self) -> None:
@@ -108,21 +108,22 @@ class EmittanceMeasurementTest(TestCase):
         )
 
         # Call the measure method
-        results = quad_scan.measure()
+        result = quad_scan.measure()
 
         # Assertions
-        assert "x_rms" in results
-        assert "y_rms" in results
-        assert len(results["x_rms"]) == len(quad_scan.scan_values)
-        assert len(results["y_rms"]) == len(quad_scan.scan_values)
+        assert isinstance(result, EmittanceMeasurementResult)
+        assert hasattr(result, "x_rms")
+        assert hasattr(result, "y_rms")
+        assert len(result.x_rms) == len(quad_scan.scan_values)
+        assert len(result.y_rms) == len(quad_scan.scan_values)
 
         # check resulting calculations against cheetah simulation ground truth
         assert np.allclose(
-            results["emittance"],
+            result.emittance,
             np.array([1.0e-2, 1.0e-1]).reshape(2, 1),
         )
-        assert np.allclose(results["beam_matrix"], np.array(
+        assert np.allclose(result.beam_matrix, np.array(
             [[5.0e-2, -5.0e-2, 5.2e-2],
              [0.3, -0.3, 0.33333328]]
         ))
-        assert np.allclose(results["BMAG"][:, 4], 1.0)
+        assert np.allclose(result.BMAG[:, 4], 1.0)
