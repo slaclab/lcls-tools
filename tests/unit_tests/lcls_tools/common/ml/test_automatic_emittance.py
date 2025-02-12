@@ -182,13 +182,12 @@ class AutomaticEmittanceMeasurementTest(TestCase):
             # test usage of CircularROI
             roi = CircularROI(center=[0, 0], radius=1)
             penalty = calculate_bounding_box_penalty(roi, fit_result)
-            assert penalty == 1.0 - np.linalg.norm(roi.center - np.array((3.,5.)))
+            assert penalty == np.linalg.norm(roi.center - np.array((3.,5.))) - 1.0
 
             # test usage of ROI
             roi = ROI(center=[0, 0], extent=[2, 2])
-            beam_bbox_coords = np.array([0,0])
             penalty = calculate_bounding_box_penalty(roi, fit_result)
-            assert penalty == 1.0 - np.linalg.norm(roi.center - np.array((3.,5.)))
+            assert penalty == np.linalg.norm(roi.center - np.array((3.,5.))) - 1.0
 
             # test usage of unsupported ROI type
             roi = "unsupported"

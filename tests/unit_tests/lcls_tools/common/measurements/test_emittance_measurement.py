@@ -36,6 +36,7 @@ class EmittanceMeasurementTest(TestCase):
         return super().setUp()
         
     def test_with_meme(self):
+        # TODO: implement this test
         try:
             import meme  # noqa: F401
             from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
@@ -145,6 +146,3 @@ class EmittanceMeasurementTest(TestCase):
         fig, ax = plot_quad_scan_result(result)
         assert isinstance(fig, plt.Figure)
         assert isinstance(ax, np.ndarray)
-        plt.show()
-
-
