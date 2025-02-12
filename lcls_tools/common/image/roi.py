@@ -2,14 +2,15 @@ import numpy as np
 from pydantic import (
     BaseModel,
     model_validator,
-    PositiveFloat
+    NonNegativeInt,
+    PositiveFloat,
 )
 from typing import Any, Dict, List
 
 
 class ROI(BaseModel):
-    center: List[PositiveFloat]
-    extent: List[PositiveFloat]
+    center: List[NonNegativeInt]
+    extent: List[NonNegativeInt]
 
     @property
     def box(self):
