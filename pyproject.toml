@@ -42,6 +42,10 @@ docs = [
     "sphinx_rtd_theme",
     "myst_parser"
 ]
+ml = [
+    "xopt",
+    "cheetah-accelerator"
+]    
 
 [project.urls]
 Homepage = "https://github.com/slaclab/lcls-tools"
