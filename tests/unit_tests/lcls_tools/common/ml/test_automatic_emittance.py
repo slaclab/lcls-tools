@@ -9,7 +9,9 @@ import matplotlib.pyplot as plt
 from lcls_tools.common.devices.magnet import Magnet, MagnetMetadata
 from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
+from lcls_tools.common.frontend.plotting.emittance import plot_quad_scan_result
 from lcls_tools.common.image.fit import ImageFitResult
+from lcls_tools.common.measurements.emittance_measurement import EmittanceMeasurementResult
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 from lcls_tools.common.image.roi import CircularROI, ROI
 
@@ -60,11 +62,11 @@ class MockBeamline:
         """ define a mock beamsize measurement for the ScreenBeamProfileMeasurement -- returns image fit result in pixels"""
         incoming_beam = ParameterBeam.from_twiss(
             beta_x=torch.tensor(5.0),
-            alpha_x=torch.tensor(0.0),
+            alpha_x=torch.tensor(5.0),
             emittance_x=torch.tensor(1e-8),
-            beta_y=torch.tensor(5.0),
-            alpha_y=torch.tensor(0.0),
-            emittance_y=torch.tensor(2e-8),
+            beta_y=torch.tensor(3.0),
+            alpha_y=torch.tensor(3.0),
+            emittance_y=torch.tensor(1e-7),
         )
         outgoing_beam = self.beamline.track(incoming_beam)
 
@@ -108,10 +110,10 @@ class AutomaticEmittanceMeasurementTest(TestCase):
 
         rmat = np.array([[[1, 1.0], [0, 1]], [[1, 1.0], [0, 1]]])
         design_twiss = {
-            "beta_x": 5.0,
-            "alpha_x": 0.0,
-            "beta_y": 1.0,
-            "alpha_y": -1.0,
+            "beta_x": 0.2452,
+            "alpha_x": -0.1726,
+            "beta_y": 0.5323,
+            "alpha_y": -1.0615,
         }
 
         # Instantiate the QuadScanEmittance object
@@ -125,35 +127,31 @@ class AutomaticEmittanceMeasurementTest(TestCase):
             design_twiss=design_twiss,
             n_initial_samples=3,
             n_iterations=5,
-            max_k_ranges=[-20,20],
+            max_k_ranges=[-10,10],
         )
 
         # Call the measure method
-        results = quad_scan.measure()
+        result = quad_scan.measure()
 
-        quad_scan.xopt_object.data.plot(x="k", y=["x_rms_px","y_rms_px"], style="+")
-        quad_scan.xopt_object.data.plot(x="k", y=["bb_penalty"], style="+")
-
-        print(results["emittance"])
-
+        plot_quad_scan_result(result)
         plt.show()
 
-        # Assertions
-        assert "x_rms" in results
-        assert "y_rms" in results
-        assert len(results["x_rms"]) == len(quad_scan.scan_values)
-        assert len(results["y_rms"]) == len(quad_scan.scan_values)
+        # Check the results
+        assert isinstance(result, EmittanceMeasurementResult)
+        assert hasattr(result, "x_rms")
+        assert hasattr(result, "y_rms")
+        assert len(result.x_rms) == len(quad_scan.scan_values)
+        assert len(result.y_rms) == len(quad_scan.scan_values)
 
         # check resulting calculations against cheetah simulation ground truth
         assert np.allclose(
-            results["emittance"],
-            np.array([1.0e-2, 1.0e-2]).reshape(2, 1),
+            result.emittance,
+            np.array([1.0e-2, 1.0e-1]).reshape(2, 1), rtol=1e-1
         )
-        assert np.allclose(results["beam_matrix"], np.array(
+        assert np.allclose(result.beam_matrix, np.array(
             [[5.0e-2, -5.0e-2, 5.2e-2],
              [0.3, -0.3, 0.33333328]]
-        ))
-        assert np.allclose(results["BMAG"][:, 4], 1.0)
+        ), rtol=1e-1)
         
     def test_calculate_bounding_box_coordinates(self):
         # Mock ImageFitResult

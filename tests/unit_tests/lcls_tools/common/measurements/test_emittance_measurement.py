@@ -9,6 +9,7 @@ from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.measurements.emittance_measurement import EmittanceMeasurementResult, QuadScanEmittance
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 from lcls_tools.common.frontend.plotting.emittance import plot_quad_scan_result
+import matplotlib.pyplot as plt
 
 class EmittanceMeasurementTest(TestCase):
     def setUp(self) -> None:
@@ -127,3 +128,11 @@ class EmittanceMeasurementTest(TestCase):
              [0.3, -0.3, 0.33333328]]
         ))
         assert np.allclose(result.BMAG[:, 4], 1.0)
+
+        # test visualization
+        fig, ax = plot_quad_scan_result(result)
+        assert isinstance(fig, plt.Figure)
+        assert isinstance(ax, np.ndarray)
+        plt.show()
+
+
