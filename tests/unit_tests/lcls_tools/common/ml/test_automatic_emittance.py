@@ -5,6 +5,7 @@ import numpy as np
 import torch
 from cheetah import Segment, Quadrupole, Drift, ParameterBeam
 
+import matplotlib.pyplot as plt
 from lcls_tools.common.devices.magnet import Magnet, MagnetMetadata
 from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
@@ -38,10 +39,12 @@ class MockBeamline:
             l_eff=0.1
         )
 
+        self.screen_resolution = 1.0 # resolution of the screen in um / px
         self.beamsize_measurement = MagicMock(spec=ScreenBeamProfileMeasurement)
         self.beamsize_measurement.device = MagicMock(spec=Screen)
-        self.beamsize_measurement.device.resolution = 1.0
-        self.beamsize_measurement.device.image_processor.roi = CircularROI(center=[0., 0.], radius=10.0e-3)
+        self.beamsize_measurement.device.resolution = self.screen_resolution
+        self.beamsize_measurement.device.image_processor = MagicMock()
+        self.beamsize_measurement.device.image_processor.roi = CircularROI(center=[0, 0], radius=1000)
         self.beamsize_measurement.measure = MagicMock(
             side_effect=self.get_beamsize_measurement
         )
@@ -54,23 +57,26 @@ class MockBeamline:
         self.beamline.Q0.k1 = torch.tensor(args[1])
 
     def get_beamsize_measurement(self, *args):
+        """ define a mock beamsize measurement for the ScreenBeamProfileMeasurement -- returns image fit result in pixels"""
         incoming_beam = ParameterBeam.from_twiss(
             beta_x=torch.tensor(5.0),
             alpha_x=torch.tensor(0.0),
             emittance_x=torch.tensor(1e-8),
-            beta_y=torch.tensor(1.0),
-            alpha_y=torch.tensor(-1.0),
-            emittance_y=torch.tensor(1e-7)
+            beta_y=torch.tensor(5.0),
+            alpha_y=torch.tensor(0.0),
+            emittance_y=torch.tensor(2e-8),
         )
         outgoing_beam = self.beamline.track(incoming_beam)
 
         results = MagicMock(ImageFitResult)
-        results.rms_size = [float(outgoing_beam.sigma_x), float(outgoing_beam.sigma_y)]
+        results.rms_size = [
+            int(outgoing_beam.sigma_x*1e6 / self.screen_resolution), int(outgoing_beam.sigma_y*1e6 / self.screen_resolution)
+        ]
         results.centroid = [0, 0]
 
         return {"fit_results": [results]}
 
-class EmittanceMeasurementTest(TestCase):
+class AutomaticEmittanceMeasurementTest(TestCase):
     def setUp(self) -> None:
         self.options = [
             "TRIM",
@@ -100,6 +106,14 @@ class EmittanceMeasurementTest(TestCase):
         """
         mock_beamline = MockBeamline()
 
+        rmat = np.array([[[1, 1.0], [0, 1]], [[1, 1.0], [0, 1]]])
+        design_twiss = {
+            "beta_x": 5.0,
+            "alpha_x": 0.0,
+            "beta_y": 1.0,
+            "alpha_y": -1.0,
+        }
+
         # Instantiate the QuadScanEmittance object
         quad_scan = MLQuadScanEmittance(
             energy=1e9 * 299.792458 / 1e3,
@@ -107,10 +121,22 @@ class EmittanceMeasurementTest(TestCase):
             beamsize_measurement=mock_beamline.beamsize_measurement,
             n_measurement_shots=1,
             wait_time=1e-3,
+            rmat=rmat,
+            design_twiss=design_twiss,
+            n_initial_samples=3,
+            n_iterations=5,
+            max_k_ranges=[-20,20],
         )
 
         # Call the measure method
         results = quad_scan.measure()
+
+        quad_scan.xopt_object.data.plot(x="k", y=["x_rms_px","y_rms_px"], style="+")
+        quad_scan.xopt_object.data.plot(x="k", y=["bb_penalty"], style="+")
+
+        print(results["emittance"])
+
+        plt.show()
 
         # Assertions
         assert "x_rms" in results
@@ -121,7 +147,7 @@ class EmittanceMeasurementTest(TestCase):
         # check resulting calculations against cheetah simulation ground truth
         assert np.allclose(
             results["emittance"],
-            np.array([1.0e-2, 1.0e-1]).reshape(2, 1),
+            np.array([1.0e-2, 1.0e-2]).reshape(2, 1),
         )
         assert np.allclose(results["beam_matrix"], np.array(
             [[5.0e-2, -5.0e-2, 5.2e-2],

@@ -8,7 +8,7 @@ from lcls_tools.common.image.roi import CircularROI, ROI
 from typing import Optional
 from lcls_tools.common.image.fit import ImageFitResult
 
-from pydantic import validate_field
+from pydantic import PositiveInt, field_validator
 
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 
@@ -78,22 +78,26 @@ def calculate_bounding_box_penalty(roi: ROI, fit_result: ImageFitResult, n_stds:
         np.array([np.linalg.norm(roi_center - corner) for corner in beam_bbox_coords])
     )
 
-    return roi_radius - max_distance
+    return max_distance - roi_radius
 
 
 class MLQuadScanEmittance(QuadScanEmittance):
     scan_values: Optional[list[float]] = None
     bounding_box_factor: float = 2.0
+    n_initial_samples: PositiveInt = 3
+    n_iterations: PositiveInt = 5
+    max_k_ranges: Optional[list[float]] = None
+    xopt_object: Optional[Xopt] = None
 
-    @validate_field("beamsize_measurement", mode="after")
+    @field_validator("beamsize_measurement", mode="after")
     def validate_beamsize_measurement(cls, v, info):
         # check to make sure the the beamsize measurement screen has a region of interest 
         # (also requires ScreenBeamProfileMeasurement)
-        if not isinstance(v["measurement"], ScreenBeamProfileMeasurement):
+        if not isinstance(v, ScreenBeamProfileMeasurement):
             raise ValueError("Beamsize measurement must be a ScreenBeamProfileMeasurement for MLQuadScanEmittance")
 
         # check to make sure the the beamsize measurement screen has a region of interest
-        if not isinstance(v["measurement"].device.image_processor.roi, ROI):
+        if not isinstance(v.device.image_processor.roi, ROI):
             raise ValueError("Beamsize measurement screen must have a region of interest")
         return v
 
@@ -101,9 +105,11 @@ class MLQuadScanEmittance(QuadScanEmittance):
         """
         Run BO-based exploration of the quadrupole strength to get beamsize measurements
         """
+        # define the optimization problem
+        k_range = self.max_k_ranges if self.max_k_ranges is not None else [-10, 10]
         vocs = VOCS(
-            variables={"k": [-10, 10]},
-            objectives={"total_size": "MINIMIZE"},
+            variables={"k": k_range},
+            objectives={"x_rms_px": "MINIMIZE"},
             constraints={"bb_penalty": ["LESS_THAN", 0.0]}
         )
 
@@ -113,20 +119,19 @@ class MLQuadScanEmittance(QuadScanEmittance):
 
             # make beam size measurement
             self.measure_beamsize()
-            fit_results = self._info[-1]
+            fit_results = self._info[-1]["fit_results"][0]
 
             # calculate bounding box penalty
             bb_penalty = calculate_bounding_box_penalty(
-                self.beamsize_measurement.image_processor.roi,
+                self.beamsize_measurement.device.image_processor.roi,
                 fit_results,
-
             )
 
             # collect results
             results = {
                 "bb_penalty": bb_penalty,
-                "x_rms": fit_results.rms_size[0],
-                "y_rms": fit_results.rms_size[1],
+                "x_rms_px": fit_results.rms_size[0],
+                "y_rms_px": fit_results.rms_size[1],
                 "total_size": np.linalg.norm(fit_results.rms_size)
             }
 
@@ -135,18 +140,33 @@ class MLQuadScanEmittance(QuadScanEmittance):
         evaluator = Evaluator(function=evaluate)
 
         generator = UpperConfidenceBoundGenerator(
-            vocs=vocs, beta=10,
-            numerical_optimizer=GridOptimizer(n_grid_points=50)
+            vocs=vocs, beta=100,
+            numerical_optimizer=GridOptimizer(n_grid_points=50),
+            n_interpolate_points=5,
         )
 
         X = Xopt(vocs=vocs, evaluator=evaluator, generator=generator)
 
         # get local region around current value and make some samples
         local_region = get_local_region({"k": self.magnet.bctrl}, vocs)
-        X.random_evaluate(3, custom_bounds=local_region)
+        X.random_evaluate(self.n_initial_samples, custom_bounds=local_region)
 
-        # run iterations
-        for i in range(5):
+        # run iterations for x
+        for i in range(self.n_iterations):
+            X.step()
+
+        # run iterations for y
+        new_vocs = VOCS(
+            variables={"k": k_range},
+            objectives={"y_rms_px": "MINIMIZE"},
+            constraints={"bb_penalty": ["LESS_THAN", 0.0]}
+        )
+        X.vocs = new_vocs
+        X.generator.vocs = new_vocs
+
+        for i in range(self.n_iterations):
             X.step()
 
         self.scan_values = X.data["k"].tolist()
+
+        self.xopt_object = X
