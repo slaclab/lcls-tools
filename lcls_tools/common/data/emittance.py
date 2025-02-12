@@ -152,6 +152,12 @@ def compute_emit_bmag(
     )
     # result shape (batchshape x 1)
 
+    # propagate twiss params to screen (expand_dims for broadcasting)
+    twiss_at_screen = propagate_twiss(np.expand_dims(twiss_upstream, axis=-2), total_rmat)
+    # result shape (batchshape x nsteps x 3)
+    beta, alpha = twiss_at_screen[..., 0], twiss_at_screen[..., 1]
+    # shapes batchshape x nsteps
+
     # compute bmag if twiss_design is provided
     if twiss_design is not None:
         beta_design, alpha_design = twiss_design[..., 0:1], twiss_design[..., 1:2]
@@ -167,17 +173,9 @@ def compute_emit_bmag(
             axis=-1,
         ) / emit
         # result batchshape x 3 containing [beta, alpha, gamma]
-
-        # propagate twiss params to screen (expand_dims for broadcasting)
-        twiss_at_screen = propagate_twiss(np.expand_dims(twiss_upstream, axis=-2), total_rmat)
-        # result shape (batchshape x nsteps x 3)
-        beta, alpha = twiss_at_screen[..., 0], twiss_at_screen[..., 1]
-        # shapes batchshape x nsteps
-
         bmag = bmag_func(beta, alpha, beta_design, alpha_design)  # result batchshape x nsteps
     else:
         bmag = None
-        twiss_at_screen = None
 
     results = {"emittance": emit, "BMAG": bmag, "beam_matrix": beam_matrix,
                "twiss_at_screen": twiss_at_screen}
