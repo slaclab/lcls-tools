@@ -35,7 +35,7 @@ class WireTest(TestCase):
             "MOTR_ENABLED_STS": None,
             "MOTR_HOMED_STS": None,
         }
-        # set up patch so that each magnet is constructured with ALL ctrl options
+        # set up patch so that each magnet is constructed with ALL ctrl options
         self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=Mock)
         self.mock_ctrl_options = self.ctrl_options_patch.start()
         self.mock_ctrl_options.return_value = {
