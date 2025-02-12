@@ -116,7 +116,7 @@ class Screen(Device):
 
     @property
     def resolution(self):
-        """The conversion factor of pixels to mm"""
+        """The conversion factor of pixels to um"""
         return self.controls_information.PVs.resolution.get()
 
     @property
