@@ -13,7 +13,7 @@ from lcls_tools.common.image.fit import ImageFitResult
 from lcls_tools.common.measurements.emittance_measurement import (
     EmittanceMeasurementResult,
 )
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
+from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement, ScreenBeamProfileMeasurementResult
 from lcls_tools.common.image.roi import CircularROI, ROI
 
 from lcls_tools.common.ml.automatic_emittance import (
@@ -68,23 +68,14 @@ class MockBeamline:
         ScreenBeamProfileMeasurement -- returns image fit result in pixels"""
         outgoing_beam = self.beamline.track(self.initial_beam)
 
-        results = []
-        for i in range(args[0]):
-            result = MagicMock(ImageFitResult)
-            result.rms_size = [
-                int(
-                    outgoing_beam.sigma_x * 1e6 / self.screen_resolution
-                    + 10.0 * np.random.randn()
-                ),
-                int(
-                    outgoing_beam.sigma_y * 1e6 / self.screen_resolution
-                    + 10.0 * np.random.randn()
-                ),
-            ]
-            result.centroid = [0, 0]
-            results += [result]
+        sigma_x = outgoing_beam.sigma_x * 1e6 / self.screen_resolution + 5.0 * np.random.randn(args[0])
+        sigma_y = outgoing_beam.sigma_y * 1e6 / self.screen_resolution + 5.0 * np.random.randn(args[0])
 
-        return {"fit_results": results}
+        result = MagicMock(ScreenBeamProfileMeasurementResult)
+        result.rms_sizes = np.stack([sigma_x, sigma_y]).T
+        result.centroids = np.zeros((args[0], 2))
+
+        return result
 
 
 class AutomaticEmittanceMeasurementTest(TestCase):
@@ -155,6 +146,8 @@ class AutomaticEmittanceMeasurementTest(TestCase):
                 result = quad_scan.measure()
 
                 plot_quad_scan_result(result)
+                import matplotlib.pyplot as plt
+                plt.show()
 
                 # Check the results
                 assert isinstance(result, EmittanceMeasurementResult)
@@ -164,6 +157,7 @@ class AutomaticEmittanceMeasurementTest(TestCase):
                 assert len(result.y_rms) == len(quad_scan.scan_values)
 
                 # check resulting calculations against cheetah simulation ground truth
+                print(result.emittance)
                 assert np.allclose(
                     result.emittance,
                     np.array([1.0e-2, 1.0e-1]).reshape(2, 1),
@@ -178,8 +172,8 @@ class AutomaticEmittanceMeasurementTest(TestCase):
     def test_calculate_bounding_box_coordinates(self):
         # Mock ImageFitResult
         fit_result = MagicMock()
-        fit_result.rms_size = [2, 4]
-        fit_result.centroid = [1, 1]
+        fit_result.rms_sizes = np.array([2, 4]).reshape(1, 2)
+        fit_result.centroids = np.array([1, 1]).reshape(1, 2)
 
         # Expected bounding box coordinates
         expected_bbox_coords = [
@@ -198,8 +192,8 @@ class AutomaticEmittanceMeasurementTest(TestCase):
 
     def test_calculate_bounding_box_penalty(self):
         fit_result = MagicMock()
-        fit_result.rms_size = [2, 4]
-        fit_result.centroid = [1, 1]
+        fit_result.rms_sizes = np.array([2, 4]).reshape(1, 2)
+        fit_result.centroids = np.array([1, 1]).reshape(1, 2)
 
         # test usage of CircularROI
         roi = CircularROI(center=[0, 0], radius=1)

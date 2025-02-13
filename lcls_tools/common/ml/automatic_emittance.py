@@ -11,11 +11,11 @@ from lcls_tools.common.image.fit import ImageFitResult
 
 from pydantic import PositiveInt, field_validator
 
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
+from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurementResult, ScreenBeamProfileMeasurement
 
 
 def calculate_bounding_box_coordinates(
-    fit_result: ImageFitResult, n_stds: float
+    screen_measurement_result: ScreenBeamProfileMeasurementResult, n_stds: float
 ) -> np.ndarray:
     """
     Calculate the corners of a bounding box given the fit results.
@@ -32,15 +32,14 @@ def calculate_bounding_box_coordinates(
     np.ndarray
         The calculated bounding box coordinates.
     """
+    rms_size = np.mean(screen_measurement_result.rms_sizes, axis=0)
+    centroid = np.mean(screen_measurement_result.centroids, axis=0)
     return np.array(
         [
-            -1 * np.array(fit_result.rms_size) * n_stds / 2
-            + np.array(fit_result.centroid),
-            np.array(fit_result.rms_size) * n_stds / 2 + np.array(fit_result.centroid),
-            np.array((-1, 1)) * np.array(fit_result.rms_size) * n_stds / 2
-            + np.array(fit_result.centroid),
-            np.array((1, -1)) * np.array(fit_result.rms_size) * n_stds / 2
-            + np.array(fit_result.centroid),
+            -1 * rms_size * n_stds / 2 + centroid,
+            rms_size * n_stds / 2 + centroid,
+            np.array((-1, 1)) * rms_size * n_stds / 2 + centroid,
+            np.array((1, -1)) * rms_size * n_stds / 2 + centroid,
         ]
     )
 
@@ -127,66 +126,69 @@ class MLQuadScanEmittance(QuadScanEmittance):
             constraints={"bb_penalty": ["LESS_THAN", 0.0]},
         )
 
+        scan_values = []
+
         def evaluate(inputs):
             # set quadrupole strength
             self.magnet.bctrl = inputs["k"]
+            scan_values.append(inputs["k"])
 
             # make beam size measurement
             self.measure_beamsize()
-            fit_results = self._info[-1]["fit_results"][0]
+            fit_result = self._info[-1]
 
             # calculate bounding box penalty
             bb_penalty = calculate_bounding_box_penalty(
                 self.beamsize_measurement.image_processor.roi,
-                fit_results,
+                fit_result,
             )
 
             # collect results
             results = {
                 "bb_penalty": bb_penalty,
-                "x_rms_px": fit_results.rms_size[0],
-                "y_rms_px": fit_results.rms_size[1],
-                "total_size": np.linalg.norm(fit_results.rms_size),
+                "x_rms_px": fit_result.rms_sizes[:, 0],
+                "y_rms_px": fit_result.rms_sizes[:, 1],
             }
 
             return results
 
         evaluator = Evaluator(function=evaluate)
 
-        generator = UpperConfidenceBoundGenerator(
-            vocs=vocs,
-            beta=100,
-            numerical_optimizer=GridOptimizer(n_grid_points=50),
-            n_interpolate_points=5,
-            n_monte_carlo_samples=64,
-        )
+        # ignore warnings from UCB generator and Xopt
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            generator = UpperConfidenceBoundGenerator(
+                vocs=vocs,
+                beta=100,
+                numerical_optimizer=GridOptimizer(n_grid_points=50),
+                n_interpolate_points=5,
+                n_monte_carlo_samples=64,
+            )
 
-        X = Xopt(vocs=vocs, evaluator=evaluator, generator=generator)
+            X = Xopt(vocs=vocs, evaluator=evaluator, generator=generator)
 
-        # get local region around current value and make some samples
-        local_region = get_local_region({"k": self.magnet.bctrl}, vocs)
-        X.random_evaluate(self.n_initial_samples, custom_bounds=local_region)
+            # get local region around current value and make some samples
+            local_region = get_local_region({"k": self.magnet.bctrl}, vocs)
+            X.random_evaluate(self.n_initial_samples, custom_bounds=local_region)
 
-        # run iterations for x -- ignore warnings from UCB generator
-        for i in range(self.n_iterations):
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
+            # run iterations for x -- ignore warnings from UCB generator
+            for i in range(self.n_iterations):
                 X.step()
 
-        # run iterations for y
-        new_vocs = VOCS(
-            variables={"k": k_range},
-            objectives={"y_rms_px": "MINIMIZE"},
-            constraints={"bb_penalty": ["LESS_THAN", 0.0]},
-        )
-        X.vocs = new_vocs
-        X.generator.vocs = new_vocs
+            # run iterations for y
+            new_vocs = VOCS(
+                variables={"k": k_range},
+                objectives={"y_rms_px": "MINIMIZE"},
+                constraints={"bb_penalty": ["LESS_THAN", 0.0]},
+            )
 
-        for i in range(self.n_iterations):
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
+                
+            X.vocs = new_vocs
+            X.generator.vocs = new_vocs
+
+            for i in range(self.n_iterations):
                 X.step()
 
-        self.scan_values = X.data["k"].tolist()
+        self.scan_values = scan_values
 
         self.xopt_object = X

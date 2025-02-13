@@ -233,26 +233,21 @@ class QuadScanEmittance(Measurement):
         store beam sizes in self.beam_sizes"""
         time.sleep(self.wait_time)
 
-        results = self.beamsize_measurement.measure(self.n_measurement_shots)
+        result = self.beamsize_measurement.measure(self.n_measurement_shots)
         if "x_rms" not in self.beam_sizes:
             self.beam_sizes["x_rms"] = []
         if "y_rms" not in self.beam_sizes:
             self.beam_sizes["y_rms"] = []
 
-        sigmas = []
-        for ele in results["fit_results"]:
-            sigmas += [ele.rms_size]
-        sigmas = np.array(sigmas)
-
         # note beamsizes here are in m
         self.beam_sizes["x_rms"].append(
-            np.mean(sigmas[:, 0]) * self.beamsize_measurement.device.resolution * 1e-6
+            np.mean(result.rms_sizes[:,0]) * self.beamsize_measurement.device.resolution * 1e-6
         )
         self.beam_sizes["y_rms"].append(
-            np.mean(sigmas[:, 1]) * self.beamsize_measurement.device.resolution * 1e-6
+            np.mean(result.rms_sizes[:,1]) * self.beamsize_measurement.device.resolution * 1e-6
         )
 
-        self._info += [results]
+        self._info += [result]
 
 
 class MultiDeviceEmittance(Measurement):
