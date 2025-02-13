@@ -45,8 +45,8 @@ class MockBeamline:
         self.beamsize_measurement = MagicMock(spec=ScreenBeamProfileMeasurement)
         self.beamsize_measurement.device = MagicMock(spec=Screen)
         self.beamsize_measurement.device.resolution = self.screen_resolution
-        self.beamsize_measurement.device.image_processor = MagicMock()
-        self.beamsize_measurement.device.image_processor.roi = CircularROI(center=[0, 0], radius=1000)
+        self.beamsize_measurement.image_processor = MagicMock()
+        self.beamsize_measurement.image_processor.roi = CircularROI(center=[0, 0], radius=1000)
         self.beamsize_measurement.measure = MagicMock(
             side_effect=self.get_beamsize_measurement
         )

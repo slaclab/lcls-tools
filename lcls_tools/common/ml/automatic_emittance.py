@@ -98,7 +98,7 @@ class MLQuadScanEmittance(QuadScanEmittance):
             raise ValueError("Beamsize measurement must be a ScreenBeamProfileMeasurement for MLQuadScanEmittance")
 
         # check to make sure the the beamsize measurement screen has a region of interest
-        if not isinstance(v.device.image_processor.roi, ROI):
+        if not isinstance(v.image_processor.roi, ROI):
             raise ValueError("Beamsize measurement screen must have a region of interest")
         return v
 
@@ -124,7 +124,7 @@ class MLQuadScanEmittance(QuadScanEmittance):
 
             # calculate bounding box penalty
             bb_penalty = calculate_bounding_box_penalty(
-                self.beamsize_measurement.device.image_processor.roi,
+                self.beamsize_measurement.image_processor.roi,
                 fit_results,
             )
 
@@ -144,6 +144,7 @@ class MLQuadScanEmittance(QuadScanEmittance):
             vocs=vocs, beta=100,
             numerical_optimizer=GridOptimizer(n_grid_points=50),
             n_interpolate_points=5,
+            n_monte_carlo_samples=64
         )
 
         X = Xopt(vocs=vocs, evaluator=evaluator, generator=generator)
