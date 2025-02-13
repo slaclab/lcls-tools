@@ -1,7 +1,9 @@
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
+from lcls_tools.common.image.processing import ImageProcessor
 from lcls_tools.common.measurements.measurement import Measurement
 from pydantic import ConfigDict, SerializeAsAny, field_serializer, field_validator
+from typing import Optional
 
 
 class ScreenBeamProfileMeasurement(Measurement):
@@ -25,6 +27,7 @@ class ScreenBeamProfileMeasurement(Measurement):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     device: SerializeAsAny[Screen]
     beam_fit: SerializeAsAny[ImageFit] = ImageProjectionFit()
+    image_processor: Optional[SerializeAsAny[ImageProcessor]] = ImageProcessor()
     fit_profile: bool = True
 
     @field_serializer("beam_fit")
@@ -59,7 +62,8 @@ class ScreenBeamProfileMeasurement(Measurement):
         if self.fit_profile:
             fit_results = []
             for image in images:
-                fit_results += [self.beam_fit.fit_image(image)]
+                processed_image = self.image_processor.auto_process(image)
+                fit_results += [self.beam_fit.fit_image(processed_image)]
 
             results["fit_results"] = fit_results
 
