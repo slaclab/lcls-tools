@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools >= 75.0",  "setuptools_scm[toml]>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+authors = [
+    { name = "The Board of Trustees of the Leland Stanford Junior University, through SLAC National Accelerator Laboratory"},
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Programming Language :: Python",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "pyepics",
+    "pyyaml",
+    "requests",
+    "pydantic",
+    "h5py",
+    "scikit-learn"
+]
+description = "Tools to support high level application development at LCLS using Python"
+dynamic = ["version"]
+name = "lcls-tools"
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+meme  = [
+    "meme @ git+https://github.com/slaclab/meme.git" # note: direct dependency will block PyPI upload
+]
+meme-ssh  = [
+    "meme @ git+ssh://git@github.com/slaclab/meme.git"
+]
+docs = [
+    "sphinx",
+    "sphinx_rtd_theme",
+    "myst_parser"
+]
+ml = [
+    "xopt",
+    "cheetah-accelerator"
+]    
+
+[project.urls]
+Homepage = "https://github.com/slaclab/lcls-tools"
+
+[options]
+include_package_data = true
+
+[tool.setuptools.packages.find]
+include = ["lcls_tools*"]
+
+[project.license]
+file = "LICENSE"
+
+[tool.setuptools_scm]
+version_file = "lcls_tools/_version.py"
