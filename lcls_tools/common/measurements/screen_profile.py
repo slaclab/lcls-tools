@@ -3,6 +3,7 @@ from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.image.processing import ImageProcessor
 from lcls_tools.common.measurements.measurement import Measurement
 from pydantic import ConfigDict
+from typing import Optional
 
 
 class ScreenBeamProfileMeasurement(Measurement):
