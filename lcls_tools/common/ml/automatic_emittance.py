@@ -11,7 +11,10 @@ from lcls_tools.common.image.fit import ImageFitResult
 
 from pydantic import PositiveInt, field_validator
 
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurementResult, ScreenBeamProfileMeasurement
+from lcls_tools.common.measurements.screen_profile import (
+    ScreenBeamProfileMeasurementResult,
+    ScreenBeamProfileMeasurement,
+)
 
 
 def calculate_bounding_box_coordinates(
@@ -182,7 +185,6 @@ class MLQuadScanEmittance(QuadScanEmittance):
                 constraints={"bb_penalty": ["LESS_THAN", 0.0]},
             )
 
-                
             X.vocs = new_vocs
             X.generator.vocs = new_vocs
 

@@ -241,10 +241,14 @@ class QuadScanEmittance(Measurement):
 
         # note beamsizes here are in m
         self.beam_sizes["x_rms"].append(
-            np.mean(result.rms_sizes[:,0]) * self.beamsize_measurement.device.resolution * 1e-6
+            np.mean(result.rms_sizes[:, 0])
+            * self.beamsize_measurement.device.resolution
+            * 1e-6
         )
         self.beam_sizes["y_rms"].append(
-            np.mean(result.rms_sizes[:,1]) * self.beamsize_measurement.device.resolution * 1e-6
+            np.mean(result.rms_sizes[:, 1])
+            * self.beamsize_measurement.device.resolution
+            * 1e-6
         )
 
         self._info += [result]

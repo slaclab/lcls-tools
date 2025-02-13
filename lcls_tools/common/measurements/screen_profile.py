@@ -8,6 +8,7 @@ from lcls_tools.common.measurements.measurement import Measurement
 from pydantic import BaseModel, ConfigDict
 from typing import Optional
 
+
 class ScreenBeamProfileMeasurementResult(BaseModel):
     """
     Class that contains the results of a beam profile measurement
@@ -36,7 +37,7 @@ class ScreenBeamProfileMeasurementResult(BaseModel):
     metadata: Any
 
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid")
-    
+
 
 class ScreenBeamProfileMeasurement(Measurement):
     """

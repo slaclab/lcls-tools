@@ -15,6 +15,7 @@ class ImageFitResult(BaseModel):
     rms_size: List[float] = Field(min_length=2, max_length=2)
     total_intensity: PositiveFloat
 
+
 class ImageProjectionFitResult(ImageFitResult):
     projection_fit_method: MethodBase
     x_projection_fit_parameters: dict[str, float]

@@ -1,12 +1,17 @@
 import unittest
 from unittest.mock import MagicMock
 from lcls_tools.common.devices.screen import Screen
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement, ScreenBeamProfileMeasurementResult
+from lcls_tools.common.measurements.screen_profile import (
+    ScreenBeamProfileMeasurement,
+    ScreenBeamProfileMeasurementResult,
+)
 import numpy as np
+
 
 class TestScreenBeamProfileMeasurement(unittest.TestCase):
     def setUp(self):
         screen = MagicMock(Screen)
+
         # create a mock Screen device
         def mock_get_image(*args):
             image = np.zeros((100, 100))
@@ -41,5 +46,3 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
         assert result.rms_sizes.shape == (10, 2)
         assert result.centroids.shape == (10, 2)
         assert result.total_intensities.shape == (10,)
-
-

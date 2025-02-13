@@ -9,11 +9,13 @@ from lcls_tools.common.devices.magnet import Magnet, MagnetMetadata
 from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.frontend.plotting.emittance import plot_quad_scan_result
-from lcls_tools.common.image.fit import ImageFitResult
 from lcls_tools.common.measurements.emittance_measurement import (
     EmittanceMeasurementResult,
 )
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement, ScreenBeamProfileMeasurementResult
+from lcls_tools.common.measurements.screen_profile import (
+    ScreenBeamProfileMeasurement,
+    ScreenBeamProfileMeasurementResult,
+)
 from lcls_tools.common.image.roi import CircularROI, ROI
 
 from lcls_tools.common.ml.automatic_emittance import (
@@ -68,8 +70,14 @@ class MockBeamline:
         ScreenBeamProfileMeasurement -- returns image fit result in pixels"""
         outgoing_beam = self.beamline.track(self.initial_beam)
 
-        sigma_x = outgoing_beam.sigma_x * 1e6 / self.screen_resolution + 5.0 * np.random.randn(args[0])
-        sigma_y = outgoing_beam.sigma_y * 1e6 / self.screen_resolution + 5.0 * np.random.randn(args[0])
+        sigma_x = (
+            outgoing_beam.sigma_x * 1e6 / self.screen_resolution
+            + 5.0 * np.random.randn(args[0])
+        )
+        sigma_y = (
+            outgoing_beam.sigma_y * 1e6 / self.screen_resolution
+            + 5.0 * np.random.randn(args[0])
+        )
 
         result = MagicMock(ScreenBeamProfileMeasurementResult)
         result.rms_sizes = np.stack([sigma_x, sigma_y]).T
@@ -147,6 +155,7 @@ class AutomaticEmittanceMeasurementTest(TestCase):
 
                 plot_quad_scan_result(result)
                 import matplotlib.pyplot as plt
+
                 plt.show()
 
                 # Check the results
