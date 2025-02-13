@@ -1,10 +1,42 @@
+import numpy as np
+from typing import Any
+
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.image.processing import ImageProcessor
 from lcls_tools.common.measurements.measurement import Measurement
-from pydantic import ConfigDict
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 
+class ScreenBeamProfileMeasurementResult(BaseModel):
+    """
+    Class that contains the results of a beam profile measurement
+
+    Attributes
+    ----------
+    raw_images : ndarray
+        Numpy array of raw images taken during the measurement
+    processed_images : ndarray
+        Numpy array of processed images taken during the measurement
+    rms_sizes : ndarray
+        Numpy array of rms sizes of the beam in pixel units.
+    centroids : ndarray
+        Numpy array of centroids of the beam in pixel units.
+    total_intensities : ndarray
+        Numpy array of total intensities of the beam.
+    metadata : Any
+        Metadata information related to the measurement.
+
+    """
+    raw_images: np.ndarray
+    processed_images: np.ndarray
+    rms_sizes: Optional[np.ndarray] = None
+    centroids: Optional[np.ndarray] = None
+    total_intensities: Optional[np.ndarray] = None
+    metadata: Any
+
+    model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid")
+    
 
 class ScreenBeamProfileMeasurement(Measurement):
     """
@@ -46,14 +78,26 @@ class ScreenBeamProfileMeasurement(Measurement):
             images.append(self.device.image)
             # TODO: need to add a wait statement in here for images to update
 
-        results = {"raw_images": images, "fit_results": None}
+        results = {
+            "raw_images": np.array(images),
+            "processed_images": np.array([self.image_processor.auto_process(image) for image in images])
+        }
 
         if self.fit_profile:
-            fit_results = []
-            for image in images:
-                processed_image = self.image_processor.auto_process(image)
-                fit_results += [self.beam_fit.fit_image(processed_image)]
+            rms_sizes = []
+            centroids = []
+            total_intensities = []
+            for image in results["processed_images"]:
+                fit_result = self.beam_fit.fit_image(image)
+                rms_sizes.append(fit_result.rms_size)
+                centroids.append(fit_result.centroid)
+                total_intensities.append(fit_result.total_intensity)
 
-            results["fit_results"] = fit_results
+            results["rms_sizes"] = np.array(rms_sizes)
+            results["centroids"] = np.array(centroids)
+            results["total_intensities"] = np.array(total_intensities)
 
-        return results
+        # add metadata to results
+        results["metadata"] = self.model_dump()
+
+        return ScreenBeamProfileMeasurementResult(**results)
