@@ -1,7 +1,11 @@
 import numpy as np
 from scipy.optimize import minimize
 import importlib.util
-from lcls_tools.common.data.model_general_calcs import bmag_func, propagate_twiss, build_quad_rmat
+from lcls_tools.common.data.model_general_calcs import (
+    bmag_func,
+    propagate_twiss,
+    build_quad_rmat,
+)
 
 
 def compute_emit_bmag(
@@ -64,11 +68,11 @@ def compute_emit_bmag(
     beamsize_squared = np.expand_dims(beamsize_squared, -1)
 
     def beam_matrix_tuple(params):
-        '''
+        """
         converts fit parameters (batchshape x 3), containing [lambda1, lambda2, c],
         to tuple of beam matrix parameters (sig11, sig12, sig22) where each
         element in the tuple is shape batchshape, for stacking.
-        '''
+        """
         return (
             params[..., 0] ** 2,  # lamba1^2 = sig11
             params[..., 0]
@@ -107,8 +111,7 @@ def compute_emit_bmag(
         # define loss function in numpy without jacobian
         def loss(params):
             params = np.reshape(params, [*beamsize_squared.shape[:-2], 3])
-            sig = np.expand_dims(np.stack(beam_matrix_tuple(params), axis=-1),
-                                 axis=-1)
+            sig = np.expand_dims(np.stack(beam_matrix_tuple(params), axis=-1), axis=-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
             total_squared_error = np.sum((amat @ sig - beamsize_squared) ** 2)
             return total_squared_error
@@ -152,19 +155,23 @@ def compute_emit_bmag(
     )
     # result shape (batchshape x 1)
 
-    
     # get twiss at entrance of measurement quad from beam_matrix
-    twiss_upstream = np.stack(
-        (
-            beam_matrix[..., 0],
-            -1 * beam_matrix[..., 1],
-            beam_matrix[..., 2],
-        ),
-        axis=-1,
-    ) / emit
+    twiss_upstream = (
+        np.stack(
+            (
+                beam_matrix[..., 0],
+                -1 * beam_matrix[..., 1],
+                beam_matrix[..., 2],
+            ),
+            axis=-1,
+        )
+        / emit
+    )
 
     # propagate twiss params to screen (expand_dims for broadcasting)
-    twiss_at_screen = propagate_twiss(np.expand_dims(twiss_upstream, axis=-2), total_rmat)
+    twiss_at_screen = propagate_twiss(
+        np.expand_dims(twiss_upstream, axis=-2), total_rmat
+    )
     # result shape (batchshape x nsteps x 3)
     beta, alpha = twiss_at_screen[..., 0], twiss_at_screen[..., 1]
     # shapes batchshape x nsteps
@@ -175,12 +182,18 @@ def compute_emit_bmag(
         # results shape batchshape x 1
 
         # result batchshape x 3 containing [beta, alpha, gamma]
-        bmag = bmag_func(beta, alpha, beta_design, alpha_design)  # result batchshape x nsteps
+        bmag = bmag_func(
+            beta, alpha, beta_design, alpha_design
+        )  # result batchshape x nsteps
     else:
         bmag = None
 
-    results = {"emittance": emit, "BMAG": bmag, "beam_matrix": beam_matrix,
-               "twiss_at_screen": twiss_at_screen}
+    results = {
+        "emittance": emit,
+        "BMAG": bmag,
+        "beam_matrix": beam_matrix,
+        "twiss_at_screen": twiss_at_screen,
+    }
     return results
 
 

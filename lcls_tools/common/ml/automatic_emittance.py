@@ -13,7 +13,10 @@ from pydantic import PositiveInt, field_validator
 
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 
-def calculate_bounding_box_coordinates(fit_result: ImageFitResult, n_stds: float) -> np.ndarray:
+
+def calculate_bounding_box_coordinates(
+    fit_result: ImageFitResult, n_stds: float
+) -> np.ndarray:
     """
     Calculate the corners of a bounding box given the fit results.
 
@@ -29,16 +32,24 @@ def calculate_bounding_box_coordinates(fit_result: ImageFitResult, n_stds: float
     np.ndarray
         The calculated bounding box coordinates.
     """
-    return np.array([
-        -1*np.array(fit_result.rms_size)*n_stds / 2 + np.array(fit_result.centroid),
-        np.array(fit_result.rms_size)*n_stds / 2 + np.array(fit_result.centroid),
-        np.array((-1,1))*np.array(fit_result.rms_size)*n_stds / 2 + np.array(fit_result.centroid),
-        np.array((1,-1))*np.array(fit_result.rms_size)*n_stds / 2 + np.array(fit_result.centroid)
-    ])
+    return np.array(
+        [
+            -1 * np.array(fit_result.rms_size) * n_stds / 2
+            + np.array(fit_result.centroid),
+            np.array(fit_result.rms_size) * n_stds / 2 + np.array(fit_result.centroid),
+            np.array((-1, 1)) * np.array(fit_result.rms_size) * n_stds / 2
+            + np.array(fit_result.centroid),
+            np.array((1, -1)) * np.array(fit_result.rms_size) * n_stds / 2
+            + np.array(fit_result.centroid),
+        ]
+    )
 
-def calculate_bounding_box_penalty(roi: ROI, fit_result: ImageFitResult, n_stds:float=2.0) -> float:
+
+def calculate_bounding_box_penalty(
+    roi: ROI, fit_result: ImageFitResult, n_stds: float = 2.0
+) -> float:
     """
-    Calculate the penalty based on the maximum distance between the center of the ROI 
+    Calculate the penalty based on the maximum distance between the center of the ROI
     and the beam bounding box corners.
 
     Parameters
@@ -61,9 +72,7 @@ def calculate_bounding_box_penalty(roi: ROI, fit_result: ImageFitResult, n_stds:
         If the ROI type is not supported.
     """
     # calculate the corners of a bounding box given the fit results
-    beam_bbox_coords = calculate_bounding_box_coordinates(
-        fit_result, n_stds=n_stds
-        )
+    beam_bbox_coords = calculate_bounding_box_coordinates(fit_result, n_stds=n_stds)
 
     if isinstance(roi, CircularROI):
         roi_radius = roi.radius[0]
@@ -92,14 +101,18 @@ class MLQuadScanEmittance(QuadScanEmittance):
 
     @field_validator("beamsize_measurement", mode="after")
     def validate_beamsize_measurement(cls, v, info):
-        # check to make sure the the beamsize measurement screen has a region of interest 
+        # check to make sure the the beamsize measurement screen has a region of interest
         # (also requires ScreenBeamProfileMeasurement)
         if not isinstance(v, ScreenBeamProfileMeasurement):
-            raise ValueError("Beamsize measurement must be a ScreenBeamProfileMeasurement for MLQuadScanEmittance")
+            raise ValueError(
+                "Beamsize measurement must be a ScreenBeamProfileMeasurement for MLQuadScanEmittance"
+            )
 
         # check to make sure the the beamsize measurement screen has a region of interest
         if not isinstance(v.image_processor.roi, ROI):
-            raise ValueError("Beamsize measurement screen must have a region of interest")
+            raise ValueError(
+                "Beamsize measurement screen must have a region of interest"
+            )
         return v
 
     def perform_beamsize_measurements(self):
@@ -111,7 +124,7 @@ class MLQuadScanEmittance(QuadScanEmittance):
         vocs = VOCS(
             variables={"k": k_range},
             objectives={"x_rms_px": "MINIMIZE"},
-            constraints={"bb_penalty": ["LESS_THAN", 0.0]}
+            constraints={"bb_penalty": ["LESS_THAN", 0.0]},
         )
 
         def evaluate(inputs):
@@ -133,7 +146,7 @@ class MLQuadScanEmittance(QuadScanEmittance):
                 "bb_penalty": bb_penalty,
                 "x_rms_px": fit_results.rms_size[0],
                 "y_rms_px": fit_results.rms_size[1],
-                "total_size": np.linalg.norm(fit_results.rms_size)
+                "total_size": np.linalg.norm(fit_results.rms_size),
             }
 
             return results
@@ -141,10 +154,11 @@ class MLQuadScanEmittance(QuadScanEmittance):
         evaluator = Evaluator(function=evaluate)
 
         generator = UpperConfidenceBoundGenerator(
-            vocs=vocs, beta=100,
+            vocs=vocs,
+            beta=100,
             numerical_optimizer=GridOptimizer(n_grid_points=50),
             n_interpolate_points=5,
-            n_monte_carlo_samples=64
+            n_monte_carlo_samples=64,
         )
 
         X = Xopt(vocs=vocs, evaluator=evaluator, generator=generator)
@@ -163,7 +177,7 @@ class MLQuadScanEmittance(QuadScanEmittance):
         new_vocs = VOCS(
             variables={"k": k_range},
             objectives={"y_rms_px": "MINIMIZE"},
-            constraints={"bb_penalty": ["LESS_THAN", 0.0]}
+            constraints={"bb_penalty": ["LESS_THAN", 0.0]},
         )
         X.vocs = new_vocs
         X.generator.vocs = new_vocs
