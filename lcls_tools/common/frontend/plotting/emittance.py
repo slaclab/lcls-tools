@@ -21,8 +21,8 @@ def plot_quad_scan_result(emittance_results: EmittanceMeasurementResult):
     k = emittance_results.quadrupole_strengths[sorted_indices]
     beta = emittance_results.twiss_at_screen.transpose(1, 0, 2)[sorted_indices][..., 0]
 
-    ax[0].plot(k, emittance_results.x_rms[sorted_indices] * 1e6, "+", label="x_rms")
-    ax[0].plot(k, emittance_results.y_rms[sorted_indices] * 1e6, "+", label="y_rms")
+    ax[0].plot(k, emittance_results.rms_x[sorted_indices] * 1e6, "+", label="x_rms")
+    ax[0].plot(k, emittance_results.rms_y[sorted_indices] * 1e6, "+", label="y_rms")
 
     # plot fit from twiss at screen calculation
     ax[0].plot(

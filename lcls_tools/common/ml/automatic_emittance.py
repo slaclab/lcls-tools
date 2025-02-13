@@ -98,7 +98,7 @@ class MLQuadScanEmittance(QuadScanEmittance):
     bounding_box_factor: float = 2.0
     n_initial_samples: PositiveInt = 3
     n_iterations: PositiveInt = 5
-    max_k_ranges: Optional[list[float]] = None
+    max_scan_range: Optional[list[float]] = None
     xopt_object: Optional[Xopt] = None
 
     @field_validator("beamsize_measurement", mode="after")
@@ -122,7 +122,7 @@ class MLQuadScanEmittance(QuadScanEmittance):
         Run BO-based exploration of the quadrupole strength to get beamsize measurements
         """
         # define the optimization problem
-        k_range = self.max_k_ranges if self.max_k_ranges is not None else [-10, 10]
+        k_range = self.max_scan_range if self.max_scan_range is not None else [-10, 10]
         vocs = VOCS(
             variables={"k": k_range},
             objectives={"x_rms_px": "MINIMIZE"},

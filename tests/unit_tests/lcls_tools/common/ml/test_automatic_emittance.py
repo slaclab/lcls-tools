@@ -147,7 +147,7 @@ class AutomaticEmittanceMeasurementTest(TestCase):
                     design_twiss=design_twiss_ele,
                     n_initial_samples=3,
                     n_iterations=5,
-                    max_k_ranges=[-10, 10],
+                    max_scan_range=[-10, 10],
                 )
 
                 # Call the measure method
@@ -155,7 +155,6 @@ class AutomaticEmittanceMeasurementTest(TestCase):
 
                 plot_quad_scan_result(result)
                 import matplotlib.pyplot as plt
-
                 plt.show()
 
                 # Check the results
@@ -166,16 +165,15 @@ class AutomaticEmittanceMeasurementTest(TestCase):
                 assert len(result.rms_y) == len(quad_scan.scan_values)
 
                 # check resulting calculations against cheetah simulation ground truth
-                print(result.emittance)
                 assert np.allclose(
                     result.emittance,
                     np.array([1.0e-2, 1.0e-1]).reshape(2, 1),
-                    rtol=1e-1,
+                    rtol=0.5e-1,
                 )
                 assert np.allclose(
                     result.beam_matrix,
                     np.array([[5.0e-2, -5.0e-2, 5.2e-2], [0.3, -0.3, 0.33333328]]),
-                    rtol=1e-1,
+                    rtol=0.5e-1,
                 )
 
     def test_calculate_bounding_box_coordinates(self):
