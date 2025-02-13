@@ -37,7 +37,7 @@ class EmittanceMeasurementResult(BaseModel):
     """
     quadrupole_strengths: np.ndarray
     emittance: np.ndarray
-    BMAG: np.ndarray
+    BMAG: Optional[np.ndarray] = None
     twiss_at_screen: np.ndarray
     x_rms: np.ndarray
     y_rms: np.ndarray
@@ -45,6 +45,42 @@ class EmittanceMeasurementResult(BaseModel):
     info: Any
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
+
+    def get_best_bmag(self, mode="geometric_mean") -> float:
+        """
+        Get the best BMAG value for a given mode (x, y, geometric mean).
+
+        Parameters
+        ----------
+        mode : str, optional
+            The mode to get the best BMAG value for, default is "geometric_mean".
+            Mode can be one of the following: "x", "y", "geometric_mean".
+            - "x": get the best BMAG value for the x plane.
+            - "y": get the best BMAG value for the y plane.
+            - "geometric_mean": get the best BMAG value for the geometric mean of the x and y planes.
+
+        Returns
+        -------
+        tuple
+            The best quadrupole strength and BMAG value.
+
+        """
+        if self.BMAG is None:
+            raise ValueError("BMAG values are not available for this measurement")
+
+        if mode == "x":
+            best_index = np.argmin(self.BMAG[0])
+            bmag_value = self.BMAG[0][best_index]
+        elif mode == "y":
+            best_index = np.argmin(self.BMAG[1])
+            bmag_value = self.BMAG[1][best_index]
+        elif mode == "geometric_mean":
+            best_index = np.argmin(np.sqrt(self.BMAG[0] * self.BMAG[1]))
+            bmag_value = np.sqrt(self.BMAG[0][best_index] * self.BMAG[1][best_index])
+        else:
+            raise ValueError("mode must be either 'x', 'y', or 'geometric_mean'")
+        
+        return self.quadrupole_strengths[best_index], bmag_value
 
 
 class QuadScanEmittance(Measurement):
@@ -143,10 +179,13 @@ class QuadScanEmittance(Measurement):
 
         # organize data into arrays for use in `compute_emit_bmag`
         # rmat = np.stack([self.rmat[0:2, 0:2], self.rmat[2:4, 2:4]])
-        twiss_betas_alphas = np.array(
-            [[self.design_twiss["beta_x"], self.design_twiss["alpha_x"]],
-             [self.design_twiss["beta_y"], self.design_twiss["alpha_y"]]]
-        )
+        if self.design_twiss:
+            twiss_betas_alphas = np.array(
+                [[self.design_twiss["beta_x"], self.design_twiss["alpha_x"]],
+                [self.design_twiss["beta_y"], self.design_twiss["alpha_y"]]]
+            )
+        else:
+            twiss_betas_alphas = None
 
         # compute quadrupole focusing strengths
         # note: need to create negative k values for vertical dimension

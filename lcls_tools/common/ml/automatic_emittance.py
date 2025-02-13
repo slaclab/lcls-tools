@@ -1,3 +1,4 @@
+import warnings
 import numpy as np
 from xopt import Xopt, Evaluator, VOCS
 from xopt.generators.bayesian import UpperConfidenceBoundGenerator
@@ -151,9 +152,11 @@ class MLQuadScanEmittance(QuadScanEmittance):
         local_region = get_local_region({"k": self.magnet.bctrl}, vocs)
         X.random_evaluate(self.n_initial_samples, custom_bounds=local_region)
 
-        # run iterations for x
+        # run iterations for x -- ignore warnings from UCB generator
         for i in range(self.n_iterations):
-            X.step()
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                X.step()
 
         # run iterations for y
         new_vocs = VOCS(
@@ -165,7 +168,9 @@ class MLQuadScanEmittance(QuadScanEmittance):
         X.generator.vocs = new_vocs
 
         for i in range(self.n_iterations):
-            X.step()
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                X.step()
 
         self.scan_values = X.data["k"].tolist()
 

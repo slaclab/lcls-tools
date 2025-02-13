@@ -32,13 +32,16 @@ def plot_quad_scan_result(emittance_results: EmittanceMeasurementResult):
     # ax[0].set_xlabel("Quadrupole Strength [T/m]")
     ax[0].set_ylabel("Beam size [um]")
 
+    if emittance_results.BMAG is not None:
+        ax[1].plot(k, emittance_results.BMAG[0][sorted_indices], "+",label="BMAG x")
+        ax[1].plot(k, emittance_results.BMAG[1][sorted_indices], "+",label="BMAG y")
 
-    ax[1].plot(k, emittance_results.BMAG[0][sorted_indices], "+",label="BMAG x")
-    ax[1].plot(k, emittance_results.BMAG[1][sorted_indices], "+",label="BMAG y")
-
-    ax[1].set_xlabel("Quadrupole Strength [T/m]")
-    ax[1].set_ylabel("BMAG")
-    ax[1].axhline(1.0, color="black", linestyle="--")
+        ax[1].set_xlabel("Quadrupole Strength [T/m]")
+        ax[1].set_ylabel("BMAG")
+        ax[1].axhline(1.0, color="black", linestyle="--")
+    else:
+        # add text to the middle of the axis that says "BMAG not available"
+        ax[1].text(0.5, 0.5, "BMAG not available", ha='center', va='center', transform=ax[1].transAxes)
 
     for ele in ax:
         ele.legend()
