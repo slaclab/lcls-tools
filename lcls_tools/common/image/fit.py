@@ -8,7 +8,6 @@ from pydantic import BaseModel, ConfigDict, PositiveFloat, Field
 from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.data.fit.methods import GaussianModel
 from lcls_tools.common.data.fit.projection import ProjectionFit
-from lcls_tools.common.image.processing import ImageProcessor
 
 
 class ImageFitResult(BaseModel):
@@ -29,7 +28,6 @@ class ImageFit(BaseModel, ABC):
     """
     Abstract class for determining beam properties from an image
     """
-    image_processor: Optional[ImageProcessor] = ImageProcessor()
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     def fit_image(self, image: ndarray) -> ImageFitResult:
@@ -38,8 +36,7 @@ class ImageFit(BaseModel, ABC):
         image processing, internal image fitting method, and image validation.
 
         """
-        processed_image = self.image_processor.auto_process(image)
-        fit_result = self._fit_image(processed_image)
+        fit_result = self._fit_image(image)
         return fit_result
 
     @abstractmethod
