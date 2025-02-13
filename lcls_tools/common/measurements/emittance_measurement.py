@@ -25,9 +25,9 @@ class EmittanceMeasurementResult(BaseModel):
         The BMAG values for x/y for each quadrupole strength.
     twiss_at_screen : np.ndarray, shape (n,2,3)
         Twiss parameters (beta, alpha, gamma) calculated at the screen for each quadrupole strength in each plane.
-    x_rms : np.ndarray, shape (n,)
+    rms_x : np.ndarray, shape (n,)
         The RMS values in the x direction for each quadrupole strength.
-    y_rms : np.ndarray, shape (n,)
+    rms_y : np.ndarray, shape (n,)
         The RMS values in the y direction for each quadrupole strength.
     beam_matrix : np.ndarray, shape (2,3)
         Reconstructed beam matrix at the entrance of the quadrupole for
@@ -41,8 +41,8 @@ class EmittanceMeasurementResult(BaseModel):
     emittance: np.ndarray
     BMAG: Optional[np.ndarray] = None
     twiss_at_screen: np.ndarray
-    x_rms: np.ndarray
-    y_rms: np.ndarray
+    rms_x: np.ndarray
+    rms_y: np.ndarray
     beam_matrix: np.ndarray
     info: Any
 
@@ -110,7 +110,7 @@ class QuadScanEmittance(Measurement):
         `beta_y`, `alpha_x`, `alpha_y`) where the beta/alpha values are in units of [m]/[]
         respectively
     beam_sizes, dict[str, list[float]], optional
-        Dictionary contraining X-rms and Y-rms beam sizes (keys:`x_rms`,`y_rms`)
+        Dictionary contraining X-rms and Y-rms beam sizes (keys:`rms_x`,`rms_y`)
         measured during the quadrupole scan in units of [m].
     wait_time, float, optional
         Wait time in seconds between changing quadrupole settings and making beamsize
@@ -173,8 +173,8 @@ class QuadScanEmittance(Measurement):
         beamsize_squared = (
             np.vstack(
                 (
-                    np.array(self.beam_sizes["x_rms"]) * 1e3,
-                    np.array(self.beam_sizes["y_rms"]) * 1e3,
+                    np.array(self.beam_sizes["rms_x"]) * 1e3,
+                    np.array(self.beam_sizes["rms_y"]) * 1e3,
                 )
             )
             ** 2
@@ -215,8 +215,8 @@ class QuadScanEmittance(Measurement):
 
         results.update(
             {
-                "x_rms": np.array(self.beam_sizes["x_rms"]),
-                "y_rms": np.array(self.beam_sizes["y_rms"]),
+                "rms_x": np.array(self.beam_sizes["rms_x"]),
+                "rms_y": np.array(self.beam_sizes["rms_y"]),
             }
         )
         results.update({"info": self._info})
@@ -234,18 +234,18 @@ class QuadScanEmittance(Measurement):
         time.sleep(self.wait_time)
 
         result = self.beamsize_measurement.measure(self.n_measurement_shots)
-        if "x_rms" not in self.beam_sizes:
-            self.beam_sizes["x_rms"] = []
-        if "y_rms" not in self.beam_sizes:
-            self.beam_sizes["y_rms"] = []
+        if "rms_x" not in self.beam_sizes:
+            self.beam_sizes["rms_x"] = []
+        if "rms_y" not in self.beam_sizes:
+            self.beam_sizes["rms_y"] = []
 
         # note beamsizes here are in m
-        self.beam_sizes["x_rms"].append(
+        self.beam_sizes["rms_x"].append(
             np.mean(result.rms_sizes[:, 0])
             * self.beamsize_measurement.device.resolution
             * 1e-6
         )
-        self.beam_sizes["y_rms"].append(
+        self.beam_sizes["rms_y"].append(
             np.mean(result.rms_sizes[:, 1])
             * self.beamsize_measurement.device.resolution
             * 1e-6

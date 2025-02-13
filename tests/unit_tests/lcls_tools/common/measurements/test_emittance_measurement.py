@@ -180,10 +180,10 @@ class EmittanceMeasurementTest(TestCase):
 
                 # Assertions
                 assert isinstance(result, EmittanceMeasurementResult)
-                assert hasattr(result, "x_rms")
-                assert hasattr(result, "y_rms")
-                assert len(result.x_rms) == len(quad_scan.scan_values)
-                assert len(result.y_rms) == len(quad_scan.scan_values)
+                assert hasattr(result, "rms_x")
+                assert hasattr(result, "rms_y")
+                assert len(result.rms_x) == len(quad_scan.scan_values)
+                assert len(result.rms_y) == len(quad_scan.scan_values)
 
                 # check resulting calculations against cheetah simulation ground truth
                 assert np.allclose(
