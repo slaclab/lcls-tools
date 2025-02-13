@@ -12,10 +12,33 @@ from lcls_tools.common.measurements.measurement import Measurement
 
 
 class EmittanceMeasurementResult(BaseModel):
+    """
+    EmittanceMeasurementResult stores the results of an emittance measurement.
+
+    Attributes
+    ----------
+    quadrupole_strengths : np.ndarray, shape (n,)
+        Geometric focusing strength (k1) settings of the quadrupole used in the scan in m^{-2}.
+    emittance : np.ndarray, shape (2,)
+        The geometric emittance values for x/y in mm-mrad.
+    BMAG : np.ndarray, shape (2,n)
+        The BMAG values for x/y for each quadrupole strength.
+    twiss_at_screen : np.ndarray, shape (n,2,3)
+        Twiss parameters (beta, alpha, gamma) calculated at the screen for each quadrupole strength in each plane.
+    x_rms : np.ndarray, shape (n,)
+        The RMS values in the x direction for each quadrupole strength.
+    y_rms : np.ndarray, shape (n,)
+        The RMS values in the y direction for each quadrupole strength.
+    beam_matrix : np.ndarray, shape (2,3)
+        Reconstructed beam matrix at the entrance of the quadrupole for both x/y directions. Elements correspond to (s11,s12,s22) of the beam matrix.
+    info : Any
+        Metadata information related to the measurement.
+    
+    """
+    quadrupole_strengths: np.ndarray
     emittance: np.ndarray
     BMAG: np.ndarray
     twiss_at_screen: np.ndarray
-    quadrupole_strengths: np.ndarray
     x_rms: np.ndarray
     y_rms: np.ndarray
     beam_matrix: np.ndarray
@@ -31,34 +54,26 @@ class QuadScanEmittance(Measurement):
     ------------------------
     energy: float
         Beam energy in GeV
-
     scan_values: List[float]
         BDES values of magnet to scan over
-
     magnet: Magnet
         Magnet object used to conduct scan
-
     beamsize_measurement: BeamsizeMeasurement
         Beamsize measurement object from profile monitor/wire scanner
-
     n_measurement_shots: int
         number of beamsize measurements to make per individual quad strength
-
     rmat: ndarray, optional
         Transport matricies for the horizontal and vertical phase space from
         the end of the scanning magnet to the screen, array shape should be 2 x 2 x 2 (
         first element is the horizontal transport matrix, second is the vertical),
         if not provided meme is used to calculate the transport matricies
-
     design_twiss: dict[str, float], optional
         Dictionary containing design twiss values with the following keys (`beta_x`,
         `beta_y`, `alpha_x`, `alpha_y`) where the beta/alpha values are in units of [m]/[]
         respectively
-
     beam_sizes, dict[str, list[float]], optional
         Dictionary contraining X-rms and Y-rms beam sizes (keys:`x_rms`,`y_rms`)
         measured during the quadrupole scan in units of [m].
-
     wait_time, float, optional
         Wait time in seconds between changing quadrupole settings and making beamsize
         measurements.
@@ -90,22 +105,15 @@ class QuadScanEmittance(Measurement):
         assert v.shape == (2, 2, 2)
         return v
 
-    def measure(self):
+    def measure(self) -> EmittanceMeasurementResult:
         """
         Conduct quadrupole scan to measure the beam phase space.
 
         Returns:
         -------
-        result : dict
-            Dictonary containing the following keys
-            - `emittance`: geometric emittance in x/y in units of [mm.mrad]
-            - `BMAG`: Twiss mismatch parameter for each quadrupole strength (unitless)
-            - `twiss_parameters`: Twiss parameters (beta, alpha, gamma) calculated at
-                the screen for each quadrupole strength in each plane
-            - `x_rms`: Measured beam sizes in horizontal direction in [m]
-            - `y_rms`: Measured beam sizes in vertical direction in [m]
-            - `info`: Measurement information for each beamsize measurement
-            """
+        result : EmittanceMeasurementResult
+            Object containing the results of the emittance measurement
+        """
 
         self._info = []
         # scan magnet strength and measure beamsize
