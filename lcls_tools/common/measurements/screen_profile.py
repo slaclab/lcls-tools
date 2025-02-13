@@ -56,6 +56,4 @@ class ScreenBeamProfileMeasurement(Measurement):
 
             results["fit_results"] = fit_results
 
-
-
         return results

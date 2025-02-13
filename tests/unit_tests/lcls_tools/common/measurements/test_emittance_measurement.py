@@ -13,7 +13,6 @@ from lcls_tools.common.measurements.emittance_measurement import (
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 from lcls_tools.common.frontend.plotting.emittance import plot_quad_scan_result
 import matplotlib.pyplot as plt
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 
 
 class EmittanceMeasurementTest(TestCase):
@@ -43,9 +42,9 @@ class EmittanceMeasurementTest(TestCase):
         # TODO: implement this test
         try:
             import meme  # noqa: F401
-            from lcls_tools.common.measurements.emittance_measurement import (
-                QuadScanEmittance,
-            )
+            # from lcls_tools.common.measurements.emittance_measurement import (
+            #    QuadScanEmittance,
+            # )  # noqa: F401
         except ImportError:
             import unittest
 

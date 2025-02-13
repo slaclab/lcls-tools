@@ -5,7 +5,6 @@ import numpy as np
 import torch
 from cheetah import Segment, Quadrupole, Drift, ParameterBeam
 
-import matplotlib.pyplot as plt
 from lcls_tools.common.devices.magnet import Magnet, MagnetMetadata
 from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
@@ -29,7 +28,7 @@ class MockBeamline:
         """create mock beamline, powered by cheetah"""
         self.beamline = Segment(
             [
-                Quadrupole(name=f"Q0", length=torch.tensor(0.1)),
+                Quadrupole(name="Q0", length=torch.tensor(0.1)),
                 Drift(length=torch.tensor(1.0)),
             ]
         )
@@ -65,7 +64,8 @@ class MockBeamline:
         self.beamline.Q0.k1 = torch.tensor(args[1])
 
     def get_beamsize_measurement(self, *args):
-        """define a mock beamsize measurement for the ScreenBeamProfileMeasurement -- returns image fit result in pixels"""
+        """define a mock beamsize measurement for the
+        ScreenBeamProfileMeasurement -- returns image fit result in pixels"""
         outgoing_beam = self.beamline.track(self.initial_beam)
 
         results = []

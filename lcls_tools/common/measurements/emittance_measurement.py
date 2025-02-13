@@ -1,5 +1,5 @@
 import time
-from typing import Any, List, Optional
+from typing import Any, Optional
 
 import numpy as np
 from numpy import ndarray
@@ -30,7 +30,8 @@ class EmittanceMeasurementResult(BaseModel):
     y_rms : np.ndarray, shape (n,)
         The RMS values in the y direction for each quadrupole strength.
     beam_matrix : np.ndarray, shape (2,3)
-        Reconstructed beam matrix at the entrance of the quadrupole for both x/y directions. Elements correspond to (s11,s12,s22) of the beam matrix.
+        Reconstructed beam matrix at the entrance of the quadrupole for
+        both x/y directions. Elements correspond to (s11,s12,s22) of the beam matrix.
     info : Any
         Metadata information related to the measurement.
 
