@@ -168,20 +168,18 @@ def compute_emit_bmag(
     # result shape (batchshape x 3) containing [sig11, sig12, sig22]
 
     rv["emittance"] = np.sqrt(
-        rv["beam_matrix"][..., 0:1] * rv["beam_matrix"][..., 2:3] - rv["beam_matrix"][..., 1:2] ** 2
+        rv["beam_matrix"][..., 0:1] * rv["beam_matrix"][..., 2:3]
+        - rv["beam_matrix"][..., 1:2] ** 2
     )
     # result shape (batchshape x 1)
 
     # get twiss at entrance of measurement quad from beam_matrix
     def _twiss_upstream(b_matrix):
         return np.expand_dims(
-            np.stack((
-                    b_matrix[..., 0], 
-                    -1 * b_matrix[..., 1], 
-                    b_matrix[..., 2]
-                ), 
-                axis=-1
-            ) / rv["emittance"],
+            np.stack(
+                (b_matrix[..., 0], -1 * b_matrix[..., 1], b_matrix[..., 2]), axis=-1
+            )
+            / rv["emittance"],
             axis=-2,
         )
 

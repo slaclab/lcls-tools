@@ -7,7 +7,6 @@ from lcls_tools.common.devices.magnet import Magnet, MagnetMetadata
 from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.measurements.emittance_measurement import (
-    EmittanceMeasurementResult,
     QuadScanEmittance,
 )
 from lcls_tools.common.measurements.screen_profile import (

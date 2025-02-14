@@ -5,7 +5,15 @@ from typing import Any, Optional
 
 import numpy as np
 from numpy import ndarray
-from pydantic import BaseModel, ConfigDict, PositiveInt, SerializeAsAny, SkipValidation, field_validator, PositiveFloat
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    PositiveInt,
+    SerializeAsAny,
+    SkipValidation,
+    field_validator,
+    PositiveFloat,
+)
 
 from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
@@ -13,12 +21,12 @@ from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 
 
-
 class BMAGMode(enum.IntEnum):
     X = 0
     Y = 1
     # Value is not a valid index unlike X & Y
     GEOMETRIC_MEAN = -sys.maxsize
+
 
 class EmittanceMeasurementResult(BaseModel):
     """
@@ -55,7 +63,7 @@ class EmittanceMeasurementResult(BaseModel):
     rms_y: np.ndarray
     beam_matrix: np.ndarray
     metadata: SkipValidation[SerializeAsAny[Any]]
-    
+
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     @field_validator("*", mode="before")
@@ -86,7 +94,7 @@ class EmittanceMeasurementResult(BaseModel):
         """
         if self.bmag is None:
             raise ValueError("BMAG values are not available for this measurement")
-        
+
         if not isinstance(mode, BMAGMode):
             try:
                 mode = getattr(BMAGMode, mode.upper())
@@ -150,7 +158,6 @@ class QuadScanEmittance(Measurement):
     n_measurement_shots: PositiveInt = 1
     _info: Optional[list] = []
 
-
     rmat: Optional[ndarray] = None
     design_twiss: Optional[dict] = None  # design twiss values
     beam_sizes: Optional[dict] = {}
@@ -184,15 +191,14 @@ class QuadScanEmittance(Measurement):
 
         # get scan values
         scan_values = np.array(self.scan_values)
-                
+
         # only keep data that has non-nan beam sizes
         mask = ~np.isnan(beam_sizes).any(axis=0)
         beam_sizes = beam_sizes[:, mask]
         scan_values = scan_values[mask]
 
-        
         # calculate beam size squared in units of mm
-        beamsize_squared = (beam_sizes * 1e3)**2
+        beamsize_squared = (beam_sizes * 1e3) ** 2
 
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
@@ -270,15 +276,17 @@ class QuadScanEmittance(Measurement):
         self._info += [result]
 
     def _get_beamsizes_from_info(self) -> ndarray:
-        """ 
+        """
         Extract the mean rms beam sizes from the info list, units in meters.
         """
         beam_sizes = []
         for result in self._info:
             beam_sizes.append(
-                np.mean(result.rms_sizes, axis=0) * self.beamsize_measurement.device.resolution * 1e-6
-                )
-        
+                np.mean(result.rms_sizes, axis=0)
+                * self.beamsize_measurement.device.resolution
+                * 1e-6
+            )
+
         return np.array(beam_sizes).T
 
 

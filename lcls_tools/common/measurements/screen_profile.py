@@ -5,7 +5,13 @@ from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.image.processing import ImageProcessor
 from lcls_tools.common.measurements.measurement import Measurement
-from pydantic import BaseModel, ConfigDict, SerializeAsAny, SkipValidation, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    SerializeAsAny,
+    SkipValidation,
+    field_validator,
+)
 from typing import Optional
 
 
@@ -29,6 +35,7 @@ class ScreenBeamProfileMeasurementResult(BaseModel):
         Metadata information related to the measurement.
 
     """
+
     raw_images: np.ndarray
     processed_images: np.ndarray
     rms_sizes: Optional[np.ndarray] = None
@@ -64,6 +71,7 @@ class ScreenBeamProfileMeasurement(Measurement):
     #TODO: DumpController?
     #TODO: return images flag
     """
+
     model_config = ConfigDict(arbitrary_types_allowed=True)
     name: str = "beam_profile"
     device: Screen
@@ -86,8 +94,9 @@ class ScreenBeamProfileMeasurement(Measurement):
             images.append(self.device.image)
             # TODO: need to add a wait statement in here for images to update
 
-        processed_images = [self.image_processor.auto_process(image) for image in images]
-
+        processed_images = [
+            self.image_processor.auto_process(image) for image in images
+        ]
 
         if self.fit_profile:
             rms_sizes = []
