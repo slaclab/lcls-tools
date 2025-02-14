@@ -14,8 +14,6 @@ class ImageFitResult(BaseModel):
     centroid: List[float] = Field(min_length=2, max_length=2)
     rms_size: List[float] = Field(min_length=2, max_length=2)
     total_intensity: PositiveFloat
-    processed_image: ndarray
-    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class ImageProjectionFitResult(ImageFitResult):
