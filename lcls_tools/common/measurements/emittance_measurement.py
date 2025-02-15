@@ -44,7 +44,6 @@ class BMAGMode(enum.IntEnum):
         raise ValueError(f"invalid {cls.__name__}={value} must be one of: {_members()}")
 
 
-
 class EmittanceMeasurementResult(BaseModel):
     """
     EmittanceMeasurementResult stores the results of an emittance measurement.
