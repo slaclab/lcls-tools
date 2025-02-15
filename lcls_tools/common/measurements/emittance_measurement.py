@@ -27,6 +27,23 @@ class BMAGMode(enum.IntEnum):
     # Value is not a valid index unlike X & Y
     GEOMETRIC_MEAN = -sys.maxsize
 
+    @classmethod
+    def from_any(cls, value):
+        def _members():
+            return ", ".join((m.name for m in cls))
+
+        try:
+            if isinstance(value, cls):
+                return value
+            if isinstance(value, str):
+                return cls[value.upper()]
+            if isinstance(value, int):
+                return cls(value)
+        except (ValueError, KeyError):
+            pass
+        raise ValueError(f"invalid {cls.__name__}={value} must be one of: {_members()}")
+
+
 
 class EmittanceMeasurementResult(BaseModel):
     """
@@ -95,11 +112,7 @@ class EmittanceMeasurementResult(BaseModel):
         if self.bmag is None:
             raise ValueError("BMAG values are not available for this measurement")
 
-        if not isinstance(mode, BMAGMode):
-            try:
-                mode = getattr(BMAGMode, mode.upper())
-            except AttributeError:
-                raise ValueError("mode must be either 'x', 'y', or 'geometric_mean'")
+        mode = BMAGMode.from_any(mode)
 
         bmag = self.bmag
         if mode == BMAGMode.GEOMETRIC_MEAN:
