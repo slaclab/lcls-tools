@@ -78,15 +78,17 @@ class EmittanceMeasurementResult(BaseModel):
     rms_x: np.ndarray
     rms_y: np.ndarray
     beam_matrix: np.ndarray
-    metadata: SkipValidation[SerializeAsAny[Any]]
+    metadata: SerializeAsAny[Any]
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     @field_validator("*", mode="before")
     def validate_numpy_array(cls, v, field):
-        if v is not None:
-            if not isinstance(v, np.ndarray):
-                v = np.array(v)
+        """ convert all fields except metadata to numpy arrays """
+        if field.field_name != "metadata":
+            if v is not None:
+                if not isinstance(v, np.ndarray):
+                    v = np.array(v)
         return v
 
     def get_best_bmag(self, mode=BMAGMode.GEOMETRIC_MEAN) -> tuple:
