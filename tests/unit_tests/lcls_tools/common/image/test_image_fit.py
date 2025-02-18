@@ -1,18 +1,19 @@
 import numpy as np
-from lcls_tools.common.data.fit.methods import GaussianModel
+from lcls_tools.common.frontend.plotting.image import plot_image_projection_fit
 from lcls_tools.common.image.fit import ImageProjectionFit
 
 
 class TestImageProjectionFit:
-    def test_fit(self):
-        test_image = np.zeros((100, 100))
-        test_image[40:60, 40:60] = 255
+    def test_fit_and_visualization(self):
+        test_image = np.zeros((10, 10))
+        test_image[4:6, 4:6] = 255
 
-        image_fit = ImageProjectionFit()
-        result = image_fit.fit_image(test_image)
+        result = ImageProjectionFit().fit_image(test_image)
 
-        assert np.allclose(result.centroid, [50, 50])
-        assert np.allclose(result.rms_size, [8.0347, 8.0347])
-        assert np.allclose(result.total_intensity, 102000.0)
+        assert np.allclose(result.centroid, [5, 5])
+        assert np.allclose(result.rms_size, [1.16, 1.16])
+        assert np.allclose(result.total_intensity, 1020.0)
         assert np.allclose(result.image, test_image)
-        assert isinstance(result.projection_fit_method, GaussianModel)
+
+        # test plotting
+        plot_image_projection_fit(result)
