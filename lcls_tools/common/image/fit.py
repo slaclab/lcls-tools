@@ -8,12 +8,15 @@ from pydantic import BaseModel, ConfigDict, PositiveFloat, Field
 from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.data.fit.methods import GaussianModel
 from lcls_tools.common.data.fit.projection import ProjectionFit
+from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 
 
 class ImageFitResult(BaseModel):
     centroid: List[float] = Field(min_length=2, max_length=2)
     rms_size: List[float] = Field(min_length=2, max_length=2)
     total_intensity: PositiveFloat
+    image: NDArrayAnnotatedType
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class ImageProjectionFitResult(ImageFitResult):
@@ -70,7 +73,7 @@ class ImageProjectionFit(ImageFit):
             total_intensity=image.sum(),
             x_projection_fit_parameters=x_parameters,
             y_projection_fit_parameters=y_parameters,
-            processed_image=image,
+            image=image,
             projection_fit_method=self.projection_fit_method,
         )
 
