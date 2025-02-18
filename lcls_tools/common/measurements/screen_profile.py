@@ -9,7 +9,6 @@ from pydantic import (
     BaseModel,
     ConfigDict,
     SerializeAsAny,
-    SkipValidation,
     field_validator,
 )
 from typing import Optional
@@ -42,7 +41,6 @@ class ScreenBeamProfileMeasurementResult(BaseModel):
     centroids: Optional[np.ndarray] = None
     total_intensities: Optional[np.ndarray] = None
     metadata: SerializeAsAny[Any]
-
 
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid")
 

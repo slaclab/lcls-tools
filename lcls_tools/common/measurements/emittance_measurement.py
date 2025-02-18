@@ -10,7 +10,6 @@ from pydantic import (
     ConfigDict,
     PositiveInt,
     SerializeAsAny,
-    SkipValidation,
     field_validator,
     PositiveFloat,
 )
@@ -79,7 +78,6 @@ class EmittanceMeasurementResult(BaseModel):
     rms_y: np.ndarray
     beam_matrix: np.ndarray
     metadata: SerializeAsAny[Any]
-
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
