@@ -2,6 +2,7 @@ from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.image.processing import ImageProcessor
 from lcls_tools.common.measurements.measurement import Measurement
+from lcls_tools.common.data.saver import H5Saver
 from pydantic import ConfigDict, SerializeAsAny, field_serializer, field_validator
 from typing import Optional
 
@@ -29,6 +30,9 @@ class ScreenBeamProfileMeasurement(Measurement):
     beam_fit: SerializeAsAny[ImageFit] = ImageProjectionFit()
     image_processor: Optional[SerializeAsAny[ImageProcessor]] = ImageProcessor()
     fit_profile: bool = True
+    save_data: bool = True
+    saver: SerializeAsAny[H5Saver] = H5Saver()
+    filepath: str = "beam_profile.h5" # TODO: adjust
 
     @field_serializer("beam_fit")
     def ser_fld(self, ele, _info):
@@ -65,6 +69,11 @@ class ScreenBeamProfileMeasurement(Measurement):
                 processed_image = self.image_processor.auto_process(image)
                 fit_results += [self.beam_fit.fit_image(processed_image)]
 
-            results["fit_results"] = fit_results
+            results["fit_results"] = {f"image_{i}": res.model_dump() for i, res in enumerate(fit_results)}
+
+        results["raw_images"] = {f"image_{i}": image for i, image in enumerate(images)}
+
+        if self.save_data:
+            self.saver.save_to_h5(results, self.filepath)
 
         return results
