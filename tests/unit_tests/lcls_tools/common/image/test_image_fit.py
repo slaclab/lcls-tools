@@ -3,7 +3,7 @@ from lcls_tools.common.data.fit.methods import GaussianModel
 from lcls_tools.common.image.fit import ImageProjectionFit
 
 
-class TestImageProjectionFit:      
+class TestImageProjectionFit:
     def test_fit(self):
         test_image = np.zeros((100, 100))
         test_image[40:60, 40:60] = 255
@@ -16,4 +16,3 @@ class TestImageProjectionFit:
         assert np.allclose(result.total_intensity, 102000.0)
         assert np.allclose(result.image, test_image)
         assert isinstance(result.projection_fit_method, GaussianModel)
-

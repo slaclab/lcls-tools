@@ -3,6 +3,7 @@ from lcls_tools.common.frontend.plotting.image import plot_image_projection_fit
 from lcls_tools.common.image.fit import ImageProjectionFitResult
 import numpy as np
 
+
 class TestImageFitPlotting:
     def test_image_projection_fit_plotting(self):
         x_projection_fit_parameters = {
@@ -28,4 +29,3 @@ class TestImageFitPlotting:
             y_projection_fit_parameters=y_projection_fit_parameters,
         )
         plot_image_projection_fit(result)
-
