@@ -1,4 +1,3 @@
-import numpy as np
 from typing import Any
 
 from lcls_tools.common.devices.screen import Screen
@@ -9,9 +8,10 @@ from pydantic import (
     BaseModel,
     ConfigDict,
     SerializeAsAny,
-    field_validator,
 )
 from typing import Optional
+
+from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 
 
 class ScreenBeamProfileMeasurementResult(BaseModel):
@@ -35,24 +35,14 @@ class ScreenBeamProfileMeasurementResult(BaseModel):
 
     """
 
-    raw_images: np.ndarray
-    processed_images: np.ndarray
-    rms_sizes: Optional[np.ndarray] = None
-    centroids: Optional[np.ndarray] = None
-    total_intensities: Optional[np.ndarray] = None
+    raw_images: NDArrayAnnotatedType
+    processed_images: NDArrayAnnotatedType
+    rms_sizes: Optional[NDArrayAnnotatedType] = None
+    centroids: Optional[NDArrayAnnotatedType] = None
+    total_intensities: Optional[NDArrayAnnotatedType] = None
     metadata: SerializeAsAny[Any]
 
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid")
-
-    @field_validator("*", mode="before")
-    def validate_numpy_array(cls, v, field):
-        """ convert all fields except metadata to numpy arrays """
-        if field.field_name != "metadata":
-            if v is not None:
-                if not isinstance(v, np.ndarray):
-                    v = np.array(v)
-
-        return v
 
 
 class ScreenBeamProfileMeasurement(Measurement):

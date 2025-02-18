@@ -187,7 +187,9 @@ class EmittanceMeasurementTest(TestCase):
                     np.array([[5.0e-2, -5.0e-2, 5.2e-2], [0.3, -0.3, 0.33333328]]),
                 )
 
-                if design_twiss_ele is not None:
+                if design_twiss_ele is None:
+                    assert result.bmag is None
+                else:
                     assert np.allclose(result.bmag[:, 4], 1.0)
 
                     # test get_best_bmag method
