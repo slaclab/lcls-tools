@@ -10,7 +10,6 @@ from pydantic import (
     ConfigDict,
     PositiveInt,
     SerializeAsAny,
-    SkipValidation,
     field_validator,
     PositiveFloat,
 )
@@ -19,6 +18,7 @@ from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
+from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 
 
 class BMAGMode(enum.IntEnum):
@@ -70,24 +70,17 @@ class EmittanceMeasurementResult(BaseModel):
 
     """
 
-    quadrupole_focusing_strengths: np.ndarray
-    quadrupole_pv_values: np.ndarray
-    emittance: np.ndarray
-    bmag: Optional[np.ndarray] = None
-    twiss_at_screen: np.ndarray
-    rms_x: np.ndarray
-    rms_y: np.ndarray
-    beam_matrix: np.ndarray
-    metadata: SkipValidation[SerializeAsAny[Any]]
+    quadrupole_focusing_strengths: NDArrayAnnotatedType
+    quadrupole_pv_values: NDArrayAnnotatedType
+    emittance: NDArrayAnnotatedType
+    bmag: Optional[NDArrayAnnotatedType] = None
+    twiss_at_screen: NDArrayAnnotatedType
+    rms_x: NDArrayAnnotatedType
+    rms_y: NDArrayAnnotatedType
+    beam_matrix: NDArrayAnnotatedType
+    metadata: SerializeAsAny[Any]
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-
-    @field_validator("*", mode="before")
-    def validate_numpy_array(cls, v, field):
-        if v is not None:
-            if not isinstance(v, np.ndarray):
-                v = np.array(v)
-        return v
 
     def get_best_bmag(self, mode=BMAGMode.GEOMETRIC_MEAN) -> tuple:
         """
