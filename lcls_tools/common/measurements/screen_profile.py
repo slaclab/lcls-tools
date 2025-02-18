@@ -43,6 +43,7 @@ class ScreenBeamProfileMeasurementResult(BaseModel):
     total_intensities: Optional[np.ndarray] = None
     metadata: SerializeAsAny[Any]
 
+
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid")
 
     @field_validator("*", mode="before")
@@ -52,6 +53,7 @@ class ScreenBeamProfileMeasurementResult(BaseModel):
             if v is not None:
                 if not isinstance(v, np.ndarray):
                     v = np.array(v)
+
         return v
 
 

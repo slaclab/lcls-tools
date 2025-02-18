@@ -80,6 +80,7 @@ class EmittanceMeasurementResult(BaseModel):
     beam_matrix: np.ndarray
     metadata: SerializeAsAny[Any]
 
+
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     @field_validator("*", mode="before")
@@ -89,6 +90,7 @@ class EmittanceMeasurementResult(BaseModel):
             if v is not None:
                 if not isinstance(v, np.ndarray):
                     v = np.array(v)
+
         return v
 
     def get_best_bmag(self, mode=BMAGMode.GEOMETRIC_MEAN) -> tuple:
