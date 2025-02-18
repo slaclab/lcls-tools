@@ -11,7 +11,7 @@ def plot_image_projection_fit(result: ImageProjectionFitResult):
     fig, ax = plt.subplots(3, 1)
     fig.set_size_inches(4, 9)
 
-    image = result.processed_image
+    image = result.image
     ax[0].imshow(image)
 
     projections = {
