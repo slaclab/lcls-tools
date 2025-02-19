@@ -220,4 +220,3 @@ class EmittanceMeasurementTest(TestCase):
                 fig, ax = plot_quad_scan_result(result)
                 assert isinstance(fig, plt.Figure)
                 assert isinstance(ax, np.ndarray)
-                # plt.show()

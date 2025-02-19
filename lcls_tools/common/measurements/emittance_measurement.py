@@ -206,10 +206,7 @@ class QuadScanEmittance(Measurement):
         self.perform_beamsize_measurements()
 
         # extract beam sizes from info
-        beam_sizes = self._get_beamsizes_from_info()
-
-        # get scan values
-        scan_values = np.array(self.scan_values)
+        beam_sizes, scan_values = self._get_beamsizes_scan_values_from_info()
 
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
@@ -309,7 +306,7 @@ class QuadScanEmittance(Measurement):
         result = self.beamsize_measurement.measure(self.n_measurement_shots)
         self._info += [result]
 
-    def _get_beamsizes_from_info(self) -> ndarray:
+    def _get_beamsizes_scan_values_from_info(self) -> ndarray:
         """
         Extract the mean rms beam sizes from the info list, units in meters.
         """
@@ -321,7 +318,10 @@ class QuadScanEmittance(Measurement):
                 * 1e-6
             )
 
-        return np.array(beam_sizes).T
+        # get scan values
+        scan_values = np.array(self.scan_values)
+
+        return np.array(beam_sizes).T, scan_values
 
 
 class MultiDeviceEmittance(Measurement):
