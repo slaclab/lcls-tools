@@ -8,7 +8,10 @@ from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.frontend.plotting.emittance import plot_quad_scan_result
 from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement, ScreenBeamProfileMeasurementResult
+from lcls_tools.common.measurements.screen_profile import (
+    ScreenBeamProfileMeasurement,
+    ScreenBeamProfileMeasurementResult,
+)
 
 
 class EmittanceMeasurementTest(TestCase):
@@ -171,16 +174,24 @@ class EmittanceMeasurementTest(TestCase):
                 result = quad_scan.measure()
 
                 # check outputs based on nans in the data
-                assert np.equal(result.quadrupole_pv_values[0], np.concat((k[:6],k[7:]))).all()
-                assert np.equal(result.quadrupole_pv_values[1], np.concat((k[:1],k[3:]))).all()
+                assert np.equal(
+                    result.quadrupole_pv_values[0], np.concat((k[:6], k[7:]))
+                ).all()
+                assert np.equal(
+                    result.quadrupole_pv_values[1], np.concat((k[:1], k[3:]))
+                ).all()
 
-                assert np.allclose(result.rms_beamsizes[0]*1e6, x_data[~np.isnan(x_data)])
-                assert np.allclose(result.rms_beamsizes[1]*1e6, y_data[~np.isnan(y_data)])
+                assert np.allclose(
+                    result.rms_beamsizes[0] * 1e6, x_data[~np.isnan(x_data)]
+                )
+                assert np.allclose(
+                    result.rms_beamsizes[1] * 1e6, y_data[~np.isnan(y_data)]
+                )
 
                 # check resulting calculations against cheetah simulation ground truth
                 assert np.allclose(
                     result.emittance,
-                    np.array([1.0e-2, 1.0e-1]).reshape(2,1),
+                    np.array([1.0e-2, 1.0e-1]).reshape(2, 1),
                 )
                 assert np.allclose(
                     result.beam_matrix,
