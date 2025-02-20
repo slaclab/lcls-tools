@@ -3,7 +3,7 @@ from typing import Optional, List
 
 import numpy as np
 from numpy import ndarray
-from pydantic import ConfigDict, PositiveFloat, Field
+from pydantic import PositiveFloat, Field
 
 from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.data.fit.methods import GaussianModel

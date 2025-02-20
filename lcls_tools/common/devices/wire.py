@@ -490,7 +490,7 @@ class Wire(Device):
             print("Range value must be an int:", e)
 
 
-class WireCollection(BaseModel):
+class WireCollection(LCLSToolsBaseModel):
     wires: Dict[str, SerializeAsAny[Wire]]
 
     @field_validator("wires", mode="before")
