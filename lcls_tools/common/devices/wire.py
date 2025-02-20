@@ -1,6 +1,5 @@
 from datetime import datetime
 from pydantic import (
-    BaseModel,
     # PositiveFloat,
     SerializeAsAny,
     field_validator,
@@ -21,10 +20,12 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
+from lcls_tools.common.pydantic import LCLSToolsBaseModel
+
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
-class RangeModel(BaseModel):
+class RangeModel(LCLSToolsBaseModel):
     value: list
 
     @field_validator('value')
@@ -37,15 +38,15 @@ class RangeModel(BaseModel):
             return v
 
 
-class BooleanModel(BaseModel):
+class BooleanModel(LCLSToolsBaseModel):
     value: bool
 
 
-class IntegerModel(BaseModel):
+class IntegerModel(LCLSToolsBaseModel):
     value: conint(strict=True)
 
 
-class PlaneModel(BaseModel):
+class PlaneModel(LCLSToolsBaseModel):
     plane: str
 
     @field_validator('plane')

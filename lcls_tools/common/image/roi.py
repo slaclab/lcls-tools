@@ -1,13 +1,14 @@
 import numpy as np
 from pydantic import (
-    BaseModel,
     model_validator,
     PositiveFloat
 )
 from typing import Any, Dict, List
 
+from lcls_tools.common.pydantic import LCLSToolsBaseModel
 
-class ROI(BaseModel):
+
+class ROI(LCLSToolsBaseModel):
     center: List[PositiveFloat]
     extent: List[PositiveFloat]
 

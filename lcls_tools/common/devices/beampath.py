@@ -10,12 +10,13 @@ from lcls_tools.common.devices.area import (
 
 
 from pydantic import (
-    BaseModel,
     SerializeAsAny,
 )
 
+from lcls_tools.common.pydantic import LCLSToolsBaseModel
 
-class Beampath(BaseModel):
+
+class Beampath(LCLSToolsBaseModel):
     """This class provides access to collections of machine areas
     in a beampath of LCLS/LCLS-II (for example: CU_SXR, or SC_HXR).
     The information for each collection is provided in YAML configuration

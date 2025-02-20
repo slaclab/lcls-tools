@@ -20,10 +20,12 @@ from lcls_tools.common.devices.wire import (
     WireCollection,
 )
 
-from pydantic import BaseModel, SerializeAsAny, Field, field_validator
+from pydantic import SerializeAsAny, Field, field_validator
+
+from lcls_tools.common.pydantic import LCLSToolsBaseModel
 
 
-class Area(BaseModel):
+class Area(LCLSToolsBaseModel):
     """This class provides access to collections of hardware components
     in a given machine area of LCLS/LCLS-II (for example: BC1, or BC2).
     The information for each collection is provided in YAML configuration

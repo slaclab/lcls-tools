@@ -6,7 +6,6 @@ from typing import Any, List, Optional
 import numpy as np
 from numpy import ndarray
 from pydantic import (
-    BaseModel,
     ConfigDict,
     PositiveInt,
     SerializeAsAny,
@@ -19,6 +18,7 @@ from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
+from lcls_tools.common.pydantic import LCLSToolsBaseModel
 
 
 class BMAGMode(enum.IntEnum):
@@ -44,7 +44,7 @@ class BMAGMode(enum.IntEnum):
         raise ValueError(f"invalid {cls.__name__}={value} must be one of: {_members()}")
 
 
-class EmittanceMeasurementResult(BaseModel):
+class EmittanceMeasurementResult(LCLSToolsBaseModel):
     """
     EmittanceMeasurementResult stores the results of an emittance measurement.
 
@@ -78,8 +78,6 @@ class EmittanceMeasurementResult(BaseModel):
     rms_beamsizes: List[NDArrayAnnotatedType]
     beam_matrix: NDArrayAnnotatedType
     metadata: SerializeAsAny[Any]
-
-    model_config = ConfigDict(arbitrary_types_allowed=True)
 
     def get_best_bmag(self, mode=BMAGMode.GEOMETRIC_MEAN) -> tuple:
         """
