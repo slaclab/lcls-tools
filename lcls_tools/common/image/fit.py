@@ -9,10 +9,10 @@ from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.data.fit.methods import GaussianModel
 from lcls_tools.common.data.fit.projection import ProjectionFit
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
-from lcls_tools.common.pydantic import LCLSToolsBaseModel
+from lcls_tools.common.pydantic import LCLSBaseModel
 
 
-class ImageFitResult(LCLSToolsBaseModel):
+class ImageFitResult(LCLSBaseModel):
     centroid: List[float] = Field(min_length=2, max_length=2)
     rms_size: List[float] = Field(min_length=2, max_length=2)
     total_intensity: PositiveFloat
@@ -25,7 +25,7 @@ class ImageProjectionFitResult(ImageFitResult):
     y_projection_fit_parameters: dict[str, float]
 
 
-class ImageFit(LCLSToolsBaseModel, ABC):
+class ImageFit(LCLSBaseModel, ABC):
     """
     Abstract class for determining beam properties from an image
     """

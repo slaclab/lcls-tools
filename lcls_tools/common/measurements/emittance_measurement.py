@@ -18,7 +18,7 @@ from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
-from lcls_tools.common.pydantic import LCLSToolsBaseModel
+from lcls_tools.common.pydantic import LCLSBaseModel
 
 
 class BMAGMode(enum.IntEnum):
@@ -44,7 +44,7 @@ class BMAGMode(enum.IntEnum):
         raise ValueError(f"invalid {cls.__name__}={value} must be one of: {_members()}")
 
 
-class EmittanceMeasurementResult(LCLSToolsBaseModel):
+class EmittanceMeasurementResult(LCLSBaseModel):
     """
     EmittanceMeasurementResult stores the results of an emittance measurement.
 

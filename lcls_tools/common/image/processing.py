@@ -5,10 +5,10 @@ import numpy as np
 from scipy.ndimage import gaussian_filter, median_filter
 from pydantic import PositiveFloat, ConfigDict
 from lcls_tools.common.image.roi import ROI
-from lcls_tools.common.pydantic import LCLSToolsBaseModel
+from lcls_tools.common.pydantic import LCLSBaseModel
 
 
-class ImageProcessor(LCLSToolsBaseModel):
+class ImageProcessor(LCLSBaseModel):
     """
     Image Processing class that allows for background subtraction and roi cropping
     ------------------------

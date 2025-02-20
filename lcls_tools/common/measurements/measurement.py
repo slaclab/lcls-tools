@@ -3,10 +3,10 @@ from typing import Optional
 
 from pydantic import DirectoryPath
 
-from lcls_tools.common.pydantic import LCLSToolsBaseModel
+from lcls_tools.common.pydantic import LCLSBaseModel
 
 
-class Measurement(LCLSToolsBaseModel, ABC):
+class Measurement(LCLSBaseModel, ABC):
     name: str
     save_data: bool = True
     save_location: Optional[DirectoryPath] = None
