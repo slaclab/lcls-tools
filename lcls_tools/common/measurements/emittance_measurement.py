@@ -319,7 +319,7 @@ class QuadScanEmittance(Measurement):
             )
 
         # get scan values and extend for each direction
-        scan_values = np.tile(np.array(self.scan_values), (2,1))
+        scan_values = np.tile(np.array(self.scan_values), (2, 1))
 
         return scan_values, np.array(beam_sizes).T
 
