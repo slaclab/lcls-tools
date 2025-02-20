@@ -255,7 +255,7 @@ class QuadScanEmittance(Measurement):
             single_beam_size = beam_sizes[i][~np.isnan(beam_sizes[i])]
             beam_size_squared = (single_beam_size * 1e3) ** 2
             kmod = bdes_to_kmod(
-                self.energy, magnet_length, scan_values[~np.isnan(beam_sizes[i])]
+                self.energy, magnet_length, scan_values[i][~np.isnan(beam_sizes[i])]
             )
 
             # negate for y
@@ -274,7 +274,7 @@ class QuadScanEmittance(Measurement):
             )
             result.update({"quadrupole_focusing_strengths": kmod})
             result.update(
-                {"quadrupole_pv_values": scan_values[~np.isnan(beam_sizes[i])]}
+                {"quadrupole_pv_values": scan_values[i][~np.isnan(beam_sizes[i])]}
             )
 
             # add results to dict object
@@ -318,8 +318,8 @@ class QuadScanEmittance(Measurement):
                 * 1e-6
             )
 
-        # get scan values
-        scan_values = np.array(self.scan_values)
+        # get scan values and extend for each direction
+        scan_values = np.tile(np.array(self.scan_values), (2,1))
 
         return np.array(beam_sizes).T, scan_values
 
