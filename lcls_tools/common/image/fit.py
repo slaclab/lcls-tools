@@ -3,20 +3,20 @@ from typing import Optional, List
 
 import numpy as np
 from numpy import ndarray
-from pydantic import BaseModel, ConfigDict, PositiveFloat, Field
+from pydantic import PositiveFloat, Field
 
 from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.data.fit.methods import GaussianModel
 from lcls_tools.common.data.fit.projection import ProjectionFit
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
+import lcls_tools
 
 
-class ImageFitResult(BaseModel):
+class ImageFitResult(lcls_tools.common.BaseModel):
     centroid: List[float] = Field(min_length=2, max_length=2)
     rms_size: List[float] = Field(min_length=2, max_length=2)
     total_intensity: PositiveFloat
     image: NDArrayAnnotatedType
-    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class ImageProjectionFitResult(ImageFitResult):
@@ -25,12 +25,10 @@ class ImageProjectionFitResult(ImageFitResult):
     y_projection_fit_parameters: dict[str, float]
 
 
-class ImageFit(BaseModel, ABC):
+class ImageFit(lcls_tools.common.BaseModel, ABC):
     """
     Abstract class for determining beam properties from an image
     """
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-
     def fit_image(self, image: ndarray) -> ImageFitResult:
         """
         Public method to determine beam properties from an image, including initial
@@ -56,7 +54,6 @@ class ImageProjectionFit(ImageFit):
     profile with prior distributions placed on the model parameters.
     """
     projection_fit_method: Optional[MethodBase] = GaussianModel(use_priors=True)
-    model_config = ConfigDict(arbitrary_types_allowed=True)
 
     def _fit_image(self, image: ndarray) -> ImageProjectionFitResult:
         x_projection = np.array(np.sum(image, axis=0))
