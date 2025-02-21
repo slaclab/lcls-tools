@@ -496,7 +496,7 @@ class Wire(Device):
     @property
     def safe_level(self) -> float:
         return self.metadata.safe_level
-    
+
     @property
     def read_tolerance(self) -> float:
         return self.metadata.read_tolerance

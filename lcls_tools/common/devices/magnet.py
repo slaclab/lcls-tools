@@ -180,7 +180,7 @@ class Magnet(Device):
     def bmin(self) -> float:
         """Get minimum magnetic field value in kG or kG-m^x."""
         return self.controls_information.PVs.bmin.get()
-    
+
     @property
     def type(self) -> str:
         return self.metadata.type
@@ -188,7 +188,7 @@ class Magnet(Device):
     @property
     def safe_level(self) -> float:
         return self.metadata.safe_level
-    
+
     @property
     def read_tolerance(self) -> float:
         return self.metadata.read_tolerance
