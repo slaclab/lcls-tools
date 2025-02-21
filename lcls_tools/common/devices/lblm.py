@@ -61,7 +61,6 @@ class LBLMControlInformation(ControlInformation):
 
 
 class LBLMMetadata(Metadata):
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -115,7 +114,9 @@ class LBLM(Device):
 
     def i0_loss_buffer(self, buffer):
         """Retrieve I0 Loss data from timing buffer"""
-        return buffer.get_buffer_data(f"{self.controls_information.PVs.i0_loss.pvname}{buffer.number}")
+        return buffer.get_buffer_data(
+            f"{self.controls_information.PVs.i0_loss.pvname}{buffer.number}"
+        )
 
     def gated_integral_buffer(self, buffer):
         """Get Gated Integral data from timing buffer"""

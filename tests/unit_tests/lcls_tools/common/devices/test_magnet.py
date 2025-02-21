@@ -134,7 +134,7 @@ class MagnetTest(TestCase):
     def test_length(self) -> None:
         """Test effective length float validation"""
         # SOL1B -> l_eff: 0.086
-        self.assertEqual(self.magnet.l_eff, .086)
+        self.assertEqual(self.magnet.l_eff, 0.086)
         # might need validate_assignment = True in magnet class
         # with self.assertRaises(ValidationError):
         # self.magnet.l_eff = "a"
