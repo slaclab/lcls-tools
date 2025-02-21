@@ -283,7 +283,9 @@ screens:
         n_bits: OTRS:LI24:807:N_OF_BITS
         n_col: OTRS:LI24:807:N_OF_COL
         n_row: OTRS:LI24:807:N_OF_ROW
+        ref_rate_vme: OTRS:LI24:807:FRAME_RATE
         resolution: OTRS:LI24:807:RESOLUTION
+        sys_type: OTRS:LI24:807:SYS_TYPE
       control_name: OTRS:LI24:807
     metadata:
       area: BC2

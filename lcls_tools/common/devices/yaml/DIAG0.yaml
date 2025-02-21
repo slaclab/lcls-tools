@@ -493,7 +493,10 @@ screens:
         n_bits: OTRS:DIAG0:420:N_OF_BITS
         n_col: OTRS:DIAG0:420:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:420:Image:ArraySize0_RBV
+        ref_rate: OTRS:DIAG0:420:ArrayRate_RBV
+        ref_rate_vme: OTRS:DIAG0:420:FRAME_RATE
         resolution: OTRS:DIAG0:420:RESOLUTION
+        sys_type: OTRS:DIAG0:420:SYS_TYPE
       control_name: OTRS:DIAG0:420
     metadata:
       area: DIAG0
@@ -508,7 +511,10 @@ screens:
         n_bits: OTRS:DIAG0:525:N_OF_BITS
         n_col: OTRS:DIAG0:525:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:525:Image:ArraySize0_RBV
+        ref_rate: OTRS:DIAG0:525:ArrayRate_RBV
+        ref_rate_vme: OTRS:DIAG0:525:FRAME_RATE
         resolution: OTRS:DIAG0:525:RESOLUTION
+        sys_type: OTRS:DIAG0:525:SYS_TYPE
       control_name: OTRS:DIAG0:525
     metadata:
       area: DIAG0
