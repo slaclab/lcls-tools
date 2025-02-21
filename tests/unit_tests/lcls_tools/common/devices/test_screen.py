@@ -12,7 +12,35 @@ class TestScreen(unittest.TestCase):
     def setUp(self) -> None:
         self.screen_collection = create_screen("BC1")
         self.screen = self.screen_collection.screens["OTR11"]
+
         return super().setUp()
+
+    @patch(
+        "lcls_tools.common.devices.screen.Screen.controls_information.PVs."
+        "sys_type.get"
+        )
+    @patch(
+        "lcls_tools.common.devices.screen.Screen.controls_information.PVs."
+        "ref_rate_vme.get"
+        )
+    @patch(
+        "lcls_tools.common.devices.screen.Screen.controls_information.PVs."
+        "ref_rate.get"
+        )
+    def test_refresh_rate(self, mock_ref_rate, mock_ref_rate_vme,
+                          mock_sys_type):
+        mock_sys_type.return_value = 'VME'  # Mock sys_type.get()
+        mock_ref_rate_vme.return_value = 15  # Mock ref_rate_vme.get()
+        mock_ref_rate.return_value = 10  # Mock ref_rate.get()
+        screen = create_screen('DIAG0', 'OTRDG02')
+        refresh_rate = screen.refresh_rate
+        self.assertEqual(refresh_rate, 15)
+        mock_sys_type.return_value = 'LinuxRT'
+        refresh_rate = screen.refresh_rate
+        self.assertEqual(refresh_rate, 10)
+        mock_sys_type.return_value = 'UnknownType'
+        with self.assertRaises(ValueError):
+            screen.refresh_rate
 
     @patch(
         "lcls_tools.common.devices.screen.Screen.image",
