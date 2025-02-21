@@ -21,20 +21,20 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
-from lcls_tools.common.pydantic import LCLSBaseModel
+import lcls_tools
 
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
-class BooleanModel(LCLSBaseModel):
+class BooleanModel(lcls_tools.common.BaseModel):
     value: bool
 
 
-class FloatModel(LCLSBaseModel):
+class FloatModel(lcls_tools.common.BaseModel):
     value: float
 
 
-class IntegerModel(LCLSBaseModel):
+class IntegerModel(lcls_tools.common.BaseModel):
     value: conint(strict=True)
 
 

@@ -3,7 +3,7 @@ from typing import Optional
 
 from pydantic import DirectoryPath
 
-from lcls_tools.common.pydantic import LCLSBaseModel
+import lcls_tools
 
 
 class Measurement(LCLSBaseModel, ABC):

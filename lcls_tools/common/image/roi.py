@@ -5,10 +5,10 @@ from pydantic import (
 )
 from typing import Any, Dict, List
 
-from lcls_tools.common.pydantic import LCLSBaseModel
+import lcls_tools
 
 
-class ROI(LCLSBaseModel):
+class ROI(lcls_tools.common.BaseModel):
     center: List[PositiveFloat]
     extent: List[PositiveFloat]
 

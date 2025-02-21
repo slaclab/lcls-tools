@@ -20,12 +20,12 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
-from lcls_tools.common.pydantic import LCLSBaseModel
+import lcls_tools
 
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
-class RangeModel(LCLSBaseModel):
+class RangeModel(lcls_tools.common.BaseModel):
     value: list
 
     @field_validator('value')
@@ -38,15 +38,15 @@ class RangeModel(LCLSBaseModel):
             return v
 
 
-class BooleanModel(LCLSBaseModel):
+class BooleanModel(lcls_tools.common.BaseModel):
     value: bool
 
 
-class IntegerModel(LCLSBaseModel):
+class IntegerModel(lcls_tools.common.BaseModel):
     value: conint(strict=True)
 
 
-class PlaneModel(LCLSBaseModel):
+class PlaneModel(lcls_tools.common.BaseModel):
     plane: str
 
     @field_validator('plane')
@@ -490,7 +490,7 @@ class Wire(Device):
             print("Range value must be an int:", e)
 
 
-class WireCollection(LCLSBaseModel):
+class WireCollection(lcls_tools.common.BaseModel):
     wires: Dict[str, SerializeAsAny[Wire]]
 
     @field_validator("wires", mode="before")

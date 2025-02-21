@@ -11,10 +11,10 @@ from pydantic import (
 from typing import Optional
 
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
-from lcls_tools.common.pydantic import LCLSBaseModel
+import lcls_tools
 
 
-class ScreenBeamProfileMeasurementResult(LCLSBaseModel):
+class ScreenBeamProfileMeasurementResult(lcls_tools.common.BaseModel):
     """
     Class that contains the results of a beam profile measurement
 

@@ -9,10 +9,10 @@ from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.data.fit.methods import GaussianModel
 from lcls_tools.common.data.fit.projection import ProjectionFit
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
-from lcls_tools.common.pydantic import LCLSBaseModel
+import lcls_tools
 
 
-class ImageFitResult(LCLSBaseModel):
+class ImageFitResult(lcls_tools.common.BaseModel):
     centroid: List[float] = Field(min_length=2, max_length=2)
     rms_size: List[float] = Field(min_length=2, max_length=2)
     total_intensity: PositiveFloat

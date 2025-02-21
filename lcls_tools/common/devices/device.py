@@ -2,10 +2,10 @@ from pydantic import SerializeAsAny, ConfigDict, field_validator
 from typing import List, Union, Callable, Dict, Optional
 from epics import PV
 
-from lcls_tools.common.pydantic import LCLSBaseModel
+import lcls_tools
 
 
-class PVSet(LCLSBaseModel):
+class PVSet(lcls_tools.common.BaseModel):
     model_config = ConfigDict(
         arbitrary_types_allowed=True,
         extra="forbid",
@@ -14,7 +14,7 @@ class PVSet(LCLSBaseModel):
     ...
 
 
-class ControlInformation(LCLSBaseModel):
+class ControlInformation(lcls_tools.common.BaseModel):
     model_config = ConfigDict(
         frozen=True,
     )
@@ -35,7 +35,7 @@ class ControlInformation(LCLSBaseModel):
         )
 
 
-class Metadata(LCLSBaseModel):
+class Metadata(lcls_tools.common.BaseModel):
     area: str
     beam_path: List[str]
     sum_l_meters: Union[float, None]
@@ -88,7 +88,7 @@ class RemoveDeviceCallbackError(Exception):
         )
 
 
-class Device(LCLSBaseModel):
+class Device(lcls_tools.common.BaseModel):
     name: str = None
     controls_information: SerializeAsAny[ControlInformation]
     metadata: SerializeAsAny[Metadata]
@@ -230,7 +230,7 @@ class Device(LCLSBaseModel):
         raise NotImplementedError
 
 
-class DeviceCollection(LCLSBaseModel):
+class DeviceCollection(lcls_tools.common.BaseModel):
     devices: Dict[str, SerializeAsAny[Device]] = None
 
     @field_validator("devices", mode="before")
