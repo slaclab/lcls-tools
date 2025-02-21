@@ -25,7 +25,7 @@ class ImageProjectionFitResult(ImageFitResult):
     y_projection_fit_parameters: dict[str, float]
 
 
-class ImageFit(LCLSBaseModel, ABC):
+class ImageFit(lcls_tools.common.BaseModel, ABC):
     """
     Abstract class for determining beam properties from an image
     """

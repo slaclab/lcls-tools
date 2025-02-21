@@ -62,6 +62,7 @@ class MagnetControlInformation(ControlInformation):
 class MagnetMetadata(Metadata):
     l_eff: Optional[NonNegativeFloat] = None
     b_tolerance: Optional[PositiveFloat] = None
+    type: Optional[str] = None
 
     def __init__(self, *args, **kwargs):
         super(MagnetMetadata, self).__init__(*args, **kwargs)

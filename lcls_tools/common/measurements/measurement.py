@@ -6,7 +6,7 @@ from pydantic import DirectoryPath
 import lcls_tools
 
 
-class Measurement(LCLSBaseModel, ABC):
+class Measurement(lcls_tools.common.BaseModel, ABC):
     name: str
     save_data: bool = True
     save_location: Optional[DirectoryPath] = None
