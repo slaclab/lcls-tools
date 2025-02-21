@@ -13,7 +13,7 @@ DEVICE_1:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-    sum_l_meters: 0.0 
+    sum_l_meters: 0.0
 
 DEVICE_2:
   metadata:
@@ -27,7 +27,7 @@ DEVICE_2:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-    sum_l_meters: 0.0 
+    sum_l_meters: 0.0
 
 DEVICE_3:
   controls_information:
