@@ -284,7 +284,7 @@ class QuadScanEmittance(Measurement):
 
             results["rms_beamsizes"].append(single_beam_size)
 
-        results.update({"info": self._info})
+        #results.update({"info": self._info})
         results.update({"metadata": self.model_dump()})
 
         # collect information into EmittanceMeasurementResult object

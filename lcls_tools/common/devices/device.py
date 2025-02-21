@@ -39,6 +39,9 @@ class Metadata(lcls_tools.common.BaseModel):
     area: str
     beam_path: List[str]
     sum_l_meters: Union[float, None]
+    type: Optional[str] = None
+    safe_level: Optional[float] = None
+    read_tolerance: Optional[float] = None
 
     def __init__(
         self,

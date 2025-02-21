@@ -489,6 +489,18 @@ class Wire(Device):
         except ValidationError as e:
             print("Range value must be an int:", e)
 
+    @property
+    def type(self) -> str:
+        return self.metadata.type
+
+    @property
+    def safe_level(self) -> float:
+        return self.metadata.safe_level
+    
+    @property
+    def read_tolerance(self) -> float:
+        return self.metadata.read_tolerance
+
 
 class WireCollection(lcls_tools.common.BaseModel):
     wires: Dict[str, SerializeAsAny[Wire]]
