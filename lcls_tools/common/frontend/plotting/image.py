@@ -18,15 +18,19 @@ def plot_image_projection_fit(result: ImageProjectionFitResult):
         "x": np.array(np.sum(image, axis=0)),
         "y": np.array(np.sum(image, axis=1))
     }
+    centroid = np.array((
+        result.x_projection_fit_parameters["mean"],
+        result.y_projection_fit_parameters["mean"]
+    ))
 
-    ax[0].plot(*result.centroid, "+r")
+    ax[0].plot(*centroid, "+r")
 
     # plot data and model fit
     for i, name in enumerate(["x", "y"]):
         fit_params = getattr(result, f"{name}_projection_fit_parameters")
         ax[i + 1].text(0.01, 0.99,
                        "\n".join([
-                           f"{name}: {int(val)}" for name, val in
+                           f"{name}: {val:.2f}" for name, val in
                            fit_params.items()
                        ]),
                        transform=ax[i + 1].transAxes,
