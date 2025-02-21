@@ -39,8 +39,8 @@ class ScreenPVSet(PVSet):
     n_bits: PV
     resolution: PV
     sys_type: PV
-    ref_rate_vme: Optional[PV]
-    ref_rate: Optional[PV]
+    ref_rate_vme: Optional[PV] = None
+    ref_rate: Optional[PV] = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
