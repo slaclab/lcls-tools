@@ -1,6 +1,5 @@
 from datetime import datetime
 from pydantic import (
-    BaseModel,
     # PositiveFloat,
     SerializeAsAny,
     field_validator,
@@ -21,10 +20,12 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
+import lcls_tools
+
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
-class RangeModel(BaseModel):
+class RangeModel(lcls_tools.common.BaseModel):
     value: list
 
     @field_validator('value')
@@ -37,15 +38,15 @@ class RangeModel(BaseModel):
             return v
 
 
-class BooleanModel(BaseModel):
+class BooleanModel(lcls_tools.common.BaseModel):
     value: bool
 
 
-class IntegerModel(BaseModel):
+class IntegerModel(lcls_tools.common.BaseModel):
     value: conint(strict=True)
 
 
-class PlaneModel(BaseModel):
+class PlaneModel(lcls_tools.common.BaseModel):
     plane: str
 
     @field_validator('plane')
@@ -488,8 +489,20 @@ class Wire(Device):
         except ValidationError as e:
             print("Range value must be an int:", e)
 
+    @property
+    def type(self) -> str:
+        return self.metadata.type
 
-class WireCollection(BaseModel):
+    @property
+    def safe_level(self) -> float:
+        return self.metadata.safe_level
+
+    @property
+    def read_tolerance(self) -> float:
+        return self.metadata.read_tolerance
+
+
+class WireCollection(lcls_tools.common.BaseModel):
     wires: Dict[str, SerializeAsAny[Wire]]
 
     @field_validator("wires", mode="before")

@@ -1,10 +1,12 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from pydantic import BaseModel, DirectoryPath
+from pydantic import DirectoryPath
+
+import lcls_tools
 
 
-class Measurement(BaseModel, ABC):
+class Measurement(lcls_tools.common.BaseModel, ABC):
     name: str
     save_data: bool = True
     save_location: Optional[DirectoryPath] = None

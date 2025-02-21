@@ -1,7 +1,7 @@
 from datetime import datetime
 from pydantic import (
-    BaseModel,
     # PositiveFloat,
+    BaseModel,
     SerializeAsAny,
     field_validator,
     conint,
@@ -21,18 +21,20 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
+import lcls_tools
+
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
-class BooleanModel(BaseModel):
+class BooleanModel(lcls_tools.common.BaseModel):
     value: bool
 
 
-class FloatModel(BaseModel):
+class FloatModel(lcls_tools.common.BaseModel):
     value: float
 
 
-class IntegerModel(BaseModel):
+class IntegerModel(lcls_tools.common.BaseModel):
     value: conint(strict=True)
 
 

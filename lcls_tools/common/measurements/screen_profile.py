@@ -5,16 +5,16 @@ from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.image.processing import ImageProcessor
 from lcls_tools.common.measurements.measurement import Measurement
 from pydantic import (
-    BaseModel,
     ConfigDict,
     SerializeAsAny,
 )
 from typing import Optional
 
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
+import lcls_tools
 
 
-class ScreenBeamProfileMeasurementResult(BaseModel):
+class ScreenBeamProfileMeasurementResult(lcls_tools.common.BaseModel):
     """
     Class that contains the results of a beam profile measurement
 

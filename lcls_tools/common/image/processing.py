@@ -3,11 +3,12 @@ from typing import Optional
 
 import numpy as np
 from scipy.ndimage import gaussian_filter, median_filter
-from pydantic import BaseModel, PositiveFloat, ConfigDict
+from pydantic import PositiveFloat, ConfigDict
 from lcls_tools.common.image.roi import ROI
+import lcls_tools
 
 
-class ImageProcessor(BaseModel):
+class ImageProcessor(lcls_tools.common.BaseModel):
     """
     Image Processing class that allows for background subtraction and roi cropping
     ------------------------
