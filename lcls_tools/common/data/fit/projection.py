@@ -52,8 +52,10 @@ class ProjectionFit(BaseModel):
         projection_data_range = np.max(projection_data) - np.min(projection_data)
         length = len(projection_data)
         for key, val in method_params_dict.items():
-            if "sigma" in key or "mean" in key:
+            if "sigma" in key:
                 true_fitted_val = val * length
+            elif "mean" in key:
+                true_fitted_val = val * (length - 1)
             elif "offset" in key:
                 true_fitted_val = val * projection_data_range + np.min(projection_data)
             else:
