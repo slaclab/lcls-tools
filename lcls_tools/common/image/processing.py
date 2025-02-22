@@ -3,7 +3,7 @@ from typing import Optional
 
 import numpy as np
 from scipy.ndimage import gaussian_filter, median_filter
-from pydantic import PositiveFloat, ConfigDict
+from pydantic import PositiveFloat, ConfigDict, PositiveInt
 from lcls_tools.common.image.roi import ROI
 import lcls_tools
 
@@ -30,8 +30,8 @@ class ImageProcessor(lcls_tools.common.BaseModel):
     roi: Optional[ROI] = None
     background_image: Optional[np.ndarray] = None
     threshold: Optional[PositiveFloat] = 0.0
-    gaussian_filter_size: Optional[PositiveFloat] = None
-    median_filter_size: Optional[PositiveFloat] = None
+    gaussian_filter_size: Optional[PositiveInt] = None
+    median_filter_size: Optional[PositiveInt] = None
 
     def subtract_background(self, raw_image: np.ndarray) -> np.ndarray:
         """Subtract background pixel intensity from a raw image"""
