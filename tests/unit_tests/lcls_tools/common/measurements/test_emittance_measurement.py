@@ -175,10 +175,10 @@ class EmittanceMeasurementTest(TestCase):
 
                 # check outputs based on nans in the data
                 assert np.equal(
-                    result.quadrupole_pv_values[0], np.concat((k[:6], k[7:]))
+                    result.quadrupole_pv_values[0], np.concatenate((k[:6], k[7:]))
                 ).all()
                 assert np.equal(
-                    result.quadrupole_pv_values[1], np.concat((k[:1], k[3:]))
+                    result.quadrupole_pv_values[1], np.concatenate((k[:1], k[3:]))
                 ).all()
 
                 assert np.allclose(
