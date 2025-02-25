@@ -3,9 +3,6 @@ import scipy.io as sio
 import matplotlib.pyplot as plt
 import os
 
-from lcls_tools.common.image import Image
-
-
 class MatImage(object):
     """.mat image object from typical LCLS .mat file (R2012-2020a)"""
 
@@ -142,7 +139,7 @@ class MatImage(object):
         data = file_contents["data"][0][0]
         self._mat_file = mat_file
         self._cam_name = str(data[0][0])
-        self._image_object = Image(data[1])  # Create object
+        self._image_object = data[1]  # Create object
         self._roi_x_n = data[2][0][0]
         self._roi_y_n = data[3][0][0]
         self._ts = data[4][0][0]
