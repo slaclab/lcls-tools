@@ -211,7 +211,7 @@ class FittingTool:
     def super_gaussian(x, amp, mu, sig, P, offset):
         """Super Gaussian Function"""
         """Degree of P related to flatness of curve at peak"""
-        return amp * np.exp((-abs(x - mu) ** (P)) / (2 * sig ** (P))) + offset
+        return amp * np.exp((-(abs(x - mu) ** (P))) / (2 * sig ** (P))) + offset
 
     @staticmethod
     def double_gaussian(x, amp, mu, sig, amp2, nu, rho, offset):

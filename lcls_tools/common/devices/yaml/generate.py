@@ -162,7 +162,7 @@ class YAMLGenerator:
                         )
             except TimeoutError as toe:
                 print(
-                    f'Unable connect to MEME.name service when searching for {name + ":" + search_term}.'
+                    f"Unable connect to MEME.name service when searching for {name + ':' + search_term}."
                 )
                 print(toe)
         return pv_dict
@@ -284,9 +284,10 @@ class YAMLGenerator:
         )
 
         if basic_magnet_data:
-
             magnet_names = [key for key in basic_magnet_data.keys()]
-            additional_metadata_data = get_magnet_metadata(magnet_names, self.extract_metadata_by_device_names)
+            additional_metadata_data = get_magnet_metadata(
+                magnet_names, self.extract_metadata_by_device_names
+            )
             # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
             additional_controls_data = get_magnet_controls_information()
 
@@ -359,8 +360,6 @@ class YAMLGenerator:
             "UWIRESIZE": "u_size",
             "UWIREINNER": "u_wire_inner",
             "UWIREOUTER": "u_wire_outer",
-            "MOTR.VMAX": "speed_max",
-            "MOTR.VBAS": "speed_min",
             "XWIRESIZE": "x_size",
             "XWIREINNER": "x_wire_inner",
             "XWIREOUTER": "x_wire_outer",
@@ -417,15 +416,11 @@ class YAMLGenerator:
             return {}
 
     def extract_metadata_by_device_names(
-        self,
-        device_names=Optional[List[str]],
-        required_fields=Optional[List[str]]
+        self, device_names=Optional[List[str]], required_fields=Optional[List[str]]
     ):
         # TODO: try not to call filter elements so many times as it parses csv
         if required_fields:
-            elements = self._filter_elements_by_fields(
-                required_fields=required_fields
-            )
+            elements = self._filter_elements_by_fields(required_fields=required_fields)
         else:
             elements = self._filter_elements_by_fields(
                 required_fields=self._required_fields

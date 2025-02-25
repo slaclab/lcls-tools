@@ -28,7 +28,12 @@ def plot_quad_scan_result(emittance_results):
         k = emittance_results.quadrupole_pv_values[i][sorted_indices]
         beta = emittance_results.twiss_at_screen[i][sorted_indices][:, 0]
 
-        ax[0].plot(k, emittance_results.rms_beamsizes[i][sorted_indices] * 1e6, "+", label=f"rms_{c[i]}")
+        ax[0].plot(
+            k,
+            emittance_results.rms_beamsizes[i][sorted_indices] * 1e6,
+            "+",
+            label=f"rms_{c[i]}",
+        )
 
         # plot fit from twiss at screen calculation
         ax[0].plot(
@@ -39,7 +44,9 @@ def plot_quad_scan_result(emittance_results):
         )
 
         if emittance_results.bmag is not None:
-            ax[1].plot(k, emittance_results.bmag[i][sorted_indices], "+", label=f"bmag {c[i]}")
+            ax[1].plot(
+                k, emittance_results.bmag[i][sorted_indices], "+", label=f"bmag {c[i]}"
+            )
             ax[1].set_xlabel("Quadrupole Strength [T/m]")
             ax[1].set_ylabel("bmag")
             ax[1].axhline(1.0, color="black", linestyle="--")

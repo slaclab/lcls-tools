@@ -45,7 +45,7 @@ docs = [
 ml = [
     "xopt",
     "cheetah-accelerator"
-]    
+]
 
 [project.urls]
 Homepage = "https://github.com/slaclab/lcls-tools"

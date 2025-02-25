@@ -304,12 +304,10 @@ def update_energy_gain_cu(tao, pvdata, mdl_obj):
     init_cmds = ["veto dat *", "veto var *"]
     if mdl_obj.region == "L2":
         tao.cmd(f"set dat BC1.energy[2]|meas = {expected_gain} ")
-        optimize_cmds = init_cmds + ["use dat BC2.energy[1]",
-                                     "use var linac_fudge[2]"]
+        optimize_cmds = init_cmds + ["use dat BC2.energy[1]", "use var linac_fudge[2]"]
     if mdl_obj.region == "L3":
         tao.cmd(f"set dat L3[2]|meas ={expected_gain} ")
-        optimize_cmds = init_cmds + ["use dat L3.energy[2]",
-                                     "use var linac_fudge[3]"]
+        optimize_cmds = init_cmds + ["use dat L3.energy[2]", "use var linac_fudge[3]"]
     tao.cmds(optimize_cmds)
     r = tao.cmd("run")
     print(r)

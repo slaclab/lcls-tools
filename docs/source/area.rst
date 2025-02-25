@@ -7,7 +7,7 @@ Areas
 Area Class
 ==========
 
-Area classes are generated using yaml configuration files. 
+Area classes are generated using yaml configuration files.
 To make their usage easier, lcls-tools has a function for generating configured Areas.
 Please see the example usage below:
 
@@ -23,7 +23,7 @@ Please see the example usage below:
     # and perform group operations on subsets of the area devices
     magnet_collection = L1B.magnet_collection
     print(magnet_collection.device_names)
-    
+
     # If we want to directly access individual devices, we can do this:
     magnets = L1B.magnets
     print(magnets['QCM02'].name)
@@ -42,7 +42,7 @@ Please see the example usage below:
     print(f'Dimensions: ({screens['OTRDOG'].n_rows}, {screens['OTRDOG'].n_cols}).')
     print(f'Resolution: {screens['OTRDOG'].resolution)
 
-    
+
 
 
 .. autoclass:: lcls_tools.common.devices.area.Area

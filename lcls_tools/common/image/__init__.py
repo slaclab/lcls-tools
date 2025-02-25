@@ -1,1 +1,1 @@
-from lcls_tools.common.image.image import Image
+from lcls_tools.common.image.image import Image as Image

@@ -89,7 +89,9 @@ class WireTest(TestCase):
         """Test that all the properties we expect exist"""
         # Assert that wire has all auto-generated private attributes
         for handle, _ in self.wire.controls_information.PVs:
-            if handle not in ["position",]:
+            if handle not in [
+                "position",
+            ]:
                 self.assertTrue(
                     hasattr(self.wire, handle),
                     msg=f"expected wire to have attribute {handle}",
