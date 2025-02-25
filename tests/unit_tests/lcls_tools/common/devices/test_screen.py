@@ -17,28 +17,28 @@ class TestScreen(unittest.TestCase):
 
     @patch(
         "lcls_tools.common.devices.screen.Screen.controls_information.PVs."
-        "sys_type.get"
-        )
+        "sys_type", new_callable=PropertyMock,
+          )
     @patch(
         "lcls_tools.common.devices.screen.Screen.controls_information.PVs."
-        "ref_rate_vme.get"
-        )
+        "ref_rate_vme", new_callable=PropertyMock,
+          )
     @patch(
         "lcls_tools.common.devices.screen.Screen.controls_information.PVs."
-        "ref_rate.get"
-        )
+        "ref_rate", new_callable=PropertyMock,
+          )
     def test_refresh_rate(self, mock_ref_rate, mock_ref_rate_vme,
                           mock_sys_type):
-        mock_sys_type.return_value = 'VME'  # Mock sys_type.get()
-        mock_ref_rate_vme.return_value = 15  # Mock ref_rate_vme.get()
-        mock_ref_rate.return_value = 10  # Mock ref_rate.get()
+        mock_sys_type.return_value.get.return_value = 'VME'
+        mock_ref_rate_vme.return_value.get.return_value = 15
+        mock_ref_rate.return_value.get.return_valuee = 10
         screen = create_screen('DIAG0', 'OTRDG02')
         refresh_rate = screen.refresh_rate
         self.assertEqual(refresh_rate, 15)
-        mock_sys_type.return_value = 'LinuxRT'
+        mock_sys_type.return_value.get.return_value = 'LinuxRT'
         refresh_rate = screen.refresh_rate
         self.assertEqual(refresh_rate, 10)
-        mock_sys_type.return_value = 'UnknownType'
+        mock_sys_type.return_value.get.return_value = 'UnknownType'
         with self.assertRaises(ValueError):
             screen.refresh_rate
 
