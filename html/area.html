@@ -1,0 +1,196 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Areas &mdash; lcls-tools  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Devices" href="devices.html" />
+    <link rel="prev" title="Beam Paths" href="beampath.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            lcls-tools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="beampath.html">Beam Paths</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Areas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#area-class">Area Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.area.Area"><code class="docutils literal notranslate"><span class="pre">Area</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.area.Area.magnets"><code class="docutils literal notranslate"><span class="pre">Area.magnets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.area.Area.screens"><code class="docutils literal notranslate"><span class="pre">Area.screens</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.area.Area.wires"><code class="docutils literal notranslate"><span class="pre">Area.wires</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devices.html">Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab2py.html">Matlab to Python Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lcls-tools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Areas</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/area.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="areas">
+<h1>Areas<a class="headerlink" href="#areas" title="Link to this heading"></a></h1>
+<section id="area-class">
+<h2>Area Class<a class="headerlink" href="#area-class" title="Link to this heading"></a></h2>
+<p>Area classes are generated using yaml configuration files.
+To make their usage easier, lcls-tools has a function for generating configured Areas.
+Please see the example usage below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">&quot;&quot;&quot;Example usage for creating areas &quot;&quot;&quot;</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">lcls_tools.common.devices.reader</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_area</span>
+<span class="linenos"> 3</span><span class="c1"># Generate area for L1B</span>
+<span class="linenos"> 4</span><span class="n">L1B</span> <span class="o">=</span> <span class="n">create_area</span><span class="p">(</span><span class="s1">&#39;L1B&#39;</span><span class="p">)</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="c1"># After creation, we can access devices collections and print their names</span>
+<span class="linenos"> 7</span><span class="c1"># and perform group operations on subsets of the area devices</span>
+<span class="linenos"> 8</span><span class="n">magnet_collection</span> <span class="o">=</span> <span class="n">L1B</span><span class="o">.</span><span class="n">magnet_collection</span>
+<span class="linenos"> 9</span><span class="nb">print</span><span class="p">(</span><span class="n">magnet_collection</span><span class="o">.</span><span class="n">device_names</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1"># If we want to directly access individual devices, we can do this:</span>
+<span class="linenos">12</span><span class="n">magnets</span> <span class="o">=</span> <span class="n">L1B</span><span class="o">.</span><span class="n">magnets</span>
+<span class="linenos">13</span><span class="nb">print</span><span class="p">(</span><span class="n">magnets</span><span class="p">[</span><span class="s1">&#39;QCM02&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="linenos">14</span><span class="nb">print</span><span class="p">(</span><span class="n">magnets</span><span class="p">[</span><span class="s1">&#39;QCM02&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">bdes</span><span class="p">)</span>
+<span class="linenos">15</span><span class="nb">print</span><span class="p">(</span><span class="n">magnets</span><span class="p">[</span><span class="s1">&#39;QCM02&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">bact</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="c1"># After creation, we can access devices collections and print their names</span>
+<span class="linenos">18</span><span class="c1"># and perform group operations on subsets of the area devices</span>
+<span class="linenos">19</span><span class="n">DOG</span> <span class="o">=</span> <span class="n">create_area</span><span class="p">(</span><span class="s1">&#39;DOG&#39;</span><span class="p">)</span>
+<span class="linenos">20</span><span class="n">screen_collection</span> <span class="o">=</span> <span class="n">DOG</span><span class="o">.</span><span class="n">screen_collection</span>
+<span class="linenos">21</span><span class="nb">print</span><span class="p">(</span><span class="n">screen_collection</span><span class="o">.</span><span class="n">device_names</span><span class="p">)</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="c1"># If we want to directly access individual devices, we can do this:</span>
+<span class="linenos">24</span><span class="n">screens</span> <span class="o">=</span> <span class="n">DOG</span><span class="o">.</span><span class="n">screens</span>
+<span class="linenos">25</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Name: &#39;</span><span class="p">,</span> <span class="n">screens</span><span class="p">[</span><span class="s1">&#39;OTRDOG&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="linenos">26</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dimensions: (</span><span class="si">{</span><span class="n">screens</span><span class="p">[</span><span class="s1">&#39;OTRDOG&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">n_rows</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">screens</span><span class="p">[</span><span class="s1">&#39;OTRDOG&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">n_cols</span><span class="si">}</span><span class="s1">).&#39;</span><span class="p">)</span>
+<span class="linenos">27</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Resolution: </span><span class="si">{</span><span class="n">screens</span><span class="p">[</span><span class="s1">&#39;OTRDOG&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resolution</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.area.Area">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.area.</span></span><span class="sig-name descname"><span class="pre">Area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magnets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Annotated</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="devices.html#lcls_tools.common.devices.magnet.MagnetCollection" title="lcls_tools.common.devices.magnet.MagnetCollection"><span class="pre">MagnetCollection</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SerializeAsAny</span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">screens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Annotated</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="devices.html#lcls_tools.common.devices.screen.ScreenCollection" title="lcls_tools.common.devices.screen.ScreenCollection"><span class="pre">ScreenCollection</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SerializeAsAny</span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wires</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Annotated</span><span class="p"><span class="pre">[</span></span><span class="pre">WireCollection</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SerializeAsAny</span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.area.Area" title="Link to this definition"></a></dt>
+<dd><p>This class provides access to collections of hardware components
+in a given machine area of LCLS/LCLS-II (for example: BC1, or BC2).
+The information for each collection is provided in YAML configuration
+files, where the filename is the machine area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>magnet_collection</strong> – The MagnetCollection for this area</p></li>
+<li><p><strong>screen_collection</strong> – The ScreenCollection for this area</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.area.Area.magnets">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">magnets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="devices.html#lcls_tools.common.devices.magnet.Magnet" title="lcls_tools.common.devices.magnet.Magnet"><span class="pre">Magnet</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#lcls_tools.common.devices.area.Area.magnets" title="Link to this definition"></a></dt>
+<dd><p>A Dict[str, Magnet] for this area, where the dict keys are magnet names.
+If no magnets exist for this area, this property is None.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.area.Area.screens">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">screens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="devices.html#lcls_tools.common.devices.screen.Screen" title="lcls_tools.common.devices.screen.Screen"><span class="pre">Screen</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#lcls_tools.common.devices.area.Area.screens" title="Link to this definition"></a></dt>
+<dd><p>A Dict[str, Screen] for this area, where the dict keys are screen names
+If no screens exist for this area, this property is None.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.area.Area.wires">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wires</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Wire</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#lcls_tools.common.devices.area.Area.wires" title="Link to this definition"></a></dt>
+<dd><p>A Dict[str, Wire] for this area, where the dict keys are wire names
+If no wires exist for this area, this property is None</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="beampath.html" class="btn btn-neutral float-left" title="Beam Paths" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="devices.html" class="btn btn-neutral float-right" title="Devices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nicole Neveu, Lisa Zacarias, Chris Garnier, Matt King.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

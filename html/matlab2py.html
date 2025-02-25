@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matlab to Python Tools &mdash; lcls-tools  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Devices" href="devices.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            lcls-tools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="beampath.html">Beam Paths</a></li>
+<li class="toctree-l1"><a class="reference internal" href="area.html">Areas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devices.html">Devices</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Matlab to Python Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#emittance-scans">Emittance Scans</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan"><code class="docutils literal notranslate"><span class="pre">MatEmitScan</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.alpha_x"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.alpha_x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.alpha_y"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.alpha_y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.beam"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.beam</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.beta_x"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.beta_x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.beta_y"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.beta_y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.bmag_x"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.bmag_x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.bmag_y"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.bmag_y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.charge"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.charge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.charge_std"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.charge_std</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.emit_x"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.emit_x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.emit_y"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.emit_y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.energy"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.energy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.fields"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.iterations"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.iterations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.mat_file"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.mat_file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.name"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.orbit"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.orbit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.orbit_std"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.orbit_std</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.quad_name"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.quad_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.quad_vals"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.quad_vals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.rmat"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.rmat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.scan_type"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.scan_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.status"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.timestamp"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.timestamp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.twiss"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.twiss</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.twiss_0"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.twiss_0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.twiss_std"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.twiss_std</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.use"><code class="docutils literal notranslate"><span class="pre">MatEmitScan.use</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#corr-plot-scans">Corr Plot Scans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#images">Images</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage"><code class="docutils literal notranslate"><span class="pre">MatImage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.back"><code class="docutils literal notranslate"><span class="pre">MatImage.back</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.bit_depth"><code class="docutils literal notranslate"><span class="pre">MatImage.bit_depth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.camera_name"><code class="docutils literal notranslate"><span class="pre">MatImage.camera_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.center_x"><code class="docutils literal notranslate"><span class="pre">MatImage.center_x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.center_y"><code class="docutils literal notranslate"><span class="pre">MatImage.center_y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.columns"><code class="docutils literal notranslate"><span class="pre">MatImage.columns</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.filt_od"><code class="docutils literal notranslate"><span class="pre">MatImage.filt_od</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.filt_stat"><code class="docutils literal notranslate"><span class="pre">MatImage.filt_stat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.image"><code class="docutils literal notranslate"><span class="pre">MatImage.image</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.image_as_list"><code class="docutils literal notranslate"><span class="pre">MatImage.image_as_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.image_attn"><code class="docutils literal notranslate"><span class="pre">MatImage.image_attn</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.image_object"><code class="docutils literal notranslate"><span class="pre">MatImage.image_object</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.is_raw"><code class="docutils literal notranslate"><span class="pre">MatImage.is_raw</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.load_mat_image"><code class="docutils literal notranslate"><span class="pre">MatImage.load_mat_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.mat_file"><code class="docutils literal notranslate"><span class="pre">MatImage.mat_file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.orientation_x"><code class="docutils literal notranslate"><span class="pre">MatImage.orientation_x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.orientation_y"><code class="docutils literal notranslate"><span class="pre">MatImage.orientation_y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.pulse_id"><code class="docutils literal notranslate"><span class="pre">MatImage.pulse_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.resolution"><code class="docutils literal notranslate"><span class="pre">MatImage.resolution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.roi_x"><code class="docutils literal notranslate"><span class="pre">MatImage.roi_x</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.roi_x_n"><code class="docutils literal notranslate"><span class="pre">MatImage.roi_x_n</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.roi_y"><code class="docutils literal notranslate"><span class="pre">MatImage.roi_y</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.roi_y_n"><code class="docutils literal notranslate"><span class="pre">MatImage.roi_y_n</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.rows"><code class="docutils literal notranslate"><span class="pre">MatImage.rows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.show_image"><code class="docutils literal notranslate"><span class="pre">MatImage.show_image()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.matlab2py.mat_image.MatImage.timestamp"><code class="docutils literal notranslate"><span class="pre">MatImage.timestamp</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lcls-tools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Matlab to Python Tools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/matlab2py.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="matlab-to-python-tools">
+<h1>Matlab to Python Tools<a class="headerlink" href="#matlab-to-python-tools" title="Link to this heading"></a></h1>
+<section id="emittance-scans">
+<h2>Emittance Scans<a class="headerlink" href="#emittance-scans" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.matlab2py.mat_emit_scan.</span></span><span class="sig-name descname"><span class="pre">MatEmitScan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan" title="Link to this definition"></a></dt>
+<dd><dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.alpha_x">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alpha_x</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.alpha_x" title="Link to this definition"></a></dt>
+<dd><p>Return dict of alpha x vals with fit as key</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.alpha_y">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alpha_y</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.alpha_y" title="Link to this definition"></a></dt>
+<dd><p>Return dict of alpha y vals with fit as key</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.beam">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">beam</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.beam" title="Link to this definition"></a></dt>
+<dd><p>list of dictionaries each iteration’s stats, this needs more
+properties or helper functions to parse to user’s needs</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.beta_x">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">beta_x</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.beta_x" title="Link to this definition"></a></dt>
+<dd><p>Return dict of beta x vals with fit as key</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.beta_y">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">beta_y</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.beta_y" title="Link to this definition"></a></dt>
+<dd><p>Return dict of beta y vals with fit as key</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.bmag_x">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bmag_x</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.bmag_x" title="Link to this definition"></a></dt>
+<dd><p>Return dict of match x vals with fit as key</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.bmag_y">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bmag_y</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.bmag_y" title="Link to this definition"></a></dt>
+<dd><p>Return dict of match y vals with fit as key</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.charge">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">charge</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.charge" title="Link to this definition"></a></dt>
+<dd><p>Charge measured during each scan iteration, good for normalizing</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.charge_std">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">charge_std</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.charge_std" title="Link to this definition"></a></dt>
+<dd><p>STD of charge during each iteration, good for dropping noisy points</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.emit_x">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">emit_x</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.emit_x" title="Link to this definition"></a></dt>
+<dd><p>Return dict of emit x vals with fit as key</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.emit_y">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">emit_y</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.emit_y" title="Link to this definition"></a></dt>
+<dd><p>Return dict of emit y vals with fit as key</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.energy">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">energy</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.energy" title="Link to this definition"></a></dt>
+<dd><p>Energy of beam at measurement location, pretty sure it’s GeV</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.fields">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fields</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.fields" title="Link to this definition"></a></dt>
+<dd><p>The names of meta data fields associated with scan</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.iterations">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">iterations</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.iterations" title="Link to this definition"></a></dt>
+<dd><p>Iterations of quad scan</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.mat_file">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mat_file</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.mat_file" title="Link to this definition"></a></dt>
+<dd><p>Mat file loaded</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.name" title="Link to this definition"></a></dt>
+<dd><p>Name of profile monitor/WS used for measurement</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.orbit">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orbit</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.orbit" title="Link to this definition"></a></dt>
+<dd><p>No bpm names to indicate measurement locations</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.orbit_std">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orbit_std</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.orbit_std" title="Link to this definition"></a></dt>
+<dd><p>STD of orbit measurements</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.quad_name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">quad_name</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.quad_name" title="Link to this definition"></a></dt>
+<dd><p>Magnet scanned for emit measurement</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.quad_vals">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">quad_vals</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.quad_vals" title="Link to this definition"></a></dt>
+<dd><p>Values of magnet B field used in scan</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.rmat">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rmat</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.rmat" title="Link to this definition"></a></dt>
+<dd><p>list of r matrix, one per iteration</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.scan_type">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scan_type</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.scan_type" title="Link to this definition"></a></dt>
+<dd><p>Type of scan, useful with names like ‘scan’, lol</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.status">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.status" title="Link to this definition"></a></dt>
+<dd><p>Array of 0 or 1, no idea what status it’s looking at</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.timestamp">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timestamp</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.timestamp" title="Link to this definition"></a></dt>
+<dd><p>Matlab timestamp convention, use datetime.fromordinal</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.twiss">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">twiss</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.twiss" title="Link to this definition"></a></dt>
+<dd><p>Twiss parameters at end of scan for each type of fit, more
+useful properties and unpacking below</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.twiss_0">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">twiss_0</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.twiss_0" title="Link to this definition"></a></dt>
+<dd><p>Your guess is as good as mine, maybe initial twiss</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.twiss_std">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">twiss_std</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.twiss_std" title="Link to this definition"></a></dt>
+<dd><p>STD of twiss calculations, did not offer more props on this</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.use">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">use</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_emit_scan.MatEmitScan.use" title="Link to this definition"></a></dt>
+<dd><p>Array of 1 or 0, 1 means used in calculations</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="corr-plot-scans">
+<h2>Corr Plot Scans<a class="headerlink" href="#corr-plot-scans" title="Link to this heading"></a></h2>
+</section>
+<section id="images">
+<h2>Images<a class="headerlink" href="#images" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.matlab2py.mat_image.</span></span><span class="sig-name descname"><span class="pre">MatImage</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage" title="Link to this definition"></a></dt>
+<dd><p>.mat image object from typical LCLS .mat file (R2012-2020a)</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.back">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">back</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.back" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.bit_depth">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bit_depth</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.bit_depth" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.camera_name">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">camera_name</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.camera_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.center_x">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center_x</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.center_x" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.center_y">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center_y</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.center_y" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.columns">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">columns</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.columns" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.filt_od">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filt_od</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.filt_od" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.filt_stat">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filt_stat</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.filt_stat" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.image">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.image" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.image_as_list">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image_as_list</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.image_as_list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.image_attn">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image_attn</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.image_attn" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.image_object">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image_object</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.image_object" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.is_raw">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_raw</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.is_raw" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.load_mat_image">
+<span class="sig-name descname"><span class="pre">load_mat_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.load_mat_image" title="Link to this definition"></a></dt>
+<dd><p>Converting .mat image data structure to an object</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.mat_file">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mat_file</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.mat_file" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.orientation_x">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orientation_x</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.orientation_x" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.orientation_y">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orientation_y</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.orientation_y" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.pulse_id">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pulse_id</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.pulse_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.resolution">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resolution</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.resolution" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.roi_x">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roi_x</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.roi_x" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.roi_x_n">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roi_x_n</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.roi_x_n" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.roi_y">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roi_y</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.roi_y" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.roi_y_n">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roi_y_n</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.roi_y_n" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.rows">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rows</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.rows" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.show_image">
+<span class="sig-name descname"><span class="pre">show_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.show_image" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.matlab2py.mat_image.MatImage.timestamp">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timestamp</span></span><a class="headerlink" href="#lcls_tools.common.matlab2py.mat_image.MatImage.timestamp" title="Link to this definition"></a></dt>
+<dd><p>epoch time</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="devices.html" class="btn btn-neutral float-left" title="Devices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nicole Neveu, Lisa Zacarias, Chris Garnier, Matt King.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
