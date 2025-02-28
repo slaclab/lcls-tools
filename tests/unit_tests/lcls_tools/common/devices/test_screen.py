@@ -12,21 +12,20 @@ class TestScreen(unittest.TestCase):
     def setUp(self) -> None:
         self.screen_collection = create_screen("BC1")
         self.screen = self.screen_collection.screens["OTR11"]
+        super().setUp()
 
-        return super().setUp()
-
     @patch(
-        "lcls_tools.common.devices.screen.Screen.controls_information.PVs."
-        "sys_type", new_callable=PropertyMock,
-          )
+        "lcls_tools.common.devices.screen.Screen.controls_information.PVs.sys_type",
+        new_callable=PropertyMock,
+    )
     @patch(
-        "lcls_tools.common.devices.screen.Screen.controls_information.PVs."
-        "ref_rate_vme", new_callable=PropertyMock,
-          )
+        "lcls_tools.common.devices.screen.Screen.controls_information.PVs.ref_rate_vme",
+        new_callable=PropertyMock,
+    )
     @patch(
-        "lcls_tools.common.devices.screen.Screen.controls_information.PVs."
-        "ref_rate", new_callable=PropertyMock,
-          )
+        "lcls_tools.common.devices.screen.Screen.controls_information.PVs.ref_rate",
+        new_callable=PropertyMock,
+    )
     def test_refresh_rate(self, mock_ref_rate, mock_ref_rate_vme,
                           mock_sys_type):
         mock_sys_type.return_value.get.return_value = 'VME'
