@@ -5,9 +5,10 @@ import epics
 from datetime import datetime, timedelta
 from lcls_live.datamaps import get_datamaps
 from lcls_live.archiver import lcls_archiver_restore
-from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, kmod_to_bdes
+from lcls_tools.common.data.model_general_calcs import bdes_to_kmod
 YAML_LOCATION = os.path.join(os.path.dirname(__file__), "yaml/")
 print(YAML_LOCATION)
+
 
 def get_rf_quads_pvlist(tao, all_data_maps, beam_code='1'):
     """Returns pvlist from lcls_live datamaps for given beam_path
@@ -206,47 +207,46 @@ def get_tao_cmds(pvdata, data_maps):
         lines += data_maps[dm_key].as_tao(pvdata)
     return lines
 
+
 def create_cu_sxr_dualenergy_var(tao):
     tao.cmd("set global lattice_calc_on = F")
     quad_list = ['QBP33', 'QBP34', 'QDBL1', 'QDBL2', 'QDL11']
-    tao.var_v1_create('qm.LTUS',1,5)
+    tao.var_v1_create('qm.LTUS', 1, 5)
     [k_min, k_max] = get_k_limits(quad_list)
     for qI, quad in enumerate(quad_list):
-        tao.var_create('qm.LTUS[1]',quad, 'K1', 1, 0, 1E-4,
-                       k_min[qI], k_max[qI],'limit', 'F','F',0.01)
+        tao.var_create('qm.LTUS[1]', quad, 'K1', 1, 0, 1E-4,
+                       k_min[qI], k_max[qI], 'limit', 'F', 'F', 0.01)
     tao.cmd("set global lattice_calc_on = T")
 
 
 def update_k_limits(tao, quad_var):
     """Update K limit from EPICS for QUAD variables"""
     var_v1 = tao.var_v1_array(quad_var)
-    quad_list = [item['ele_name'] for item in  var_v1['data']]
+    quad_list = [item['ele_name'] for item in var_v1['data']]
     kmin, kmax = get_k_limits(tao, quad_list)
     for qI, quad in enumerate(quad_list):
         tao.cmd(f'set var q_LTUS[{qI+1}]|low_lim = {kmin[qI]}')
         tao.cmd(f'set var q_LTUS[{qI+1}]|high_lim = {kmax[qI]}')
 
-    
+
 def get_k_limits(tao, quad_list):
     """Get BDES limits from EPICS and return as K limits"""
     k_min, k_max = [], []
     for ii, quad in enumerate(quad_list):
         device = tao.ele_head(quad)['alias']
         e_tot = tao.ele_gen_attribs(quad)['P0C']
-        l = tao.ele_gen_attribs(quad)['L']
+        len = tao.ele_gen_attribs(quad)['L']
         for attr in [':BMIN', ':BMAX']:
             pv = device + attr
             b_lim = epics.caget(pv)
-            k_lim = bdes_to_kmod(e_tot, l, b_lim)
+            k_lim = bdes_to_kmod(e_tot, len, b_lim)
             if 'MIN' in attr:
                 k_min.append(k_lim)
             if 'MAX' in attr:
                 k_max.append(k_lim)
     return k_min, k_max
-       
-        
 
-    
+
 def create_emitmeas_datum(tao, element):
     tao.cmd("set global lattice_calc_on = F")
     tao.data_d2_create(f"emitmeas{element}", 1, "twiss^^1^^4")
@@ -255,29 +255,25 @@ def create_emitmeas_datum(tao, element):
         "beta.a",
         ele_name=element,
         merit_type="target",
-        weight=10,
-    )
+        weight=10)
     tao.datum_create(
         f"emitmeas{element}.twiss[2]",
         "alpha.a",
         ele_name=element,
         merit_type="target",
-        weight=10,
-    )
+        weight=10)
     tao.datum_create(
         f"emitmeas{element}.twiss[3]",
         "beta.b",
         ele_name=element,
         merit_type="target",
-        weight=10,
-    )
+        weight=10)
     tao.datum_create(
         f"emitmeas{element}.twiss[4]",
         "alpha.b",
         ele_name=element,
         merit_type="target",
-        weight=10,
-    )
+        weight=10)
     tao.data_set_design_value()
     tao.cmd("set global lattice_calc_on = T")
 
@@ -339,7 +335,7 @@ def update_energy_gain_sc(tao, pvdata, region, mdl_obj):
     print(region_e_tot)
 
 
-def update_energy_gain_cu(tao, pvdata, region,  mdl_obj):
+def update_energy_gain_cu(tao, pvdata, region, mdl_obj):
     """
     Updates Cu Linac energy gain profile based on bending magnets,
     calculates a fudge and modifies model's cavity amplitudes and phases
@@ -349,15 +345,13 @@ def update_energy_gain_cu(tao, pvdata, region,  mdl_obj):
     if region == "L2":
         L1_energy = 1E9 * 0.22
         L2_energy = L1_energy + 1E9 * expected_gain
-        #tao.cmd(f"set dat BC2.energy[1]|meas = {L1_energy} ")
         tao.cmd(f"set dat BC2.energy[2]|meas = {L2_energy} ")
         optimize_cmds = init_cmds + ["use dat BC2.energy[2]",
                                      "use var linac_fudge[2]"]
     if region == "L3":
         L2_energy = tao.data_parameter('BC2.energy[2]',
                                        'meas_value')[0]['data'][0]
-        L3_energy = L2_energy +  1E9 * expected_gain
-        #tao.cmd(f"set dat L3[1]|meas ={L2_energy} ")
+        L3_energy = L2_energy + 1E9 * expected_gain
         tao.cmd(f"set dat L3[2]|meas ={L3_energy} ")
         optimize_cmds = init_cmds + ["use dat L3.energy[2]",
                                      "use var linac_fudge[3]"]
