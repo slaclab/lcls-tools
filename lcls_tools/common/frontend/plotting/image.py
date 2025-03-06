@@ -12,7 +12,8 @@ def plot_image_projection_fit(result: ImageProjectionFitResult):
     fig.set_size_inches(4, 9)
 
     image = result.image
-    ax[0].imshow(image)
+    c = ax[0].imshow(image)
+    fig.colorbar(c, ax=ax[0])
 
     projections = {
         "x": np.array(np.sum(image, axis=0)),
