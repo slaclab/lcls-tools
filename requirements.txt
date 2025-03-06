@@ -11,4 +11,3 @@ sphinx
 sphinx_rtd_theme
 myst_parser
 scikit-learn
-meme @ git+ssh://git@github.com/slaclab/meme.git
