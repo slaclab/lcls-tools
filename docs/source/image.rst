@@ -4,7 +4,7 @@ Image Processing
 
 Image
 =====
-.. automodule:: lcls_tools.common.image.image 
+.. automodule:: lcls_tools.common.image.image
     :members:
     :undoc-members:
 

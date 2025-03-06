@@ -29,6 +29,7 @@ class ImageFit(lcls_tools.common.BaseModel, ABC):
     """
     Abstract class for determining beam properties from an image
     """
+
     def fit_image(self, image: ndarray) -> ImageFitResult:
         """
         Public method to determine beam properties from an image, including initial
@@ -53,6 +54,7 @@ class ImageProjectionFit(ImageFit):
     the x/y projections. The default configuration uses a Gaussian fitting of the
     profile with prior distributions placed on the model parameters.
     """
+
     projection_fit_method: Optional[MethodBase] = GaussianModel(use_priors=True)
 
     def _fit_image(self, image: ndarray) -> ImageProjectionFitResult:
