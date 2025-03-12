@@ -35,4 +35,4 @@ jobs:
       run: |
         echo -e '## Test results\n\n```' >> "$GITHUB_STEP_SUMMARY"
         python -m unittest discover -s tests -v 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
-        echo '```' >> "$GITHUB_STEP_SUMMARY"   
+        echo '```' >> "$GITHUB_STEP_SUMMARY"
