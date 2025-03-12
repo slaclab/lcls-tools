@@ -1,3 +1,13 @@
+bpms:
+  M3167:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:3167
+    metadata:
+      area: LI20
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
 magnets:
   Q4EL:
     controls_information:

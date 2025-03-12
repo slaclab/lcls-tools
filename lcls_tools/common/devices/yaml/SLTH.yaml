@@ -1,3 +1,26 @@
+bpms:
+  BPMSP12H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SLTH:200:TMIT
+      control_name: BPMS:SLTH:200
+    metadata:
+      area: SLTH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 3071.821
+      type: BPM
+  BPMSP13H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SLTH:220:TMIT
+      control_name: BPMS:SLTH:220
+    metadata:
+      area: SLTH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 3077.246
+      type: BPM
 magnets:
   BRSP2H:
     controls_information:

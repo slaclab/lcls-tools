@@ -1,3 +1,15 @@
+bpms:
+  M0EX:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:3218
+    metadata:
+      area: SPECT2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 998.672
+      type: BPM
 magnets:
   B5D36:
     controls_information:

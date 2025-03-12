@@ -1,3 +1,40 @@
+bpms:
+  BPM11B:
+    controls_information:
+      PVs:
+        tmit: BPMS:BC1B:440:TMIT
+      control_name: BPMS:BC1B:440
+    metadata:
+      area: BC1B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 135.224
+      type: BPM
+  BPM1C01:
+    controls_information:
+      PVs:
+        tmit: BPMS:BC1B:125:TMIT
+      control_name: BPMS:BC1B:125
+    metadata:
+      area: BC1B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 131.589
+      type: BPM
 magnets:
   BCX11:
     controls_information:
