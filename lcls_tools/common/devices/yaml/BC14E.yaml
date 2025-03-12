@@ -1,3 +1,15 @@
+bpms:
+  BPM14801:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI14:801
+    metadata:
+      area: BC14E
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 409.617
+      type: BPM
 magnets:
   BCX14720:
     controls_information:

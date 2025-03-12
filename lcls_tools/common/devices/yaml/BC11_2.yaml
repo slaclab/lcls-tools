@@ -1,3 +1,52 @@
+bpms:
+  BPM11358:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI11:358
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 47.341
+      type: BPM
+  BPM11362:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI11:362
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 47.996
+      type: BPM
+  BPM11393:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI11:393
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 52.917
+      type: BPM
+  BPM11401:
+    controls_information:
+      PVs: {}
+      control_name: LI11:BPMS:401
+    metadata:
+      area: BC11_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 53.831
+      type: BPM
 magnets:
   Q11401:
     controls_information:

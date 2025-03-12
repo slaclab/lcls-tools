@@ -1,3 +1,85 @@
+bpms:
+  BPMBSY1:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:BSY0:1
+    metadata:
+      area: BSY
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  BPMBSY29:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:BSY0:29
+    metadata:
+      area: BSY
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  BPMBSY39:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:BSY0:39
+    metadata:
+      area: BSY
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  BPMBSY61:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:BSY0:61
+    metadata:
+      area: BSY
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  BPMBSY63:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:BSY0:63
+    metadata:
+      area: BSY
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  BPMBSY83:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:BSY0:83
+    metadata:
+      area: BSY
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  BPMBSY85:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:BSY0:85
+    metadata:
+      area: BSY
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  BPMBSY88:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:BSY0:88
+    metadata:
+      area: BSY
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  BPMBSY92:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:BSY0:92
+    metadata:
+      area: BSY
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
 magnets:
   QSM1:
     controls_information:

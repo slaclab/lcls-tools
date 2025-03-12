@@ -1,3 +1,424 @@
+bpms:
+  BPM15201:
+    controls_information:
+      PVs: {}
+      control_name: LI15:BPMS:201
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 435.56
+      type: BPM
+  BPM15301:
+    controls_information:
+      PVs: {}
+      control_name: LI15:BPMS:301
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 447.905
+      type: BPM
+  BPM15401:
+    controls_information:
+      PVs: {}
+      control_name: LI15:BPMS:401
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 460.249
+      type: BPM
+  BPM15501:
+    controls_information:
+      PVs: {}
+      control_name: LI15:BPMS:501
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 472.594
+      type: BPM
+  BPM15601:
+    controls_information:
+      PVs: {}
+      control_name: LI15:BPMS:601
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 484.938
+      type: BPM
+  BPM15701:
+    controls_information:
+      PVs: {}
+      control_name: LI15:BPMS:701
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 497.282
+      type: BPM
+  BPM15801:
+    controls_information:
+      PVs: {}
+      control_name: LI15:BPMS:801
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 509.627
+      type: BPM
+  BPM15901:
+    controls_information:
+      PVs: {}
+      control_name: LI15:BPMS:901
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 522.29
+      type: BPM
+  BPM16201:
+    controls_information:
+      PVs: {}
+      control_name: LI16:BPMS:201
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 537.16
+      type: BPM
+  BPM16301:
+    controls_information:
+      PVs: {}
+      control_name: LI16:BPMS:301
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 549.505
+      type: BPM
+  BPM16401:
+    controls_information:
+      PVs: {}
+      control_name: LI16:BPMS:401
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 561.849
+      type: BPM
+  BPM16501:
+    controls_information:
+      PVs: {}
+      control_name: LI16:BPMS:501
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 574.194
+      type: BPM
+  BPM16601:
+    controls_information:
+      PVs: {}
+      control_name: LI16:BPMS:601
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 586.538
+      type: BPM
+  BPM16701:
+    controls_information:
+      PVs: {}
+      control_name: LI16:BPMS:701
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 598.882
+      type: BPM
+  BPM16801:
+    controls_information:
+      PVs: {}
+      control_name: LI16:BPMS:801
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 611.227
+      type: BPM
+  BPM16901:
+    controls_information:
+      PVs: {}
+      control_name: LI16:BPMS:901
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 623.89
+      type: BPM
+  BPM17201:
+    controls_information:
+      PVs: {}
+      control_name: LI17:BPMS:201
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 638.76
+      type: BPM
+  BPM17301:
+    controls_information:
+      PVs: {}
+      control_name: LI17:BPMS:301
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 651.105
+      type: BPM
+  BPM17401:
+    controls_information:
+      PVs: {}
+      control_name: LI17:BPMS:401
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 663.449
+      type: BPM
+  BPM17501:
+    controls_information:
+      PVs: {}
+      control_name: LI17:BPMS:501
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 675.794
+      type: BPM
+  BPM17601:
+    controls_information:
+      PVs: {}
+      control_name: LI17:BPMS:601
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 688.138
+      type: BPM
+  BPM17701:
+    controls_information:
+      PVs: {}
+      control_name: LI17:BPMS:701
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 700.482
+      type: BPM
+  BPM17801:
+    controls_information:
+      PVs: {}
+      control_name: LI17:BPMS:801
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 712.827
+      type: BPM
+  BPM17901:
+    controls_information:
+      PVs: {}
+      control_name: LI17:BPMS:901
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 725.49
+      type: BPM
+  BPM18201:
+    controls_information:
+      PVs: {}
+      control_name: LI18:BPMS:201
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 740.36
+      type: BPM
+  BPM18301:
+    controls_information:
+      PVs: {}
+      control_name: LI18:BPMS:301
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 752.705
+      type: BPM
+  BPM18401:
+    controls_information:
+      PVs: {}
+      control_name: LI18:BPMS:401
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 765.049
+      type: BPM
+  BPM18501:
+    controls_information:
+      PVs: {}
+      control_name: LI18:BPMS:501
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 777.394
+      type: BPM
+  BPM18601:
+    controls_information:
+      PVs: {}
+      control_name: LI18:BPMS:601
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 789.738
+      type: BPM
+  BPM18701:
+    controls_information:
+      PVs: {}
+      control_name: LI18:BPMS:701
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 802.082
+      type: BPM
+  BPM18801:
+    controls_information:
+      PVs: {}
+      control_name: LI18:BPMS:801
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 814.427
+      type: BPM
+  BPM18901:
+    controls_information:
+      PVs: {}
+      control_name: LI18:BPMS:901
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 827.09
+      type: BPM
+  BPM19201:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:201
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 841.96
+      type: BPM
+  BPM19301:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:301
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 854.305
+      type: BPM
+  BPM19401:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:401
+    metadata:
+      area: L3F_1
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 866.649
+      type: BPM
 magnets:
   Q15201:
     controls_information:

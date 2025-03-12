@@ -1,3 +1,15 @@
+bpms:
+  BPM10221:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:IN10:221
+    metadata:
+      area: INJ
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 0.699
+      type: BPM
 magnets:
   CQ10121:
     controls_information:
