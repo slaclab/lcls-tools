@@ -444,7 +444,6 @@ class YAMLGenerator:
         else:
             return {}
 
-
     def extract_metadata_by_device_names(
         self,
         device_names=Optional[List[str]],

@@ -142,6 +142,7 @@ def create_lblm(
     else:
         return LBLMCollection(**device_data)
 
+
 def create_bpm(
     area: str = None, name: str = None
 ) -> Union[None, BPM, BPMCollection]:
