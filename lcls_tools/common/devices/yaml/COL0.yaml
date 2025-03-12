@@ -607,7 +607,10 @@ screens:
         n_bits: PROF:COL0:535:N_OF_BITS
         n_col: PROF:COL0:535:Image:ArraySize1_RBV
         n_row: PROF:COL0:535:Image:ArraySize0_RBV
+        ref_rate: PROF:COL0:535:ArrayRate_RBV
+        ref_rate_vme: PROF:COL0:535:FRAME_RATE
         resolution: PROF:COL0:535:RESOLUTION
+        sys_type: PROF:COL0:535:SYS_TYPE
       control_name: PROF:COL0:535
     metadata:
       area: COL0
