@@ -1,3 +1,36 @@
+bpms:
+  BPMDAS1:
+    controls_information:
+      PVs:
+        tmit: BPMS:DASEL:300:TMIT
+      control_name: BPMS:DASEL:300
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2976.488
+      type: BPM
+  BPMDAS19:
+    controls_information:
+      PVs:
+        tmit: BPMS:DASEL:915:TMIT
+      control_name: BPMS:DASEL:915
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3144.655
+      type: BPM
+  BPMDAS?:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:DASEL:146
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2934.015
+      type: BPM
 magnets:
   BKRDAS1:
     controls_information:

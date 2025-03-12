@@ -1,3 +1,40 @@
+bpms:
+  BPMX01:
+    controls_information:
+      PVs:
+        tmit: BPMS:EXT:351:TMIT
+      control_name: BPMS:EXT:351
+    metadata:
+      area: EXT
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 659.492
+      type: BPM
+  BPMX02:
+    controls_information:
+      PVs:
+        tmit: BPMS:EXT:748:TMIT
+      control_name: BPMS:EXT:748
+    metadata:
+      area: EXT
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 668.785
+      type: BPM
 magnets:
   QX01:
     controls_information:

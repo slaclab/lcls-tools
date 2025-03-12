@@ -1,3 +1,84 @@
+bpms:
+  BPM21201:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:201:TMIT
+      control_name: BPMS:LI21:201
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 30.732
+      type: BPM
+  BPM21301:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:301:TMIT
+      control_name: BPMS:LI21:301
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 43.182
+      type: BPM
+  BPMM12:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:278:TMIT
+      control_name: BPMS:LI21:278
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 38.97
+      type: BPM
+  BPMM14:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:315:TMIT
+      control_name: BPMS:LI21:315
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 44.338
+      type: BPM
+  BPMS11:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:233:TMIT
+      control_name: BPMS:LI21:233
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 34.487
+      type: BPM
 magnets:
   BX11:
     controls_information:

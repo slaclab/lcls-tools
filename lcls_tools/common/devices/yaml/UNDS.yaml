@@ -1,3 +1,452 @@
+bpms:
+  RFBSX16:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:1690:TMIT
+      control_name: BPMS:UNDS:1690
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3577.888
+      type: BPM
+  RFBSX19:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:1990:TMIT
+      control_name: BPMS:UNDS:1990
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3591.088
+      type: BPM
+  RFBSX21:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:2190:TMIT
+      control_name: BPMS:UNDS:2190
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3599.888
+      type: BPM
+  RFBSX24:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:2490:TMIT
+      control_name: BPMS:UNDS:2490
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3613.088
+      type: BPM
+  RFBSX25:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:2590:TMIT
+      control_name: BPMS:UNDS:2590
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3617.488
+      type: BPM
+  RFBSX26:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:2690:TMIT
+      control_name: BPMS:UNDS:2690
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3621.888
+      type: BPM
+  RFBSX27:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:2790:TMIT
+      control_name: BPMS:UNDS:2790
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3626.288
+      type: BPM
+  RFBSX28:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:2890:TMIT
+      control_name: BPMS:UNDS:2890
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3630.688
+      type: BPM
+  RFBSX29:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:2990:TMIT
+      control_name: BPMS:UNDS:2990
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3635.088
+      type: BPM
+  RFBSX30:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:3090:TMIT
+      control_name: BPMS:UNDS:3090
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3639.488
+      type: BPM
+  RFBSX31:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:3190:TMIT
+      control_name: BPMS:UNDS:3190
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3643.888
+      type: BPM
+  RFBSX32:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:3290:TMIT
+      control_name: BPMS:UNDS:3290
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3648.288
+      type: BPM
+  RFBSX33:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:3390:TMIT
+      control_name: BPMS:UNDS:3390
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3652.688
+      type: BPM
+  RFBSX34:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:3490:TMIT
+      control_name: BPMS:UNDS:3490
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3657.088
+      type: BPM
+  RFBSX35:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:3590:TMIT
+      control_name: BPMS:UNDS:3590
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3661.488
+      type: BPM
+  RFBSX36:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:3690:TMIT
+      control_name: BPMS:UNDS:3690
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3665.888
+      type: BPM
+  RFBSX37:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:3790:TMIT
+      control_name: BPMS:UNDS:3790
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3670.288
+      type: BPM
+  RFBSX38:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:3890:TMIT
+      control_name: BPMS:UNDS:3890
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3674.688
+      type: BPM
+  RFBSX39:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:3990:TMIT
+      control_name: BPMS:UNDS:3990
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3679.088
+      type: BPM
+  RFBSX40:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:4090:TMIT
+      control_name: BPMS:UNDS:4090
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3683.488
+      type: BPM
+  RFBSX41:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:4190:TMIT
+      control_name: BPMS:UNDS:4190
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3687.888
+      type: BPM
+  RFBSX42:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:4290:TMIT
+      control_name: BPMS:UNDS:4290
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3692.288
+      type: BPM
+  RFBSX43:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:4390:TMIT
+      control_name: BPMS:UNDS:4390
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3696.688
+      type: BPM
+  RFBSX44:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:4490:TMIT
+      control_name: BPMS:UNDS:4490
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3701.088
+      type: BPM
+  RFBSX45:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:4590:TMIT
+      control_name: BPMS:UNDS:4590
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3705.488
+      type: BPM
+  RFBSX46:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:4690:TMIT
+      control_name: BPMS:UNDS:4690
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3709.888
+      type: BPM
+  RFBSX47:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:4790:TMIT
+      control_name: BPMS:UNDS:4790
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3714.288
+      type: BPM
+  RFBSX51:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDS:5190:TMIT
+      control_name: BPMS:UNDS:5190
+    metadata:
+      area: UNDS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3728.546
+      type: BPM
 lblms:
   LBLMS40A:
     controls_information:
@@ -2015,10 +2464,10 @@ screens:
   BOD10:
     controls_information:
       PVs:
-        image: YAGS:UNDS:3575:IMAGE
+        image: YAGS:UNDS:3575:Image:ArrayData
         n_bits: YAGS:UNDS:3575:N_OF_BITS
-        n_col: YAGS:UNDS:3575:N_OF_COL
-        n_row: YAGS:UNDS:3575:N_OF_ROW
+        n_col: YAGS:UNDS:3575:Image:ArraySize1_RBV
+        n_row: YAGS:UNDS:3575:Image:ArraySize0_RBV
         resolution: YAGS:UNDS:3575:RESOLUTION
       control_name: YAGS:UNDS:3575
     metadata:
@@ -2035,10 +2484,10 @@ screens:
   BOD12:
     controls_information:
       PVs:
-        image: YAGS:UNDS:3795:IMAGE
+        image: YAGS:UNDS:3795:Image:ArrayData
         n_bits: YAGS:UNDS:3795:N_OF_BITS
-        n_col: YAGS:UNDS:3795:N_OF_COL
-        n_row: YAGS:UNDS:3795:N_OF_ROW
+        n_col: YAGS:UNDS:3795:Image:ArraySize1_RBV
+        n_row: YAGS:UNDS:3795:Image:ArraySize0_RBV
         resolution: YAGS:UNDS:3795:RESOLUTION
       control_name: YAGS:UNDS:3795
     metadata:

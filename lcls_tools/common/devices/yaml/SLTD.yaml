@@ -1,3 +1,26 @@
+bpms:
+  BPMSP4D:
+    controls_information:
+      PVs:
+        tmit: BPMS:SLTD:625:TMIT
+      control_name: BPMS:SLTD:625
+    metadata:
+      area: SLTD
+      beam_path:
+      - SC_BSYD
+      sum_l_meters: 3157.709
+      type: BPM
+  BPMSP5D:
+    controls_information:
+      PVs:
+        tmit: BPMS:SLTD:895:TMIT
+      control_name: BPMS:SLTD:895
+    metadata:
+      area: SLTD
+      beam_path:
+      - SC_BSYD
+      sum_l_meters: 3213.448
+      type: BPM
 magnets:
   BKXRASD:
     controls_information:

@@ -1,3 +1,51 @@
+bpms:
+  BPMBSYQ1:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTH:140:TMIT
+      control_name: BPMS:CLTH:140
+    metadata:
+      area: CLTH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 1036.067
+      type: BPM
+  BPMBSYQ2:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTH:170:TMIT
+      control_name: BPMS:CLTH:170
+    metadata:
+      area: CLTH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 1041.992
+      type: BPM
+  BPMCUS:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTH:215:TMIT
+      control_name: BPMS:CLTH:215
+    metadata:
+      area: CLTH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      sum_l_meters: 1050.669
+      type: BPM
 magnets:
   Q50Q1:
     controls_information:

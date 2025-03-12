@@ -1,3 +1,194 @@
+bpms:
+  BPM19501?:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BEND:7174
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 878.994
+      type: BPM
+  BPM19601?:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:7601
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 891.338
+      type: BPM
+  BPM19701?:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:7701
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 903.682
+      type: BPM
+  BPM57170:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:7170
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 903.986
+      type: BPM
+  BPM57175:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:7175
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 911.668
+      type: BPM
+  BPM57185:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:7185
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 919.937
+      type: BPM
+  BPM57186:
+    controls_information:
+      PVs: {}
+      control_name: LI18:BPMS:7186
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 920.085
+      type: BPM
+  BPM57190:
+    controls_information:
+      PVs: {}
+      control_name: LI18:BPMS:7190
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 922.582
+      type: BPM
+  BPM57204:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:7204
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 931.155
+      type: BPM
+  BPM57210:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:7210
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 935.6
+      type: BPM
+  BPM57220:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:7220
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 940.045
+      type: BPM
+  BPM57230:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:7230
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 944.49
+      type: BPM
+  BPM57240:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:7240
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 948.935
+      type: BPM
+  BPM57250:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:7250
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 953.38
+      type: BPM
+  BPM57260:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:7260
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 957.825
+      type: BPM
+  BPM57270:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:7270
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 962.27
+      type: BPM
+  BPM57280:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:7280
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 966.715
+      type: BPM
+  BPM57383:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:7283
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 970.694
+      type: BPM
+  BPM57400:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:7400
+    metadata:
+      area: SCAV
+      beam_path:
+      - F2_SCAV
+      sum_l_meters: 972.349
+      type: BPM
 magnets:
   BKY170:
     controls_information:

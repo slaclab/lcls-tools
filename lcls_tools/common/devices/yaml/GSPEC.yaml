@@ -1,3 +1,15 @@
+bpms:
+  BPMG1:
+    controls_information:
+      PVs:
+        tmit: BPMS:IN20:821:TMIT
+      control_name: BPMS:IN20:821
+    metadata:
+      area: GSPEC
+      beam_path:
+      - CU_GSPEC
+      sum_l_meters: 1.558
+      type: BPM
 magnets:
   BXG:
     controls_information:

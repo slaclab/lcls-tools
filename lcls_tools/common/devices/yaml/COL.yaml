@@ -1,0 +1,25 @@
+lblms:
+  LBLM02A:
+    controls_information:
+      PVs:
+        bypass: LBLM:COL0:862:A:FAST_AMP_BYP
+        gain: LBLM:COL0:862:A:FAST_AMP_GAIN
+        i0_loss: LBLM:COL0:862:A:I0_LOSS
+      control_name: LBLM:COL0:862:A
+    metadata:
+      area: COL
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
+  LBLM02B:
+    controls_information:
+      PVs:
+        bypass: LBLM:COL0:862:B:FAST_AMP_BYP
+        gain: LBLM:COL0:862:B:FAST_AMP_GAIN
+        i0_loss: LBLM:COL0:862:B:I0_LOSS
+      control_name: LBLM:COL0:862:B
+    metadata:
+      area: COL
+      beam_path: []
+      sum_l_meters: null
+      type: LBLM
