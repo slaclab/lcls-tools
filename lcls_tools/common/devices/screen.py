@@ -237,7 +237,10 @@ class Screen(Device):
                 dset = f.create_dataset(
                     name=str(capture_num), data=image, dtype=np.ushort
                 )
-                [dset.attrs.update({key: value or h5py.Empty("f4")}) for key, value in self.metadata]
+                [
+                    dset.attrs.update({key: value or h5py.Empty("f4")})
+                    for key, value in self.metadata
+                ]
                 if extra_metadata:
                     # dset.attrs acts as a dictionary here
                     # we update with original key if it isn't in our normal screen metadata

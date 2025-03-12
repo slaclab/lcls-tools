@@ -24,22 +24,20 @@ class TestImageProcessing(unittest.TestCase):
         image_processor = ImageProcessor()
         image = image_processor.auto_process(self.image)
         self.assertIsInstance(
-            image, np.ndarray,
-            msg="expected image to be an instance of np.ndarray"
+            image, np.ndarray, msg="expected image to be an instance of np.ndarray"
         )
         roi = ROI(center=self.center, extent=self.extent)
         image_processor = ImageProcessor(roi=roi)
         image = image_processor.auto_process(self.image)
         self.assertIsInstance(
-            image, np.ndarray,
-            msg="expected image to be an instance of np.ndarray"
+            image, np.ndarray, msg="expected image to be an instance of np.ndarray"
         )
         imageShape = image.shape
         roiShape = tuple(roi.extent)
         self.assertEqual(
-            imageShape, roiShape,
-            msg=(f"expected image shape {imageShape} "
-                 + f"to equal roi {roiShape}")
+            imageShape,
+            roiShape,
+            msg=(f"expected image shape {imageShape} " + f"to equal roi {roiShape}"),
         )
 
     def test_subtract_background(self):
@@ -55,9 +53,11 @@ class TestImageProcessing(unittest.TestCase):
         image = image
         background = np.clip(self.image - 1, 0, None)
         np.testing.assert_array_equal(
-            image, background,
-            err_msg=("expected image to equal background "
-                     + "during background subtraction")
+            image,
+            background,
+            err_msg=(
+                "expected image to equal background " + "during background subtraction"
+            ),
         )
 
         """
@@ -69,7 +69,7 @@ class TestImageProcessing(unittest.TestCase):
         image = image
         background = np.clip(self.image - 1, 0, None)
         np.testing.assert_array_equal(
-            image, background,
-            err_msg=("expected image to equal background "
-                     + "when applying threshold")
+            image,
+            background,
+            err_msg=("expected image to equal background " + "when applying threshold"),
         )
