@@ -22,4 +22,3 @@ Images
 .. autoclass:: lcls_tools.common.matlab2py.mat_image.MatImage
     :members:
     :undoc-members:
-

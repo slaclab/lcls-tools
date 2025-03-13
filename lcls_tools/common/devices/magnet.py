@@ -267,9 +267,9 @@ class Magnet(Device):
         self.controls_information.PVs.ctrl.put(self.ctrl_options["DEGAUSS"])
 
     def scan(
-            self,
-            scan_settings: List[float],
-            function: Optional[callable] = None,
+        self,
+        scan_settings: List[float],
+        function: Optional[callable] = None,
     ) -> None:
         for setting in scan_settings:
             self.bctrl = setting
