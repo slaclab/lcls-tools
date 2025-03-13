@@ -8,12 +8,14 @@ from lcls_tools.common.devices.yaml.metadata import (
     get_screen_metadata,
     get_wire_metadata,
     get_lblm_metadata,
+    get_bpm_metadata,
 )
 from lcls_tools.common.devices.yaml.controls_information import (
     get_magnet_controls_information,
     get_screen_controls_information,
     get_wire_controls_information,
     get_lblm_controls_information,
+    get_bpm_controls_information,
 )
 
 
@@ -412,6 +414,32 @@ class YAMLGenerator:
                 additional_metadata=additional_metadata_data,
             )
             return complete_lblm_data
+        else:
+            return {}
+
+    def extract_bpms(self, area: Union[str, List[str]] = ["HTR"]):
+        required_bpm_types = ["BPM"]
+        # PV suffix as the key, the name we want to store it as in yaml file as the value
+        # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
+        possible_bpm_pvs = {
+            "TMIT": "tmit",
+        }
+        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        additional_metadata_data = get_bpm_metadata()
+        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        additional_controls_data = get_bpm_controls_information()
+        basic_bpm_data = self.extract_devices(
+            area=area,
+            required_types=required_bpm_types,
+            pv_search_terms=possible_bpm_pvs,
+        )
+        if basic_bpm_data:
+            complete_bpm_data = self.add_extra_data_to_device(
+                device_data=basic_bpm_data,
+                additional_controls_information=additional_controls_data,
+                additional_metadata=additional_metadata_data,
+            )
+            return complete_bpm_data
         else:
             return {}
 

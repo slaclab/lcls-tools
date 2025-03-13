@@ -1,3 +1,38 @@
+bpms:
+  BPM3:
+    controls_information:
+      PVs:
+        tmit: BPMS:IN20:235:TMIT
+      control_name: BPMS:IN20:235
+    metadata:
+      area: L0
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 1.217
+      type: BPM
+  BPM5:
+    controls_information:
+      PVs:
+        tmit: BPMS:IN20:371:TMIT
+      control_name: BPMS:IN20:371
+    metadata:
+      area: L0
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 5.183
+      type: BPM
 magnets:
   QA01:
     controls_information:

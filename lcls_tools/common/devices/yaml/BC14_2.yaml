@@ -1,3 +1,28 @@
+bpms:
+  BPM14891:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI14:891
+    metadata:
+      area: BC14_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 422.207
+      type: BPM
+  BPM14901:
+    controls_information:
+      PVs: {}
+      control_name: LI14:BPMS:901
+    metadata:
+      area: BC14_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      - F2_SCAV
+      sum_l_meters: 422.869
+      type: BPM
 magnets:
   Q14901:
     controls_information:

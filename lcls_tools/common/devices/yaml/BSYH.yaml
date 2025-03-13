@@ -1,3 +1,81 @@
+bpms:
+  BPMBSYQ3:
+    controls_information:
+      PVs:
+        tmit: BPMS:BSYH:445:TMIT
+      control_name: BPMS:BSYH:445
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1097.174
+      type: BPM
+  BPMBSYQ4:
+    controls_information:
+      PVs:
+        tmit: BPMS:BSYH:465:TMIT
+      control_name: BPMS:BSYH:465
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1101.313
+      type: BPM
+  BPMBSYQ5:
+    controls_information:
+      PVs:
+        tmit: BPMS:BSYH:640:TMIT
+      control_name: BPMS:BSYH:640
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1136.23
+      type: BPM
+  BPMBSYQ6:
+    controls_information:
+      PVs:
+        tmit: BPMS:BSYH:735:TMIT
+      control_name: BPMS:BSYH:735
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1155.951
+      type: BPM
+  BPMBSYQA0:
+    controls_information:
+      PVs:
+        tmit: BPMS:BSYH:910:TMIT
+      control_name: BPMS:BSYH:910
+    metadata:
+      area: BSYH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1191.776
+      type: BPM
 magnets:
   Q4:
     controls_information:

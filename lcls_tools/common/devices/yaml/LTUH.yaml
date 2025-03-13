@@ -1,3 +1,469 @@
+bpms:
+  BPMDL1:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:250:TMIT
+      control_name: BPMS:LTUH:250
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1256.338
+      type: BPM
+  BPMDL2:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:350:TMIT
+      control_name: BPMS:LTUH:350
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1292.149
+      type: BPM
+  BPMDL3:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:450:TMIT
+      control_name: BPMS:LTUH:450
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1327.96
+      type: BPM
+  BPMDL4:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:550:TMIT
+      control_name: BPMS:LTUH:550
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1363.771
+      type: BPM
+  BPME31:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:720:TMIT
+      control_name: BPMS:LTUH:720
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1418.528
+      type: BPM
+  BPME32:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:730:TMIT
+      control_name: BPMS:LTUH:730
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1436.159
+      type: BPM
+  BPME33:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:740:TMIT
+      control_name: BPMS:LTUH:740
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1453.791
+      type: BPM
+  BPME34:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:750:TMIT
+      control_name: BPMS:LTUH:750
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1471.423
+      type: BPM
+  BPME35:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:760:TMIT
+      control_name: BPMS:LTUH:760
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1489.055
+      type: BPM
+  BPME36:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:770:TMIT
+      control_name: BPMS:LTUH:770
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1506.686
+      type: BPM
+  BPMEM1:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:620:TMIT
+      control_name: BPMS:LTUH:620
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1386.099
+      type: BPM
+  BPMEM2:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:640:TMIT
+      control_name: BPMS:LTUH:640
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1390.56
+      type: BPM
+  BPMEM3:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:660:TMIT
+      control_name: BPMS:LTUH:660
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1403.02
+      type: BPM
+  BPMEM4:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:680:TMIT
+      control_name: BPMS:LTUH:680
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1407.481
+      type: BPM
+  BPMT12:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:290:TMIT
+      control_name: BPMS:LTUH:290
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1274.243
+      type: BPM
+  BPMT22:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:390:TMIT
+      control_name: BPMS:LTUH:390
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1310.054
+      type: BPM
+  BPMT32:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:490:TMIT
+      control_name: BPMS:LTUH:490
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1345.866
+      type: BPM
+  BPMT42:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:590:TMIT
+      control_name: BPMS:LTUH:590
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1381.677
+      type: BPM
+  BPMUM1:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:820:TMIT
+      control_name: BPMS:LTUH:820
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1521.483
+      type: BPM
+  BPMUM2:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:840:TMIT
+      control_name: BPMS:LTUH:840
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1528.194
+      type: BPM
+  BPMUM3:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:860:TMIT
+      control_name: BPMS:LTUH:860
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1536.655
+      type: BPM
+  BPMUM4:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:880:TMIT
+      control_name: BPMS:LTUH:880
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1541.116
+      type: BPM
+  BPMVB1:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:130:TMIT
+      control_name: BPMS:LTUH:130
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1220.649
+      type: BPM
+  BPMVB2:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:150:TMIT
+      control_name: BPMS:LTUH:150
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1225.11
+      type: BPM
+  BPMVB3:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:170:TMIT
+      control_name: BPMS:LTUH:170
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1229.571
+      type: BPM
+  BPMVM1:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:110:TMIT
+      control_name: BPMS:LTUH:110
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1210.328
+      type: BPM
+  BPMVM2:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:120:TMIT
+      control_name: BPMS:LTUH:120
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1211.288
+      type: BPM
+  BPMVM3:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:180:TMIT
+      control_name: BPMS:LTUH:180
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1238.932
+      type: BPM
+  BPMVM4:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:190:TMIT
+      control_name: BPMS:LTUH:190
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1239.893
+      type: BPM
+  RFB07:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:910:TMIT
+      control_name: BPMS:LTUH:910
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1541.873
+      type: BPM
+  RFB08:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUH:960:TMIT
+      control_name: BPMS:LTUH:960
+    metadata:
+      area: LTUH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1544.621
+      type: BPM
 lblms:
   LBLM30A:
     controls_information:

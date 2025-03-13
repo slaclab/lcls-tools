@@ -1,3 +1,112 @@
+bpms:
+  BPMDAS:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPD:570:TMIT
+      control_name: BPMS:SPD:570
+    metadata:
+      area: SPD
+      beam_path:
+      - SC_BSYD
+      sum_l_meters: 2934.015
+      type: BPM
+  BPMSP1:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPD:255:TMIT
+      control_name: BPMS:SPD:255
+    metadata:
+      area: SPD
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2836.994
+      type: BPM
+  BPMSP1D:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPD:525:TMIT
+      control_name: BPMS:SPD:525
+    metadata:
+      area: SPD
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      sum_l_meters: 2919.713
+      type: BPM
+  BPMSP2:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPD:340:TMIT
+      control_name: BPMS:SPD:340
+    metadata:
+      area: SPD
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2860.705
+      type: BPM
+  BPMSP2D:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPD:700:TMIT
+      control_name: BPMS:SPD:700
+    metadata:
+      area: SPD
+      beam_path:
+      - SC_BSYD
+      sum_l_meters: 2972.291
+      type: BPM
+  BPMSP3D:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPD:955:TMIT
+      control_name: BPMS:SPD:955
+    metadata:
+      area: SPD
+      beam_path:
+      - SC_BSYD
+      sum_l_meters: 3051.006
+      type: BPM
+  BPMSPH:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPD:135:TMIT
+      control_name: BPMS:SPD:135
+    metadata:
+      area: SPD
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2800.161
+      type: BPM
+  BPMSPS:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPD:420:TMIT
+      control_name: BPMS:SPD:420
+    metadata:
+      area: SPD
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      sum_l_meters: 2887.337
+      type: BPM
 magnets:
   BYSP1D:
     controls_information:

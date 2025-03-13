@@ -1,3 +1,26 @@
+bpms:
+  BPM11312:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI11:312
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 40.015
+      type: BPM
+  BPM11333:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI11:333
+    metadata:
+      area: BC11_1
+      beam_path:
+      - F2_ELEC
+      - F2_SCAV
+      sum_l_meters: 43.416
+      type: BPM
 magnets:
   BCX11314:
     controls_information:

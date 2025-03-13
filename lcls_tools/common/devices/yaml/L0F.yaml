@@ -1,3 +1,13 @@
+bpms:
+  BPM10371:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:IN10:371
+    metadata:
+      area: L0F
+      beam_path: []
+      sum_l_meters: 4.741
+      type: BPM
 magnets:
   QA10361:
     controls_information:

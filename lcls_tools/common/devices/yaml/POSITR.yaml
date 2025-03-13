@@ -1,3 +1,103 @@
+bpms:
+  M202591T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2591
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202641T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2641
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202651T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2651
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202671T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2671
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202691T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2691
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202751T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2751
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202811T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2811
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202831T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2831
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202851T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2851
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202861T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2861
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202921T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2921
+    metadata:
+      area: POSITR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
 magnets:
   B202570:
     controls_information:
