@@ -19,7 +19,7 @@ SC: &SC
   - BYP
 
 
-SC_SXR: 
+SC_SXR:
   - *SC
   - SPS
   - SLTS
@@ -29,7 +29,7 @@ SC_SXR:
   - DMPS
   - FEES
 
-SC_HXR: 
+SC_HXR:
   - *SC
   - SPH
   - SLTH
@@ -40,20 +40,20 @@ SC_HXR:
   - DMPH
   - FEEH
 
-SC_BSYD: 
+SC_BSYD:
   - *SC
   - SPD1
   - SPD2
   - SPD3
   - SLTD
 
-SC_DIAG0: 
+SC_DIAG0:
   - GUNB
   - L0B
   - HTR
   - DIAG0
 
-SC_DASEL: 
+SC_DASEL:
   - *SC
   - SPD1
   - SPD2
@@ -74,7 +74,7 @@ CU: &CU
   - BC2
   - L3
 
-CU_HXR: 
+CU_HXR:
   - *CU
   - CLTH1
   - CLTH2
