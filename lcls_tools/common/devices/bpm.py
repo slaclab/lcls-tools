@@ -1,11 +1,9 @@
 from datetime import datetime
 from pydantic import (
     BaseModel,
-    # PositiveFloat,
     SerializeAsAny,
     field_validator,
     conint,
-    # ValidationError,
 )
 from typing import (
     Dict,
@@ -24,18 +22,6 @@ from epics import PV
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
-class BooleanModel(BaseModel):
-    value: bool
-
-
-class FloatModel(BaseModel):
-    value: float
-
-
-class IntegerModel(BaseModel):
-    value: conint(strict=True)
-
-
 class BPMPVSet(PVSet):
     tmit: PV
 
@@ -46,7 +32,7 @@ class BPMPVSet(PVSet):
     def validate_pv_fields(cls, v: str) -> PV:
         return PV(v)
 
-
+# TODO
 class BPMControlInformation(ControlInformation):
     PVs: SerializeAsAny[BPMPVSet]
     _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
@@ -55,6 +41,7 @@ class BPMControlInformation(ControlInformation):
         super(BPMControlInformation, self).__init__(*args, **kwargs)
 
 
+# TODO
 class BPMMetadata(Metadata):
 
     def __init__(self, **kwargs):
@@ -89,12 +76,6 @@ class BPMCollection(BaseModel):
             bpm.update({"name": name})
             v.update({name: bpm})
         return v
-
-    # TODO: can the next two functions get moved out?
-    def seconds_since(self, time_to_check: datetime) -> int:
-        if not isinstance(time_to_check, datetime):
-            raise TypeError("Please provide a datetime object for comparison.")
-        return (datetime.now() - time_to_check).seconds
 
     def _make_bpm_names_list_from_args(
         self, args: Union[str, List[str], None]
