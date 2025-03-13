@@ -63,7 +63,7 @@ def get_lblm_metadata(lblm_names: List[str] = []):
     #  ...
     # }
     if lblm_names:
-        raise NotImplementedError("No method of getting additional metadata for wires.")
+        raise NotImplementedError("No method of getting additional metadata for lblms.")
     return {}
 
 
@@ -75,7 +75,5 @@ def get_bpm_metadata(bpm_names: List[str] = []):
     #  ...
     # }
     if bpm_names:
-        raise NotImplementedError(
-            "No method of getting additional metadata for bpms."
-        )
+        raise NotImplementedError("No method of getting additional metadata for bpms.")
     return {}
