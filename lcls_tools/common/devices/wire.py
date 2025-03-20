@@ -20,8 +20,6 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
-import lcls_tools
-
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
