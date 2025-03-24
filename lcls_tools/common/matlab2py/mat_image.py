@@ -3,6 +3,7 @@ import scipy.io as sio
 import matplotlib.pyplot as plt
 import os
 
+
 class MatImage(object):
     """.mat image object from typical LCLS .mat file (R2012-2020a)"""
 
