@@ -6,14 +6,13 @@ import os
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(__file__, "../../../")))
-from lcls_tools.common.devices.magnet import *
-from lcls_tools.common.devices.beampath import *
-from lcls_tools.common.devices.device import *
-from lcls_tools.common.devices.screen import *
-from lcls_tools.common.matlab2py.mat_image import *
-from lcls_tools.common.matlab2py.mat_emit_scan import *
-from lcls_tools.common.matlab2py.mat_corr_plot import *
-=======
+from lcls_tools.common.devices.magnet import *  # noqa: F403
+from lcls_tools.common.devices.beampath import *  # noqa: F403
+from lcls_tools.common.devices.device import *  # noqa: F403
+from lcls_tools.common.devices.screen import *  # noqa: F403
+from lcls_tools.common.matlab2py.mat_image import *  # noqa: F403
+from lcls_tools.common.matlab2py.mat_emit_scan import *  # noqa: F403
+from lcls_tools.common.matlab2py.mat_corr_plot import *  # noqa: F403
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
