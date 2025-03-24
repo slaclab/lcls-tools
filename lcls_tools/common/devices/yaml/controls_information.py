@@ -77,3 +77,17 @@ def get_bpm_controls_information(bpm_names: List[str] = None):
             "No method of getting additional controls_information for bpms."
         )
     return {}
+
+
+def get_tcav_metadata(tcav_names: List[str] = []):
+    # return a data structure of the form:
+    # {
+    #  lblm-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
+    #  lblm-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
+    #  ...
+    # }
+    if tcav_names:
+        raise NotImplementedError(
+            "No method of getting additional metadata for wires."
+        )
+    return {}

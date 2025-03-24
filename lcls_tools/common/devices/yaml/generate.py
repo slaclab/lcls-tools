@@ -9,13 +9,14 @@ from lcls_tools.common.devices.yaml.metadata import (
     get_wire_metadata,
     get_lblm_metadata,
     get_bpm_metadata,
+    get_tcav_metadata,
 )
 from lcls_tools.common.devices.yaml.controls_information import (
     get_magnet_controls_information,
     get_screen_controls_information,
     get_wire_controls_information,
     get_lblm_controls_information,
-    get_bpm_controls_information,
+    get_tcav_controls_information,
 )
 
 
@@ -442,6 +443,27 @@ class YAMLGenerator:
             return complete_bpm_data
         else:
             return {}
+
+    def extract_tcavs(self, area: Union[str, List[str]] = ["HTR"]) -> dict:
+        required_tcav_types = ["LCAV"]
+        possible_tcav_pvs = {"AREQ": "area", "PREQ": "preq"}
+        additional_metadata_data = get_tcav_metadata()
+        additional_controls_data = get_tcav_controls_information()
+        basic_tcav_data = self.extract_devices(
+            area=area,
+            required_types=required_tcav_types,
+            pv_search_terms=possible_tcav_pvs,
+        )
+        if basic_tcav_data:
+            complete_lblm_data = self.add_extra_data_to_device(
+                device_data=basic_tcav_data,
+                additional_controls_information=additional_controls_data,
+                additional_metadata=additional_metadata_data,
+            )
+            return complete_lblm_data
+        else:
+            return {}
+
 
     def extract_metadata_by_device_names(
         self, device_names=Optional[List[str]], required_fields=Optional[List[str]]
