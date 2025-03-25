@@ -1,6 +1,5 @@
 from numpy import ndarray
 import scipy.io as sio
-import matplotlib.pyplot as plt
 import os
 
 
@@ -169,12 +168,3 @@ class MatImage(object):
             self._unpack_mat_data(mat_file)
         except Exception as e:
             print("Error loading mat file {0}: {1}".format(mat_file, e))
-
-    def show_image(self):
-        if self._image_object is None:
-            raise AttributeError(
-                "image is None. please call load_mat_image before trying to show image."
-            )
-
-        plt.imshow(self._image_object.image, aspect="auto")
-        plt.show(block=False)

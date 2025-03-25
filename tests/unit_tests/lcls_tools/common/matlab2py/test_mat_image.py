@@ -55,7 +55,7 @@ class MatImageTest(unittest.TestCase):
         self.mi.load_mat_image(self.file)
         self.assertEqual(self.mi.mat_file, self.file)
         self.assertEqual(self.mi.camera_name, self.camera)
-        self.assertEqual(isinstance(self.mi.image, np.ndarray), True)
+        self.assertEqual(isinstance(self.mi.image.all(), np.ndarray), True)
         self.assertIsInstance(self.mi.image_as_list, list)
         self.assertEqual(self.mi.roi_x_n, 1392)
         self.assertEqual(self.mi.roi_y_n, 1024)
@@ -76,11 +76,6 @@ class MatImageTest(unittest.TestCase):
         self.assertEqual(self.mi.image_attn, 1)
         self.assertEqual(self.mi.is_raw, 0)
         self.assertEqual(self.mi.back, 0)
-
-    def test_show_image(self):
-        # not asserting anything here, needs to have test
-        self.mi.load_mat_image(self.file)
-        self.mi.show_image()
 
     def test_show_image_no_file(self):
         # not assserting anything here either, needs to have test
