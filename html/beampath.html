@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beam Paths &mdash; lcls-tools  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Areas" href="area.html" />
+    <link rel="prev" title="Welcome to lcls-tools’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            lcls-tools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Beam Paths</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#superconducting-beampaths">Superconducting Beampaths</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.superconducting.beampaths.SC_DASEL"><code class="docutils literal notranslate"><span class="pre">SC_DASEL()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.superconducting.beampaths.SC_DIAG0"><code class="docutils literal notranslate"><span class="pre">SC_DIAG0()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.superconducting.beampaths.SC_HXR"><code class="docutils literal notranslate"><span class="pre">SC_HXR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.superconducting.beampaths.SC_SXR"><code class="docutils literal notranslate"><span class="pre">SC_SXR()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#normalconducting-beampaths">Normalconducting Beampaths</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.normalconducting.beampaths.CU_ALINE"><code class="docutils literal notranslate"><span class="pre">CU_ALINE()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.normalconducting.beampaths.CU_HXR"><code class="docutils literal notranslate"><span class="pre">CU_HXR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.normalconducting.beampaths.CU_SXR"><code class="docutils literal notranslate"><span class="pre">CU_SXR()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#beampath">Beampath</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lcls_tools.common.devices.beampath.Beampath"><code class="docutils literal notranslate"><span class="pre">Beampath</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.beampath.Beampath.area_names"><code class="docutils literal notranslate"><span class="pre">Beampath.area_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcls_tools.common.devices.beampath.Beampath.contains_areas"><code class="docutils literal notranslate"><span class="pre">Beampath.contains_areas()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="area.html">Areas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devices.html">Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab2py.html">Matlab to Python Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lcls-tools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Beam Paths</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/beampath.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="beam-paths">
+<h1>Beam Paths<a class="headerlink" href="#beam-paths" title="Link to this heading"></a></h1>
+<section id="superconducting-beampaths">
+<h2>Superconducting Beampaths<a class="headerlink" href="#superconducting-beampaths" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">&#39;&#39;&#39;&#39; Example usage of creating the Superconducting Hard X-Ray beampath &#39;&#39;&#39;</span><span class="s1">&#39;</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">lcls</span><span class="o">-</span><span class="n">tools</span><span class="o">.</span><span class="n">superconducting</span><span class="o">.</span><span class="n">beampaths</span> <span class="kn">import</span><span class="w"> </span><span class="nn">SC_HXR</span>
+<span class="linenos"> 3</span><span class="c1"># Setup the beampath object</span>
+<span class="linenos"> 4</span><span class="n">beampath</span> <span class="o">=</span> <span class="n">SC_HXR</span><span class="p">()</span>
+<span class="linenos"> 5</span><span class="nb">print</span><span class="p">(</span><span class="n">beampath</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="c1"># Check if the areas exist in the beampath</span>
+<span class="linenos"> 7</span><span class="n">check_areas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;L0B&#39;</span><span class="p">,</span> <span class="s1">&#39;HTR&#39;</span><span class="p">,</span> <span class="s1">&#39;L2B&#39;</span><span class="p">]</span>
+<span class="linenos"> 8</span><span class="nb">print</span><span class="p">(</span><span class="n">beampath</span><span class="o">.</span><span class="n">contains_areas</span><span class="p">(</span><span class="n">check_areas</span><span class="p">))</span>
+<span class="linenos"> 9</span><span class="c1"># Get the Area object for L2B</span>
+<span class="linenos">10</span><span class="n">L0</span> <span class="o">=</span> <span class="n">beampath</span><span class="o">.</span><span class="n">areas</span><span class="p">[</span><span class="s1">&#39;L2B&#39;</span><span class="p">]</span>
+<span class="linenos">11</span><span class="c1"># Get the magnets for L2B</span>
+<span class="linenos">12</span><span class="n">L0_magnets</span> <span class="o">=</span> <span class="n">beampath</span><span class="o">.</span><span class="n">areas</span><span class="p">[</span><span class="s1">&#39;L2B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">magnets</span>
+<span class="linenos">13</span><span class="c1"># Get the screens for L2B</span>
+<span class="linenos">14</span><span class="n">L0_screens</span> <span class="o">=</span> <span class="n">beampath</span><span class="o">.</span><span class="n">areas</span><span class="p">[</span><span class="s1">&#39;L2B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">screens</span>
+</pre></div>
+</div>
+<dl class="py function" id="module-lcls_tools.superconducting.beampaths">
+<dt class="sig sig-object py" id="lcls_tools.superconducting.beampaths.SC_DASEL">
+<span class="sig-prename descclassname"><span class="pre">lcls_tools.superconducting.beampaths.</span></span><span class="sig-name descname"><span class="pre">SC_DASEL</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lcls_tools.common.devices.beampath.Beampath" title="lcls_tools.common.devices.beampath.Beampath"><span class="pre">Beampath</span></a></span></span><a class="headerlink" href="#lcls_tools.superconducting.beampaths.SC_DASEL" title="Link to this definition"></a></dt>
+<dd><p>Creates the DASEL Beampath</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lcls_tools.superconducting.beampaths.SC_DIAG0">
+<span class="sig-prename descclassname"><span class="pre">lcls_tools.superconducting.beampaths.</span></span><span class="sig-name descname"><span class="pre">SC_DIAG0</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lcls_tools.common.devices.beampath.Beampath" title="lcls_tools.common.devices.beampath.Beampath"><span class="pre">Beampath</span></a></span></span><a class="headerlink" href="#lcls_tools.superconducting.beampaths.SC_DIAG0" title="Link to this definition"></a></dt>
+<dd><p>Creates the DIAG0 Beampath</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lcls_tools.superconducting.beampaths.SC_HXR">
+<span class="sig-prename descclassname"><span class="pre">lcls_tools.superconducting.beampaths.</span></span><span class="sig-name descname"><span class="pre">SC_HXR</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lcls_tools.common.devices.beampath.Beampath" title="lcls_tools.common.devices.beampath.Beampath"><span class="pre">Beampath</span></a></span></span><a class="headerlink" href="#lcls_tools.superconducting.beampaths.SC_HXR" title="Link to this definition"></a></dt>
+<dd><p>Creates the LCLS-II Hard X-Ray Beampath</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lcls_tools.superconducting.beampaths.SC_SXR">
+<span class="sig-prename descclassname"><span class="pre">lcls_tools.superconducting.beampaths.</span></span><span class="sig-name descname"><span class="pre">SC_SXR</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lcls_tools.common.devices.beampath.Beampath" title="lcls_tools.common.devices.beampath.Beampath"><span class="pre">Beampath</span></a></span></span><a class="headerlink" href="#lcls_tools.superconducting.beampaths.SC_SXR" title="Link to this definition"></a></dt>
+<dd><p>Creates the LCLS-II Soft X-Ray Beampath</p>
+</dd></dl>
+
+<p>Below is the list of areas for each superconducting beampath</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">#############################</span>
+<span class="linenos"> 2</span><span class="c1"># Superconducting Beampaths #</span>
+<span class="linenos"> 3</span><span class="c1">#############################</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="nt">SC</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;SC</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GUNB</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L0B</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTR</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">COL0</span>
+<span class="linenos">10</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L1B</span>
+<span class="linenos">11</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BC1B</span>
+<span class="linenos">12</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">COL1</span>
+<span class="linenos">13</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L2B</span>
+<span class="linenos">14</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BC2B</span>
+<span class="linenos">15</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EMIT2</span>
+<span class="linenos">16</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L3B</span>
+<span class="linenos">17</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EXT</span>
+<span class="linenos">18</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DOG</span>
+<span class="linenos">19</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BYP</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="nt">SC_SXR</span><span class="p">:</span>
+<span class="linenos">23</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nv">*SC</span>
+<span class="linenos">24</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPS</span>
+<span class="linenos">25</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SLTS</span>
+<span class="linenos">26</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BSYS</span>
+<span class="linenos">27</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LTUS</span>
+<span class="linenos">28</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UNDS</span>
+<span class="linenos">29</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DMPS</span>
+<span class="linenos">30</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FEES</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="nt">SC_HXR</span><span class="p">:</span>
+<span class="linenos">33</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nv">*SC</span>
+<span class="linenos">34</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPH</span>
+<span class="linenos">35</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SLTH</span>
+<span class="linenos">36</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BSYH1</span>
+<span class="linenos">37</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BSYH2</span>
+<span class="linenos">38</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LTUH</span>
+<span class="linenos">39</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UNDH</span>
+<span class="linenos">40</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DMPH</span>
+<span class="linenos">41</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FEEH</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span><span class="nt">SC_BSYD</span><span class="p">:</span>
+<span class="linenos">44</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nv">*SC</span>
+<span class="linenos">45</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPD1</span>
+<span class="linenos">46</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPD2</span>
+<span class="linenos">47</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPD3</span>
+<span class="linenos">48</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SLTD</span>
+<span class="linenos">49</span>
+<span class="linenos">50</span><span class="nt">SC_DIAG0</span><span class="p">:</span>
+<span class="linenos">51</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GUNB</span>
+<span class="linenos">52</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L0B</span>
+<span class="linenos">53</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTR</span>
+<span class="linenos">54</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DIAG0</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="nt">SC_DASEL</span><span class="p">:</span>
+<span class="linenos">57</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nv">*SC</span>
+<span class="linenos">58</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPD1</span>
+<span class="linenos">59</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SPD2</span>
+<span class="linenos">60</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DASEL</span>
+<span class="linenos">61</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BSYA2</span>
+</pre></div>
+</div>
+</section>
+<section id="normalconducting-beampaths">
+<h2>Normalconducting Beampaths<a class="headerlink" href="#normalconducting-beampaths" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="sd">&#39;&#39;&#39;&#39; Example usage of creating the Normalconducting Hard X-Ray beampath &#39;&#39;&#39;</span><span class="s1">&#39;</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">lcls</span><span class="o">-</span><span class="n">tools</span><span class="o">.</span><span class="n">normalconducting</span><span class="o">.</span><span class="n">beampaths</span> <span class="kn">import</span><span class="w"> </span><span class="nn">CU_HXR</span>
+<span class="linenos"> 3</span><span class="c1"># Setup the beampath object</span>
+<span class="linenos"> 4</span><span class="n">beampath</span> <span class="o">=</span> <span class="n">CU_HXR</span><span class="p">()</span>
+<span class="linenos"> 5</span><span class="nb">print</span><span class="p">(</span><span class="n">beampath</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="c1"># Check if the areas exist in the beampath</span>
+<span class="linenos"> 7</span><span class="n">check_areas</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">,</span> <span class="s1">&#39;L1&#39;</span><span class="p">,</span> <span class="s1">&#39;L2&#39;</span><span class="p">]</span>
+<span class="linenos"> 8</span><span class="nb">print</span><span class="p">(</span><span class="n">beampath</span><span class="o">.</span><span class="n">contains_areas</span><span class="p">(</span><span class="n">check_areas</span><span class="p">))</span>
+<span class="linenos"> 9</span><span class="c1"># Get the Area object for L0</span>
+<span class="linenos">10</span><span class="n">L0</span> <span class="o">=</span> <span class="n">beampath</span><span class="o">.</span><span class="n">areas</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span>
+<span class="linenos">11</span><span class="c1"># Get the magnets for L0</span>
+<span class="linenos">12</span><span class="n">L0_magnets</span> <span class="o">=</span> <span class="n">beampath</span><span class="o">.</span><span class="n">areas</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">magnets</span>
+<span class="linenos">13</span><span class="c1"># Get the screens for L0</span>
+<span class="linenos">14</span><span class="n">L0_screens</span> <span class="o">=</span> <span class="n">beampath</span><span class="o">.</span><span class="n">areas</span><span class="p">[</span><span class="s1">&#39;L0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">screens</span>
+</pre></div>
+</div>
+<dl class="py function" id="module-lcls_tools.normalconducting.beampaths">
+<dt class="sig sig-object py" id="lcls_tools.normalconducting.beampaths.CU_ALINE">
+<span class="sig-prename descclassname"><span class="pre">lcls_tools.normalconducting.beampaths.</span></span><span class="sig-name descname"><span class="pre">CU_ALINE</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.normalconducting.beampaths.CU_ALINE" title="Link to this definition"></a></dt>
+<dd><p>Creates the LCLS ALINE Beampath</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lcls_tools.normalconducting.beampaths.CU_HXR">
+<span class="sig-prename descclassname"><span class="pre">lcls_tools.normalconducting.beampaths.</span></span><span class="sig-name descname"><span class="pre">CU_HXR</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.normalconducting.beampaths.CU_HXR" title="Link to this definition"></a></dt>
+<dd><p>Creates the LCLS Hard X-Ray Beampath</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lcls_tools.normalconducting.beampaths.CU_SXR">
+<span class="sig-prename descclassname"><span class="pre">lcls_tools.normalconducting.beampaths.</span></span><span class="sig-name descname"><span class="pre">CU_SXR</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.normalconducting.beampaths.CU_SXR" title="Link to this definition"></a></dt>
+<dd><p>Creates the LCLS Soft X-Ray Beampath</p>
+</dd></dl>
+
+<p>Below is the list of areas for each normalconducting beampath</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">##############################</span>
+<span class="linenos"> 2</span><span class="c1"># Normalconducting Beampaths #</span>
+<span class="linenos"> 3</span><span class="c1">##############################</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="nt">CU</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;CU</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GUN</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L0</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DL1</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L1</span>
+<span class="linenos">10</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BC1</span>
+<span class="linenos">11</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L2</span>
+<span class="linenos">12</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BC2</span>
+<span class="linenos">13</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">L3</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="nt">CU_HXR</span><span class="p">:</span>
+<span class="linenos">16</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nv">*CU</span>
+<span class="linenos">17</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CLTH1</span>
+<span class="linenos">18</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CLTH2</span>
+<span class="linenos">19</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BSYH1</span>
+<span class="linenos">20</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BSYH2</span>
+<span class="linenos">21</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LTUH</span>
+<span class="linenos">22</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UNDH</span>
+<span class="linenos">23</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DMPH</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="nt">CU_SXR</span><span class="p">:</span>
+<span class="linenos">26</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nv">*CU</span>
+<span class="linenos">27</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CLTS</span>
+<span class="linenos">28</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BSYS</span>
+<span class="linenos">29</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LTUS</span>
+<span class="linenos">30</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UNDS</span>
+<span class="linenos">31</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DMPS</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="nt">CU_ALINE</span><span class="p">:</span>
+<span class="linenos">34</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nv">*CU</span>
+<span class="linenos">35</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CLTH1</span>
+<span class="linenos">36</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CLTH2</span>
+<span class="linenos">37</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BSYH1</span>
+<span class="linenos">38</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BSYA1</span>
+<span class="linenos">39</span><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BSYA2</span>
+</pre></div>
+</div>
+</section>
+<section id="beampath">
+<h2>Beampath<a class="headerlink" href="#beampath" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.beampath.Beampath">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lcls_tools.common.devices.beampath.</span></span><span class="sig-name descname"><span class="pre">Beampath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">areas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Annotated</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="area.html#lcls_tools.common.devices.area.Area" title="lcls_tools.common.devices.area.Area"><span class="pre">Area</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SerializeAsAny</span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lcls_tools.common.devices.beampath.Beampath" title="Link to this definition"></a></dt>
+<dd><p>This class provides access to collections of machine areas
+in a beampath of LCLS/LCLS-II (for example: CU_SXR, or SC_HXR).
+The information for each collection is provided in YAML configuration
+files, where the areas are specified in the YAML file (beampaths.yaml).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – The name of the beampath</p></li>
+<li><p><strong>areas</strong> – A collection of Areas as a Dict (keys are area names, values are Area objects)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.beampath.Beampath.area_names">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#lcls_tools.common.devices.beampath.Beampath.area_names" title="Link to this definition"></a></dt>
+<dd><p>Get a list of area names from the beampath</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lcls_tools.common.devices.beampath.Beampath.contains_areas">
+<span class="sig-name descname"><span class="pre">contains_areas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_areas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lcls_tools.common.devices.beampath.Beampath.contains_areas" title="Link to this definition"></a></dt>
+<dd><p>Check if the areas exists within the configured beampath.
+:returns Dict[str,bool]: key = area, value = True/False</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to lcls-tools’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="area.html" class="btn btn-neutral float-right" title="Areas" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Nicole Neveu, Lisa Zacarias, Chris Garnier, Matt King.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
