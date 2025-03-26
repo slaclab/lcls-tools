@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:915:TMIT
+        x: BPMS:SPH:915:X
+        y: BPMS:SPH:915:Y
       control_name: BPMS:SPH:915
     metadata:
       area: SPH
@@ -14,6 +16,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:940:TMIT
+        x: BPMS:SPH:940:X
+        y: BPMS:SPH:940:Y
       control_name: BPMS:SPH:940
     metadata:
       area: SPH
@@ -25,6 +29,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:322:TMIT
+        x: BPMS:SPH:322:X
+        y: BPMS:SPH:322:Y
       control_name: BPMS:SPH:322
     metadata:
       area: SPH
@@ -36,6 +42,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:345:TMIT
+        x: BPMS:SPH:345:X
+        y: BPMS:SPH:345:Y
       control_name: BPMS:SPH:345
     metadata:
       area: SPH
@@ -47,6 +55,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:420:TMIT
+        x: BPMS:SPH:420:X
+        y: BPMS:SPH:420:Y
       control_name: BPMS:SPH:420
     metadata:
       area: SPH
@@ -58,6 +68,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:450:TMIT
+        x: BPMS:SPH:450:X
+        y: BPMS:SPH:450:Y
       control_name: BPMS:SPH:450
     metadata:
       area: SPH
@@ -69,6 +81,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:520:TMIT
+        x: BPMS:SPH:520:X
+        y: BPMS:SPH:520:Y
       control_name: BPMS:SPH:520
     metadata:
       area: SPH
@@ -80,6 +94,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:600:TMIT
+        x: BPMS:SPH:600:X
+        y: BPMS:SPH:600:Y
       control_name: BPMS:SPH:600
     metadata:
       area: SPH
@@ -91,6 +107,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:675:TMIT
+        x: BPMS:SPH:675:X
+        y: BPMS:SPH:675:Y
       control_name: BPMS:SPH:675
     metadata:
       area: SPH
@@ -102,6 +120,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:760:TMIT
+        x: BPMS:SPH:760:X
+        y: BPMS:SPH:760:Y
       control_name: BPMS:SPH:760
     metadata:
       area: SPH
@@ -113,6 +133,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPH:840:TMIT
+        x: BPMS:SPH:840:X
+        y: BPMS:SPH:840:Y
       control_name: BPMS:SPH:840
     metadata:
       area: SPH

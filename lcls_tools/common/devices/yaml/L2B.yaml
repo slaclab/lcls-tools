@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:0483:TMIT
+        x: BPMS:L2B:0483:X
+        y: BPMS:L2B:0483:Y
       control_name: BPMS:L2B:0483
     metadata:
       area: L2B
@@ -21,6 +23,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:0583:TMIT
+        x: BPMS:L2B:0583:X
+        y: BPMS:L2B:0583:Y
       control_name: BPMS:L2B:0583
     metadata:
       area: L2B
@@ -39,6 +43,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:0683:TMIT
+        x: BPMS:L2B:0683:X
+        y: BPMS:L2B:0683:Y
       control_name: BPMS:L2B:0683
     metadata:
       area: L2B
@@ -57,6 +63,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:0783:TMIT
+        x: BPMS:L2B:0783:X
+        y: BPMS:L2B:0783:Y
       control_name: BPMS:L2B:0783
     metadata:
       area: L2B
@@ -75,6 +83,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:0883:TMIT
+        x: BPMS:L2B:0883:X
+        y: BPMS:L2B:0883:Y
       control_name: BPMS:L2B:0883
     metadata:
       area: L2B
@@ -93,6 +103,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:0983:TMIT
+        x: BPMS:L2B:0983:X
+        y: BPMS:L2B:0983:Y
       control_name: BPMS:L2B:0983
     metadata:
       area: L2B
@@ -111,6 +123,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:1083:TMIT
+        x: BPMS:L2B:1083:X
+        y: BPMS:L2B:1083:Y
       control_name: BPMS:L2B:1083
     metadata:
       area: L2B
@@ -129,6 +143,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:1183:TMIT
+        x: BPMS:L2B:1183:X
+        y: BPMS:L2B:1183:Y
       control_name: BPMS:L2B:1183
     metadata:
       area: L2B
@@ -147,6 +163,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:1283:TMIT
+        x: BPMS:L2B:1283:X
+        y: BPMS:L2B:1283:Y
       control_name: BPMS:L2B:1283
     metadata:
       area: L2B
@@ -165,6 +183,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:1383:TMIT
+        x: BPMS:L2B:1383:X
+        y: BPMS:L2B:1383:Y
       control_name: BPMS:L2B:1383
     metadata:
       area: L2B
@@ -183,6 +203,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:1483:TMIT
+        x: BPMS:L2B:1483:X
+        y: BPMS:L2B:1483:Y
       control_name: BPMS:L2B:1483
     metadata:
       area: L2B
@@ -201,6 +223,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L2B:1583:TMIT
+        x: BPMS:L2B:1583:X
+        y: BPMS:L2B:1583:Y
       control_name: BPMS:L2B:1583
     metadata:
       area: L2B

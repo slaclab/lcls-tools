@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:EXT:351:TMIT
+        x: BPMS:EXT:351:X
+        y: BPMS:EXT:351:Y
       control_name: BPMS:EXT:351
     metadata:
       area: EXT
@@ -21,6 +23,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:EXT:748:TMIT
+        x: BPMS:EXT:748:X
+        y: BPMS:EXT:748:Y
       control_name: BPMS:EXT:748
     metadata:
       area: EXT

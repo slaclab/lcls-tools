@@ -422,6 +422,8 @@ class YAMLGenerator:
         # PV suffix as the key, the name we want to store it as in yaml file as the value
         # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
         possible_bpm_pvs = {
+            "X": "x",
+            "Y": "y",
             "TMIT": "tmit",
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }

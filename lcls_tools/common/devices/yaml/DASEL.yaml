@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DASEL:300:TMIT
+        x: BPMS:DASEL:300:X
+        y: BPMS:DASEL:300:Y
       control_name: BPMS:DASEL:300
     metadata:
       area: DASEL
@@ -14,6 +16,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DASEL:915:TMIT
+        x: BPMS:DASEL:915:X
+        y: BPMS:DASEL:915:Y
       control_name: BPMS:DASEL:915
     metadata:
       area: DASEL

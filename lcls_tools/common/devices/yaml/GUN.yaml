@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:221:TMIT
+        x: BPMS:IN20:221:X
+        y: BPMS:IN20:221:Y
       control_name: BPMS:IN20:221
     metadata:
       area: GUN

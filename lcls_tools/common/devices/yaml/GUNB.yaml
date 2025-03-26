@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:GUNB:314:TMIT
+        x: BPMS:GUNB:314:X
+        y: BPMS:GUNB:314:Y
       control_name: BPMS:GUNB:314
     metadata:
       area: GUNB
@@ -22,6 +24,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:GUNB:925:TMIT
+        x: BPMS:GUNB:925:X
+        y: BPMS:GUNB:925:Y
       control_name: BPMS:GUNB:925
     metadata:
       area: GUNB

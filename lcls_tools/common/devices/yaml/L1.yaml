@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:131:TMIT
+        x: BPMS:LI21:131:X
+        y: BPMS:LI21:131:Y
       control_name: BPMS:LI21:131
     metadata:
       area: L1
@@ -19,6 +21,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:161:TMIT
+        x: BPMS:LI21:161:X
+        y: BPMS:LI21:161:Y
       control_name: BPMS:LI21:161
     metadata:
       area: L1

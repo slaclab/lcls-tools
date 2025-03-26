@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SLTH:200:TMIT
+        x: BPMS:SLTH:200:X
+        y: BPMS:SLTH:200:Y
       control_name: BPMS:SLTH:200
     metadata:
       area: SLTH
@@ -14,6 +16,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SLTH:220:TMIT
+        x: BPMS:SLTH:220:X
+        y: BPMS:SLTH:220:Y
       control_name: BPMS:SLTH:220
     metadata:
       area: SLTH
