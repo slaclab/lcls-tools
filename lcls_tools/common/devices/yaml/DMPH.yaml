@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DMPH:693:TMIT
+        x: BPMS:DMPH:693:X
+        y: BPMS:DMPH:693:Y
       control_name: BPMS:DMPH:693
     metadata:
       area: DMPH
@@ -15,6 +17,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DMPH:502:TMIT
+        x: BPMS:DMPH:502:X
+        y: BPMS:DMPH:502:Y
       control_name: BPMS:DMPH:502
     metadata:
       area: DMPH
@@ -27,6 +31,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DMPH:325:TMIT
+        x: BPMS:DMPH:325:X
+        y: BPMS:DMPH:325:Y
       control_name: BPMS:DMPH:325
     metadata:
       area: DMPH
@@ -42,6 +48,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DMPH:381:TMIT
+        x: BPMS:DMPH:381:X
+        y: BPMS:DMPH:381:Y
       control_name: BPMS:DMPH:381
     metadata:
       area: DMPH

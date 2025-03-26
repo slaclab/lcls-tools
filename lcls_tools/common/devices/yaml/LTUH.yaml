@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:250:TMIT
+        x: BPMS:LTUH:250:X
+        y: BPMS:LTUH:250:Y
       control_name: BPMS:LTUH:250
     metadata:
       area: LTUH
@@ -18,6 +20,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:350:TMIT
+        x: BPMS:LTUH:350:X
+        y: BPMS:LTUH:350:Y
       control_name: BPMS:LTUH:350
     metadata:
       area: LTUH
@@ -33,6 +37,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:450:TMIT
+        x: BPMS:LTUH:450:X
+        y: BPMS:LTUH:450:Y
       control_name: BPMS:LTUH:450
     metadata:
       area: LTUH
@@ -48,6 +54,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:550:TMIT
+        x: BPMS:LTUH:550:X
+        y: BPMS:LTUH:550:Y
       control_name: BPMS:LTUH:550
     metadata:
       area: LTUH
@@ -63,6 +71,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:720:TMIT
+        x: BPMS:LTUH:720:X
+        y: BPMS:LTUH:720:Y
       control_name: BPMS:LTUH:720
     metadata:
       area: LTUH
@@ -78,6 +88,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:730:TMIT
+        x: BPMS:LTUH:730:X
+        y: BPMS:LTUH:730:Y
       control_name: BPMS:LTUH:730
     metadata:
       area: LTUH
@@ -93,6 +105,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:740:TMIT
+        x: BPMS:LTUH:740:X
+        y: BPMS:LTUH:740:Y
       control_name: BPMS:LTUH:740
     metadata:
       area: LTUH
@@ -108,6 +122,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:750:TMIT
+        x: BPMS:LTUH:750:X
+        y: BPMS:LTUH:750:Y
       control_name: BPMS:LTUH:750
     metadata:
       area: LTUH
@@ -123,6 +139,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:760:TMIT
+        x: BPMS:LTUH:760:X
+        y: BPMS:LTUH:760:Y
       control_name: BPMS:LTUH:760
     metadata:
       area: LTUH
@@ -138,6 +156,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:770:TMIT
+        x: BPMS:LTUH:770:X
+        y: BPMS:LTUH:770:Y
       control_name: BPMS:LTUH:770
     metadata:
       area: LTUH
@@ -153,6 +173,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:620:TMIT
+        x: BPMS:LTUH:620:X
+        y: BPMS:LTUH:620:Y
       control_name: BPMS:LTUH:620
     metadata:
       area: LTUH
@@ -168,6 +190,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:640:TMIT
+        x: BPMS:LTUH:640:X
+        y: BPMS:LTUH:640:Y
       control_name: BPMS:LTUH:640
     metadata:
       area: LTUH
@@ -183,6 +207,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:660:TMIT
+        x: BPMS:LTUH:660:X
+        y: BPMS:LTUH:660:Y
       control_name: BPMS:LTUH:660
     metadata:
       area: LTUH
@@ -198,6 +224,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:680:TMIT
+        x: BPMS:LTUH:680:X
+        y: BPMS:LTUH:680:Y
       control_name: BPMS:LTUH:680
     metadata:
       area: LTUH
@@ -213,6 +241,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:290:TMIT
+        x: BPMS:LTUH:290:X
+        y: BPMS:LTUH:290:Y
       control_name: BPMS:LTUH:290
     metadata:
       area: LTUH
@@ -228,6 +258,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:390:TMIT
+        x: BPMS:LTUH:390:X
+        y: BPMS:LTUH:390:Y
       control_name: BPMS:LTUH:390
     metadata:
       area: LTUH
@@ -243,6 +275,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:490:TMIT
+        x: BPMS:LTUH:490:X
+        y: BPMS:LTUH:490:Y
       control_name: BPMS:LTUH:490
     metadata:
       area: LTUH
@@ -258,6 +292,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:590:TMIT
+        x: BPMS:LTUH:590:X
+        y: BPMS:LTUH:590:Y
       control_name: BPMS:LTUH:590
     metadata:
       area: LTUH
@@ -273,6 +309,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:820:TMIT
+        x: BPMS:LTUH:820:X
+        y: BPMS:LTUH:820:Y
       control_name: BPMS:LTUH:820
     metadata:
       area: LTUH
@@ -288,6 +326,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:840:TMIT
+        x: BPMS:LTUH:840:X
+        y: BPMS:LTUH:840:Y
       control_name: BPMS:LTUH:840
     metadata:
       area: LTUH
@@ -303,6 +343,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:860:TMIT
+        x: BPMS:LTUH:860:X
+        y: BPMS:LTUH:860:Y
       control_name: BPMS:LTUH:860
     metadata:
       area: LTUH
@@ -318,6 +360,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:880:TMIT
+        x: BPMS:LTUH:880:X
+        y: BPMS:LTUH:880:Y
       control_name: BPMS:LTUH:880
     metadata:
       area: LTUH
@@ -333,6 +377,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:130:TMIT
+        x: BPMS:LTUH:130:X
+        y: BPMS:LTUH:130:Y
       control_name: BPMS:LTUH:130
     metadata:
       area: LTUH
@@ -348,6 +394,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:150:TMIT
+        x: BPMS:LTUH:150:X
+        y: BPMS:LTUH:150:Y
       control_name: BPMS:LTUH:150
     metadata:
       area: LTUH
@@ -363,6 +411,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:170:TMIT
+        x: BPMS:LTUH:170:X
+        y: BPMS:LTUH:170:Y
       control_name: BPMS:LTUH:170
     metadata:
       area: LTUH
@@ -378,6 +428,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:110:TMIT
+        x: BPMS:LTUH:110:X
+        y: BPMS:LTUH:110:Y
       control_name: BPMS:LTUH:110
     metadata:
       area: LTUH
@@ -393,6 +445,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:120:TMIT
+        x: BPMS:LTUH:120:X
+        y: BPMS:LTUH:120:Y
       control_name: BPMS:LTUH:120
     metadata:
       area: LTUH
@@ -408,6 +462,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:180:TMIT
+        x: BPMS:LTUH:180:X
+        y: BPMS:LTUH:180:Y
       control_name: BPMS:LTUH:180
     metadata:
       area: LTUH
@@ -423,6 +479,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:190:TMIT
+        x: BPMS:LTUH:190:X
+        y: BPMS:LTUH:190:Y
       control_name: BPMS:LTUH:190
     metadata:
       area: LTUH
@@ -438,6 +496,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:910:TMIT
+        x: BPMS:LTUH:910:X
+        y: BPMS:LTUH:910:Y
       control_name: BPMS:LTUH:910
     metadata:
       area: LTUH
@@ -453,6 +513,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LTUH:960:TMIT
+        x: BPMS:LTUH:960:X
+        y: BPMS:LTUH:960:Y
       control_name: BPMS:LTUH:960
     metadata:
       area: LTUH

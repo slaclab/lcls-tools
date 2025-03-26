@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN13:400:TMIT
+        x: BPMS:BPN13:400:X
+        y: BPMS:BPN13:400:Y
       control_name: BPMS:BPN13:400
     metadata:
       area: BYP
@@ -21,6 +23,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN14:400:TMIT
+        x: BPMS:BPN14:400:X
+        y: BPMS:BPN14:400:Y
       control_name: BPMS:BPN14:400
     metadata:
       area: BYP
@@ -39,6 +43,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN15:400:TMIT
+        x: BPMS:BPN15:400:X
+        y: BPMS:BPN15:400:Y
       control_name: BPMS:BPN15:400
     metadata:
       area: BYP
@@ -74,6 +80,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN17:400:TMIT
+        x: BPMS:BPN17:400:X
+        y: BPMS:BPN17:400:Y
       control_name: BPMS:BPN17:400
     metadata:
       area: BYP
@@ -92,6 +100,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN18:400:TMIT
+        x: BPMS:BPN18:400:X
+        y: BPMS:BPN18:400:Y
       control_name: BPMS:BPN18:400
     metadata:
       area: BYP
@@ -110,6 +120,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN19:400:TMIT
+        x: BPMS:BPN19:400:X
+        y: BPMS:BPN19:400:Y
       control_name: BPMS:BPN19:400
     metadata:
       area: BYP
@@ -128,6 +140,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN20:400:TMIT
+        x: BPMS:BPN20:400:X
+        y: BPMS:BPN20:400:Y
       control_name: BPMS:BPN20:400
     metadata:
       area: BYP
@@ -146,6 +160,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN21:400:TMIT
+        x: BPMS:BPN21:400:X
+        y: BPMS:BPN21:400:Y
       control_name: BPMS:BPN21:400
     metadata:
       area: BYP
@@ -164,6 +180,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN22:400:TMIT
+        x: BPMS:BPN22:400:X
+        y: BPMS:BPN22:400:Y
       control_name: BPMS:BPN22:400
     metadata:
       area: BYP
@@ -182,6 +200,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN23:400:TMIT
+        x: BPMS:BPN23:400:X
+        y: BPMS:BPN23:400:Y
       control_name: BPMS:BPN23:400
     metadata:
       area: BYP
@@ -200,6 +220,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN24:400:TMIT
+        x: BPMS:BPN24:400:X
+        y: BPMS:BPN24:400:Y
       control_name: BPMS:BPN24:400
     metadata:
       area: BYP
@@ -218,6 +240,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN25:400:TMIT
+        x: BPMS:BPN25:400:X
+        y: BPMS:BPN25:400:Y
       control_name: BPMS:BPN25:400
     metadata:
       area: BYP
@@ -236,6 +260,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN26:400:TMIT
+        x: BPMS:BPN26:400:X
+        y: BPMS:BPN26:400:Y
       control_name: BPMS:BPN26:400
     metadata:
       area: BYP
@@ -254,6 +280,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN27:400:TMIT
+        x: BPMS:BPN27:400:X
+        y: BPMS:BPN27:400:Y
       control_name: BPMS:BPN27:400
     metadata:
       area: BYP
@@ -272,6 +300,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN28:400:TMIT
+        x: BPMS:BPN28:400:X
+        y: BPMS:BPN28:400:Y
       control_name: BPMS:BPN28:400
     metadata:
       area: BYP
@@ -290,6 +320,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BPN28:200:TMIT
+        x: BPMS:BPN28:200:X
+        y: BPMS:BPN28:200:Y
       control_name: BPMS:BPN28:200
     metadata:
       area: BYP

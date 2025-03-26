@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:COL1:120:TMIT
+        x: BPMS:COL1:120:X
+        y: BPMS:COL1:120:Y
       control_name: BPMS:COL1:120
     metadata:
       area: COL1
@@ -21,6 +23,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:COL1:260:TMIT
+        x: BPMS:COL1:260:X
+        y: BPMS:COL1:260:Y
       control_name: BPMS:COL1:260
     metadata:
       area: COL1
@@ -39,6 +43,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:COL1:280:TMIT
+        x: BPMS:COL1:280:X
+        y: BPMS:COL1:280:Y
       control_name: BPMS:COL1:280
     metadata:
       area: COL1
@@ -57,6 +63,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:COL1:320:TMIT
+        x: BPMS:COL1:320:X
+        y: BPMS:COL1:320:Y
       control_name: BPMS:COL1:320
     metadata:
       area: COL1
@@ -109,6 +117,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:COL1:560:TMIT
+        x: BPMS:COL1:560:X
+        y: BPMS:COL1:560:Y
       control_name: BPMS:COL1:560
     metadata:
       area: COL1
@@ -127,6 +137,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:COL1:640:TMIT
+        x: BPMS:COL1:640:X
+        y: BPMS:COL1:640:Y
       control_name: BPMS:COL1:640
     metadata:
       area: COL1
@@ -179,6 +191,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:COL1:880:TMIT
+        x: BPMS:COL1:880:X
+        y: BPMS:COL1:880:Y
       control_name: BPMS:COL1:880
     metadata:
       area: COL1
@@ -197,6 +211,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:COL1:960:TMIT
+        x: BPMS:COL1:960:X
+        y: BPMS:COL1:960:Y
       control_name: BPMS:COL1:960
     metadata:
       area: COL1
