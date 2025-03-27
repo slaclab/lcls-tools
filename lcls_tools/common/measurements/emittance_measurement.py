@@ -173,7 +173,6 @@ class QuadScanEmittance(Measurement):
     energy: float
     magnet: Magnet
     beamsize_measurement: Measurement
-    beamsize_measurement: SerializeAsAny[Measurement]
     n_measurement_shots: PositiveInt = 1
     _info: Optional[list] = []
 
