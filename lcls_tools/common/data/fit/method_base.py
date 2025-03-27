@@ -3,15 +3,15 @@ from typing import Optional
 
 import numpy as np
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from scipy.stats import rv_continuous
 
 
 class Parameter(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     bounds: list
-    initial_value: float = Field(None, exclude=True)
-    prior: rv_continuous = Field(None, exclude=True)
+    initial_value: float = None
+    prior: rv_continuous = None
 
 
 class ModelParameters(BaseModel):

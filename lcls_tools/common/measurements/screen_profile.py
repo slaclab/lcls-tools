@@ -4,7 +4,6 @@ from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.image.processing import ImageProcessor
 from lcls_tools.common.measurements.measurement import Measurement
-<<<<<<< HEAD
 from pydantic import (
     ConfigDict,
     SerializeAsAny,
@@ -44,10 +43,6 @@ class ScreenBeamProfileMeasurementResult(lcls_tools.common.BaseModel):
     metadata: SerializeAsAny[Any]
 
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid")
-=======
-from lcls_tools.common.data.saver import H5Saver
-from pydantic import ConfigDict, SerializeAsAny, field_serializer, field_validator
->>>>>>> 98d27f7 (add common class for saving to h5)
 
 
 class ScreenBeamProfileMeasurement(Measurement):
@@ -75,21 +70,6 @@ class ScreenBeamProfileMeasurement(Measurement):
     image_processor: Optional[ImageProcessor] = ImageProcessor()
     beam_fit: ImageFit = ImageProjectionFit()
     fit_profile: bool = True
-    save_data: bool = True
-    saver: SerializeAsAny[H5Saver] = H5Saver()
-    filepath: str = "beam_profile.h5" # TODO: adjust
-
-    @field_serializer("beam_fit")
-    def ser_fld(self, ele, _info):
-        return {"type": ele.__class__.__name__} | ele.model_dump()
-
-    @field_validator("beam_fit", mode="before")
-    def validate_beam_fit(cls, v, info):
-        if isinstance(v, ImageFit):
-            return v
-        elif isinstance(v, dict):
-            class_ = globals()[v.pop("type")]
-            return class_(**v)
 
     def measure(self, n_shots: int = 1) -> dict:
         """
