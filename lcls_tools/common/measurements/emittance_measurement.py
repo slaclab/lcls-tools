@@ -171,6 +171,7 @@ class QuadScanEmittance(Measurement):
     """
 
     energy: float
+    scan_values: list[float]
     magnet: Magnet
     beamsize_measurement: Measurement
     n_measurement_shots: PositiveInt = 1
