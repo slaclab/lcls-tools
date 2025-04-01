@@ -16,6 +16,7 @@ from lcls_tools.common.devices.yaml.controls_information import (
     get_screen_controls_information,
     get_wire_controls_information,
     get_lblm_controls_information,
+    get_bpm_controls_information,
     get_tcav_controls_information,
 )
 

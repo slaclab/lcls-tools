@@ -81,4 +81,4 @@ class YAMLWriter:
 if __name__ == "__main__":
     writer = YAMLWriter()
     areas = writer.areas
-    [writer.write_yaml_file(area) for area in areas if area == 'DIAG0']
+    [writer.write_yaml_file(area) for area in areas]
