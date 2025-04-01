@@ -444,7 +444,7 @@ class YAMLGenerator:
         else:
             return {}
 
-    def extract_tcavs(self, area: Union[str, List[str]] = ["HTR"]) -> dict:
+    def extract_tcavs(self, area: Union[str, List[str]] = ["DIAG0"]) -> dict:
         required_tcav_types = ["LCAV"]
         possible_tcav_pvs = {"AREQ": "area", "PREQ": "preq"}
         additional_metadata_data = get_tcav_metadata()
@@ -455,12 +455,12 @@ class YAMLGenerator:
             pv_search_terms=possible_tcav_pvs,
         )
         if basic_tcav_data:
-            complete_lblm_data = self.add_extra_data_to_device(
+            complete_tcav_data = self.add_extra_data_to_device(
                 device_data=basic_tcav_data,
                 additional_controls_information=additional_controls_data,
                 additional_metadata=additional_metadata_data,
             )
-            return complete_lblm_data
+            return complete_tcav_data
         else:
             return {}
 
