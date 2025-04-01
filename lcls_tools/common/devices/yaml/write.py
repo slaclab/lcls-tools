@@ -58,7 +58,7 @@ class YAMLWriter:
             area=area,
         )
         if tcavs:
-            file_contents["tcavs"] = bpms
+            file_contents["tcavs"] = tcavs
 
         if file_contents:
             return file_contents
@@ -81,4 +81,4 @@ class YAMLWriter:
 if __name__ == "__main__":
     writer = YAMLWriter()
     areas = writer.areas
-    [writer.write_yaml_file(area) for area in areas]
+    [writer.write_yaml_file(area) for area in areas if area == 'DIAG0']

@@ -79,7 +79,7 @@ def get_bpm_controls_information(bpm_names: List[str] = None):
     return {}
 
 
-def get_tcav_metadata(tcav_names: List[str] = []):
+def get_tcav_controls_information(tcav_names: List[str] = []):
     # return a data structure of the form:
     # {
     #  lblm-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
