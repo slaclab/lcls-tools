@@ -636,6 +636,19 @@ screens:
       - SC_DIAG0
       sum_l_meters: 61.871
       type: PROF
+tcavs:
+  STCAV2:
+    controls_information:
+      PVs:
+        area: TCAV:DIAG0:11:AREQ
+        preq: TCAV:DIAG0:11:PREQ
+      control_name: TCAV:DIAG0:11
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 53.313
+      type: LCAV
 wires:
   WSDG01:
     controls_information:

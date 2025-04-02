@@ -176,21 +176,31 @@ class YAMLGenerator:
         area: Union[str, List[str]],
         required_types=Optional[List[str]],
         pv_search_terms=Optional[List[str]],
+        **kwargs_additional_constraints
     ):
+
         if not isinstance(area, list):
             machine_areas = [area]
         else:
             machine_areas = area
         yaml_devices = {}
+        required_fields = self._required_fields + list(kwargs_additional_constraints.keys())
         elements = self._filter_elements_by_fields(
-            required_fields=self._required_fields
+            required_fields=required_fields
         )
+        
         for _area in machine_areas:
             device_elements = [
-                element
-                for element in elements
-                if element["Keyword"] in required_types and element["Area"] == _area
+            element
+            for element in elements
+            if element["Keyword"] in required_types
+            and element["Area"] == _area
+            and all(
+                element.get(key) == value for key, value in kwargs_additional_constraints.items()
+            )
             ]
+           
+            
         # Must have passed an area that does not exist or we don't have that device in this area!
         if len(device_elements) < 1:
             print(f"No devices of types {required_types} found in area {area}")
@@ -447,13 +457,17 @@ class YAMLGenerator:
 
     def extract_tcavs(self, area: Union[str, List[str]] = ["DIAG0"]) -> dict:
         required_tcav_types = ["LCAV"]
+        additional_filter_constraints = {"Engineering Name" : "TRANS_DEFL"}
+        # add pvs we care about
         possible_tcav_pvs = {"AREQ": "area", "PREQ": "preq"}
+        # add fields we care about for additional metadata
         additional_metadata_data = get_tcav_metadata()
         additional_controls_data = get_tcav_controls_information()
         basic_tcav_data = self.extract_devices(
             area=area,
             required_types=required_tcav_types,
             pv_search_terms=possible_tcav_pvs,
+            **additional_filter_constraints
         )
         if basic_tcav_data:
             complete_tcav_data = self.add_extra_data_to_device(
