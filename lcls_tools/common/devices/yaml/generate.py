@@ -184,11 +184,13 @@ class YAMLGenerator:
         else:
             machine_areas = area
         yaml_devices = {}
-        required_fields = self._required_fields + list(kwargs_additional_constraints.keys())
+        # duplicate fields could cause issues, should take the set,
+        # then convert back? does ordering matter?
+        required_fields = ( self._required_fields + 
+                           list(kwargs_additional_constraints.keys()) )
         elements = self._filter_elements_by_fields(
             required_fields=required_fields
         )
-        
         for _area in machine_areas:
             device_elements = [
             element
