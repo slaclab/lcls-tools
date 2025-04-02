@@ -178,7 +178,6 @@ class YAMLGenerator:
         pv_search_terms=Optional[List[str]],
         **kwargs_additional_constraints
     ):
-
         if not isinstance(area, list):
             machine_areas = [area]
         else:
@@ -186,23 +185,24 @@ class YAMLGenerator:
         yaml_devices = {}
         # duplicate fields could cause issues, should take the set,
         # then convert back? does ordering matter?
-        required_fields = ( self._required_fields + 
-                           list(kwargs_additional_constraints.keys()) )
+        required_fields = (self._required_fields + 
+                           list(kwargs_additional_constraints.keys()))
         elements = self._filter_elements_by_fields(
             required_fields=required_fields
         )
         for _area in machine_areas:
             device_elements = [
-            element
-            for element in elements
-            if element["Keyword"] in required_types
-            and element["Area"] == _area
-            and all(
-                element.get(key) == value for key, value in kwargs_additional_constraints.items()
-            )
+                element
+                for element in elements
+                if (
+                    element["Keyword"] in required_types
+                    and element["Area"] == _area
+                    and all(
+                        element.get(key) == value
+                        for key, value in kwargs_additional_constraints.items()
+                    )
+                )
             ]
-           
-            
         # Must have passed an area that does not exist or we don't have that device in this area!
         if len(device_elements) < 1:
             print(f"No devices of types {required_types} found in area {area}")
@@ -459,7 +459,7 @@ class YAMLGenerator:
 
     def extract_tcavs(self, area: Union[str, List[str]] = ["DIAG0"]) -> dict:
         required_tcav_types = ["LCAV"]
-        additional_filter_constraints = {"Engineering Name" : "TRANS_DEFL"}
+        additional_filter_constraints = {"Engineering Name": "TRANS_DEFL"}
         # add pvs we care about
         possible_tcav_pvs = {"AREQ": "area", "PREQ": "preq"}
         # add fields we care about for additional metadata
