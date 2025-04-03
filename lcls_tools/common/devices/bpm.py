@@ -21,6 +21,8 @@ EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
 class BPMPVSet(PVSet):
+    x: PV
+    y: PV
     tmit: PV
 
     def __init__(self, **kwargs):
@@ -52,6 +54,16 @@ class BPM(Device):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+    @property
+    def x(self):
+        """Get TMIT value"""
+        return self.controls_information.PVs.x.get()
+
+    @property
+    def y(self):
+        """Get TMIT value"""
+        return self.controls_information.PVs.y.get()
 
     @property
     def tmit(self):
