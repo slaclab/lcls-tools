@@ -60,10 +60,18 @@ class BPM(Device):
         """Get TMIT value"""
         return self.controls_information.PVs.x.get()
 
+    def x_buffer(self, buffer):
+        """Retrieve TMIT signal data from timing buffer"""
+        return buffer.get_buffer_data(self.controls_information.PVs.x)
+
     @property
     def y(self):
         """Get TMIT value"""
         return self.controls_information.PVs.y.get()
+
+    def y_buffer(self, buffer):
+        """Retrieve TMIT signal data from timing buffer"""
+        return buffer.get_buffer_data(self.controls_information.PVs.y)
 
     @property
     def tmit(self):
@@ -72,7 +80,7 @@ class BPM(Device):
 
     def tmit_buffer(self, buffer):
         """Retrieve TMIT signal data from timing buffer"""
-        return buffer.get_buffer_data(f"{self.controls_information.control_name}:TMIT")
+        return buffer.get_buffer_data(self.controls_information.PVs.tmit)
 
 
 class BPMCollection(BaseModel):
