@@ -1,5 +1,6 @@
 from datetime import datetime
 from pydantic import (
+    BaseModel,
     SerializeAsAny,
     field_validator,
     conint,
@@ -17,7 +18,6 @@ from lcls_tools.common.devices.device import (
     PVSet,
 )
 from epics import PV
-from lcls_tools.common import BaseModel
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
