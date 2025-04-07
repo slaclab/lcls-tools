@@ -145,7 +145,6 @@ def create_lblm(
 
 def create_bpm(area: str = None, name: str = None) -> Union[None, BPM, BPMCollection]:
     device_data = _device_data(area=area, device_type="bpms", name=name)
-    print(device_data)
     if not device_data:
         return None
     if name:
