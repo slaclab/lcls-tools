@@ -63,6 +63,7 @@ class WirePVSet(PVSet):
     initialize: PV
     initialize_status: PV
     motor: PV
+    motor_rbv: PV
     position: PV
     retract: PV
     scan_pulses: PV
@@ -95,22 +96,9 @@ class WirePVSet(PVSet):
 
 class WireControlInformation(ControlInformation):
     PVs: SerializeAsAny[WirePVSet]
-    # _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
 
     def __init__(self, *args, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
-        # Get possible options for wire motr PV, empty dict by default.
-
-    #     options = self.PVs.position.get_ctrlvars(timeout=1)
-    #     if "enum_strs" in options:
-    #         [
-    #             self._ctrl_options.update({option: i})
-    #             for i, option in enumerate(options["enum_strs"])
-    #         ]
-
-    # @property
-    # def ctrl_options(self):
-    #     return self._ctrl_options
 
 
 class WireMetadata(Metadata):
@@ -190,11 +178,20 @@ class Wire(Device):
     def motor(self):
         """Returns the readback from the MOTR PV"""
         return self.controls_information.PVs.motor.get()
-
+    
+    @property
+    def motor_rbv(self):
+        """Returns the .RBV from the MOTR PV"""
+        return self.controls_information.PVs.motor_rbv.get()
+    
     @property
     def position(self):
-        """Returns the readback value from the MOTR PV."""
-        return self.controls_information.PVs.motor.get()
+        """Returns the readback value from the POSN PV."""
+        return self.controls_information.PVs.position.get()
+    
+    def position_buffer(self, buffer):
+        return buffer.get_data_buffer(
+            self.controls_information.PVs.position.pvname)
 
     @position.setter
     @check_state
