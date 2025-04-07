@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BSYH:445:TMIT
+        x: BPMS:BSYH:445:X
+        y: BPMS:BSYH:445:Y
       control_name: BPMS:BSYH:445
     metadata:
       area: BSYH
@@ -19,6 +21,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BSYH:465:TMIT
+        x: BPMS:BSYH:465:X
+        y: BPMS:BSYH:465:Y
       control_name: BPMS:BSYH:465
     metadata:
       area: BSYH
@@ -35,6 +39,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BSYH:640:TMIT
+        x: BPMS:BSYH:640:X
+        y: BPMS:BSYH:640:Y
       control_name: BPMS:BSYH:640
     metadata:
       area: BSYH
@@ -50,6 +56,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BSYH:735:TMIT
+        x: BPMS:BSYH:735:X
+        y: BPMS:BSYH:735:Y
       control_name: BPMS:BSYH:735
     metadata:
       area: BSYH
@@ -65,6 +73,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BSYH:910:TMIT
+        x: BPMS:BSYH:910:X
+        y: BPMS:BSYH:910:Y
       control_name: BPMS:BSYH:910
     metadata:
       area: BSYH

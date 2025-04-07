@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:401:TMIT
+        x: BPMS:LI21:401:X
+        y: BPMS:LI21:401:Y
       control_name: BPMS:LI21:401
     metadata:
       area: L2
@@ -19,6 +21,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:501:TMIT
+        x: BPMS:LI21:501:X
+        y: BPMS:LI21:501:Y
       control_name: BPMS:LI21:501
     metadata:
       area: L2
@@ -35,6 +39,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:601:TMIT
+        x: BPMS:LI21:601:X
+        y: BPMS:LI21:601:Y
       control_name: BPMS:LI21:601
     metadata:
       area: L2
@@ -51,6 +57,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:701:TMIT
+        x: BPMS:LI21:701:X
+        y: BPMS:LI21:701:Y
       control_name: BPMS:LI21:701
     metadata:
       area: L2
@@ -67,6 +75,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:801:TMIT
+        x: BPMS:LI21:801:X
+        y: BPMS:LI21:801:Y
       control_name: BPMS:LI21:801
     metadata:
       area: L2
@@ -83,6 +93,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:901:TMIT
+        x: BPMS:LI21:901:X
+        y: BPMS:LI21:901:Y
       control_name: BPMS:LI21:901
     metadata:
       area: L2
@@ -99,6 +111,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI22:201:TMIT
+        x: BPMS:LI22:201:X
+        y: BPMS:LI22:201:Y
       control_name: BPMS:LI22:201
     metadata:
       area: L2
@@ -115,6 +129,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI22:301:TMIT
+        x: BPMS:LI22:301:X
+        y: BPMS:LI22:301:Y
       control_name: BPMS:LI22:301
     metadata:
       area: L2
@@ -131,6 +147,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI22:401:TMIT
+        x: BPMS:LI22:401:X
+        y: BPMS:LI22:401:Y
       control_name: BPMS:LI22:401
     metadata:
       area: L2
@@ -147,6 +165,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI22:501:TMIT
+        x: BPMS:LI22:501:X
+        y: BPMS:LI22:501:Y
       control_name: BPMS:LI22:501
     metadata:
       area: L2
@@ -163,6 +183,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI22:601:TMIT
+        x: BPMS:LI22:601:X
+        y: BPMS:LI22:601:Y
       control_name: BPMS:LI22:601
     metadata:
       area: L2
@@ -179,6 +201,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI22:701:TMIT
+        x: BPMS:LI22:701:X
+        y: BPMS:LI22:701:Y
       control_name: BPMS:LI22:701
     metadata:
       area: L2
@@ -195,6 +219,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI22:801:TMIT
+        x: BPMS:LI22:801:X
+        y: BPMS:LI22:801:Y
       control_name: BPMS:LI22:801
     metadata:
       area: L2
@@ -211,6 +237,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI22:901:TMIT
+        x: BPMS:LI22:901:X
+        y: BPMS:LI22:901:Y
       control_name: BPMS:LI22:901
     metadata:
       area: L2
@@ -227,6 +255,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI23:201:TMIT
+        x: BPMS:LI23:201:X
+        y: BPMS:LI23:201:Y
       control_name: BPMS:LI23:201
     metadata:
       area: L2
@@ -243,6 +273,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI23:301:TMIT
+        x: BPMS:LI23:301:X
+        y: BPMS:LI23:301:Y
       control_name: BPMS:LI23:301
     metadata:
       area: L2
@@ -259,6 +291,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI23:401:TMIT
+        x: BPMS:LI23:401:X
+        y: BPMS:LI23:401:Y
       control_name: BPMS:LI23:401
     metadata:
       area: L2
@@ -275,6 +309,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI23:501:TMIT
+        x: BPMS:LI23:501:X
+        y: BPMS:LI23:501:Y
       control_name: BPMS:LI23:501
     metadata:
       area: L2
@@ -291,6 +327,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI23:601:TMIT
+        x: BPMS:LI23:601:X
+        y: BPMS:LI23:601:Y
       control_name: BPMS:LI23:601
     metadata:
       area: L2
@@ -307,6 +345,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI23:701:TMIT
+        x: BPMS:LI23:701:X
+        y: BPMS:LI23:701:Y
       control_name: BPMS:LI23:701
     metadata:
       area: L2
@@ -323,6 +363,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI23:801:TMIT
+        x: BPMS:LI23:801:X
+        y: BPMS:LI23:801:Y
       control_name: BPMS:LI23:801
     metadata:
       area: L2
@@ -339,6 +381,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI23:901:TMIT
+        x: BPMS:LI23:901:X
+        y: BPMS:LI23:901:Y
       control_name: BPMS:LI23:901
     metadata:
       area: L2
@@ -355,6 +399,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI24:201:TMIT
+        x: BPMS:LI24:201:X
+        y: BPMS:LI24:201:Y
       control_name: BPMS:LI24:201
     metadata:
       area: L2
@@ -371,6 +417,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI24:301:TMIT
+        x: BPMS:LI24:301:X
+        y: BPMS:LI24:301:Y
       control_name: BPMS:LI24:301
     metadata:
       area: L2
@@ -387,6 +435,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI24:401:TMIT
+        x: BPMS:LI24:401:X
+        y: BPMS:LI24:401:Y
       control_name: BPMS:LI24:401
     metadata:
       area: L2
@@ -403,6 +453,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI24:501:TMIT
+        x: BPMS:LI24:501:X
+        y: BPMS:LI24:501:Y
       control_name: BPMS:LI24:501
     metadata:
       area: L2
@@ -419,6 +471,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI24:601:TMIT
+        x: BPMS:LI24:601:X
+        y: BPMS:LI24:601:Y
       control_name: BPMS:LI24:601
     metadata:
       area: L2

@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SLTS:430:TMIT
+        x: BPMS:SLTS:430:X
+        y: BPMS:SLTS:430:Y
       control_name: BPMS:SLTS:430
     metadata:
       area: SLTS
@@ -18,6 +20,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SLTS:460:TMIT
+        x: BPMS:SLTS:460:X
+        y: BPMS:SLTS:460:Y
       control_name: BPMS:SLTS:460
     metadata:
       area: SLTS
@@ -33,6 +37,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SLTS:150:TMIT
+        x: BPMS:SLTS:150:X
+        y: BPMS:SLTS:150:Y
       control_name: BPMS:SLTS:150
     metadata:
       area: SLTS
