@@ -72,7 +72,7 @@ class LBLM(Device):
     def fast_buffer(self, buffer):
         """Retrieve fast signal data from timing buffer"""
         return buffer.get_data_buffer(
-            f"{self.controls_information.control_name}FAST")
+            f"{self.controls_information.control_name}:FAST")
 
     @property
     def i0_loss(self):
