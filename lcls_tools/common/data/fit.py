@@ -47,7 +47,6 @@ def super_gaussian(x, y):
 
 def asymmetrical_super_gaussian(x, y):
     def gauss(x, mu, sigma, amp, A, n):
-        A = numpy.sign(A) * min(1 - 1e-10, abs(A))
         skew = 1 + numpy.sign(x - mu) * A
         exp = abs((x - mu) / skew / math.sqrt(2) / sigma)
         exp = -(exp**n)
