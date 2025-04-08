@@ -176,17 +176,17 @@ class Wire(Device):
     def motor(self):
         """Returns the readback from the MOTR PV"""
         return self.controls_information.PVs.motor.get()
-    
+
     @property
     def motor_rbv(self):
         """Returns the .RBV from the MOTR PV"""
         return self.controls_information.PVs.motor_rbv.get()
-    
+
     @property
     def position(self):
         """Returns the readback value from the POSN PV."""
         return self.controls_information.PVs.position.get()
-    
+
     def position_buffer(self, buffer):
         return buffer.get_data_buffer(
             self.controls_information.PVs.position.pvname)
