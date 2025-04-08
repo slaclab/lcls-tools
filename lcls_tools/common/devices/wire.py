@@ -102,9 +102,7 @@ class WireControlInformation(ControlInformation):
 
 
 class WireMetadata(Metadata):
-    # material: Optional[str] = None
-    # sum_l: Optional[PositiveFloat] = None
-    # TODO: Add LBLM and BPM infomration here?
+    lblms: list
     # TODO: Add info on locations for X, Y, U wires
 
     def __init__(self, **kwargs):
