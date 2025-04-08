@@ -98,7 +98,7 @@ class TMITLoss(Measurement):
             try:
                 bpm_data = bpm.tmit_buffer(my_buffer)
                 data[f"{element}"] = bpm_data
-            except BufferError:
+            except (TypeError, BufferError):
                 data[f"{element}"] = None
 
         df = pd.DataFrame(data)
