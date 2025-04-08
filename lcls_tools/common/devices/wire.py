@@ -191,15 +191,6 @@ class Wire(Device):
         return buffer.get_data_buffer(
             f"{self.controls_information.control_name}:POSN")
 
-    @position.setter
-    @check_state
-    def position(self, val: int) -> None:
-        try:
-            IntegerModel(value=val)
-            self.controls_information.PVs.position.put(value=val)
-        except ValidationError as e:
-            print("Position value must be an int:", e)
-
     def retract(self):
         """Retracts the wire scanner"""
         self.controls_information.PVs.retract.put(value=1)
