@@ -71,7 +71,7 @@ class LBLM(Device):
 
     def fast_buffer(self, buffer):
         """Retrieve fast signal data from timing buffer"""
-        return buffer.get_buffer_data(
+        return buffer.get_data_buffer(
             f"{self.controls_information.control_name}FAST")
 
     @property
@@ -112,12 +112,12 @@ class LBLM(Device):
 
     def i0_loss_buffer(self, buffer):
         """Retrieve I0 Loss data from timing buffer"""
-        return buffer.get_buffer_data(
+        return buffer.get_data_buffer(
             self.controls_information.PVs.i0_loss.pvname)
 
     def gated_integral_buffer(self, buffer):
         """Get Gated Integral data from timing buffer"""
-        return buffer.get_buffer_data(
+        return buffer.get_data_buffer(
             self.controls_information.PVs.gated_integral.pvname)
 
 
