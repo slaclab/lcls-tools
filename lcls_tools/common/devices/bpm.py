@@ -60,7 +60,7 @@ class BPM(Device):
 
     def tmit_buffer(self, buffer):
         """Retrieve TMIT signal data from timing buffer"""
-        return buffer.get_buffer_data(f"{self.controls_information.control_name}:TMIT")
+        return buffer.get_data_buffer(f"{self.controls_information.control_name}:TMIT")
 
 
 class BPMCollection(BaseModel):

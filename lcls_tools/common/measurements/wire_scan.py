@@ -144,7 +144,7 @@ class WireBeamProfileMeasurement(Measurement):
         # Wait briefly before checking buffer 'ready'
         time.sleep(0.1)
 
-    def get_buffer_data(self, my_wire, devices, beampath, my_buffer):
+    def get_bsa_data(self, my_wire, devices, beampath, my_buffer):
         """
         Collects wire scan and detector data after buffer completes.
 
@@ -173,7 +173,7 @@ class WireBeamProfileMeasurement(Measurement):
                           'SPD', 'LTUH', 'LTUS']
         if my_wire.area in tmitloss_areas:
             tl = TMITLoss(my_buffer)
-            data['TMITLOSS'] = tl.measure()
+            data['TMITLOSS'] = tl.measure(beampath=beampath, region=my_wire.area)
 
         # Release EDEF/BSA
         my_buffer.release()
