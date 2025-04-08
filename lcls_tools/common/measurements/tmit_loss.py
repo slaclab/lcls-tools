@@ -270,7 +270,7 @@ class TMITLoss(Measurement):
         idx_before, idx_after = self.get_bpm_idx(region, bpms_devices)
         bpm_objs = self.create_bpms(bpms_elements)
 
-        data = self.get_bpm_data(bpm_objs, self.my_buffer)
+        data = self.get_bpm_data(bpm_objs, self._my_buffer)
 
         tmit_loss = self.calc_tmit_loss(data, idx_before, idx_after)
         return tmit_loss
