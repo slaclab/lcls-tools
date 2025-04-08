@@ -10,6 +10,7 @@ import lcls_tools
 from pydantic import (
     ConfigDict,
     SerializeAsAny,
+    BaseModel
 )
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
@@ -30,7 +31,7 @@ class WireBeamProfileMeasurement(Measurement):
     name: str = "beam_profile"
     device: Wire
     beampath: str
-    beam_fit: ProjectionFit
+    beam_fit: BaseModel = ProjectionFit
     fit_profile: bool = True
 
     def measure(self, beampath, my_wire) -> dict:
@@ -67,7 +68,7 @@ class WireBeamProfileMeasurement(Measurement):
         self.scan_with_wire(my_wire, my_buffer)
 
         # Get position and detector data from the buffer
-        data = self.get_buffer_data(my_wire, devices, beampath, my_buffer)
+        data = self.get_bsa_data(my_wire, devices, beampath, my_buffer)
 
         # Determine the profile ranges by index
         idxs = self.get_profile_ranges(my_wire, data)
