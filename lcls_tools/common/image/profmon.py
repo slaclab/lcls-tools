@@ -12,7 +12,7 @@ curve_dict = {
 def profile_stat(x, profile, curve="gaussian"):
     fit = curve_dict[curve]
     params = fit(x, profile)
-    stat = {"centroid": params["mu"], "rms_size": params["sigma"]}
+    stat = {"centroid": params["mu"], "rms_size": params["sigma"], "params": params}
     return stat
 
 
@@ -27,5 +27,7 @@ def image_stat(image, x, y, curve="gaussian"):
         "centroid": centroid,
         "rms_size": rms_size,
         "total_intensity": image.sum(),
+        "params_x": x_stat["params"],
+        "params_y": y_stat["params"],
     }
     return stat
