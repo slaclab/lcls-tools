@@ -461,7 +461,13 @@ class YAMLGenerator:
         required_tcav_types = ["LCAV"]
         additional_filter_constraints = {"Engineering Name": "TRANS_DEFL"}
         # add pvs we care about
-        possible_tcav_pvs = {"AREQ": "area", "PREQ": "preq"}
+        possible_tcav_pvs = {"AREQ": "amp_set",
+                             "PREQ": "phase_set",
+                             "RF_ENABLE": "rf_enable",
+                             "AFBENB": "amp_fb",
+                             "PFBENB": "pha_fb",
+                             "MODECFG": "mode_config"
+                             }
         # add fields we care about for additional metadata
         additional_metadata_data = get_tcav_metadata()
         additional_controls_data = get_tcav_controls_information()
