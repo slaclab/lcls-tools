@@ -97,9 +97,12 @@ class TMITLoss(Measurement):
         for element, bpm in bpm_obj_dict.items():
             try:
                 bpm_data = bpm.tmit_buffer(my_buffer)
-                data[f"{element}"] = bpm_data
-            except (TypeError, BufferError):
-                data[f"{element}"] = None
+                if len(bpm_data) == 0:
+                    pass
+                else:
+                    data[f"{element}"] = bpm_data
+            except (BufferError, TypeError):
+                pass
 
         df = pd.DataFrame(data)
         return df.T

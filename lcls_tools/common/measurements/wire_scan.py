@@ -15,6 +15,7 @@ from pydantic import (
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
+import pandas as pd
 
 
 class WireBeamProfileMeasurementResult(lcls_tools.common.BaseModel):
@@ -74,14 +75,14 @@ class WireBeamProfileMeasurement(Measurement):
         idxs = self.get_profile_ranges(my_wire, data)
 
         # Separate detector data by profile
-        detector_data = self.split_detector_data(idxs, data)
+        bsa_data_by_plane = self.split_data_by_plane(idxs, data)
 
         # Fit detector data by profile
-        fit_result = self.fit_detector_data(detector_data)
+        fit_result = self.fit_data_by_plane(bsa_data_by_plane)
 
         return WireBeamProfileMeasurementResult(
-            position_data=data[f"{my_wire.name}"],
-            detector_data=detector_data,
+            position_data=bsa_data_by_plane[f"{my_wire.name}"],
+            detector_data=bsa_data_by_plane,
             raw_data=data,
             fit_result=fit_result,
             metadata=self.model_dump()
@@ -120,6 +121,7 @@ class WireBeamProfileMeasurement(Measurement):
         user = os.getlogin()
         if 'SC' in beampath:
             my_buffer = edef.BSABuffer("LCLS Tools Wire Scan", user=user)
+            my_buffer.n_measurements = 1600
             return my_buffer
         elif 'CU' in beampath:
             my_buffer = edef.EventDefinition("LCLS Tools Wire Scan", user=user)
@@ -134,13 +136,14 @@ class WireBeamProfileMeasurement(Measurement):
         Delays ensure the buffer is active before the scan begins
         and allows time for the buffer to update its state.
         """
-        my_buffer.start()
-
-        # Wait for buffer to set to 'Not Ready' before moving wire
-        time.sleep(0.1)
-
         # Start wire scan
         my_wire.start_scan()
+
+        # Give wire time to initialize
+        time.sleep(3)
+
+        # Start buffer
+        my_buffer.start()
 
         # Wait briefly before checking buffer 'ready'
         time.sleep(0.1)
@@ -174,7 +177,8 @@ class WireBeamProfileMeasurement(Measurement):
                           'SPD', 'LTUH', 'LTUS']
         if my_wire.area in tmitloss_areas:
             tl = TMITLoss(my_buffer)
-            data['TMITLOSS'] = tl.measure(beampath=beampath, region=my_wire.area)
+            data['TMITLOSS'] = tl.measure(beampath=beampath,
+                                          region=my_wire.area)
 
         # Release EDEF/BSA
         my_buffer.release()
@@ -204,18 +208,25 @@ class WireBeamProfileMeasurement(Measurement):
         for plane in ['x', 'y', 'u']:
             # Get range methods e.g. x_range()
             method_name = f"{plane}_range"
-            ranges[plane] = getattr(my_wire, method_name)()
+            ranges[plane] = getattr(my_wire, method_name)
 
             # Get indices of when position is within a range
             idx = np.where((position_data >= ranges[plane][0]) &
                            (position_data <= ranges[plane][1]))[0]
-            # Get only sequential indices to avoid picking up wire retraction
+            # Get only sequential non-decreasing indices to avoid picking up
+            # wire retraction
             # data, ex. [100, 101, 102] not [101, 102, 103, 304, 305, 306]
-            seq_idxs[plane] = np.split(idx, np.where(np.diff(idx) != 1)[0] + 1)
+            chunks = np.split(idx, np.where(np.diff(idx) != 1)[0] + 1)
+            seq_idxs[plane] = [chunk for chunk in chunks if len(chunk) > 0]
+            if len(seq_idxs[plane]) >= 2:
+                seq_idxs[plane] = seq_idxs[plane][0]
+
+            seq_idxs = {k: v for k, v in seq_idxs.items() if
+                        not isinstance(v, list)}
 
         return seq_idxs
 
-    def split_detector_data(self, seq_idxs, data):
+    def split_data_by_plane(self, seq_idxs, data):
         """
         Organizes detector data by scan plane for each device.
 
@@ -227,23 +238,24 @@ class WireBeamProfileMeasurement(Measurement):
         """
         # Make dictionary to hold individual datasets by plane
         # Ultimately will be detector_data[<plane>][<device_name>]
-        detector_data = {'x': {},
-                         'y': {},
-                         'u': {}}
+        planes = list(seq_idxs.keys())
+        bsa_data_by_plane = dict.fromkeys(planes, dict())
 
         for key in data.keys():
             # key is the device name
             # Pull entire device dataset
+            if isinstance(data[key], pd.Series):
+                data[key] = data[key].to_numpy()
             device_data = data[key]
-            for plane in ['x', 'y', 'u']:
+            for plane in planes:
                 # Separate out device data by plane
-                idx = seq_idxs[plane]
+                idx = seq_idxs.get(plane)
                 device_plane_data = device_data[idx]
-                detector_data[plane][key] = device_plane_data
+                bsa_data_by_plane[plane][key] = device_plane_data
 
-        return detector_data
+        return bsa_data_by_plane
 
-    def fit_detector_data(self, detector_data):
+    def fit_data_by_plane(self, my_wire, bsa_data_by_plane):
         """
         Fits detector data for each plane and device.
 
@@ -253,9 +265,18 @@ class WireBeamProfileMeasurement(Measurement):
         Returns:
             dict: Fit results organized by plane and device.
         """
-        fit_result = {}
 
-        for key in detector_data.keys():
-            for plane in ['x', 'y', 'u']:
-                fit_result[plane][key] = self.beam_fit.fit_projection(
-                    detector_data[plane][key])
+        planes = list(bsa_data_by_plane.keys())
+        fit_result = dict.fromkeys(planes, dict())
+        for plane in planes:
+            devices = list(bsa_data_by_plane[plane].keys(
+
+            ))
+            devices.remove(my_wire.name)
+            for device in devices:
+                proj_fit = self.beam_fit()
+                proj_data = bsa_data_by_plane[plane][device]
+
+                fit_result[plane][device] = proj_fit.fit_projection(proj_data)
+
+        return fit_result
