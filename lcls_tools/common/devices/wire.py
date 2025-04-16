@@ -1,6 +1,6 @@
 from datetime import datetime
 from pydantic import (
-    # PositiveFloat,
+    BaseModel,
     SerializeAsAny,
     field_validator,
     conint,
@@ -9,7 +9,6 @@ from pydantic import (
 from typing import (
     Dict,
     List,
-    # Optional,
     Union,
 )
 from lcls_tools.common.devices.device import (
@@ -19,13 +18,10 @@ from lcls_tools.common.devices.device import (
     PVSet,
 )
 from epics import PV
-
-import lcls_tools
-
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
-class RangeModel(lcls_tools.common.BaseModel):
+class RangeModel(BaseModel):
     value: list
 
     @field_validator("value")
@@ -34,21 +30,22 @@ class RangeModel(lcls_tools.common.BaseModel):
             raise ValueError("List has length greater than 2")
         elif v[0] >= v[1]:
             raise ValueError(
-                "First element of list must be smaller than second element of list"
+                "First element of list must be smaller than "
+                "second element of list"
             )
         else:
             return v
 
 
-class BooleanModel(lcls_tools.common.BaseModel):
+class BooleanModel(BaseModel):
     value: bool
 
 
-class IntegerModel(lcls_tools.common.BaseModel):
+class IntegerModel(BaseModel):
     value: conint(strict=True)
 
 
-class PlaneModel(lcls_tools.common.BaseModel):
+class PlaneModel(BaseModel):
     plane: str
 
     @field_validator("plane")
@@ -66,7 +63,8 @@ class WirePVSet(PVSet):
     initialize: PV
     initialize_status: PV
     motor: PV
-    position: PV
+    motor_rbv: PV
+    #position: PV
     retract: PV
     scan_pulses: PV
     speed: PV
@@ -98,28 +96,13 @@ class WirePVSet(PVSet):
 
 class WireControlInformation(ControlInformation):
     PVs: SerializeAsAny[WirePVSet]
-    # _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
 
     def __init__(self, *args, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
-        # Get possible options for wire motr PV, empty dict by default.
-
-    #     options = self.PVs.position.get_ctrlvars(timeout=1)
-    #     if "enum_strs" in options:
-    #         [
-    #             self._ctrl_options.update({option: i})
-    #             for i, option in enumerate(options["enum_strs"])
-    #         ]
-
-    # @property
-    # def ctrl_options(self):
-    #     return self._ctrl_options
 
 
 class WireMetadata(Metadata):
-    # material: Optional[str] = None
-    # sum_l: Optional[PositiveFloat] = None
-    # TODO: Add LBLM and BPM infomration here?
+    lblms: list
     # TODO: Add info on locations for X, Y, U wires
 
     def __init__(self, **kwargs):
@@ -140,7 +123,8 @@ class Wire(Device):
 
         def decorated(self, *args, **kwargs):
             if self.initialize_status is not True:
-                print(f"Unable to perform action, {self} not in Initialized state")
+                print(f"Unable to perform action, {self} not "
+                      "in Initialized state")
                 return
             return f(self, *args, **kwargs)
 
@@ -151,9 +135,11 @@ class Wire(Device):
 
         def decorated(self, *args, **kwargs):
             wire_range = self.wire.x_range[1] - self.wire.x_range[0]
-            speed_calc = int(self.wire.beam_rate * (wire_range / self.wire.scan_pulses))
+            speed_calc = int(self.wire.beam_rate *
+                             (wire_range / self.wire.scan_pulses))
             speed_check = (
-                int(self.wire.speed_min) < speed_calc < int(self.wire.speed_max)
+                int(self.wire.speed_min) < speed_calc <
+                int(self.wire.speed_max)
             )
             if speed_check is not True:
                 print(f"Unable to perform action. {self} failed speed check")
@@ -192,18 +178,18 @@ class Wire(Device):
         return self.controls_information.PVs.motor.get()
 
     @property
-    def position(self):
-        """Returns the readback value from the MOTR PV."""
-        return self.controls_information.PVs.motor.get()
+    def motor_rbv(self):
+        """Returns the .RBV from the MOTR PV"""
+        return self.controls_information.PVs.motor_rbv.get()
 
-    @position.setter
-    @check_state
-    def position(self, val: int) -> None:
-        try:
-            IntegerModel(value=val)
-            self.controls_information.PVs.position.put(value=val)
-        except ValidationError as e:
-            print("Position value must be an int:", e)
+    #@property
+    #def position(self):
+    #    """Returns the readback value from the POSN PV."""
+    #    return self.controls_information.PVs.position.get()
+
+    def position_buffer(self, buffer):
+        return buffer.get_data_buffer(
+            f"{self.controls_information.control_name}:POSN")
 
     def retract(self):
         """Retracts the wire scanner"""
@@ -507,7 +493,7 @@ class Wire(Device):
         return self.metadata.read_tolerance
 
 
-class WireCollection(lcls_tools.common.BaseModel):
+class WireCollection(BaseModel):
     wires: Dict[str, SerializeAsAny[Wire]]
 
     @field_validator("wires", mode="before")
