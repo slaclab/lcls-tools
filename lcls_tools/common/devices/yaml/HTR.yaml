@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:120:TMIT
+        x: BPMS:HTR:120:X
+        y: BPMS:HTR:120:Y
       control_name: BPMS:HTR:120
     metadata:
       area: HTR
@@ -22,6 +24,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:320:TMIT
+        x: BPMS:HTR:320:X
+        y: BPMS:HTR:320:Y
       control_name: BPMS:HTR:320
     metadata:
       area: HTR
@@ -41,6 +45,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:365:TMIT
+        x: BPMS:HTR:365:X
+        y: BPMS:HTR:365:Y
       control_name: BPMS:HTR:365
     metadata:
       area: HTR
@@ -60,6 +66,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:460:TMIT
+        x: BPMS:HTR:460:X
+        y: BPMS:HTR:460:Y
       control_name: BPMS:HTR:460
     metadata:
       area: HTR
@@ -79,6 +87,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:540:TMIT
+        x: BPMS:HTR:540:X
+        y: BPMS:HTR:540:Y
       control_name: BPMS:HTR:540
     metadata:
       area: HTR
@@ -98,6 +108,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:760:TMIT
+        x: BPMS:HTR:760:X
+        y: BPMS:HTR:760:Y
       control_name: BPMS:HTR:760
     metadata:
       area: HTR
@@ -117,6 +129,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:830:TMIT
+        x: BPMS:HTR:830:X
+        y: BPMS:HTR:830:Y
       control_name: BPMS:HTR:830
     metadata:
       area: HTR
@@ -136,6 +150,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:860:TMIT
+        x: BPMS:HTR:860:X
+        y: BPMS:HTR:860:Y
       control_name: BPMS:HTR:860
     metadata:
       area: HTR
@@ -155,6 +171,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:960:TMIT
+        x: BPMS:HTR:960:X
+        y: BPMS:HTR:960:Y
       control_name: BPMS:HTR:960
     metadata:
       area: HTR

@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:821:TMIT
+        x: BPMS:IN20:821:X
+        y: BPMS:IN20:821:Y
       control_name: BPMS:IN20:821
     metadata:
       area: GSPEC

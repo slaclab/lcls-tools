@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:EMIT2:150:TMIT
+        x: BPMS:EMIT2:150:X
+        y: BPMS:EMIT2:150:Y
       control_name: BPMS:EMIT2:150
     metadata:
       area: EMIT2
@@ -21,6 +23,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:EMIT2:300:TMIT
+        x: BPMS:EMIT2:300:X
+        y: BPMS:EMIT2:300:Y
       control_name: BPMS:EMIT2:300
     metadata:
       area: EMIT2
@@ -39,6 +43,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:EMIT2:800:TMIT
+        x: BPMS:EMIT2:800:X
+        y: BPMS:EMIT2:800:Y
       control_name: BPMS:EMIT2:800
     metadata:
       area: EMIT2
@@ -57,6 +63,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:EMIT2:900:TMIT
+        x: BPMS:EMIT2:900:X
+        y: BPMS:EMIT2:900:Y
       control_name: BPMS:EMIT2:900
     metadata:
       area: EMIT2

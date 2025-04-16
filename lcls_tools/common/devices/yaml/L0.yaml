@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:235:TMIT
+        x: BPMS:IN20:235:X
+        y: BPMS:IN20:235:Y
       control_name: BPMS:IN20:235
     metadata:
       area: L0
@@ -20,6 +22,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:371:TMIT
+        x: BPMS:IN20:371:X
+        y: BPMS:IN20:371:Y
       control_name: BPMS:IN20:371
     metadata:
       area: L0

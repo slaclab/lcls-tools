@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI24:701:TMIT
+        x: BPMS:LI24:701:X
+        y: BPMS:LI24:701:Y
       control_name: BPMS:LI24:701
     metadata:
       area: BC2
@@ -19,6 +21,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI24:901:TMIT
+        x: BPMS:LI24:901:X
+        y: BPMS:LI24:901:Y
       control_name: BPMS:LI24:901
     metadata:
       area: BC2
@@ -35,6 +39,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI24:801:TMIT
+        x: BPMS:LI24:801:X
+        y: BPMS:LI24:801:Y
       control_name: BPMS:LI24:801
     metadata:
       area: BC2

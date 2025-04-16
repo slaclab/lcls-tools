@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DMPS:693:TMIT
+        x: BPMS:DMPS:693:X
+        y: BPMS:DMPS:693:Y
       control_name: BPMS:DMPS:693
     metadata:
       area: DMPS
@@ -15,6 +17,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DMPS:502:TMIT
+        x: BPMS:DMPS:502:X
+        y: BPMS:DMPS:502:Y
       control_name: BPMS:DMPS:502
     metadata:
       area: DMPS
@@ -27,6 +31,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DMPS:325:TMIT
+        x: BPMS:DMPS:325:X
+        y: BPMS:DMPS:325:Y
       control_name: BPMS:DMPS:325
     metadata:
       area: DMPS
@@ -43,6 +49,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DMPS:381:TMIT
+        x: BPMS:DMPS:381:X
+        y: BPMS:DMPS:381:Y
       control_name: BPMS:DMPS:381
     metadata:
       area: DMPS

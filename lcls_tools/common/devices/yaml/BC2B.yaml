@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BC2B:530:TMIT
+        x: BPMS:BC2B:530:X
+        y: BPMS:BC2B:530:Y
       control_name: BPMS:BC2B:530
     metadata:
       area: BC2B
@@ -21,6 +23,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BC2B:150:TMIT
+        x: BPMS:BC2B:150:X
+        y: BPMS:BC2B:150:Y
       control_name: BPMS:BC2B:150
     metadata:
       area: BC2B
