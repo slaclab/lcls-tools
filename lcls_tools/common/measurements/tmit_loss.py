@@ -14,6 +14,45 @@ class TMITLoss(Measurement):
         super().__init__(**kwargs)
         self._my_buffer = my_buffer
 
+    def measure(self, beampath, region):
+        """
+        Compute the Transmission Monitor Intensity (TMIT) loss for a given
+        beam path and region.
+
+        This method orchestrates the full process of acquiring BPM data,
+        normalizing it, and calculating TMIT loss by:
+        - Reserving a data buffer.
+        - Retrieving BPM elements and device names.
+        - Identifying BPM indices before and after the wire.
+        - Creating BPM objects.
+        - Collecting TMIT data.
+        - Computing the TMIT loss.
+
+        Args:
+            beampath (str): The beam path used to filter BPM elements.
+            region (str): The region of interest, which determines the BPMs
+                          used for before/after wire measurements.
+
+        Returns:
+            pd.Series: A Series representing the percentage TMIT loss for each
+                       time sample.
+        """
+        # Get relevant BPMs based on beampath
+        bpms_elements, bpms_devices = self.find_bpms(beampath)
+
+        # Get the before and after BPM indices
+        idx_before, idx_after = self.get_bpm_idx(region, bpms_devices)
+
+        # Create a dictionary of lcls-tools BPM objects
+        bpm_objs = self.create_bpms(bpms_elements)
+
+        # Retrieve data from BSA buffer
+        data = self.get_bpm_data(bpm_objs, self._my_buffer)
+
+        # Calculate TMIT Loss
+        tmit_loss = self.calc_tmit_loss(data, idx_before, idx_after)
+        return tmit_loss
+
     def find_bpms(self, beampath):
         """
         Retrieve BPM elements and their corresponding EPICS names for a
@@ -33,12 +72,18 @@ class TMITLoss(Measurement):
                                 corresponding areas.
                 - list: A list of BPM device names.
         """
-
+        # List of BPM MAD names based on beampath
         bpms_elements = meme.names.list_elements("BPMS:%TMIT",
                                                  tag=beampath, sort_by="z")
+
+        # List of BPM EPICS names based on beampath
         bpms_devices = meme.names.list_devices("BPMS:%TMIT",
                                                tag=beampath, sort_by="z")
+
+        # Make Dataframe with two columns: First is the Element (MAD) name
+        # Second column is the area
         areas_bpn = [device.split(":")[1] for device in bpms_devices]
+        # If EPICS name uses "BPN" for area, instead use "BYP"
         areas = ["BYP" if "BPN" in item else item for item in areas_bpn]
         bpms_elements = pd.DataFrame({"Element": bpms_elements, "Area": areas})
         return bpms_elements, bpms_devices
@@ -67,9 +112,15 @@ class TMITLoss(Measurement):
             objects created using `create_bpm`.
         """
         bpm_obj_dict = {}
+
+        # Iterate throw Dataframe of Elements and Areas
         for index, row in bpms_elements.iterrows():
             element = row['Element']
             area = row['Area']
+
+            # Create an lcls-tools BPM object and append to dictionary
+            # Key: Element Name
+            # Value: lcls-tools BPM object
             bpm_obj_dict[element] = create_bpm(name=element, area=area)
         return bpm_obj_dict
 
@@ -96,11 +147,15 @@ class TMITLoss(Measurement):
 
         for element, bpm in bpm_obj_dict.items():
             try:
+                # Get data from BSA buffer
                 bpm_data = bpm.tmit_buffer(my_buffer)
+                # If returned data is empty, skip
                 if len(bpm_data) == 0:
                     pass
                 else:
                     data[f"{element}"] = bpm_data
+            # If data cannot be retrieved, skip
+            # Retrieval errors happen when PVs are disconnected most commonly
             except (BufferError, TypeError):
                 pass
 
@@ -244,36 +299,4 @@ class TMITLoss(Measurement):
 
         # Compute TMIT Loss percentage
         tmit_loss = (mean_after - mean_before) * 100
-        return tmit_loss
-
-    def measure(self, beampath, region):
-        """
-        Compute the Transmission Monitor Intensity (TMIT) loss for a given
-        beam path and region.
-
-        This method orchestrates the full process of acquiring BPM data,
-        normalizing it, and calculating TMIT loss by:
-        - Reserving a data buffer.
-        - Retrieving BPM elements and device names.
-        - Identifying BPM indices before and after the wire.
-        - Creating BPM objects.
-        - Collecting TMIT data.
-        - Computing the TMIT loss.
-
-        Args:
-            beampath (str): The beam path used to filter BPM elements.
-            region (str): The region of interest, which determines the BPMs
-                          used for before/after wire measurements.
-
-        Returns:
-            pd.Series: A Series representing the percentage TMIT loss for each
-                       time sample.
-        """
-        bpms_elements, bpms_devices = self.find_bpms(beampath)
-        idx_before, idx_after = self.get_bpm_idx(region, bpms_devices)
-        bpm_objs = self.create_bpms(bpms_elements)
-
-        data = self.get_bpm_data(bpm_objs, self._my_buffer)
-
-        tmit_loss = self.calc_tmit_loss(data, idx_before, idx_after)
         return tmit_loss
