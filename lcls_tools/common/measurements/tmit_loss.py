@@ -16,8 +16,7 @@ class TMITLoss(Measurement):
 
     def measure(self, beampath, region):
         """
-        Compute the Transmission Monitor Intensity (TMIT) loss for a given
-        beam path and region.
+        Compute the TMIT loss for a given beam path and region.
 
         This method orchestrates the full process of acquiring BPM data,
         normalizing it, and calculating TMIT loss by:
@@ -259,7 +258,7 @@ class TMITLoss(Measurement):
 
     def calc_tmit_loss(self, df, idx_before, idx_after):
         """
-        Calculate the Transmission Monitor Intensity (TMIT) loss.
+        Calculate the TMIT loss.
 
         This method normalizes the TMIT data by computing row-wise medians,
         then standardizes it relative to BPMs before a wire. The loss is
