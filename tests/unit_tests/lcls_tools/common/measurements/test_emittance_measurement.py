@@ -37,21 +37,6 @@ class EmittanceMeasurementTest(TestCase):
         self.magnet_collection = create_magnet(area="GUNB")
         return super().setUp()
 
-    def test_with_meme(self):
-        # TODO: implement this test
-        try:
-            import meme  # noqa: F401
-            # from lcls_tools.common.measurements.emittance_measurement import (
-            #    QuadScanEmittance,
-            # )  # noqa: F401
-        except ImportError:
-            import unittest
-
-            raise unittest.SkipTest(
-                "Meme package not installed. ",
-                "Skipping all tests in test_emittance.py.",
-            )
-
     def test_measure_with_mocked_beamsize_measurement(self):
         """
         Test to verify correct emittance calculation based on data generated from a
@@ -175,10 +160,10 @@ class EmittanceMeasurementTest(TestCase):
 
                 # check outputs based on nans in the data
                 assert np.equal(
-                    result.quadrupole_pv_values[0], np.concat((k[:6], k[7:]))
+                    result.quadrupole_pv_values[0], np.concatenate((k[:6], k[7:]))
                 ).all()
                 assert np.equal(
-                    result.quadrupole_pv_values[1], np.concat((k[:1], k[3:]))
+                    result.quadrupole_pv_values[1], np.concatenate((k[:1], k[3:]))
                 ).all()
 
                 assert np.allclose(

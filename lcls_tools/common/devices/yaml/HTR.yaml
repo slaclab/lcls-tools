@@ -1,3 +1,193 @@
+bpms:
+  BPM0H01:
+    controls_information:
+      PVs:
+        tmit: BPMS:HTR:120:TMIT
+      control_name: BPMS:HTR:120
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 18.645
+      type: BPM
+  BPM0H04:
+    controls_information:
+      PVs:
+        tmit: BPMS:HTR:320:TMIT
+      control_name: BPMS:HTR:320
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 24.035
+      type: BPM
+  BPM0H05:
+    controls_information:
+      PVs:
+        tmit: BPMS:HTR:365:TMIT
+      control_name: BPMS:HTR:365
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 25.257
+      type: BPM
+  BPM0H08:
+    controls_information:
+      PVs:
+        tmit: BPMS:HTR:460:TMIT
+      control_name: BPMS:HTR:460
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 27.816
+      type: BPM
+  BPMH1:
+    controls_information:
+      PVs:
+        tmit: BPMS:HTR:540:TMIT
+      control_name: BPMS:HTR:540
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 29.909
+      type: BPM
+  BPMH2:
+    controls_information:
+      PVs:
+        tmit: BPMS:HTR:760:TMIT
+      control_name: BPMS:HTR:760
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 35.623
+      type: BPM
+  BPMHD01:
+    controls_information:
+      PVs:
+        tmit: BPMS:HTR:830:TMIT
+      control_name: BPMS:HTR:830
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 37.729
+      type: BPM
+  BPMHD02:
+    controls_information:
+      PVs:
+        tmit: BPMS:HTR:860:TMIT
+      control_name: BPMS:HTR:860
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 38.51
+      type: BPM
+  BPMHD03:
+    controls_information:
+      PVs:
+        tmit: BPMS:HTR:960:TMIT
+      control_name: BPMS:HTR:960
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 41.215
+      type: BPM
+  BPMHD04:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:HTR:980
+    metadata:
+      area: HTR
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 41.799
+      type: BPM
 lblms:
   LBLM01A:
     controls_information:

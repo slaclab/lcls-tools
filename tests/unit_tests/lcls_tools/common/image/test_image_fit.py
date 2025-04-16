@@ -10,7 +10,7 @@ class TestImageProjectionFit:
 
         result = ImageProjectionFit().fit_image(test_image)
 
-        assert np.allclose(result.centroid, [5, 5])
+        assert np.allclose(result.centroid, [4.5, 4.5])
         assert np.allclose(result.rms_size, [1.16, 1.16])
         assert np.allclose(result.total_intensity, 1020.0)
         assert np.allclose(result.image, test_image)

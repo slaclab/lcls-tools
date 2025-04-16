@@ -1,3 +1,60 @@
+bpms:
+  BPMDDB:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPS:693:TMIT
+      control_name: BPMS:DMPS:693
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3771.245
+      type: BPM
+  BPMQDB:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPS:502:TMIT
+      control_name: BPMS:DMPS:502
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3762.468
+      type: BPM
+  BPMUE1B:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPS:325:TMIT
+      control_name: BPMS:DMPS:325
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3734.374
+      type: BPM
+  BPMUE2B:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPS:381:TMIT
+      control_name: BPMS:DMPS:381
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3742.168
+      type: BPM
 magnets:
   BYD1B:
     controls_information:

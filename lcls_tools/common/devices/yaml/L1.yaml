@@ -1,3 +1,36 @@
+bpms:
+  BPMA11:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:131:TMIT
+      control_name: BPMS:LI21:131
+    metadata:
+      area: L1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 23.293
+      type: BPM
+  BPMA12:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:161:TMIT
+      control_name: BPMS:LI21:161
+    metadata:
+      area: L1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 26.334
+      type: BPM
 magnets:
   QA11:
     controls_information:

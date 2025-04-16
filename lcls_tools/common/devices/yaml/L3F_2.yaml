@@ -1,3 +1,70 @@
+bpms:
+  BPM19501:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BEND:7172
+    metadata:
+      area: L3F_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 878.994
+      type: BPM
+  BPM19601:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:601
+    metadata:
+      area: L3F_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 891.338
+      type: BPM
+  BPM19701:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:701
+    metadata:
+      area: L3F_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 903.682
+      type: BPM
+  BPM19801:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:801
+    metadata:
+      area: L3F_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 916.027
+      type: BPM
+  BPM19851:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:851
+    metadata:
+      area: L3F_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 922.411
+      type: BPM
+  BPM19871:
+    controls_information:
+      PVs: {}
+      control_name: LI19:BPMS:871
+    metadata:
+      area: L3F_2
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      sum_l_meters: 924.604
+      type: BPM
 magnets:
   Q19501:
     controls_information:

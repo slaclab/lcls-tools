@@ -8,12 +8,14 @@ from lcls_tools.common.devices.yaml.metadata import (
     get_screen_metadata,
     get_wire_metadata,
     get_lblm_metadata,
+    get_bpm_metadata,
 )
 from lcls_tools.common.devices.yaml.controls_information import (
     get_magnet_controls_information,
     get_screen_controls_information,
     get_wire_controls_information,
     get_lblm_controls_information,
+    get_bpm_controls_information,
 )
 
 
@@ -162,7 +164,7 @@ class YAMLGenerator:
                         )
             except TimeoutError as toe:
                 print(
-                    f'Unable connect to MEME.name service when searching for {name + ":" + search_term}.'
+                    f"Unable connect to MEME.name service when searching for {name + ':' + search_term}."
                 )
                 print(toe)
         return pv_dict
@@ -284,9 +286,10 @@ class YAMLGenerator:
         )
 
         if basic_magnet_data:
-
             magnet_names = [key for key in basic_magnet_data.keys()]
-            additional_metadata_data = get_magnet_metadata(magnet_names, self.extract_metadata_by_device_names)
+            additional_metadata_data = get_magnet_metadata(
+                magnet_names, self.extract_metadata_by_device_names
+            )
             # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
             additional_controls_data = get_magnet_controls_information()
 
@@ -363,8 +366,6 @@ class YAMLGenerator:
             "UWIRESIZE": "u_size",
             "UWIREINNER": "u_wire_inner",
             "UWIREOUTER": "u_wire_outer",
-            "MOTR.VMAX": "speed_max",
-            "MOTR.VBAS": "speed_min",
             "XWIRESIZE": "x_size",
             "XWIREINNER": "x_wire_inner",
             "XWIREOUTER": "x_wire_outer",
@@ -420,16 +421,38 @@ class YAMLGenerator:
         else:
             return {}
 
+    def extract_bpms(self, area: Union[str, List[str]] = ["HTR"]):
+        required_bpm_types = ["BPM"]
+        # PV suffix as the key, the name we want to store it as in yaml file as the value
+        # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
+        possible_bpm_pvs = {
+            "TMIT": "tmit",
+        }
+        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        additional_metadata_data = get_bpm_metadata()
+        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        additional_controls_data = get_bpm_controls_information()
+        basic_bpm_data = self.extract_devices(
+            area=area,
+            required_types=required_bpm_types,
+            pv_search_terms=possible_bpm_pvs,
+        )
+        if basic_bpm_data:
+            complete_bpm_data = self.add_extra_data_to_device(
+                device_data=basic_bpm_data,
+                additional_controls_information=additional_controls_data,
+                additional_metadata=additional_metadata_data,
+            )
+            return complete_bpm_data
+        else:
+            return {}
+
     def extract_metadata_by_device_names(
-        self,
-        device_names=Optional[List[str]],
-        required_fields=Optional[List[str]]
+        self, device_names=Optional[List[str]], required_fields=Optional[List[str]]
     ):
         # TODO: try not to call filter elements so many times as it parses csv
         if required_fields:
-            elements = self._filter_elements_by_fields(
-                required_fields=required_fields
-            )
+            elements = self._filter_elements_by_fields(required_fields=required_fields)
         else:
             elements = self._filter_elements_by_fields(
                 required_fields=self._required_fields

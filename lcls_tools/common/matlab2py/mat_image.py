@@ -1,9 +1,6 @@
 from numpy import ndarray
 import scipy.io as sio
-import matplotlib.pyplot as plt
 import os
-
-from lcls_tools.common.image import Image
 
 
 class MatImage(object):
@@ -142,7 +139,7 @@ class MatImage(object):
         data = file_contents["data"][0][0]
         self._mat_file = mat_file
         self._cam_name = str(data[0][0])
-        self._image_object = Image(data[1])  # Create object
+        self._image_object = data[1]  # Create object
         self._roi_x_n = data[2][0][0]
         self._roi_y_n = data[3][0][0]
         self._ts = data[4][0][0]
@@ -171,12 +168,3 @@ class MatImage(object):
             self._unpack_mat_data(mat_file)
         except Exception as e:
             print("Error loading mat file {0}: {1}".format(mat_file, e))
-
-    def show_image(self):
-        if self._image_object is None:
-            raise AttributeError(
-                "image is None. please call load_mat_image before trying to show image."
-            )
-
-        plt.imshow(self._image_object.image, aspect="auto")
-        plt.show(block=False)

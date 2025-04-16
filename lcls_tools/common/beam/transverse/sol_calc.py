@@ -124,7 +124,7 @@ class SolCalc(object):
 
     def y2(self):
         """second term y"""
-        return -self._s**2 * (1 / self._K) - self._d * self._s * self._c
+        return -(self._s**2) * (1 / self._K) - self._d * self._s * self._c
 
     def y3(self):
         """third term y"""

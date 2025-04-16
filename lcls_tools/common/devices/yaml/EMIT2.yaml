@@ -1,3 +1,76 @@
+bpms:
+  BPME201:
+    controls_information:
+      PVs:
+        tmit: BPMS:EMIT2:150:TMIT
+      control_name: BPMS:EMIT2:150
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 368.187
+      type: BPM
+  BPME202:
+    controls_information:
+      PVs:
+        tmit: BPMS:EMIT2:300:TMIT
+      control_name: BPMS:EMIT2:300
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 373.201
+      type: BPM
+  BPME203:
+    controls_information:
+      PVs:
+        tmit: BPMS:EMIT2:800:TMIT
+      control_name: BPMS:EMIT2:800
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 392.11
+      type: BPM
+  BPME204:
+    controls_information:
+      PVs:
+        tmit: BPMS:EMIT2:900:TMIT
+      control_name: BPMS:EMIT2:900
+    metadata:
+      area: EMIT2
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 395.218
+      type: BPM
 magnets:
   QE201:
     controls_information:

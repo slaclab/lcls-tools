@@ -1,3 +1,524 @@
+bpms:
+  BPMDBL1:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LTUS:110
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3234.806
+      type: BPM
+  BPMDBL2:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:120:TMIT
+      control_name: BPMS:LTUS:120
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3236.986
+      type: BPM
+  BPMDL11:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:150:TMIT
+      control_name: BPMS:LTUS:150
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3251.065
+      type: BPM
+  BPMDL12:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:180:TMIT
+      control_name: BPMS:LTUS:180
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3263.162
+      type: BPM
+  BPMDL13:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:235:TMIT
+      control_name: BPMS:LTUS:235
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3277.362
+      type: BPM
+  BPMDL14:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LTUS:270
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3289.315
+      type: BPM
+  BPMDL15:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:300:TMIT
+      control_name: BPMS:LTUS:300
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3302.065
+      type: BPM
+  BPMDL16:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:345:TMIT
+      control_name: BPMS:LTUS:345
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3315.911
+      type: BPM
+  BPMDL17:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:370:TMIT
+      control_name: BPMS:LTUS:370
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3326.691
+      type: BPM
+  BPMDL18:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LTUS:430
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3340.315
+      type: BPM
+  BPMDL19:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:450:TMIT
+      control_name: BPMS:LTUS:450
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3353.065
+      type: BPM
+  BPMDL20:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:470:TMIT
+      control_name: BPMS:LTUS:470
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3362.989
+      type: BPM
+  BPMDL21:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:500:TMIT
+      control_name: BPMS:LTUS:500
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3374.423
+      type: BPM
+  BPMDL22:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:510:TMIT
+      control_name: BPMS:LTUS:510
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3376.739
+      type: BPM
+  BPME31B:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LTUS:720
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3443.324
+      type: BPM
+  BPME32B:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LTUS:730
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3460.956
+      type: BPM
+  BPME33B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:740:TMIT
+      control_name: BPMS:LTUS:740
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3478.588
+      type: BPM
+  BPME34B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:750:TMIT
+      control_name: BPMS:LTUS:750
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3496.219
+      type: BPM
+  BPME35B:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LTUS:760
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3513.851
+      type: BPM
+  BPME36B:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LTUS:780
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3531.483
+      type: BPM
+  BPMEM1B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:620:TMIT
+      control_name: BPMS:LTUS:620
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3410.895
+      type: BPM
+  BPMEM2B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:640:TMIT
+      control_name: BPMS:LTUS:640
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3415.356
+      type: BPM
+  BPMEM3B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:660:TMIT
+      control_name: BPMS:LTUS:660
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3427.817
+      type: BPM
+  BPMEM4B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:680:TMIT
+      control_name: BPMS:LTUS:680
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3432.278
+      type: BPM
+  BPMUM1B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:820:TMIT
+      control_name: BPMS:LTUS:820
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3547.779
+      type: BPM
+  BPMUM2B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:840:TMIT
+      control_name: BPMS:LTUS:840
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3552.99
+      type: BPM
+  BPMUM3B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:860:TMIT
+      control_name: BPMS:LTUS:860
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3561.451
+      type: BPM
+  BPMUM4B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:880:TMIT
+      control_name: BPMS:LTUS:880
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3565.912
+      type: BPM
+  BPMVB1B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:540:TMIT
+      control_name: BPMS:LTUS:540
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3386.631
+      type: BPM
+  BPMVB2B:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LTUS:550
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3389.035
+      type: BPM
+  BPMVB3B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:560:TMIT
+      control_name: BPMS:LTUS:560
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3391.438
+      type: BPM
+  BPMVM3B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:570:TMIT
+      control_name: BPMS:LTUS:570
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3399.742
+      type: BPM
+  BPMVM4B:
+    controls_information:
+      PVs:
+        tmit: BPMS:LTUS:580:TMIT
+      control_name: BPMS:LTUS:580
+    metadata:
+      area: LTUS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3401.703
+      type: BPM
 lblms:
   LBLMS26A:
     controls_information:
