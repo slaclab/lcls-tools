@@ -173,7 +173,7 @@ def create_tcav(area: str = None, name: str = None) -> Union[None, TCAV, TCAVCol
             print(field_error)
             return None
     else:
-        return BPMCollection(**device_data)
+        return TCAVCollection(**device_data)
 
 
 def create_area(area: str = None) -> Union[None, Area]:
