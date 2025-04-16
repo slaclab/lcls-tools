@@ -101,12 +101,12 @@ class Screen(Device):
     @property
     def refresh_rate(self):
         sys_type = self.controls_information.PVs.sys_type.get()
-        if str(sys_type) == 'VME':
+        if str(sys_type) == "VME":
             return self.controls_information.PVs.ref_rate_vme.get()
-        elif str(sys_type) == 'LinuxRT':
+        elif str(sys_type) == "LinuxRT":
             return self.controls_information.PVs.ref_rate.get()
         else:
-            raise ValueError('Camera refresh rate not found')
+            raise ValueError("Camera refresh rate not found")
 
     @property
     def is_saving_images(self):
