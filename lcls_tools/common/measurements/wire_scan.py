@@ -6,7 +6,6 @@ from lcls_tools.common.measurements.measurement import Measurement
 import time
 import edef
 import os
-import lcls_tools
 from pydantic import (
     ConfigDict,
     SerializeAsAny,
@@ -16,9 +15,10 @@ from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
 import pandas as pd
+import epics
 
 
-class WireBeamProfileMeasurementResult(lcls_tools.common.BaseModel):
+class WireBeamProfileMeasurementResult(BaseModel):
     position_data: NDArrayAnnotatedType
     detector_data: NDArrayAnnotatedType
     raw_data: NDArrayAnnotatedType
@@ -36,28 +36,30 @@ class WireBeamProfileMeasurement(Measurement):
     fit_profile: bool = True
 
     def measure(self, beampath, my_wire) -> dict:
-        # """
-        # Perform a wire scan measurement.
+        """
+        Perform a wire scan measurement.
 
-        # Parameters:
-        # - beam_path (str): The selected beam path determines which timing
-        #   buffer to reserve.
-        # - my_wire (Wire): An lcls-tools wire object.
+        Parameters:
+        - beam_path (str): The selected beam path determines which timing
+          buffer to reserve.
+        - my_wire (Wire): An lcls-tools wire object.
 
-        # Returns:
-        # dict: A dictionary containing the measured bunch charge values and
-        # additional statistics if multiple shots are taken.
+        Returns:
+        dict: A dictionary containing the measured bunch charge values and
+        additional statistics if multiple shots are taken.
 
-        # If n_shots is 1, the function returns a dictionary with the key
-        # "bunch_charge_nC" and the corresponding single measurement value.
+        If n_shots is 1, the function returns a dictionary with the key
+        "bunch_charge_nC" and the corresponding single measurement value.
 
-        # If n_shots is greater than 1, the function performs multiple
-        # measurements with the specified wait time and returns a dictionary
-        # with the key "bunch_charge_nC"  containing a list of measured
-        # values. Additionally, statistical information (mean, standard
-        # deviation, etc.) is included in the dictionary.
+        If n_shots is greater than 1, the function performs multiple
+        measurements with the specified wait time and returns a dictionary
+        with the key "bunch_charge_nC"  containing a list of measured
+        values. Additionally, statistical information (mean, standard
+        deviation, etc.) is included in the dictionary.
+        """
 
-        # """
+        # TODO: Jitter Correction
+        # TODO: Charge Normalization
 
         # Create dictionary of devices for WS (WS + detectors)
         devices = self.create_device_dictionary(my_wire)
@@ -71,7 +73,8 @@ class WireBeamProfileMeasurement(Measurement):
         # Get position and detector data from the buffer
         data = self.get_bsa_data(my_wire, devices, beampath, my_buffer)
 
-        # Determine the profile ranges by index
+        # Determine the profile range indices
+        # e.g., u range = (13000, 18000) -> position_data[100:250]
         idxs = self.get_profile_ranges(my_wire, data)
 
         # Separate detector data by profile
@@ -120,11 +123,40 @@ class WireBeamProfileMeasurement(Measurement):
         """
         user = os.getlogin()
         if 'SC' in beampath:
+            # Reserve BSA buffer for SC destinations
             my_buffer = edef.BSABuffer("LCLS Tools Wire Scan", user=user)
             my_buffer.n_measurements = 1600
+
+            # Set mode to 'Inclusion'
+            my_buffer.destination_mode = 2
+
+            # Clear all previous destinations
+            dst_pv_prefix = "BSA:SYS0:1:" + str(my_buffer.number) + ":DST"
+            for d in range(1, 6):
+                clear_dst_pv = dst_pv_prefix + str(d)
+                epics.caput(clear_dst_pv, 0)
+
+            # Get DST index
+            if beampath == "SC_DIAG0":
+                dst_num = "1"
+            elif beampath == "SC_BSYD":
+                dst_num = "2"
+            elif beampath == "SC_HXR":
+                dst_num = "3"
+            elif beampath == "SC_SXR":
+                dst_num = "4"
+            elif beampath == "SC_DASEL":
+                dst_num = "5"
+
+            # Set appropriate DST for chosen beampath
+            set_dst_pv = dst_pv_prefix + dst_num
+            epics.caput(set_dst_pv, 1)
+
             return my_buffer
         elif 'CU' in beampath:
+            # Reserve eDef buffer for CU destinations
             my_buffer = edef.EventDefinition("LCLS Tools Wire Scan", user=user)
+            my_buffer.n_measurements = 1600
             return my_buffer
         else:
             raise BufferError
@@ -166,13 +198,17 @@ class WireBeamProfileMeasurement(Measurement):
 
         # Get buffer data and put into results dictionary
         data[f"{my_wire.name}"] = my_wire.position_buffer(my_buffer)
+
         if 'SC' in beampath:
+            # SC LBLMs use "FAST" signal
             data.update({lblm: devices[lblm].fast_buffer(my_buffer) for lblm
                          in my_wire.metadata.lblms})
         elif 'CU' in beampath:
+            # CU LBLMs use "QDCRAW" signal
             data.update({lblm: devices[lblm].qdcraw_buffer(my_buffer) for lblm
                          in my_wire.metadata.lblms})
 
+        # Get TMITLOSS if operating in a valid region
         tmitloss_areas = ['HTR', 'DIAG0', 'COL1', 'EMIT2', 'BYP',
                           'SPD', 'LTUH', 'LTUS']
         if my_wire.area in tmitloss_areas:
@@ -217,10 +253,18 @@ class WireBeamProfileMeasurement(Measurement):
             # wire retraction
             # data, ex. [100, 101, 102] not [101, 102, 103, 304, 305, 306]
             chunks = np.split(idx, np.where(np.diff(idx) != 1)[0] + 1)
+
+            # Only keep chunks that are larger than 0
             seq_idxs[plane] = [chunk for chunk in chunks if len(chunk) > 0]
+
+            # If two chunks are returned, only keep the first one
             if len(seq_idxs[plane]) >= 2:
                 seq_idxs[plane] = seq_idxs[plane][0]
 
+            # If an empty index is returned (e.g., wire didn't make
+            # it to X plane), then an empty index list will be returned
+            # If successful, a numpy.ndarray will be returned
+            # If a list is returned, leave it out
             seq_idxs = {k: v for k, v in seq_idxs.items() if
                         not isinstance(v, list)}
 
@@ -239,7 +283,7 @@ class WireBeamProfileMeasurement(Measurement):
         # Make dictionary to hold individual datasets by plane
         # Ultimately will be detector_data[<plane>][<device_name>]
         planes = list(seq_idxs.keys())
-        bsa_data_by_plane = dict.fromkeys(planes, dict())
+        bsa_data_by_plane = {plane: {} for plane in planes}
 
         for key in data.keys():
             # key is the device name
@@ -265,18 +309,20 @@ class WireBeamProfileMeasurement(Measurement):
         Returns:
             dict: Fit results organized by plane and device.
         """
-
+        # Get list of planes from data set
         planes = list(bsa_data_by_plane.keys())
-        fit_result = dict.fromkeys(planes, dict())
-        for plane in planes:
-            devices = list(bsa_data_by_plane[plane].keys(
+        fit_result = {plane: {} for plane in planes}
 
-            ))
+        for plane in planes:
+            # Get list of devices (LBLMs)
+            devices = list(bsa_data_by_plane[plane].keys())
+
+            # Don't do fit on wire position!
             devices.remove(my_wire.name)
             for device in devices:
+                # Instantiate beam_fit
                 proj_fit = self.beam_fit()
                 proj_data = bsa_data_by_plane[plane][device]
-
                 fit_result[plane][device] = proj_fit.fit_projection(proj_data)
 
         return fit_result
