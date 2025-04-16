@@ -24,13 +24,12 @@ from epics import PV
 
 
 class TCAVPVSet(PVSet):
-    bctrl: PV
-    bact: PV
-    bdes: PV
-    bcon: PV
-    ctrl: PV
-    bmin: PV
-    bmax: PV
+    amp_set: PV
+    phase_set: PV
+    rf_enable: PV
+    amp_fb: PV
+    phase_fb: PV
+    mode_configs: PV
 
     def __init__(self, *args, **kwargs):
         super(TCAVPVSet, self).__init__(*args, **kwargs)
@@ -47,16 +46,6 @@ class TCAVControlInformation(ControlInformation):
     def __init__(self, *args, **kwargs):
         super(TCAVControlInformation, self).__init__(*args, **kwargs)
         # Get possible options for TCAV ctrl PV, empty dict by default.
-        options = self.PVs.ctrl.get_ctrlvars(timeout=1)
-        if options:
-            [
-                self._ctrl_options.update({option: i})
-                for i, option in enumerate(options["enum_strs"])
-            ]
-
-    @property
-    def ctrl_options(self):
-        return self._ctrl_options
 
 
 class TCAVMetadata(Metadata):
@@ -70,3 +59,15 @@ class TCAV(Device):
 
     def __init__(self, *args, **kwargs):
         super(TCAV, self).__init__(*args, **kwargs)
+
+
+class TCAVCollection(DeviceCollection):
+    devices: Dict[str, SerializeAsAny[TCAV]] = Field(alias="tcavs")
+
+    def __init__(self, *args, **kwargs):
+        super(TCAVCollection, self).__init__(*args, **kwargs)
+
+    @property
+    def tcavs(self) -> Dict[str, SerializeAsAny[TCAV]]:
+        """A dictionary (key=name, value=tcav) to directly access tcav objects"""
+        return self.devices
