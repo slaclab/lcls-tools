@@ -324,6 +324,7 @@ class YAMLGenerator:
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_metadata_data = get_screen_metadata()
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+        print(f'area : {area}')
         additional_controls_data = get_screen_controls_information()
         basic_screen_data = self.extract_devices(
             area=area,

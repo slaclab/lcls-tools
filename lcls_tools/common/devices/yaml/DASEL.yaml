@@ -587,7 +587,6 @@ screens:
         ref_rate: PROF:DASEL:655:ArrayRate_RBV
         ref_rate_vme: PROF:DASEL:655:FRAME_RATE
         resolution: PROF:DASEL:655:RESOLUTION
-        sys_type: PROF:DASEL:655:SYS_TYPE
       control_name: PROF:DASEL:655
     metadata:
       area: DASEL
@@ -605,7 +604,6 @@ screens:
         ref_rate: PROF:DASEL:818:ArrayRate_RBV
         ref_rate_vme: PROF:DASEL:818:FRAME_RATE
         resolution: PROF:DASEL:818:RESOLUTION
-        sys_type: PROF:DASEL:818:SYS_TYPE
       control_name: PROF:DASEL:818
     metadata:
       area: DASEL
