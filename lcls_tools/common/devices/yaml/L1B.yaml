@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L1B:0283:TMIT
+        x: BPMS:L1B:0283:X
+        y: BPMS:L1B:0283:Y
       control_name: BPMS:L1B:0283
     metadata:
       area: L1B
@@ -21,6 +23,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L1B:0383:TMIT
+        x: BPMS:L1B:0383:X
+        y: BPMS:L1B:0383:Y
       control_name: BPMS:L1B:0383
     metadata:
       area: L1B
@@ -39,6 +43,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L1B:H183:TMIT
+        x: BPMS:L1B:H183:X
+        y: BPMS:L1B:H183:Y
       control_name: BPMS:L1B:H183
     metadata:
       area: L1B
@@ -57,6 +63,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:L1B:H283:TMIT
+        x: BPMS:L1B:H283:X
+        y: BPMS:L1B:H283:Y
       control_name: BPMS:L1B:H283
     metadata:
       area: L1B

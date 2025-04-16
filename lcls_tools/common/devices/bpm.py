@@ -21,6 +21,8 @@ EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
 class BPMPVSet(PVSet):
+    x: PV
+    y: PV
     tmit: PV
 
     def __init__(self, **kwargs):
@@ -52,6 +54,24 @@ class BPM(Device):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+    @property
+    def x(self):
+        """Get TMIT value"""
+        return self.controls_information.PVs.x.get()
+
+    def x_buffer(self, buffer):
+        """Retrieve TMIT signal data from timing buffer"""
+        return buffer.get_buffer_data(self.controls_information.PVs.x)
+
+    @property
+    def y(self):
+        """Get TMIT value"""
+        return self.controls_information.PVs.y.get()
+
+    def y_buffer(self, buffer):
+        """Retrieve TMIT signal data from timing buffer"""
+        return buffer.get_buffer_data(self.controls_information.PVs.y)
 
     @property
     def tmit(self):

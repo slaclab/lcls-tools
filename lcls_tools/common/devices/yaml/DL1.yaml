@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:581:TMIT
+        x: BPMS:IN20:581:X
+        y: BPMS:IN20:581:Y
       control_name: BPMS:IN20:581
     metadata:
       area: DL1
@@ -20,6 +22,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:631:TMIT
+        x: BPMS:IN20:631:X
+        y: BPMS:IN20:631:Y
       control_name: BPMS:IN20:631
     metadata:
       area: DL1
@@ -37,6 +41,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:651:TMIT
+        x: BPMS:IN20:651:X
+        y: BPMS:IN20:651:Y
       control_name: BPMS:IN20:651
     metadata:
       area: DL1
@@ -54,6 +60,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:731:TMIT
+        x: BPMS:IN20:731:X
+        y: BPMS:IN20:731:Y
       control_name: BPMS:IN20:731
     metadata:
       area: DL1
@@ -70,6 +78,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:771:TMIT
+        x: BPMS:IN20:771:X
+        y: BPMS:IN20:771:Y
       control_name: BPMS:IN20:771
     metadata:
       area: DL1
@@ -86,6 +96,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:781:TMIT
+        x: BPMS:IN20:781:X
+        y: BPMS:IN20:781:Y
       control_name: BPMS:IN20:781
     metadata:
       area: DL1
@@ -102,6 +114,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:425:TMIT
+        x: BPMS:IN20:425:X
+        y: BPMS:IN20:425:Y
       control_name: BPMS:IN20:425
     metadata:
       area: DL1
@@ -119,6 +133,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:511:TMIT
+        x: BPMS:IN20:511:X
+        y: BPMS:IN20:511:Y
       control_name: BPMS:IN20:511
     metadata:
       area: DL1
@@ -136,6 +152,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:525:TMIT
+        x: BPMS:IN20:525:X
+        y: BPMS:IN20:525:Y
       control_name: BPMS:IN20:525
     metadata:
       area: DL1
