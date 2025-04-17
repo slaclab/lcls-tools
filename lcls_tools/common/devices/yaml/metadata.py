@@ -94,7 +94,7 @@ def get_tcav_metadata(tcav_names: List[str] = [],method: callable = None, **kwar
         # change field names and values to be in different format
         # if needed
         for tcav in device_elements:
-            if "Effective Length (m)" in device_elements[magnet]:
+            if "Effective Length (m)" in device_elements[tcav]:
                 if device_elements[tcav]["Effective Length (m)"] == "":
                     device_elements[tcav]["Effective Length (m)"] = 0.0
                 device_elements[tcav]["l_eff"] = round(

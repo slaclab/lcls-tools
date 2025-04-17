@@ -664,13 +664,19 @@ tcavs:
   STCAV2:
     controls_information:
       PVs:
-        area: TCAV:DIAG0:11:AREQ
-        preq: TCAV:DIAG0:11:PREQ
+        amp_fb: TCAV:DIAG0:11:AFBENB
+        amp_set: TCAV:DIAG0:11:AREQ
+        mode_config: TCAV:DIAG0:11:MODECFG
+        phase_fb: TCAV:DIAG0:11:PFBENB
+        phase_set: TCAV:DIAG0:11:PREQ
+        rf_enable: TCAV:DIAG0:11:RF_ENABLE
       control_name: TCAV:DIAG0:11
     metadata:
+      Rf Frequency (MHz): '2856'
       area: DIAG0
       beam_path:
       - SC_DIAG0
+      l_eff: 0.8
       sum_l_meters: 53.313
       type: LCAV
 wires:

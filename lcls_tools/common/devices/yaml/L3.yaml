@@ -4323,6 +4323,7 @@ tcavs:
       PVs: {}
       control_name: TCAV:LI24:800
     metadata:
+      Rf Frequency (MHz): '2856'
       area: L3
       beam_path:
       - CU_ALINE
@@ -4331,6 +4332,7 @@ tcavs:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      l_eff: 2.438
       sum_l_meters: 446.761
       type: LCAV
 wires:
