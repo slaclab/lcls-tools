@@ -79,15 +79,28 @@ def get_bpm_metadata(bpm_names: List[str] = []):
     return {}
 
 
-def get_tcav_metadata(tcav_names: List[str] = []):
+def get_tcav_metadata(tcav_names: List[str] = [],method: callable = None, **kwargs):
     # return a data structure of the form:
     # {
-    #  lblm-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
-    #  lblm-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
+    #  tcav-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
+    #  tcav-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    if tcav_names:
-        raise NotImplementedError(
-            "No method of getting additional metadata for wires."
-        )
-    return {}
+    if tcav_names and method:
+
+        # Add any additional metadata fields here
+        additional_fields = ["Element", "Effective Length (m)", "Rf Frequency (MHz)", ]
+        device_elements = method(tcav_names, additional_fields)
+        # change field names and values to be in different format
+        # if needed
+        for tcav in device_elements:
+            if "Effective Length (m)" in device_elements[magnet]:
+                if device_elements[tcav]["Effective Length (m)"] == "":
+                    device_elements[tcav]["Effective Length (m)"] = 0.0
+                device_elements[tcav]["l_eff"] = round(
+                    float(device_elements[tcav]["Effective Length (m)"]), 3
+                )
+                del device_elements[tcav]["Effective Length (m)"]
+        return device_elements
+    else:
+        return {}

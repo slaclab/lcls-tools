@@ -473,9 +473,8 @@ class YAMLGenerator:
                              "PFBENB": "phase_fb",
                              "MODECFG": "mode_config"
                              }
-        # add fields we care about for additional metadata
-        additional_metadata_data = get_tcav_metadata()
-        additional_controls_data = get_tcav_controls_information()
+
+
         basic_tcav_data = self.extract_devices(
             area=area,
             required_types=required_tcav_types,
@@ -483,6 +482,11 @@ class YAMLGenerator:
             **additional_filter_constraints
         )
         if basic_tcav_data:
+            tcav_names = [key for key in basic_tcav_data.keys()]
+            additional_metadata_data = get_tcav_metadata(
+                tcav_names, self.extract_metadata_by_device_names
+            )
+            additional_controls_data = get_tcav_controls_information()
             complete_tcav_data = self.add_extra_data_to_device(
                 device_data=basic_tcav_data,
                 additional_controls_information=additional_controls_data,
