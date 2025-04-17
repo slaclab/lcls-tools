@@ -101,6 +101,13 @@ def get_tcav_metadata(tcav_names: List[str] = [],method: callable = None, **kwar
                     float(device_elements[tcav]["Effective Length (m)"]), 3
                 )
                 del device_elements[tcav]["Effective Length (m)"]
+                
+            if "Rf Frequency (MHz)" in device_elements[tcav]:
+                if device_elements[tcav]["Rf Frequency (MHz)"] == "":
+                    device_elements[tcav]["Rf Frequency (MHz)"] = 0.0
+                device_elements[tcav]["rf_freq"] = device_elements[tcav]["Rf Frequency (MHz)"]
+                del device_elements[tcav]["Rf Frequency (MHz)"]
+
         return device_elements
     else:
         return {}
