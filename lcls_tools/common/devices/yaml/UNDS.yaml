@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:1690:TMIT
+        x: BPMS:UNDS:1690:X
+        y: BPMS:UNDS:1690:Y
       control_name: BPMS:UNDS:1690
     metadata:
       area: UNDS
@@ -19,6 +21,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:1990:TMIT
+        x: BPMS:UNDS:1990:X
+        y: BPMS:UNDS:1990:Y
       control_name: BPMS:UNDS:1990
     metadata:
       area: UNDS
@@ -35,6 +39,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:2190:TMIT
+        x: BPMS:UNDS:2190:X
+        y: BPMS:UNDS:2190:Y
       control_name: BPMS:UNDS:2190
     metadata:
       area: UNDS
@@ -51,6 +57,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:2490:TMIT
+        x: BPMS:UNDS:2490:X
+        y: BPMS:UNDS:2490:Y
       control_name: BPMS:UNDS:2490
     metadata:
       area: UNDS
@@ -67,6 +75,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:2590:TMIT
+        x: BPMS:UNDS:2590:X
+        y: BPMS:UNDS:2590:Y
       control_name: BPMS:UNDS:2590
     metadata:
       area: UNDS
@@ -83,6 +93,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:2690:TMIT
+        x: BPMS:UNDS:2690:X
+        y: BPMS:UNDS:2690:Y
       control_name: BPMS:UNDS:2690
     metadata:
       area: UNDS
@@ -99,6 +111,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:2790:TMIT
+        x: BPMS:UNDS:2790:X
+        y: BPMS:UNDS:2790:Y
       control_name: BPMS:UNDS:2790
     metadata:
       area: UNDS
@@ -115,6 +129,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:2890:TMIT
+        x: BPMS:UNDS:2890:X
+        y: BPMS:UNDS:2890:Y
       control_name: BPMS:UNDS:2890
     metadata:
       area: UNDS
@@ -131,6 +147,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:2990:TMIT
+        x: BPMS:UNDS:2990:X
+        y: BPMS:UNDS:2990:Y
       control_name: BPMS:UNDS:2990
     metadata:
       area: UNDS
@@ -147,6 +165,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:3090:TMIT
+        x: BPMS:UNDS:3090:X
+        y: BPMS:UNDS:3090:Y
       control_name: BPMS:UNDS:3090
     metadata:
       area: UNDS
@@ -163,6 +183,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:3190:TMIT
+        x: BPMS:UNDS:3190:X
+        y: BPMS:UNDS:3190:Y
       control_name: BPMS:UNDS:3190
     metadata:
       area: UNDS
@@ -179,6 +201,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:3290:TMIT
+        x: BPMS:UNDS:3290:X
+        y: BPMS:UNDS:3290:Y
       control_name: BPMS:UNDS:3290
     metadata:
       area: UNDS
@@ -195,6 +219,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:3390:TMIT
+        x: BPMS:UNDS:3390:X
+        y: BPMS:UNDS:3390:Y
       control_name: BPMS:UNDS:3390
     metadata:
       area: UNDS
@@ -211,6 +237,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:3490:TMIT
+        x: BPMS:UNDS:3490:X
+        y: BPMS:UNDS:3490:Y
       control_name: BPMS:UNDS:3490
     metadata:
       area: UNDS
@@ -227,6 +255,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:3590:TMIT
+        x: BPMS:UNDS:3590:X
+        y: BPMS:UNDS:3590:Y
       control_name: BPMS:UNDS:3590
     metadata:
       area: UNDS
@@ -243,6 +273,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:3690:TMIT
+        x: BPMS:UNDS:3690:X
+        y: BPMS:UNDS:3690:Y
       control_name: BPMS:UNDS:3690
     metadata:
       area: UNDS
@@ -259,6 +291,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:3790:TMIT
+        x: BPMS:UNDS:3790:X
+        y: BPMS:UNDS:3790:Y
       control_name: BPMS:UNDS:3790
     metadata:
       area: UNDS
@@ -275,6 +309,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:3890:TMIT
+        x: BPMS:UNDS:3890:X
+        y: BPMS:UNDS:3890:Y
       control_name: BPMS:UNDS:3890
     metadata:
       area: UNDS
@@ -291,6 +327,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:3990:TMIT
+        x: BPMS:UNDS:3990:X
+        y: BPMS:UNDS:3990:Y
       control_name: BPMS:UNDS:3990
     metadata:
       area: UNDS
@@ -307,6 +345,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:4090:TMIT
+        x: BPMS:UNDS:4090:X
+        y: BPMS:UNDS:4090:Y
       control_name: BPMS:UNDS:4090
     metadata:
       area: UNDS
@@ -323,6 +363,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:4190:TMIT
+        x: BPMS:UNDS:4190:X
+        y: BPMS:UNDS:4190:Y
       control_name: BPMS:UNDS:4190
     metadata:
       area: UNDS
@@ -339,6 +381,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:4290:TMIT
+        x: BPMS:UNDS:4290:X
+        y: BPMS:UNDS:4290:Y
       control_name: BPMS:UNDS:4290
     metadata:
       area: UNDS
@@ -355,6 +399,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:4390:TMIT
+        x: BPMS:UNDS:4390:X
+        y: BPMS:UNDS:4390:Y
       control_name: BPMS:UNDS:4390
     metadata:
       area: UNDS
@@ -371,6 +417,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:4490:TMIT
+        x: BPMS:UNDS:4490:X
+        y: BPMS:UNDS:4490:Y
       control_name: BPMS:UNDS:4490
     metadata:
       area: UNDS
@@ -387,6 +435,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:4590:TMIT
+        x: BPMS:UNDS:4590:X
+        y: BPMS:UNDS:4590:Y
       control_name: BPMS:UNDS:4590
     metadata:
       area: UNDS
@@ -403,6 +453,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:4690:TMIT
+        x: BPMS:UNDS:4690:X
+        y: BPMS:UNDS:4690:Y
       control_name: BPMS:UNDS:4690
     metadata:
       area: UNDS
@@ -419,6 +471,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:4790:TMIT
+        x: BPMS:UNDS:4790:X
+        y: BPMS:UNDS:4790:Y
       control_name: BPMS:UNDS:4790
     metadata:
       area: UNDS
@@ -435,6 +489,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:UNDS:5190:TMIT
+        x: BPMS:UNDS:5190:X
+        y: BPMS:UNDS:5190:Y
       control_name: BPMS:UNDS:5190
     metadata:
       area: UNDS
@@ -2468,7 +2524,10 @@ screens:
         n_bits: YAGS:UNDS:3575:N_OF_BITS
         n_col: YAGS:UNDS:3575:Image:ArraySize1_RBV
         n_row: YAGS:UNDS:3575:Image:ArraySize0_RBV
+        ref_rate: YAGS:UNDS:3575:ArrayRate_RBV
+        ref_rate_vme: YAGS:UNDS:3575:FRAME_RATE
         resolution: YAGS:UNDS:3575:RESOLUTION
+        sys_type: YAGS:UNDS:3575:SYS_TYPE
       control_name: YAGS:UNDS:3575
     metadata:
       area: UNDS
@@ -2488,7 +2547,10 @@ screens:
         n_bits: YAGS:UNDS:3795:N_OF_BITS
         n_col: YAGS:UNDS:3795:Image:ArraySize1_RBV
         n_row: YAGS:UNDS:3795:Image:ArraySize0_RBV
+        ref_rate: YAGS:UNDS:3795:ArrayRate_RBV
+        ref_rate_vme: YAGS:UNDS:3795:FRAME_RATE
         resolution: YAGS:UNDS:3795:RESOLUTION
+        sys_type: YAGS:UNDS:3795:SYS_TYPE
       control_name: YAGS:UNDS:3795
     metadata:
       area: UNDS

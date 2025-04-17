@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:CLTS:420:TMIT
+        x: BPMS:CLTS:420:X
+        y: BPMS:CLTS:420:Y
       control_name: BPMS:CLTS:420
     metadata:
       area: CLTS
@@ -14,6 +16,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:CLTS:620:TMIT
+        x: BPMS:CLTS:620:X
+        y: BPMS:CLTS:620:Y
       control_name: BPMS:CLTS:620
     metadata:
       area: CLTS
@@ -25,6 +29,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:CLTS:450:TMIT
+        x: BPMS:CLTS:450:X
+        y: BPMS:CLTS:450:Y
       control_name: BPMS:CLTS:450
     metadata:
       area: CLTS
@@ -36,6 +42,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:CLTS:470:TMIT
+        x: BPMS:CLTS:470:X
+        y: BPMS:CLTS:470:Y
       control_name: BPMS:CLTS:470
     metadata:
       area: CLTS
@@ -47,6 +55,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:CLTS:500:TMIT
+        x: BPMS:CLTS:500:X
+        y: BPMS:CLTS:500:Y
       control_name: BPMS:CLTS:500
     metadata:
       area: CLTS
@@ -58,6 +68,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:CLTS:510:TMIT
+        x: BPMS:CLTS:510:X
+        y: BPMS:CLTS:510:Y
       control_name: BPMS:CLTS:510
     metadata:
       area: CLTS
@@ -69,6 +81,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:CLTS:540:TMIT
+        x: BPMS:CLTS:540:X
+        y: BPMS:CLTS:540:Y
       control_name: BPMS:CLTS:540
     metadata:
       area: CLTS
@@ -80,6 +94,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:CLTS:570:TMIT
+        x: BPMS:CLTS:570:X
+        y: BPMS:CLTS:570:Y
       control_name: BPMS:CLTS:570
     metadata:
       area: CLTS
@@ -91,6 +107,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:CLTS:590:TMIT
+        x: BPMS:CLTS:590:X
+        y: BPMS:CLTS:590:Y
       control_name: BPMS:CLTS:590
     metadata:
       area: CLTS

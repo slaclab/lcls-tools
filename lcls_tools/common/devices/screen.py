@@ -38,6 +38,9 @@ class ScreenPVSet(PVSet):
     n_row: PV
     n_bits: PV
     resolution: PV
+    sys_type: PV
+    ref_rate_vme: Optional[PV] = None
+    ref_rate: Optional[PV] = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -94,6 +97,16 @@ class Screen(Device):
                 f"Could not set {self.name} HDF5 save location. Please provide an existing directory."
             )
         self._root_hdf5_location = path
+
+    @property
+    def refresh_rate(self):
+        sys_type = self.controls_information.PVs.sys_type.get()
+        if str(sys_type) == "VME":
+            return self.controls_information.PVs.ref_rate_vme.get()
+        elif str(sys_type) == "LinuxRT":
+            return self.controls_information.PVs.ref_rate.get()
+        else:
+            raise ValueError("Camera refresh rate not found")
 
     @property
     def is_saving_images(self):

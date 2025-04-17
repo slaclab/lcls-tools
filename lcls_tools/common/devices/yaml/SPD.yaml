@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPD:570:TMIT
+        x: BPMS:SPD:570:X
+        y: BPMS:SPD:570:Y
       control_name: BPMS:SPD:570
     metadata:
       area: SPD
@@ -14,6 +16,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPD:255:TMIT
+        x: BPMS:SPD:255:X
+        y: BPMS:SPD:255:Y
       control_name: BPMS:SPD:255
     metadata:
       area: SPD
@@ -31,6 +35,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPD:525:TMIT
+        x: BPMS:SPD:525:X
+        y: BPMS:SPD:525:Y
       control_name: BPMS:SPD:525
     metadata:
       area: SPD
@@ -43,6 +49,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPD:340:TMIT
+        x: BPMS:SPD:340:X
+        y: BPMS:SPD:340:Y
       control_name: BPMS:SPD:340
     metadata:
       area: SPD
@@ -60,6 +68,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPD:700:TMIT
+        x: BPMS:SPD:700:X
+        y: BPMS:SPD:700:Y
       control_name: BPMS:SPD:700
     metadata:
       area: SPD
@@ -71,6 +81,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPD:955:TMIT
+        x: BPMS:SPD:955:X
+        y: BPMS:SPD:955:Y
       control_name: BPMS:SPD:955
     metadata:
       area: SPD
@@ -82,6 +94,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPD:135:TMIT
+        x: BPMS:SPD:135:X
+        y: BPMS:SPD:135:Y
       control_name: BPMS:SPD:135
     metadata:
       area: SPD
@@ -99,6 +113,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:SPD:420:TMIT
+        x: BPMS:SPD:420:X
+        y: BPMS:SPD:420:Y
       control_name: BPMS:SPD:420
     metadata:
       area: SPD

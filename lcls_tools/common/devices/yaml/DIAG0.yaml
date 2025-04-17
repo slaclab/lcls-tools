@@ -13,6 +13,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DIAG0:190:TMIT
+        x: BPMS:DIAG0:190:X
+        y: BPMS:DIAG0:190:Y
       control_name: BPMS:DIAG0:190
     metadata:
       area: DIAG0
@@ -24,6 +26,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DIAG0:210:TMIT
+        x: BPMS:DIAG0:210:X
+        y: BPMS:DIAG0:210:Y
       control_name: BPMS:DIAG0:210
     metadata:
       area: DIAG0
@@ -35,6 +39,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DIAG0:230:TMIT
+        x: BPMS:DIAG0:230:X
+        y: BPMS:DIAG0:230:Y
       control_name: BPMS:DIAG0:230
     metadata:
       area: DIAG0
@@ -46,6 +52,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DIAG0:270:TMIT
+        x: BPMS:DIAG0:270:X
+        y: BPMS:DIAG0:270:Y
       control_name: BPMS:DIAG0:270
     metadata:
       area: DIAG0
@@ -57,6 +65,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DIAG0:285:TMIT
+        x: BPMS:DIAG0:285:X
+        y: BPMS:DIAG0:285:Y
       control_name: BPMS:DIAG0:285
     metadata:
       area: DIAG0
@@ -68,6 +78,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DIAG0:370:TMIT
+        x: BPMS:DIAG0:370:X
+        y: BPMS:DIAG0:370:Y
       control_name: BPMS:DIAG0:370
     metadata:
       area: DIAG0
@@ -79,6 +91,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DIAG0:390:TMIT
+        x: BPMS:DIAG0:390:X
+        y: BPMS:DIAG0:390:Y
       control_name: BPMS:DIAG0:390
     metadata:
       area: DIAG0
@@ -90,6 +104,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DIAG0:470:TMIT
+        x: BPMS:DIAG0:470:X
+        y: BPMS:DIAG0:470:Y
       control_name: BPMS:DIAG0:470
     metadata:
       area: DIAG0
@@ -101,6 +117,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DIAG0:520:TMIT
+        x: BPMS:DIAG0:520:X
+        y: BPMS:DIAG0:520:Y
       control_name: BPMS:DIAG0:520
     metadata:
       area: DIAG0
@@ -613,7 +631,10 @@ screens:
         n_bits: OTRS:DIAG0:420:N_OF_BITS
         n_col: OTRS:DIAG0:420:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:420:Image:ArraySize0_RBV
+        ref_rate: OTRS:DIAG0:420:ArrayRate_RBV
+        ref_rate_vme: OTRS:DIAG0:420:FRAME_RATE
         resolution: OTRS:DIAG0:420:RESOLUTION
+        sys_type: OTRS:DIAG0:420:SYS_TYPE
       control_name: OTRS:DIAG0:420
     metadata:
       area: DIAG0
@@ -628,7 +649,10 @@ screens:
         n_bits: OTRS:DIAG0:525:N_OF_BITS
         n_col: OTRS:DIAG0:525:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:525:Image:ArraySize0_RBV
+        ref_rate: OTRS:DIAG0:525:ArrayRate_RBV
+        ref_rate_vme: OTRS:DIAG0:525:FRAME_RATE
         resolution: OTRS:DIAG0:525:RESOLUTION
+        sys_type: OTRS:DIAG0:525:SYS_TYPE
       control_name: OTRS:DIAG0:525
     metadata:
       area: DIAG0
