@@ -465,7 +465,7 @@ class YAMLGenerator:
                              "PREQ": "phase_set",
                              "RF_ENABLE": "rf_enable",
                              "AFBENB": "amp_fb",
-                             "PFBENB": "pha_fb",
+                             "PFBENB": "phase_fb",
                              "MODECFG": "mode_config"
                              }
         # add fields we care about for additional metadata
