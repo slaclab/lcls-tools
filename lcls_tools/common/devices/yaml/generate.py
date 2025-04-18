@@ -469,8 +469,10 @@ class YAMLGenerator:
         possible_tcav_pvs = {"AREQ": "amp_set",
                              "PREQ": "phase_set",
                              "RF_ENABLE": "rf_enable",
-                             "AFBENB": "amp_fb",
-                             "PFBENB": "phase_fb",
+                             "AFBENB": "amp_fbenb",
+                             "PFBENB": "phase_fbenb",
+                             "AFBST": "amp_fbst",
+                             "PFBST": "phase_fbst",
                              "MODECFG": "mode_config"
                              }
 
