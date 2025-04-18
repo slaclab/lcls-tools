@@ -172,7 +172,13 @@ class TCAV(Device):
         self.controls_information.PVs.phase_fbst = state    
 
     @property
-    def mode_config
+    def mode_config(self):
+        return self.controls_information.PVs.mode_config.get()
+    
+    @mode_config.setter
+    def mode_config(self, enum_string):
+        #TODO: wrap this in check configs decorator
+        pass
     @property
     def l_eff(self):
         """Returns the effective length in meters"""
