@@ -101,7 +101,6 @@ class TCAV(Device):
 
         return decorated
 
-
     @property
     def amp_set(self):
         return self.controls_information.PVs.amp_set.get()
@@ -174,15 +173,16 @@ class TCAV(Device):
     
     @mode_config.setter
     def mode_config(self, enum_string):
-        #TODO: wrap this in check configs decorator
+        # TODO: wrap this in check configs decorator
         pass
+
     @property
     def l_eff(self):
         """Returns the effective length in meters"""
         return self.metadata.l_eff
 
     @l_eff.setter
-    def l_eff(self,length):
+    def l_eff(self, length):
         if not isinstance(length, float):
             return
         self.metadata.l_eff = length

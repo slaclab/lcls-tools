@@ -93,7 +93,7 @@ def get_tcav_metadata(tcav_names: List[str] = [], method: callable = None, **kwa
             "Element",
             "Effective Length (m)", 
             "Rf Frequency (MHz)", 
-            ]
+        ]
         device_elements = method(tcav_names, additional_fields)
         # change field names and values to be in different format
         # if needed
@@ -110,7 +110,8 @@ def get_tcav_metadata(tcav_names: List[str] = [], method: callable = None, **kwa
                 if device_elements[tcav]["Rf Frequency (MHz)"] == "":
                     device_elements[tcav]["Rf Frequency (MHz)"] = 0.0
                 device_elements[tcav]["rf_freq"] = device_elements[tcav][
-                    "Rf Frequency (MHz)"]
+                    "Rf Frequency (MHz)"
+                ]
                 del device_elements[tcav]["Rf Frequency (MHz)"]
 
         return device_elements

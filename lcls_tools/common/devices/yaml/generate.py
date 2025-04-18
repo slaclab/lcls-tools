@@ -176,7 +176,7 @@ class YAMLGenerator:
         area: Union[str, List[str]],
         required_types=Optional[List[str]],
         pv_search_terms=Optional[List[str]],
-        **kwargs_additional_constraints
+        **kwargs_additional_constraints,
     ):
         if not isinstance(area, list):
             machine_areas = [area]
@@ -185,11 +185,10 @@ class YAMLGenerator:
         yaml_devices = {}
         # duplicate fields could cause issues, should take the set,
         # then convert back? does ordering matter?
-        required_fields = (self._required_fields + 
-                           list(kwargs_additional_constraints.keys()))
-        elements = self._filter_elements_by_fields(
-            required_fields=required_fields
+        required_fields = self._required_fields + list(
+            kwargs_additional_constraints.keys()
         )
+        elements = self._filter_elements_by_fields(required_fields=required_fields)
         for _area in machine_areas:
             device_elements = [
                 element
@@ -477,7 +476,6 @@ class YAMLGenerator:
             "MODECFG": "mode_config",
         }
 
-
         basic_tcav_data = self.extract_devices(
             area=area,
             required_types=required_tcav_types,
@@ -498,7 +496,6 @@ class YAMLGenerator:
             return complete_tcav_data
         else:
             return {}
-
 
     def extract_metadata_by_device_names(
         self, device_names=Optional[List[str]], required_fields=Optional[List[str]]
