@@ -466,22 +466,23 @@ class YAMLGenerator:
         required_tcav_types = ["LCAV"]
         additional_filter_constraints = {"Engineering Name": "TRANS_DEFL"}
         # add pvs we care about
-        possible_tcav_pvs = {"AREQ": "amp_set",
-                             "PREQ": "phase_set",
-                             "RF_ENABLE": "rf_enable",
-                             "AFBENB": "amp_fbenb",
-                             "PFBENB": "phase_fbenb",
-                             "AFBST": "amp_fbst",
-                             "PFBST": "phase_fbst",
-                             "MODECFG": "mode_config"
-                             }
+        possible_tcav_pvs = {
+            "AREQ": "amp_set",
+            "PREQ": "phase_set",
+            "RF_ENABLE": "rf_enable",
+            "AFBENB": "amp_fbenb",
+            "PFBENB": "phase_fbenb",
+            "AFBST": "amp_fbst",
+            "PFBST": "phase_fbst",
+            "MODECFG": "mode_config",
+        }
 
 
         basic_tcav_data = self.extract_devices(
             area=area,
             required_types=required_tcav_types,
             pv_search_terms=possible_tcav_pvs,
-            **additional_filter_constraints
+            **additional_filter_constraints,
         )
         if basic_tcav_data:
             tcav_names = [key for key in basic_tcav_data.keys()]

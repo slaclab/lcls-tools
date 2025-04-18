@@ -160,7 +160,9 @@ def create_bpm(area: str = None, name: str = None) -> Union[None, BPM, BPMCollec
         return BPMCollection(**device_data)
 
 
-def create_tcav(area: str = None, name: str = None) -> Union[None, TCAV, TCAVCollection]:
+def create_tcav(
+        area: str = None, name: str = None
+        )-> Union[None, TCAV, TCAVCollection]:
     device_data = _device_data(area=area, device_type="tcavs", name=name)
     if not device_data:
         return None

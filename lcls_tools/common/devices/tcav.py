@@ -2,14 +2,12 @@ from datetime import datetime
 from functools import wraps
 from pydantic import (
     Field,
-    PositiveFloat,
     NonNegativeFloat,
     SerializeAsAny,
     field_validator,
 )
 from typing import (
     Dict,
-    List,
     Optional,
     Union,
 )
@@ -32,8 +30,6 @@ class TCAVPVSet(PVSet):
     amp_fbst: PV
     phase_fbst: PV
     mode_config: PV
-    #add af state and pf state
-    #TODO: change amp_fb to amp_fbenb 
 
     def __init__(self, *args, **kwargs):
         super(TCAVPVSet, self).__init__(*args, **kwargs)
@@ -62,6 +58,7 @@ class TCAVControlInformation(ControlInformation):
     def mode_config_options(self):
         return self._mode_config_options
     
+
 class TCAVMetadata(Metadata):
     l_eff: Optional[NonNegativeFloat] = None
     rf_freq: Optional[NonNegativeFloat] = None
@@ -75,7 +72,7 @@ class TCAV(Device):
 
     def __init__(self, *args, **kwargs):
         super(TCAV, self).__init__(*args, **kwargs)
-    '''
+    """
     def check_options(self, options_to_check: Union[str,List]):
         def decorator(function):
             @wraps(function)
@@ -92,7 +89,7 @@ class TCAV(Device):
             return decorated
 
         return decorator
-    '''
+    """
     def check_state(f):
         """Decorator to only allow transitions in 'Ready' state"""
 
@@ -133,7 +130,7 @@ class TCAV(Device):
     
     @amp_fbenb.setter
     @check_state
-    def amp_fbenb(self, state: Union[str,int]):
+    def amp_fbenb(self, state: Union[str, int]):
         if not isinstance(state, str) or not isinstance(state, int):
             return
         self.controls_information.PVs.amp_fbenb = state
@@ -144,7 +141,7 @@ class TCAV(Device):
     
     @phase_fbenb.setter
     @check_state
-    def phase_fbenb(self, state: Union[str,int]):
+    def phase_fbenb(self, state: Union[str, int]):
         if not isinstance(state, str) or not isinstance(state, int):
             return
         self.controls_information.PVs.phase_fbenb = state
@@ -155,7 +152,7 @@ class TCAV(Device):
     
     @amp_fbst.setter
     @check_state
-    def amp_fbst(self, state: Union[str,int]):
+    def amp_fbst(self, state: Union[str, int]):
         if not isinstance(state, str) or not isinstance(state, int):
             return
         self.controls_information.PVs.amp_fbst = state
@@ -166,7 +163,7 @@ class TCAV(Device):
     
     @phase_fbst.setter
     @check_state
-    def phase_fbst(self, state: Union[str,int]):
+    def phase_fbst(self, state: Union[str, int]):
         if not isinstance(state, str) or not isinstance(state, int):
             return
         self.controls_information.PVs.phase_fbst = state    
