@@ -87,12 +87,11 @@ def get_tcav_metadata(tcav_names: List[str] = [], method: callable = None, **kwa
     #  ...
     # }
     if tcav_names and method:
-
         # Add any additional metadata fields here
         additional_fields = [
             "Element",
-            "Effective Length (m)", 
-            "Rf Frequency (MHz)", 
+            "Effective Length (m)",
+            "Rf Frequency (MHz)",
         ]
         device_elements = method(tcav_names, additional_fields)
         # change field names and values to be in different format

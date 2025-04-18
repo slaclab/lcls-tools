@@ -87,6 +87,7 @@ def get_tcav_controls_information(tcav_names: List[str] = []):
     #  ...
     # }
     if tcav_names:
-        raise NotImplementedError("No method of getting additional controls_information for TCAVs."
+        raise NotImplementedError(
+            "No method of getting additional controls_information for TCAVs."
         )
     return {}

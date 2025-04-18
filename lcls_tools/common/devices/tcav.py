@@ -1,5 +1,3 @@
-from datetime import datetime
-from functools import wraps
 from pydantic import (
     Field,
     NonNegativeFloat,
@@ -57,11 +55,12 @@ class TCAVControlInformation(ControlInformation):
     @property
     def mode_config_options(self):
         return self._mode_config_options
-    
+
 
 class TCAVMetadata(Metadata):
     l_eff: Optional[NonNegativeFloat] = None
     rf_freq: Optional[NonNegativeFloat] = None
+
     def __init__(self, *args, **kwargs):
         super(TCAVMetadata, self).__init__(*args, **kwargs)
 
@@ -72,6 +71,7 @@ class TCAV(Device):
 
     def __init__(self, *args, **kwargs):
         super(TCAV, self).__init__(*args, **kwargs)
+
     """
     def check_options(self, options_to_check: Union[str,List]):
         def decorator(function):
@@ -90,6 +90,7 @@ class TCAV(Device):
 
         return decorator
     """
+
     def check_state(f):
         """Decorator to only allow transitions in 'Ready' state"""
 
@@ -104,7 +105,7 @@ class TCAV(Device):
     @property
     def amp_set(self):
         return self.controls_information.PVs.amp_set.get()
-    
+
     @amp_set.setter
     @check_state
     def amp_set(self, amplitude):
@@ -115,18 +116,18 @@ class TCAV(Device):
     @property
     def phase_set(self):
         return self.controls_information.PVs.phase_set.get()
-    
+
     @phase_set.setter
     @check_state
     def phase_set(self, phase):
         if not isinstance([phase], float):
             return
         self.controls_information.PVs.phase = phase
-    
+
     @property
     def amp_fbenb(self):
         return self.controls_information.PVs.amp_fbenb.get()
-    
+
     @amp_fbenb.setter
     @check_state
     def amp_fbenb(self, state: Union[str, int]):
@@ -137,7 +138,7 @@ class TCAV(Device):
     @property
     def phase_fbenb(self):
         return self.controls_information.PVs.phase_fbenb.get()
-    
+
     @phase_fbenb.setter
     @check_state
     def phase_fbenb(self, state: Union[str, int]):
@@ -148,7 +149,7 @@ class TCAV(Device):
     @property
     def amp_fbst(self):
         return self.controls_information.PVs.amp_fbst.get()
-    
+
     @amp_fbst.setter
     @check_state
     def amp_fbst(self, state: Union[str, int]):
@@ -159,18 +160,18 @@ class TCAV(Device):
     @property
     def phase_fbst(self):
         return self.controls_information.PVs.phase_fbst.get()
-    
+
     @phase_fbst.setter
     @check_state
     def phase_fbst(self, state: Union[str, int]):
         if not isinstance(state, str) or not isinstance(state, int):
             return
-        self.controls_information.PVs.phase_fbst = state    
+        self.controls_information.PVs.phase_fbst = state
 
     @property
     def mode_config(self):
         return self.controls_information.PVs.mode_config.get()
-    
+
     @mode_config.setter
     def mode_config(self, enum_string):
         # TODO: wrap this in check configs decorator
@@ -192,7 +193,7 @@ class TCAV(Device):
         """Returns the Rf frequency in MHz"""
         return self.metadata.rf_freq
 
- 
+
 # probably dont need a collection of tcavs, no area will have more than one
 class TCAVCollection(DeviceCollection):
     devices: Dict[str, SerializeAsAny[TCAV]] = Field(alias="tcavs")
