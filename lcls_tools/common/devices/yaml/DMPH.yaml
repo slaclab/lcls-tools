@@ -372,7 +372,6 @@ tcavs:
       PVs: {}
       control_name: TCAV:DMPH:360
     metadata:
-      Rf Frequency (MHz): '11424'
       area: DMPH
       beam_path:
       - CU_HTXI
@@ -381,5 +380,6 @@ tcavs:
       - CU_SFTH
       - SC_HXR
       l_eff: 1.0
+      rf_freq: '11424'
       sum_l_meters: 1713.869
       type: LCAV

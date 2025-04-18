@@ -380,7 +380,6 @@ tcavs:
       PVs: {}
       control_name: TCAV:DMPS:360
     metadata:
-      Rf Frequency (MHz): '11424'
       area: DMPS
       beam_path:
       - CU_SXR
@@ -390,5 +389,6 @@ tcavs:
       - SC_STXI
       - SC_SXR
       l_eff: 1.5
+      rf_freq: '11424'
       sum_l_meters: 3739.351
       type: LCAV

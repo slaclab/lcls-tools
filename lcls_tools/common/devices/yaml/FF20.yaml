@@ -51,11 +51,11 @@ tcavs:
       PVs: {}
       control_name: TCAV:LI20:2400
     metadata:
-      Rf Frequency (MHz): '11424'
       area: FF20
       beam_path:
       - F2_ELEC
       - F2_POSI
       l_eff: 1.033
+      rf_freq: '11424'
       sum_l_meters: 986.615
       type: LCAV
