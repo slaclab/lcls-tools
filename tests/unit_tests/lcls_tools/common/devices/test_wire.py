@@ -36,7 +36,8 @@ class WireTest(TestCase):
             "MOTR_HOMED_STS": None,
         }
         # set up patch so that each magnet is constructed with ALL ctrl options
-        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=Mock)
+        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars",
+                                        new_callable=Mock)
         self.mock_ctrl_options = self.ctrl_options_patch.start()
         self.mock_ctrl_options.return_value = {
             "enum_strs": tuple(self.options_and_getter_function.keys())
@@ -56,7 +57,7 @@ class WireTest(TestCase):
             "MOTR_INIT": self.wire.initialize,
             "MOTR_INIT_STS": self.wire.initialize_status,
             "MOTR": self.wire.motor,
-            "MOTR.RBV": self.wire.position,
+            "MOTR.RBV": self.wire.motor_rbv,
             "MOTR_RETRACT": self.wire.retract,
             "SCANPULSES": self.wire.scan_pulses,
             "MOTR.VELO": self.wire.speed,
@@ -71,12 +72,12 @@ class WireTest(TestCase):
             "UWIRESIZE": self.wire.u_size,
             "UWIREINNER": self.wire.u_wire_inner,
             "UWIREOUTER": self.wire.u_wire_outer,
+            "XWIRESIZE": self.wire.x_size,
             "XWIREINNER": self.wire.x_wire_inner,
             "XWIREOUTER": self.wire.x_wire_outer,
-            "XWIRESIZE": self.wire.x_size,
+            "YWIRESIZE": self.wire.y_size,
             "YWIREINNER": self.wire.y_wire_inner,
             "YWIREOUTER": self.wire.y_wire_outer,
-            "YWIRESIZE": self.wire.y_size,
         }
         return super().setUp()
 
@@ -109,7 +110,7 @@ class WireTest(TestCase):
             "initialize",
             "initialize_status",
             "motor",
-            "position",
+            "motor_rbv",
             "retract",
             "scan_pulses",
             "speed",
@@ -122,12 +123,12 @@ class WireTest(TestCase):
             "u_size",
             "u_wire_inner",
             "u_wire_outer",
+            "x_size",
             "x_wire_inner",
             "x_wire_outer",
-            "x_size",
+            "y_size",
             "y_wire_inner",
             "y_wire_outer",
-            "y_size",
         ]:
             self.assertTrue(
                 hasattr(self.wire, item),
@@ -171,9 +172,9 @@ class WireTest(TestCase):
         mock_pv_get.assert_called_once()
 
     @patch("epics.PV.get", new_callable=Mock)
-    def test_position(self, mock_pv_get) -> None:
+    def test_motor_rbv(self, mock_pv_get) -> None:
         mock_pv_get.return_value = 10000
-        self.assertEqual(self.wire.position, 10000)
+        self.assertEqual(self.wire.motor_rbv, 10000)
         mock_pv_get.assert_called_once()
 
     @patch("epics.PV.get", new_callable=Mock)
@@ -268,7 +269,7 @@ class WireTest(TestCase):
         self.test_use_x_wire()
         self.test_use_y_wire()
         print("Testing position...")
-        self.test_position()
+        self.test_motor_rbv()
         print("Testing x/y/u size")
         self.test_u_size()
         self.test_x_size()
