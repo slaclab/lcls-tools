@@ -1446,7 +1446,7 @@ wires:
         initialize: WIRE:DOG:655:MOTR_INIT
         initialize_status: WIRE:DOG:655:MOTR_INIT_STS
         motor: WIRE:DOG:655:MOTR
-        position: WIRE:DOG:655:MOTR.RBV
+        motor_rbv: WIRE:DOG:655:MOTR.RBV
         retract: WIRE:DOG:655:MOTR_RETRACT
         scan_pulses: WIRE:DOG:655:SCANPULSES
         speed: WIRE:DOG:655:MOTR.VELO

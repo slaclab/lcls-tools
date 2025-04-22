@@ -813,7 +813,7 @@ wires:
         initialize: WIRE:COL1:360:MOTR_INIT
         initialize_status: WIRE:COL1:360:MOTR_INIT_STS
         motor: WIRE:COL1:360:MOTR
-        position: WIRE:COL1:360:MOTR.RBV
+        motor_rbv: WIRE:COL1:360:MOTR.RBV
         retract: WIRE:COL1:360:MOTR_RETRACT
         scan_pulses: WIRE:COL1:360:SCANPULSES
         speed: WIRE:COL1:360:MOTR.VELO
@@ -857,7 +857,7 @@ wires:
         initialize: WIRE:COL1:520:MOTR_INIT
         initialize_status: WIRE:COL1:520:MOTR_INIT_STS
         motor: WIRE:COL1:520:MOTR
-        position: WIRE:COL1:520:MOTR.RBV
+        motor_rbv: WIRE:COL1:520:MOTR.RBV
         retract: WIRE:COL1:520:MOTR_RETRACT
         scan_pulses: WIRE:COL1:520:SCANPULSES
         speed: WIRE:COL1:520:MOTR.VELO
@@ -900,7 +900,7 @@ wires:
         initialize: WIRE:COL1:680:MOTR_INIT
         initialize_status: WIRE:COL1:680:MOTR_INIT_STS
         motor: WIRE:COL1:680:MOTR
-        position: WIRE:COL1:680:MOTR.RBV
+        motor_rbv: WIRE:COL1:680:MOTR.RBV
         retract: WIRE:COL1:680:MOTR_RETRACT
         scan_pulses: WIRE:COL1:680:SCANPULSES
         speed: WIRE:COL1:680:MOTR.VELO
@@ -944,7 +944,7 @@ wires:
         initialize: WIRE:COL1:840:MOTR_INIT
         initialize_status: WIRE:COL1:840:MOTR_INIT_STS
         motor: WIRE:COL1:840:MOTR
-        position: WIRE:COL1:840:MOTR.RBV
+        motor_rbv: WIRE:COL1:840:MOTR.RBV
         retract: WIRE:COL1:840:MOTR_RETRACT
         scan_pulses: WIRE:COL1:840:SCANPULSES
         speed: WIRE:COL1:840:MOTR.VELO

@@ -897,7 +897,7 @@ wires:
         enabled: WIRE:IN20:531:MOTR_ENABLED_STS
         initialize_status: WIRE:IN20:531:MOTR_INIT_STS
         motor: WIRE:IN20:531:MOTR
-        position: WIRE:IN20:531:MOTR.RBV
+        motor_rbv: WIRE:IN20:531:MOTR.RBV
         scan_pulses: WIRE:IN20:531:SCANPULSES
         speed: WIRE:IN20:531:MOTR.VELO
         speed_max: WIRE:IN20:531:MOTR.VMAX
@@ -937,7 +937,7 @@ wires:
         initialize: WIRE:IN20:561:MOTR_INIT
         initialize_status: WIRE:IN20:561:MOTR_INIT_STS
         motor: WIRE:IN20:561:MOTR
-        position: WIRE:IN20:561:MOTR.RBV
+        motor_rbv: WIRE:IN20:561:MOTR.RBV
         retract: WIRE:IN20:561:MOTR_RETRACT
         scan_pulses: WIRE:IN20:561:SCANPULSES
         speed: WIRE:IN20:561:MOTR.VELO
@@ -980,7 +980,7 @@ wires:
         initialize: WIRE:IN20:611:MOTR_INIT
         initialize_status: WIRE:IN20:611:MOTR_INIT_STS
         motor: WIRE:IN20:611:MOTR
-        position: WIRE:IN20:611:MOTR.RBV
+        motor_rbv: WIRE:IN20:611:MOTR.RBV
         retract: WIRE:IN20:611:MOTR_RETRACT
         scan_pulses: WIRE:IN20:611:SCANPULSES
         speed: WIRE:IN20:611:MOTR.VELO
@@ -1021,7 +1021,7 @@ wires:
         enabled: WIRE:IN20:741:MOTR_ENABLED_STS
         initialize_status: WIRE:IN20:741:MOTR_INIT_STS
         motor: WIRE:IN20:741:MOTR
-        position: WIRE:IN20:741:MOTR.RBV
+        motor_rbv: WIRE:IN20:741:MOTR.RBV
         scan_pulses: WIRE:IN20:741:SCANPULSES
         speed: WIRE:IN20:741:MOTR.VELO
         speed_max: WIRE:IN20:741:MOTR.VMAX

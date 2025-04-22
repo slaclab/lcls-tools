@@ -1734,7 +1734,7 @@ wires:
         initialize: WIRE:BPN12:850:MOTR_INIT
         initialize_status: WIRE:BPN12:850:MOTR_INIT_STS
         motor: WIRE:BPN12:850:MOTR
-        position: WIRE:BPN12:850:MOTR.RBV
+        motor_rbv: WIRE:BPN12:850:MOTR.RBV
         retract: WIRE:BPN12:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN12:850:SCANPULSES
         speed: WIRE:BPN12:850:MOTR.VELO
@@ -1767,6 +1767,10 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      lblms:
+      - LBLM11A_1
+      - LBLM11A_2
+      - LBLM11A_3
       sum_l_meters: 1212.849
       type: WIRE
   WSBP3:
@@ -1778,7 +1782,7 @@ wires:
         initialize: WIRE:BPN14:850:MOTR_INIT
         initialize_status: WIRE:BPN14:850:MOTR_INIT_STS
         motor: WIRE:BPN14:850:MOTR
-        position: WIRE:BPN14:850:MOTR.RBV
+        motor_rbv: WIRE:BPN14:850:MOTR.RBV
         retract: WIRE:BPN14:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN14:850:SCANPULSES
         speed: WIRE:BPN14:850:MOTR.VELO
@@ -1822,7 +1826,7 @@ wires:
         initialize: WIRE:BPN16:850:MOTR_INIT
         initialize_status: WIRE:BPN16:850:MOTR_INIT_STS
         motor: WIRE:BPN16:850:MOTR
-        position: WIRE:BPN16:850:MOTR.RBV
+        motor_rbv: WIRE:BPN16:850:MOTR.RBV
         retract: WIRE:BPN16:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN16:850:SCANPULSES
         speed: WIRE:BPN16:850:MOTR.VELO

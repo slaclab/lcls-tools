@@ -359,7 +359,7 @@ wires:
         enabled: WIRE:LI24:705:MOTR_ENABLED_STS
         initialize_status: WIRE:LI24:705:MOTR_INIT_STS
         motor: WIRE:LI24:705:MOTR
-        position: WIRE:LI24:705:MOTR.RBV
+        motor_rbv: WIRE:LI24:705:MOTR.RBV
         scan_pulses: WIRE:LI24:705:SCANPULSES
         speed: WIRE:LI24:705:MOTR.VELO
         speed_max: WIRE:LI24:705:MOTR.VMAX

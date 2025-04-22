@@ -374,7 +374,7 @@ wires:
         initialize: WIRE:SPD:872:MOTR_INIT
         initialize_status: WIRE:SPD:872:MOTR_INIT_STS
         motor: WIRE:SPD:872:MOTR
-        position: WIRE:SPD:872:MOTR.RBV
+        motor_rbv: WIRE:SPD:872:MOTR.RBV
         retract: WIRE:SPD:872:MOTR_RETRACT
         scan_pulses: WIRE:SPD:872:SCANPULSES
         speed: WIRE:SPD:872:MOTR.VELO

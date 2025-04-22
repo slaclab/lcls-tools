@@ -290,7 +290,7 @@ wires:
         initialize: WIRE:EMIT2:600:MOTR_INIT
         initialize_status: WIRE:EMIT2:600:MOTR_INIT_STS
         motor: WIRE:EMIT2:600:MOTR
-        position: WIRE:EMIT2:600:MOTR.RBV
+        motor_rbv: WIRE:EMIT2:600:MOTR.RBV
         retract: WIRE:EMIT2:600:MOTR_RETRACT
         scan_pulses: WIRE:EMIT2:600:SCANPULSES
         speed: WIRE:EMIT2:600:MOTR.VELO

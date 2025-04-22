@@ -2757,7 +2757,7 @@ wires:
         initialize: WIRE:LTUS:715:MOTR_INIT
         initialize_status: WIRE:LTUS:715:MOTR_INIT_STS
         motor: WIRE:LTUS:715:MOTR
-        position: WIRE:LTUS:715:MOTR.RBV
+        motor_rbv: WIRE:LTUS:715:MOTR.RBV
         retract: WIRE:LTUS:715:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:715:SCANPULSES
         speed: WIRE:LTUS:715:MOTR.VELO
@@ -2799,7 +2799,7 @@ wires:
         initialize: WIRE:LTUS:735:MOTR_INIT
         initialize_status: WIRE:LTUS:735:MOTR_INIT_STS
         motor: WIRE:LTUS:735:MOTR
-        position: WIRE:LTUS:735:MOTR.RBV
+        motor_rbv: WIRE:LTUS:735:MOTR.RBV
         retract: WIRE:LTUS:735:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:735:SCANPULSES
         speed: WIRE:LTUS:735:MOTR.VELO
@@ -2841,7 +2841,7 @@ wires:
         initialize: WIRE:LTUS:755:MOTR_INIT
         initialize_status: WIRE:LTUS:755:MOTR_INIT_STS
         motor: WIRE:LTUS:755:MOTR
-        position: WIRE:LTUS:755:MOTR.RBV
+        motor_rbv: WIRE:LTUS:755:MOTR.RBV
         retract: WIRE:LTUS:755:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:755:SCANPULSES
         speed: WIRE:LTUS:755:MOTR.VELO
@@ -2883,7 +2883,7 @@ wires:
         initialize: WIRE:LTUS:785:MOTR_INIT
         initialize_status: WIRE:LTUS:785:MOTR_INIT_STS
         motor: WIRE:LTUS:785:MOTR
-        position: WIRE:LTUS:785:MOTR.RBV
+        motor_rbv: WIRE:LTUS:785:MOTR.RBV
         retract: WIRE:LTUS:785:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:785:SCANPULSES
         speed: WIRE:LTUS:785:MOTR.VELO

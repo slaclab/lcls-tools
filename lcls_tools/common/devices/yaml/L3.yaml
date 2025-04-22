@@ -4327,7 +4327,7 @@ wires:
         initialize: WIRE:LI27:644:MOTR_INIT
         initialize_status: WIRE:LI27:644:MOTR_INIT_STS
         motor: WIRE:LI27:644:MOTR
-        position: WIRE:LI27:644:MOTR.RBV
+        motor_rbv: WIRE:LI27:644:MOTR.RBV
         retract: WIRE:LI27:644:MOTR_RETRACT
         scan_pulses: WIRE:LI27:644:SCANPULSES
         speed: WIRE:LI27:644:MOTR.VELO
@@ -4369,7 +4369,7 @@ wires:
         initialize: WIRE:LI28:144:MOTR_INIT
         initialize_status: WIRE:LI28:144:MOTR_INIT_STS
         motor: WIRE:LI28:144:MOTR
-        position: WIRE:LI28:144:MOTR.RBV
+        motor_rbv: WIRE:LI28:144:MOTR.RBV
         retract: WIRE:LI28:144:MOTR_RETRACT
         scan_pulses: WIRE:LI28:144:SCANPULSES
         speed: WIRE:LI28:144:MOTR.VELO
@@ -4411,7 +4411,7 @@ wires:
         initialize: WIRE:LI28:444:MOTR_INIT
         initialize_status: WIRE:LI28:444:MOTR_INIT_STS
         motor: WIRE:LI28:444:MOTR
-        position: WIRE:LI28:444:MOTR.RBV
+        motor_rbv: WIRE:LI28:444:MOTR.RBV
         retract: WIRE:LI28:444:MOTR_RETRACT
         scan_pulses: WIRE:LI28:444:SCANPULSES
         speed: WIRE:LI28:444:MOTR.VELO
@@ -4453,7 +4453,7 @@ wires:
         initialize: WIRE:LI28:744:MOTR_INIT
         initialize_status: WIRE:LI28:744:MOTR_INIT_STS
         motor: WIRE:LI28:744:MOTR
-        position: WIRE:LI28:744:MOTR.RBV
+        motor_rbv: WIRE:LI28:744:MOTR.RBV
         retract: WIRE:LI28:744:MOTR_RETRACT
         scan_pulses: WIRE:LI28:744:SCANPULSES
         speed: WIRE:LI28:744:MOTR.VELO
