@@ -57,7 +57,7 @@ class YAMLWriter:
         tcavs = self.generator.extract_tcavs(
             area=area,
         )
-        if tcavs:
+        if tcavs and area == "DIAG0":
             file_contents["tcavs"] = tcavs
 
         if file_contents:
