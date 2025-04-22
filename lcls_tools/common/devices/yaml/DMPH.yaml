@@ -354,7 +354,10 @@ screens:
         n_bits: OTRS:DMPH:695:N_OF_BITS
         n_col: OTRS:DMPH:695:Image:ArraySize1_RBV
         n_row: OTRS:DMPH:695:Image:ArraySize0_RBV
+        ref_rate: OTRS:DMPH:695:ArrayRate_RBV
+        ref_rate_vme: OTRS:DMPH:695:FRAME_RATE
         resolution: OTRS:DMPH:695:RESOLUTION
+        sys_type: OTRS:DMPH:695:SYS_TYPE
       control_name: OTRS:DMPH:695
     metadata:
       area: DMPH

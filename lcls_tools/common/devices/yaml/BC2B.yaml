@@ -273,7 +273,10 @@ screens:
         n_bits: PROF:BC2B:545:N_OF_BITS
         n_col: PROF:BC2B:545:Image:ArraySize1_RBV
         n_row: PROF:BC2B:545:Image:ArraySize0_RBV
+        ref_rate: PROF:BC2B:545:ArrayRate_RBV
+        ref_rate_vme: PROF:BC2B:545:FRAME_RATE
         resolution: PROF:BC2B:545:RESOLUTION
+        sys_type: PROF:BC2B:545:SYS_TYPE
       control_name: PROF:BC2B:545
     metadata:
       area: BC2B

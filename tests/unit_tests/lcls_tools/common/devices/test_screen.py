@@ -12,7 +12,7 @@ class TestScreen(unittest.TestCase):
     def setUp(self) -> None:
         self.screen_collection = create_screen("BC1")
         self.screen = self.screen_collection.screens["OTR11"]
-        return super().setUp()
+        super().setUp()
 
     @patch(
         "lcls_tools.common.devices.screen.Screen.image",

@@ -316,6 +316,9 @@ class YAMLGenerator:
             "N_OF_COL": "n_col",
             "N_OF_ROW": "n_row",
             "N_OF_BITS": "n_bits",
+            "SYS_TYPE": "sys_type",
+            "FRAME_RATE": "ref_rate_vme",
+            "ArrayRate_RBV": "ref_rate",
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_metadata_data = get_screen_metadata()
