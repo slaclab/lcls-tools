@@ -1,3 +1,4 @@
+from functools import wraps
 from pydantic import (
     Field,
     NonNegativeFloat,
@@ -8,6 +9,7 @@ from typing import (
     Dict,
     Optional,
     Union,
+    List,
 )
 from lcls_tools.common.devices.device import (
     Device,
@@ -72,11 +74,12 @@ class TCAV(Device):
     def __init__(self, *args, **kwargs):
         super(TCAV, self).__init__(*args, **kwargs)
 
-    """
-    def check_options(self, options_to_check: Union[str,List]):
+    def check_options(self, options_to_check: Union[str, List]):
+        """Decorator to only allow :MODECFG to be set if that option exists for the TCAV"""
+
         def decorator(function):
             @wraps(function)
-            def decorated(function, *args, **kwargs):
+            def decorated(self, *args, **kwargs):
                 if isinstance(options_to_check, str):
                     options = [options_to_check]
                 for option in options:
@@ -86,13 +89,17 @@ class TCAV(Device):
                         )
                         return
                 return function(self, *args, **kwargs)
+
             return decorated
 
         return decorator
-    """
 
     def check_state(f):
-        """Decorator to only allow transitions in 'Ready' state"""
+        """
+        Decorator to enforce that the device is not in 'Disable'
+        mode before executing an operation. Prevents execution of the
+        decorated method if `mode_config == "Disable"`.
+        """
 
         def decorated(self, *args, **kwargs):
             if self.mode_config == "Disable":
@@ -104,6 +111,7 @@ class TCAV(Device):
 
     @property
     def amp_set(self):
+        """The amplitude set point of the TCAV"""
         return self.controls_information.PVs.amp_set.get()
 
     @amp_set.setter
@@ -111,10 +119,11 @@ class TCAV(Device):
     def amp_set(self, amplitude):
         if not isinstance(amplitude, float):
             return
-        self.controls_information.PVs.amp_set = amplitude
+        self.controls_information.PVs.amp_set.put(amplitude)
 
     @property
     def phase_set(self):
+        """The phase set point of the TCAV"""
         return self.controls_information.PVs.phase_set.get()
 
     @phase_set.setter
@@ -122,10 +131,11 @@ class TCAV(Device):
     def phase_set(self, phase):
         if not isinstance([phase], float):
             return
-        self.controls_information.PVs.phase = phase
+        self.controls_information.PVs.phase.put(phase)
 
     @property
     def amp_fbenb(self):
+        """The status of the amplitude set point feedback"""
         return self.controls_information.PVs.amp_fbenb.get()
 
     @amp_fbenb.setter
@@ -137,6 +147,7 @@ class TCAV(Device):
 
     @property
     def phase_fbenb(self):
+        """The status of the phase set point feedback"""
         return self.controls_information.PVs.phase_fbenb.get()
 
     @phase_fbenb.setter
@@ -144,10 +155,11 @@ class TCAV(Device):
     def phase_fbenb(self, state: Union[str, int]):
         if not isinstance(state, str) or not isinstance(state, int):
             return
-        self.controls_information.PVs.phase_fbenb = state
+        self.controls_information.PVs.phase_fbenb.put(state)
 
     @property
     def amp_fbst(self):
+        """The state of the amplitude feedback"""
         return self.controls_information.PVs.amp_fbst.get()
 
     @amp_fbst.setter
@@ -155,10 +167,11 @@ class TCAV(Device):
     def amp_fbst(self, state: Union[str, int]):
         if not isinstance(state, str) or not isinstance(state, int):
             return
-        self.controls_information.PVs.amp_fbst = state
+        self.controls_information.PVs.amp_fbst.put(state)
 
     @property
     def phase_fbst(self):
+        """The state of the phase feedback"""
         return self.controls_information.PVs.phase_fbst.get()
 
     @phase_fbst.setter
@@ -166,20 +179,28 @@ class TCAV(Device):
     def phase_fbst(self, state: Union[str, int]):
         if not isinstance(state, str) or not isinstance(state, int):
             return
-        self.controls_information.PVs.phase_fbst = state
+        self.controls_information.PVs.phase_fbst.put(state)
 
     @property
     def mode_config(self):
-        return self.controls_information.PVs.mode_config.get()
+        """The current ATCA Trigger State"""
+        return self.controls_information.PVs.mode_config.get(as_string=True)
 
-    @mode_config.setter
-    def mode_config(self, enum_string):
-        # TODO: wrap this in check configs decorator
-        pass
+    @check_options("STDBY")
+    def standby(self):
+        self.controls_information.PVs.mode_config.put("STDBY")
+
+    @check_options("ACCEL")
+    def accelerate(self):
+        self.controls_information.PVs.mode_config.put("ACCEL")
+
+    @check_options("DIASBLE")
+    def disable(self):
+        self.controls_information.PVs.mode_config.put("DISABLE")
 
     @property
     def l_eff(self):
-        """Returns the effective length in meters"""
+        """The effective length of the TCAV in meters"""
         return self.metadata.l_eff
 
     @l_eff.setter
@@ -190,7 +211,7 @@ class TCAV(Device):
 
     @property
     def rf_freq(self):
-        """Returns the Rf frequency in MHz"""
+        """The Rf frequency of the TCAV in MHz"""
         return self.metadata.rf_freq
 
 
