@@ -902,25 +902,6 @@ screens:
       beam_path: []
       sum_l_meters: null
       type: PROF
-tcavs:
-  TCAV0:
-    controls_information:
-      PVs: {}
-      control_name: TCAV:IN20:490
-    metadata:
-      area: DL1
-      beam_path:
-      - CU_ALINE
-      - CU_HTXI
-      - CU_HXR
-      - CU_HXTES
-      - CU_SFTH
-      - CU_SPEC
-      - CU_SXR
-      l_eff: 0.668
-      rf_freq: '2856'
-      sum_l_meters: 11.147
-      type: LCAV
 wires:
   WS01:
     controls_information:

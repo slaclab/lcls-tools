@@ -374,21 +374,3 @@ screens:
       - SC_SXR
       sum_l_meters: 3771.399
       type: PROF
-tcavs:
-  TCX01B:
-    controls_information:
-      PVs: {}
-      control_name: TCAV:DMPS:360
-    metadata:
-      area: DMPS
-      beam_path:
-      - CU_SXR
-      - SC_S2_X
-      - SC_SFTS
-      - SC_STMO
-      - SC_STXI
-      - SC_SXR
-      l_eff: 1.5
-      rf_freq: '11424'
-      sum_l_meters: 3739.351
-      type: LCAV

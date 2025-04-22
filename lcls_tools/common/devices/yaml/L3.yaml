@@ -4317,24 +4317,6 @@ screens:
       - CU_SXR
       sum_l_meters: 992.757
       type: PROF
-tcavs:
-  TCAV3:
-    controls_information:
-      PVs: {}
-      control_name: TCAV:LI24:800
-    metadata:
-      area: L3
-      beam_path:
-      - CU_ALINE
-      - CU_HTXI
-      - CU_HXR
-      - CU_HXTES
-      - CU_SFTH
-      - CU_SXR
-      l_eff: 2.438
-      rf_freq: '2856'
-      sum_l_meters: 446.761
-      type: LCAV
 wires:
   WS27644:
     controls_information:
