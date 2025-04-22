@@ -64,7 +64,7 @@ class WirePVSet(PVSet):
     initialize_status: PV
     motor: PV
     motor_rbv: PV
-    #position: PV
+    # position: PV
     retract: PV
     scan_pulses: PV
     speed: PV
