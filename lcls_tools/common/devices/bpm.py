@@ -80,8 +80,7 @@ class BPM(Device):
 
     def tmit_buffer(self, buffer):
         """Retrieve TMIT signal data from timing buffer"""
-        data = buffer.get_data_buffer(
-            self.controls_information.PVs.tmit.pvname)
+        data = buffer.get_data_buffer(self.controls_information.PVs.tmit.pvname)
         if data is None:
             raise BufferError("No data in buffer or PV not found")
         return data

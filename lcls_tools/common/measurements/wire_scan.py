@@ -6,11 +6,7 @@ from lcls_tools.common.measurements.measurement import Measurement
 import time
 import edef
 import os
-from pydantic import (
-    ConfigDict,
-    SerializeAsAny,
-    BaseModel
-)
+from pydantic import ConfigDict, SerializeAsAny, BaseModel
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
@@ -88,7 +84,7 @@ class WireBeamProfileMeasurement(Measurement):
             detector_data=bsa_data_by_plane,
             raw_data=data,
             fit_result=fit_result,
-            metadata=self.model_dump()
+            metadata=self.model_dump(),
         )
 
     def create_device_dictionary(self, my_wire):
@@ -104,8 +100,12 @@ class WireBeamProfileMeasurement(Measurement):
             dict: A mapping of device names to device objects.
         """
         devices = {f"{my_wire.name}": my_wire}
-        devices.update({lblm: create_lblm(area=f"{my_wire.area}", name=lblm)
-                        for lblm in my_wire.metadata.lblms})
+        devices.update(
+            {
+                lblm: create_lblm(area=f"{my_wire.area}", name=lblm)
+                for lblm in my_wire.metadata.lblms
+            }
+        )
         return devices
 
     def reserve_buffer(self, beampath):
@@ -122,7 +122,7 @@ class WireBeamProfileMeasurement(Measurement):
             object: A buffer object for data collection.
         """
         user = os.getlogin()
-        if 'SC' in beampath:
+        if "SC" in beampath:
             # Reserve BSA buffer for SC destinations
             my_buffer = edef.BSABuffer("LCLS Tools Wire Scan", user=user)
             my_buffer.n_measurements = 1600
@@ -153,7 +153,7 @@ class WireBeamProfileMeasurement(Measurement):
             epics.caput(set_dst_pv, 1)
 
             return my_buffer
-        elif 'CU' in beampath:
+        elif "CU" in beampath:
             # Reserve eDef buffer for CU destinations
             my_buffer = edef.EventDefinition("LCLS Tools Wire Scan", user=user)
             my_buffer.n_measurements = 1600
@@ -199,22 +199,28 @@ class WireBeamProfileMeasurement(Measurement):
         # Get buffer data and put into results dictionary
         data[f"{my_wire.name}"] = my_wire.position_buffer(my_buffer)
 
-        if 'SC' in beampath:
+        if "SC" in beampath:
             # SC LBLMs use "FAST" signal
-            data.update({lblm: devices[lblm].fast_buffer(my_buffer) for lblm
-                         in my_wire.metadata.lblms})
-        elif 'CU' in beampath:
+            data.update(
+                {
+                    lblm: devices[lblm].fast_buffer(my_buffer)
+                    for lblm in my_wire.metadata.lblms
+                }
+            )
+        elif "CU" in beampath:
             # CU LBLMs use "QDCRAW" signal
-            data.update({lblm: devices[lblm].qdcraw_buffer(my_buffer) for lblm
-                         in my_wire.metadata.lblms})
+            data.update(
+                {
+                    lblm: devices[lblm].qdcraw_buffer(my_buffer)
+                    for lblm in my_wire.metadata.lblms
+                }
+            )
 
         # Get TMITLOSS if operating in a valid region
-        tmitloss_areas = ['HTR', 'DIAG0', 'COL1', 'EMIT2', 'BYP',
-                          'SPD', 'LTUH', 'LTUS']
+        tmitloss_areas = ["HTR", "DIAG0", "COL1", "EMIT2", "BYP", "SPD", "LTUH", "LTUS"]
         if my_wire.area in tmitloss_areas:
             tl = TMITLoss(my_buffer)
-            data['TMITLOSS'] = tl.measure(beampath=beampath,
-                                          region=my_wire.area)
+            data["TMITLOSS"] = tl.measure(beampath=beampath, region=my_wire.area)
 
         # Release EDEF/BSA
         my_buffer.release()
@@ -241,14 +247,16 @@ class WireBeamProfileMeasurement(Measurement):
         # Hold sequential indices (avoid catching return wires)
         seq_idxs = {}
 
-        for plane in ['x', 'y', 'u']:
+        for plane in ["x", "y", "u"]:
             # Get range methods e.g. x_range()
             method_name = f"{plane}_range"
             ranges[plane] = getattr(my_wire, method_name)
 
             # Get indices of when position is within a range
-            idx = np.where((position_data >= ranges[plane][0]) &
-                           (position_data <= ranges[plane][1]))[0]
+            idx = np.where(
+                (position_data >= ranges[plane][0])
+                & (position_data <= ranges[plane][1])
+            )[0]
             # Get only sequential non-decreasing indices to avoid picking up
             # wire retraction
             # data, ex. [100, 101, 102] not [101, 102, 103, 304, 305, 306]
@@ -265,8 +273,7 @@ class WireBeamProfileMeasurement(Measurement):
             # it to X plane), then an empty index list will be returned
             # If successful, a numpy.ndarray will be returned
             # If a list is returned, leave it out
-            seq_idxs = {k: v for k, v in seq_idxs.items() if
-                        not isinstance(v, list)}
+            seq_idxs = {k: v for k, v in seq_idxs.items() if not isinstance(v, list)}
 
         return seq_idxs
 

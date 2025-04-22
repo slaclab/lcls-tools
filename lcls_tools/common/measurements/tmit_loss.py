@@ -72,12 +72,12 @@ class TMITLoss(Measurement):
                 - list: A list of BPM device names.
         """
         # List of BPM MAD names based on beampath
-        bpms_elements = meme.names.list_elements("BPMS:%TMIT",
-                                                 tag=beampath, sort_by="z")
+        bpms_elements = meme.names.list_elements(
+            "BPMS:%TMIT", tag=beampath, sort_by="z"
+        )
 
         # List of BPM EPICS names based on beampath
-        bpms_devices = meme.names.list_devices("BPMS:%TMIT",
-                                               tag=beampath, sort_by="z")
+        bpms_devices = meme.names.list_devices("BPMS:%TMIT", tag=beampath, sort_by="z")
 
         # Make Dataframe with two columns: First is the Element (MAD) name
         # Second column is the area
@@ -114,8 +114,8 @@ class TMITLoss(Measurement):
 
         # Iterate throw Dataframe of Elements and Areas
         for index, row in bpms_elements.iterrows():
-            element = row['Element']
-            area = row['Area']
+            element = row["Element"]
+            area = row["Area"]
 
             # Create an lcls-tools BPM object and append to dictionary
             # Key: Element Name
@@ -183,76 +183,133 @@ class TMITLoss(Measurement):
         # Define valid regions
         valid_regions = {"HTR", "DIAG0", "COL1", "EMIT2", "BYP", "SPD", "LTUS"}
         if region not in valid_regions:
-            raise ValueError(f"Invalid region '{region}'."
-                             "Must be one of {valid_regions}")
+            raise ValueError(
+                f"Invalid region '{region}'.Must be one of {{valid_regions}}"
+            )
 
         if region == "HTR":
-            bpms_before_wire = ["BPMS:GUNB:925", "BPMS:HTR:120",
-                                "BPMS:HTR:320"]
-            bpms_after_wire = ["BPMS:HTR:760", "BPMS:HTR:830",
-                               "BPMS:HTR:860", "BPMS:HTR:960"]
+            bpms_before_wire = ["BPMS:GUNB:925", "BPMS:HTR:120", "BPMS:HTR:320"]
+            bpms_after_wire = [
+                "BPMS:HTR:760",
+                "BPMS:HTR:830",
+                "BPMS:HTR:860",
+                "BPMS:HTR:960",
+            ]
         elif region == "DIAG0":
-            bpms_before_wire = ["BPMS:DIAG0:190", "BPMS:DIAG0:210",
-                                "BPMS:DIAG0:230", "BPMS:DIAG0:270",
-                                "BPMS:DIAG0:285", "BPMS:DIAG0:330",
-                                "BPMS:DIAG0:370", "BPMS:DIAG0:390"]
+            bpms_before_wire = [
+                "BPMS:DIAG0:190",
+                "BPMS:DIAG0:210",
+                "BPMS:DIAG0:230",
+                "BPMS:DIAG0:270",
+                "BPMS:DIAG0:285",
+                "BPMS:DIAG0:330",
+                "BPMS:DIAG0:370",
+                "BPMS:DIAG0:390",
+            ]
             bpms_after_wire = ["BPMS:DIAG0:470", "BPMS:DIAG0:520"]
         elif region == "COL1":
-            bpms_before_wire = ["BPMS:BC1B:125", "BPMS:BC1B:440",
-                                "BPMS:COL1:120", "BPMS:COL1:260",
-                                "BPMS:COL1:280", "BPMS:COL1:320"]
-            bpms_after_wire = ["BPMS:BPN27:400", "BPMS:BPN28:200",
-                               "BPMS:BPN28:400", "BPMS:SPD:135",
-                               "BPMS:SPD:255", "BPMS:SPD:340",
-                               "BPMS:SPD:420", "BPMS:SPD:525"]
+            bpms_before_wire = [
+                "BPMS:BC1B:125",
+                "BPMS:BC1B:440",
+                "BPMS:COL1:120",
+                "BPMS:COL1:260",
+                "BPMS:COL1:280",
+                "BPMS:COL1:320",
+            ]
+            bpms_after_wire = [
+                "BPMS:BPN27:400",
+                "BPMS:BPN28:200",
+                "BPMS:BPN28:400",
+                "BPMS:SPD:135",
+                "BPMS:SPD:255",
+                "BPMS:SPD:340",
+                "BPMS:SPD:420",
+                "BPMS:SPD:525",
+            ]
         elif region == "EMIT2":
-            bpms_before_wire = ["BPMS:BC2B:150", "BPMS:BC2B:530",
-                                "BPMS:EMIT2:150", "BPMS:EMIT2:300"]
-            bpms_after_wire = ["BPMS:SPS:780", "BPMS:SPS:830",
-                               "BPMS:SPS:840", "BPMS:SLTS:150",
-                               "BPMS:SLTS:430", "BPMS:SLTS:460"]
+            bpms_before_wire = [
+                "BPMS:BC2B:150",
+                "BPMS:BC2B:530",
+                "BPMS:EMIT2:150",
+                "BPMS:EMIT2:300",
+            ]
+            bpms_after_wire = [
+                "BPMS:SPS:780",
+                "BPMS:SPS:830",
+                "BPMS:SPS:840",
+                "BPMS:SLTS:150",
+                "BPMS:SLTS:430",
+                "BPMS:SLTS:460",
+            ]
         elif region == "BYP":
-            bpms_before_wire = ["BPMS:L3B:3583", "BPMS:EXT:351",
-                                "BPMS:EXT:748", "BPMS:DOG:120",
-                                "BPMS:DOG:135", "BPMS:DOG:150",
-                                "BPMS:DOG:200", "BPMS:DOG:215",
-                                "BPMS:DOG:230", "BPMS:DOG:280",
-                                "BPMS:DOG:335", "BPMS:DOG:355",
-                                "BPMS:DOG:405"]
-            bpms_after_wire = ["BPMS:BPN23:400", "BPMS:BPN24:400",
-                               "BPMS:BPN25:400", "BPMS:BPN26:400",
-                               "BPMS:BPN27:400", "BPMS:BPN28:200",
-                               "BPMS:BPN28:400", "BPMS:SPD:135",
-                               "BPMS:SPD:255", "BPMS:SPD:340",
-                               "BPMS:SPD:420", "BPMS:SPD:525",
-                               "BPMS:SPD:570", "BPMS:SPD:700",
-                               "BPMS:SPD:955"]
+            bpms_before_wire = [
+                "BPMS:L3B:3583",
+                "BPMS:EXT:351",
+                "BPMS:EXT:748",
+                "BPMS:DOG:120",
+                "BPMS:DOG:135",
+                "BPMS:DOG:150",
+                "BPMS:DOG:200",
+                "BPMS:DOG:215",
+                "BPMS:DOG:230",
+                "BPMS:DOG:280",
+                "BPMS:DOG:335",
+                "BPMS:DOG:355",
+                "BPMS:DOG:405",
+            ]
+            bpms_after_wire = [
+                "BPMS:BPN23:400",
+                "BPMS:BPN24:400",
+                "BPMS:BPN25:400",
+                "BPMS:BPN26:400",
+                "BPMS:BPN27:400",
+                "BPMS:BPN28:200",
+                "BPMS:BPN28:400",
+                "BPMS:SPD:135",
+                "BPMS:SPD:255",
+                "BPMS:SPD:340",
+                "BPMS:SPD:420",
+                "BPMS:SPD:525",
+                "BPMS:SPD:570",
+                "BPMS:SPD:700",
+                "BPMS:SPD:955",
+            ]
         elif region == "SPD":
-            bpms_before_wire = ["BPMS:SPD:135", "BPMS:SPD:255",
-                                "BPMS:SPD:340", "BPMS:SPD:420",
-                                "BPMS:SPD:525", "BPMS:SPD:570"]
-            bpms_after_wire = ["BPMS:SPD:700", "BPMS:SPD:955",
-                               "BPMS:SLTD:625"]
+            bpms_before_wire = [
+                "BPMS:SPD:135",
+                "BPMS:SPD:255",
+                "BPMS:SPD:340",
+                "BPMS:SPD:420",
+                "BPMS:SPD:525",
+                "BPMS:SPD:570",
+            ]
+            bpms_after_wire = ["BPMS:SPD:700", "BPMS:SPD:955", "BPMS:SLTD:625"]
         elif region == "LTUS":
-            bpms_before_wire = ["BPMS:BPN27:400", "BPMS:BPN28:200",
-                                "BPMS:BPN28:400", "BPMS:SPD:135",
-                                "BPMS:SPD:255", "BPMS:SPD:340",
-                                "BPMS:SPS:572", "BPMS:SPS:580",
-                                "BPMS:SPS:640", "BPMS:SPS:710",
-                                "BPMS:SPS:770", "BPMS:SPS:780",
-                                "BPMS:SPS:830", "BPMS:SPS:840",
-                                "BPMS:SLTS:150"]
-            bpms_after_wire = ["BPMS:DMPS:381", "BPMS:DMPS:502",
-                               "BPMS:DMPS:693"]
+            bpms_before_wire = [
+                "BPMS:BPN27:400",
+                "BPMS:BPN28:200",
+                "BPMS:BPN28:400",
+                "BPMS:SPD:135",
+                "BPMS:SPD:255",
+                "BPMS:SPD:340",
+                "BPMS:SPS:572",
+                "BPMS:SPS:580",
+                "BPMS:SPS:640",
+                "BPMS:SPS:710",
+                "BPMS:SPS:770",
+                "BPMS:SPS:780",
+                "BPMS:SPS:830",
+                "BPMS:SPS:840",
+                "BPMS:SLTS:150",
+            ]
+            bpms_after_wire = ["BPMS:DMPS:381", "BPMS:DMPS:502", "BPMS:DMPS:693"]
 
         # Create a lookup dictionary for index mapping
         idx_map = {value: idx for idx, value in enumerate(bpms_devices)}
 
         # Find indices of BPMs before and after the wire
-        idx_before = [idx_map[item] for item in bpms_before_wire
-                      if item in idx_map]
-        idx_after = [idx_map[item] for item in bpms_after_wire
-                     if item in idx_map]
+        idx_before = [idx_map[item] for item in bpms_before_wire if item in idx_map]
+        idx_after = [idx_map[item] for item in bpms_after_wire if item in idx_map]
 
         return idx_before, idx_after
 

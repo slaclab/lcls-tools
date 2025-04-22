@@ -18,6 +18,7 @@ from lcls_tools.common.devices.device import (
     PVSet,
 )
 from epics import PV
+
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
@@ -30,8 +31,7 @@ class RangeModel(BaseModel):
             raise ValueError("List has length greater than 2")
         elif v[0] >= v[1]:
             raise ValueError(
-                "First element of list must be smaller than "
-                "second element of list"
+                "First element of list must be smaller than second element of list"
             )
         else:
             return v
@@ -122,8 +122,7 @@ class Wire(Device):
 
         def decorated(self, *args, **kwargs):
             if self.initialize_status is not True:
-                print(f"Unable to perform action, {self} not "
-                      "in Initialized state")
+                print(f"Unable to perform action, {self} not in Initialized state")
                 return
             return f(self, *args, **kwargs)
 
@@ -134,11 +133,9 @@ class Wire(Device):
 
         def decorated(self, *args, **kwargs):
             wire_range = self.wire.x_range[1] - self.wire.x_range[0]
-            speed_calc = int(self.wire.beam_rate *
-                             (wire_range / self.wire.scan_pulses))
+            speed_calc = int(self.wire.beam_rate * (wire_range / self.wire.scan_pulses))
             speed_check = (
-                int(self.wire.speed_min) < speed_calc <
-                int(self.wire.speed_max)
+                int(self.wire.speed_min) < speed_calc < int(self.wire.speed_max)
             )
             if speed_check is not True:
                 print(f"Unable to perform action. {self} failed speed check")
@@ -182,8 +179,7 @@ class Wire(Device):
         return self.controls_information.PVs.motor_rbv.get()
 
     def position_buffer(self, buffer):
-        return buffer.get_data_buffer(
-            f"{self.controls_information.control_name}:POSN")
+        return buffer.get_data_buffer(f"{self.controls_information.control_name}:POSN")
 
     def retract(self):
         """Retracts the wire scanner"""
