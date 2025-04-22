@@ -74,7 +74,7 @@ class TCAV(Device):
     def __init__(self, *args, **kwargs):
         super(TCAV, self).__init__(*args, **kwargs)
 
-    def check_options(self, options_to_check: Union[str, List]):
+    def check_options(options_to_check: Union[str, List]):
         """Decorator to only allow :MODECFG to be set if that option exists for the TCAV"""
 
         def decorator(function):
