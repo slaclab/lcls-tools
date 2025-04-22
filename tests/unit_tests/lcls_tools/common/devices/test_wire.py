@@ -7,8 +7,6 @@ import inspect
 # Local imports
 from lcls_tools.common.devices.reader import create_wire
 
-# from lcls_tools.common.devices.wire import WireCollection
-
 
 class WireTest(TestCase):
     def setUp(self) -> None:
@@ -36,8 +34,7 @@ class WireTest(TestCase):
             "MOTR_HOMED_STS": None,
         }
         # set up patch so that each magnet is constructed with ALL ctrl options
-        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars",
-                                        new_callable=Mock)
+        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=Mock)
         self.mock_ctrl_options = self.ctrl_options_patch.start()
         self.mock_ctrl_options.return_value = {
             "enum_strs": tuple(self.options_and_getter_function.keys())
@@ -99,7 +96,7 @@ class WireTest(TestCase):
                 )
         for item, _ in self.wire.metadata:
             self.assertTrue(
-                hasattr(self.wire, item),
+                hasattr(self.wire.metadata, item),
                 msg=f"expected wire to have attribute {item}",
             )
         # Assert that magnet has public properties
