@@ -64,7 +64,6 @@ class WirePVSet(PVSet):
     initialize_status: PV
     motor: PV
     motor_rbv: PV
-    # position: PV
     retract: PV
     scan_pulses: PV
     speed: PV
@@ -181,11 +180,6 @@ class Wire(Device):
     def motor_rbv(self):
         """Returns the .RBV from the MOTR PV"""
         return self.controls_information.PVs.motor_rbv.get()
-
-    #@property
-    #def position(self):
-    #    """Returns the readback value from the POSN PV."""
-    #    return self.controls_information.PVs.position.get()
 
     def position_buffer(self, buffer):
         return buffer.get_data_buffer(
