@@ -348,7 +348,7 @@ class YAMLGenerator:
             "MOTR_INIT_STS": "initialize_status",
             "MOTR": "motor",
             "MOTR.RBV": "motor_rbv",
-            #"POSN": "position",
+            # "POSN": "position",
             "MOTR_RETRACT": "retract",
             "SCANPULSES": "scan_pulses",
             "MOTR.VELO": "speed",

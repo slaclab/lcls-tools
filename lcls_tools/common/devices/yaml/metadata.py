@@ -50,9 +50,7 @@ def get_wire_metadata(wire_names: List[str] = []):
     #  scr-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    wire_metadata = {
-        "WSBP2": {"lblms": ["LBLM11A_1", "LBLM11A_2", "LBLM11A_3"]}
-    }
+    wire_metadata = {"WSBP2": {"lblms": ["LBLM11A_1", "LBLM11A_2", "LBLM11A_3"]}}
     return wire_metadata
 
 
