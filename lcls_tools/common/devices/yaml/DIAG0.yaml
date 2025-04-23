@@ -678,7 +678,7 @@ tcavs:
       beam_path:
       - SC_DIAG0
       l_eff: 0.8
-      rf_freq: '2856'
+      rf_freq: 2856.0
       sum_l_meters: 53.313
       type: LCAV
 wires:
