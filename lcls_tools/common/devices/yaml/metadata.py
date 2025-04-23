@@ -54,7 +54,7 @@ def get_wire_metadata(wire_names: List[str] = []):
     diag0_lblms = ["SBLM01A"]
     col1_lblms = ["LBLM03A", "LBLM04A", "TMITLOSS"]
     emit2_lblms = ["LBLM04A", "LBLM07A", "TMITLOSS"]
-    byp_lblms = ["LBLM13A", "LBLM11A", "LBLM12A", "LBLM22A", "LBLM11A_3", "TMITLOSS"]
+    byp_lblms = ["LBLM11A_1", "LBLM11A_2", "LBLM11A_3", "TMITLOSS"]
     spd_lblms = ["LBLM22A"]
     ltus_lblms = [
         "PMT122",
