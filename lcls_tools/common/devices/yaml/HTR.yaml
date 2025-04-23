@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:120:TMIT
+        x: BPMS:HTR:120:X
+        y: BPMS:HTR:120:Y
       control_name: BPMS:HTR:120
     metadata:
       area: HTR
@@ -22,6 +24,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:320:TMIT
+        x: BPMS:HTR:320:X
+        y: BPMS:HTR:320:Y
       control_name: BPMS:HTR:320
     metadata:
       area: HTR
@@ -41,6 +45,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:365:TMIT
+        x: BPMS:HTR:365:X
+        y: BPMS:HTR:365:Y
       control_name: BPMS:HTR:365
     metadata:
       area: HTR
@@ -60,6 +66,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:460:TMIT
+        x: BPMS:HTR:460:X
+        y: BPMS:HTR:460:Y
       control_name: BPMS:HTR:460
     metadata:
       area: HTR
@@ -79,6 +87,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:540:TMIT
+        x: BPMS:HTR:540:X
+        y: BPMS:HTR:540:Y
       control_name: BPMS:HTR:540
     metadata:
       area: HTR
@@ -98,6 +108,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:760:TMIT
+        x: BPMS:HTR:760:X
+        y: BPMS:HTR:760:Y
       control_name: BPMS:HTR:760
     metadata:
       area: HTR
@@ -117,6 +129,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:830:TMIT
+        x: BPMS:HTR:830:X
+        y: BPMS:HTR:830:Y
       control_name: BPMS:HTR:830
     metadata:
       area: HTR
@@ -136,6 +150,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:860:TMIT
+        x: BPMS:HTR:860:X
+        y: BPMS:HTR:860:Y
       control_name: BPMS:HTR:860
     metadata:
       area: HTR
@@ -155,6 +171,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:HTR:960:TMIT
+        x: BPMS:HTR:960:X
+        y: BPMS:HTR:960:Y
       control_name: BPMS:HTR:960
     metadata:
       area: HTR
@@ -951,7 +969,10 @@ screens:
         n_bits: OTRS:HTR:330:N_OF_BITS
         n_col: OTRS:HTR:330:Image:ArraySize1_RBV
         n_row: OTRS:HTR:330:Image:ArraySize0_RBV
+        ref_rate: OTRS:HTR:330:ArrayRate_RBV
+        ref_rate_vme: OTRS:HTR:330:FRAME_RATE
         resolution: OTRS:HTR:330:RESOLUTION
+        sys_type: OTRS:HTR:330:SYS_TYPE
       control_name: OTRS:HTR:330
     metadata:
       area: HTR
@@ -974,7 +995,10 @@ screens:
         n_bits: YAGS:HTR:625:N_OF_BITS
         n_col: YAGS:HTR:625:Image:ArraySize1_RBV
         n_row: YAGS:HTR:625:Image:ArraySize0_RBV
+        ref_rate: YAGS:HTR:625:ArrayRate_RBV
+        ref_rate_vme: YAGS:HTR:625:FRAME_RATE
         resolution: YAGS:HTR:625:RESOLUTION
+        sys_type: YAGS:HTR:625:SYS_TYPE
       control_name: YAGS:HTR:625
     metadata:
       area: HTR
@@ -997,7 +1021,10 @@ screens:
         n_bits: YAGS:HTR:675:N_OF_BITS
         n_col: YAGS:HTR:675:Image:ArraySize1_RBV
         n_row: YAGS:HTR:675:Image:ArraySize0_RBV
+        ref_rate: YAGS:HTR:675:ArrayRate_RBV
+        ref_rate_vme: YAGS:HTR:675:FRAME_RATE
         resolution: YAGS:HTR:675:RESOLUTION
+        sys_type: YAGS:HTR:675:SYS_TYPE
       control_name: YAGS:HTR:675
     metadata:
       area: HTR
@@ -1023,7 +1050,7 @@ wires:
         initialize: WIRE:HTR:340:MOTR_INIT
         initialize_status: WIRE:HTR:340:MOTR_INIT_STS
         motor: WIRE:HTR:340:MOTR
-        position: WIRE:HTR:340:MOTR.RBV
+        motor_rbv: WIRE:HTR:340:MOTR.RBV
         retract: WIRE:HTR:340:MOTR_RETRACT
         scan_pulses: WIRE:HTR:340:SCANPULSES
         speed: WIRE:HTR:340:MOTR.VELO

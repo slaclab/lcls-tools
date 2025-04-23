@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BC1B:440:TMIT
+        x: BPMS:BC1B:440:X
+        y: BPMS:BC1B:440:Y
       control_name: BPMS:BC1B:440
     metadata:
       area: BC1B
@@ -21,6 +23,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:BC1B:125:TMIT
+        x: BPMS:BC1B:125:X
+        y: BPMS:BC1B:125:Y
       control_name: BPMS:BC1B:125
     metadata:
       area: BC1B
@@ -319,7 +323,10 @@ screens:
         n_bits: PROF:BC1B:470:N_OF_BITS
         n_col: PROF:BC1B:470:Image:ArraySize1_RBV
         n_row: PROF:BC1B:470:Image:ArraySize0_RBV
+        ref_rate: PROF:BC1B:470:ArrayRate_RBV
+        ref_rate_vme: PROF:BC1B:470:FRAME_RATE
         resolution: PROF:BC1B:470:RESOLUTION
+        sys_type: PROF:BC1B:470:SYS_TYPE
       control_name: PROF:BC1B:470
     metadata:
       area: BC1B

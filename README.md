@@ -32,7 +32,6 @@ Python 2 is no longer supported. Please write all new modules in Python 3.9 or a
 
 # TODO
 * See running list of to do's written up as [issues here.](https://github.com/slaclab/lcls-tools/issues)
-* Provide example application using lcls_tools
 * Update documentation
 * Make a robust and somewhat flexible logger module that knows about SLAC things
 

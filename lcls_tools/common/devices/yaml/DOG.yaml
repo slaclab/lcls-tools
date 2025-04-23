@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:575:TMIT
+        x: BPMS:DOG:575:X
+        y: BPMS:DOG:575:Y
       control_name: BPMS:DOG:575
     metadata:
       area: DOG
@@ -21,6 +23,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:740:TMIT
+        x: BPMS:DOG:740:X
+        y: BPMS:DOG:740:Y
       control_name: BPMS:DOG:740
     metadata:
       area: DOG
@@ -39,6 +43,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:910:TMIT
+        x: BPMS:DOG:910:X
+        y: BPMS:DOG:910:Y
       control_name: BPMS:DOG:910
     metadata:
       area: DOG
@@ -57,6 +63,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:120:TMIT
+        x: BPMS:DOG:120:X
+        y: BPMS:DOG:120:Y
       control_name: BPMS:DOG:120
     metadata:
       area: DOG
@@ -75,6 +83,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:135:TMIT
+        x: BPMS:DOG:135:X
+        y: BPMS:DOG:135:Y
       control_name: BPMS:DOG:135
     metadata:
       area: DOG
@@ -93,6 +103,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:150:TMIT
+        x: BPMS:DOG:150:X
+        y: BPMS:DOG:150:Y
       control_name: BPMS:DOG:150
     metadata:
       area: DOG
@@ -145,6 +157,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:200:TMIT
+        x: BPMS:DOG:200:X
+        y: BPMS:DOG:200:Y
       control_name: BPMS:DOG:200
     metadata:
       area: DOG
@@ -163,6 +177,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:215:TMIT
+        x: BPMS:DOG:215:X
+        y: BPMS:DOG:215:Y
       control_name: BPMS:DOG:215
     metadata:
       area: DOG
@@ -181,6 +197,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:230:TMIT
+        x: BPMS:DOG:230:X
+        y: BPMS:DOG:230:Y
       control_name: BPMS:DOG:230
     metadata:
       area: DOG
@@ -216,6 +234,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:280:TMIT
+        x: BPMS:DOG:280:X
+        y: BPMS:DOG:280:Y
       control_name: BPMS:DOG:280
     metadata:
       area: DOG
@@ -234,6 +254,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:335:TMIT
+        x: BPMS:DOG:335:X
+        y: BPMS:DOG:335:Y
       control_name: BPMS:DOG:335
     metadata:
       area: DOG
@@ -252,6 +274,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:355:TMIT
+        x: BPMS:DOG:355:X
+        y: BPMS:DOG:355:Y
       control_name: BPMS:DOG:355
     metadata:
       area: DOG
@@ -270,6 +294,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:DOG:405:TMIT
+        x: BPMS:DOG:405:X
+        y: BPMS:DOG:405:Y
       control_name: BPMS:DOG:405
     metadata:
       area: DOG
@@ -1395,7 +1421,10 @@ screens:
         n_bits: PROF:DOG:195:N_OF_BITS
         n_col: PROF:DOG:195:Image:ArraySize1_RBV
         n_row: PROF:DOG:195:Image:ArraySize0_RBV
+        ref_rate: PROF:DOG:195:ArrayRate_RBV
+        ref_rate_vme: PROF:DOG:195:FRAME_RATE
         resolution: PROF:DOG:195:RESOLUTION
+        sys_type: PROF:DOG:195:SYS_TYPE
       control_name: PROF:DOG:195
     metadata:
       area: DOG
@@ -1420,7 +1449,7 @@ wires:
         initialize: WIRE:DOG:655:MOTR_INIT
         initialize_status: WIRE:DOG:655:MOTR_INIT_STS
         motor: WIRE:DOG:655:MOTR
-        position: WIRE:DOG:655:MOTR.RBV
+        motor_rbv: WIRE:DOG:655:MOTR.RBV
         retract: WIRE:DOG:655:MOTR_RETRACT
         scan_pulses: WIRE:DOG:655:SCANPULSES
         speed: WIRE:DOG:655:MOTR.VELO

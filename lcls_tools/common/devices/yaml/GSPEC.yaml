@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:IN20:821:TMIT
+        x: BPMS:IN20:821:X
+        y: BPMS:IN20:821:Y
       control_name: BPMS:IN20:821
     metadata:
       area: GSPEC
@@ -145,7 +147,9 @@ screens:
         n_bits: YAGS:IN20:841:N_OF_BITS
         n_col: YAGS:IN20:841:N_OF_COL
         n_row: YAGS:IN20:841:N_OF_ROW
+        ref_rate_vme: YAGS:IN20:841:FRAME_RATE
         resolution: YAGS:IN20:841:RESOLUTION
+        sys_type: YAGS:IN20:841:SYS_TYPE
       control_name: YAGS:IN20:841
     metadata:
       area: GSPEC

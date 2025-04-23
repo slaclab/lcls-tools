@@ -3,6 +3,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:201:TMIT
+        x: BPMS:LI21:201:X
+        y: BPMS:LI21:201:Y
       control_name: BPMS:LI21:201
     metadata:
       area: BC1
@@ -19,6 +21,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:301:TMIT
+        x: BPMS:LI21:301:X
+        y: BPMS:LI21:301:Y
       control_name: BPMS:LI21:301
     metadata:
       area: BC1
@@ -35,6 +39,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:278:TMIT
+        x: BPMS:LI21:278:X
+        y: BPMS:LI21:278:Y
       control_name: BPMS:LI21:278
     metadata:
       area: BC1
@@ -51,6 +57,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:315:TMIT
+        x: BPMS:LI21:315:X
+        y: BPMS:LI21:315:Y
       control_name: BPMS:LI21:315
     metadata:
       area: BC1
@@ -67,6 +75,8 @@ bpms:
     controls_information:
       PVs:
         tmit: BPMS:LI21:233:TMIT
+        x: BPMS:LI21:233:X
+        y: BPMS:LI21:233:Y
       control_name: BPMS:LI21:233
     metadata:
       area: BC1
@@ -594,7 +604,9 @@ screens:
         n_bits: OTRS:LI21:237:N_OF_BITS
         n_col: OTRS:LI21:237:N_OF_COL
         n_row: OTRS:LI21:237:N_OF_ROW
+        ref_rate_vme: OTRS:LI21:237:FRAME_RATE
         resolution: OTRS:LI21:237:RESOLUTION
+        sys_type: OTRS:LI21:237:SYS_TYPE
       control_name: OTRS:LI21:237
     metadata:
       area: BC1
@@ -614,7 +626,9 @@ screens:
         n_bits: OTRS:LI21:291:N_OF_BITS
         n_col: OTRS:LI21:291:N_OF_COL
         n_row: OTRS:LI21:291:N_OF_ROW
+        ref_rate_vme: OTRS:LI21:291:FRAME_RATE
         resolution: OTRS:LI21:291:RESOLUTION
+        sys_type: OTRS:LI21:291:SYS_TYPE
       control_name: OTRS:LI21:291
     metadata:
       area: BC1
@@ -681,7 +695,7 @@ wires:
         initialize: WIRE:LI21:301:MOTR_INIT
         initialize_status: WIRE:LI21:301:MOTR_INIT_STS
         motor: WIRE:LI21:301:MOTR
-        position: WIRE:LI21:301:MOTR.RBV
+        motor_rbv: WIRE:LI21:301:MOTR.RBV
         retract: WIRE:LI21:301:MOTR_RETRACT
         scan_pulses: WIRE:LI21:301:SCANPULSES
         speed: WIRE:LI21:301:MOTR.VELO
