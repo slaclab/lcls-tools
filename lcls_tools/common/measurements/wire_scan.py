@@ -155,7 +155,7 @@ class WireBeamProfileMeasurement(Measurement):
         devices = {f"{my_wire.name}": my_wire}
         for lblm in my_wire.metadata.lblms:
             if lblm == "TMITLOSS":
-                devices["TMITLOSS"] = TMITLoss(my_buffer)
+                devices["TMITLOSS"] = TMITLoss(my_buffer=my_buffer)
             else:
                 devices[lblm] = create_lblm(area=f"{my_wire.area}", name=lblm)
         return devices
