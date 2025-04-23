@@ -200,13 +200,14 @@ class WireBeamProfileMeasurement(Measurement):
         data[f"{my_wire.name}"] = my_wire.position_buffer(my_buffer)
 
         if "SC" in beampath:
-            # SC LBLMs use "FAST" signal
-            data.update(
-                {
-                    lblm: devices[lblm].fast_buffer(my_buffer)
-                    for lblm in my_wire.metadata.lblms
-                }
-            )
+            for lblm in my_wire.metadata.lblms:
+                if lblm == "TMITLOSS":
+                    tl = TMITLoss(my_buffer=my_buffer)
+                    data["TMITLOSS"] = tl.measure(
+                        beampath=beampath, region=my_wire.area
+                    )
+                else:
+                    data[lblm] = devices[lblm].fast_buffer(my_buffer)
         elif "CU" in beampath:
             # CU LBLMs use "QDCRAW" signal
             data.update(
@@ -215,12 +216,6 @@ class WireBeamProfileMeasurement(Measurement):
                     for lblm in my_wire.metadata.lblms
                 }
             )
-
-        # Get TMITLOSS if operating in a valid region
-        tmitloss_areas = ["HTR", "DIAG0", "COL1", "EMIT2", "BYP", "SPD", "LTUH", "LTUS"]
-        if my_wire.area in tmitloss_areas:
-            tl = TMITLoss(my_buffer)
-            data["TMITLOSS"] = tl.measure(beampath=beampath, region=my_wire.area)
 
         # Release EDEF/BSA
         my_buffer.release()
