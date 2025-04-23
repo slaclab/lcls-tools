@@ -3,16 +3,11 @@ from lcls_tools.common.measurements.measurement import Measurement
 import meme.names
 import pandas as pd
 from edef import BSABuffer
-from pydantic import PrivateAttr
 
 
 class TMITLoss(Measurement):
     name: str = "TMIT Loss Beam Size"
-    _my_buffer: BSABuffer = PrivateAttr()
-
-    def __init__(self, my_buffer, **kwargs):
-        super().__init__(**kwargs)
-        self._my_buffer = my_buffer
+    my_buffer: BSABuffer
 
     def measure(self, beampath, region):
         """
