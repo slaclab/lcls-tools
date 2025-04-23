@@ -41,7 +41,7 @@ class TMITLoss(Measurement):
         bpm_objs = self.create_bpms(bpms_elements)
 
         # Retrieve data from BSA buffer
-        data = self.get_bpm_data(bpm_objs, self._my_buffer)
+        data = self.get_bpm_data(bpm_objs, self.my_buffer)
 
         # Calculate TMIT Loss
         tmit_loss = self.calc_tmit_loss(data, idx_before, idx_after)
