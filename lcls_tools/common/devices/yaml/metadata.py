@@ -50,7 +50,44 @@ def get_wire_metadata(wire_names: List[str] = []):
     #  scr-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    wire_metadata = {"WSBP2": {"lblms": ["LBLM11A_1", "LBLM11A_2", "LBLM11A_3"]}}
+    htr_lblms = ["LBLM01A", "LBLM01B"]
+    diag0_lblms = ["SBLM01A"]
+    col1_lblms = ["LBLM03A", "LBLM04A", "TMITLOSS"]
+    emit2_lblms = ["LBLM04A", "LBLM07A", "TMITLOSS"]
+    byp_lblms = ["LBLM13A", "LBLM11A", "LBLM12A", "LBLM22A", "LBLM11A_3", "TMITLOSS"]
+    spd_lblms = ["LBLM22A"]
+    ltus_lblms = [
+        "PMT122",
+        "PMT246",
+        "PMT430",
+        "PMT431",
+        "PMT550",
+        "PMT755",
+        "PMT756",
+        "PMT820",
+        "PMT850",
+        "LBLM32A",
+        "TMITLOSS",
+    ]
+
+    wire_metadata = {
+        "WS0H04": {"lblms": htr_lblms},
+        "WSDG0": {"lblms": diag0_lblms},
+        "WSC104": {"lblms": col1_lblms.copy()},
+        "WSC106": {"lblms": col1_lblms.copy()},
+        "WSC108": {"lblms": col1_lblms.copy()},
+        "WSC110": {"lblms": col1_lblms.copy()},
+        "WSEMIT2": {"lblms": emit2_lblms},
+        "WSBP1": {"lblms": byp_lblms.copy()},
+        "WSBP2": {"lblms": byp_lblms.copy()},
+        "WSBP3": {"lblms": byp_lblms.copy()},
+        "WSBP4": {"lblms": byp_lblms.copy()},
+        "WSSP1D": {"lblms": spd_lblms},
+        "WS31B": {"lblms": ltus_lblms.copy()},
+        "WS32B": {"lblms": ltus_lblms.copy()},
+        "WS33B": {"lblms": ltus_lblms.copy()},
+        "WS34B": {"lblms": ltus_lblms.copy()},
+    }
     return wire_metadata
 
 

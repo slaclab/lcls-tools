@@ -57,11 +57,11 @@ class WireBeamProfileMeasurement(Measurement):
         # TODO: Jitter Correction
         # TODO: Charge Normalization
 
-        # Create dictionary of devices for WS (WS + detectors)
-        devices = self.create_device_dictionary(my_wire)
-
         # Reserve a BSA/EDEF buffer
         my_buffer = self.reserve_buffer(beampath)
+
+        # Create dictionary of devices for WS (WS + detectors)
+        devices = self.create_device_dictionary(my_wire, my_buffer)
 
         # Start the buffer and move the wire
         self.scan_with_wire(my_wire, my_buffer)
@@ -86,27 +86,6 @@ class WireBeamProfileMeasurement(Measurement):
             fit_result=fit_result,
             metadata=self.model_dump(),
         )
-
-    def create_device_dictionary(self, my_wire):
-        """
-        Creates a device dictionary for a wire scan setup.
-
-        Includes the wire device and any associated LBLM devices
-        based on metadata.
-
-        Parameters:
-            my_wire (Wire): An lcls-tools Wire object.
-        Returns:
-            dict: A mapping of device names to device objects.
-        """
-        devices = {f"{my_wire.name}": my_wire}
-        devices.update(
-            {
-                lblm: create_lblm(area=f"{my_wire.area}", name=lblm)
-                for lblm in my_wire.metadata.lblms
-            }
-        )
-        return devices
 
     def reserve_buffer(self, beampath):
         """
@@ -161,6 +140,26 @@ class WireBeamProfileMeasurement(Measurement):
         else:
             raise BufferError
 
+    def create_device_dictionary(self, my_wire, my_buffer):
+        """
+        Creates a device dictionary for a wire scan setup.
+
+        Includes the wire device and any associated LBLM devices
+        based on metadata.
+
+        Parameters:
+            my_wire (Wire): An lcls-tools Wire object.
+        Returns:
+            dict: A mapping of device names to device objects.
+        """
+        devices = {f"{my_wire.name}": my_wire}
+        for lblm in my_wire.metadata.lblms:
+            if lblm == "TMITLOSS":
+                devices["TMITLOSS"] = TMITLoss(my_buffer)
+            else:
+                devices[lblm] = create_lblm(area=f"{my_wire.area}", name=lblm)
+        return devices
+
     def scan_with_wire(self, my_wire, my_buffer):
         """
         Starts the buffer and wire scan with brief delays.
@@ -200,13 +199,13 @@ class WireBeamProfileMeasurement(Measurement):
         data[f"{my_wire.name}"] = my_wire.position_buffer(my_buffer)
 
         if "SC" in beampath:
-            # SC LBLMs use "FAST" signal
-            data.update(
-                {
-                    lblm: devices[lblm].fast_buffer(my_buffer)
-                    for lblm in my_wire.metadata.lblms
-                }
-            )
+            for lblm in my_wire.metadata.lblms:
+                if lblm == "TMITLOSS":
+                    data["TMITLOSS"] = devices["TMITLOSS"].measure(
+                        beampath=beampath, region=my_wire.area
+                    )
+                else:
+                    data[lblm] = devices[lblm].fast_buffer(my_buffer)
         elif "CU" in beampath:
             # CU LBLMs use "QDCRAW" signal
             data.update(
@@ -215,12 +214,6 @@ class WireBeamProfileMeasurement(Measurement):
                     for lblm in my_wire.metadata.lblms
                 }
             )
-
-        # Get TMITLOSS if operating in a valid region
-        tmitloss_areas = ["HTR", "DIAG0", "COL1", "EMIT2", "BYP", "SPD", "LTUH", "LTUS"]
-        if my_wire.area in tmitloss_areas:
-            tl = TMITLoss(my_buffer)
-            data["TMITLOSS"] = tl.measure(beampath=beampath, region=my_wire.area)
 
         # Release EDEF/BSA
         my_buffer.release()
