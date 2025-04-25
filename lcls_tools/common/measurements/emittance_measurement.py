@@ -14,10 +14,9 @@ from pydantic import (
 )
 
 from lcls_tools.common.data.emittance import (
-    compute_emit_bmag,
     compute_emit_bmag_machine_units,
 )
-from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
+from lcls_tools.common.data.model_general_calcs import get_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
