@@ -380,9 +380,9 @@ class WireBeamProfileMeasurement(Measurement):
         """
         rms_sizes = {
             device: (
-                fit_result_phys['x'][device]['sigma'],
-                fit_result_phys['x'][device]['sigma']
+                fit_result_phys["x"][device]["sigma"],
+                fit_result_phys["x"][device]["sigma"],
             )
-            for device in fit_result_phys['x']
+            for device in fit_result_phys["x"]
         }
         return rms_sizes
