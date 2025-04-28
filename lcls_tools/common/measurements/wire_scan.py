@@ -379,10 +379,10 @@ class WireBeamProfileMeasurement(Measurement):
                 containing only the 'sigma' values representing RMS beam sizes.
         """
         rms_sizes = {
-            plane: {
-                device: fit_result_phys[plane][device]["sigma"]
-                for device in fit_result_phys[plane]
-            }
-            for plane in fit_result_phys
+            device: (
+                fit_result_phys['x'][device]['sigma'],
+                fit_result_phys['x'][device]['sigma']
+            )
+            for device in fit_result_phys['x']
         }
         return rms_sizes
