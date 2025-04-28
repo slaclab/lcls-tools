@@ -19,7 +19,8 @@ class WireBeamProfileMeasurementResult(BaseModel):
     detector_data: NDArrayAnnotatedType
     raw_data: NDArrayAnnotatedType
     metadata: SerializeAsAny[Any]
-
+    fit_result: NDArrayAnnotatedType
+    rms_sizes: dict
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid")
 
 
@@ -77,13 +78,21 @@ class WireBeamProfileMeasurement(Measurement):
         bsa_data_by_plane = self.split_data_by_plane(idxs, data)
 
         # Fit detector data by profile
-        fit_result = self.fit_data_by_plane(bsa_data_by_plane)
+        fit_result_idx = self.fit_data_by_plane(bsa_data_by_plane)
+
+        # Convert fit parameters from index-space to physical-space
+        fit_result_phys = self.convert_fit_to_physical(
+            my_wire, bsa_data_by_plane, fit_result_idx
+        )
+
+        rms_sizes = self.get_rms_sizes(fit_result_phys)
 
         return WireBeamProfileMeasurementResult(
             position_data=bsa_data_by_plane[f"{my_wire.name}"],
             detector_data=bsa_data_by_plane,
             raw_data=data,
-            fit_result=fit_result,
+            fit_result=fit_result_phys,
+            rms_sizes=rms_sizes,
             metadata=self.model_dump(),
         )
 
@@ -284,18 +293,19 @@ class WireBeamProfileMeasurement(Measurement):
         # Ultimately will be detector_data[<plane>][<device_name>]
         planes = list(seq_idxs.keys())
         bsa_data_by_plane = {plane: {} for plane in planes}
+        devices = list(data.keys())
 
-        for key in data.keys():
-            # key is the device name
-            # Pull entire device dataset
-            if isinstance(data[key], pd.Series):
-                data[key] = data[key].to_numpy()
-            device_data = data[key]
+        for device in devices:
+            # TMIT Loss returns as a pd.Series, so convert to numpy first
+            if isinstance(data[device], pd.Series):
+                data[device] = data[device].to_numpy()
+            device_data = data[device]
             for plane in planes:
                 # Separate out device data by plane
                 idx = seq_idxs.get(plane)
                 device_plane_data = device_data[idx]
-                bsa_data_by_plane[plane][key] = device_plane_data
+                # Flatten data so it is guaranteed to be 1D
+                bsa_data_by_plane[plane][device] = device_plane_data.flatten()
 
         return bsa_data_by_plane
 
@@ -326,3 +336,53 @@ class WireBeamProfileMeasurement(Measurement):
                 fit_result[plane][device] = proj_fit.fit_projection(proj_data)
 
         return fit_result
+
+    def convert_fit_to_physical(self, my_wire, bsa_data_by_plane, fit_result):
+        """
+        Convert Gaussian fit results from index space to physical position.
+
+        Updates the 'mean' and 'sigma' of each fit using the average spacing
+        between position values and the starting position of the scan.
+        """
+        # Loop over each scan plane (e.g., 'x', 'y', 'u')
+        planes = list(bsa_data_by_plane.keys())
+        for plane in planes:
+            devices = list(bsa_data_by_plane[plane].keys())
+            # Loop over each device in the current plane
+            for device in devices:
+                # Get the starting physical position of the wire scan
+                posn_start = bsa_data_by_plane[plane][my_wire.name][0]
+
+                # Estimate the spacing between position samples
+                posn_diff = np.mean(np.diff(bsa_data_by_plane[plane][my_wire.name]))
+
+                # Convert the fitted mean from index to physical position
+                mean_phys = fit_result[plane][device]["mean"] * posn_diff + posn_start
+
+                # Convert the fitted sigma (standard deviation) to physical units
+                sigma_phys = fit_result[plane][device]["sigma"] * posn_diff
+
+                # Update the fit result with physical values
+                fit_result[plane][device]["mean"] = mean_phys
+                fit_result[plane][device]["sigma"] = sigma_phys
+
+    def get_rms_sizes(fit_result_phys):
+        """
+        Extract RMS beam sizes ('sigma') from nested fit results.
+
+        Args:
+            fit_result_phys (dict): Nested dictionary of the format
+                fit_result[plane][device]['sigma'], containing Gaussian fit data.
+
+        Returns:
+            dict: Nested dictionary with the same plane and device structure,
+                containing only the 'sigma' values representing RMS beam sizes.
+        """
+        rms_sizes = {
+            device: (
+                fit_result_phys['x'][device]['sigma'],
+                fit_result_phys['x'][device]['sigma']
+            )
+            for device in fit_result_phys['x']
+        }
+        return rms_sizes
