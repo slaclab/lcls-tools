@@ -102,6 +102,8 @@ class WireControlInformation(ControlInformation):
 
 class WireMetadata(Metadata):
     lblms: list
+    bpms_before_wire: list
+    bpms_after_wire: list
     # TODO: Add info on locations for X, Y, U wires
 
     def __init__(self, **kwargs):
