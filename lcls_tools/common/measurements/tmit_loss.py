@@ -4,6 +4,7 @@ import meme.names
 import pandas as pd
 from edef import BSABuffer
 from lcls_tools.common.devices.wire import Wire
+from pydantic import model_validator
 
 
 class TMITLoss(Measurement):
@@ -12,6 +13,18 @@ class TMITLoss(Measurement):
     beampath: str
     region: str
     my_wire: Wire
+
+    # Extra fields to be set after validation
+    idx_before: list
+    idx_after: list
+    bpms: dict
+
+    @model_validator(mode="after")
+    def run_setup(self) -> "TMITLoss":
+        bpms_elements, bpms_devices = self.find_bpms()
+        self.idx_before, self.idx_after = self.get_bpm_idx(bpms_devices)
+        self.bpms = self.create_bpms(bpms_elements)
+        return self
 
     def measure(self):
         """
@@ -124,7 +137,7 @@ class TMITLoss(Measurement):
             bpm_obj_dict[element] = create_bpm(name=element, area=area)
         return bpm_obj_dict
 
-    def get_bpm_data(self, bpm_obj_dict, my_buffer):
+    def get_bpm_data(self):
         """
         Retrieve TMIT buffer data for a set of BPMs.
 
@@ -145,10 +158,10 @@ class TMITLoss(Measurement):
         """
         data = {}
 
-        for element, bpm in bpm_obj_dict.items():
+        for element, bpm in self.bpms.items():
             try:
                 # Get data from BSA buffer
-                bpm_data = bpm.tmit_buffer(my_buffer)
+                bpm_data = bpm.tmit_buffer(self.my_buffer)
                 # If returned data is empty, skip
                 if len(bpm_data) == 0:
                     pass
@@ -200,7 +213,7 @@ class TMITLoss(Measurement):
 
         return idx_before, idx_after
 
-    def calc_tmit_loss(self, df, idx_before, idx_after):
+    def calc_tmit_loss(self, df):
         """
         Calculate the TMIT loss.
 
@@ -227,15 +240,15 @@ class TMITLoss(Measurement):
         df_ironed = df.div(row_medians, axis=0)
 
         # Compute mean ironed TMIT for BPMs before the wire
-        ironed_before = df_ironed.iloc[idx_before, :]
+        ironed_before = df_ironed.iloc[self.idx_before, :]
         mean_iron_before = ironed_before.mean()
 
         # Normalize by mean TMIT before the wire
         df_normed = df_ironed.div(mean_iron_before, axis=1)
 
         # Compute mean ratios before and after the wire
-        normed_before = df_normed.iloc[idx_before,]
-        normed_after = df_normed.iloc[idx_after]
+        normed_before = df_normed.iloc[self.idx_before]
+        normed_after = df_normed.iloc[self.idx_after]
 
         mean_before = normed_before.mean()
         mean_after = normed_after.mean()
