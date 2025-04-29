@@ -10,6 +10,7 @@ from typing import (
     Dict,
     List,
     Union,
+    Optional,
 )
 from lcls_tools.common.devices.device import (
     Device,
@@ -101,13 +102,9 @@ class WireControlInformation(ControlInformation):
 
 
 class WireMetadata(Metadata):
-    lblms: list
-    bpms_before_wire: list
-    bpms_after_wire: list
-    # TODO: Add info on locations for X, Y, U wires
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    lblms: List[str]
+    bpms_before_wire: Optional[List[str]] = None
+    bpms_after_wire: Optional[List[str]] = None
 
 
 class Wire(Device):
