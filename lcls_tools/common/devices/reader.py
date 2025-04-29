@@ -7,7 +7,7 @@ from lcls_tools.common.devices.magnet import Magnet, MagnetCollection
 from lcls_tools.common.devices.wire import Wire, WireCollection
 from lcls_tools.common.devices.lblm import LBLM, LBLMCollection
 from lcls_tools.common.devices.bpm import BPM, BPMCollection
-from lcls_tools.common.devices.tcav import TCAV, TCAVCollection
+from lcls_tools.common.devices.tcav import TCAV
 from lcls_tools.common.devices.area import Area
 from lcls_tools.common.devices.beampath import Beampath
 
@@ -160,9 +160,7 @@ def create_bpm(area: str = None, name: str = None) -> Union[None, BPM, BPMCollec
         return BPMCollection(**device_data)
 
 
-def create_tcav(
-    area: str = None, name: str = None
-) -> Union[None, TCAV, TCAVCollection]:
+def create_tcav(area: str = None, name: str = None) -> Union[None, TCAV]:
     device_data = _device_data(area=area, device_type="tcavs", name=name)
     if not device_data:
         return None
@@ -174,8 +172,6 @@ def create_tcav(
         except ValidationError as field_error:
             print(field_error)
             return None
-    else:
-        return TCAVCollection(**device_data)
 
 
 def create_area(area: str = None) -> Union[None, Area]:
