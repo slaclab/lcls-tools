@@ -2788,6 +2788,38 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:DMPS:381
+      - BPMS:DMPS:502
+      - BPMS:DMPS:693
+      bpms_before_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPS:572
+      - BPMS:SPS:580
+      - BPMS:SPS:640
+      - BPMS:SPS:710
+      - BPMS:SPS:770
+      - BPMS:SPS:780
+      - BPMS:SPS:830
+      - BPMS:SPS:840
+      - BPMS:SLTS:150
+      lblms:
+      - PMT122
+      - PMT246
+      - PMT430
+      - PMT431
+      - PMT550
+      - PMT755
+      - PMT756
+      - PMT820
+      - PMT850
+      - LBLM32A
+      - TMITLOSS
       sum_l_meters: 3434.508
       type: WIRE
   WS32B:
@@ -2830,6 +2862,38 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:DMPS:381
+      - BPMS:DMPS:502
+      - BPMS:DMPS:693
+      bpms_before_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPS:572
+      - BPMS:SPS:580
+      - BPMS:SPS:640
+      - BPMS:SPS:710
+      - BPMS:SPS:770
+      - BPMS:SPS:780
+      - BPMS:SPS:830
+      - BPMS:SPS:840
+      - BPMS:SLTS:150
+      lblms:
+      - PMT122
+      - PMT246
+      - PMT430
+      - PMT431
+      - PMT550
+      - PMT755
+      - PMT756
+      - PMT820
+      - PMT850
+      - LBLM32A
+      - TMITLOSS
       sum_l_meters: 3469.772
       type: WIRE
   WS33B:
@@ -2872,6 +2936,38 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:DMPS:381
+      - BPMS:DMPS:502
+      - BPMS:DMPS:693
+      bpms_before_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPS:572
+      - BPMS:SPS:580
+      - BPMS:SPS:640
+      - BPMS:SPS:710
+      - BPMS:SPS:770
+      - BPMS:SPS:780
+      - BPMS:SPS:830
+      - BPMS:SPS:840
+      - BPMS:SLTS:150
+      lblms:
+      - PMT122
+      - PMT246
+      - PMT430
+      - PMT431
+      - PMT550
+      - PMT755
+      - PMT756
+      - PMT820
+      - PMT850
+      - LBLM32A
+      - TMITLOSS
       sum_l_meters: 3505.035
       type: WIRE
   WS34B:
@@ -2914,5 +3010,37 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:DMPS:381
+      - BPMS:DMPS:502
+      - BPMS:DMPS:693
+      bpms_before_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPS:572
+      - BPMS:SPS:580
+      - BPMS:SPS:640
+      - BPMS:SPS:710
+      - BPMS:SPS:770
+      - BPMS:SPS:780
+      - BPMS:SPS:830
+      - BPMS:SPS:840
+      - BPMS:SLTS:150
+      lblms:
+      - PMT122
+      - PMT246
+      - PMT430
+      - PMT431
+      - PMT550
+      - PMT755
+      - PMT756
+      - PMT820
+      - PMT850
+      - LBLM32A
+      - TMITLOSS
       sum_l_meters: 3540.299
       type: WIRE
