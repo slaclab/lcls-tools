@@ -400,5 +400,18 @@ wires:
       area: SPD
       beam_path:
       - SC_BSYD
+      bpms_after_wire:
+      - BPMS:SPD:700
+      - BPMS:SPD:955
+      - BPMS:SLTD:625
+      bpms_before_wire:
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      - BPMS:SPD:570
+      lblms:
+      - LBLM22A
       sum_l_meters: 3024.92
       type: WIRE

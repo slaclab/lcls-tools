@@ -846,6 +846,26 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      bpms_before_wire:
+      - BPMS:BC1B:125
+      - BPMS:BC1B:440
+      - BPMS:COL1:120
+      - BPMS:COL1:260
+      - BPMS:COL1:280
+      - BPMS:COL1:320
+      lblms:
+      - LBLM03A
+      - LBLM04A
+      - TMITLOSS
       sum_l_meters: 154.52
       type: WIRE
   WSC106:
@@ -889,6 +909,26 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      bpms_before_wire:
+      - BPMS:BC1B:125
+      - BPMS:BC1B:440
+      - BPMS:COL1:120
+      - BPMS:COL1:260
+      - BPMS:COL1:280
+      - BPMS:COL1:320
+      lblms:
+      - LBLM03A
+      - LBLM04A
+      - TMITLOSS
       sum_l_meters: 162.52
       type: WIRE
   WSC108:
@@ -933,6 +973,26 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      bpms_before_wire:
+      - BPMS:BC1B:125
+      - BPMS:BC1B:440
+      - BPMS:COL1:120
+      - BPMS:COL1:260
+      - BPMS:COL1:280
+      - BPMS:COL1:320
+      lblms:
+      - LBLM03A
+      - LBLM04A
+      - TMITLOSS
       sum_l_meters: 170.52
       type: WIRE
   WSC110:
@@ -977,5 +1037,25 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      bpms_before_wire:
+      - BPMS:BC1B:125
+      - BPMS:BC1B:440
+      - BPMS:COL1:120
+      - BPMS:COL1:260
+      - BPMS:COL1:280
+      - BPMS:COL1:320
+      lblms:
+      - LBLM03A
+      - LBLM04A
+      - TMITLOSS
       sum_l_meters: 178.52
       type: WIRE
