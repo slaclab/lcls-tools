@@ -6,7 +6,7 @@ from lcls_tools.common.measurements.measurement import Measurement
 import time
 import edef
 import os
-from pydantic import SerializeAsAny, BaseModel
+from pydantic import SerializeAsAny, BaseModel, ConfigDict
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
@@ -31,6 +31,7 @@ class WireBeamProfileMeasurementResult(BaseModel):
         extra: Forbids extra fields not explicitly defined in the model.
     """
 
+    model_config = ConfigDict(arbitrary_types_allowed=True)
     position_data: NDArrayAnnotatedType
     detector_data: NDArrayAnnotatedType
     raw_data: NDArrayAnnotatedType
@@ -394,14 +395,18 @@ class WireBeamProfileMeasurement(Measurement):
                 fit_result[plane][device]['sigma'], containing Gaussian fit data.
 
         Returns:
-            dict: Nested dictionary with the same plane and device structure,
-                containing only the 'sigma' values representing RMS beam sizes.
+            dict: Dictionary where the keys are devices (detectors) and the values
+            are lists of the form [x_rms, y_rms].
         """
-        rms_sizes = {
-            device: (
-                fit_result_phys["x"][device]["sigma"],
-                fit_result_phys["x"][device]["sigma"],
-            )
-            for device in fit_result_phys["x"]
-        }
+        rms_sizes = {}
+
+        for plane in fit_result_phys:
+            for device in fit_result_phys[plane]:
+                sigma = fit_result_phys[plane][device]["sigma"]
+                if device not in rms_sizes:
+                    rms_sizes[device] = [None, None]
+                if plane == "x":
+                    rms_sizes[device][0] = sigma
+                if plane == "y":
+                    rms_sizes[device][1] = sigma
         return rms_sizes
