@@ -1,3 +1,94 @@
+bpms:
+  BPM21201:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:201:TMIT
+        x: BPMS:LI21:201:X
+        y: BPMS:LI21:201:Y
+      control_name: BPMS:LI21:201
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 30.732
+      type: BPM
+  BPM21301:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:301:TMIT
+        x: BPMS:LI21:301:X
+        y: BPMS:LI21:301:Y
+      control_name: BPMS:LI21:301
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 43.182
+      type: BPM
+  BPMM12:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:278:TMIT
+        x: BPMS:LI21:278:X
+        y: BPMS:LI21:278:Y
+      control_name: BPMS:LI21:278
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 38.97
+      type: BPM
+  BPMM14:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:315:TMIT
+        x: BPMS:LI21:315:X
+        y: BPMS:LI21:315:Y
+      control_name: BPMS:LI21:315
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 44.338
+      type: BPM
+  BPMS11:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI21:233:TMIT
+        x: BPMS:LI21:233:X
+        y: BPMS:LI21:233:Y
+      control_name: BPMS:LI21:233
+    metadata:
+      area: BC1
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 34.487
+      type: BPM
 magnets:
   BX11:
     controls_information:
@@ -513,7 +604,9 @@ screens:
         n_bits: OTRS:LI21:237:N_OF_BITS
         n_col: OTRS:LI21:237:N_OF_COL
         n_row: OTRS:LI21:237:N_OF_ROW
+        ref_rate_vme: OTRS:LI21:237:FRAME_RATE
         resolution: OTRS:LI21:237:RESOLUTION
+        sys_type: OTRS:LI21:237:SYS_TYPE
       control_name: OTRS:LI21:237
     metadata:
       area: BC1
@@ -533,7 +626,9 @@ screens:
         n_bits: OTRS:LI21:291:N_OF_BITS
         n_col: OTRS:LI21:291:N_OF_COL
         n_row: OTRS:LI21:291:N_OF_ROW
+        ref_rate_vme: OTRS:LI21:291:FRAME_RATE
         resolution: OTRS:LI21:291:RESOLUTION
+        sys_type: OTRS:LI21:291:SYS_TYPE
       control_name: OTRS:LI21:291
     metadata:
       area: BC1

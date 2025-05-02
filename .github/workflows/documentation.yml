@@ -1,4 +1,4 @@
-name: documentation
+name: Documentation
 
 on:
   push:
@@ -11,16 +11,18 @@ permissions:
 
 jobs:
   docs:
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install ".[docs]"
+          pip list
       - name: Sphinx build
         run: |
-          cd ./docs && make html 
+          cd ./docs && make html
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}

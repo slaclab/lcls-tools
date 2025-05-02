@@ -1,3 +1,633 @@
+bpms:
+  RFBHX12:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:1305:TMIT
+        x: BPMS:UNDH:1305:X
+        y: BPMS:UNDH:1305:Y
+      control_name: BPMS:UNDH:1305
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1548.252
+      type: BPM
+  RFBHX13:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:1390:TMIT
+        x: BPMS:UNDH:1390:X
+        y: BPMS:UNDH:1390:Y
+      control_name: BPMS:UNDH:1390
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1552.261
+      type: BPM
+  RFBHX14:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:1490:TMIT
+        x: BPMS:UNDH:1490:X
+        y: BPMS:UNDH:1490:Y
+      control_name: BPMS:UNDH:1490
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1556.14
+      type: BPM
+  RFBHX15:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:1590:TMIT
+        x: BPMS:UNDH:1590:X
+        y: BPMS:UNDH:1590:Y
+      control_name: BPMS:UNDH:1590
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1560.153
+      type: BPM
+  RFBHX16:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:1690:TMIT
+        x: BPMS:UNDH:1690:X
+        y: BPMS:UNDH:1690:Y
+      control_name: BPMS:UNDH:1690
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1564.165
+      type: BPM
+  RFBHX17:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:1790:TMIT
+        x: BPMS:UNDH:1790:X
+        y: BPMS:UNDH:1790:Y
+      control_name: BPMS:UNDH:1790
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1568.178
+      type: BPM
+  RFBHX18:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:1890:TMIT
+        x: BPMS:UNDH:1890:X
+        y: BPMS:UNDH:1890:Y
+      control_name: BPMS:UNDH:1890
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1572.191
+      type: BPM
+  RFBHX19:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:1990:TMIT
+        x: BPMS:UNDH:1990:X
+        y: BPMS:UNDH:1990:Y
+      control_name: BPMS:UNDH:1990
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1576.203
+      type: BPM
+  RFBHX20:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:2090:TMIT
+        x: BPMS:UNDH:2090:X
+        y: BPMS:UNDH:2090:Y
+      control_name: BPMS:UNDH:2090
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1580.216
+      type: BPM
+  RFBHX21:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:2190:TMIT
+        x: BPMS:UNDH:2190:X
+        y: BPMS:UNDH:2190:Y
+      control_name: BPMS:UNDH:2190
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1584.362
+      type: BPM
+  RFBHX22:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:2290:TMIT
+        x: BPMS:UNDH:2290:X
+        y: BPMS:UNDH:2290:Y
+      control_name: BPMS:UNDH:2290
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1588.241
+      type: BPM
+  RFBHX23:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:2390:TMIT
+        x: BPMS:UNDH:2390:X
+        y: BPMS:UNDH:2390:Y
+      control_name: BPMS:UNDH:2390
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1592.254
+      type: BPM
+  RFBHX24:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:2490:TMIT
+        x: BPMS:UNDH:2490:X
+        y: BPMS:UNDH:2490:Y
+      control_name: BPMS:UNDH:2490
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1596.267
+      type: BPM
+  RFBHX25:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:2590:TMIT
+        x: BPMS:UNDH:2590:X
+        y: BPMS:UNDH:2590:Y
+      control_name: BPMS:UNDH:2590
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1600.279
+      type: BPM
+  RFBHX26:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:2690:TMIT
+        x: BPMS:UNDH:2690:X
+        y: BPMS:UNDH:2690:Y
+      control_name: BPMS:UNDH:2690
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1604.292
+      type: BPM
+  RFBHX27:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:2790:TMIT
+        x: BPMS:UNDH:2790:X
+        y: BPMS:UNDH:2790:Y
+      control_name: BPMS:UNDH:2790
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1608.305
+      type: BPM
+  RFBHX28:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:2890:TMIT
+        x: BPMS:UNDH:2890:X
+        y: BPMS:UNDH:2890:Y
+      control_name: BPMS:UNDH:2890
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1612.317
+      type: BPM
+  RFBHX29:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:2990:TMIT
+        x: BPMS:UNDH:2990:X
+        y: BPMS:UNDH:2990:Y
+      control_name: BPMS:UNDH:2990
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1616.33
+      type: BPM
+  RFBHX30:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:3090:TMIT
+        x: BPMS:UNDH:3090:X
+        y: BPMS:UNDH:3090:Y
+      control_name: BPMS:UNDH:3090
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1620.343
+      type: BPM
+  RFBHX31:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:3190:TMIT
+        x: BPMS:UNDH:3190:X
+        y: BPMS:UNDH:3190:Y
+      control_name: BPMS:UNDH:3190
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1624.355
+      type: BPM
+  RFBHX32:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:3290:TMIT
+        x: BPMS:UNDH:3290:X
+        y: BPMS:UNDH:3290:Y
+      control_name: BPMS:UNDH:3290
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1628.368
+      type: BPM
+  RFBHX33:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:3390:TMIT
+        x: BPMS:UNDH:3390:X
+        y: BPMS:UNDH:3390:Y
+      control_name: BPMS:UNDH:3390
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1632.381
+      type: BPM
+  RFBHX34:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:3490:TMIT
+        x: BPMS:UNDH:3490:X
+        y: BPMS:UNDH:3490:Y
+      control_name: BPMS:UNDH:3490
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1636.393
+      type: BPM
+  RFBHX35:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:3590:TMIT
+        x: BPMS:UNDH:3590:X
+        y: BPMS:UNDH:3590:Y
+      control_name: BPMS:UNDH:3590
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1640.406
+      type: BPM
+  RFBHX36:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:3690:TMIT
+        x: BPMS:UNDH:3690:X
+        y: BPMS:UNDH:3690:Y
+      control_name: BPMS:UNDH:3690
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1644.419
+      type: BPM
+  RFBHX37:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:3790:TMIT
+        x: BPMS:UNDH:3790:X
+        y: BPMS:UNDH:3790:Y
+      control_name: BPMS:UNDH:3790
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1648.431
+      type: BPM
+  RFBHX38:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:3890:TMIT
+        x: BPMS:UNDH:3890:X
+        y: BPMS:UNDH:3890:Y
+      control_name: BPMS:UNDH:3890
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1652.444
+      type: BPM
+  RFBHX39:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:3990:TMIT
+        x: BPMS:UNDH:3990:X
+        y: BPMS:UNDH:3990:Y
+      control_name: BPMS:UNDH:3990
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1656.457
+      type: BPM
+  RFBHX40:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:4090:TMIT
+        x: BPMS:UNDH:4090:X
+        y: BPMS:UNDH:4090:Y
+      control_name: BPMS:UNDH:4090
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1660.469
+      type: BPM
+  RFBHX41:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:4190:TMIT
+        x: BPMS:UNDH:4190:X
+        y: BPMS:UNDH:4190:Y
+      control_name: BPMS:UNDH:4190
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1664.482
+      type: BPM
+  RFBHX42:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:4290:TMIT
+        x: BPMS:UNDH:4290:X
+        y: BPMS:UNDH:4290:Y
+      control_name: BPMS:UNDH:4290
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1668.495
+      type: BPM
+  RFBHX43:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:4390:TMIT
+        x: BPMS:UNDH:4390:X
+        y: BPMS:UNDH:4390:Y
+      control_name: BPMS:UNDH:4390
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1672.507
+      type: BPM
+  RFBHX44:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:4490:TMIT
+        x: BPMS:UNDH:4490:X
+        y: BPMS:UNDH:4490:Y
+      control_name: BPMS:UNDH:4490
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1676.52
+      type: BPM
+  RFBHX45:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:4590:TMIT
+        x: BPMS:UNDH:4590:X
+        y: BPMS:UNDH:4590:Y
+      control_name: BPMS:UNDH:4590
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1680.533
+      type: BPM
+  RFBHX46:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:4690:TMIT
+        x: BPMS:UNDH:4690:X
+        y: BPMS:UNDH:4690:Y
+      control_name: BPMS:UNDH:4690
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1684.545
+      type: BPM
+  RFBHX47:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:4790:TMIT
+        x: BPMS:UNDH:4790:X
+        y: BPMS:UNDH:4790:Y
+      control_name: BPMS:UNDH:4790
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1688.558
+      type: BPM
+  RFBHX51:
+    controls_information:
+      PVs:
+        tmit: BPMS:UNDH:5190:TMIT
+        x: BPMS:UNDH:5190:X
+        y: BPMS:UNDH:5190:Y
+      control_name: BPMS:UNDH:5190
+    metadata:
+      area: UNDH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1703.75
+      type: BPM
 lblms:
   LBLMH40A:
     controls_information:

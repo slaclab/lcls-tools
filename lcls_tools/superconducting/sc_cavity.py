@@ -780,7 +780,7 @@ class Cavity(utils.SCLinacObject):
                 self.find_chirp_range(int(chirp_range * 1.1))
             else:
                 raise utils.DetuneError(
-                    f"{self}: No valid detune found within" f"+/-400000Hz chirp range"
+                    f"{self}: No valid detune found within+/-400000Hz chirp range"
                 )
 
     def reset_interlocks(self, wait: int = 3, attempt: int = 0):
@@ -845,7 +845,7 @@ class Cavity(utils.SCLinacObject):
         while self.characterization_running:
             self.check_abort()
             print(
-                f"waiting for {self} characterization" f" to stop running",
+                f"waiting for {self} characterization to stop running",
                 datetime.now(),
             )
             sleep(1)

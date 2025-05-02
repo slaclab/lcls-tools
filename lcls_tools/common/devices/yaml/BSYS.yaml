@@ -1,3 +1,22 @@
+bpms:
+  BPMBP34:
+    controls_information:
+      PVs:
+        tmit: BPMS:BSYS:865:TMIT
+        x: BPMS:BSYS:865:X
+        y: BPMS:BSYS:865:Y
+      control_name: BPMS:BSYS:865
+    metadata:
+      area: BSYS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3207.775
+      type: BPM
 lblms:
   LBLMS24A:
     controls_information:

@@ -25,7 +25,7 @@ def plot_betas(output1, output2, **kwargs):
     ax12.plot(output2["ele.s"], output2["ele.e_tot"] / 1e9, color="red")
     ax12.set_ylabel("Energy (GeV)")
     efinal = output2["ele.e_tot"][-1] / 1e9
-    plt.title(f'{opt["title1"]} Final energy: {efinal:.2f} GeV')
+    plt.title(f"{opt['title1']} Final energy: {efinal:.2f} GeV")
     ax1.set_xlabel("s (m)")
     ax1.set_ylabel("Twiss Beta X (m)")
     # itime = isotime()
@@ -38,7 +38,7 @@ def plot_betas(output1, output2, **kwargs):
     ax22 = ax2.twinx()
     ax22.plot(output2["ele.s"], output2["ele.e_tot"] / 1e9, color="red")
     ax22.set_ylabel("Energy (GeV)")
-    plt.title(f'{opt["title2"]} Final energy: {efinal:.2f} GeV')
+    plt.title(f"{opt['title2']} Final energy: {efinal:.2f} GeV")
     ax2.set_xlabel("s (m)")
     ax2.set_ylabel("Twiss Beta Y (m)")
     axes_list = [ax1, ax12, ax2, ax22]
@@ -58,18 +58,18 @@ def disp_twiss(tao, element, datum=[]):
         twiss_design = mod.get_twiss(tao, element)
         bmag_a, bmag_b = mod.bmag(twiss_model, twiss_design)
         print(f"\n{element} BMAG_X {bmag_a:3.2f}, BMAG_Y {bmag_b:3.2f} ")
-        print(f'{" " * 12} Beta     Alpha   Beta   Alpha ')
-        print(f'{" " * 12}  X       X       Y       Y')
-        print(f'Desing:{" "} ', end="")
+        print(f"{' ' * 12} Beta     Alpha   Beta   Alpha ")
+        print(f"{' ' * 12}  X       X       Y       Y")
+        print(f"Desing:{' '} ", end="")
         for val in twiss_design:
             print(f"{val:8.2f}", end="")
         print("")
-        print(f'Model:{" " * 3}', end="")
+        print(f"Model:{' ' * 3}", end="")
         for val in twiss_model:
             print(f"{val:8.2f}", end="")
         print("")
         if not datum == []:
-            print(f'Measured:{" " * 0}', end="")
+            print(f"Measured:{' ' * 0}", end="")
             for val in twiss_datum:
                 print(f"{float(val):8.2f}", end="")
             bmag_a, bmag_b = mod.bmag(twiss_datum[0:4], twiss_model)
@@ -98,7 +98,7 @@ def quad_table(tao, pct_lim=1, show_energy=False):
 
         model_bdes = mod.get_bmad_bdes(tao, element)
         if show_energy:
-            print(f"{element:7s} {device:15s} {eact:7.3f}" f"{edes:7.3f} {e_tot:7.3f}")
+            print(f"{element:7s} {device:15s} {eact:7.3f}{edes:7.3f} {e_tot:7.3f}")
         else:
             percent = 100 * abs((bmod - model_bdes) / bmod) if bmod != 0 else 0
             if percent > pct_lim:

@@ -3,20 +3,20 @@ from typing import Optional, List
 
 import numpy as np
 from numpy import ndarray
-from pydantic import BaseModel, ConfigDict, PositiveFloat, Field
+from pydantic import PositiveFloat, Field
 
 from lcls_tools.common.data.fit.method_base import MethodBase
 from lcls_tools.common.data.fit.methods import GaussianModel
 from lcls_tools.common.data.fit.projection import ProjectionFit
-from lcls_tools.common.image.processing import ImageProcessor
+from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
+import lcls_tools
 
 
-class ImageFitResult(BaseModel):
+class ImageFitResult(lcls_tools.common.BaseModel):
     centroid: List[float] = Field(min_length=2, max_length=2)
     rms_size: List[float] = Field(min_length=2, max_length=2)
     total_intensity: PositiveFloat
-    processed_image: ndarray
-    model_config = ConfigDict(arbitrary_types_allowed=True)
+    image: NDArrayAnnotatedType
 
 
 class ImageProjectionFitResult(ImageFitResult):
@@ -25,12 +25,10 @@ class ImageProjectionFitResult(ImageFitResult):
     y_projection_fit_parameters: dict[str, float]
 
 
-class ImageFit(BaseModel, ABC):
+class ImageFit(lcls_tools.common.BaseModel, ABC):
     """
     Abstract class for determining beam properties from an image
     """
-    image_processor: Optional[ImageProcessor] = ImageProcessor()
-    model_config = ConfigDict(arbitrary_types_allowed=True)
 
     def fit_image(self, image: ndarray) -> ImageFitResult:
         """
@@ -38,8 +36,7 @@ class ImageFit(BaseModel, ABC):
         image processing, internal image fitting method, and image validation.
 
         """
-        processed_image = self.image_processor.auto_process(image)
-        fit_result = self._fit_image(processed_image)
+        fit_result = self._fit_image(image)
         return fit_result
 
     @abstractmethod
@@ -57,8 +54,8 @@ class ImageProjectionFit(ImageFit):
     the x/y projections. The default configuration uses a Gaussian fitting of the
     profile with prior distributions placed on the model parameters.
     """
+
     projection_fit_method: Optional[MethodBase] = GaussianModel(use_priors=True)
-    model_config = ConfigDict(arbitrary_types_allowed=True)
 
     def _fit_image(self, image: ndarray) -> ImageProjectionFitResult:
         x_projection = np.array(np.sum(image, axis=0))
@@ -75,7 +72,7 @@ class ImageProjectionFit(ImageFit):
             total_intensity=image.sum(),
             x_projection_fit_parameters=x_parameters,
             y_projection_fit_parameters=y_parameters,
-            processed_image=image,
+            image=image,
             projection_fit_method=self.projection_fit_method,
         )
 

@@ -35,7 +35,7 @@ class WireTest(TestCase):
             "MOTR_ENABLED_STS": None,
             "MOTR_HOMED_STS": None,
         }
-        # set up patch so that each magnet is constructured with ALL ctrl options
+        # set up patch so that each magnet is constructed with ALL ctrl options
         self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=Mock)
         self.mock_ctrl_options = self.ctrl_options_patch.start()
         self.mock_ctrl_options.return_value = {
@@ -89,7 +89,9 @@ class WireTest(TestCase):
         """Test that all the properties we expect exist"""
         # Assert that wire has all auto-generated private attributes
         for handle, _ in self.wire.controls_information.PVs:
-            if handle not in ["position",]:
+            if handle not in [
+                "position",
+            ]:
                 self.assertTrue(
                     hasattr(self.wire, handle),
                     msg=f"expected wire to have attribute {handle}",

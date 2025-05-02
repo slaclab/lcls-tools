@@ -1,3 +1,40 @@
+bpms:
+  BPMDAS1:
+    controls_information:
+      PVs:
+        tmit: BPMS:DASEL:300:TMIT
+        x: BPMS:DASEL:300:X
+        y: BPMS:DASEL:300:Y
+      control_name: BPMS:DASEL:300
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2976.488
+      type: BPM
+  BPMDAS19:
+    controls_information:
+      PVs:
+        tmit: BPMS:DASEL:915:TMIT
+        x: BPMS:DASEL:915:X
+        y: BPMS:DASEL:915:Y
+      control_name: BPMS:DASEL:915
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 3144.655
+      type: BPM
+  BPMDAS?:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:DASEL:146
+    metadata:
+      area: DASEL
+      beam_path:
+      - SC_DASEL
+      sum_l_meters: 2934.015
+      type: BPM
 magnets:
   BKRDAS1:
     controls_information:
@@ -529,7 +566,10 @@ screens:
         n_bits: PROF:DASEL:440:N_OF_BITS
         n_col: PROF:DASEL:440:Image:ArraySize1_RBV
         n_row: PROF:DASEL:440:Image:ArraySize0_RBV
+        ref_rate: PROF:DASEL:440:ArrayRate_RBV
+        ref_rate_vme: PROF:DASEL:440:FRAME_RATE
         resolution: PROF:DASEL:440:RESOLUTION
+        sys_type: PROF:DASEL:440:SYS_TYPE
       control_name: PROF:DASEL:440
     metadata:
       area: DASEL
@@ -544,6 +584,8 @@ screens:
         n_bits: PROF:DASEL:655:N_OF_BITS
         n_col: PROF:DASEL:655:Image:ArraySize1_RBV
         n_row: PROF:DASEL:655:Image:ArraySize0_RBV
+        ref_rate: PROF:DASEL:655:ArrayRate_RBV
+        ref_rate_vme: PROF:DASEL:655:FRAME_RATE
         resolution: PROF:DASEL:655:RESOLUTION
       control_name: PROF:DASEL:655
     metadata:
@@ -559,6 +601,8 @@ screens:
         n_bits: PROF:DASEL:818:N_OF_BITS
         n_col: PROF:DASEL:818:Image:ArraySize1_RBV
         n_row: PROF:DASEL:818:Image:ArraySize0_RBV
+        ref_rate: PROF:DASEL:818:ArrayRate_RBV
+        ref_rate_vme: PROF:DASEL:818:FRAME_RATE
         resolution: PROF:DASEL:818:RESOLUTION
       control_name: PROF:DASEL:818
     metadata:

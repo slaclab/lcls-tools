@@ -1,3 +1,68 @@
+bpms:
+  BPMDDB:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPS:693:TMIT
+        x: BPMS:DMPS:693:X
+        y: BPMS:DMPS:693:Y
+      control_name: BPMS:DMPS:693
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3771.245
+      type: BPM
+  BPMQDB:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPS:502:TMIT
+        x: BPMS:DMPS:502:X
+        y: BPMS:DMPS:502:Y
+      control_name: BPMS:DMPS:502
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_SXR
+      sum_l_meters: 3762.468
+      type: BPM
+  BPMUE1B:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPS:325:TMIT
+        x: BPMS:DMPS:325:X
+        y: BPMS:DMPS:325:Y
+      control_name: BPMS:DMPS:325
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3734.374
+      type: BPM
+  BPMUE2B:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPS:381:TMIT
+        x: BPMS:DMPS:381:X
+        y: BPMS:DMPS:381:Y
+      control_name: BPMS:DMPS:381
+    metadata:
+      area: DMPS
+      beam_path:
+      - CU_SXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3742.168
+      type: BPM
 magnets:
   BYD1B:
     controls_information:
@@ -297,7 +362,10 @@ screens:
         n_bits: OTRS:DMPS:695:N_OF_BITS
         n_col: OTRS:DMPS:695:Image:ArraySize1_RBV
         n_row: OTRS:DMPS:695:Image:ArraySize0_RBV
+        ref_rate: OTRS:DMPS:695:ArrayRate_RBV
+        ref_rate_vme: OTRS:DMPS:695:FRAME_RATE
         resolution: OTRS:DMPS:695:RESOLUTION
+        sys_type: OTRS:DMPS:695:SYS_TYPE
       control_name: OTRS:DMPS:695
     metadata:
       area: DMPS

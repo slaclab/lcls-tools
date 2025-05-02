@@ -1,3 +1,66 @@
+bpms:
+  BPMDD:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPH:693:TMIT
+        x: BPMS:DMPH:693:X
+        y: BPMS:DMPH:693:Y
+      control_name: BPMS:DMPH:693
+    metadata:
+      area: DMPH
+      beam_path:
+      - CU_HXR
+      - SC_HXR
+      sum_l_meters: 1746.448
+      type: BPM
+  BPMQD:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPH:502:TMIT
+        x: BPMS:DMPH:502:X
+        y: BPMS:DMPH:502:Y
+      control_name: BPMS:DMPH:502
+    metadata:
+      area: DMPH
+      beam_path:
+      - CU_HXR
+      - SC_HXR
+      sum_l_meters: 1737.672
+      type: BPM
+  BPMUE1:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPH:325:TMIT
+        x: BPMS:DMPH:325:X
+        y: BPMS:DMPH:325:Y
+      control_name: BPMS:DMPH:325
+    metadata:
+      area: DMPH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1709.644
+      type: BPM
+  BPMUE2:
+    controls_information:
+      PVs:
+        tmit: BPMS:DMPH:381:TMIT
+        x: BPMS:DMPH:381:X
+        y: BPMS:DMPH:381:Y
+      control_name: BPMS:DMPH:381
+    metadata:
+      area: DMPH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      sum_l_meters: 1717.434
+      type: BPM
 magnets:
   BYD1:
     controls_information:
@@ -291,7 +354,10 @@ screens:
         n_bits: OTRS:DMPH:695:N_OF_BITS
         n_col: OTRS:DMPH:695:Image:ArraySize1_RBV
         n_row: OTRS:DMPH:695:Image:ArraySize0_RBV
+        ref_rate: OTRS:DMPH:695:ArrayRate_RBV
+        ref_rate_vme: OTRS:DMPH:695:FRAME_RATE
         resolution: OTRS:DMPH:695:RESOLUTION
+        sys_type: OTRS:DMPH:695:SYS_TYPE
       control_name: OTRS:DMPH:695
     metadata:
       area: DMPH

@@ -1,3 +1,14 @@
+bpms:
+  BPM141801:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI14:1801
+    metadata:
+      area: BC14P
+      beam_path:
+      - F2_POSI
+      sum_l_meters: 362.669
+      type: BPM
 magnets:
   BCX141796:
     controls_information:

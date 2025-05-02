@@ -38,6 +38,9 @@ class ScreenPVSet(PVSet):
     n_row: PV
     n_bits: PV
     resolution: PV
+    sys_type: PV
+    ref_rate_vme: Optional[PV] = None
+    ref_rate: Optional[PV] = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -94,6 +97,16 @@ class Screen(Device):
                 f"Could not set {self.name} HDF5 save location. Please provide an existing directory."
             )
         self._root_hdf5_location = path
+
+    @property
+    def refresh_rate(self):
+        sys_type = self.controls_information.PVs.sys_type.get()
+        if str(sys_type) == "VME":
+            return self.controls_information.PVs.ref_rate_vme.get()
+        elif str(sys_type) == "LinuxRT":
+            return self.controls_information.PVs.ref_rate.get()
+        else:
+            raise ValueError("Camera refresh rate not found")
 
     @property
     def is_saving_images(self):
@@ -237,14 +250,17 @@ class Screen(Device):
                 dset = f.create_dataset(
                     name=str(capture_num), data=image, dtype=np.ushort
                 )
-                [dset.attrs.update({key: value}) for key, value in self.metadata]
+                [
+                    dset.attrs.update({key: value or h5py.Empty("f4")})
+                    for key, value in self.metadata
+                ]
                 if extra_metadata:
                     # dset.attrs acts as a dictionary here
                     # we update with original key if it isn't in our normal screen metadata
                     # otherwise, prepend user_ to the key to retain all information.
                     [
                         (
-                            dset.attrs.update({key: value})
+                            dset.attrs.update({key: value or h5py.Empty("f4")})
                             if key not in self.metadata
                             else dset.attrs.update({"user_" + key: value})
                         )

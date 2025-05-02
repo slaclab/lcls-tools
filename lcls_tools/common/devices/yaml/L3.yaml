@@ -1,3 +1,850 @@
+bpms:
+  BPM25201:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI25:201:TMIT
+        x: BPMS:LI25:201:X
+        y: BPMS:LI25:201:Y
+      control_name: BPMS:LI25:201
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 435.999
+      type: BPM
+  BPM25301:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI25:301:TMIT
+        x: BPMS:LI25:301:X
+        y: BPMS:LI25:301:Y
+      control_name: BPMS:LI25:301
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 448.343
+      type: BPM
+  BPM25401:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI25:401:TMIT
+        x: BPMS:LI25:401:X
+        y: BPMS:LI25:401:Y
+      control_name: BPMS:LI25:401
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 460.687
+      type: BPM
+  BPM25501:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI25:501:TMIT
+        x: BPMS:LI25:501:X
+        y: BPMS:LI25:501:Y
+      control_name: BPMS:LI25:501
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 473.032
+      type: BPM
+  BPM25601:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI25:601:TMIT
+        x: BPMS:LI25:601:X
+        y: BPMS:LI25:601:Y
+      control_name: BPMS:LI25:601
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 485.376
+      type: BPM
+  BPM25701:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI25:701:TMIT
+        x: BPMS:LI25:701:X
+        y: BPMS:LI25:701:Y
+      control_name: BPMS:LI25:701
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 497.721
+      type: BPM
+  BPM25801:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI25:801:TMIT
+        x: BPMS:LI25:801:X
+        y: BPMS:LI25:801:Y
+      control_name: BPMS:LI25:801
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 510.065
+      type: BPM
+  BPM25901:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI25:901:TMIT
+        x: BPMS:LI25:901:X
+        y: BPMS:LI25:901:Y
+      control_name: BPMS:LI25:901
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 522.65
+      type: BPM
+  BPM26201:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI26:201:TMIT
+        x: BPMS:LI26:201:X
+        y: BPMS:LI26:201:Y
+      control_name: BPMS:LI26:201
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 537.599
+      type: BPM
+  BPM26301:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI26:301:TMIT
+        x: BPMS:LI26:301:X
+        y: BPMS:LI26:301:Y
+      control_name: BPMS:LI26:301
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 549.943
+      type: BPM
+  BPM26401:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI26:401:TMIT
+        x: BPMS:LI26:401:X
+        y: BPMS:LI26:401:Y
+      control_name: BPMS:LI26:401
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 562.287
+      type: BPM
+  BPM26501:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI26:501:TMIT
+        x: BPMS:LI26:501:X
+        y: BPMS:LI26:501:Y
+      control_name: BPMS:LI26:501
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 574.632
+      type: BPM
+  BPM26601:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI26:601:TMIT
+        x: BPMS:LI26:601:X
+        y: BPMS:LI26:601:Y
+      control_name: BPMS:LI26:601
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 586.976
+      type: BPM
+  BPM26701:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI26:701:TMIT
+        x: BPMS:LI26:701:X
+        y: BPMS:LI26:701:Y
+      control_name: BPMS:LI26:701
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 599.321
+      type: BPM
+  BPM26801:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI26:801:TMIT
+        x: BPMS:LI26:801:X
+        y: BPMS:LI26:801:Y
+      control_name: BPMS:LI26:801
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 611.665
+      type: BPM
+  BPM26901:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI26:901:TMIT
+        x: BPMS:LI26:901:X
+        y: BPMS:LI26:901:Y
+      control_name: BPMS:LI26:901
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 624.25
+      type: BPM
+  BPM27201:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI27:201:TMIT
+        x: BPMS:LI27:201:X
+        y: BPMS:LI27:201:Y
+      control_name: BPMS:LI27:201
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 639.199
+      type: BPM
+  BPM27301:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI27:301:TMIT
+        x: BPMS:LI27:301:X
+        y: BPMS:LI27:301:Y
+      control_name: BPMS:LI27:301
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 651.543
+      type: BPM
+  BPM27401:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI27:401:TMIT
+        x: BPMS:LI27:401:X
+        y: BPMS:LI27:401:Y
+      control_name: BPMS:LI27:401
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 663.887
+      type: BPM
+  BPM27501:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI27:501:TMIT
+        x: BPMS:LI27:501:X
+        y: BPMS:LI27:501:Y
+      control_name: BPMS:LI27:501
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 676.232
+      type: BPM
+  BPM27601:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI27:601:TMIT
+        x: BPMS:LI27:601:X
+        y: BPMS:LI27:601:Y
+      control_name: BPMS:LI27:601
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 688.576
+      type: BPM
+  BPM27701:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI27:701:TMIT
+        x: BPMS:LI27:701:X
+        y: BPMS:LI27:701:Y
+      control_name: BPMS:LI27:701
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 700.921
+      type: BPM
+  BPM27801:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI27:801:TMIT
+        x: BPMS:LI27:801:X
+        y: BPMS:LI27:801:Y
+      control_name: BPMS:LI27:801
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 713.265
+      type: BPM
+  BPM27901:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI27:901:TMIT
+        x: BPMS:LI27:901:X
+        y: BPMS:LI27:901:Y
+      control_name: BPMS:LI27:901
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 725.85
+      type: BPM
+  BPM28201:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI28:201:TMIT
+        x: BPMS:LI28:201:X
+        y: BPMS:LI28:201:Y
+      control_name: BPMS:LI28:201
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 740.799
+      type: BPM
+  BPM28301:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI28:301:TMIT
+        x: BPMS:LI28:301:X
+        y: BPMS:LI28:301:Y
+      control_name: BPMS:LI28:301
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 753.143
+      type: BPM
+  BPM28401:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI28:401:TMIT
+        x: BPMS:LI28:401:X
+        y: BPMS:LI28:401:Y
+      control_name: BPMS:LI28:401
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 765.487
+      type: BPM
+  BPM28501:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI28:501:TMIT
+        x: BPMS:LI28:501:X
+        y: BPMS:LI28:501:Y
+      control_name: BPMS:LI28:501
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 777.832
+      type: BPM
+  BPM28601:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI28:601:TMIT
+        x: BPMS:LI28:601:X
+        y: BPMS:LI28:601:Y
+      control_name: BPMS:LI28:601
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 790.176
+      type: BPM
+  BPM28701:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI28:701:TMIT
+        x: BPMS:LI28:701:X
+        y: BPMS:LI28:701:Y
+      control_name: BPMS:LI28:701
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 802.521
+      type: BPM
+  BPM28801:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI28:801:TMIT
+        x: BPMS:LI28:801:X
+        y: BPMS:LI28:801:Y
+      control_name: BPMS:LI28:801
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 814.865
+      type: BPM
+  BPM28901:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI28:901:TMIT
+        x: BPMS:LI28:901:X
+        y: BPMS:LI28:901:Y
+      control_name: BPMS:LI28:901
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 827.45
+      type: BPM
+  BPM29201:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI29:201:TMIT
+        x: BPMS:LI29:201:X
+        y: BPMS:LI29:201:Y
+      control_name: BPMS:LI29:201
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 842.399
+      type: BPM
+  BPM29301:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI29:301:TMIT
+        x: BPMS:LI29:301:X
+        y: BPMS:LI29:301:Y
+      control_name: BPMS:LI29:301
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 854.743
+      type: BPM
+  BPM29401:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI29:401:TMIT
+        x: BPMS:LI29:401:X
+        y: BPMS:LI29:401:Y
+      control_name: BPMS:LI29:401
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 867.087
+      type: BPM
+  BPM29501:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI29:501:TMIT
+        x: BPMS:LI29:501:X
+        y: BPMS:LI29:501:Y
+      control_name: BPMS:LI29:501
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 879.432
+      type: BPM
+  BPM29601:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI29:601:TMIT
+        x: BPMS:LI29:601:X
+        y: BPMS:LI29:601:Y
+      control_name: BPMS:LI29:601
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 891.776
+      type: BPM
+  BPM29701:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI29:701:TMIT
+        x: BPMS:LI29:701:X
+        y: BPMS:LI29:701:Y
+      control_name: BPMS:LI29:701
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 904.121
+      type: BPM
+  BPM29801:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI29:801:TMIT
+        x: BPMS:LI29:801:X
+        y: BPMS:LI29:801:Y
+      control_name: BPMS:LI29:801
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 916.465
+      type: BPM
+  BPM29901:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI29:901:TMIT
+        x: BPMS:LI29:901:X
+        y: BPMS:LI29:901:Y
+      control_name: BPMS:LI29:901
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 929.129
+      type: BPM
+  BPM30201:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI30:201:TMIT
+        x: BPMS:LI30:201:X
+        y: BPMS:LI30:201:Y
+      control_name: BPMS:LI30:201
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 943.999
+      type: BPM
+  BPM30301:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI30:301:TMIT
+        x: BPMS:LI30:301:X
+        y: BPMS:LI30:301:Y
+      control_name: BPMS:LI30:301
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 956.343
+      type: BPM
+  BPM30401:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI30:401:TMIT
+        x: BPMS:LI30:401:X
+        y: BPMS:LI30:401:Y
+      control_name: BPMS:LI30:401
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 968.687
+      type: BPM
+  BPM30501:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI30:501:TMIT
+        x: BPMS:LI30:501:X
+        y: BPMS:LI30:501:Y
+      control_name: BPMS:LI30:501
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 981.032
+      type: BPM
+  BPM30601:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI30:601:TMIT
+        x: BPMS:LI30:601:X
+        y: BPMS:LI30:601:Y
+      control_name: BPMS:LI30:601
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 993.175
+      type: BPM
+  BPM30701:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI30:701:TMIT
+        x: BPMS:LI30:701:X
+        y: BPMS:LI30:701:Y
+      control_name: BPMS:LI30:701
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 1005.535
+      type: BPM
+  BPM30801:
+    controls_information:
+      PVs:
+        tmit: BPMS:LI30:801:TMIT
+        x: BPMS:LI30:801:X
+        y: BPMS:LI30:801:Y
+      control_name: BPMS:LI30:801
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      sum_l_meters: 1017.865
+      type: BPM
 magnets:
   Q25201:
     controls_information:

@@ -1,3 +1,131 @@
+bpms:
+  BPMCUS1:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTS:420:TMIT
+        x: BPMS:CLTS:420:X
+        y: BPMS:CLTS:420:Y
+      control_name: BPMS:CLTS:420
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1092.747
+      type: BPM
+  BPMCUS10:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTS:620:TMIT
+        x: BPMS:CLTS:620:X
+        y: BPMS:CLTS:620:Y
+      control_name: BPMS:CLTS:620
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1131.936
+      type: BPM
+  BPMCUS2:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTS:450:TMIT
+        x: BPMS:CLTS:450:X
+        y: BPMS:CLTS:450:Y
+      control_name: BPMS:CLTS:450
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1098.143
+      type: BPM
+  BPMCUS3:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTS:470:TMIT
+        x: BPMS:CLTS:470:X
+        y: BPMS:CLTS:470:Y
+      control_name: BPMS:CLTS:470
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1101.523
+      type: BPM
+  BPMCUS4:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTS:500:TMIT
+        x: BPMS:CLTS:500:X
+        y: BPMS:CLTS:500:Y
+      control_name: BPMS:CLTS:500
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1109.101
+      type: BPM
+  BPMCUS5:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTS:510:TMIT
+        x: BPMS:CLTS:510:X
+        y: BPMS:CLTS:510:Y
+      control_name: BPMS:CLTS:510
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1112.101
+      type: BPM
+  BPMCUS7:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTS:540:TMIT
+        x: BPMS:CLTS:540:X
+        y: BPMS:CLTS:540:Y
+      control_name: BPMS:CLTS:540
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1115.507
+      type: BPM
+  BPMCUS8:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTS:570:TMIT
+        x: BPMS:CLTS:570:X
+        y: BPMS:CLTS:570:Y
+      control_name: BPMS:CLTS:570
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1122.042
+      type: BPM
+  BPMCUS9:
+    controls_information:
+      PVs:
+        tmit: BPMS:CLTS:590:TMIT
+        x: BPMS:CLTS:590:X
+        y: BPMS:CLTS:590:Y
+      control_name: BPMS:CLTS:590
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1126.538
+      type: BPM
+  BPMCUS?:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:CLTS:210
+    metadata:
+      area: CLTS
+      beam_path:
+      - CU_SXR
+      sum_l_meters: 1050.669
+      type: BPM
 magnets:
   BKRCUS:
     controls_information:

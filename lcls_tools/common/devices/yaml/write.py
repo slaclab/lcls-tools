@@ -46,6 +46,13 @@ class YAMLWriter:
         if lblms:
             file_contents["lblms"] = lblms
 
+        # Generate BPM content
+        bpms = self.generator.extract_bpms(
+            area=area,
+        )
+        if bpms:
+            file_contents["bpms"] = bpms
+
         if file_contents:
             return file_contents
         return None

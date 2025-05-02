@@ -1,7 +1,7 @@
 from datetime import datetime
 from pydantic import (
-    BaseModel,
     # PositiveFloat,
+    BaseModel,
     SerializeAsAny,
     field_validator,
     conint,
@@ -21,18 +21,20 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
+import lcls_tools
+
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
-class BooleanModel(BaseModel):
+class BooleanModel(lcls_tools.common.BaseModel):
     value: bool
 
 
-class FloatModel(BaseModel):
+class FloatModel(lcls_tools.common.BaseModel):
     value: float
 
 
-class IntegerModel(BaseModel):
+class IntegerModel(lcls_tools.common.BaseModel):
     value: conint(strict=True)
 
 
@@ -59,7 +61,6 @@ class LBLMControlInformation(ControlInformation):
 
 
 class LBLMMetadata(Metadata):
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -113,7 +114,9 @@ class LBLM(Device):
 
     def i0_loss_buffer(self, buffer):
         """Retrieve I0 Loss data from timing buffer"""
-        return buffer.get_buffer_data(f"{self.controls_information.PVs.i0_loss.pvname}{buffer.number}")
+        return buffer.get_buffer_data(
+            f"{self.controls_information.PVs.i0_loss.pvname}{buffer.number}"
+        )
 
     def gated_integral_buffer(self, buffer):
         """Get Gated Integral data from timing buffer"""

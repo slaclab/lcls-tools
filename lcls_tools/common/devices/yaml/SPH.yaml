@@ -1,3 +1,157 @@
+bpms:
+  BPMSP10H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:915:TMIT
+        x: BPMS:SPH:915:X
+        y: BPMS:SPH:915:Y
+      control_name: BPMS:SPH:915
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 3036.193
+      type: BPM
+  BPMSP11H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:940:TMIT
+        x: BPMS:SPH:940:X
+        y: BPMS:SPH:940:Y
+      control_name: BPMS:SPH:940
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 3045.478
+      type: BPM
+  BPMSP1H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:322:TMIT
+        x: BPMS:SPH:322:X
+        y: BPMS:SPH:322:Y
+      control_name: BPMS:SPH:322
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 2858.242
+      type: BPM
+  BPMSP2H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:345:TMIT
+        x: BPMS:SPH:345:X
+        y: BPMS:SPH:345:Y
+      control_name: BPMS:SPH:345
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 2862.256
+      type: BPM
+  BPMSP3H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:420:TMIT
+        x: BPMS:SPH:420:X
+        y: BPMS:SPH:420:Y
+      control_name: BPMS:SPH:420
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 2888.384
+      type: BPM
+  BPMSP4H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:450:TMIT
+        x: BPMS:SPH:450:X
+        y: BPMS:SPH:450:Y
+      control_name: BPMS:SPH:450
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 2897.24
+      type: BPM
+  BPMSP5H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:520:TMIT
+        x: BPMS:SPH:520:X
+        y: BPMS:SPH:520:Y
+      control_name: BPMS:SPH:520
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 2919.299
+      type: BPM
+  BPMSP6H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:600:TMIT
+        x: BPMS:SPH:600:X
+        y: BPMS:SPH:600:Y
+      control_name: BPMS:SPH:600
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 2943.358
+      type: BPM
+  BPMSP7H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:675:TMIT
+        x: BPMS:SPH:675:X
+        y: BPMS:SPH:675:Y
+      control_name: BPMS:SPH:675
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 2967.038
+      type: BPM
+  BPMSP8H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:760:TMIT
+        x: BPMS:SPH:760:X
+        y: BPMS:SPH:760:Y
+      control_name: BPMS:SPH:760
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 2991.876
+      type: BPM
+  BPMSP9H:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPH:840:TMIT
+        x: BPMS:SPH:840:X
+        y: BPMS:SPH:840:Y
+      control_name: BPMS:SPH:840
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 3015.935
+      type: BPM
+  BPMSPH?:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:SPH:135
+    metadata:
+      area: SPH
+      beam_path:
+      - SC_HXR
+      sum_l_meters: 2800.161
+      type: BPM
 magnets:
   BKYSP1H:
     controls_information:

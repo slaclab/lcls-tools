@@ -1,3 +1,46 @@
+bpms:
+  BPM1B:
+    controls_information:
+      PVs:
+        tmit: BPMS:GUNB:314:TMIT
+        x: BPMS:GUNB:314:X
+        y: BPMS:GUNB:314:Y
+      control_name: BPMS:GUNB:314
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 0.49
+      type: BPM
+  BPM2B:
+    controls_information:
+      PVs:
+        tmit: BPMS:GUNB:925:TMIT
+        x: BPMS:GUNB:925:X
+        y: BPMS:GUNB:925:Y
+      control_name: BPMS:GUNB:925
+    metadata:
+      area: GUNB
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1.884
+      type: BPM
 lblms:
   LBLM00A:
     controls_information:

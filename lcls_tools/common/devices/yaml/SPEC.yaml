@@ -1,3 +1,43 @@
+bpms:
+  BPMS1:
+    controls_information:
+      PVs:
+        tmit: BPMS:IN20:925:TMIT
+        x: BPMS:IN20:925:X
+        y: BPMS:IN20:925:Y
+      control_name: BPMS:IN20:925
+    metadata:
+      area: SPEC
+      beam_path:
+      - CU_SPEC
+      sum_l_meters: 18.76
+      type: BPM
+  BPMS2:
+    controls_information:
+      PVs:
+        tmit: BPMS:IN20:945:TMIT
+        x: BPMS:IN20:945:X
+        y: BPMS:IN20:945:Y
+      control_name: BPMS:IN20:945
+    metadata:
+      area: SPEC
+      beam_path:
+      - CU_SPEC
+      sum_l_meters: 20.088
+      type: BPM
+  BPMS3:
+    controls_information:
+      PVs:
+        tmit: BPMS:IN20:981:TMIT
+        x: BPMS:IN20:981:X
+        y: BPMS:IN20:981:Y
+      control_name: BPMS:IN20:981
+    metadata:
+      area: SPEC
+      beam_path:
+      - CU_SPEC
+      sum_l_meters: 21.195
+      type: BPM
 magnets:
   BXS:
     controls_information:
@@ -160,7 +200,9 @@ screens:
         n_bits: YAGS:IN20:921:N_OF_BITS
         n_col: YAGS:IN20:921:N_OF_COL
         n_row: YAGS:IN20:921:N_OF_ROW
+        ref_rate_vme: YAGS:IN20:921:FRAME_RATE
         resolution: YAGS:IN20:921:RESOLUTION
+        sys_type: YAGS:IN20:921:SYS_TYPE
       control_name: YAGS:IN20:921
     metadata:
       area: SPEC
@@ -175,7 +217,9 @@ screens:
         n_bits: YAGS:IN20:995:N_OF_BITS
         n_col: YAGS:IN20:995:N_OF_COL
         n_row: YAGS:IN20:995:N_OF_ROW
+        ref_rate_vme: YAGS:IN20:995:FRAME_RATE
         resolution: YAGS:IN20:995:RESOLUTION
+        sys_type: YAGS:IN20:995:SYS_TYPE
       control_name: YAGS:IN20:995
     metadata:
       area: SPEC

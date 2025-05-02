@@ -1,3 +1,141 @@
+bpms:
+  BPMDG000?:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:DIAG0:136
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 43.879
+      type: BPM
+  BPMDG001:
+    controls_information:
+      PVs:
+        tmit: BPMS:DIAG0:190:TMIT
+        x: BPMS:DIAG0:190:X
+        y: BPMS:DIAG0:190:Y
+      control_name: BPMS:DIAG0:190
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 46.232
+      type: BPM
+  BPMDG002:
+    controls_information:
+      PVs:
+        tmit: BPMS:DIAG0:210:TMIT
+        x: BPMS:DIAG0:210:X
+        y: BPMS:DIAG0:210:Y
+      control_name: BPMS:DIAG0:210
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 47.094
+      type: BPM
+  BPMDG003:
+    controls_information:
+      PVs:
+        tmit: BPMS:DIAG0:230:TMIT
+        x: BPMS:DIAG0:230:X
+        y: BPMS:DIAG0:230:Y
+      control_name: BPMS:DIAG0:230
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 47.956
+      type: BPM
+  BPMDG004:
+    controls_information:
+      PVs:
+        tmit: BPMS:DIAG0:270:TMIT
+        x: BPMS:DIAG0:270:X
+        y: BPMS:DIAG0:270:Y
+      control_name: BPMS:DIAG0:270
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 50.114
+      type: BPM
+  BPMDG005:
+    controls_information:
+      PVs:
+        tmit: BPMS:DIAG0:285:TMIT
+        x: BPMS:DIAG0:285:X
+        y: BPMS:DIAG0:285:Y
+      control_name: BPMS:DIAG0:285
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 50.763
+      type: BPM
+  BPMDG008:
+    controls_information:
+      PVs:
+        tmit: BPMS:DIAG0:370:TMIT
+        x: BPMS:DIAG0:370:X
+        y: BPMS:DIAG0:370:Y
+      control_name: BPMS:DIAG0:370
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 54.763
+      type: BPM
+  BPMDG009:
+    controls_information:
+      PVs:
+        tmit: BPMS:DIAG0:390:TMIT
+        x: BPMS:DIAG0:390:X
+        y: BPMS:DIAG0:390:Y
+      control_name: BPMS:DIAG0:390
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 55.463
+      type: BPM
+  BPMDG011:
+    controls_information:
+      PVs:
+        tmit: BPMS:DIAG0:470:TMIT
+        x: BPMS:DIAG0:470:X
+        y: BPMS:DIAG0:470:Y
+      control_name: BPMS:DIAG0:470
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 59.233
+      type: BPM
+  BPMDG012:
+    controls_information:
+      PVs:
+        tmit: BPMS:DIAG0:520:TMIT
+        x: BPMS:DIAG0:520:X
+        y: BPMS:DIAG0:520:Y
+      control_name: BPMS:DIAG0:520
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 61.631
+      type: BPM
+  BPMDG0RF:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:DIAG0:330
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      sum_l_meters: 52.74
+      type: BPM
 magnets:
   BKRDG0:
     controls_information:
@@ -493,7 +631,10 @@ screens:
         n_bits: OTRS:DIAG0:420:N_OF_BITS
         n_col: OTRS:DIAG0:420:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:420:Image:ArraySize0_RBV
+        ref_rate: OTRS:DIAG0:420:ArrayRate_RBV
+        ref_rate_vme: OTRS:DIAG0:420:FRAME_RATE
         resolution: OTRS:DIAG0:420:RESOLUTION
+        sys_type: OTRS:DIAG0:420:SYS_TYPE
       control_name: OTRS:DIAG0:420
     metadata:
       area: DIAG0
@@ -508,7 +649,10 @@ screens:
         n_bits: OTRS:DIAG0:525:N_OF_BITS
         n_col: OTRS:DIAG0:525:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:525:Image:ArraySize0_RBV
+        ref_rate: OTRS:DIAG0:525:ArrayRate_RBV
+        ref_rate_vme: OTRS:DIAG0:525:FRAME_RATE
         resolution: OTRS:DIAG0:525:RESOLUTION
+        sys_type: OTRS:DIAG0:525:SYS_TYPE
       control_name: OTRS:DIAG0:525
     metadata:
       area: DIAG0

@@ -1,3 +1,25 @@
+bpms:
+  CMB01:
+    controls_information:
+      PVs:
+        tmit: BPMS:L0B:0183:TMIT
+        x: BPMS:L0B:0183:X
+        y: BPMS:L0B:0183:Y
+      control_name: BPMS:L0B:0183
+    metadata:
+      area: L0B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_DIAG0
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 13.839
+      type: BPM
 magnets:
   QCM01:
     controls_information:

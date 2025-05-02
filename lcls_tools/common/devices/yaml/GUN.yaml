@@ -1,3 +1,24 @@
+bpms:
+  BPM2:
+    controls_information:
+      PVs:
+        tmit: BPMS:IN20:221:TMIT
+        x: BPMS:IN20:221:X
+        y: BPMS:IN20:221:Y
+      control_name: BPMS:IN20:221
+    metadata:
+      area: GUN
+      beam_path:
+      - CU_ALINE
+      - CU_GSPEC
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SPEC
+      - CU_SXR
+      sum_l_meters: 0.893
+      type: BPM
 magnets:
   CQ01:
     controls_information:
@@ -207,6 +228,7 @@ screens:
         n_bits: YAGS:IN20:211:N_OF_BITS
         n_col: YAGS:IN20:211:N_OF_COL
         n_row: YAGS:IN20:211:N_OF_ROW
+        ref_rate_vme: YAGS:IN20:211:FRAME_RATE
         resolution: YAGS:IN20:211:RESOLUTION
       control_name: YAGS:IN20:211
     metadata:

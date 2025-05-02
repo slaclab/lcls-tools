@@ -1,3 +1,252 @@
+bpms:
+  BPMC001:
+    controls_information:
+      PVs:
+        tmit: BPMS:COL0:240:TMIT
+        x: BPMS:COL0:240:X
+        y: BPMS:COL0:240:Y
+      control_name: BPMS:COL0:240
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 47.767
+      type: BPM
+  BPMC002:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:COL0:260
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 48.548
+      type: BPM
+  BPMC003:
+    controls_information:
+      PVs:
+        tmit: BPMS:COL0:280:TMIT
+        x: BPMS:COL0:280:X
+        y: BPMS:COL0:280:Y
+      control_name: BPMS:COL0:280
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 49.48
+      type: BPM
+  BPMC004:
+    controls_information:
+      PVs:
+        tmit: BPMS:COL0:320:TMIT
+        x: BPMS:COL0:320:X
+        y: BPMS:COL0:320:Y
+      control_name: BPMS:COL0:320
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 51.122
+      type: BPM
+  BPMC005:
+    controls_information:
+      PVs:
+        tmit: BPMS:COL0:400:TMIT
+        x: BPMS:COL0:400:X
+        y: BPMS:COL0:400:Y
+      control_name: BPMS:COL0:400
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 56.443
+      type: BPM
+  BPMC006:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:COL0:480
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 60.443
+      type: BPM
+  BPMC007:
+    controls_information:
+      PVs:
+        tmit: BPMS:COL0:560:TMIT
+        x: BPMS:COL0:560:X
+        y: BPMS:COL0:560:Y
+      control_name: BPMS:COL0:560
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 64.443
+      type: BPM
+  BPMC008:
+    controls_information:
+      PVs:
+        tmit: BPMS:COL0:640:TMIT
+        x: BPMS:COL0:640:X
+        y: BPMS:COL0:640:Y
+      control_name: BPMS:COL0:640
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 68.443
+      type: BPM
+  BPMC009:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:COL0:720
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 72.443
+      type: BPM
+  BPMC010:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:COL0:800
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 76.443
+      type: BPM
+  BPMC011:
+    controls_information:
+      PVs:
+        tmit: BPMS:COL0:880:TMIT
+        x: BPMS:COL0:880:X
+        y: BPMS:COL0:880:Y
+      control_name: BPMS:COL0:880
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 80.443
+      type: BPM
+  BPMC012:
+    controls_information:
+      PVs:
+        tmit: BPMS:COL0:940:TMIT
+        x: BPMS:COL0:940:X
+        y: BPMS:COL0:940:Y
+      control_name: BPMS:COL0:940
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 83.376
+      type: BPM
+  BPMDG000:
+    controls_information:
+      PVs:
+        tmit: BPMS:COL0:135:TMIT
+        x: BPMS:COL0:135:X
+        y: BPMS:COL0:135:Y
+      control_name: BPMS:COL0:135
+    metadata:
+      area: COL0
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 43.879
+      type: BPM
 magnets:
   QC001:
     controls_information:
@@ -607,7 +856,10 @@ screens:
         n_bits: PROF:COL0:535:N_OF_BITS
         n_col: PROF:COL0:535:Image:ArraySize1_RBV
         n_row: PROF:COL0:535:Image:ArraySize0_RBV
+        ref_rate: PROF:COL0:535:ArrayRate_RBV
+        ref_rate_vme: PROF:COL0:535:FRAME_RATE
         resolution: PROF:COL0:535:RESOLUTION
+        sys_type: PROF:COL0:535:SYS_TYPE
       control_name: PROF:COL0:535
     metadata:
       area: COL0

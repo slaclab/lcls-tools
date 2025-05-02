@@ -1,3 +1,168 @@
+bpms:
+  BPMSP1S:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPS:572:TMIT
+        x: BPMS:SPS:572:X
+        y: BPMS:SPS:572:Y
+      control_name: BPMS:SPS:572
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2935.019
+      type: BPM
+  BPMSP2S:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPS:580:TMIT
+        x: BPMS:SPS:580:X
+        y: BPMS:SPS:580:Y
+      control_name: BPMS:SPS:580
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2937.243
+      type: BPM
+  BPMSP3S:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPS:640:TMIT
+        x: BPMS:SPS:640:X
+        y: BPMS:SPS:640:Y
+      control_name: BPMS:SPS:640
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2953.986
+      type: BPM
+  BPMSP4S:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:SPS:650
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2956.754
+      type: BPM
+  BPMSP5S:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPS:710:TMIT
+        x: BPMS:SPS:710:X
+        y: BPMS:SPS:710:Y
+      control_name: BPMS:SPS:710
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2975.349
+      type: BPM
+  BPMSP6S:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPS:770:TMIT
+        x: BPMS:SPS:770:X
+        y: BPMS:SPS:770:Y
+      control_name: BPMS:SPS:770
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2993.944
+      type: BPM
+  BPMSP7S:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPS:780:TMIT
+        x: BPMS:SPS:780:X
+        y: BPMS:SPS:780:Y
+      control_name: BPMS:SPS:780
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2997.166
+      type: BPM
+  BPMSP8S:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPS:830:TMIT
+        x: BPMS:SPS:830:X
+        y: BPMS:SPS:830:Y
+      control_name: BPMS:SPS:830
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3013.909
+      type: BPM
+  BPMSP9S:
+    controls_information:
+      PVs:
+        tmit: BPMS:SPS:840:TMIT
+        x: BPMS:SPS:840:X
+        y: BPMS:SPS:840:Y
+      control_name: BPMS:SPS:840
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 3016.279
+      type: BPM
+  BPMSPS?:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:SPS:420
+    metadata:
+      area: SPS
+      beam_path:
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 2887.337
+      type: BPM
 lblms:
   LBLM22A:
     controls_information:

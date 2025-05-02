@@ -1,3 +1,244 @@
+bpms:
+  CMB04:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:0483:TMIT
+        x: BPMS:L2B:0483:X
+        y: BPMS:L2B:0483:Y
+      control_name: BPMS:L2B:0483
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 201.092
+      type: BPM
+  CMB05:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:0583:TMIT
+        x: BPMS:L2B:0583:X
+        y: BPMS:L2B:0583:Y
+      control_name: BPMS:L2B:0583
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 213.313
+      type: BPM
+  CMB06:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:0683:TMIT
+        x: BPMS:L2B:0683:X
+        y: BPMS:L2B:0683:Y
+      control_name: BPMS:L2B:0683
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 225.533
+      type: BPM
+  CMB07:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:0783:TMIT
+        x: BPMS:L2B:0783:X
+        y: BPMS:L2B:0783:Y
+      control_name: BPMS:L2B:0783
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 237.754
+      type: BPM
+  CMB08:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:0883:TMIT
+        x: BPMS:L2B:0883:X
+        y: BPMS:L2B:0883:Y
+      control_name: BPMS:L2B:0883
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 249.974
+      type: BPM
+  CMB09:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:0983:TMIT
+        x: BPMS:L2B:0983:X
+        y: BPMS:L2B:0983:Y
+      control_name: BPMS:L2B:0983
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 262.194
+      type: BPM
+  CMB10:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:1083:TMIT
+        x: BPMS:L2B:1083:X
+        y: BPMS:L2B:1083:Y
+      control_name: BPMS:L2B:1083
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 274.415
+      type: BPM
+  CMB11:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:1183:TMIT
+        x: BPMS:L2B:1183:X
+        y: BPMS:L2B:1183:Y
+      control_name: BPMS:L2B:1183
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 286.635
+      type: BPM
+  CMB12:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:1283:TMIT
+        x: BPMS:L2B:1283:X
+        y: BPMS:L2B:1283:Y
+      control_name: BPMS:L2B:1283
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 298.856
+      type: BPM
+  CMB13:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:1383:TMIT
+        x: BPMS:L2B:1383:X
+        y: BPMS:L2B:1383:Y
+      control_name: BPMS:L2B:1383
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 311.076
+      type: BPM
+  CMB14:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:1483:TMIT
+        x: BPMS:L2B:1483:X
+        y: BPMS:L2B:1483:Y
+      control_name: BPMS:L2B:1483
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 323.296
+      type: BPM
+  CMB15:
+    controls_information:
+      PVs:
+        tmit: BPMS:L2B:1583:TMIT
+        x: BPMS:L2B:1583:X
+        y: BPMS:L2B:1583:Y
+      control_name: BPMS:L2B:1583
+    metadata:
+      area: L2B
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 335.517
+      type: BPM
 lblms:
   LBLM04A:
     controls_information:

@@ -61,3 +61,19 @@ def get_lblm_controls_information(lblm_names: List[str] = None):
             "No method of getting additional controls_information for LBLMs."
         )
     return {}
+
+
+def get_bpm_controls_information(bpm_names: List[str] = None):
+    # return a data structure of the form:
+    # {
+    #  bpm-name-1 : {controls-information-field-1 : value-1, controls-information-field-2 : value-2, ...},
+    #  bpm-name-2 : {controls-information-field-1 : value-1, controls-information-field-2 : value-2, ...},
+    #  ...
+    # }
+
+    # Stuff like Device-Position mappings for motor/ladder-based screens
+    if bpm_names:
+        raise NotImplementedError(
+            "No method of getting additional controls_information for bpms."
+        )
+    return {}

@@ -1,3 +1,13 @@
+bpms:
+  BPMUE3:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:DMP1:398
+    metadata:
+      area: DUMP
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
 magnets:
   XCUE1:
     controls_information:

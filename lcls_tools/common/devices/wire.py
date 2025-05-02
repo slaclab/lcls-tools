@@ -1,6 +1,5 @@
 from datetime import datetime
 from pydantic import (
-    BaseModel,
     # PositiveFloat,
     SerializeAsAny,
     field_validator,
@@ -21,36 +20,40 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
+import lcls_tools
+
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
-class RangeModel(BaseModel):
+class RangeModel(lcls_tools.common.BaseModel):
     value: list
 
-    @field_validator('value')
+    @field_validator("value")
     def scan_range_validator(cls, v):
         if len(v) != 2:
             raise ValueError("List has length greater than 2")
         elif v[0] >= v[1]:
-            raise ValueError("First element of list must be smaller than second element of list")
+            raise ValueError(
+                "First element of list must be smaller than second element of list"
+            )
         else:
             return v
 
 
-class BooleanModel(BaseModel):
+class BooleanModel(lcls_tools.common.BaseModel):
     value: bool
 
 
-class IntegerModel(BaseModel):
+class IntegerModel(lcls_tools.common.BaseModel):
     value: conint(strict=True)
 
 
-class PlaneModel(BaseModel):
+class PlaneModel(lcls_tools.common.BaseModel):
     plane: str
 
-    @field_validator('plane')
+    @field_validator("plane")
     def x_y_u_plane(cls, v):
-        if v.lower() in ['x', 'y', 'u']:
+        if v.lower() in ["x", "y", "u"]:
             return v
         else:
             raise ValueError("basePlane must be X, Y, or U")
@@ -100,6 +103,7 @@ class WireControlInformation(ControlInformation):
     def __init__(self, *args, **kwargs):
         super(WireControlInformation, self).__init__(*args, **kwargs)
         # Get possible options for wire motr PV, empty dict by default.
+
     #     options = self.PVs.position.get_ctrlvars(timeout=1)
     #     if "enum_strs" in options:
     #         [
@@ -148,7 +152,9 @@ class Wire(Device):
         def decorated(self, *args, **kwargs):
             wire_range = self.wire.x_range[1] - self.wire.x_range[0]
             speed_calc = int(self.wire.beam_rate * (wire_range / self.wire.scan_pulses))
-            speed_check = int(self.wire.speed_min) < speed_calc < int(self.wire.speed_max)
+            speed_check = (
+                int(self.wire.speed_min) < speed_calc < int(self.wire.speed_max)
+            )
             if speed_check is not True:
                 print(f"Unable to perform action. {self} failed speed check")
                 return
@@ -488,8 +494,20 @@ class Wire(Device):
         except ValidationError as e:
             print("Range value must be an int:", e)
 
+    @property
+    def type(self) -> str:
+        return self.metadata.type
 
-class WireCollection(BaseModel):
+    @property
+    def safe_level(self) -> float:
+        return self.metadata.safe_level
+
+    @property
+    def read_tolerance(self) -> float:
+        return self.metadata.read_tolerance
+
+
+class WireCollection(lcls_tools.common.BaseModel):
     wires: Dict[str, SerializeAsAny[Wire]]
 
     @field_validator("wires", mode="before")

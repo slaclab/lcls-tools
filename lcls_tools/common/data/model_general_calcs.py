@@ -2,7 +2,6 @@ from typing import Dict
 
 import numpy as np
 
-from meme.model import Model
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 
@@ -19,12 +18,11 @@ def bmag(twiss, twiss_reference):
 def bmag_func(bb, ab, bl, al):
     """Calculates the BMAG miss match parameter.  bb and ab are the modeled
     beta and alpha functions at a given element and bl and al are the
-    reference (most of the time desing) values """
+    reference (most of the time desing) values"""
     return 1 / 2 * (bl / bb + bb / bl + bb * bl * (ab / bb - al / bl) ** 2)
 
 
-def kmod_to_bdes(e_tot=None, effective_length=None, k=None,
-                 element=None, tao=None):
+def kmod_to_bdes(e_tot=None, effective_length=None, k=None, element=None, tao=None):
     """Returns BDES in kG given K
     Inputs:
     e_tot - particle energy (eV)
@@ -41,13 +39,14 @@ def kmod_to_bdes(e_tot=None, effective_length=None, k=None,
         effective_length = ele_attributes["L"]
         k = ele_attributes["K1"]
     else:
-        print("Invalid input: Please provide either \
-        (e_tot, effective_length and k) or (element and tao)")
+        print(
+            "Invalid input: Please provide either \
+        (e_tot, effective_length and k) or (element and tao)"
+        )
     return k * bp * effective_length  # 1/m^2 * kG m * m = kG
 
 
-def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None,
-                 tao=None, element=None):
+def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None, tao=None, element=None):
     """Returns K in 1/m^2 given BDES
     Need to privide either particle energy e_tot and quad effective_length
     or element name and tao object"""
@@ -63,11 +62,13 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None,
 def get_optics(magnet: Magnet, measurement: Measurement) -> Dict:
     """Get rmats and twiss for a given beamline, magnet and measurement device"""
     # TODO: get optics from arbitrary devices (potentially in different beam lines)
+    from meme.model import Model
+
     model = Model(magnet.metadata.area)
     rmats = model.get_rmat(
         from_device=magnet.name,
         to_device=measurement.device.name,
-        from_device_pos='mid'
+        from_device_pos="mid",
     )
     twiss = model.get_twiss(measurement.device.name)
     return {"rmats": rmats, "design_twiss": twiss}
@@ -110,9 +111,9 @@ def twiss_transport_mat_from_rmat(rmat: np.ndarray):
     c, s, cp, sp = rmat[..., 0, 0], rmat[..., 0, 1], rmat[..., 1, 0], rmat[..., 1, 1]
     result = np.stack(
         (
-            np.stack((c ** 2, -2 * c * s, s ** 2), axis=-1),
+            np.stack((c**2, -2 * c * s, s**2), axis=-1),
             np.stack((-c * cp, c * sp + cp * s, -s * sp), axis=-1),
-            np.stack((cp ** 2, -2 * cp * sp, sp ** 2), axis=-1),
+            np.stack((cp**2, -2 * cp * sp, sp**2), axis=-1),
         ),
         axis=-2,
     )  # result shape (batchshape, 3, 3)

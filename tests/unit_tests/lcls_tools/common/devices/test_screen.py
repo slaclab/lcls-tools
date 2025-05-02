@@ -12,7 +12,7 @@ class TestScreen(unittest.TestCase):
     def setUp(self) -> None:
         self.screen_collection = create_screen("BC1")
         self.screen = self.screen_collection.screens["OTR11"]
-        return super().setUp()
+        super().setUp()
 
     @patch(
         "lcls_tools.common.devices.screen.Screen.image",
@@ -44,9 +44,9 @@ class TestScreen(unittest.TestCase):
                 self.assertEqual(len(f), num_capture)
                 # check metadata is stored as attributes in HDF5.
                 for dataset in f:
-                    self.assertSequenceEqual(
-                        list(f[dataset].attrs.keys()),
-                        list(self.screen.metadata.model_dump().keys()),
+                    self.assertSetEqual(
+                        set(f[dataset].attrs.keys()),
+                        set(self.screen.metadata.model_dump().keys()),
                     )
                     # check dataset content for shape
                     self.assertTrue(

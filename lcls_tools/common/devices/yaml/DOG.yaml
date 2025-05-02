@@ -1,3 +1,315 @@
+bpms:
+  BPMBP10:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:575:TMIT
+        x: BPMS:DOG:575:X
+        y: BPMS:DOG:575:Y
+      control_name: BPMS:DOG:575
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 960.357
+      type: BPM
+  BPMBP11:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:740:TMIT
+        x: BPMS:DOG:740:X
+        y: BPMS:DOG:740:Y
+      control_name: BPMS:DOG:740
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1061.957
+      type: BPM
+  BPMBP12:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:910:TMIT
+        x: BPMS:DOG:910:X
+        y: BPMS:DOG:910:Y
+      control_name: BPMS:DOG:910
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 1163.557
+      type: BPM
+  BPMDOG1:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:120:TMIT
+        x: BPMS:DOG:120:X
+        y: BPMS:DOG:120:Y
+      control_name: BPMS:DOG:120
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 683.031
+      type: BPM
+  BPMDOG2:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:135:TMIT
+        x: BPMS:DOG:135:X
+        y: BPMS:DOG:135:Y
+      control_name: BPMS:DOG:135
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 692.659
+      type: BPM
+  BPMDOG3:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:150:TMIT
+        x: BPMS:DOG:150:X
+        y: BPMS:DOG:150:Y
+      control_name: BPMS:DOG:150
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 702.287
+      type: BPM
+  BPMDOG4:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:DOG:165
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 711.915
+      type: BPM
+  BPMDOG5:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:DOG:180
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 721.542
+      type: BPM
+  BPMDOG6:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:200:TMIT
+        x: BPMS:DOG:200:X
+        y: BPMS:DOG:200:Y
+      control_name: BPMS:DOG:200
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 731.17
+      type: BPM
+  BPMDOG7:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:215:TMIT
+        x: BPMS:DOG:215:X
+        y: BPMS:DOG:215:Y
+      control_name: BPMS:DOG:215
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 740.798
+      type: BPM
+  BPMDOG8:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:230:TMIT
+        x: BPMS:DOG:230:X
+        y: BPMS:DOG:230:Y
+      control_name: BPMS:DOG:230
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 750.426
+      type: BPM
+  BPML1P:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:DOG:250
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 763.372
+      type: BPM
+  BPML2P:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:280:TMIT
+        x: BPMS:DOG:280:X
+        y: BPMS:DOG:280:Y
+      control_name: BPMS:DOG:280
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 781.635
+      type: BPM
+  BPML3P:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:335:TMIT
+        x: BPMS:DOG:335:X
+        y: BPMS:DOG:335:Y
+      control_name: BPMS:DOG:335
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 816.272
+      type: BPM
+  BPML4P:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:355:TMIT
+        x: BPMS:DOG:355:X
+        y: BPMS:DOG:355:Y
+      control_name: BPMS:DOG:355
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 827.396
+      type: BPM
+  BPML5P:
+    controls_information:
+      PVs:
+        tmit: BPMS:DOG:405:TMIT
+        x: BPMS:DOG:405:X
+        y: BPMS:DOG:405:Y
+      control_name: BPMS:DOG:405
+    metadata:
+      area: DOG
+      beam_path:
+      - SC_BSYD
+      - SC_DASEL
+      - SC_HXR
+      - SC_S2_X
+      - SC_SFTS
+      - SC_STMO
+      - SC_STXI
+      - SC_SXR
+      sum_l_meters: 858.757
+      type: BPM
 lblms:
   LBLM10A:
     controls_information:
@@ -1109,7 +1421,10 @@ screens:
         n_bits: PROF:DOG:195:N_OF_BITS
         n_col: PROF:DOG:195:Image:ArraySize1_RBV
         n_row: PROF:DOG:195:Image:ArraySize0_RBV
+        ref_rate: PROF:DOG:195:ArrayRate_RBV
+        ref_rate_vme: PROF:DOG:195:FRAME_RATE
         resolution: PROF:DOG:195:RESOLUTION
+        sys_type: PROF:DOG:195:SYS_TYPE
       control_name: PROF:DOG:195
     metadata:
       area: DOG
