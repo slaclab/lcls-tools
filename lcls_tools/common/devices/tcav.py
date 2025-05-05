@@ -59,7 +59,7 @@ class TCAVControlInformation(ControlInformation):
         Raises:
             TimeoutError: If the PV does not return control variables within the timeout period.
         """
-        mode_config_options = self.PVs.mode_configs.get_ctrlvars(timeout=2.5)
+        mode_config_options = self.PVs.mode_config.get_ctrlvars(timeout=2.5)
         if not mode_config_options:
             raise TimeoutError(
                 "Timeout while retrieving control variables from mode_configs PV."
@@ -130,21 +130,6 @@ class TCAV(Device):
     controls_information: SerializeAsAny[TCAVControlInformation]
     metadata: SerializeAsAny[TCAVMetadata]
 
-    # Decorator didn't want to work,  manually controlled types
-    """
-    def validate_enum_value(self, field_options: Dict):
-        def decorator(setter_method: Callable):
-            @wraps(setter_method)
-            def decorated(self, enum_str):
-                if not isinstance(enum_str,str):
-                    raise TypeError(f"{enum_str} is not of type: str")
-                if enum_str not in field_options:
-                    raise ValueError(f"{enum_str} not in list of acceptable enumerate string PV values")
-                return setter_method(self, enum_str)
-            return decorated
-        return decorator
-    """
-
     @property
     def amp_set(self):
         """The amplitude set point of the TCAV"""
@@ -181,7 +166,7 @@ class TCAV(Device):
             raise ValueError(
                 f"{enum_str} not in list of acceptable enumerate string PV values"
             )
-        self.controls_information.PVs.amp_fbenb = enum_str
+        self.controls_information.PVs.amp_fbenb.put(field_options[enum_str])
 
     @property
     def phase_fbenb(self):
@@ -197,7 +182,7 @@ class TCAV(Device):
             raise ValueError(
                 f"{enum_str} not in list of acceptable enumerate string PV values"
             )
-        self.controls_information.PVs.phase_fbenb.put(enum_str)
+        self.controls_information.PVs.phase_fbenb.put(field_options[enum_str])
 
     @property
     def amp_fbst(self):
@@ -223,7 +208,7 @@ class TCAV(Device):
             raise ValueError(
                 f"{enum_str} not in list of acceptable enumerate string PV values"
             )
-        self.controls_information.PVs.mode_config.put(enum_str)
+        self.controls_information.PVs.mode_config.put(field_options[enum_str])
 
     @property
     def l_eff(self):

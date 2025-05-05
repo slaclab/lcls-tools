@@ -661,7 +661,7 @@ screens:
       sum_l_meters: 61.871
       type: PROF
 tcavs:
-  STCAV2:
+ TCXDG0:
     controls_information:
       PVs:
         amp_fbenb: TCAV:DIAG0:11:AFBENB
@@ -677,7 +677,7 @@ tcavs:
       area: DIAG0
       beam_path:
       - SC_DIAG0
-      l_eff: 0.8
+      l_eff: 0.508
       rf_freq: 2856.0
       sum_l_meters: 53.313
       type: LCAV
