@@ -9,6 +9,7 @@ from lcls_tools.common.devices.yaml.metadata import (
     get_wire_metadata,
     get_lblm_metadata,
     get_bpm_metadata,
+    get_tcav_metadata,
 )
 from lcls_tools.common.devices.yaml.controls_information import (
     get_magnet_controls_information,
@@ -16,6 +17,7 @@ from lcls_tools.common.devices.yaml.controls_information import (
     get_wire_controls_information,
     get_lblm_controls_information,
     get_bpm_controls_information,
+    get_tcav_controls_information,
 )
 
 
@@ -174,20 +176,31 @@ class YAMLGenerator:
         area: Union[str, List[str]],
         required_types=Optional[List[str]],
         pv_search_terms=Optional[List[str]],
+        **kwargs_additional_constraints,
     ):
         if not isinstance(area, list):
             machine_areas = [area]
         else:
             machine_areas = area
         yaml_devices = {}
-        elements = self._filter_elements_by_fields(
-            required_fields=self._required_fields
+        # duplicate fields could cause issues, should take the set,
+        # then convert back? does ordering matter?
+        required_fields = self._required_fields + list(
+            kwargs_additional_constraints.keys()
         )
+        elements = self._filter_elements_by_fields(required_fields=required_fields)
         for _area in machine_areas:
             device_elements = [
                 element
                 for element in elements
-                if element["Keyword"] in required_types and element["Area"] == _area
+                if (
+                    element["Keyword"] in required_types
+                    and element["Area"] == _area
+                    and all(
+                        element.get(key) == value
+                        for key, value in kwargs_additional_constraints.items()
+                    )
+                )
             ]
         # Must have passed an area that does not exist or we don't have that device in this area!
         if len(device_elements) < 1:
@@ -445,6 +458,42 @@ class YAMLGenerator:
                 additional_metadata=additional_metadata_data,
             )
             return complete_bpm_data
+        else:
+            return {}
+
+    def extract_tcavs(self, area: Union[str, List[str]] = ["DIAG0"]) -> dict:
+        required_tcav_types = ["LCAV"]
+        additional_filter_constraints = {"Engineering Name": "TRANS_DEFL"}
+        # add pvs we care about
+        possible_tcav_pvs = {
+            "AREQ": "amp_set",
+            "PREQ": "phase_set",
+            "RF_ENABLE": "rf_enable",
+            "AFBENB": "amp_fbenb",
+            "PFBENB": "phase_fbenb",
+            "AFBST": "amp_fbst",
+            "PFBST": "phase_fbst",
+            "MODECFG": "mode_config",
+        }
+
+        basic_tcav_data = self.extract_devices(
+            area=area,
+            required_types=required_tcav_types,
+            pv_search_terms=possible_tcav_pvs,
+            **additional_filter_constraints,
+        )
+        if basic_tcav_data:
+            tcav_names = [key for key in basic_tcav_data.keys()]
+            additional_metadata_data = get_tcav_metadata(
+                tcav_names, self.extract_metadata_by_device_names
+            )
+            additional_controls_data = get_tcav_controls_information()
+            complete_tcav_data = self.add_extra_data_to_device(
+                device_data=basic_tcav_data,
+                additional_controls_information=additional_controls_data,
+                additional_metadata=additional_metadata_data,
+            )
+            return complete_tcav_data
         else:
             return {}
 

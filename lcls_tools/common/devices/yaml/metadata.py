@@ -77,3 +77,42 @@ def get_bpm_metadata(bpm_names: List[str] = []):
     if bpm_names:
         raise NotImplementedError("No method of getting additional metadata for bpms.")
     return {}
+
+
+def get_tcav_metadata(tcav_names: List[str] = [], method: callable = None, **kwargs):
+    # return a data structure of the form:
+    # {
+    #  tcav-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
+    #  tcav-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
+    #  ...
+    # }
+    if tcav_names and method:
+        # Add any additional metadata fields here
+        additional_fields = [
+            "Element",
+            "Effective Length (m)",
+            "Rf Frequency (MHz)",
+        ]
+        device_elements = method(tcav_names, additional_fields)
+        # change field names and values to be in different format
+        # if needed
+        for tcav in device_elements:
+            if "Effective Length (m)" in device_elements[tcav]:
+                if device_elements[tcav]["Effective Length (m)"] == "":
+                    device_elements[tcav]["Effective Length (m)"] = 0.0
+                device_elements[tcav]["l_eff"] = round(
+                    float(device_elements[tcav]["Effective Length (m)"]), 3
+                )
+                del device_elements[tcav]["Effective Length (m)"]
+
+            if "Rf Frequency (MHz)" in device_elements[tcav]:
+                if device_elements[tcav]["Rf Frequency (MHz)"] == "":
+                    device_elements[tcav]["Rf Frequency (MHz)"] = 0.0
+                device_elements[tcav]["rf_freq"] = float(
+                    device_elements[tcav]["Rf Frequency (MHz)"]
+                )
+                del device_elements[tcav]["Rf Frequency (MHz)"]
+
+        return device_elements
+    else:
+        return {}
