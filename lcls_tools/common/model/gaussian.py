@@ -23,7 +23,11 @@ def fit(x, y, use_prior = False):
         def prior(p):
             return 0
     init = [mean_0, sigma_0, amp_0, off_0]
-    return model.fit(forward, prior,  x, y, init)
+    bounds = ((None, None),
+              (0, None),
+              (None, None),
+              (None, None))
+    return model.fit(forward, prior,  x, y, init, bounds)
 
 
 def mean_prior(x, y):

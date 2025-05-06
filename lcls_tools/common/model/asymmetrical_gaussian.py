@@ -19,4 +19,9 @@ def fit(x, y, use_prior = False):
     off_0 = y.min() + 0.01
     S_0 = 0
     init = [mean_0, sigma_0, amp_0, off_0, S_0]
+    bounds = ((None, None),
+              (0, None),
+              (None, None),
+              (None, None),
+              (-1, 1))
     return model.fit(forward, prior,  x, y, init)
