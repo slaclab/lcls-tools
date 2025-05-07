@@ -687,7 +687,7 @@ wires:
       PVs:
         abort_scan: WIRE:DIAG0:424:MOTR.STOP
         motor: WIRE:DIAG0:424:MOTR
-        position: WIRE:DIAG0:424:MOTR.RBV
+        motor_rbv: WIRE:DIAG0:424:MOTR.RBV
         scan_pulses: WIRE:DIAG0:424:SCANPULSES
         speed: WIRE:DIAG0:424:MOTR.VELO
         speed_max: WIRE:DIAG0:424:MOTR.VMAX

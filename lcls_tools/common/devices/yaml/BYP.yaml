@@ -1734,7 +1734,7 @@ wires:
         initialize: WIRE:BPN12:850:MOTR_INIT
         initialize_status: WIRE:BPN12:850:MOTR_INIT_STS
         motor: WIRE:BPN12:850:MOTR
-        position: WIRE:BPN12:850:MOTR.RBV
+        motor_rbv: WIRE:BPN12:850:MOTR.RBV
         retract: WIRE:BPN12:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN12:850:SCANPULSES
         speed: WIRE:BPN12:850:MOTR.VELO
@@ -1767,6 +1767,41 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN23:400
+      - BPMS:BPN24:400
+      - BPMS:BPN25:400
+      - BPMS:BPN26:400
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      - BPMS:SPD:570
+      - BPMS:SPD:700
+      - BPMS:SPD:955
+      bpms_before_wire:
+      - BPMS:L3B:3583
+      - BPMS:EXT:351
+      - BPMS:EXT:748
+      - BPMS:DOG:120
+      - BPMS:DOG:135
+      - BPMS:DOG:150
+      - BPMS:DOG:200
+      - BPMS:DOG:215
+      - BPMS:DOG:230
+      - BPMS:DOG:280
+      - BPMS:DOG:335
+      - BPMS:DOG:355
+      - BPMS:DOG:405
+      lblms:
+      - LBLM11A_1
+      - LBLM11A_2
+      - LBLM11A_3
+      - TMITLOSS
       sum_l_meters: 1212.849
       type: WIRE
   WSBP3:
@@ -1778,7 +1813,7 @@ wires:
         initialize: WIRE:BPN14:850:MOTR_INIT
         initialize_status: WIRE:BPN14:850:MOTR_INIT_STS
         motor: WIRE:BPN14:850:MOTR
-        position: WIRE:BPN14:850:MOTR.RBV
+        motor_rbv: WIRE:BPN14:850:MOTR.RBV
         retract: WIRE:BPN14:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN14:850:SCANPULSES
         speed: WIRE:BPN14:850:MOTR.VELO
@@ -1811,6 +1846,41 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN23:400
+      - BPMS:BPN24:400
+      - BPMS:BPN25:400
+      - BPMS:BPN26:400
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      - BPMS:SPD:570
+      - BPMS:SPD:700
+      - BPMS:SPD:955
+      bpms_before_wire:
+      - BPMS:L3B:3583
+      - BPMS:EXT:351
+      - BPMS:EXT:748
+      - BPMS:DOG:120
+      - BPMS:DOG:135
+      - BPMS:DOG:150
+      - BPMS:DOG:200
+      - BPMS:DOG:215
+      - BPMS:DOG:230
+      - BPMS:DOG:280
+      - BPMS:DOG:335
+      - BPMS:DOG:355
+      - BPMS:DOG:405
+      lblms:
+      - LBLM11A_1
+      - LBLM11A_2
+      - LBLM11A_3
+      - TMITLOSS
       sum_l_meters: 1416.049
       type: WIRE
   WSBP4:
@@ -1822,7 +1892,7 @@ wires:
         initialize: WIRE:BPN16:850:MOTR_INIT
         initialize_status: WIRE:BPN16:850:MOTR_INIT_STS
         motor: WIRE:BPN16:850:MOTR
-        position: WIRE:BPN16:850:MOTR.RBV
+        motor_rbv: WIRE:BPN16:850:MOTR.RBV
         retract: WIRE:BPN16:850:MOTR_RETRACT
         scan_pulses: WIRE:BPN16:850:SCANPULSES
         speed: WIRE:BPN16:850:MOTR.VELO
@@ -1855,5 +1925,40 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN23:400
+      - BPMS:BPN24:400
+      - BPMS:BPN25:400
+      - BPMS:BPN26:400
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      - BPMS:SPD:570
+      - BPMS:SPD:700
+      - BPMS:SPD:955
+      bpms_before_wire:
+      - BPMS:L3B:3583
+      - BPMS:EXT:351
+      - BPMS:EXT:748
+      - BPMS:DOG:120
+      - BPMS:DOG:135
+      - BPMS:DOG:150
+      - BPMS:DOG:200
+      - BPMS:DOG:215
+      - BPMS:DOG:230
+      - BPMS:DOG:280
+      - BPMS:DOG:335
+      - BPMS:DOG:355
+      - BPMS:DOG:405
+      lblms:
+      - LBLM11A_1
+      - LBLM11A_2
+      - LBLM11A_3
+      - TMITLOSS
       sum_l_meters: 1619.249
       type: WIRE

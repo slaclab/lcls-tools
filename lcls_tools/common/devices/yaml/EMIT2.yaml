@@ -290,7 +290,7 @@ wires:
         initialize: WIRE:EMIT2:600:MOTR_INIT
         initialize_status: WIRE:EMIT2:600:MOTR_INIT_STS
         motor: WIRE:EMIT2:600:MOTR
-        position: WIRE:EMIT2:600:MOTR.RBV
+        motor_rbv: WIRE:EMIT2:600:MOTR.RBV
         retract: WIRE:EMIT2:600:MOTR_RETRACT
         scan_pulses: WIRE:EMIT2:600:SCANPULSES
         speed: WIRE:EMIT2:600:MOTR.VELO
@@ -323,5 +323,21 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:SPS:780
+      - BPMS:SPS:830
+      - BPMS:SPS:840
+      - BPMS:SLTS:150
+      - BPMS:SLTS:430
+      - BPMS:SLTS:460
+      bpms_before_wire:
+      - BPMS:BC2B:150
+      - BPMS:BC2B:530
+      - BPMS:EMIT2:150
+      - BPMS:EMIT2:300
+      lblms:
+      - LBLM04A
+      - LBLM07A
+      - TMITLOSS
       sum_l_meters: 384.229
       type: WIRE
