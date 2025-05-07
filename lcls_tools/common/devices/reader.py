@@ -243,6 +243,8 @@ def load_full_beampath(beampath: str):
     beampath_data = {}
 
     for area in area_names:
-        beampath_data[area] = _device_data(area=area)
+        device_data = _device_data(area=area)
+        if device_data is not None:
+            beampath_data[area] = device_data
 
     return beampath_data
