@@ -20,7 +20,7 @@ def _find_yaml_file(
     if area:
         filename = area + ".yaml"
     if beampath:
-        filename = "beam_paths.yaml"
+        filename = "beampaths.yaml"
 
     path = os.path.join(DEFAULT_YAML_LOCATION, filename)
     if os.path.isfile(path):
@@ -213,3 +213,21 @@ def create_beampath(beampath: str = None) -> Union[None, Beampath]:
             ". Please try a different beampath.",
         )
         return None
+
+
+def load_full_beampath(beampath: str):
+    beampaths_location = _find_yaml_file(beampath=beampath)
+    with open(beampaths_location, "r") as file:
+        beampaths = yaml.safe_load(file)
+
+    areas_nested = beampaths.get(beampath)
+    if areas_nested is None:
+        raise ValueError(f"Beampath '{beampath}' not found in {beampaths_location}")
+
+    area_names = list(_flatten(areas_nested))
+    beampath_data = {}
+
+    for area in area_names:
+        beampath_data[area] = _device_data(area=area)
+
+    return beampath_data
