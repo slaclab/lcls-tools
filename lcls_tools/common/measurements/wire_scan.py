@@ -11,7 +11,6 @@ from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
 import pandas as pd
-import epics
 
 
 class WireBeamProfileMeasurementResult(BaseModel):
@@ -134,28 +133,12 @@ class WireBeamProfileMeasurement(Measurement):
             my_buffer.destination_mode = 2
 
             # Clear all previous destinations
-            dst_pv_prefix = "BSA:SYS0:1:" + str(my_buffer.number) + ":DST"
-            for d in range(1, 6):
-                clear_dst_pv = dst_pv_prefix + str(d)
-                epics.caput(clear_dst_pv, 0)
+            my_buffer.clear_masks()
 
-            # Get DST index
-            if self.beampath == "SC_DIAG0":
-                dst_num = "1"
-            elif self.beampath == "SC_BSYD":
-                dst_num = "2"
-            elif self.beampath == "SC_HXR":
-                dst_num = "3"
-            elif self.beampath == "SC_SXR":
-                dst_num = "4"
-            elif self.beampath == "SC_DASEL":
-                dst_num = "5"
-
-            # Set appropriate DST for chosen beampath
-            set_dst_pv = dst_pv_prefix + dst_num
-            epics.caput(set_dst_pv, 1)
-
+            # Set appropriate destination mask for chosen beampath
+            my_buffer.destination_masks = [self.beampath]
             return my_buffer
+
         elif self.beampath.startsWith("CU"):
             # Reserve eDef buffer for CU destinations
             my_buffer = edef.EventDefinition("LCLS Tools Wire Scan", user=user)
