@@ -10,7 +10,7 @@ def curve(x, mean, sigma, amp, off, n):
     A = np.sqrt(2 * np.pi) * amp
     return A * norm.pdf(exp) + off
 
-class order:
+class order(optimize.Parameter):
     name = "n"
     bounds = (0, None)
     @staticmethod
@@ -25,8 +25,7 @@ class order:
     def denormalize(n, x, y):
         return n
 
-params = gaussian.params
-params.append(order)
+params = gaussian.params + [order]
 
 def fit(pos, data):
     return optimize.fit(curve, params, pos, data, use_prior=False)

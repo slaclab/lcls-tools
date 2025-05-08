@@ -8,7 +8,7 @@ def curve(x, mean=0, sigma=1, amp=1, off=0):
     return A * norm.pdf((x - mean) / sigma) + off
 
 
-class mean:
+class mean(optimize.Parameter):
     name = "mean"
     bounds = (0, 1)
     @staticmethod
@@ -25,7 +25,7 @@ class mean:
         return mean * x_scale + min(x)
 
     
-class sigma:
+class sigma(optimize.Parameter):
     name = "sigma"
     bounds = (1e-10, None)
     @staticmethod
@@ -42,7 +42,7 @@ class sigma:
         return sigma * x_scale
 
     
-class amplitude:
+class amplitude(optimize.Parameter):
     name = "amp"
     bounds = (0, 1)
     @staticmethod
@@ -62,7 +62,7 @@ class amplitude:
         return amp * y_scale
 
 
-class offset:
+class offset(optimize.Parameter):
     name = "off"
     bounds = (0, 1)
     @staticmethod
