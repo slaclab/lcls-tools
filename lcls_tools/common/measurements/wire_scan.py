@@ -213,13 +213,13 @@ class WireBeamProfileMeasurement(Measurement):
         # Get buffer data and put into results dictionary
         data[f"{self.my_wire.name}"] = self.my_wire.position_buffer(self.my_buffer)
 
-        if self.beampath.startsWith("SC"):
+        if self.beampath.startswith("SC"):
             for lblm in self.my_wire.metadata.lblms:
                 if lblm == "TMITLOSS":
                     data["TMITLOSS"] = self.devices["TMITLOSS"].measure()
                 else:
                     data[lblm] = self.devices[lblm].fast_buffer(self.my_buffer)
-        elif self.beampath.startsWith("CU"):
+        elif self.beampath.startswith("CU"):
             # CU LBLMs use "QDCRAW" signal
             data.update(
                 {
