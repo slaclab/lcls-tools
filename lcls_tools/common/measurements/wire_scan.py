@@ -6,7 +6,7 @@ from lcls_tools.common.measurements.measurement import Measurement
 import time
 import edef
 import os
-from pydantic import SerializeAsAny, BaseModel, ConfigDict
+from pydantic import SerializeAsAny, BaseModel, ConfigDict, model_validator
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
@@ -57,6 +57,15 @@ class WireBeamProfileMeasurement(Measurement):
     beam_fit: BaseModel = ProjectionFit
     fit_profile: bool = True
 
+    # Extra fields to be set after validation
+    my_buffer: edef.BSABuffer
+    devices: dict
+
+    @model_validator(mode="after")
+    def run_setup(self) -> "WireBeamProfileMeasurement":
+        self.my_buffer = self.reserve_buffer()
+        self.devices = self.create_device_dictionary()
+
     def measure(self) -> dict:
         """
         Perform a wire scan measurement and return processed beam profile data.
@@ -72,17 +81,11 @@ class WireBeamProfileMeasurement(Measurement):
         # TODO: Jitter Correction
         # TODO: Charge Normalization
 
-        # Reserve a BSA/EDEF buffer
-        my_buffer = self.reserve_buffer()
-
-        # Create dictionary of devices for WS (WS + detectors)
-        devices = self.create_device_dictionary(my_buffer)
-
         # Start the buffer and move the wire
-        self.scan_with_wire(my_buffer)
+        self.scan_with_wire()
 
         # Get position and detector data from the buffer
-        data = self.get_bsa_data(devices, my_buffer)
+        data = self.get_bsa_data()
 
         # Determine the profile range indices
         # e.g., u range = (13000, 18000) -> position_data[100:250]
@@ -124,7 +127,7 @@ class WireBeamProfileMeasurement(Measurement):
             object: A buffer object for data collection.
         """
         user = os.getlogin()
-        if self.beampath.startsWith("SC"):
+        if self.beampath.startswith("SC"):
             # Reserve BSA buffer for SC destinations
             my_buffer = edef.BSABuffer("LCLS Tools Wire Scan", user=user)
             my_buffer.n_measurements = 1600
@@ -139,7 +142,7 @@ class WireBeamProfileMeasurement(Measurement):
             my_buffer.destination_masks = [self.beampath]
             return my_buffer
 
-        elif self.beampath.startsWith("CU"):
+        elif self.beampath.startswith("CU"):
             # Reserve eDef buffer for CU destinations
             my_buffer = edef.EventDefinition("LCLS Tools Wire Scan", user=user)
             my_buffer.n_measurements = 1600
@@ -147,7 +150,7 @@ class WireBeamProfileMeasurement(Measurement):
         else:
             raise BufferError
 
-    def create_device_dictionary(self, my_buffer):
+    def create_device_dictionary(self):
         """
         Creates a device dictionary for a wire scan setup.
 
@@ -163,13 +166,16 @@ class WireBeamProfileMeasurement(Measurement):
         for lblm in self.my_wire.metadata.lblms:
             if lblm == "TMITLOSS":
                 devices["TMITLOSS"] = TMITLoss(
-                    my_buffer=my_buffer, my_wire=self.my_wire
+                    my_buffer=self.my_buffer,
+                    my_wire=self.my_wire,
+                    beampath=self.beampath,
+                    region=self.my_wire.area,
                 )
             else:
                 devices[lblm] = create_lblm(area=f"{self.my_wire.area}", name=lblm)
         return devices
 
-    def scan_with_wire(self, my_buffer):
+    def scan_with_wire(self):
         """
         Starts the buffer and wire scan with brief delays.
 
@@ -183,12 +189,12 @@ class WireBeamProfileMeasurement(Measurement):
         time.sleep(3)
 
         # Start buffer
-        my_buffer.start()
+        self.my_buffer.start()
 
         # Wait briefly before checking buffer 'ready'
         time.sleep(0.1)
 
-    def get_bsa_data(self, devices, my_buffer):
+    def get_bsa_data(self):
         """
         Collects wire scan and detector data after buffer completes.
 
@@ -201,32 +207,29 @@ class WireBeamProfileMeasurement(Measurement):
         """
         data = {}
         # Wait for buffer 'ready'
-        while not my_buffer.is_acquisition_complete():
+        while not self.my_buffer.is_acquisition_complete():
             time.sleep(0.1)
 
         # Get buffer data and put into results dictionary
-        data[f"{self.my_wire.name}"] = self.my_wire.position_buffer(my_buffer)
+        data[f"{self.my_wire.name}"] = self.my_wire.position_buffer(self.my_buffer)
 
         if self.beampath.startsWith("SC"):
             for lblm in self.my_wire.metadata.lblms:
                 if lblm == "TMITLOSS":
-                    data["TMITLOSS"] = devices["TMITLOSS"].measure(
-                        beampath=self.beampath,
-                        region=self.my_wire.area,
-                    )
+                    data["TMITLOSS"] = self.devices["TMITLOSS"].measure()
                 else:
-                    data[lblm] = devices[lblm].fast_buffer(my_buffer)
+                    data[lblm] = self.devices[lblm].fast_buffer(self.my_buffer)
         elif self.beampath.startsWith("CU"):
             # CU LBLMs use "QDCRAW" signal
             data.update(
                 {
-                    lblm: devices[lblm].qdcraw_buffer(my_buffer)
+                    lblm: self.devices[lblm].qdcraw_buffer(self.my_buffer)
                     for lblm in self.my_wire.metadata.lblms
                 }
             )
 
         # Release EDEF/BSA
-        my_buffer.release()
+        self.my_buffer.release()
 
         # Return dictionary of Wire position, LBLM waveforms, BPM waveforms
         return data
