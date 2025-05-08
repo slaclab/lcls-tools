@@ -148,16 +148,7 @@ def get_wire_metadata(wire_names: List[str] = []):
     ]
     spd_tmit_after = ["BPMS:SPD:700", "BPMS:SPD:955", "BPMS:SLTD:625"]
     ltus_lblms = [
-        "PMT122",
-        "PMT246",
-        "PMT430",
-        "PMT431",
-        "PMT550",
-        "PMT755",
-        "PMT756",
-        "PMT820",
-        "PMT850",
-        "LBLM32A",
+        "LBLMS32A",
         "TMITLOSS",
     ]
     ltus_tmit_before = [
