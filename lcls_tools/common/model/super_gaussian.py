@@ -28,4 +28,4 @@ class order(optimize.Parameter):
 params = gaussian.params + [order]
 
 def fit(pos, data):
-    return optimize.fit(curve, params, pos, data, use_prior=False)
+    return optimize.param_fit(curve, params, pos, data, use_prior=False)

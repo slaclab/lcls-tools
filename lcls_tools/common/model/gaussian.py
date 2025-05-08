@@ -82,4 +82,4 @@ class offset(optimize.Parameter):
 params = [mean, sigma, amplitude, offset]
 
 def fit(pos, data, use_prior=False):
-    return optimize.fit(curve, params, pos, data, use_prior)
+    return optimize.param_fit(curve, params, pos, data, use_prior)
