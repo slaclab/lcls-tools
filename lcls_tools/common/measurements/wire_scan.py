@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 from lcls_tools.common.devices.wire import Wire
 from lcls_tools.common.devices.reader import create_lblm
 from lcls_tools.common.data.fit.projection import ProjectionFit
@@ -58,8 +58,8 @@ class WireBeamProfileMeasurement(Measurement):
     fit_profile: bool = True
 
     # Extra fields to be set after validation
-    my_buffer: edef.BSABuffer
-    devices: dict
+    my_buffer: Optional[edef.BSABuffer] = None
+    devices: Optional[dict] = None
 
     @model_validator(mode="after")
     def run_setup(self) -> "WireBeamProfileMeasurement":
