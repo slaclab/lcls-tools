@@ -5,6 +5,7 @@ import pandas as pd
 from edef import BSABuffer
 from lcls_tools.common.devices.wire import Wire
 from pydantic import model_validator
+from typing import Optional
 
 
 class TMITLoss(Measurement):
@@ -15,9 +16,9 @@ class TMITLoss(Measurement):
     my_wire: Wire
 
     # Extra fields to be set after validation
-    idx_before: list
-    idx_after: list
-    bpms: dict
+    idx_before: Optional[list] = None
+    idx_after: Optional[list] = None
+    bpms: Optional[dict] = None
 
     @model_validator(mode="after")
     def run_setup(self) -> "TMITLoss":
@@ -48,20 +49,11 @@ class TMITLoss(Measurement):
             pd.Series: A Series representing the percentage TMIT loss for each
                        time sample.
         """
-        # Get relevant BPMs based on beampath
-        bpms_elements, bpms_devices = self.find_bpms()
-
-        # Get the before and after BPM indices
-        idx_before, idx_after = self.get_bpm_idx(bpms_devices)
-
-        # Create a dictionary of lcls-tools BPM objects
-        bpm_objs = self.create_bpms(bpms_elements)
-
         # Retrieve data from BSA buffer
-        data = self.get_bpm_data(bpm_objs, self.my_buffer)
+        data = self.get_bpm_data()
 
         # Calculate TMIT Loss
-        tmit_loss = self.calc_tmit_loss(data, idx_before, idx_after)
+        tmit_loss = self.calc_tmit_loss(data)
         return tmit_loss
 
     def find_bpms(self):
