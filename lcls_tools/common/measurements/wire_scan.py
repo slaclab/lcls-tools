@@ -11,6 +11,7 @@ from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
 import pandas as pd
+from typing_extensions import Self
 
 
 class WireBeamProfileMeasurementResult(BaseModel):
@@ -62,8 +63,9 @@ class WireBeamProfileMeasurement(Measurement):
     devices: Optional[dict] = None
 
     @model_validator(mode="after")
-    def run_setup(self) -> "WireBeamProfileMeasurement":
-        self.my_buffer = self.reserve_buffer()
+    def run_setup(self) -> Self:
+        if self.my_buffer is None:
+            self.my_buffer = self.reserve_buffer()
         self.devices = self.create_device_dictionary()
 
     def measure(self) -> dict:
