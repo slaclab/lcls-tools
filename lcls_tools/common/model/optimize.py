@@ -1,8 +1,6 @@
 from abc import ABC, abstractmethod
 import numpy as np
 import scipy.optimize
-from pydantic import BaseModel
-from typing import Callable
 
 
 class Parameter(ABC):
@@ -24,6 +22,7 @@ class Parameter(ABC):
         denormalize(par, x, y): Denormalize the parameter where x and y
               have been scaled to fit between 0 and 1.
     """
+
     name = ""
     bounds = (None, None)
 
@@ -59,16 +58,19 @@ def param_fit(curve, params, pos, data, use_prior=False):
     y = (data - np.min(data)) / (np.max(data) - np.min(data))
     init = [p.init(x, y) for p in params]
     print(init)
+
     def forward(x, vec):
         return curve(x, *vec)
+
     def prior(vec):
         return np.sum([p.prior(v, i) for p, v, i in zip(params, vec, init)])
+
     bounds = tuple(p.bounds for p in params)
-    res = max_likelihood(forward, prior,  x, y, init, bounds, use_prior)
-    return {p.name: p.denormalize(val, pos, data) for p, val, in zip(params, res.x)}
+    res = max_likelihood(forward, prior, x, y, init, bounds, use_prior)
+    return {p.name: p.denormalize(val, pos, data) for p, val in zip(params, res.x)}
 
 
-def max_likelihood(curve, prior, x, y, init, bounds=None, use_prior = False):
+def max_likelihood(curve, prior, x, y, init, bounds=None, use_prior=False):
     """
     Computes a 2D curve fit using Maximum Likelihood Estimation (MLE).
 
@@ -91,12 +93,15 @@ def max_likelihood(curve, prior, x, y, init, bounds=None, use_prior = False):
         res: scipy OptimizeResult object.
     """
     if not use_prior:
+
         def prior(p):
             return 0
+
     def loss(params, x, y):
         v = np.sum((y - curve(x, params)) ** 2)
         v -= prior(params)
         return v
+
     res = scipy.optimize.minimize(
         loss,
         init,

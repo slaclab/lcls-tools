@@ -11,10 +11,11 @@ def curve(x, mean=0, sigma=1, amp=1, off=0):
 class mean(optimize.Parameter):
     name = "mean"
     bounds = (0, 1)
+
     @staticmethod
     def init(x, y):
         return np.average(x, weights=y)
-    
+
     @staticmethod
     def prior(mean, mean_0):
         return norm(mean_0, 0.1).logpdf(mean)
@@ -24,14 +25,15 @@ class mean(optimize.Parameter):
         x_scale = np.max(x) - np.min(x)
         return mean * x_scale + min(x)
 
-    
+
 class sigma(optimize.Parameter):
     name = "sigma"
     bounds = (1e-10, None)
+
     @staticmethod
     def init(x, y):
         return np.sqrt(np.cov(x, aweights=y))
-    
+
     @staticmethod
     def prior(sigma, sigma_0):
         return gamma(2.5, loc=0, scale=1 / 5.0).logpdf(sigma)
@@ -41,14 +43,15 @@ class sigma(optimize.Parameter):
         x_scale = np.max(x) - np.min(x)
         return sigma * x_scale
 
-    
+
 class amplitude(optimize.Parameter):
     name = "amp"
     bounds = (0, 1)
+
     @staticmethod
     def init(x, y):
         return y.max() - y.min() - 0.01
-    
+
     @staticmethod
     def prior(amp, amp_0):
         var = 0.05
@@ -65,10 +68,11 @@ class amplitude(optimize.Parameter):
 class offset(optimize.Parameter):
     name = "off"
     bounds = (0, 1)
+
     @staticmethod
     def init(x, y):
         return y.min() + 0.01
-    
+
     @staticmethod
     def prior(off, off_0):
         return norm(off_0, 0.5).logpdf(off_0)
@@ -80,6 +84,7 @@ class offset(optimize.Parameter):
 
 
 params = [mean, sigma, amplitude, offset]
+
 
 def fit(pos, data, use_prior=False):
     return optimize.param_fit(curve, params, pos, data, use_prior)
