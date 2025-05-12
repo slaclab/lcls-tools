@@ -2809,16 +2809,7 @@ wires:
       - BPMS:SPS:840
       - BPMS:SLTS:150
       lblms:
-      - PMT122
-      - PMT246
-      - PMT430
-      - PMT431
-      - PMT550
-      - PMT755
-      - PMT756
-      - PMT820
-      - PMT850
-      - LBLM32A
+      - LBLMS32A
       - TMITLOSS
       sum_l_meters: 3434.508
       type: WIRE
@@ -2883,16 +2874,7 @@ wires:
       - BPMS:SPS:840
       - BPMS:SLTS:150
       lblms:
-      - PMT122
-      - PMT246
-      - PMT430
-      - PMT431
-      - PMT550
-      - PMT755
-      - PMT756
-      - PMT820
-      - PMT850
-      - LBLM32A
+      - LBLMS32A
       - TMITLOSS
       sum_l_meters: 3469.772
       type: WIRE
@@ -2957,16 +2939,7 @@ wires:
       - BPMS:SPS:840
       - BPMS:SLTS:150
       lblms:
-      - PMT122
-      - PMT246
-      - PMT430
-      - PMT431
-      - PMT550
-      - PMT755
-      - PMT756
-      - PMT820
-      - PMT850
-      - LBLM32A
+      - LBLMS32A
       - TMITLOSS
       sum_l_meters: 3505.035
       type: WIRE
@@ -3031,16 +3004,7 @@ wires:
       - BPMS:SPS:840
       - BPMS:SLTS:150
       lblms:
-      - PMT122
-      - PMT246
-      - PMT430
-      - PMT431
-      - PMT550
-      - PMT755
-      - PMT756
-      - PMT820
-      - PMT850
-      - LBLM32A
+      - LBLMS32A
       - TMITLOSS
       sum_l_meters: 3540.299
       type: WIRE
