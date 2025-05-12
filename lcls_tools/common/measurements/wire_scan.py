@@ -67,6 +67,7 @@ class WireBeamProfileMeasurement(Measurement):
         if self.my_buffer is None:
             self.my_buffer = self.reserve_buffer()
         self.devices = self.create_device_dictionary()
+        return self
 
     def measure(self) -> dict:
         """
