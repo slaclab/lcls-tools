@@ -50,7 +50,7 @@ class amplitude(optimize.Parameter):
 
     @staticmethod
     def init(x, y):
-        return y.max() - y.min() - 0.01
+        return y.max() - y.min()
 
     @staticmethod
     def prior(amp, amp_0):
@@ -71,11 +71,11 @@ class offset(optimize.Parameter):
 
     @staticmethod
     def init(x, y):
-        return y.min() + 0.01
+        return y.min()
 
     @staticmethod
     def prior(off, off_0):
-        return norm(off_0, 0.5).logpdf(off_0)
+        return norm(off_0, 0.5).logpdf(off)
 
     @staticmethod
     def denormalize(off, x, y):

@@ -48,7 +48,7 @@ def param_fit(curve, params, pos, data, use_prior=False):
         curve (Callable[x, params]): The curve to be fit.
             x: The data positions.
             params: A list of parameters scipy.optimipze.minimize will fit.
-        params (list[Parameters]): A list of Parameter objects. Indicies
+        params (list[Parameter]): A list of Parameter objects. Indicies
               correspond to the params arguments in curve and prior.
         pos (np.array[float]): The data positions.
         data (np.array[float]): The data weights.
@@ -57,7 +57,6 @@ def param_fit(curve, params, pos, data, use_prior=False):
     x = (pos - np.min(pos)) / (np.max(pos) - np.min(pos))
     y = (data - np.min(data)) / (np.max(data) - np.min(data))
     init = [p.init(x, y) for p in params]
-    print(init)
 
     def forward(x, vec):
         return curve(x, *vec)
@@ -78,7 +77,7 @@ def max_likelihood(curve, prior, x, y, init, bounds=None, use_prior=False):
         curve (Callable[x, params]): The curve to be fit.
             x: The data positions.
             params: A list of parameters scipy.optimize.minimize will fit.
-        prior (Callable[x, params]): The penalty function that encourages
+        prior (Callable[params]): The penalty function that encourages
               the fit to closely match the initial parameter estimation.
             x: The data positions.
             params: A list of parameters scipy.optimize.minimize will fit.
