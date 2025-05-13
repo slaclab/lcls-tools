@@ -249,7 +249,7 @@ class Area(lcls_tools.common.BaseModel):
         self,
         wire_name: str = None,
     ) -> bool:
-        return screen_name in self.wires
+        return wire_name in self.wires
 
     def does_bpm_exist(
         self,
