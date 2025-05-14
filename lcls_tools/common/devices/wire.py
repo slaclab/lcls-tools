@@ -71,7 +71,7 @@ class WirePVSet(PVSet):
     speed_max: PV
     speed_min: PV
     start_scan: PV
-    temperature: PV
+    temperature: Optional[PV] = None
     timeout: PV
     use_u_wire: PV
     use_x_wire: PV
@@ -258,7 +258,10 @@ class Wire(Device):
     @property
     def temperature(self):
         """Returns RTD temperature"""
-        return self.controls_information.PVs.temperature.get()
+        pv = self.controls_information.PVs.temperature
+        if pv is None:
+            raise AttributeError("TEMPERATURE PV is not defined for this device")
+        return pv.get()
 
     @property
     def timeout(self):
