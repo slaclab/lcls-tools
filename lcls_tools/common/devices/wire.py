@@ -178,7 +178,13 @@ class Wire(Device):
         return self.controls_information.PVs.motor_rbv.get()
 
     def position_buffer(self, buffer):
-        return buffer.get_data_buffer(f"{self.controls_information.control_name}:POSN")
+        # :POSN PV confusingly does not exist outside of buffer
+        # get_data_buffer requires PV name as string, not EPICS PV object
+        pv = f"{self.controls_information.control_name}:POSN"
+        data = buffer.get_data_buffer(pv)
+        if data is None:
+            raise BufferError("No data in buffer or PV not found")
+        return data
 
     def retract(self):
         """Retracts the wire scanner"""
