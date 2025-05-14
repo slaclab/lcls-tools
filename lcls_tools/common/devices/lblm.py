@@ -36,10 +36,10 @@ class IntegerModel(BaseModel):
 
 
 class LBLMPVSet(PVSet):
-    gated_integral: PV
-    i0_loss: PV
-    gain: PV
-    bypass: PV
+    gated_integral: Optional[PV] = None
+    i0_loss: Optional[PV] = None
+    gain: Optional[PV] = None
+    bypass: Optional[PV] = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -79,17 +79,48 @@ class LBLM(Device):
     @property
     def i0_loss(self):
         """Get I0 Loss value"""
-        return self.controls_information.PVs.i0_loss.get()
+        pv = self.controls_information.PVs.i0_loss
+        if pv is None:
+            raise AttributeError("I0_LOSS PV is not defined for this device")
+        return pv.get()
+
+    def i0_loss_buffer(self, buffer):
+        """Retrieve I0 Loss data from timing buffer"""
+        pv = self.controls_information.PVs.i0_loss
+        if pv is None:
+            raise AttributeError("I0_LOSS PV is not defined for this device")
+        data = buffer.get_data_buffer(self.controls_information.PVs.i0_loss.pvname)
+        if data is None:
+            raise BufferError("No data in buffer or PV not found")
+        return data
 
     @property
     def gated_integral(self):
         """Get Gated Integral value"""
-        return self.controls_information.PVs.gated_integral.get()
+        pv = self.controls_information.PVs.gated_integral
+        if pv is None:
+            raise AttributeError("GATED_INTEGRAL PV is not defined for this device")
+        return pv.get()
+
+    def gated_integral_buffer(self, buffer):
+        """Get Gated Integral data from timing buffer"""
+        pv = self.controls_information.PVs.gated_integral
+        if pv is None:
+            raise BufferError("GATED_INTEGRAL PV is not defined for this device")
+        data = buffer.get_data_buffer(
+            self.controls_information.PVs.gated_integral.pvname
+        )
+        if data is None:
+            raise BufferError("No data in buffer or PV not found")
+        return data
 
     @property
     def gain(self):
         """Get gain value"""
-        return self.controls_information.PVs.gain.get()
+        pv = self.controls_information.PVs.gain
+        if pv is None:
+            raise AttributeError("GAIN PV is not defined for this device")
+        return pv.get()
 
     @gain.setter
     def gain(self, val: float) -> None:
@@ -102,7 +133,10 @@ class LBLM(Device):
     @property
     def bypass(self):
         """Get bypass state"""
-        return self.controls_information.PVs.bypass.get()
+        pv = self.controls_information.PVs.bypass
+        if pv is None:
+            raise AttributeError("BYPASS PV is not defined for this device")
+        return pv.get()
 
     @bypass.setter
     def bypass(self, val: bool) -> None:
@@ -111,22 +145,6 @@ class LBLM(Device):
             self.controls_information.PVs.bypass.put(value=val)
         except ValidationError as e:
             print("Bypass must be a boolean:", e)
-
-    def i0_loss_buffer(self, buffer):
-        """Retrieve I0 Loss data from timing buffer"""
-        data = buffer.get_data_buffer(self.controls_information.PVs.i0_loss.pvname)
-        if data is None:
-            raise BufferError("No data in buffer or PV not found")
-        return data
-
-    def gated_integral_buffer(self, buffer):
-        """Get Gated Integral data from timing buffer"""
-        data = buffer.get_data_buffer(
-            self.controls_information.PVs.gated_integral.pvname
-        )
-        if data is None:
-            raise BufferError("No data in buffer or PV not found")
-        return data
 
 
 class LBLMCollection(BaseModel):
