@@ -21,9 +21,9 @@ EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
 class BPMPVSet(PVSet):
-    x: PV
-    y: PV
-    tmit: PV
+    x: Optional[PV] = None
+    y: Optional[PV] = None
+    tmit: Optional[PV] = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -57,32 +57,56 @@ class BPM(Device):
 
     @property
     def x(self):
-        """Get TMIT value"""
-        return self.controls_information.PVs.x.get()
+        """Get X value"""
+        pv = self.controls_information.PVs.x
+        if pv is None:
+            raise AttributeError("X PV is not defined for this device")
+        return pv.get()
 
     def x_buffer(self, buffer):
-        """Retrieve TMIT signal data from timing buffer"""
-        return buffer.get_buffer_data(self.controls_information.PVs.x)
+        """Retrieve X signal data from timing buffer"""
+        pv = self.controls_information.PVs.x
+        if pv is None:
+            raise AttributeError("X PV is not defined for this device")
+        data = buffer.get_data_buffer(self.controls_information.PVs.x.pvname)
+        if data is None:
+            raise BufferError("No data found in buffer for X PV")
+        return data
 
     @property
     def y(self):
-        """Get TMIT value"""
-        return self.controls_information.PVs.y.get()
+        """Get Y value"""
+        pv = self.controls_information.PVs.y
+        if pv is None:
+            raise AttributeError("Y PV is not defined for this device")
+        return pv.get()
 
     def y_buffer(self, buffer):
-        """Retrieve TMIT signal data from timing buffer"""
-        return buffer.get_buffer_data(self.controls_information.PVs.y)
+        """Retrieve Y signal data from timing buffer"""
+        pv = self.controls_information.PVs.y
+        if pv is None:
+            raise AttributeError("Y PV is not defined for this device")
+        data = buffer.get_data_buffer(self.controls_information.PVs.y.pvname)
+        if data is None:
+            raise BufferError("No data found in buffer for Y PV")
+        return data
 
     @property
     def tmit(self):
         """Get TMIT value"""
-        return self.controls_information.PVs.tmit.get()
+        pv = self.controls_information.PVs.tmit
+        if pv is None:
+            raise AttributeError("TMIT PV is not defined for this device")
+        return pv.get()
 
     def tmit_buffer(self, buffer):
         """Retrieve TMIT signal data from timing buffer"""
+        pv = self.controls_information.PVs.tmit
+        if pv is None:
+            raise AttributeError("TMIT PV is not defined for this device")
         data = buffer.get_data_buffer(self.controls_information.PVs.tmit.pvname)
         if data is None:
-            raise BufferError("No data in buffer or PV not found")
+            raise BufferError("No data found in buffer for TMIT PV")
         return data
 
 
