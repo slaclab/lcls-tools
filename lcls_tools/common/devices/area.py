@@ -107,46 +107,45 @@ class Area(lcls_tools.common.BaseModel):
         mode="before",
     )
     def validate_magnets(cls, v: Dict[str, Any]):
-        if v:
-            # Unpack the magnet data from yaml into MagnetCollection
-            # before creating the magnet_collection
-            return MagnetCollection(**{"magnets": {**v}})
+        if not v:
+            return None
+        return MagnetCollection(magnets=v)
 
     @field_validator(
         "screen_collection",
         mode="before",
     )
     def validate_screens(cls, v: Dict[str, Any]):
-        if v:
-            # Unpack the screens data from yaml into ScreenCollection
-            return ScreenCollection(**{"screens": {**v}})
+        if not v:
+            return None
+        return ScreenCollection(screens=v)
 
     @field_validator(
         "wire_collection",
         mode="before",
     )
     def validate_wires(cls, v: Dict[str, Any]):
-        if v:
-            # Unpack the wires data from yaml into WireCollection
-            return WireCollection(**{"wires": {**v}})
+        if not v:
+            return None
+        return WireCollection(wires=v)
 
     @field_validator(
         "bpm_collection",
         mode="before",
     )
     def validate_bpms(cls, v: Dict[str, Any]):
-        if v:
-            # Unpack the bpms data from yaml into BPMCollection
-            return BPMCollection(**{"bpms": {**v}})
+        if not v:
+            return None
+        return BPMCollection(bpms=v)
 
     @field_validator(
         "lblm_collection",
         mode="before",
     )
     def validate_lblms(cls, v: Dict[str, Any]):
-        if v:
-            # Unpack the lblms data from yaml into LBLMCollection
-            return LBLMCollection(**{"lblms": {**v}})
+        if not v:
+            return None
+        return LBLMCollection(lblms=v)
 
     @property
     def magnets(
