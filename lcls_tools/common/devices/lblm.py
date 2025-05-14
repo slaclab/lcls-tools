@@ -71,7 +71,10 @@ class LBLM(Device):
 
     def fast_buffer(self, buffer):
         """Retrieve fast signal data from timing buffer"""
-        data = buffer.get_data_buffer(f"{self.controls_information.control_name}:FAST")
+        # :FAST PV confusingly does not exist outside of buffer
+        # get_data_buffer requires PV name as string, not EPICS PV object
+        pv = f"{self.controls_information.control_name}:FAST"
+        data = buffer.get_data_buffer(pv)
         if data is None:
             raise BufferError("No data in buffer or PV not found")
         return data
@@ -89,6 +92,7 @@ class LBLM(Device):
         pv = self.controls_information.PVs.i0_loss
         if pv is None:
             raise AttributeError("I0_LOSS PV is not defined for this device")
+        # get_data_buffer requires PV name as string, not EPICS PV object
         data = buffer.get_data_buffer(self.controls_information.PVs.i0_loss.pvname)
         if data is None:
             raise BufferError("No data in buffer or PV not found")
@@ -107,6 +111,7 @@ class LBLM(Device):
         pv = self.controls_information.PVs.gated_integral
         if pv is None:
             raise BufferError("GATED_INTEGRAL PV is not defined for this device")
+        # get_data_buffer requires PV name as string, not EPICS PV object
         data = buffer.get_data_buffer(
             self.controls_information.PVs.gated_integral.pvname
         )
