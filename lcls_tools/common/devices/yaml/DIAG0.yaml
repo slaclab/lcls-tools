@@ -660,13 +660,34 @@ screens:
       - SC_DIAG0
       sum_l_meters: 61.871
       type: PROF
+tcavs:
+  TCXDG0:
+    controls_information:
+      PVs:
+        amp_fbenb: TCAV:DIAG0:11:AFBENB
+        amp_fbst: TCAV:DIAG0:11:AFBST
+        amp_set: TCAV:DIAG0:11:AREQ
+        mode_config: TCAV:DIAG0:11:MODECFG
+        phase_fbenb: TCAV:DIAG0:11:PFBENB
+        phase_fbst: TCAV:DIAG0:11:PFBST
+        phase_set: TCAV:DIAG0:11:PREQ
+        rf_enable: TCAV:DIAG0:11:RF_ENABLE
+      control_name: TCAV:DIAG0:11
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      l_eff: 0.508
+      rf_freq: 2856.0
+      sum_l_meters: 53.313
+      type: LCAV
 wires:
   WSDG01:
     controls_information:
       PVs:
         abort_scan: WIRE:DIAG0:424:MOTR.STOP
         motor: WIRE:DIAG0:424:MOTR
-        position: WIRE:DIAG0:424:MOTR.RBV
+        motor_rbv: WIRE:DIAG0:424:MOTR.RBV
         scan_pulses: WIRE:DIAG0:424:SCANPULSES
         speed: WIRE:DIAG0:424:MOTR.VELO
         speed_max: WIRE:DIAG0:424:MOTR.VMAX
