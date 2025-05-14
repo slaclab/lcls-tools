@@ -322,7 +322,193 @@ class QuadScanEmittance(Measurement):
 
 
 class MultiDeviceEmittance(Measurement):
-    name: str = "multi_device_emittance"
+    """Uses multiple profile monitors/wire scanners to perform an emittance measurement
+
+    Arguments:
+    ------------------------
+    energy: float
+        Beam energy in GeV
+
+    beamsize_measurements: List[BeamsizeMeasurement]
+        List of beamsize measurement objects from profile monitors/wire scanners
+
+    n_measurement_shots: int
+        number of beamsize measurements to make per individual quad strength
+
+    rmat: ndarray, optional
+        Transport matricies for the horizontal and vertical phase space from
+        the end of the scanning magnet to the screen, array shape should be 2 x 2 x 2 (
+        first element is the horizontal transport matrix, second is the vertical),
+        if not provided meme is used to calculate the transport matricies
+
+    design_twiss: dict[str, float], optional
+        Dictionary containing design twiss values with the following keys (`beta_x`,
+        `beta_y`, `alpha_x`, `alpha_y`) where the beta/alpha values are in units of [m]/[]
+        respectively
+
+    beam_sizes, dict[str, list[float]], optional
+        Dictionary contraining X-rms and Y-rms beam sizes (keys:`x_rms`,`y_rms`)
+        measured during the quadrupole scan in units of [m].
+
+    wait_time, float, optional
+        Wait time in seconds between making beamsize measurements.
+
+    Methods:
+    ------------------------
+    measure: gets the beam sizes at each beam size measurement device,
+    gets the rmat and twiss parameters, then computes and returns the emittance and BMAG
+
+    measure_beamsize: take measurement from measurement device, store beam sizes
+    """
+    energy: float
+    beamsize_measurements: list[Measurement]
+    _info: Optional[list] = []
+
+    rmat: Optional[ndarray] = None
+    design_twiss: Optional[dict] = None  # design twiss values
+
+    wait_time: PositiveFloat = 5.0
+
+    name: str = "quad_scan_emittance"
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+    @field_validator("rmat")
+    def validate_rmat(cls, v, info):
+        assert v.shape == (2, 2, 2)
+        return v
 
     def measure(self):
-        raise NotImplementedError("Multi-device emittance not yet implemented")
+        """
+        Conduct multiple beam size measurements to measure the beam phase space.
+
+        Returns:
+        -------
+        result : EmittanceMeasurementResult
+            Object containing the results of the emittance measurement
+        """
+
+        # measure beamsize for each beam profile device
+        self.perform_beamsize_measurements()
+
+        # extract beam sizes from info
+        beam_sizes = self._get_beamsizes_from_info()
+
+        # get transport matrix and design twiss values from meme
+        # TODO: get settings from arbitrary methods (ie. not meme)
+        '''
+        if self.rmat is None and self.design_twiss is None:
+            optics = get_optics(
+                self.magnet_name,
+                self.device_measurement.device.name,
+            )
+
+            self.rmat = optics["rmat"]
+            self.design_twiss = optics["design_twiss"]
+        '''
+
+        # organize data into arrays for use in `compute_emit_bmag`
+        # rmat = np.stack([self.rmat[0:2, 0:2], self.rmat[2:4, 2:4]])
+        if self.design_twiss:
+            twiss_betas_alphas = np.array(
+                [
+                    [self.design_twiss["beta_x"], self.design_twiss["alpha_x"]],
+                    [self.design_twiss["beta_y"], self.design_twiss["alpha_y"]],
+                ]
+            )
+
+        else:
+            twiss_betas_alphas = None
+
+        # fit scans independently for x/y
+        # only keep data that has non-nan beam sizes -- independent for x/y
+        results = {
+            "emittance": [],
+            "twiss_at_screen": [],
+            "beam_matrix": [],
+            "bmag": [] if twiss_betas_alphas is not None else None,
+            "quadrupole_focusing_strengths": [],
+            "quadrupole_pv_values": [],
+            "rms_beamsizes": [],
+        }
+
+        for i in range(2):
+            single_beam_size = beam_sizes[i][~np.isnan(beam_sizes[i])]
+            beam_size_squared = (single_beam_size * 1e3) ** 2
+            kmod = bdes_to_kmod(
+                self.energy, magnet_length, scan_values[i][~np.isnan(beam_sizes[i])]
+            )
+
+            # negate for y
+            if i == 1:
+                kmod = -1 * kmod
+
+            # compute emittance and bmag
+            result = compute_emit_bmag(
+                k=kmod,
+                beamsize_squared=beam_size_squared.T,
+                rmat=self.rmat[i],
+                twiss_design=twiss_betas_alphas[i]
+                if twiss_betas_alphas is not None
+                else None,
+            )
+
+            # add results to dict object
+            for name, value in result.items():
+                if name == "bmag" and value is None:
+                    continue
+                else:
+                    results[name].append(value)
+
+            results["rms_beamsizes"].append(single_beam_size)
+
+        results.update({"metadata": self.model_dump()})
+
+        # collect information into EmittanceMeasurementResult object
+        return EmittanceMeasurementResult(**results)
+
+    def measure_beamsizes(self):
+        """Take measurements from measurement devices,
+        store beam sizes in self.beam_sizes"""
+        if "x_rms" not in self.beam_sizes:
+            self.beam_sizes["x_rms"] = []
+        if "y_rms" not in self.beam_sizes:
+            self.beam_sizes["y_rms"] = []
+        for beamsize_measurement in self.beamsize_measurements:
+            time.sleep(self.wait_time)
+
+            results = beamsize_measurement.measure(self.n_measurement_shots)
+
+            sigmas = []
+            for ele in results["fit_results"]:
+                sigmas += [ele.rms_size]
+            sigmas = np.array(sigmas)
+
+            # note beamsizes here are in m
+            self.beam_sizes["x_rms"].append(
+                np.mean(sigmas[:, 0]) * beamsize_measurement.device.resolution * 1e-6)
+            self.beam_sizes["y_rms"].append(
+                np.mean(sigmas[:, 1]) * beamsize_measurement.device.resolution * 1e-6)
+
+            self._info += [results]
+
+    def perform_beamsize_measurements(self):
+        """Perform the beamsize measurements"""
+        for beamsize_measurement in self.beamsize_measurements:
+            time.sleep(self.wait_time)
+
+            result = beamsize_measurement.measure(self.n_measurement_shots)
+            self._info += [result]
+
+    def _get_beamsizes_from_info(self) -> ndarray:
+        """
+        Extract the mean rms beam sizes from the info list, units in meters.
+        """
+        beam_sizes = []
+        for result in self._info:
+            beam_sizes.append(
+                np.mean(result.rms_sizes, axis=0)
+                * self.beamsize_measurement.device.resolution
+                * 1e-6
+            )
+
+        return np.array(beam_sizes).T
