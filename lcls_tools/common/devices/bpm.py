@@ -68,6 +68,7 @@ class BPM(Device):
         pv = self.controls_information.PVs.x
         if pv is None:
             raise AttributeError("X PV is not defined for this device")
+        # get_data_buffer requires PV name as string, not EPICS PV object
         data = buffer.get_data_buffer(self.controls_information.PVs.x.pvname)
         if data is None:
             raise BufferError("No data found in buffer for X PV")
@@ -86,6 +87,7 @@ class BPM(Device):
         pv = self.controls_information.PVs.y
         if pv is None:
             raise AttributeError("Y PV is not defined for this device")
+        # get_data_buffer requires PV name as string, not EPICS PV object
         data = buffer.get_data_buffer(self.controls_information.PVs.y.pvname)
         if data is None:
             raise BufferError("No data found in buffer for Y PV")
@@ -104,6 +106,7 @@ class BPM(Device):
         pv = self.controls_information.PVs.tmit
         if pv is None:
             raise AttributeError("TMIT PV is not defined for this device")
+        # get_data_buffer requires PV name as string, not EPICS PV object
         data = buffer.get_data_buffer(self.controls_information.PVs.tmit.pvname)
         if data is None:
             raise BufferError("No data found in buffer for TMIT PV")
