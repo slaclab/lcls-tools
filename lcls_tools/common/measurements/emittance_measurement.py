@@ -466,31 +466,6 @@ class MultiDeviceEmittance(Measurement):
         # collect information into EmittanceMeasurementResult object
         return EmittanceMeasurementResult(**results)
 
-    def measure_beamsizes(self):
-        """Take measurements from measurement devices,
-        store beam sizes in self.beam_sizes"""
-        if "x_rms" not in self.beam_sizes:
-            self.beam_sizes["x_rms"] = []
-        if "y_rms" not in self.beam_sizes:
-            self.beam_sizes["y_rms"] = []
-        for beamsize_measurement in self.beamsize_measurements:
-            time.sleep(self.wait_time)
-
-            results = beamsize_measurement.measure(self.n_measurement_shots)
-
-            sigmas = []
-            for ele in results["fit_results"]:
-                sigmas += [ele.rms_size]
-            sigmas = np.array(sigmas)
-
-            # note beamsizes here are in m
-            self.beam_sizes["x_rms"].append(
-                np.mean(sigmas[:, 0]) * beamsize_measurement.device.resolution * 1e-6)
-            self.beam_sizes["y_rms"].append(
-                np.mean(sigmas[:, 1]) * beamsize_measurement.device.resolution * 1e-6)
-
-            self._info += [results]
-
     def perform_beamsize_measurements(self):
         """Perform the beamsize measurements"""
         for beamsize_measurement in self.beamsize_measurements:
