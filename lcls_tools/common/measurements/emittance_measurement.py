@@ -12,13 +12,16 @@ from pydantic import (
     field_validator,
     PositiveFloat,
 )
+import yaml
 
 from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
+from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement, ScreenBeamProfileMeasurementResult
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 import lcls_tools
+from lcls_tools.common.measurements.wire_scan import WireBeamProfileMeasurement, WireBeamProfileMeasurementResult
 
 
 class BMAGMode(enum.IntEnum):
@@ -204,7 +207,10 @@ class QuadScanEmittance(Measurement):
         self.perform_beamsize_measurements()
 
         # extract beam sizes from info
-        scan_values, beam_sizes = self._get_beamsizes_scan_values_from_info()
+        beam_sizes = self._get_beamsizes_scan_values_from_info()
+
+        # get scan values and extend for each direction
+        scan_values = np.tile(np.array(self.scan_values), (2, 1))
 
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
@@ -300,25 +306,31 @@ class QuadScanEmittance(Measurement):
         """
         time.sleep(self.wait_time)
 
-        result = self.beamsize_measurement.measure(self.n_measurement_shots)
+        if isinstance(self.beamsize_measurement, ScreenBeamProfileMeasurement):
+            result = self.beamsize_measurement.measure(self.n_measurement_shots)
+        elif isinstance(self.beamsize_measurement, WireBeamProfileMeasurement):
+            result = self.beamsize_measurement.measure()
         self._info += [result]
 
-    def _get_beamsizes_scan_values_from_info(self) -> ndarray:
+    def _get_beamsizes_from_info(self) -> ndarray:
         """
         Extract the mean rms beam sizes from the info list, units in meters.
         """
         beam_sizes = []
         for result in self._info:
-            beam_sizes.append(
-                np.mean(result.rms_sizes, axis=0)
-                * self.beamsize_measurement.device.resolution
-                * 1e-6
-            )
+            if isinstance(result, ScreenBeamProfileMeasurementResult):
+                beam_sizes.append(
+                    np.mean(result.rms_sizes, axis=0)
+                    * 1e-6 # convert microns to meters
+                )
+            elif isinstance(result, WireBeamProfileMeasurementResult):
+                with open("../devices/yaml/wire_lblms.yaml", "r") as wire_lblms_yaml:
+                    wire_lblms = yaml.safe_load(wire_lblms_yaml)
+                wire = result.metadata["my_wire"].name
+                lblm = wire_lblms[wire]
+                beam_sizes.append(result.rms_sizes[lblm] * 1e-6)
 
-        # get scan values and extend for each direction
-        scan_values = np.tile(np.array(self.scan_values), (2, 1))
-
-        return scan_values, np.array(beam_sizes).T
+        return np.array(beam_sizes).T
 
 
 class MultiDeviceEmittance(Measurement):
@@ -362,6 +374,7 @@ class MultiDeviceEmittance(Measurement):
     """
     energy: float
     beamsize_measurements: list[Measurement]
+    n_measurement_shots: PositiveInt = 1
     _info: Optional[list] = []
 
     rmat: Optional[ndarray] = None
@@ -471,7 +484,10 @@ class MultiDeviceEmittance(Measurement):
         for beamsize_measurement in self.beamsize_measurements:
             time.sleep(self.wait_time)
 
-            result = beamsize_measurement.measure(self.n_measurement_shots)
+            if isinstance(beamsize_measurement, ScreenBeamProfileMeasurement):
+                result = beamsize_measurement.measure(self.n_measurement_shots)
+            elif isinstance(beamsize_measurement, WireBeamProfileMeasurement):
+                result = beamsize_measurement.measure()
             self._info += [result]
 
     def _get_beamsizes_from_info(self) -> ndarray:
@@ -480,10 +496,16 @@ class MultiDeviceEmittance(Measurement):
         """
         beam_sizes = []
         for result in self._info:
-            beam_sizes.append(
-                np.mean(result.rms_sizes, axis=0)
-                * self.beamsize_measurement.device.resolution
-                * 1e-6
-            )
+            if isinstance(result, ScreenBeamProfileMeasurementResult):
+                beam_sizes.append(
+                    np.mean(result.rms_sizes, axis=0)
+                    * 1e-6 # convert microns to meters
+                )
+            elif isinstance(result, WireBeamProfileMeasurementResult):
+                with open("../devices/yaml/wire_lblms.yaml", "r") as wire_lblms_yaml:
+                    wire_lblms = yaml.safe_load(wire_lblms_yaml)
+                wire = result.metadata["my_wire"].name
+                lblm = wire_lblms[wire]
+                beam_sizes.append(result.rms_sizes[lblm] * 1e-6)
 
         return np.array(beam_sizes).T
