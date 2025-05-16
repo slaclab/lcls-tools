@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 
 
 def get_magnet_controls_information(magnet_names: List[str] = None):
@@ -15,7 +15,7 @@ def get_magnet_controls_information(magnet_names: List[str] = None):
     return {}
 
 
-def get_screen_controls_information(screen_names: List[str] = None):
+def get_screen_controls_information(yaml_devices: Dict):
     # return a data structure of the form:
     # {
     #  scr-name-1 : {controls-information-field-1 : value-1, controls-information-field-2 : value-2, ...},
@@ -24,10 +24,9 @@ def get_screen_controls_information(screen_names: List[str] = None):
     # }
 
     # Stuff like Device-Position mappings for motor/ladder-based screens
-    if screen_names:
-        raise NotImplementedError(
-            "No method of getting additional controls_information for screens."
-        )
+
+    print(yaml_devices)
+
     return {}
 
 
