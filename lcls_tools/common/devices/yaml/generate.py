@@ -1,4 +1,5 @@
 import csv
+import yaml
 import os
 from typing import Any, Union, List, Dict, Optional
 import meme.names
@@ -25,8 +26,10 @@ class YAMLGenerator:
     def __init__(
         self,
         csv_location="./lcls_tools/common/devices/yaml/lcls_elements.csv",
+        filter_location="./lcls_tools/common/devices/yaml/config/filter.yaml",
     ):
         self.csv_location = csv_location
+        self.filter_location = filter_location
         if not os.path.isfile(csv_location):
             raise FileNotFoundError(f"Could not find {csv_location}")
         self._required_fields = [
@@ -43,20 +46,33 @@ class YAMLGenerator:
 
     def _filter_elements_by_fields(self, required_fields: List[str]) -> Dict[str, Any]:
         csv_reader = None
-        with open(self.csv_location, "r") as file:
+        with (open(self.csv_location, "r") as file_csv,
+              open(self.filter_location, "r") as file_filter):
             # convert csv file into dictionary for filtering
-            csv_reader = csv.DictReader(f=file)
+            csv_reader = csv.DictReader(f=file_csv)
+            filter_dict = yaml.safe_load(file_filter)
+
+            def _is_filtered_row(element: dict):
+                released = True
+                for key in (set(filter_dict.keys()) & set(element.keys())):
+                    value = element[key]
+                    for prefix in filter_dict[key]:
+                        released &= not value.startswith(prefix)
+                return released
+
+            elements = list(filter(_is_filtered_row, csv_reader))
 
             # make the elements from csv stripped out with only information we need
             def _is_required_field(pair: tuple):
-                key, _ = pair
+                key, value = pair
                 return key in required_fields
 
             # only store the required fields from lcls_elements, there are lots more!
             elements = [
                 dict(filter(_is_required_field, element.items()))
-                for element in csv_reader
+                for element in elements
             ]
+
         if not elements:
             raise RuntimeError(
                 "Did not generate elements, please look at lcls_elements.csv."
