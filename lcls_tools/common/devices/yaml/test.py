@@ -3,15 +3,16 @@ import yaml
 
 csv_location = "lcls_elements.csv"
 filter_location = "./config/filter.yaml"
-required_fields = ["Element",
-                   "Control System Name",
-                   "Area",
-                   "Keyword",
-                   "Beampath",
-                   "SumL (m)"]
+required_fields = [
+    "Element",
+    "Control System Name",
+    "Area",
+    "Keyword",
+    "Beampath",
+    "SumL (m)",
+]
 
-with (open(csv_location, "r") as file_csv,
-      open(filter_location, "r") as file_filter):
+with open(csv_location, "r") as file_csv, open(filter_location, "r") as file_filter:
     # convert csv file into dictionary for filtering
     csv_reader = csv.DictReader(f=file_csv)
     filter_dict = yaml.safe_load(file_filter)
@@ -28,8 +29,7 @@ with (open(csv_location, "r") as file_csv,
 
     # only store the required fields from lcls_elements, there are lots more!
     elements = [
-        dict(filter(_is_required_field, element.items()))
-        for element in csv_reader
+        dict(filter(_is_required_field, element.items())) for element in csv_reader
     ]
 
 for e in elements:

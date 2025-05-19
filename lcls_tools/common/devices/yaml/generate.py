@@ -46,15 +46,17 @@ class YAMLGenerator:
 
     def _filter_elements_by_fields(self, required_fields: List[str]) -> Dict[str, Any]:
         csv_reader = None
-        with (open(self.csv_location, "r") as file_csv,
-              open(self.filter_location, "r") as file_filter):
+        with (
+            open(self.csv_location, "r") as file_csv,
+            open(self.filter_location, "r") as file_filter,
+        ):
             # convert csv file into dictionary for filtering
             csv_reader = csv.DictReader(f=file_csv)
             filter_dict = yaml.safe_load(file_filter)
 
             def _is_filtered_row(element: dict):
                 released = True
-                for key in (set(filter_dict.keys()) & set(element.keys())):
+                for key in set(filter_dict.keys()) & set(element.keys()):
                     value = element[key]
                     for prefix in filter_dict[key]:
                         released &= not value.startswith(prefix)
