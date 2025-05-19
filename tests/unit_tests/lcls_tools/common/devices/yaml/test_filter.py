@@ -9,7 +9,7 @@ class TestFilter(unittest.TestCase):
     def tearDown(self) -> None:
         return super().tearDown()
 
-    def test_filter_no_area(self):
+    def test_filter_bad_prefix(self):
         csv_location = "tests/datasets/devices/yaml/DIAG0_only_good_element.csv"
         filter_location = "tests/datasets/devices/yaml/filter_stars.yaml"
         generator = g.YAMLGenerator(
