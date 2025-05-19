@@ -10,7 +10,6 @@ from pydantic import SerializeAsAny, BaseModel, ConfigDict, model_validator
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
-import pandas as pd
 from typing_extensions import Self
 
 
@@ -170,8 +169,9 @@ class WireBeamProfileMeasurement(Measurement):
             dict: A mapping of device names to device objects.
         """
         devices = {f"{self.my_wire.name}": self.my_wire}
-        for lblm in self.my_wire.metadata.lblms:
-            if lblm == "TMITLOSS":
+        for lblm_str in self.my_wire.metadata.lblms:
+            name, area = lblm_str.split(":")
+            if name == "TMITLOSS":
                 devices["TMITLOSS"] = TMITLoss(
                     my_buffer=self.my_buffer,
                     my_wire=self.my_wire,
@@ -179,7 +179,7 @@ class WireBeamProfileMeasurement(Measurement):
                     region=self.my_wire.area,
                 )
             else:
-                devices[lblm] = create_lblm(area=f"{self.my_wire.area}", name=lblm)
+                devices[name] = create_lblm(area=area, name=name)
         return devices
 
     def scan_with_wire(self):
@@ -222,16 +222,14 @@ class WireBeamProfileMeasurement(Measurement):
             print(f"Wire position: {self.my_wire.motor_rbv}")
         print("BSA buffer data acquisition complete!")
 
-        # Get buffer data and put into results dictionary
-        self.data[f"{self.my_wire.name}"] = self.my_wire.position_buffer(self.my_buffer)
-
         if self.beampath.startswith("SC"):
-            for lblm in self.my_wire.metadata.lblms:
-                if lblm == "TMITLOSS":
-                    print("Calculating TMIT Loss...")
-                    self.data["TMITLOSS"] = self.devices["TMITLOSS"].measure()
+            for device in self.devices:
+                if device == self.my_wire.name:
+                    self.data[device] = self.my_wire.position_buffer(self.my_buffer)
+                elif device == "TMITLOSS":
+                    self.data[device] = self.devices[device].measure()
                 else:
-                    self.data[lblm] = self.devices[lblm].fast_buffer(self.my_buffer)
+                    self.data[device] = self.devices[device].fast_buffer(self.my_buffer)
         elif self.beampath.startswith("CU"):
             # CU LBLMs use "QDCRAW" signal
             self.data.update(
@@ -274,22 +272,14 @@ class WireBeamProfileMeasurement(Measurement):
                 (position_data >= ranges[plane][0])
                 & (position_data <= ranges[plane][1])
             )[0]
-            # Get only sequential non-decreasing indices to avoid picking up
-            # wire retraction
-            # data, ex. [100, 101, 102] not [101, 102, 103, 304, 305, 306]
-            chunks = np.split(idx, np.where(np.diff(idx) != 1)[0] + 1)
 
-            # Only keep chunks that are larger than 0
-            seq_idxs[plane] = [chunk for chunk in chunks if len(chunk) > 0]
+            pos = position_data[idx]
+            mono_mask = np.diff(pos) >= 0
+            mono_mask = np.concatenate(([True], mono_mask))
 
-            # If two chunks are returned, only keep the first one
-            if len(seq_idxs[plane]) >= 2:
-                seq_idxs[plane] = seq_idxs[plane][0]
+            mono_idx = idx[mono_mask]
 
-            # If an empty index is returned (e.g., wire didn't make
-            # it to X plane), then an empty index list will be returned
-            # If successful, a numpy.ndarray will be returned
-            seq_idxs = {k: v for k, v in seq_idxs.items()}
+            seq_idxs[plane] = mono_idx
 
         return seq_idxs
 
@@ -310,9 +300,6 @@ class WireBeamProfileMeasurement(Measurement):
         devices = list(self.data.keys())
 
         for device in devices:
-            # TMIT Loss returns as a pd.Series, so convert to numpy first
-            if isinstance(self.data[device], pd.Series):
-                self.data[device] = self.data[device].to_numpy()
             device_data = self.data[device]
             for plane in planes:
                 # Separate out device data by plane
