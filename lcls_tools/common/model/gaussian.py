@@ -13,8 +13,8 @@ class mean(optimize.Parameter):
     bounds = (0, 1)
 
     @staticmethod
-    def init(x, y):
-        return np.average(x, weights=y)
+    def init(pos, data):
+        return np.average(pos, weights=data)
 
     @staticmethod
     def prior(mean, mean_0):
@@ -31,8 +31,8 @@ class sigma(optimize.Parameter):
     bounds = (1e-10, None)
 
     @staticmethod
-    def init(x, y):
-        return np.sqrt(np.cov(x, aweights=y))
+    def init(pos, data):
+        return np.sqrt(np.cov(pos, aweights=data))
 
     @staticmethod
     def prior(sigma, sigma_0):
@@ -49,8 +49,8 @@ class amplitude(optimize.Parameter):
     bounds = (0, 1)
 
     @staticmethod
-    def init(x, y):
-        return y.max() - y.min()
+    def init(pos, data):
+        return data.max() - data.min()
 
     @staticmethod
     def prior(amp, amp_0):
@@ -70,8 +70,8 @@ class offset(optimize.Parameter):
     bounds = (0, 1)
 
     @staticmethod
-    def init(x, y):
-        return y.min()
+    def init(pos, data):
+        return data.min()
 
     @staticmethod
     def prior(off, off_0):
