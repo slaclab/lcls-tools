@@ -50,7 +50,7 @@ def get_wire_metadata(wire_names: List[str] = []):
     #  scr-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    htr_lblms = ["LBLM01A", "LBLM01B"]
+    htr_lblms = ["LBLM01A:HTR", "LBLM01B:HTR"]
     htr_tmit_before = ["BPMS:GUNB:925", "BPMS:HTR:120", "BPMS:HTR:320"]
     htr_tmit_after = [
         "BPMS:HTR:760",
@@ -58,7 +58,7 @@ def get_wire_metadata(wire_names: List[str] = []):
         "BPMS:HTR:860",
         "BPMS:HTR:960",
     ]
-    diag0_lblms = ["SBLM01A"]
+    diag0_lblms = ["SBLM01A:DIAG0"]
     diag0_tmit_before = [
         "BPMS:DIAG0:190",
         "BPMS:DIAG0:210",
@@ -70,7 +70,7 @@ def get_wire_metadata(wire_names: List[str] = []):
         "BPMS:DIAG0:390",
     ]
     diag0_tmit_after = ["BPMS:DIAG0:470", "BPMS:DIAG0:520"]
-    col1_lblms = ["LBLM03A", "LBLM04A", "TMITLOSS"]
+    col1_lblms = ["LBLM03A:L1B", "LBLM04A:L2B", "TMITLOSS:COL1"]
     col1_tmit_before = [
         "BPMS:BC1B:125",
         "BPMS:BC1B:440",
@@ -89,7 +89,7 @@ def get_wire_metadata(wire_names: List[str] = []):
         "BPMS:SPD:420",
         "BPMS:SPD:525",
     ]
-    emit2_lblms = ["LBLM04A", "LBLM07A", "TMITLOSS"]
+    emit2_lblms = ["LBLM04A:L2B", "LBLM07A:L3B", "TMITLOSS:EMIT2"]
     emit2_tmit_before = [
         "BPMS:BC2B:150",
         "BPMS:BC2B:530",
@@ -104,7 +104,7 @@ def get_wire_metadata(wire_names: List[str] = []):
         "BPMS:SLTS:430",
         "BPMS:SLTS:460",
     ]
-    byp_lblms = ["LBLM11A_1", "LBLM11A_2", "LBLM11A_3", "TMITLOSS"]
+    byp_lblms = ["LBLM11A_1:BYP", "LBLM11A_2:BYP", "LBLM11A_3:BYP", "TMITLOSS:BYP"]
     byp_tmit_before = [
         "BPMS:L3B:3583",
         "BPMS:EXT:351",
@@ -137,7 +137,7 @@ def get_wire_metadata(wire_names: List[str] = []):
         "BPMS:SPD:700",
         "BPMS:SPD:955",
     ]
-    spd_lblms = ["LBLM22A"]
+    spd_lblms = ["LBLM22A:SPS"]
     spd_tmit_before = [
         "BPMS:SPD:135",
         "BPMS:SPD:255",
@@ -148,8 +148,8 @@ def get_wire_metadata(wire_names: List[str] = []):
     ]
     spd_tmit_after = ["BPMS:SPD:700", "BPMS:SPD:955", "BPMS:SLTD:625"]
     ltus_lblms = [
-        "LBLMS32A",
-        "TMITLOSS",
+        "LBLMS32A:LTUS",
+        "TMITLOSS:LTUS",
     ]
     ltus_tmit_before = [
         "BPMS:BPN27:400",
