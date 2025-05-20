@@ -62,7 +62,7 @@ class YAMLGenerator:
                         released &= not value.startswith(prefix)
                 return released
 
-            elements = list(filter(_is_filtered_row, csv_reader))
+            element_list = list(filter(_is_filtered_row, csv_reader))
 
             # make the elements from csv stripped out with only information we need
             def _is_required_field(pair: tuple):
@@ -70,16 +70,16 @@ class YAMLGenerator:
                 return key in required_fields
 
             # only store the required fields from lcls_elements, there are lots more!
-            elements = [
+            element_list = [
                 dict(filter(_is_required_field, element.items()))
-                for element in elements
+                for element in element_list
             ]
 
-        if not elements:
+        if not element_list:
             raise RuntimeError(
                 "Did not generate elements, please look at lcls_elements.csv."
             )
-        return elements
+        return element_list
 
     def extract_areas(self) -> list:
         areas = []
