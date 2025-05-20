@@ -813,7 +813,7 @@ wires:
         initialize: WIRE:COL1:360:MOTR_INIT
         initialize_status: WIRE:COL1:360:MOTR_INIT_STS
         motor: WIRE:COL1:360:MOTR
-        position: WIRE:COL1:360:MOTR.RBV
+        motor_rbv: WIRE:COL1:360:MOTR.RBV
         retract: WIRE:COL1:360:MOTR_RETRACT
         scan_pulses: WIRE:COL1:360:SCANPULSES
         speed: WIRE:COL1:360:MOTR.VELO
@@ -846,6 +846,26 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      bpms_before_wire:
+      - BPMS:BC1B:125
+      - BPMS:BC1B:440
+      - BPMS:COL1:120
+      - BPMS:COL1:260
+      - BPMS:COL1:280
+      - BPMS:COL1:320
+      lblms:
+      - LBLM03A
+      - LBLM04A
+      - TMITLOSS
       sum_l_meters: 154.52
       type: WIRE
   WSC106:
@@ -857,7 +877,7 @@ wires:
         initialize: WIRE:COL1:520:MOTR_INIT
         initialize_status: WIRE:COL1:520:MOTR_INIT_STS
         motor: WIRE:COL1:520:MOTR
-        position: WIRE:COL1:520:MOTR.RBV
+        motor_rbv: WIRE:COL1:520:MOTR.RBV
         retract: WIRE:COL1:520:MOTR_RETRACT
         scan_pulses: WIRE:COL1:520:SCANPULSES
         speed: WIRE:COL1:520:MOTR.VELO
@@ -889,6 +909,26 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      bpms_before_wire:
+      - BPMS:BC1B:125
+      - BPMS:BC1B:440
+      - BPMS:COL1:120
+      - BPMS:COL1:260
+      - BPMS:COL1:280
+      - BPMS:COL1:320
+      lblms:
+      - LBLM03A
+      - LBLM04A
+      - TMITLOSS
       sum_l_meters: 162.52
       type: WIRE
   WSC108:
@@ -900,7 +940,7 @@ wires:
         initialize: WIRE:COL1:680:MOTR_INIT
         initialize_status: WIRE:COL1:680:MOTR_INIT_STS
         motor: WIRE:COL1:680:MOTR
-        position: WIRE:COL1:680:MOTR.RBV
+        motor_rbv: WIRE:COL1:680:MOTR.RBV
         retract: WIRE:COL1:680:MOTR_RETRACT
         scan_pulses: WIRE:COL1:680:SCANPULSES
         speed: WIRE:COL1:680:MOTR.VELO
@@ -933,6 +973,26 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      bpms_before_wire:
+      - BPMS:BC1B:125
+      - BPMS:BC1B:440
+      - BPMS:COL1:120
+      - BPMS:COL1:260
+      - BPMS:COL1:280
+      - BPMS:COL1:320
+      lblms:
+      - LBLM03A
+      - LBLM04A
+      - TMITLOSS
       sum_l_meters: 170.52
       type: WIRE
   WSC110:
@@ -944,7 +1004,7 @@ wires:
         initialize: WIRE:COL1:840:MOTR_INIT
         initialize_status: WIRE:COL1:840:MOTR_INIT_STS
         motor: WIRE:COL1:840:MOTR
-        position: WIRE:COL1:840:MOTR.RBV
+        motor_rbv: WIRE:COL1:840:MOTR.RBV
         retract: WIRE:COL1:840:MOTR_RETRACT
         scan_pulses: WIRE:COL1:840:SCANPULSES
         speed: WIRE:COL1:840:MOTR.VELO
@@ -977,5 +1037,25 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPD:420
+      - BPMS:SPD:525
+      bpms_before_wire:
+      - BPMS:BC1B:125
+      - BPMS:BC1B:440
+      - BPMS:COL1:120
+      - BPMS:COL1:260
+      - BPMS:COL1:280
+      - BPMS:COL1:320
+      lblms:
+      - LBLM03A
+      - LBLM04A
+      - TMITLOSS
       sum_l_meters: 178.52
       type: WIRE

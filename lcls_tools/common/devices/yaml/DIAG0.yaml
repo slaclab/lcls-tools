@@ -661,7 +661,7 @@ screens:
       sum_l_meters: 61.871
       type: PROF
 tcavs:
- TCXDG0:
+  TCXDG0:
     controls_information:
       PVs:
         amp_fbenb: TCAV:DIAG0:11:AFBENB
@@ -687,7 +687,7 @@ wires:
       PVs:
         abort_scan: WIRE:DIAG0:424:MOTR.STOP
         motor: WIRE:DIAG0:424:MOTR
-        position: WIRE:DIAG0:424:MOTR.RBV
+        motor_rbv: WIRE:DIAG0:424:MOTR.RBV
         scan_pulses: WIRE:DIAG0:424:SCANPULSES
         speed: WIRE:DIAG0:424:MOTR.VELO
         speed_max: WIRE:DIAG0:424:MOTR.VMAX

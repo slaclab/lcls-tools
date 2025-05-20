@@ -1050,7 +1050,7 @@ wires:
         initialize: WIRE:HTR:340:MOTR_INIT
         initialize_status: WIRE:HTR:340:MOTR_INIT_STS
         motor: WIRE:HTR:340:MOTR
-        position: WIRE:HTR:340:MOTR.RBV
+        motor_rbv: WIRE:HTR:340:MOTR.RBV
         retract: WIRE:HTR:340:MOTR_RETRACT
         scan_pulses: WIRE:HTR:340:SCANPULSES
         speed: WIRE:HTR:340:MOTR.VELO
@@ -1084,5 +1084,17 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:HTR:760
+      - BPMS:HTR:830
+      - BPMS:HTR:860
+      - BPMS:HTR:960
+      bpms_before_wire:
+      - BPMS:GUNB:925
+      - BPMS:HTR:120
+      - BPMS:HTR:320
+      lblms:
+      - LBLM01A
+      - LBLM01B
       sum_l_meters: 24.589
       type: WIRE

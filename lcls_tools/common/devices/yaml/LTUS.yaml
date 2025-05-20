@@ -2757,7 +2757,7 @@ wires:
         initialize: WIRE:LTUS:715:MOTR_INIT
         initialize_status: WIRE:LTUS:715:MOTR_INIT_STS
         motor: WIRE:LTUS:715:MOTR
-        position: WIRE:LTUS:715:MOTR.RBV
+        motor_rbv: WIRE:LTUS:715:MOTR.RBV
         retract: WIRE:LTUS:715:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:715:SCANPULSES
         speed: WIRE:LTUS:715:MOTR.VELO
@@ -2788,6 +2788,29 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:DMPS:381
+      - BPMS:DMPS:502
+      - BPMS:DMPS:693
+      bpms_before_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPS:572
+      - BPMS:SPS:580
+      - BPMS:SPS:640
+      - BPMS:SPS:710
+      - BPMS:SPS:770
+      - BPMS:SPS:780
+      - BPMS:SPS:830
+      - BPMS:SPS:840
+      - BPMS:SLTS:150
+      lblms:
+      - LBLMS32A
+      - TMITLOSS
       sum_l_meters: 3434.508
       type: WIRE
   WS32B:
@@ -2799,7 +2822,7 @@ wires:
         initialize: WIRE:LTUS:735:MOTR_INIT
         initialize_status: WIRE:LTUS:735:MOTR_INIT_STS
         motor: WIRE:LTUS:735:MOTR
-        position: WIRE:LTUS:735:MOTR.RBV
+        motor_rbv: WIRE:LTUS:735:MOTR.RBV
         retract: WIRE:LTUS:735:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:735:SCANPULSES
         speed: WIRE:LTUS:735:MOTR.VELO
@@ -2830,6 +2853,29 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:DMPS:381
+      - BPMS:DMPS:502
+      - BPMS:DMPS:693
+      bpms_before_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPS:572
+      - BPMS:SPS:580
+      - BPMS:SPS:640
+      - BPMS:SPS:710
+      - BPMS:SPS:770
+      - BPMS:SPS:780
+      - BPMS:SPS:830
+      - BPMS:SPS:840
+      - BPMS:SLTS:150
+      lblms:
+      - LBLMS32A
+      - TMITLOSS
       sum_l_meters: 3469.772
       type: WIRE
   WS33B:
@@ -2841,7 +2887,7 @@ wires:
         initialize: WIRE:LTUS:755:MOTR_INIT
         initialize_status: WIRE:LTUS:755:MOTR_INIT_STS
         motor: WIRE:LTUS:755:MOTR
-        position: WIRE:LTUS:755:MOTR.RBV
+        motor_rbv: WIRE:LTUS:755:MOTR.RBV
         retract: WIRE:LTUS:755:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:755:SCANPULSES
         speed: WIRE:LTUS:755:MOTR.VELO
@@ -2872,6 +2918,29 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:DMPS:381
+      - BPMS:DMPS:502
+      - BPMS:DMPS:693
+      bpms_before_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPS:572
+      - BPMS:SPS:580
+      - BPMS:SPS:640
+      - BPMS:SPS:710
+      - BPMS:SPS:770
+      - BPMS:SPS:780
+      - BPMS:SPS:830
+      - BPMS:SPS:840
+      - BPMS:SLTS:150
+      lblms:
+      - LBLMS32A
+      - TMITLOSS
       sum_l_meters: 3505.035
       type: WIRE
   WS34B:
@@ -2883,7 +2952,7 @@ wires:
         initialize: WIRE:LTUS:785:MOTR_INIT
         initialize_status: WIRE:LTUS:785:MOTR_INIT_STS
         motor: WIRE:LTUS:785:MOTR
-        position: WIRE:LTUS:785:MOTR.RBV
+        motor_rbv: WIRE:LTUS:785:MOTR.RBV
         retract: WIRE:LTUS:785:MOTR_RETRACT
         scan_pulses: WIRE:LTUS:785:SCANPULSES
         speed: WIRE:LTUS:785:MOTR.VELO
@@ -2914,5 +2983,28 @@ wires:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      bpms_after_wire:
+      - BPMS:DMPS:381
+      - BPMS:DMPS:502
+      - BPMS:DMPS:693
+      bpms_before_wire:
+      - BPMS:BPN27:400
+      - BPMS:BPN28:200
+      - BPMS:BPN28:400
+      - BPMS:SPD:135
+      - BPMS:SPD:255
+      - BPMS:SPD:340
+      - BPMS:SPS:572
+      - BPMS:SPS:580
+      - BPMS:SPS:640
+      - BPMS:SPS:710
+      - BPMS:SPS:770
+      - BPMS:SPS:780
+      - BPMS:SPS:830
+      - BPMS:SPS:840
+      - BPMS:SLTS:150
+      lblms:
+      - LBLMS32A
+      - TMITLOSS
       sum_l_meters: 3540.299
       type: WIRE
