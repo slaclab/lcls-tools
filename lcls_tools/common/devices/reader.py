@@ -175,6 +175,22 @@ def create_tcav(area: str = None, name: str = None) -> Union[None, TCAV]:
 
 
 def create_area(area: str = None) -> Union[None, Area]:
+    """
+    Constructs an Area object from YAML device configuration data.
+
+    This function loads device metadata from a YAML file associated with the
+    specified area and attempts to instantiate an Area object using that data.
+    Each Area includes all devices defined in its YAML file (e.g., BPMs, LBLMs, Wires).
+    If the YAML data is missing or fails Pydantic validation, the function returns None.
+
+    Parameters:
+        area (str): The name of the area to load. Must match a valid YAML file
+                    containing device definitions.
+
+    Returns:
+        Area: An Area object with all valid devices instantiated.
+        None: If the YAML data is missing or contains validation errors.
+    """
     yaml_data = _device_data(area=area)
     if not yaml_data:
         return None
@@ -198,9 +214,23 @@ def _flatten(nested_list):
 
 
 def create_beampath(beampath: str = None) -> Union[None, Beampath]:
-    # load beampath yaml file to get all areas in beampath
-    # create Area class for each area
-    # add them to dict with key as Area name and value as Area object.
+    """
+    Constructs a Beampath object from a YAML configuration file.
+
+    This function reads a YAML file containing beampath definitions, flattens
+    the list of associated areas for the specified beampath, and attempts to
+    instantiate an Area object for each one. If successful, it returns a
+    Beampath object containing all constructed Area instances.  Each Area object, in turn,
+    instantiates all devices defined within that area.
+
+    Parameters:
+        beampath (str): The name of the beampath to load. Must exist as a key
+                        in the beampaths.yaml file.
+
+    Returns:
+        Beampath: A Beampath object containing all valid Area instances.
+        None: If the beampath name is not found or if any area cannot be created.
+    """
     beampath_definition_file = os.path.join(DEFAULT_YAML_LOCATION, "beampaths.yaml")
     beampath_definitions = {}
     areas = {}
@@ -228,23 +258,3 @@ def create_beampath(beampath: str = None) -> Union[None, Beampath]:
             ". Please try a different beampath.",
         )
         return None
-
-
-def load_full_beampath(beampath: str):
-    beampaths_location = _find_yaml_file(beampath=beampath)
-    with open(beampaths_location, "r") as file:
-        beampaths = yaml.safe_load(file)
-
-    areas_nested = beampaths.get(beampath)
-    if areas_nested is None:
-        raise ValueError(f"Beampath '{beampath}' not found in {beampaths_location}")
-
-    area_names = list(_flatten(areas_nested))
-    beampath_data = {}
-
-    for area in area_names:
-        device_data = _device_data(area=area)
-        if device_data is not None:
-            beampath_data[area] = device_data
-
-    return beampath_data
