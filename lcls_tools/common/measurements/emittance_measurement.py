@@ -485,3 +485,4 @@ class MultiDeviceEmittance(EmittanceMeasurementBase):
     
     def _get_rmat_and_design_twiss(self):
         # TODO: write for multi device measurement
+        pass
