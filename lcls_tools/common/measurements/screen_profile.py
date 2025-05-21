@@ -25,9 +25,9 @@ class ScreenBeamProfileMeasurementResult(lcls_tools.common.BaseModel):
     processed_images : ndarray
         Numpy array of processed images taken during the measurement
     rms_sizes : ndarray
-        Numpy array of rms sizes of the beam in pixel units.
+        Numpy array of rms sizes of the beam in microns.
     centroids : ndarray
-        Numpy array of centroids of the beam in pixel units.
+        Numpy array of centroids of the beam in microns.
     total_intensities : ndarray
         Numpy array of total intensities of the beam.
     metadata : Any
@@ -96,8 +96,8 @@ class ScreenBeamProfileMeasurement(Measurement):
             total_intensities = []
             for image in processed_images:
                 fit_result = self.beam_fit.fit_image(image)
-                rms_sizes.append(fit_result.rms_size)
-                centroids.append(fit_result.centroid)
+                rms_sizes.append(fit_result.rms_size * self.device.resolution) # units of microns
+                centroids.append(fit_result.centroid * self.device.resolution)
                 total_intensities.append(fit_result.total_intensity)
 
         return ScreenBeamProfileMeasurementResult(
