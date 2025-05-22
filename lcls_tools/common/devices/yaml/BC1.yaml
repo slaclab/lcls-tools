@@ -695,7 +695,7 @@ wires:
         initialize: WIRE:LI21:301:MOTR_INIT
         initialize_status: WIRE:LI21:301:MOTR_INIT_STS
         motor: WIRE:LI21:301:MOTR
-        position: WIRE:LI21:301:MOTR.RBV
+        motor_rbv: WIRE:LI21:301:MOTR.RBV
         retract: WIRE:LI21:301:MOTR_RETRACT
         scan_pulses: WIRE:LI21:301:SCANPULSES
         speed: WIRE:LI21:301:MOTR.VELO

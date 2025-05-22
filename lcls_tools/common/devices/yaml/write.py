@@ -53,6 +53,13 @@ class YAMLWriter:
         if bpms:
             file_contents["bpms"] = bpms
 
+        # Generate BPM content
+        tcavs = self.generator.extract_tcavs(
+            area=area,
+        )
+        if tcavs and area == "DIAG0":
+            file_contents["tcavs"] = tcavs
+
         if file_contents:
             return file_contents
         return None

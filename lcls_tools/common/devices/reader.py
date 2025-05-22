@@ -7,6 +7,7 @@ from lcls_tools.common.devices.magnet import Magnet, MagnetCollection
 from lcls_tools.common.devices.wire import Wire, WireCollection
 from lcls_tools.common.devices.lblm import LBLM, LBLMCollection
 from lcls_tools.common.devices.bpm import BPM, BPMCollection
+from lcls_tools.common.devices.tcav import TCAV
 from lcls_tools.common.devices.area import Area
 from lcls_tools.common.devices.beampath import Beampath
 
@@ -20,7 +21,7 @@ def _find_yaml_file(
     if area:
         filename = area + ".yaml"
     if beampath:
-        filename = "beam_paths.yaml"
+        filename = "beampaths.yaml"
 
     path = os.path.join(DEFAULT_YAML_LOCATION, filename)
     if os.path.isfile(path):
@@ -159,6 +160,20 @@ def create_bpm(area: str = None, name: str = None) -> Union[None, BPM, BPMCollec
         return BPMCollection(**device_data)
 
 
+def create_tcav(area: str = None, name: str = None) -> Union[None, TCAV]:
+    device_data = _device_data(area=area, device_type="tcavs", name=name)
+    if not device_data:
+        return None
+    if name:
+        try:
+            # this data is not available from YAML directly in this form, so we add it here.
+            device_data.update({"name": name})
+            return TCAV(**device_data)
+        except ValidationError as field_error:
+            print(field_error)
+            return None
+
+
 def create_area(area: str = None) -> Union[None, Area]:
     yaml_data = _device_data(area=area)
     if not yaml_data:
@@ -213,3 +228,23 @@ def create_beampath(beampath: str = None) -> Union[None, Beampath]:
             ". Please try a different beampath.",
         )
         return None
+
+
+def load_full_beampath(beampath: str):
+    beampaths_location = _find_yaml_file(beampath=beampath)
+    with open(beampaths_location, "r") as file:
+        beampaths = yaml.safe_load(file)
+
+    areas_nested = beampaths.get(beampath)
+    if areas_nested is None:
+        raise ValueError(f"Beampath '{beampath}' not found in {beampaths_location}")
+
+    area_names = list(_flatten(areas_nested))
+    beampath_data = {}
+
+    for area in area_names:
+        device_data = _device_data(area=area)
+        if device_data is not None:
+            beampath_data[area] = device_data
+
+    return beampath_data

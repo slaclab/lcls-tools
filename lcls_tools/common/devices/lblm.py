@@ -1,6 +1,5 @@
 from datetime import datetime
 from pydantic import (
-    # PositiveFloat,
     BaseModel,
     SerializeAsAny,
     field_validator,
@@ -21,20 +20,18 @@ from lcls_tools.common.devices.device import (
 )
 from epics import PV
 
-import lcls_tools
-
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 
 
-class BooleanModel(lcls_tools.common.BaseModel):
+class BooleanModel(BaseModel):
     value: bool
 
 
-class FloatModel(lcls_tools.common.BaseModel):
+class FloatModel(BaseModel):
     value: float
 
 
-class IntegerModel(lcls_tools.common.BaseModel):
+class IntegerModel(BaseModel):
     value: conint(strict=True)
 
 
@@ -74,7 +71,10 @@ class LBLM(Device):
 
     def fast_buffer(self, buffer):
         """Retrieve fast signal data from timing buffer"""
-        return buffer.get_buffer_data(f"{self.controls_information.control_name}FAST")
+        data = buffer.get_data_buffer(f"{self.controls_information.control_name}:FAST")
+        if data is None:
+            raise BufferError("No data in buffer or PV not found")
+        return data
 
     @property
     def i0_loss(self):
@@ -114,13 +114,19 @@ class LBLM(Device):
 
     def i0_loss_buffer(self, buffer):
         """Retrieve I0 Loss data from timing buffer"""
-        return buffer.get_buffer_data(
-            f"{self.controls_information.PVs.i0_loss.pvname}{buffer.number}"
-        )
+        data = buffer.get_data_buffer(self.controls_information.PVs.i0_loss.pvname)
+        if data is None:
+            raise BufferError("No data in buffer or PV not found")
+        return data
 
     def gated_integral_buffer(self, buffer):
         """Get Gated Integral data from timing buffer"""
-        return buffer.get_buffer_data(self.controls_information.PVs.gated_integral)
+        data = buffer.get_data_buffer(
+            self.controls_information.PVs.gated_integral.pvname
+        )
+        if data is None:
+            raise BufferError("No data in buffer or PV not found")
+        return data
 
 
 class LBLMCollection(BaseModel):

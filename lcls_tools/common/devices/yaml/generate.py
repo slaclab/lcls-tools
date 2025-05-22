@@ -1,4 +1,5 @@
 import csv
+import yaml
 import os
 from typing import Any, Union, List, Dict, Optional
 import meme.names
@@ -9,6 +10,7 @@ from lcls_tools.common.devices.yaml.metadata import (
     get_wire_metadata,
     get_lblm_metadata,
     get_bpm_metadata,
+    get_tcav_metadata,
 )
 from lcls_tools.common.devices.yaml.controls_information import (
     get_magnet_controls_information,
@@ -16,6 +18,7 @@ from lcls_tools.common.devices.yaml.controls_information import (
     get_wire_controls_information,
     get_lblm_controls_information,
     get_bpm_controls_information,
+    get_tcav_controls_information,
 )
 
 
@@ -23,8 +26,10 @@ class YAMLGenerator:
     def __init__(
         self,
         csv_location="./lcls_tools/common/devices/yaml/lcls_elements.csv",
+        filter_location="./lcls_tools/common/devices/yaml/config/filter.yaml",
     ):
         self.csv_location = csv_location
+        self.filter_location = filter_location
         if not os.path.isfile(csv_location):
             raise FileNotFoundError(f"Could not find {csv_location}")
         self._required_fields = [
@@ -41,25 +46,40 @@ class YAMLGenerator:
 
     def _filter_elements_by_fields(self, required_fields: List[str]) -> Dict[str, Any]:
         csv_reader = None
-        with open(self.csv_location, "r") as file:
+        with (
+            open(self.csv_location, "r") as file_csv,
+            open(self.filter_location, "r") as file_filter,
+        ):
             # convert csv file into dictionary for filtering
-            csv_reader = csv.DictReader(f=file)
+            csv_reader = csv.DictReader(f=file_csv)
+            filter_dict = yaml.safe_load(file_filter)
+
+            def _is_filtered_row(element: dict):
+                released = True
+                for key in set(filter_dict.keys()) & set(element.keys()):
+                    value = element[key]
+                    for prefix in filter_dict[key]:
+                        released &= not value.startswith(prefix)
+                return released
+
+            element_list = list(filter(_is_filtered_row, csv_reader))
 
             # make the elements from csv stripped out with only information we need
             def _is_required_field(pair: tuple):
-                key, _ = pair
+                key, value = pair
                 return key in required_fields
 
             # only store the required fields from lcls_elements, there are lots more!
-            elements = [
+            element_list = [
                 dict(filter(_is_required_field, element.items()))
-                for element in csv_reader
+                for element in element_list
             ]
-        if not elements:
+
+        if not element_list:
             raise RuntimeError(
                 "Did not generate elements, please look at lcls_elements.csv."
             )
-        return elements
+        return element_list
 
     def extract_areas(self) -> list:
         areas = []
@@ -174,20 +194,31 @@ class YAMLGenerator:
         area: Union[str, List[str]],
         required_types=Optional[List[str]],
         pv_search_terms=Optional[List[str]],
+        **kwargs_additional_constraints,
     ):
         if not isinstance(area, list):
             machine_areas = [area]
         else:
             machine_areas = area
         yaml_devices = {}
-        elements = self._filter_elements_by_fields(
-            required_fields=self._required_fields
+        # duplicate fields could cause issues, should take the set,
+        # then convert back? does ordering matter?
+        required_fields = self._required_fields + list(
+            kwargs_additional_constraints.keys()
         )
+        elements = self._filter_elements_by_fields(required_fields=required_fields)
         for _area in machine_areas:
             device_elements = [
                 element
                 for element in elements
-                if element["Keyword"] in required_types and element["Area"] == _area
+                if (
+                    element["Keyword"] in required_types
+                    and element["Area"] == _area
+                    and all(
+                        element.get(key) == value
+                        for key, value in kwargs_additional_constraints.items()
+                    )
+                )
             ]
         # Must have passed an area that does not exist or we don't have that device in this area!
         if len(device_elements) < 1:
@@ -350,7 +381,8 @@ class YAMLGenerator:
             "MOTR_INIT": "initialize",
             "MOTR_INIT_STS": "initialize_status",
             "MOTR": "motor",
-            "MOTR.RBV": "position",
+            "MOTR.RBV": "motor_rbv",
+            # "POSN": "position",
             "MOTR_RETRACT": "retract",
             "SCANPULSES": "scan_pulses",
             "MOTR.VELO": "speed",
@@ -445,6 +477,42 @@ class YAMLGenerator:
                 additional_metadata=additional_metadata_data,
             )
             return complete_bpm_data
+        else:
+            return {}
+
+    def extract_tcavs(self, area: Union[str, List[str]] = ["DIAG0"]) -> dict:
+        required_tcav_types = ["LCAV"]
+        additional_filter_constraints = {"Engineering Name": "TRANS_DEFL"}
+        # add pvs we care about
+        possible_tcav_pvs = {
+            "AREQ": "amp_set",
+            "PREQ": "phase_set",
+            "RF_ENABLE": "rf_enable",
+            "AFBENB": "amp_fbenb",
+            "PFBENB": "phase_fbenb",
+            "AFBST": "amp_fbst",
+            "PFBST": "phase_fbst",
+            "MODECFG": "mode_config",
+        }
+
+        basic_tcav_data = self.extract_devices(
+            area=area,
+            required_types=required_tcav_types,
+            pv_search_terms=possible_tcav_pvs,
+            **additional_filter_constraints,
+        )
+        if basic_tcav_data:
+            tcav_names = [key for key in basic_tcav_data.keys()]
+            additional_metadata_data = get_tcav_metadata(
+                tcav_names, self.extract_metadata_by_device_names
+            )
+            additional_controls_data = get_tcav_controls_information()
+            complete_tcav_data = self.add_extra_data_to_device(
+                device_data=basic_tcav_data,
+                additional_controls_information=additional_controls_data,
+                additional_metadata=additional_metadata_data,
+            )
+            return complete_tcav_data
         else:
             return {}
 
