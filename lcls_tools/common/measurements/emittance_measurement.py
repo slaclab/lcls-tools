@@ -176,7 +176,7 @@ class QuadScanEmittance(Measurement):
     energy: float
     scan_values: list[float]
     magnet: Magnet
-    beamsize_measurement: Measurement
+    beamsize_measurement: ScreenBeamProfileMeasurement
     n_measurement_shots: PositiveInt = 1
     _info: Optional[list] = []
 
@@ -191,17 +191,6 @@ class QuadScanEmittance(Measurement):
     @field_validator("rmat")
     def validate_rmat(cls, v, info):
         assert v.shape == (2, 2, 2)
-        return v
-
-    @field_validator("beamsize_measurement", mode="after")
-    def validate_beamsize_measurement(cls, v, info):
-        # make sure the beamsize measurement is a ScreenBeamProfileMeasurement
-        # TODO: add check for wire scanner or other type of measurement
-        if not isinstance(v, ScreenBeamProfileMeasurement):
-            raise ValueError(
-                "Beamsize measurement must be a ScreenBeamProfileMeasurement for QuadScanEmittance"
-            )
-
         return v
 
     def measure(self):

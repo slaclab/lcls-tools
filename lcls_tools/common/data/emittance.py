@@ -113,10 +113,10 @@ def compute_emit_bmag(
             params = torch.reshape(params, [*beamsize_squared.shape[:-2], 3])
             sig = torch.stack(beam_matrix_tuple(params), dim=-1).unsqueeze(-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
-            total_squared_error = (
+            total_abs_error = (
                 (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared)).abs().sum()
             )
-            return total_squared_error
+            return total_abs_error
 
         def loss_jacobian(params):
             return (
@@ -133,10 +133,10 @@ def compute_emit_bmag(
             params = np.reshape(params, [*beamsize_squared.shape[:-2], 3])
             sig = np.expand_dims(np.stack(beam_matrix_tuple(params), axis=-1), axis=-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
-            total_squared_error = np.sum(
+            total_abs_error = np.sum(
                 np.abs(np.sqrt(amat @ sig) - np.sqrt(beamsize_squared))
             )
-            return total_squared_error
+            return total_abs_error
 
         loss_jacobian = None
 
