@@ -228,6 +228,7 @@ class YAMLGenerator:
         for device in device_elements:
             # We need a control-system-name
             if device["Control System Name"] != "":
+                pv_info = None
                 try:
                     # grab the pv information for this element using the search_list
                     pv_info = self._construct_pv_list_from_control_system_name(
