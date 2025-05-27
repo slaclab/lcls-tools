@@ -9,7 +9,7 @@ from lcls_tools.common.data.model_general_calcs import (
 )
 
 
-def compute_emit_bmag(
+def analyze_quad_scan(
     k: np.ndarray,
     beamsize_squared: np.ndarray,
     q_len: float,
@@ -63,6 +63,65 @@ def compute_emit_bmag(
           of the measurement quad.
         - 'twiss_at_screen': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
           reconstructed twiss parameters at the measurement screen for each step in each quad scan.
+    """
+    # calculate and add the measurement quad transport to the rmats
+    quad_rmat = build_quad_rmat(
+        k, q_len, thin_lens=thin_lens
+    )  # result shape (batchshape x nsteps x 2 x 2)
+    total_rmat = np.expand_dims(rmat, -3) @ quad_rmat
+    # result shape (batchshape x nsteps x 2 x 2)
+
+    # compute emittance
+    rv = compute_emit_bmag(beamsize_squared, total_rmat, twiss_design, maxiter)
+
+    return rv
+
+
+def compute_emit_bmag(
+    beamsize_squared: np.ndarray,
+    rmat: np.ndarray,
+    twiss_design: np.ndarray = None,
+    maxiter: int = None,
+):
+    """
+    Computes the emittance(s) from a set of beamsize measurements and their corresponding
+    transport matrices (rmats). 
+    Must provide beamsize measurements corresponding to at least 3 unique rmats (e.g. quad scan 
+    with minimum of 3 steps, or 3-wire scan).
+    Uses nonlinear fitting of beam matrix parameters to guarantee physically valid results.
+ 
+
+    Parameters
+    ----------
+    beamsize_squared : numpy.ndarray
+        Array of shape (batchshape x n_measurements), representing the mean-square
+        beamsize outputs in [mm^2].
+
+    rmat : numpy.ndarray
+        Array of shape (n_measurements x 2 x 2) or (batchshape x n_measurements x 2 x 2)
+        containing the 2x2 R matrices describing the transport from a common upstream
+        point in the beamline to the locations at which each beamsize was observed.
+
+    twiss_design : numpy.ndarray, optional
+        Array of shape (2,) or (batchshape x 2) designating the design (beta, alpha)
+        twiss parameters at the screen.
+
+    maxiter : int, optional
+        Maximum number of iterations to perform in nonlinear fitting (minimization algorithm).
+
+    Returns
+    -------
+    dict
+        Dictionary containing the following keys:
+        - 'emittance': numpy.ndarray of shape (batchshape x 1) containing the geometric emittance
+          fit results for each scan in mm-mrad.
+        - 'bmag': numpy.ndarray of shape (batchshape x n_steps) containing the bmag corresponding
+          to each point in each scan.
+        - 'beam_matrix': numpy.ndarray of shape (batchshape x 3) containing [sig11, sig12, sig22]
+          where sig11, sig12, sig22 are the reconstructed beam matrix parameters at the entrance
+          of the measurement quad.
+        - 'twiss_at_screen': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
+          reconstructed twiss parameters at the measurement screen for each step in each quad scan.
 
     References
     ----------
@@ -71,15 +130,8 @@ def compute_emit_bmag(
     # return variable dictionary
     rv = {}
 
-    # construct the A matrix from eq. (3.2) & (3.3) of source paper
-    quad_rmat = build_quad_rmat(
-        k, q_len, thin_lens=thin_lens
-    )  # result shape (batchshape x nsteps x 2 x 2)
-    total_rmat = np.expand_dims(rmat, -3) @ quad_rmat
-    # result shape (batchshape x nsteps x 2 x 2)
-
-    # prepare the A matrix
-    r11, r12 = total_rmat[..., 0, 0], total_rmat[..., 0, 1]
+    # prepare the A matrix from eq. (3.2) & (3.3) of source paper
+    r11, r12 = rmat[..., 0, 0], rmat[..., 0, 1]
     amat = np.stack((r11**2, 2.0 * r11 * r12, r12**2), axis=-1)
     # amat result (batchshape x nsteps x 3)
 
@@ -190,7 +242,7 @@ def compute_emit_bmag(
 
     # propagate twiss params to screen (expand_dims for broadcasting)
     rv["twiss_at_screen"] = propagate_twiss(
-        _twiss_upstream(rv["beam_matrix"]), total_rmat
+        _twiss_upstream(rv["beam_matrix"]), rmat
     )
     # result shape (batchshape x nsteps x 3)
     beta, alpha = rv["twiss_at_screen"][..., 0], rv["twiss_at_screen"][..., 1]
@@ -255,7 +307,7 @@ def preprocess_inputs(quad_vals: list, beamsizes: list, energy: float, q_len: fl
     return kmod_list, beamsizes_squared_list
 
 
-def compute_emit_bmag_machine_units(
+def analyze_quad_scan_machine_units(
     quad_vals: list,
     beamsizes: list,
     q_len: float,
@@ -266,7 +318,7 @@ def compute_emit_bmag_machine_units(
     maxiter: int = None,
 ):
     """
-    Wrapper for compute_emit_bmag that takes quads in machine units and beamsize in meters.
+    Wrapper for analyze_quad_scan that takes quads in machine units and beamsize in meters.
 
     Parameters
     ----------
@@ -311,7 +363,7 @@ def compute_emit_bmag_machine_units(
     # fit scans independently for x/y
     # only keep data that has non-nan beam sizes -- independent for x/y
     for i in range(2):
-        result = compute_emit_bmag(
+        result = analyze_quad_scan(
             k=kmod_list[i],
             beamsize_squared=beamsizes_squared_list[i],
             q_len=q_len,

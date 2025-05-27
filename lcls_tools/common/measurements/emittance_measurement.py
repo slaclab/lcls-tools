@@ -14,7 +14,7 @@ from pydantic import (
 )
 
 from lcls_tools.common.data.emittance import (
-    compute_emit_bmag_machine_units,
+    analyze_quad_scan_machine_units,
 )
 from lcls_tools.common.data.model_general_calcs import get_optics
 from lcls_tools.common.devices.magnet import Magnet
@@ -272,7 +272,7 @@ class QuadScanEmittance(Measurement):
         }
 
         # Call wrapper that takes quads in machine units and beamsize in meters
-        results = compute_emit_bmag_machine_units(**inputs)
+        results = analyze_quad_scan_machine_units(**inputs)
         results.update(
             {
                 "metadata": self.model_dump()
