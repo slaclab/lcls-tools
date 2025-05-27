@@ -15,13 +15,15 @@ class YAMLWriter:
     def _is_area(self, area: str) -> bool:
         return area in self.generator.areas
 
-    def _construct_yaml_contents(self, area: str, device_types: List[str] = None) -> Dict[str, str]:
+    def _construct_yaml_contents(
+        self, area: str, device_types: List[str] = None
+    ) -> Dict[str, str]:
         if device_types is None:
-            device_types = ['magnets', 'screens', 'wires', 'lblms', 'bpms', 'tcavs']
+            device_types = ["magnets", "screens", "wires", "lblms", "bpms", "tcavs"]
 
         file_contents = {}
 
-        if 'magnets' in device_types:
+        if "magnets" in device_types:
             # Generate Magnet content
             magnets = self.generator.extract_magnets(
                 area=area,
@@ -29,7 +31,7 @@ class YAMLWriter:
             if magnets:
                 file_contents["magnets"] = magnets
 
-        if 'screens' in device_types:
+        if "screens" in device_types:
             # Generate Screens content
             screens = self.generator.extract_screens(
                 area=area,
@@ -37,7 +39,7 @@ class YAMLWriter:
             if screens:
                 file_contents["screens"] = screens
 
-        if 'wires' in device_types:
+        if "wires" in device_types:
             # Generate Wire content
             wires = self.generator.extract_wires(
                 area=area,
@@ -45,7 +47,7 @@ class YAMLWriter:
             if wires:
                 file_contents["wires"] = wires
 
-        if 'lblms' in device_types:
+        if "lblms" in device_types:
             # Generate LBLM content
             lblms = self.generator.extract_lblms(
                 area=area,
@@ -53,7 +55,7 @@ class YAMLWriter:
             if lblms:
                 file_contents["lblms"] = lblms
 
-        if 'bpms' in device_types:
+        if "bpms" in device_types:
             # Generate BPM content
             bpms = self.generator.extract_bpms(
                 area=area,
@@ -61,7 +63,7 @@ class YAMLWriter:
             if bpms:
                 file_contents["bpms"] = bpms
 
-        if 'tcavs' in device_types:
+        if "tcavs" in device_types:
             # Generate BPM content
             tcavs = self.generator.extract_tcavs(
                 area=area,
@@ -73,7 +75,7 @@ class YAMLWriter:
             return file_contents
         return None
 
-    def write_yaml_file(self, area: Optional[str] = "GUNB", device_types = None) -> None:
+    def write_yaml_file(self, area: Optional[str] = "GUNB", device_types=None) -> None:
         if area not in self.generator.areas:
             raise RuntimeError(
                 f"Area {area} provided is not a known machine area.",
@@ -86,6 +88,7 @@ class YAMLWriter:
             with open(fullpath, "w") as file:
                 yaml.safe_dump(yaml_output, file)
 
+
 def write(device_types: List[str] = None):
     writer = YAMLWriter()
     areas = writer.areas
@@ -94,4 +97,3 @@ def write(device_types: List[str] = None):
 
 if __name__ == "__main__":
     write()
-    
