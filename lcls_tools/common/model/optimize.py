@@ -36,7 +36,7 @@ class Parameter(ABC):
 
     @staticmethod
     @abstractmethod
-    def denormalize(par, x, y): ...
+    def scale(par, x, y): ...
 
 
 def param_fit(curve, params, pos, data, use_prior=False):
@@ -66,7 +66,7 @@ def param_fit(curve, params, pos, data, use_prior=False):
 
     bounds = tuple(p.bounds for p in params)
     res = max_likelihood(forward, prior, x, y, init, bounds, use_prior)
-    return {p.name: p.denormalize(val, pos, data) for p, val in zip(params, res.x)}
+    return {p.name: p.scale(val, pos, data) for p, val in zip(params, res.x)}
 
 
 def max_likelihood(curve, prior, x, y, init, bounds=None, use_prior=False):

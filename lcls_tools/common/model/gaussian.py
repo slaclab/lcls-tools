@@ -21,7 +21,7 @@ class mean(optimize.Parameter):
         return norm(mean_0, 0.1).logpdf(mean)
 
     @staticmethod
-    def denormalize(mean, x, y):
+    def scale(mean, x, y):
         x_scale = np.max(x) - np.min(x)
         return mean * x_scale + min(x)
 
@@ -39,7 +39,7 @@ class sigma(optimize.Parameter):
         return gamma(2.5, loc=0, scale=1 / 5.0).logpdf(sigma)
 
     @staticmethod
-    def denormalize(sigma, x, y):
+    def scale(sigma, x, y):
         x_scale = np.max(x) - np.min(x)
         return sigma * x_scale
 
@@ -60,7 +60,7 @@ class amplitude(optimize.Parameter):
         return gamma(alpha, loc=0, scale=1 / beta).logpdf(amp)
 
     @staticmethod
-    def denormalize(amp, x, y):
+    def scale(amp, x, y):
         y_scale = np.max(y) - np.min(y)
         return amp * y_scale
 
@@ -78,7 +78,7 @@ class offset(optimize.Parameter):
         return norm(off_0, 0.5).logpdf(off)
 
     @staticmethod
-    def denormalize(off, x, y):
+    def scale(off, x, y):
         y_scale = np.max(y) - np.min(y)
         return off * y_scale + min(y)
 
