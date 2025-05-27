@@ -9,74 +9,6 @@ from lcls_tools.common.data.model_general_calcs import (
 )
 
 
-def analyze_quad_scan(
-    k: np.ndarray,
-    beamsize_squared: np.ndarray,
-    q_len: float,
-    rmat: np.ndarray,
-    twiss_design: np.ndarray = None,
-    thin_lens: bool = False,
-    maxiter: int = None,
-):
-    """
-    Computes the emittance(s) corresponding to a set of quadrupole measurement scans
-    using nonlinear fitting of beam matrix parameters to guarantee physically valid results.
-
-    Parameters
-    ----------
-    k : numpy.ndarray
-        Array of shape (n_steps_quad_scan,) or (batchshape x n_steps_quad_scan)
-        representing the measurement quad geometric focusing strengths in [m^-2]
-        used in the emittance scan(s).
-
-    beamsize_squared : numpy.ndarray
-        Array of shape (batchshape x n_steps_quad_scan), representing the mean-square
-        beamsize outputs in [mm^2] of the emittance scan(s) with inputs given by k.
-
-    q_len : float
-        The (longitudinal) quadrupole length or "thickness" in [m].
-
-    rmat : numpy.ndarray
-        Array of shape (2x2) or (batchshape x 2 x 2) containing the 2x2 R matrices
-        describing the transport from the end of the measurement quad to the observation screen.
-
-    twiss_design : numpy.ndarray, optional
-        Array of shape (2,) or (batchshape x 2) designating the design (beta, alpha)
-        twiss parameters at the screen.
-
-    thin_lens : bool, optional
-        Specifies whether or not to use thin lens approximation for measurement quad.
-
-    maxiter : int, optional
-        Maximum number of iterations to perform in nonlinear fitting (minimization algorithm).
-
-    Returns
-    -------
-    dict
-        Dictionary containing the following keys:
-        - 'emittance': numpy.ndarray of shape (batchshape x 1) containing the geometric emittance
-          fit results for each scan in mm-mrad.
-        - 'bmag': numpy.ndarray of shape (batchshape x n_steps) containing the bmag corresponding
-          to each point in each scan.
-        - 'beam_matrix': numpy.ndarray of shape (batchshape x 3) containing [sig11, sig12, sig22]
-          where sig11, sig12, sig22 are the reconstructed beam matrix parameters at the entrance
-          of the measurement quad.
-        - 'twiss_at_screen': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
-          reconstructed twiss parameters at the measurement screen for each step in each quad scan.
-    """
-    # calculate and add the measurement quad transport to the rmats
-    quad_rmat = build_quad_rmat(
-        k, q_len, thin_lens=thin_lens
-    )  # result shape (batchshape x nsteps x 2 x 2)
-    total_rmat = np.expand_dims(rmat, -3) @ quad_rmat
-    # result shape (batchshape x nsteps x 2 x 2)
-
-    # compute emittance
-    rv = compute_emit_bmag(beamsize_squared, total_rmat, twiss_design, maxiter)
-
-    return rv
-
-
 def compute_emit_bmag(
     beamsize_squared: np.ndarray,
     rmat: np.ndarray,
@@ -263,9 +195,77 @@ def compute_emit_bmag(
     return rv
 
 
+def analyze_quad_scan(
+    k: np.ndarray,
+    beamsize_squared: np.ndarray,
+    q_len: float,
+    rmat: np.ndarray,
+    twiss_design: np.ndarray = None,
+    thin_lens: bool = False,
+    maxiter: int = None,
+):
+    """
+    Computes the emittance(s) corresponding to a set of quadrupole measurement scans
+    using nonlinear fitting of beam matrix parameters to guarantee physically valid results.
+
+    Parameters
+    ----------
+    k : numpy.ndarray
+        Array of shape (n_steps_quad_scan,) or (batchshape x n_steps_quad_scan)
+        representing the measurement quad geometric focusing strengths in [m^-2]
+        used in the emittance scan(s).
+
+    beamsize_squared : numpy.ndarray
+        Array of shape (batchshape x n_steps_quad_scan), representing the mean-square
+        beamsize outputs in [mm^2] of the emittance scan(s) with inputs given by k.
+
+    q_len : float
+        The (longitudinal) quadrupole length or "thickness" in [m].
+
+    rmat : numpy.ndarray
+        Array of shape (2x2) or (batchshape x 2 x 2) containing the 2x2 R matrices
+        describing the transport from the end of the measurement quad to the observation screen.
+
+    twiss_design : numpy.ndarray, optional
+        Array of shape (2,) or (batchshape x 2) designating the design (beta, alpha)
+        twiss parameters at the screen.
+
+    thin_lens : bool, optional
+        Specifies whether or not to use thin lens approximation for measurement quad.
+
+    maxiter : int, optional
+        Maximum number of iterations to perform in nonlinear fitting (minimization algorithm).
+
+    Returns
+    -------
+    dict
+        Dictionary containing the following keys:
+        - 'emittance': numpy.ndarray of shape (batchshape x 1) containing the geometric emittance
+          fit results for each scan in mm-mrad.
+        - 'bmag': numpy.ndarray of shape (batchshape x n_steps) containing the bmag corresponding
+          to each point in each scan.
+        - 'beam_matrix': numpy.ndarray of shape (batchshape x 3) containing [sig11, sig12, sig22]
+          where sig11, sig12, sig22 are the reconstructed beam matrix parameters at the entrance
+          of the measurement quad.
+        - 'twiss_at_screen': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
+          reconstructed twiss parameters at the measurement screen for each step in each quad scan.
+    """
+    # calculate and add the measurement quad transport to the rmats
+    quad_rmat = build_quad_rmat(
+        k, q_len, thin_lens=thin_lens
+    )  # result shape (batchshape x nsteps x 2 x 2)
+    total_rmat = np.expand_dims(rmat, -3) @ quad_rmat
+    # result shape (batchshape x nsteps x 2 x 2)
+
+    # compute emittance
+    rv = compute_emit_bmag(beamsize_squared, total_rmat, twiss_design, maxiter)
+
+    return rv
+
+
 def preprocess_inputs(quad_vals: list, beamsizes: list, energy: float, q_len: float):
     """
-    Preprocesses the inputs for compute_emit_bmag.
+    Preprocesses the inputs for analyze_quad_scan.
 
     Parameters
     ----------
@@ -359,7 +359,7 @@ def analyze_quad_scan_machine_units(
         "rms_beamsizes": [],
     }
 
-    # Then call compute_emit_bmag
+    # Then call analyze_quad_scan
     # fit scans independently for x/y
     # only keep data that has non-nan beam sizes -- independent for x/y
     for i in range(2):
