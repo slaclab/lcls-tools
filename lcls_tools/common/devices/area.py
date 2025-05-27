@@ -19,6 +19,14 @@ from lcls_tools.common.devices.wire import (
     Wire,
     WireCollection,
 )
+from lcls_tools.common.devices.bpm import (
+    BPM,
+    BPMCollection,
+)
+from lcls_tools.common.devices.lblm import (
+    LBLM,
+    LBLMCollection,
+)
 
 from pydantic import SerializeAsAny, Field, field_validator
 
@@ -63,6 +71,24 @@ class Area(lcls_tools.common.BaseModel):
         alias="wires",
         default=None,
     )
+    bpm_collection: Optional[
+        Union[
+            SerializeAsAny[BPMCollection],
+            None,
+        ]
+    ] = Field(
+        alias="bpms",
+        default=None,
+    )
+    lblm_collection: Optional[
+        Union[
+            SerializeAsAny[LBLMCollection],
+            None,
+        ]
+    ] = Field(
+        alias="lblms",
+        default=None,
+    )
 
     def __init__(
         self,
@@ -81,28 +107,45 @@ class Area(lcls_tools.common.BaseModel):
         mode="before",
     )
     def validate_magnets(cls, v: Dict[str, Any]):
-        if v:
-            # Unpack the magnet data from yaml into MagnetCollection
-            # before creating the magnet_collection
-            return MagnetCollection(**{"magnets": {**v}})
+        if not v:
+            return None
+        return MagnetCollection(magnets=v)
 
     @field_validator(
         "screen_collection",
         mode="before",
     )
     def validate_screens(cls, v: Dict[str, Any]):
-        if v:
-            # Unpack the screens data from yaml into ScreenCollection
-            return ScreenCollection(**{"screens": {**v}})
+        if not v:
+            return None
+        return ScreenCollection(screens=v)
 
     @field_validator(
         "wire_collection",
         mode="before",
     )
     def validate_wires(cls, v: Dict[str, Any]):
-        if v:
-            # Unpack the wires data from yaml into WireCollection
-            return WireCollection(**{"wires": {**v}})
+        if not v:
+            return None
+        return WireCollection(wires=v)
+
+    @field_validator(
+        "bpm_collection",
+        mode="before",
+    )
+    def validate_bpms(cls, v: Dict[str, Any]):
+        if not v:
+            return None
+        return BPMCollection(bpms=v)
+
+    @field_validator(
+        "lblm_collection",
+        mode="before",
+    )
+    def validate_lblms(cls, v: Dict[str, Any]):
+        if not v:
+            return None
+        return LBLMCollection(lblms=v)
 
     @property
     def magnets(
@@ -155,6 +198,40 @@ class Area(lcls_tools.common.BaseModel):
             print("Area does not contain wires.")
             return None
 
+    @property
+    def bpms(
+        self,
+    ) -> Union[
+        Dict[str, BPM],
+        None,
+    ]:
+        """
+        A Dict[str, BPM] for this area, where the dict keys are bpm names
+        If no bpms exist for this area, this property is None
+        """
+        if self.bpm_collection:
+            return self.bpm_collection.bpms
+        else:
+            print("Area does not contain bpms.")
+            return None
+
+    @property
+    def lblms(
+        self,
+    ) -> Union[
+        Dict[str, LBLM],
+        None,
+    ]:
+        """
+        A Dict[str, LBLM] for this area, where the dict keys are lblm names
+        If no lblms exist for this area, this property is None
+        """
+        if self.lblm_collection:
+            return self.lblm_collection.lblms
+        else:
+            print("Area does not contain lblms.")
+            return None
+
     def does_magnet_exist(
         self,
         magnet_name: str = None,
@@ -166,3 +243,21 @@ class Area(lcls_tools.common.BaseModel):
         screen_name: str = None,
     ) -> bool:
         return screen_name in self.screens
+
+    def does_wire_exist(
+        self,
+        wire_name: str = None,
+    ) -> bool:
+        return wire_name in self.wires
+
+    def does_bpm_exist(
+        self,
+        bpm_name: str = None,
+    ) -> bool:
+        return bpm_name in self.bpms
+
+    def does_lblm_exist(
+        self,
+        lblm_name: str = None,
+    ) -> bool:
+        return lblm_name in self.lblms
