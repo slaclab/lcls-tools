@@ -83,7 +83,9 @@ class YAMLWriter:
         filename = area + ".yaml"
         location = "lcls_tools/common/devices/yaml/"
         fullpath = os.path.join(location, filename)
-        yaml_output = self._constuct_yaml_contents(area=area, device_types=device_types)
+        yaml_output = self._construct_yaml_contents(
+            area=area, device_types=device_types
+        )
         if yaml_output:
             with open(fullpath, "w") as file:
                 yaml.safe_dump(yaml_output, file)
