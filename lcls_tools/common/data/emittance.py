@@ -17,11 +17,11 @@ def compute_emit_bmag(
 ):
     """
     Computes the emittance(s) from a set of beamsize measurements and their corresponding
-    transport matrices (rmats). 
-    Must provide beamsize measurements corresponding to at least 3 unique rmats (e.g. quad scan 
+    transport matrices (rmats).
+    Must provide beamsize measurements corresponding to at least 3 unique rmats (e.g. quad scan
     with minimum of 3 steps, or 3-wire scan).
     Uses nonlinear fitting of beam matrix parameters to guarantee physically valid results.
- 
+
 
     Parameters
     ----------
@@ -98,24 +98,31 @@ def compute_emit_bmag(
             sig = torch.stack(beam_matrix_tuple(params), dim=-1).unsqueeze(-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
             total_abs_error = (
-                (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared)).abs().sum()
+                (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared))
+                .abs()
+                .sum()
             )
             return total_abs_error
 
         def loss_jacobian(params):
             return (
-                torch.autograd.functional.jacobian(loss_torch, torch.from_numpy(params))
+                torch.autograd.functional.jacobian(
+                    loss_torch, torch.from_numpy(params)
+                )
                 .detach()
                 .numpy()
             )
 
         def loss(params):
             return loss_torch(torch.from_numpy(params)).detach().numpy()
+
     else:
         # define loss function in numpy without jacobian
         def loss(params):
             params = np.reshape(params, [*beamsize_squared.shape[:-2], 3])
-            sig = np.expand_dims(np.stack(beam_matrix_tuple(params), axis=-1), axis=-1)
+            sig = np.expand_dims(
+                np.stack(beam_matrix_tuple(params), axis=-1), axis=-1
+            )
             # sig should now be shape batchshape x 3 x 1 (column vectors)
             total_abs_error = np.sum(
                 np.abs(np.sqrt(amat @ sig) - np.sqrt(beamsize_squared))
@@ -128,7 +135,9 @@ def compute_emit_bmag(
     eps = 1.0e-6
 
     # get initial guesses for lambda1, lambda2, c, from pseudo-inverse method
-    init_beam_matrix = np.linalg.pinv(np.array(amat)) @ np.array(beamsize_squared)
+    init_beam_matrix = np.linalg.pinv(np.array(amat)) @ np.array(
+        beamsize_squared
+    )
     lambda1 = np.sqrt(init_beam_matrix[..., 0, 0].clip(min=eps))
     lambda2 = np.sqrt(init_beam_matrix[..., 2, 0].clip(min=eps))
     c = (init_beam_matrix[..., 1, 0] / (lambda1 * lambda2)).clip(
@@ -147,7 +156,13 @@ def compute_emit_bmag(
         options = None
 
     # minimize loss
-    res = minimize(loss, init_params, jac=loss_jacobian, bounds=bounds, options=options)
+    res = minimize(
+        loss,
+        init_params,
+        jac=loss_jacobian,
+        bounds=bounds,
+        options=options,
+    )
 
     # get the fit result and reshape to (batchshape x 3)
     fit_params = np.reshape(res.x, [*beamsize_squared.shape[:-2], 3])
@@ -162,11 +177,16 @@ def compute_emit_bmag(
     )
     # result shape (batchshape x 1)
 
-    # get twiss at entrance of measurement quad from beam_matrix
+    # get twiss at upstream origin from beam_matrix
     def _twiss_upstream(b_matrix):
         return np.expand_dims(
             np.stack(
-                (b_matrix[..., 0], -1 * b_matrix[..., 1], b_matrix[..., 2]), axis=-1
+                (
+                    b_matrix[..., 0],
+                    -1 * b_matrix[..., 1],
+                    b_matrix[..., 2],
+                ),
+                axis=-1,
             )
             / rv["emittance"],
             axis=-2,
@@ -177,12 +197,18 @@ def compute_emit_bmag(
         _twiss_upstream(rv["beam_matrix"]), rmat
     )
     # result shape (batchshape x nsteps x 3)
-    beta, alpha = rv["twiss_at_screen"][..., 0], rv["twiss_at_screen"][..., 1]
+    beta, alpha = (
+        rv["twiss_at_screen"][..., 0],
+        rv["twiss_at_screen"][..., 1],
+    )
     # shapes batchshape x nsteps
 
     # compute bmag if twiss_design is provided
     if twiss_design is not None:
-        beta_design, alpha_design = twiss_design[..., 0:1], twiss_design[..., 1:2]
+        beta_design, alpha_design = (
+            twiss_design[..., 0:1],
+            twiss_design[..., 1:2],
+        )
         # results shape batchshape x 1
 
         # result batchshape x 3 containing [beta, alpha, gamma]
@@ -195,7 +221,7 @@ def compute_emit_bmag(
     return rv
 
 
-def analyze_quad_scan(
+def compute_emit_bmag_quad_scan(
     k: np.ndarray,
     beamsize_squared: np.ndarray,
     q_len: float,
@@ -263,7 +289,9 @@ def analyze_quad_scan(
     return rv
 
 
-def preprocess_inputs(quad_vals: list, beamsizes: list, energy: float, q_len: float):
+def preprocess_inputs(
+    quad_vals: list, beamsizes: list, energy: float, q_len: float
+):
     """
     Preprocesses the inputs for analyze_quad_scan.
 
@@ -307,7 +335,7 @@ def preprocess_inputs(quad_vals: list, beamsizes: list, energy: float, q_len: fl
     return kmod_list, beamsizes_squared_list
 
 
-def analyze_quad_scan_machine_units(
+def compute_emit_bmag_quad_scan_machine_units(
     quad_vals: list,
     beamsizes: list,
     q_len: float,
@@ -363,18 +391,22 @@ def analyze_quad_scan_machine_units(
     # fit scans independently for x/y
     # only keep data that has non-nan beam sizes -- independent for x/y
     for i in range(2):
-        result = analyze_quad_scan(
+        result = compute_emit_bmag_quad_scan(
             k=kmod_list[i],
             beamsize_squared=beamsizes_squared_list[i],
             q_len=q_len,
             rmat=rmat[i],
-            twiss_design=twiss_design[i] if twiss_design is not None else None,
+            twiss_design=(
+                twiss_design[i] if twiss_design is not None else None
+            ),
             thin_lens=thin_lens,
             maxiter=maxiter,
         )
 
         result.update({"quadrupole_focusing_strengths": kmod_list[i]})
-        result.update({"quadrupole_pv_values": quad_vals[i][~np.isnan(beamsizes[i])]})
+        result.update(
+            {"quadrupole_pv_values": quad_vals[i][~np.isnan(beamsizes[i])]}
+        )
 
         # add results to dict object
         for name, value in result.items():

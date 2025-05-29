@@ -14,13 +14,15 @@ from pydantic import (
 )
 
 from lcls_tools.common.data.emittance import (
-    analyze_quad_scan_machine_units,
+    compute_emit_bmag_quad_scan_machine_units,
 )
 from lcls_tools.common.data.model_general_calcs import get_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
+from lcls_tools.common.measurements.screen_profile import (
+    ScreenBeamProfileMeasurement,
+)
 import lcls_tools
 
 
@@ -44,7 +46,9 @@ class BMAGMode(enum.IntEnum):
                 return cls(value)
         except (ValueError, KeyError):
             pass
-        raise ValueError(f"invalid {cls.__name__}={value} must be one of: {_members()}")
+        raise ValueError(
+            f"invalid {cls.__name__}={value} must be one of: {_members()}"
+        )
 
 
 class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
@@ -102,7 +106,9 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
 
         """
         if self.bmag is None:
-            raise ValueError("BMAG values are not available for this measurement")
+            raise ValueError(
+                "BMAG values are not available for this measurement"
+            )
 
         mode = BMAGMode.from_any(mode)
 
@@ -272,7 +278,7 @@ class QuadScanEmittance(Measurement):
         }
 
         # Call wrapper that takes quads in machine units and beamsize in meters
-        results = analyze_quad_scan_machine_units(**inputs)
+        results = compute_emit_bmag_quad_scan_machine_units(**inputs)
         results.update(
             {
                 "metadata": self.model_dump()
@@ -291,7 +297,9 @@ class QuadScanEmittance(Measurement):
 
     def perform_beamsize_measurements(self):
         """Perform the beamsize measurements using a basic quadrupole scan."""
-        self.magnet.scan(scan_settings=self.scan_values, function=self.measure_beamsize)
+        self.magnet.scan(
+            scan_settings=self.scan_values, function=self.measure_beamsize
+        )
 
     def measure_beamsize(self):
         """
