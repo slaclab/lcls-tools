@@ -1,4 +1,5 @@
-from typing import List
+from typing import List, Dict
+from epics import caget
 
 
 def get_magnet_controls_information(magnet_names: List[str] = None):
@@ -15,7 +16,7 @@ def get_magnet_controls_information(magnet_names: List[str] = None):
     return {}
 
 
-def get_screen_controls_information(screen_names: List[str] = None):
+def get_screen_controls_information(screen_information: Dict = None):
     # return a data structure of the form:
     # {
     #  scr-name-1 : {controls-information-field-1 : value-1, controls-information-field-2 : value-2, ...},
@@ -24,11 +25,13 @@ def get_screen_controls_information(screen_names: List[str] = None):
     # }
 
     # Stuff like Device-Position mappings for motor/ladder-based screens
-    if screen_names:
-        raise NotImplementedError(
-            "No method of getting additional controls_information for screens."
-        )
-    return {}
+    controls_information = {}
+    for k, v in screen_information.items():
+        pvs = v["controls_information"]["PVs"]
+        if "orient_x" in pvs and "orient_y" in pvs:
+            controls_information[k] = {"orient_x": caget(pvs["orient_x"], as_string=True),
+                                       "orient_y": caget(pvs["orient_y"], as_string=True)}
+    return controls_information
 
 
 def get_wire_controls_information(wire_names: List[str] = None):
