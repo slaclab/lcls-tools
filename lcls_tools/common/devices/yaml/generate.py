@@ -2,7 +2,6 @@ import csv
 import yaml
 import os
 from typing import Any, Union, List, Dict, Optional
-import meme.names
 import numpy as np
 from lcls_tools.common.devices.yaml.metadata import (
     get_magnet_metadata,
@@ -153,6 +152,8 @@ class YAMLGenerator:
     def _construct_pv_list_from_control_system_name(
         self, name, search_with_handles: Optional[Dict[str, str]]
     ) -> Dict[str, str]:
+        import meme.names
+
         if name == "":
             raise RuntimeError("No control system name provided for meme search.")
         # Use the control system name to get all PVs associated with device
