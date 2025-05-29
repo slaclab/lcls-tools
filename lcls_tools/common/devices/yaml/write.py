@@ -94,7 +94,7 @@ class YAMLWriter:
 def write(device_types: List[str] = None):
     writer = YAMLWriter()
     areas = writer.areas
-    [writer.write_yaml_file(area) for area in areas]
+    [writer.write_yaml_file(area, device_types=device_types) for area in areas]
 
 
 if __name__ == "__main__":
