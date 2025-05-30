@@ -15,12 +15,15 @@ from pydantic import (
 )
 import yaml
 
-from lcls_tools.common.data.emittance import compute_emit_bmag
-from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
+from lcls_tools.common.data.emittance import (
+    compute_emit_bmag_machine_units,
+)
+from lcls_tools.common.data.model_general_calcs import get_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement, ScreenBeamProfileMeasurementResult
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
+from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 import lcls_tools
 from lcls_tools.common.measurements.wire_scan import WireBeamProfileMeasurement, WireBeamProfileMeasurementResult
 
@@ -355,14 +358,14 @@ class QuadScanEmittance(EmittanceMeasurementBase):
     energy: float
     scan_values: list[float]
     magnet: Magnet
-    beamsize_measurement: Measurement
+    beamsize_measurement: ScreenBeamProfileMeasurement
     n_measurement_shots: PositiveInt = 1
     _info: Optional[list] = []
 
     rmat: Optional[ndarray] = None
     design_twiss: Optional[dict] = None  # design twiss values
 
-    wait_time: PositiveFloat = 5.0
+    wait_time: PositiveFloat = 1.0
 
     name: str = "quad_scan_emittance"
     model_config = ConfigDict(arbitrary_types_allowed=True)
