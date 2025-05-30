@@ -64,13 +64,14 @@ class YAMLWriter:
             return file_contents
         return None
 
-    def write_yaml_file(self, area: Optional[str] = "GUNB") -> None:
+    def write_yaml_file(self, area: Optional[str] = "GUNB", location=None) -> None:
         if area not in self.generator.areas:
             raise RuntimeError(
                 f"Area {area} provided is not a known machine area.",
             )
+        if location is None:
+            location = "lcls_tools/common/devices/yaml/"
         filename = area + ".yaml"
-        location = "lcls_tools/common/devices/yaml/"
         fullpath = os.path.join(location, filename)
         yaml_output = self._constuct_yaml_contents(area=area)
         if yaml_output:
@@ -78,7 +79,12 @@ class YAMLWriter:
                 yaml.safe_dump(yaml_output, file)
 
 
-if __name__ == "__main__":
+def write(location=None):
     writer = YAMLWriter()
     areas = writer.areas
-    [writer.write_yaml_file(area) for area in areas]
+    for area in areas:
+        writer.write_yaml_file(area, location)
+
+
+if __name__ == "__main__":
+    write()
