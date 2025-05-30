@@ -1,4 +1,5 @@
 import os
+import shutil
 import unittest
 import lcls_tools.common.devices.yaml.write
 from unittest.mock import patch, PropertyMock
@@ -7,12 +8,12 @@ import yaml
 
 class TestWrite(unittest.TestCase):
     def setUp(self):
-        area_location = (
-            "tests/unit_tests/lcls_tools/common/devices/yaml/test_data/AREA.yaml"
+        self.data_location = (
+            "tests/unit_tests/lcls_tools/common/devices/yaml/test_data/"
         )
+        area_location = self.data_location + "AREA.yaml"
         with open(area_location, "r") as file:
             self.area = yaml.safe_load(file)
-        self.area_location = area_location
         self.generate_patcher = patch(
             "lcls_tools.common.devices.yaml.write.YAMLGenerator"
         )
@@ -31,14 +32,30 @@ class TestWrite(unittest.TestCase):
         self.testbed = testbed
 
     def tearDown(self):
-        os.system("rm -rf " + self.testbed)
+        shutil.rmtree(self.testbed)
         self.generate_patcher.stop()
 
-    def test_write_yaml(self):
+    def test_overwrite_yaml(self):
         result_location = self.testbed
+        partial_area = self.data_location + "PARTIALAREA.yaml"
+        shutil.copyfile(partial_area, result_location + "AREA.yaml")
         lcls_tools.common.devices.yaml.write.write(location=result_location)
         result_location += "AREA.yaml"
         with open(result_location, "r") as file:
             res = yaml.safe_load(file)
-        assert self.area == res
-        os.system("rm -rf " + result_location)
+        self.assertEqual(self.area, res)
+        os.remove(result_location)
+
+    def test_greedy_write_yaml(self):
+        result_location = self.testbed
+        partial_area = self.data_location + "PARTIALAREA.yaml"
+        shutil.copyfile(partial_area, result_location + "AREA.yaml")
+        lcls_tools.common.devices.yaml.write.write(
+            location=result_location, mode="greedy"
+        )
+        result_location += "AREA.yaml"
+        with open(result_location, "r") as file:
+            res = yaml.safe_load(file)
+        self.assertIn("wires", res)
+        self.assertIn("magnets", res)
+        self.assertIn("old_stuff", res["screens"]["FAKESCREEN"])
