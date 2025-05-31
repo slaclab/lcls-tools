@@ -26,7 +26,6 @@ from lcls_tools.common.measurements.screen_profile import (
     ScreenBeamProfileMeasurementResult,
 )
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 import lcls_tools
 from lcls_tools.common.measurements.wire_scan import (
     WireBeamProfileMeasurement,
