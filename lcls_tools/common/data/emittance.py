@@ -5,7 +5,6 @@ from lcls_tools.common.data.model_general_calcs import (
     bmag_func,
     propagate_twiss,
     build_quad_rmat,
-    bdes_to_kmod,
 )
 
 

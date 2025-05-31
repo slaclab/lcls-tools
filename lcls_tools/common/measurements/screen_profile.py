@@ -96,7 +96,9 @@ class ScreenBeamProfileMeasurement(Measurement):
             total_intensities = []
             for image in processed_images:
                 fit_result = self.beam_fit.fit_image(image)
-                rms_sizes.append(fit_result.rms_size * self.device.resolution) # units of microns
+                rms_sizes.append(
+                    fit_result.rms_size * self.device.resolution
+                )  # units of microns
                 centroids.append(fit_result.centroid * self.device.resolution)
                 total_intensities.append(fit_result.total_intensity)
 

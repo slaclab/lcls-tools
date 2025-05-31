@@ -17,16 +17,21 @@ import yaml
 
 from lcls_tools.common.data.emittance import (
     compute_emit_bmag,
-    compute_emit_bmag_machine_units,
 )
 from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement, ScreenBeamProfileMeasurementResult
+from lcls_tools.common.measurements.screen_profile import (
+    ScreenBeamProfileMeasurement,
+    ScreenBeamProfileMeasurementResult,
+)
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 import lcls_tools
-from lcls_tools.common.measurements.wire_scan import WireBeamProfileMeasurement, WireBeamProfileMeasurementResult
+from lcls_tools.common.measurements.wire_scan import (
+    WireBeamProfileMeasurement,
+    WireBeamProfileMeasurementResult,
+)
 
 
 class BMAGMode(enum.IntEnum):
@@ -213,14 +218,8 @@ class EmittanceMeasurementBase(Measurement):
         if self.design_twiss:
             twiss_betas_alphas = np.array(
                 [
-                    [
-                        self.design_twiss["beta_x"],
-                        self.design_twiss["alpha_x"]
-                    ],
-                    [
-                        self.design_twiss["beta_y"], 
-                        self.design_twiss["alpha_y"]
-                    ],
+                    [self.design_twiss["beta_x"], self.design_twiss["alpha_x"]],
+                    [self.design_twiss["beta_y"], self.design_twiss["alpha_y"]],
                 ]
             )
 
@@ -251,7 +250,9 @@ class EmittanceMeasurementBase(Measurement):
             emit_kwargs = {
                 "beamsize_squared": beam_sizes_squared.T,
                 "rmat": self.rmat[i],
-                "twiss_design": twiss_betas_alphas[i] if twiss_betas_alphas is not None else None,
+                "twiss_design": twiss_betas_alphas[i]
+                if twiss_betas_alphas is not None
+                else None,
             }
 
             kmod, scan_values = self._get_kmod_and_scan_values(i, beam_sizes)
@@ -270,7 +271,7 @@ class EmittanceMeasurementBase(Measurement):
             for name, value in result.items():
                 if name == "bmag" and value is None:
                     continue
-                else: # beam matrix and emittance get appended
+                else:  # beam matrix and emittance get appended
                     results[name].append(value)
 
             results["rms_beamsizes"].append(beam_sizes_i)
@@ -306,9 +307,7 @@ class EmittanceMeasurementBase(Measurement):
         beam_sizes = []
         for result in self._info:
             if isinstance(result, ScreenBeamProfileMeasurementResult):
-                beam_sizes.append(
-                    np.mean(result.rms_sizes, axis=0) * 1e-6
-                )
+                beam_sizes.append(np.mean(result.rms_sizes, axis=0) * 1e-6)
             elif isinstance(result, WireBeamProfileMeasurementResult):
                 # Get rms size from default detector for wire
                 with open("../devices/yaml/wire_lblms.yaml", "r") as wire_lblms_yaml:
@@ -382,7 +381,9 @@ class QuadScanEmittance(EmittanceMeasurementBase):
         return v
 
     def _perform_beamsize_measurements(self):
-        self.magnet.scan(scan_settings=self.scan_values, function=self._measure_beamsize)
+        self.magnet.scan(
+            scan_settings=self.scan_values, function=self._measure_beamsize
+        )
 
     def _measure_beamsize(self):
         self.measure_beamsize(self.beamsize_measurement)
