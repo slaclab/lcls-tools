@@ -168,7 +168,7 @@ class EmittanceMeasurementBase(Measurement):
     ------------------------
     _info
         List of raw beam size measurement results
-    
+
     Methods:
     ------------------------
     measure: performs beam size measurements at each phase advance, gets the beam sizes,
@@ -184,7 +184,7 @@ class EmittanceMeasurementBase(Measurement):
     design_twiss: Optional[dict] = None  # design twiss values
 
     wait_time: PositiveFloat = 5.0
-    
+
     _info: Optional[list] = []
 
     name: str = "emittance_measurement_base"
@@ -241,10 +241,10 @@ class EmittanceMeasurementBase(Measurement):
             # get rid of NaNs
             idx = ~np.isnan(beam_sizes[i])
             beam_sizes_i = beam_sizes[i][idx]
-            
+
             # convert beam sizes to units of mm^2
             beam_sizes_squared = (beam_sizes_i * 1e3) ** 2
-            
+
             # create dict of arguments for compute_emit_bmag
             emit_kwargs = {
                 "beamsize_squared": beam_sizes_squared.T,
@@ -298,7 +298,7 @@ class EmittanceMeasurementBase(Measurement):
     @abstractmethod
     def _perform_beamsize_measurements(self):
         pass
-    
+
     def _get_beamsizes_from_info(self) -> ndarray:
         """
         Extract the mean rms beam sizes from the info list, units in meters.
@@ -322,10 +322,10 @@ class EmittanceMeasurementBase(Measurement):
     @abstractmethod
     def _get_rmat_and_design_twiss(self):
         pass
-    
+
     def _get_magnet_length(self):
         return None
-    
+
     def _get_kmod_and_scan_values(self, i, beam_sizes):
         return None, None
 
@@ -386,7 +386,7 @@ class QuadScanEmittance(EmittanceMeasurementBase):
 
     def _measure_beamsize(self):
         self.measure_beamsize(self.beamsize_measurement)
-    
+
     def _get_rmat_and_design_twiss(self):
         """
         Get transport matrix and design twiss values from meme
@@ -408,17 +408,17 @@ class QuadScanEmittance(EmittanceMeasurementBase):
                 "magnet length needs to be specified for magnet "
                 f"{self.magnet.name} to be used in emittance measurement"
             )
-        
+
         return magnet_length
-    
+
     def _get_kmod_and_scan_values(self, i, beam_sizes):
         # Create two copies of quad scan values and stack together
         scan_values = np.tile(np.array(self.scan_values), (2, 1))
-        
+
         # Get rid of NaNs
         idx = ~np.isnan(beam_sizes[i])
         scan_values_i = scan_values[i][idx]
-        
+
         # Quad values to kmod values
         kmod = bdes_to_kmod(
             self.energy,
@@ -463,6 +463,7 @@ class MultiDeviceEmittance(EmittanceMeasurementBase):
 
     measure_beamsize: take measurement from measurement device, store beam sizes
     """
+
     beamsize_measurements: list[Measurement]
 
     name: str = "multi_device_emittance"
@@ -476,7 +477,7 @@ class MultiDeviceEmittance(EmittanceMeasurementBase):
         """Perform the beamsize measurements"""
         for beamsize_measurement in self.beamsize_measurements:
             self.measure_beamsize(beamsize_measurement)
-    
+
     def _get_rmat_and_design_twiss(self):
         # TODO: write for multi device measurement
         raise NotImplementedError("This method is not implemented yet")
