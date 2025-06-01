@@ -4,6 +4,7 @@ from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.image.processing import ImageProcessor
 from lcls_tools.common.measurements.measurement import Measurement
+import numpy as np
 from pydantic import (
     ConfigDict,
     SerializeAsAny,
@@ -97,9 +98,9 @@ class ScreenBeamProfileMeasurement(Measurement):
             for image in processed_images:
                 fit_result = self.beam_fit.fit_image(image)
                 rms_sizes.append(
-                    fit_result.rms_size * self.device.resolution
+                    np.array(fit_result.rms_size) * self.device.resolution
                 )  # units of microns
-                centroids.append(fit_result.centroid * self.device.resolution)
+                centroids.append(np.array(fit_result.centroid) * self.device.resolution)
                 total_intensities.append(fit_result.total_intensity)
 
         return ScreenBeamProfileMeasurementResult(
