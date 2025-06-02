@@ -13,9 +13,7 @@ from pydantic import (
     PositiveFloat,
 )
 
-from lcls_tools.common.data.emittance import (
-    compute_emit_bmag_quad_scan_machine_units,
-)
+from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.data.model_general_calcs import get_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
