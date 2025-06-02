@@ -3,6 +3,7 @@ import os
 from lcls_tools.common.devices.yaml.generate import YAMLGenerator
 from typing import Optional, List, Dict
 import collections.abc
+import argparse
 
 
 class YAMLWriter:
@@ -19,54 +20,32 @@ class YAMLWriter:
     def _is_area(self, area: str) -> bool:
         return area in self.generator.areas
 
-    def _constuct_yaml_contents(self, area: str) -> Dict[str, str]:
+    def _constuct_yaml_contents(
+        self, area: str, devices: List[str] = None
+    ) -> Dict[str, str]:
         if area not in self.generator.areas:
             raise RuntimeError(
                 f"Area {area} provided is not a known machine area.",
             )
         file_contents = {}
 
-        # Generate Magnet content
-        magnets = self.generator.extract_magnets(
-            area=area,
-        )
-        if magnets:
-            file_contents["magnets"] = magnets
+        extractors = {
+            "magnets": self.generator.extract_magnets,
+            "screens": self.generator.extract_screens,
+            "wires": self.generator.extract_wires,
+            "lblms": self.generator.extract_lblms,
+            "bpms": self.generator.extract_bpms,
+            "tcavs": self.generator.extract_tcavs,
+        }
 
-        # Generate Screens content
-        screens = self.generator.extract_screens(
-            area=area,
-        )
-        if screens:
-            file_contents["screens"] = screens
+        if devices is None:
+            devices = list(extractors.keys())
 
-        # Generate Wire content
-        wires = self.generator.extract_wires(
-            area=area,
-        )
-        if wires:
-            file_contents["wires"] = wires
-
-        # Generate LBLM content
-        lblms = self.generator.extract_lblms(
-            area=area,
-        )
-        if lblms:
-            file_contents["lblms"] = lblms
-
-        # Generate BPM content
-        bpms = self.generator.extract_bpms(
-            area=area,
-        )
-        if bpms:
-            file_contents["bpms"] = bpms
-
-        # Generate BPM content
-        tcavs = self.generator.extract_tcavs(
-            area=area,
-        )
-        if tcavs and area == "DIAG0":
-            file_contents["tcavs"] = tcavs
+        for k, v in extractors.items():
+            if k in devices:
+                device_data = v(area=area)
+                if device_data:
+                    file_contents[k] = device_data
 
         if file_contents:
             return file_contents
@@ -119,20 +98,43 @@ class YAMLWriter:
         self._yaml_dump(area, yaml_output)
 
 
-def write(mode="overwrite", areas=None, location=None):
-    writer = YAMLWriter(location=location)
+def write(mode="overwrite", devices=None, areas=None, location=None):
+    yaml_writer = YAMLWriter(location=location)
     if areas is None:
-        areas = writer.areas
+        areas = yaml_writer.areas
     match mode:
         case "overwrite":
-            write = writer.overwrite
+            selected_writer = yaml_writer.overwrite
         case "greedy":
-            write = writer.greedy_write
+            selected_writer = yaml_writer.greedy_write
         case "lazy":
-            write = writer.lazy_write
+            selected_writer = yaml_writer.lazy_write
     for area in areas:
-        write(area)
+        selected_writer(area, devices=devices)
 
 
 if __name__ == "__main__":
-    write()
+    parser = argparse.ArgumentParser(prog="YAML Writer")
+    parser.add_argument(
+        "-m",
+        "--mode",
+        choices=["overwrite", "greedy", "lazy"],
+        default="overwrite",
+        help=(
+            "The YAML writing mode. 'overwrite' replaces the YAML with "
+            "current data. 'greedy' adds new data and corrects old data. "
+            "'lazy' adds new data and leaves old data alone. "
+            "Default: %(default)s"
+        ),
+    )
+    parser.add_argument(
+        "--devices",
+        nargs="+",
+        help=(
+            "The devices to read from lcls_elements.csv. Use this arg "
+            "with --mode greedy or lazy to avoid deleting devices that"
+            "aren't currently selected."
+        ),
+    )
+    args = parser.parse_args()
+    write(mode=args.mode, devices=args.devices)
