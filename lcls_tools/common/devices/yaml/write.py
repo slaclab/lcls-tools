@@ -85,15 +85,19 @@ class YAMLWriter:
                     target[k] = v
         return target
 
-    def greedy_write(self, area: Optional[str] = "GUNB") -> None:
+    def greedy_write(
+        self, area: Optional[str] = "GUNB", devices: List[str] = None
+    ) -> None:
         current = self._get_current(area)
-        update = self._constuct_yaml_contents(area=area)
+        update = self._constuct_yaml_contents(area=area, devices=devices)
         yaml_output = self._greedy_update(current, update)
         self._yaml_dump(area, yaml_output)
 
-    def lazy_write(self, area: Optional[str] = "GUNB") -> None:
+    def lazy_write(
+        self, area: Optional[str] = "GUNB", devices: List[str] = None
+    ) -> None:
         current = self._get_current(area)
-        update = self._constuct_yaml_contents(area=area)
+        update = self._constuct_yaml_contents(area=area, devices=devices)
         yaml_output = self._lazy_update(current, update)
         self._yaml_dump(area, yaml_output)
 
@@ -110,7 +114,7 @@ def write(mode="overwrite", devices=None, areas=None, location=None):
         case "lazy":
             selected_writer = yaml_writer.lazy_write
     for area in areas:
-        selected_writer(area, devices=devices)
+        selected_writer(area)
 
 
 if __name__ == "__main__":
