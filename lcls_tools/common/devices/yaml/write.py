@@ -132,7 +132,7 @@ if __name__ == "__main__":
         nargs="+",
         help=(
             "The devices to read from lcls_elements.csv. Use this arg "
-            "with --mode greedy or lazy to avoid deleting devices that"
+            "with --mode greedy or lazy to avoid deleting devices that "
             "aren't currently selected."
         ),
     )
