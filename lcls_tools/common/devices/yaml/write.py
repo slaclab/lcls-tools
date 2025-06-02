@@ -97,10 +97,25 @@ class YAMLWriter:
                 target[k] = v
         return target
 
+    def _lazy_update(self, target, update):
+        for k, v in update.items():
+            if isinstance(v, collections.abc.Mapping):
+                target[k] = self._lazy_update(target.get(k, {}), v)
+            else:
+                if k not in target:
+                    target[k] = v
+        return target
+
     def greedy_write(self, area: Optional[str] = "GUNB") -> None:
         current = self._get_current(area)
         update = self._constuct_yaml_contents(area=area)
         yaml_output = self._greedy_update(current, update)
+        self._yaml_dump(area, yaml_output)
+
+    def lazy_write(self, area: Optional[str] = "GUNB") -> None:
+        current = self._get_current(area)
+        update = self._constuct_yaml_contents(area=area)
+        yaml_output = self._lazy_update(current, update)
         self._yaml_dump(area, yaml_output)
 
 

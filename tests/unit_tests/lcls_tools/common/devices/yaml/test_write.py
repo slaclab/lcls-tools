@@ -58,4 +58,22 @@ class TestWrite(unittest.TestCase):
             res = yaml.safe_load(file)
         self.assertIn("wires", res)
         self.assertIn("magnets", res)
-        self.assertIn("old_stuff", res["screens"]["FAKESCREEN"])
+        self.assertIn("bar", res["screens"]["FAKESCREEN"])
+        self.assertEqual(res["screens"]["FAKESCREEN"]["foo"], 1)
+        os.remove(result_location)
+
+    def test_lazy_write_yaml(self):
+        result_location = self.testbed
+        partial_area = self.data_location + "PARTIALAREA.yaml"
+        shutil.copyfile(partial_area, result_location + "AREA.yaml")
+        lcls_tools.common.devices.yaml.write.write(
+            location=result_location, mode="lazy"
+        )
+        result_location += "AREA.yaml"
+        with open(result_location, "r") as file:
+            res = yaml.safe_load(file)
+        self.assertIn("wires", res)
+        self.assertIn("magnets", res)
+        self.assertIn("bar", res["screens"]["FAKESCREEN"])
+        self.assertEqual(res["screens"]["FAKESCREEN"]["foo"], 2)
+        os.remove(result_location)

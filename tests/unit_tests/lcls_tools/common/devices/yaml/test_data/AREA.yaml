@@ -1,16 +1,6 @@
 screens:
   FAKESCREEN:
-    controls_information:
-      PVs:
-        image: SCREEN:FAKE:Image
-      control_name: SCREEN:FAKE
-    metadata:
-      area: FAKE
+    foo: 1
 wires:
   FAKEWIRE:
-    controls_information:
-      PVs:
-        motor: WIRE:FAKE:MOTR
-      control_name: WIRE:FAKE
-    metadata:
-      area: FAKE
+    foo: 1
