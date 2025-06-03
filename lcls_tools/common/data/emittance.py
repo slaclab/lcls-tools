@@ -1,8 +1,10 @@
 import numpy as np
 from scipy.optimize import minimize
 import importlib.util
-from lcls_tools.common.data.model_general_calcs import bmag_func
-
+from lcls_tools.common.data.model_general_calcs import (
+    bmag_func,
+    propagate_twiss,
+)
 
 def compute_emit_bmag(
     beamsize_squared: np.ndarray,

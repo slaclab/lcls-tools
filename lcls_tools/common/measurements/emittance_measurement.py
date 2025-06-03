@@ -22,7 +22,6 @@ from lcls_tools.common.measurements.screen_profile import (
     ScreenBeamProfileMeasurement,
 )
 from lcls_tools.common.data.model_general_calcs import (
-    propagate_twiss,
     build_quad_rmat,
     bdes_to_kmod,
 )
