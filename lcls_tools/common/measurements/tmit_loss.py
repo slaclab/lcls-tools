@@ -2,6 +2,7 @@ from lcls_tools.common.devices.reader import create_bpm
 from lcls_tools.common.measurements.measurement import Measurement
 import meme.names
 import pandas as pd
+import numpy as np
 from edef import BSABuffer
 from lcls_tools.common.devices.wire import Wire
 from pydantic import model_validator
@@ -53,7 +54,8 @@ class TMITLoss(Measurement):
         data = self.get_bpm_data()
 
         # Calculate TMIT Loss
-        tmit_loss = self.calc_tmit_loss(data)
+        tmit_loss_pd = self.calc_tmit_loss(data)
+        tmit_loss = tmit_loss_pd.to_numpy()
         return tmit_loss
 
     def find_bpms(self):
@@ -154,15 +156,23 @@ class TMITLoss(Measurement):
             try:
                 # Get data from BSA buffer
                 bpm_data = bpm.tmit_buffer(self.my_buffer)
-                # If returned data is empty, skip
-                if len(bpm_data) == 0:
-                    pass
+                if bpm_data is not None and len(bpm_data) > 0:
+                    data[element] = bpm_data
                 else:
-                    data[f"{element}"] = bpm_data
-            # If data cannot be retrieved, skip
-            # Retrieval errors happen when PVs are disconnected most commonly
+                    data[element] = None
             except (BufferError, TypeError):
-                pass
+                data[element] = None
+
+        valid_lengths = [len(v) for v in data.values() if v is not None]
+        if not valid_lengths:
+            raise ValueError("No valid BPM data could be retrieved.")
+        min_len = min(valid_lengths)
+
+        for key, val in data.items():
+            if val is None or len(val) < min_len:
+                data[key] = np.zeros(min_len)
+            else:
+                data[key] = val[:min_len]
 
         df = pd.DataFrame(data)
         return df.T
@@ -246,5 +256,5 @@ class TMITLoss(Measurement):
         mean_after = normed_after.mean()
 
         # Compute TMIT Loss percentage
-        tmit_loss = (mean_after - mean_before) * 100
+        tmit_loss = (mean_before - mean_after) * 100
         return tmit_loss
