@@ -86,7 +86,7 @@ class WireBeamProfileMeasurement(Measurement):
     my_buffer: Optional[edef.BSABuffer] = None
     devices: Optional[dict] = None
     data: Optional[dict] = None
-    bsa_data_by_plane: Optional[dict] = None
+    plane_measurements: Optional[dict] = None
 
     @model_validator(mode="after")
     def run_setup(self) -> Self:
@@ -340,9 +340,9 @@ class WireBeamProfileMeasurement(Measurement):
                     positions = data_slice
                 else:
                     units = "%% beam loss" if device == "TMITLOSS" else "counts"
-                detectors[device] = DetectorMeasurement(
-                    values=data_slice, units=units, label=device
-                )
+                    detectors[device] = DetectorMeasurement(
+                        values=data_slice, units=units, label=device
+                    )
 
             plane_measurements[plane] = PlaneMeasurement(
                 positions=positions, detectors=detectors, profile_idxs=idx
@@ -388,7 +388,7 @@ class WireBeamProfileMeasurement(Measurement):
 
         rms_sizes = {
             device: (x_fits[device]["sigma"], y_fits[device]["sigma"])
-            for device in devices
+            for device in devices if device != self.my_wire.name
         }
 
         return fit_result, rms_sizes
@@ -396,7 +396,7 @@ class WireBeamProfileMeasurement(Measurement):
     def create_metadata(self):
         # Make additional metadata
         sample_plane = next(iter(self.plane_measurements.values()))
-        detectors = list(sample_plane.keys())
+        detectors = list(sample_plane.detectors.keys())
 
         scan_ranges = {
             "x": self.my_wire.x_range,
