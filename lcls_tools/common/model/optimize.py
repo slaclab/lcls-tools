@@ -97,7 +97,8 @@ def map_fit(curve, x, y, init, bounds=None, prior=None):
               correspond to the params arguments in curve and prior.
         bounds (tuple(tuple[float, float])): Boundaries for the fitted params.
         prior (Callable[params]): The penalty function that biases fitting towards
-              parameter values with high prior likelihood.
+              parameter values with high prior likelihood. If not provided,
+              optimization is reduced to Maximum Likelihood Estimation (MLE).
             params: A list of parameter values scipy.optimize.minimize will fit.
 
     Out:
