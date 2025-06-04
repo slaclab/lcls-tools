@@ -41,13 +41,13 @@ class Parameter(ABC):
 
 def param_fit(curve, params, pos, data, use_prior=False):
     """
-    Given a curve function and parameter objects, computes a 1D curve fit 
+    Given a curve function and parameter objects, computes a 1D curve fit
     using Maximum A Postiori (MAP) fitting.
 
     If `use_prior` is True, prior distributions defined by each parameter will be
-    used to penalize parameter values that have a low prior likelihood. 
+    used to penalize parameter values that have a low prior likelihood.
     If `use_prior` is False, optimization is not weighted by
-    prior parameter distributions, reducing fitting to Maximum Likelihood 
+    prior parameter distributions, reducing fitting to Maximum Likelihood
     Estimation (MLE), commonly referred to as least-squares fitting.
 
     Arguments:
@@ -68,13 +68,16 @@ def param_fit(curve, params, pos, data, use_prior=False):
         return curve(x, *vec)
 
     if use_prior:
-        prior = lambda vec: np.sum([p.prior(v) for v, p in zip(vec, params)])
+
+        def prior(vec):
+            return np.sum([p.prior(v) for v, p in zip(vec, params)])
     else:
         prior = None
 
     bounds = tuple(p.bounds for p in params)
     res = map_fit(forward, x, y, init, bounds, prior)
     return {p.name: p.scale(val, pos, data) for p, val in zip(params, res.x)}
+
 
 def map_fit(curve, x, y, init, bounds=None, prior=None):
     """
@@ -101,6 +104,7 @@ def map_fit(curve, x, y, init, bounds=None, prior=None):
         res: scipy OptimizeResult object.
     """
     if prior is None:
+
         def prior(p):
             return 0
 
