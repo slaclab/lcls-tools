@@ -133,7 +133,7 @@ class TCAV(Device):
     @property
     def amp_set(self):
         """The amplitude set point of the TCAV"""
-        return self.controls_information.PVs.amp_set.get()
+        return self.controls_information.PVs.amp_set.get(use_monitor=False)
 
     @amp_set.setter
     def amp_set(self, amplitude):
@@ -144,7 +144,7 @@ class TCAV(Device):
     @property
     def phase_set(self):
         """The phase set point of the TCAV"""
-        return self.controls_information.PVs.phase_set.get()
+        return self.controls_information.PVs.phase_set.get(use_monitor=False)
 
     @phase_set.setter
     def phase_set(self, phase):
