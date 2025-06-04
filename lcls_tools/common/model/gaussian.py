@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.stats import norm, gamma
+from scipy.stats import norm
 import lcls_tools.common.model.optimize as optimize
 
 
@@ -18,7 +18,8 @@ class mean(optimize.Parameter):
 
     @staticmethod
     def prior(mean, mean_0):
-        return norm(mean_0, 0.1).logpdf(mean)
+        # Waiting for hyperparams from ML team to implement.
+        return 0
 
     @staticmethod
     def scale(mean, x, y):
@@ -36,7 +37,8 @@ class sigma(optimize.Parameter):
 
     @staticmethod
     def prior(sigma, sigma_0):
-        return gamma(2.5, loc=0, scale=1 / 5.0).logpdf(sigma)
+        # Waiting for hyperparams from ML team to implement.
+        return 0
 
     @staticmethod
     def scale(sigma, x, y):
@@ -54,10 +56,8 @@ class amplitude(optimize.Parameter):
 
     @staticmethod
     def prior(amp, amp_0):
-        var = 0.05
-        alpha = (amp_0**2) / var
-        beta = amp_0 / var
-        return gamma(alpha, loc=0, scale=1 / beta).logpdf(amp)
+        # Waiting for hyperparams from ML team to implement.
+        return 0
 
     @staticmethod
     def scale(amp, x, y):
@@ -75,7 +75,8 @@ class offset(optimize.Parameter):
 
     @staticmethod
     def prior(off, off_0):
-        return norm(off_0, 0.5).logpdf(off)
+        # Waiting for hyperparams from ML team to implement.
+        return 0
 
     @staticmethod
     def scale(off, x, y):
