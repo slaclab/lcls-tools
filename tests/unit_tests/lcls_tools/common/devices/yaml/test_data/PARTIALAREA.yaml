@@ -1,0 +1,7 @@
+screens:
+  FAKESCREEN:
+    foo: 2
+    bar: 1
+magnets:
+  FAKEMAGNET:
+    foo: 1
