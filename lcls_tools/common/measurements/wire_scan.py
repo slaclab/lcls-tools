@@ -1,42 +1,73 @@
-from typing import Any, Optional
-from lcls_tools.common.devices.wire import Wire
+# LCLS Tools Imports
 from lcls_tools.common.devices.reader import create_lblm
+from lcls_tools.common.devices.wire import Wire
 from lcls_tools.common.data.fit.projection import ProjectionFit
+from lcls_tools.common.data.least_squares import (gaussian,
+                                                  super_gaussian,
+                                                  asymmetrical_gaussian,
+                                                  asymmetrical_super_gaussian)
 from lcls_tools.common.measurements.measurement import Measurement
-import time
-import edef
-import os
-from pydantic import SerializeAsAny, BaseModel, ConfigDict, model_validator
-from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
-import numpy as np
+from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
+# SLAC Imports
+import edef
+# Pydantic Imports
+from pydantic import BaseModel, ConfigDict, model_validator
+from typing import Any, Dict, Tuple, Optional
 from typing_extensions import Self
+from collections import defaultdict
+# General Imports
+import os
+from datetime import datetime
+import time
+import numpy as np
+
+
+class MeasurementMetadata(BaseModel):
+    wire_name: str
+    area: str
+    beampath: str
+    detectors: list[str]
+    default_detector: str
+    scan_ranges: Dict[str, Tuple[int, int]]
+    timestamp: datetime
+    notes: Optional[str] = None
+
+
+class FitResult(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    amplitude: float
+    mean: float
+    sigma: float
+    offset: float
+    gaussian: NDArrayAnnotatedType
+    gaussian_cov: NDArrayAnnotatedType
+    asymmetric_gaussian: NDArrayAnnotatedType
+    asymmetric_gaussian_cov: NDArrayAnnotatedType
+    super_gaussian: NDArrayAnnotatedType
+    super_gaussian_cov: NDArrayAnnotatedType
+    asymmetric_super_gaussian: NDArrayAnnotatedType
+    asymmetric_super_gaussian_cov: NDArrayAnnotatedType
+
+
+class DetectorMeasurement(BaseModel):
+    values: NDArrayAnnotatedType
+    units: str | None = None
+    label: str | None = None
+
+
+class PlaneMeasurement(BaseModel):
+    positions: NDArrayAnnotatedType
+    detectors: dict[str, DetectorMeasurement]
+    profile_idxs: NDArrayAnnotatedType
 
 
 class WireBeamProfileMeasurementResult(BaseModel):
-    """
-    Stores the results of a wire beam profile measurement.
-
-    Attributes:
-        position_data (np.ndarray): Wire position (um) data for each plane.
-        detector_data (np.ndarray): Detector responses (loss counts) separated by plane.
-        raw_data (np.ndarray): Raw unprocessed BSA data for all devices.
-        metadata (Any): Metadata describing the measurement setup and parameters.
-        fit_result (np.ndarray): Fit results from beam profile projections.
-        rms_sizes (dict): RMS  beamsizes (sigma values) extracted from fits.
-
-    Config:
-        arbitrary_types_allowed: Allows use of non-standard types like np.ndarray.
-        extra: Forbids extra fields not explicitly defined in the model.
-    """
-
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-    position_data: NDArrayAnnotatedType
-    detector_data: NDArrayAnnotatedType
-    raw_data: NDArrayAnnotatedType
-    metadata: SerializeAsAny[Any]
-    fit_result: NDArrayAnnotatedType
-    rms_sizes: dict
+    planes: Dict[str, PlaneMeasurement]
+    raw_data: Dict[str, Any]
+    fit_result: Dict[str, Dict[str, FitResult]]
+    rms_sizes: Dict[str, Tuple[float, float]]
+    metadata: MeasurementMetadata
 
 
 class WireBeamProfileMeasurement(Measurement):
@@ -61,7 +92,7 @@ class WireBeamProfileMeasurement(Measurement):
     my_buffer: Optional[edef.BSABuffer] = None
     devices: Optional[dict] = None
     data: Optional[dict] = None
-    bsa_data_by_plane: Optional[dict] = None
+    plane_measurements: Optional[dict] = None
 
     @model_validator(mode="after")
     def run_setup(self) -> Self:
@@ -92,31 +123,27 @@ class WireBeamProfileMeasurement(Measurement):
         self.scan_with_wire()
 
         # Get position and detector data from the buffer
-        self.get_bsa_data()
+        self.data = self.get_data_from_bsa()
 
         # Determine the profile range indices
         # e.g., u range = (13000, 18000) -> position_data[100:250]
-        idxs = self.get_profile_ranges()
+        profile_idxs = self.get_profile_range_indices()
 
         # Separate detector data by profile
-        self.split_data_by_plane(idxs)
+        self.plane_measurements = self.organize_data_by_plane(profile_idxs)
 
         # Fit detector data by profile
-        fit_result_idx = self.fit_data_by_plane()
+        fit_result, rms_sizes = self.fit_data_by_plane()
 
-        # Convert fit parameters from index-space to physical-space
-        fit_result_phys = self.convert_fit_to_physical(fit_result_idx)
-
-        # Make RMS sizes object for Emittance measurements
-        rms_sizes = self.get_rms_sizes(fit_result_phys)
+        # Create measurement metadata object
+        metadata = self.create_metadata()
 
         return WireBeamProfileMeasurementResult(
-            position_data=self.data[f"{self.my_wire.name}"],
-            detector_data=self.bsa_data_by_plane,
+            planes=self.plane_measurements,
             raw_data=self.data,
-            fit_result=fit_result_phys,
+            fit_result=fit_result,
             rms_sizes=rms_sizes,
-            metadata=["TEST"],  # self.model_dump() threw error #TODO
+            metadata=metadata,
         )
 
     def reserve_buffer(self):
@@ -204,7 +231,7 @@ class WireBeamProfileMeasurement(Measurement):
         # Wait briefly before checking buffer 'ready'
         time.sleep(0.1)
 
-    def get_bsa_data(self):
+    def get_data_from_bsa(self):
         """
         Collects wire scan and detector data after buffer completes.
 
@@ -215,7 +242,7 @@ class WireBeamProfileMeasurement(Measurement):
         Returns:
             dict: Collected data keyed by device name.
         """
-        self.data = {}
+        data = {}
         # Wait for buffer 'ready'
         while not self.my_buffer.is_acquisition_complete():
             time.sleep(0.1)
@@ -225,11 +252,11 @@ class WireBeamProfileMeasurement(Measurement):
         if self.beampath.startswith("SC"):
             for device in self.devices:
                 if device == self.my_wire.name:
-                    self.data[device] = self.my_wire.position_buffer(self.my_buffer)
+                    data[device] = self.my_wire.position_buffer(self.my_buffer)
                 elif device == "TMITLOSS":
-                    self.data[device] = self.devices[device].measure()
+                    data[device] = self.devices[device].measure()
                 else:
-                    self.data[device] = self.devices[device].fast_buffer(self.my_buffer)
+                    data[device] = self.devices[device].fast_buffer(self.my_buffer)
         elif self.beampath.startswith("CU"):
             # CU LBLMs use "QDCRAW" signal
             self.data.update(
@@ -243,7 +270,9 @@ class WireBeamProfileMeasurement(Measurement):
         print("Releasing BSA buffer")
         self.my_buffer.release()
 
-    def get_profile_ranges(self):
+        return data
+
+    def get_profile_range_indices(self):
         """
         Finds sequential scan indices within each plane's position range.
 
@@ -254,15 +283,23 @@ class WireBeamProfileMeasurement(Measurement):
             dict: Plane keys ('x', 'y', 'u') with lists of index arrays.
         """
         # Get wire data to detemine plane indices
-        position_data = self.data[f"{self.my_wire.name}"]
+        position_data = self.data[self.my_wire.name]
 
         # Hold plane ranges
         ranges = {}
 
         # Hold sequential indices (avoid catching return wires)
-        seq_idxs = {}
+        profile_idxs = {}
 
-        for plane in ["x", "y", "u"]:
+        active_planes = []
+        if self.my_wire.use_x_wire:
+            active_planes.append("x")
+        if self.my_wire.use_y_wire:
+            active_planes.append("y")
+        if self.my_wire.use_u_wire:
+            active_planes.append("u")
+
+        for plane in active_planes:
             # Get range methods e.g. x_range()
             method_name = f"{plane}_range"
             ranges[plane] = getattr(self.my_wire, method_name)
@@ -279,11 +316,11 @@ class WireBeamProfileMeasurement(Measurement):
 
             mono_idx = idx[mono_mask]
 
-            seq_idxs[plane] = mono_idx
+            profile_idxs[plane] = mono_idx
 
-        return seq_idxs
+        return profile_idxs
 
-    def split_data_by_plane(self, seq_idxs):
+    def organize_data_by_plane(self, profile_idxs):
         """
         Organizes detector data by scan plane for each device.
 
@@ -295,18 +332,37 @@ class WireBeamProfileMeasurement(Measurement):
         """
         # Make dictionary to hold individual datasets by plane
         # Ultimately will be detector_data[<plane>][<device_name>]
-        planes = list(seq_idxs.keys())
-        self.bsa_data_by_plane = {plane: {} for plane in planes}
-        devices = list(self.data.keys())
+        planes = list(profile_idxs.keys())
+        devices = list(self.devices.keys())
 
-        for device in devices:
-            device_data = self.data[device]
-            for plane in planes:
-                # Separate out device data by plane
-                idx = seq_idxs.get(plane)
-                device_plane_data = device_data[idx]
-                # Flatten data so it is guaranteed to be 1D
-                self.bsa_data_by_plane[plane][device] = device_plane_data.flatten()
+        plane_measurements = {}
+
+        for plane in planes:
+            idx = profile_idxs.get(plane)
+            detectors = {}
+
+            for device in devices:
+                data_slice = self.data[device][idx]
+
+                if device == self.my_wire.name:
+                    positions = data_slice
+
+                else:
+                    units = "%% beam loss" if device == "TMITLOSS" else "counts"
+
+                    detectors[device] = DetectorMeasurement(
+                        values=data_slice,
+                        units=units,
+                        label=device,
+                    )
+
+            plane_measurements[plane] = PlaneMeasurement(
+                positions=positions,
+                detectors=detectors,
+                profile_idxs=idx
+            )
+
+        return plane_measurements
 
     def fit_data_by_plane(self):
         """
@@ -319,84 +375,73 @@ class WireBeamProfileMeasurement(Measurement):
             dict: Fit results organized by plane and device.
         """
         # Get list of planes from data set
-        planes = list(self.bsa_data_by_plane.keys())
-        fit_result = {plane: {} for plane in planes}
+        planes = list(self.plane_measurements.keys())
+        devices = list(self.data.keys())
+        proj_fit = self.beam_fit()
+
+        fit_result: dict[str, dict[str, FitResult]] = defaultdict(dict)
 
         for plane in planes:
-            # Get list of devices (LBLMs)
-            devices = list(self.bsa_data_by_plane[plane].keys())
+            wire_positions = self.plane_measurements[plane].positions
+            posn_start = wire_positions[0]
+            posn_diff = np.mean(np.diff(wire_positions))
 
             for device in devices:
-                # Don't do fit on wire position!
                 if device == self.my_wire.name:
-                    pass
-                else:
-                    # Instantiate beam_fit
-                    proj_fit = self.beam_fit()
-                    proj_data = self.bsa_data_by_plane[plane][device]
-                    fit_result[plane][device] = proj_fit.fit_projection(proj_data)
+                    continue
 
-        return fit_result
+                proj_data = self.plane_measurements[plane].detectors[device].values
+                fit_output = proj_fit.fit_projection(proj_data)
 
-    def convert_fit_to_physical(self, fit_result):
-        """
-        Convert Gaussian fit results from index space to physical position.
+                fit = FitResult(**fit_output)
+                fit.mean = fit.mean * posn_diff + posn_start
+                fit.sigma = fit.sigma * posn_diff
 
-        Updates the 'mean' and 'sigma' of each fit using the average spacing
-        between position values and the starting position of the scan.
-        """
-        # Loop over each scan plane (e.g., 'x', 'y', 'u')
-        planes = list(self.bsa_data_by_plane.keys())
-        for plane in planes:
-            devices = list(self.bsa_data_by_plane[plane].keys())
-            # Loop over each device in the current plane
-            for device in devices:
-                if device == self.my_wire.name:
-                    pass
-                else:
-                    # Get the starting physical position of the wire scan
-                    posn_start = self.bsa_data_by_plane[plane][self.my_wire.name][0]
+                fit_functions = {
+                    "gaussian": gaussian,
+                    "asymmetrical_gaussian": asymmetrical_gaussian,
+                    "super_gaussian": super_gaussian,
+                    "asymmetrical_super_gaussian": asymmetrical_super_gaussian
+                }
 
-                    # Estimate the spacing between position samples
-                    posn_diff = np.mean(
-                        np.diff(self.bsa_data_by_plane[plane][self.my_wire.name])
-                    )
+                for name, func in fit_functions.items():
+                    result, cov = func(x=wire_positions, y=proj_data)
+                    setattr(fit, name, result)
+                    setattr(fit, f"{name}_cov", cov)
 
-                    # Convert the fitted mean from index to physical position
-                    mean_phys = (
-                        fit_result[plane][device]["mean"] * posn_diff + posn_start
-                    )
+                fit_result[plane][device] = fit
 
-                    # Convert the fitted sigma (standard deviation) to physical units
-                    sigma_phys = fit_result[plane][device]["sigma"] * posn_diff
+        x_fits = fit_result.get("x", {})
+        y_fits = fit_result.get("y", {})
+        common_devices = set(x_fits.keys()) & set(y_fits.keys())
 
-                    # Update the fit result with physical values
-                    fit_result[plane][device]["mean"] = mean_phys
-                    fit_result[plane][device]["sigma"] = sigma_phys
+        rms_sizes = {
+            device: (x_fits[device].sigma, y_fits[device].sigma)
+            for device in common_devices
+        }
 
-        return fit_result
+        return fit_result, rms_sizes
 
-    def get_rms_sizes(fit_result_phys):
-        """
-        Extract RMS beam sizes ('sigma') from nested fit results.
+    def create_metadata(self):
+        # Make additional metadata
+        sample_plane = next(iter(self.plane_measurements.values()))
+        detectors = list(sample_plane.keys())
 
-        Args:
-            fit_result_phys (dict): Nested dictionary of the format
-                fit_result[plane][device]['sigma'], containing Gaussian fit data.
+        scan_ranges = {
+            "x": self.my_wire.x_range,
+            "y": self.my_wire.y_range,
+            "u": self.my_wire.u_range
+        }
 
-        Returns:
-            dict: Dictionary where the keys are devices (detectors) and the values
-            are lists of the form [x_rms, y_rms].
-        """
-        rms_sizes = {}
+        metadata = MeasurementMetadata(
+            wire_name=self.my_wire.name,
+            area=self.my_wire.area,
+            beampath=self.beampath,
+            detectors=detectors,
+            default_detector=detectors[0],
+            scan_ranges=scan_ranges,
+            timestamp=datetime.now(),
+            notes=None
+        )
 
-        for plane in fit_result_phys:
-            for device in fit_result_phys[plane]:
-                sigma = fit_result_phys[plane][device]["sigma"]
-                if device not in rms_sizes:
-                    rms_sizes[device] = [None, None]
-                if plane == "x":
-                    rms_sizes[device][0] = sigma
-                if plane == "y":
-                    rms_sizes[device][1] = sigma
-        return rms_sizes
+        return metadata
