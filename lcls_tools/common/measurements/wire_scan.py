@@ -401,7 +401,7 @@ class WireBeamProfileMeasurement(Measurement):
         scan_ranges = {
             "x": self.my_wire.x_range,
             "y": self.my_wire.y_range,
-            "u": self.my_wire.u_range
+            "u": self.my_wire.u_range,
         }
 
         metadata = MeasurementMetadata(
@@ -412,8 +412,7 @@ class WireBeamProfileMeasurement(Measurement):
             default_detector=detectors[0],
             scan_ranges=scan_ranges,
             timestamp=datetime.now(),
-            notes=None
+            notes=None,
         )
 
         return metadata
-    
