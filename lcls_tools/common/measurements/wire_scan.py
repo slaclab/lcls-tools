@@ -388,7 +388,8 @@ class WireBeamProfileMeasurement(Measurement):
 
         rms_sizes = {
             device: (x_fits[device]["sigma"], y_fits[device]["sigma"])
-            for device in devices if device != self.my_wire.name
+            for device in devices
+            if device != self.my_wire.name
         }
 
         return fit_result, rms_sizes
