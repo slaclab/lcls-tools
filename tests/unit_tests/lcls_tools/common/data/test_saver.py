@@ -1,4 +1,5 @@
 import os
+import unittest
 
 import numpy as np
 
@@ -10,7 +11,7 @@ from lcls_tools.common.image.fit import ImageProjectionFit
 from lcls_tools.common.data.saver import H5Saver
 
 
-class TestSaver:
+class TestSaver(unittest.TestCase):
     def test_nans(self):
         saver = H5Saver()
         data = {

@@ -45,7 +45,7 @@ class H5Saver:
         -------
         None
         """
-        dt = h5py.string_dtype(encoding=self.string_dtype)
+        h5str = h5py.string_dtype(encoding=self.string_dtype)
 
         def recursive_save(d, f):
             for key, val in d.items():
@@ -65,7 +65,7 @@ class H5Saver:
                                 f.create_dataset(
                                     f"{key}/{i}",
                                     data=str(ele),
-                                    dtype=dt,
+                                    dtype=h5str,
                                     track_order=True,
                                 )
                     elif all(isinstance(ele, dict) for ele in val):
@@ -92,7 +92,7 @@ class H5Saver:
                                 f.create_dataset(
                                     f"{key}/{i}",
                                     data=str(ele),
-                                    dtype=dt,
+                                    dtype=h5str,
                                     track_order=True,
                                 )
                     else:
@@ -100,13 +100,13 @@ class H5Saver:
                             # if it's a list of mixed types, save as strings
                             if isinstance(ele, str):
                                 f.create_dataset(
-                                    f"{key}/{i}", data=ele, dtype=dt, track_order=True
+                                    f"{key}/{i}", data=ele, dtype=h5str, track_order=True
                                 )
                             else:
                                 f.create_dataset(
                                     f"{key}/{i}",
                                     data=str(ele),
-                                    dtype=dt,
+                                    dtype=h5str,
                                     track_order=True,
                                 )
                 elif isinstance(val, self.supported_types):
@@ -115,13 +115,13 @@ class H5Saver:
                     if val.dtype != np.dtype("O"):
                         f.create_dataset(key, data=val, track_order=True)
                     else:
-                        f.create_dataset(key, data=str(val), dtype=dt, track_order=True)
+                        f.create_dataset(key, data=str(val), dtype=h5str, track_order=True)
                 elif isinstance(val, tuple):
                     val_array = np.array(val)
                     f.create_dataset(key, data=val_array, track_order=True)
                 elif isinstance(val, str):
                     # specify string dtype to avoid issues with encodings
-                    f.create_dataset(key, data=val, dtype=dt, track_order=True)
+                    f.create_dataset(key, data=val, dtype=h5str, track_order=True)
                 elif isinstance(val, pd.DataFrame):
                     # save DataFrame as a group with datasets for columns
                     group = f.create_group(key)
@@ -135,7 +135,7 @@ class H5Saver:
                                 val[col] = val[col].astype("string")
                         group.create_dataset(col, data=val[col].values)
                 else:
-                    f.create_dataset(key, data=str(val), dtype=dt, track_order=True)
+                    f.create_dataset(key, data=str(val), dtype=h5str, track_order=True)
 
         with h5py.File(filepath, "w") as file:
             recursive_save(data, file)
