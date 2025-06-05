@@ -32,7 +32,7 @@ class H5Saver:
     @validate_call
     def dump(self, data: Dict[str, Any], filepath: str):
         """
-        Save a dictionary to an HDF5 file. 5s
+        Save a dictionary to an HDF5 file.
 
         Parameters
         ----------
@@ -55,8 +55,30 @@ class H5Saver:
                     group = f.create_group(key, track_order=True)
                     recursive_save(val, group)
                 elif isinstance(val, list):
-                    if all(isinstance(ele, self.supported_types) for ele in val):
-                        f.create_dataset(key, data=val, track_order=True)
+                    types = [type(ele).__name__ for ele in val]
+                    if all(isinstance(ele, list) for ele in val):
+                        group = f.create_group(key, track_order=True)
+                        for i, sublist in enumerate(val):
+                            # Save each sublist as a dataset (handle homogeneous/heterogeneous as before)
+                            sub_types = [type(x).__name__ for x in sublist]
+                            if len(set(sub_types)) == 1 and all(
+                                    isinstance(x, (str, int, float, bool)) for x in sublist):
+                                dset = group.create_dataset(str(i), data=sublist,
+                                                            dtype=h5py.string_dtype(encoding=self.string_dtype) if
+                                                            sub_types[0] == "str" else None, track_order=True)
+                                dset.attrs["_type"] = sub_types[0]
+                            else:
+                                dset = group.create_dataset(str(i), data=[str(x) for x in sublist],
+                                                            dtype=h5py.string_dtype(encoding=self.string_dtype),
+                                                            track_order=True)
+                                dset.attrs["_types"] = np.array(sub_types,
+                                                                dtype=h5py.string_dtype(encoding=self.string_dtype))
+                    elif len(set(types)) == 1 and all(isinstance(ele, (str, int, float, bool)) for ele in val):
+                        dset = f.create_dataset(key, data=val,
+                                                dtype=h5py.string_dtype(encoding=self.string_dtype) if types[
+                                                                                                           0] == "str" else None,
+                                                track_order=True)
+                        dset.attrs["_type"] = types[0]
                     elif all(isinstance(ele, np.ndarray) for ele in val):
                         # save np.arrays as datasets
                         for i, ele in enumerate(val):
@@ -96,19 +118,9 @@ class H5Saver:
                                     track_order=True,
                                 )
                     else:
-                        for i, ele in enumerate(val):
-                            # if it's a list of mixed types, save as strings
-                            if isinstance(ele, str):
-                                f.create_dataset(
-                                    f"{key}/{i}", data=ele, dtype=h5str, track_order=True
-                                )
-                            else:
-                                f.create_dataset(
-                                    f"{key}/{i}",
-                                    data=str(ele),
-                                    dtype=h5str,
-                                    track_order=True,
-                                )
+                        # Mixed types: save as strings and store types
+                        dset = f.create_dataset(key, data=[str(ele) for ele in val], dtype=h5str, track_order=True)
+                        dset.attrs["_types"] = np.array(types, dtype=h5str)
                 elif isinstance(val, self.supported_types):
                     f.create_dataset(key, data=val, track_order=True)
                 elif isinstance(val, np.ndarray):
@@ -157,13 +169,70 @@ class H5Saver:
 
         def recursive_load(f):
             d = {"attrs": dict(f.attrs)} if f.attrs else {}
+            keys = list(f.keys())
+            if keys and all(k.isdigit() for k in keys):
+                items = []
+                for k in sorted(keys, key=int):
+                    val = f[k]
+                    if isinstance(val, h5py.Group):
+                        items.append(recursive_load(val))
+                    elif isinstance(val, h5py.Dataset):
+                        if "_type" in val.attrs:
+                            dtype = val.attrs["_type"]
+                            arr = val[()]
+                            if dtype == "str":
+                                items.append(
+                                    [x.decode(self.string_dtype) if isinstance(x, bytes) else str(x) for x in arr])
+                            elif dtype == "int":
+                                items.append([int(x) for x in arr])
+                            elif dtype == "float":
+                                items.append([float(x) for x in arr])
+                            elif dtype == "bool":
+                                items.append([bool(x) for x in arr])
+                            else:
+                                items.append(arr.tolist())
+                        elif "_types" in val.attrs:
+                            arr = val[()]
+                            types = val.attrs["_types"]
+                            if isinstance(types, bytes):
+                                types = [types.decode(self.string_dtype)]
+                            else:
+                                types = [t.decode(self.string_dtype) if isinstance(t, bytes) else t for t in types]
+                            result = []
+                            for x, t in zip(arr, types):
+                                if t == "int":
+                                    result.append(int(x))
+                                elif t == "float":
+                                    result.append(float(x))
+                                elif t == "bool":
+                                    result.append(x == b"True" if isinstance(x, bytes) else x == "True")
+                                elif t == "list":
+                                    # Try to parse stringified list
+                                    s = x.decode(self.string_dtype) if isinstance(x, bytes) else str(x)
+                                    try:
+                                        result.append(ast.literal_eval(s))
+                                    except Exception:
+                                        result.append(s)
+                                else:
+                                    result.append(x.decode(self.string_dtype) if isinstance(x, bytes) else str(x))
+                            d[key] = result
+                        else:
+                            v = val[()]
+                            if isinstance(v, bytes):
+                                v = v.decode(self.string_dtype)
+                            # Try to parse stringified list
+                            try:
+                                parsed = ast.literal_eval(v)
+                                if isinstance(parsed, list):
+                                    items.append(parsed)
+                                else:
+                                    items.append(v)
+                            except Exception:
+                                items.append(v)
+                return items
             for key, val in f.items():
                 if isinstance(val, h5py.Group):
-                    if (
-                        "pandas_type" in val.attrs
-                        and val.attrs["pandas_type"] == "dataframe"
-                    ):
-                        # Load DataFrame from group
+                    if "pandas_type" in val.attrs and val.attrs["pandas_type"] == "dataframe":
                         columns = val.attrs["columns"]
                         data = {}
                         for col in columns:
@@ -172,10 +241,39 @@ class H5Saver:
                     else:
                         d[key] = recursive_load(val)
                 elif isinstance(val, h5py.Dataset):
-                    if isinstance(val[()], bytes):
-                        d[key] = val[()].decode(self.string_dtype)
+                    if "_type" in val.attrs:
+                        dtype = val.attrs["_type"]
+                        arr = val[()]
+                        if dtype == "str":
+                            d[key] = [x.decode(self.string_dtype) if isinstance(x, bytes) else str(x) for x in arr]
+                        elif dtype == "int":
+                            d[key] = [int(x) for x in arr]
+                        elif dtype == "float":
+                            d[key] = [float(x) for x in arr]
+                        elif dtype == "bool":
+                            d[key] = [bool(x) for x in arr]
+                        else:
+                            d[key] = arr.tolist()
+                    elif "_types" in val.attrs:
+                        arr = val[()]
+                        types = val.attrs["_types"]
+                        if isinstance(types, bytes):
+                            types = [types.decode(self.string_dtype)]
+                        else:
+                            types = [t.decode(self.string_dtype) if isinstance(t, bytes) else t for t in types]
+                        result = []
+                        for x, t in zip(arr, types):
+                            if t == "int":
+                                result.append(int(x))
+                            elif t == "float":
+                                result.append(float(x))
+                            elif t == "bool":
+                                result.append(x == b"True" if isinstance(x, bytes) else x == "True")
+                            else:
+                                result.append(x.decode(self.string_dtype) if isinstance(x, bytes) else str(x))
+                        d[key] = result
                     else:
-                        d[key] = val[()]
+                        d[key] = val[()].decode(self.string_dtype) if isinstance(val[()], bytes) else val[()]
             return d
 
         with h5py.File(filepath, "r") as file:

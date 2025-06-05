@@ -107,7 +107,7 @@ class TestSaver(unittest.TestCase):
         assert data["float"] == loaded_data["float"]
         assert data["bool"] == loaded_data["bool"]
         assert data["string"] == loaded_data["string"]
-        assert data["list"] == loaded_data["list"].tolist()
+        assert data["list"] == loaded_data["list"]
         assert (
             list(data["tuple"]) == loaded_data["tuple"].tolist()
         )  # tuple are saved as arrays
@@ -148,7 +148,7 @@ class TestSaver(unittest.TestCase):
             # lists of lists are saved as dicts
             # here the lists are saved as nd.arrays
             assert np.array_equal(
-                data["nested_list"][i], loaded_data["nested_list"][f"{i}"]
+                data["nested_list"][i], loaded_data["nested_list"][i]
             )
 
     def test_object_arrays(self):
@@ -169,7 +169,7 @@ class TestSaver(unittest.TestCase):
 
         assert len(data["list_of_ndarrays"]) == len(loaded_data["list_of_ndarrays"])
         for original, loaded in zip(
-            data["list_of_ndarrays"], loaded_data["list_of_ndarrays"].values()
+            data["list_of_ndarrays"], loaded_data["list_of_ndarrays"]
         ):
             # lists of ndarrays are saved as dicts
             assert np.array_equal(original, loaded)
