@@ -148,9 +148,9 @@ class TCAV(Device):
 
     @phase_set.setter
     def phase_set(self, phase):
-        if not isinstance([phase], float):
+        if not isinstance(phase, float):
             return
-        self.controls_information.PVs.phase.put(phase)
+        self.controls_information.PVs.phase_set.put(phase)
 
     @property
     def amp_fbenb(self):

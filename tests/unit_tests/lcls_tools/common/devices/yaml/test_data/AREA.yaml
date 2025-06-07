@@ -1,0 +1,6 @@
+screens:
+  FAKESCREEN:
+    foo: 1
+wires:
+  FAKEWIRE:
+    foo: 1
