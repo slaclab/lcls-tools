@@ -11,6 +11,7 @@ import numpy as np
 class TestScreenBeamProfileMeasurement(unittest.TestCase):
     def setUp(self):
         screen = MagicMock(Screen)
+        screen.resolution = 1.0
 
         # create a mock Screen device
         def mock_get_image(*args):
