@@ -122,7 +122,7 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
         if mode == BMAGMode.GEOMETRIC_MEAN:
             # multiply x and y bmag values to get geometric mean
             bmag = np.sqrt(fits[0] * fits[1])
-        if mode == BMAGMode.JOINT_MAX:
+        elif mode == BMAGMode.JOINT_MAX:
             # get the joint max of the bmag values
             bmag = np.max(fits, axis=0)
         else:
