@@ -1,4 +1,3 @@
-import sys
 import time
 import enum
 from typing import Any, List, Optional
