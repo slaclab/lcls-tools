@@ -128,7 +128,7 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
             bmag = np.max(fits, axis=0)
         else:
             bmag = fits[mode.value]
-            
+
         # get best index and return bmag value and corresponding pv value
         best_index = np.argmin(bmag)
         bmag_value = bmag[best_index]
