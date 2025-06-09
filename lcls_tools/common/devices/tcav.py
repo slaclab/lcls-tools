@@ -6,6 +6,7 @@ from pydantic import (
 from typing import (
     Dict,
     Optional,
+    List,
 )
 from lcls_tools.common.devices.device import (
     Device,
@@ -129,6 +130,15 @@ class TCAVMetadata(Metadata):
 class TCAV(Device):
     controls_information: SerializeAsAny[TCAVControlInformation]
     metadata: SerializeAsAny[TCAVMetadata]
+
+    def scan(
+        self,
+        scan_settings: List[float],
+        function: Optional[callable] = None,
+    ) -> None:
+        for setting in scan_settings:
+            self.phase_set = setting
+            function() if function else None
 
     @property
     def amp_set(self):

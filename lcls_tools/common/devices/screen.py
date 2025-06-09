@@ -75,7 +75,7 @@ class Screen(Device):
         reshaped to the dimensions of
         the camera associated with this screen
         """
-        return self.controls_information.PVs.image.get(timeout=2.2,as_numpy=True).reshape(
+        return self.controls_information.PVs.image.get(as_numpy=True).reshape(
             self.n_columns, self.n_rows
         )
 
