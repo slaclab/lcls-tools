@@ -131,6 +131,9 @@ class TCAV(Device):
     controls_information: SerializeAsAny[TCAVControlInformation]
     metadata: SerializeAsAny[TCAVMetadata]
 
+    def __init__(self, *args, **kwargs):
+        super(TCAV, self).__init__(*args, **kwargs)
+
     def scan(
         self,
         scan_settings: List[float],
