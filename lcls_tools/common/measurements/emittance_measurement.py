@@ -109,24 +109,26 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
 
         bmag = self.bmag
 
-        # interpolate between samples
-        fits = []
+        if mode == BMAGMode.GEOMETRIC_MEAN or mode == BMAGMode.JOINT_MAX:
+            # interpolate between samples
+            fits = []
 
-        min_k = min([min(k) for k in self.quadrupole_pv_values])
-        max_k = max([max(k) for k in self.quadrupole_pv_values])
-        k = np.linspace(min_k, max_k, 100)
-        for i in range(2):
-            bmag_fit = np.polyfit(self.quadrupole_pv_values[i], bmag[i], 2)
-            fits.append(np.polyval(bmag_fit, k))
-
-        if mode == BMAGMode.GEOMETRIC_MEAN:
-            # multiply x and y bmag values to get geometric mean
-            bmag = np.sqrt(fits[0] * fits[1])
-        elif mode == BMAGMode.JOINT_MAX:
-            # get the joint max of the bmag values
-            bmag = np.max(fits, axis=0)
+            min_k = min([min(k) for k in self.quadrupole_pv_values])
+            max_k = max([max(k) for k in self.quadrupole_pv_values])
+            k = np.linspace(min_k, max_k, 100)
+            for i in range(2):
+                bmag_fit = np.polyfit(self.quadrupole_pv_values[i], bmag[i], 2)
+                fits.append(np.polyval(bmag_fit, k))
+            if mode == BMAGMode.GEOMETRIC_MEAN:
+                # multiply x and y bmag values to get geometric mean
+                bmag = np.sqrt(fits[0] * fits[1])
+            elif mode == BMAGMode.JOINT_MAX:
+                # get the joint max of the x and y bmag values
+                bmag = np.max(fits, axis=0)
         else:
-            bmag = fits[mode.value]
+            # get x or y bmag values individually
+            bmag = bmag[mode.value]
+            k = self.quadrupole_pv_values[mode.value]
 
         # get best index and return bmag value and corresponding pv value
         best_index = np.argmin(bmag)

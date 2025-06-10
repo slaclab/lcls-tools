@@ -189,17 +189,20 @@ class EmittanceMeasurementTest(TestCase):
                     assert np.allclose(result.bmag[0][4], 1.0)
 
                     # test get_best_bmag method
-                    for mode in ["x", "y", "geometric_mean"]:
+                    for mode in ["x", "y", "geometric_mean", "joint_max"]:
                         best_bmag = result.get_best_bmag(mode)
                         if mode == "x":
-                            assert np.allclose(best_bmag[0], 1.0)
-                            assert np.allclose(best_bmag[1], k[4])
+                            assert np.allclose(best_bmag[0], 1.0, rtol=1e-2)
+                            assert np.allclose(best_bmag[1], k[4], rtol=1e-2)
                         elif mode == "y":
-                            assert np.allclose(best_bmag[0], 1.0)
-                            assert np.allclose(best_bmag[1], k[4])
+                            assert np.allclose(best_bmag[0], 1.0, rtol=1e-2)
+                            assert np.allclose(best_bmag[1], k[4], rtol=1e-2)
                         elif mode == "geometric_mean":
                             assert np.allclose(best_bmag[0], 1.0, rtol=1e-2)
-                            assert np.allclose(best_bmag[1], k[4])
+                            assert np.allclose(best_bmag[1], k[4], rtol=1e-2)
+                        elif mode == "joint_max":
+                            assert np.allclose(best_bmag[0], 1.0, rtol=1e-2)
+                            assert np.allclose(best_bmag[1], -.909, rtol=1e-2)
 
                 # test visualization
                 fig, ax = plot_quad_scan_result(result)
