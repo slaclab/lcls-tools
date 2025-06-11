@@ -783,11 +783,15 @@ screens:
         n_bits: OTRS:IN20:571:N_OF_BITS
         n_col: OTRS:IN20:571:Image:ArraySize1_RBV
         n_row: OTRS:IN20:571:Image:ArraySize0_RBV
+        orient_x: OTRS:IN20:571:X_ORIENT
+        orient_y: OTRS:IN20:571:Y_ORIENT
         ref_rate: OTRS:IN20:571:ArrayRate_RBV
         ref_rate_vme: OTRS:IN20:571:FRAME_RATE
         resolution: OTRS:IN20:571:RESOLUTION
         sys_type: OTRS:IN20:571:SYS_TYPE
       control_name: OTRS:IN20:571
+      orient_x: Negative
+      orient_y: Negative
     metadata:
       area: DL1
       beam_path:
@@ -807,10 +811,14 @@ screens:
         n_bits: OTRS:IN20:621:N_OF_BITS
         n_col: OTRS:IN20:621:N_OF_COL
         n_row: OTRS:IN20:621:N_OF_ROW
+        orient_x: OTRS:IN20:621:X_ORIENT
+        orient_y: OTRS:IN20:621:Y_ORIENT
         ref_rate_vme: OTRS:IN20:621:FRAME_RATE
         resolution: OTRS:IN20:621:RESOLUTION
         sys_type: OTRS:IN20:621:SYS_TYPE
       control_name: OTRS:IN20:621
+      orient_x: Negative
+      orient_y: Negative
     metadata:
       area: DL1
       beam_path:
@@ -830,10 +838,14 @@ screens:
         n_bits: OTRS:IN20:711:N_OF_BITS
         n_col: OTRS:IN20:711:N_OF_COL
         n_row: OTRS:IN20:711:N_OF_ROW
+        orient_x: OTRS:IN20:711:X_ORIENT
+        orient_y: OTRS:IN20:711:Y_ORIENT
         ref_rate_vme: OTRS:IN20:711:FRAME_RATE
         resolution: OTRS:IN20:711:RESOLUTION
         sys_type: OTRS:IN20:711:SYS_TYPE
       control_name: OTRS:IN20:711
+      orient_x: Negative
+      orient_y: Negative
     metadata:
       area: DL1
       beam_path:
@@ -852,11 +864,15 @@ screens:
         n_bits: OTRS:IN20:465:N_OF_BITS
         n_col: OTRS:IN20:465:Image:ArraySize1_RBV
         n_row: OTRS:IN20:465:Image:ArraySize0_RBV
+        orient_x: OTRS:IN20:465:X_ORIENT
+        orient_y: OTRS:IN20:465:Y_ORIENT
         ref_rate: OTRS:IN20:465:ArrayRate_RBV
         ref_rate_vme: OTRS:IN20:465:FRAME_RATE
         resolution: OTRS:IN20:465:RESOLUTION
         sys_type: OTRS:IN20:465:SYS_TYPE
       control_name: OTRS:IN20:465
+      orient_x: Negative
+      orient_y: Negative
     metadata:
       area: DL1
       beam_path:
@@ -876,11 +892,15 @@ screens:
         n_bits: OTRS:IN20:471:N_OF_BITS
         n_col: OTRS:IN20:471:Image:ArraySize1_RBV
         n_row: OTRS:IN20:471:Image:ArraySize0_RBV
+        orient_x: OTRS:IN20:471:X_ORIENT
+        orient_y: OTRS:IN20:471:Y_ORIENT
         ref_rate: OTRS:IN20:471:ArrayRate_RBV
         ref_rate_vme: OTRS:IN20:471:FRAME_RATE
         resolution: OTRS:IN20:471:RESOLUTION
         sys_type: OTRS:IN20:471:SYS_TYPE
       control_name: OTRS:IN20:471
+      orient_x: Negative
+      orient_y: Negative
     metadata:
       area: DL1
       beam_path:

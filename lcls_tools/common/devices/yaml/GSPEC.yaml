@@ -147,10 +147,14 @@ screens:
         n_bits: YAGS:IN20:841:N_OF_BITS
         n_col: YAGS:IN20:841:N_OF_COL
         n_row: YAGS:IN20:841:N_OF_ROW
+        orient_x: YAGS:IN20:841:X_ORIENT
+        orient_y: YAGS:IN20:841:Y_ORIENT
         ref_rate_vme: YAGS:IN20:841:FRAME_RATE
         resolution: YAGS:IN20:841:RESOLUTION
         sys_type: YAGS:IN20:841:SYS_TYPE
       control_name: YAGS:IN20:841
+      orient_x: Positive
+      orient_y: Negative
     metadata:
       area: GSPEC
       beam_path:

@@ -631,11 +631,15 @@ screens:
         n_bits: OTRS:DIAG0:420:N_OF_BITS
         n_col: OTRS:DIAG0:420:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:420:Image:ArraySize0_RBV
+        orient_x: OTRS:DIAG0:420:X_ORIENT
+        orient_y: OTRS:DIAG0:420:Y_ORIENT
         ref_rate: OTRS:DIAG0:420:ArrayRate_RBV
         ref_rate_vme: OTRS:DIAG0:420:FRAME_RATE
         resolution: OTRS:DIAG0:420:RESOLUTION
         sys_type: OTRS:DIAG0:420:SYS_TYPE
       control_name: OTRS:DIAG0:420
+      orient_x: Negative
+      orient_y: Negative
     metadata:
       area: DIAG0
       beam_path:
@@ -649,11 +653,15 @@ screens:
         n_bits: OTRS:DIAG0:525:N_OF_BITS
         n_col: OTRS:DIAG0:525:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:525:Image:ArraySize0_RBV
+        orient_x: OTRS:DIAG0:525:X_ORIENT
+        orient_y: OTRS:DIAG0:525:Y_ORIENT
         ref_rate: OTRS:DIAG0:525:ArrayRate_RBV
         ref_rate_vme: OTRS:DIAG0:525:FRAME_RATE
         resolution: OTRS:DIAG0:525:RESOLUTION
         sys_type: OTRS:DIAG0:525:SYS_TYPE
       control_name: OTRS:DIAG0:525
+      orient_x: Negative
+      orient_y: Negative
     metadata:
       area: DIAG0
       beam_path:
