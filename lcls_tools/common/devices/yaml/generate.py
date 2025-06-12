@@ -364,7 +364,9 @@ class YAMLGenerator:
         )
         if basic_screen_data:
             # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-            additional_controls_data = get_screen_controls_information(basic_screen_data)
+            additional_controls_data = get_screen_controls_information(
+                basic_screen_data
+            )
             complete_screen_data = self.add_extra_data_to_device(
                 device_data=basic_screen_data,
                 additional_controls_information=additional_controls_data,

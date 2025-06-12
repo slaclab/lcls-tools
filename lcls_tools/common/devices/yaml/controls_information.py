@@ -29,8 +29,10 @@ def get_screen_controls_information(screen_information: Dict = None):
     for k, v in screen_information.items():
         pvs = v["controls_information"]["PVs"]
         if "orient_x" in pvs and "orient_y" in pvs:
-            controls_information[k] = {"orient_x": caget(pvs["orient_x"], as_string=True),
-                                       "orient_y": caget(pvs["orient_y"], as_string=True)}
+            controls_information[k] = {
+                "orient_x": caget(pvs["orient_x"], as_string=True),
+                "orient_y": caget(pvs["orient_y"], as_string=True),
+            }
     return controls_information
 
 
