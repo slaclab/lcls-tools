@@ -41,6 +41,8 @@ class ScreenPVSet(PVSet):
     sys_type: PV
     ref_rate_vme: Optional[PV] = None
     ref_rate: Optional[PV] = None
+    orient_x: Optional[PV] = None
+    orient_y: Optional[PV] = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -53,6 +55,8 @@ class ScreenPVSet(PVSet):
 
 class ScreenControlInformation(ControlInformation):
     PVs: SerializeAsAny[ScreenPVSet]
+    orient_x: str = None
+    orient_y: str = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
