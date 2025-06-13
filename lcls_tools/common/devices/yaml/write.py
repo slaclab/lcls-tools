@@ -116,7 +116,7 @@ def write(mode="overwrite", devices=None, areas=None, location=None):
         case "lazy":
             selected_writer = yaml_writer.lazy_write
     for area in areas:
-        selected_writer(area)
+        selected_writer(area, devices)
 
 
 if __name__ == "__main__":

@@ -323,11 +323,15 @@ screens:
         n_bits: PROF:BC1B:470:N_OF_BITS
         n_col: PROF:BC1B:470:Image:ArraySize1_RBV
         n_row: PROF:BC1B:470:Image:ArraySize0_RBV
+        orient_x: PROF:BC1B:470:X_ORIENT
+        orient_y: PROF:BC1B:470:Y_ORIENT
         ref_rate: PROF:BC1B:470:ArrayRate_RBV
         ref_rate_vme: PROF:BC1B:470:FRAME_RATE
         resolution: PROF:BC1B:470:RESOLUTION
         sys_type: PROF:BC1B:470:SYS_TYPE
       control_name: PROF:BC1B:470
+      orient_x: Negative
+      orient_y: Negative
     metadata:
       area: BC1B
       beam_path:

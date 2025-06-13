@@ -41,6 +41,8 @@ class ScreenPVSet(PVSet):
     sys_type: PV
     ref_rate_vme: Optional[PV] = None
     ref_rate: Optional[PV] = None
+    orient_x: Optional[PV] = None
+    orient_y: Optional[PV] = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -53,6 +55,8 @@ class ScreenPVSet(PVSet):
 
 class ScreenControlInformation(ControlInformation):
     PVs: SerializeAsAny[ScreenPVSet]
+    orient_x: str = None
+    orient_y: str = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -68,6 +72,13 @@ class Screen(Device):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+    def flip_image(self, image):
+        if self.controls_information.orient_x == "Negative":
+            image = np.flip(image, 0)
+        if self.controls_information.orient_y == "Negative":
+            image = np.flip(image, 1)
+        return image
+
     @property
     def image(self) -> np.ndarray:
         """
@@ -75,9 +86,11 @@ class Screen(Device):
         reshaped to the dimensions of
         the camera associated with this screen
         """
-        return self.controls_information.PVs.image.get(as_numpy=True).reshape(
+        img = self.controls_information.PVs.image.get(as_numpy=True).reshape(
             self.n_columns, self.n_rows
         )
+        img = self.flip_image(img)
+        return img
 
     @property
     def image_timestamp(self):

@@ -273,11 +273,15 @@ screens:
         n_bits: PROF:BC2B:545:N_OF_BITS
         n_col: PROF:BC2B:545:Image:ArraySize1_RBV
         n_row: PROF:BC2B:545:Image:ArraySize0_RBV
+        orient_x: PROF:BC2B:545:X_ORIENT
+        orient_y: PROF:BC2B:545:Y_ORIENT
         ref_rate: PROF:BC2B:545:ArrayRate_RBV
         ref_rate_vme: PROF:BC2B:545:FRAME_RATE
         resolution: PROF:BC2B:545:RESOLUTION
         sys_type: PROF:BC2B:545:SYS_TYPE
       control_name: PROF:BC2B:545
+      orient_x: Negative
+      orient_y: Negative
     metadata:
       area: BC2B
       beam_path:
