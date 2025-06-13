@@ -1,4 +1,3 @@
-import sys
 import time
 import enum
 from typing import Any, List, Optional
@@ -28,7 +27,8 @@ class BMAGMode(enum.IntEnum):
     X = 0
     Y = 1
     # Value is not a valid index unlike X & Y
-    GEOMETRIC_MEAN = -sys.maxsize
+    GEOMETRIC_MEAN = -10
+    JOINT_MAX = -11
 
     @classmethod
     def from_any(cls, value):
@@ -90,10 +90,11 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
         ----------
         mode : str, optional
             The mode to get the best BMAG value for, default is "geometric_mean".
-            Mode can be one of the following: "x", "y", "geometric_mean".
+            Mode can be one of the following: "x", "y", "geometric_mean", "joint_max".
             - "x": get the best BMAG value for the x plane.
             - "y": get the best BMAG value for the y plane.
             - "geometric_mean": get the best BMAG value for the geometric mean of the x and y planes.
+            - "joint_max": get the best BMAG value for the joint max of the x and y planes.
 
         Returns
         -------
@@ -107,8 +108,9 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
         mode = BMAGMode.from_any(mode)
 
         bmag = self.bmag
-        if mode == BMAGMode.GEOMETRIC_MEAN:
-            # if calculating the geometric mean, we need to interpolate between samples
+
+        if mode == BMAGMode.GEOMETRIC_MEAN or mode == BMAGMode.JOINT_MAX:
+            # interpolate between samples
             fits = []
 
             min_k = min([min(k) for k in self.quadrupole_pv_values])
@@ -117,19 +119,21 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
             for i in range(2):
                 bmag_fit = np.polyfit(self.quadrupole_pv_values[i], bmag[i], 2)
                 fits.append(np.polyval(bmag_fit, k))
-
-            # multiply x and y bmag values to get geometric mean
-            bmag = np.sqrt(fits[0] * fits[1])
-
-            # get best index and return bmag value and corresponding pv value
-            best_index = np.argmin(bmag)
-            bmag_value = bmag[best_index]
-            best_pv_value = k[best_index]
-
+            if mode == BMAGMode.GEOMETRIC_MEAN:
+                # multiply x and y bmag values to get geometric mean
+                bmag = np.sqrt(fits[0] * fits[1])
+            elif mode == BMAGMode.JOINT_MAX:
+                # get the joint max of the x and y bmag values
+                bmag = np.max(fits, axis=0)
         else:
-            best_index = np.argmin(bmag[mode.value])
-            bmag_value = bmag[mode.value][best_index]
-            best_pv_value = self.quadrupole_pv_values[mode.value][best_index]
+            # get x or y bmag values individually
+            bmag = bmag[mode.value]
+            k = self.quadrupole_pv_values[mode.value]
+
+        # get best index and return bmag value and corresponding pv value
+        best_index = np.argmin(bmag)
+        bmag_value = bmag[best_index]
+        best_pv_value = k[best_index]
 
         return bmag_value, best_pv_value
 
