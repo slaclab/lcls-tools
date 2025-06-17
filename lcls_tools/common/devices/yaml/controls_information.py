@@ -27,15 +27,12 @@ def get_screen_controls_information(screen_information: Dict = None):
     # Stuff like Device-Position mappings for motor/ladder-based screens
     controls_information = {}
     for k, v in screen_information.items():
+        pv_cache = {}
         pvs = v["controls_information"]["PVs"]
-        if pvs is None:
-            return {}
         if "orient_x" in pvs and "orient_y" in pvs:
-            pv_cache = {
-                "orient_x": caget(pvs["orient_x"], as_string=True),
-                "orient_y": caget(pvs["orient_y"], as_string=True),
-            }
-            controls_information[k] = {"pv_cache": pv_cache}
+            pv_cache["orient_x"] = caget(pvs["orient_x"], as_string=True)
+            pv_cache["orient_y"] = caget(pvs["orient_y"], as_string=True)
+        controls_information[k] = {"pv_cache": pv_cache}
     return controls_information
 
 
