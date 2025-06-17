@@ -310,15 +310,11 @@ screens:
         n_bits: YAGS:IN20:241:N_OF_BITS
         n_col: YAGS:IN20:241:Image:ArraySize1_RBV
         n_row: YAGS:IN20:241:Image:ArraySize0_RBV
-        orient_x: YAGS:IN20:241:X_ORIENT
-        orient_y: YAGS:IN20:241:Y_ORIENT
         ref_rate: YAGS:IN20:241:ArrayRate_RBV
         ref_rate_vme: YAGS:IN20:241:FRAME_RATE
         resolution: YAGS:IN20:241:RESOLUTION
         sys_type: YAGS:IN20:241:SYS_TYPE
       control_name: YAGS:IN20:241
-      orient_x: Negative
-      orient_y: Negative
     metadata:
       area: L0
       beam_path:
@@ -338,14 +334,10 @@ screens:
         n_bits: YAGS:IN20:351:N_OF_BITS
         n_col: YAGS:IN20:351:N_OF_COL
         n_row: YAGS:IN20:351:N_OF_ROW
-        orient_x: YAGS:IN20:351:X_ORIENT
-        orient_y: YAGS:IN20:351:Y_ORIENT
         ref_rate_vme: YAGS:IN20:351:FRAME_RATE
         resolution: YAGS:IN20:351:RESOLUTION
         sys_type: YAGS:IN20:351:SYS_TYPE
       control_name: YAGS:IN20:351
-      orient_x: Negative
-      orient_y: Negative
     metadata:
       area: L0
       beam_path:

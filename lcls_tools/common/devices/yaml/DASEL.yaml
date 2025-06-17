@@ -566,15 +566,11 @@ screens:
         n_bits: PROF:DASEL:440:N_OF_BITS
         n_col: PROF:DASEL:440:Image:ArraySize1_RBV
         n_row: PROF:DASEL:440:Image:ArraySize0_RBV
-        orient_x: PROF:DASEL:440:X_ORIENT
-        orient_y: PROF:DASEL:440:Y_ORIENT
         ref_rate: PROF:DASEL:440:ArrayRate_RBV
         ref_rate_vme: PROF:DASEL:440:FRAME_RATE
         resolution: PROF:DASEL:440:RESOLUTION
         sys_type: PROF:DASEL:440:SYS_TYPE
       control_name: PROF:DASEL:440
-      orient_x: Negative
-      orient_y: Negative
     metadata:
       area: DASEL
       beam_path:
@@ -588,14 +584,10 @@ screens:
         n_bits: PROF:DASEL:655:N_OF_BITS
         n_col: PROF:DASEL:655:Image:ArraySize1_RBV
         n_row: PROF:DASEL:655:Image:ArraySize0_RBV
-        orient_x: PROF:DASEL:655:X_ORIENT
-        orient_y: PROF:DASEL:655:Y_ORIENT
         ref_rate: PROF:DASEL:655:ArrayRate_RBV
         ref_rate_vme: PROF:DASEL:655:FRAME_RATE
         resolution: PROF:DASEL:655:RESOLUTION
       control_name: PROF:DASEL:655
-      orient_x: Negative
-      orient_y: Negative
     metadata:
       area: DASEL
       beam_path:
@@ -609,14 +601,10 @@ screens:
         n_bits: PROF:DASEL:818:N_OF_BITS
         n_col: PROF:DASEL:818:Image:ArraySize1_RBV
         n_row: PROF:DASEL:818:Image:ArraySize0_RBV
-        orient_x: PROF:DASEL:818:X_ORIENT
-        orient_y: PROF:DASEL:818:Y_ORIENT
         ref_rate: PROF:DASEL:818:ArrayRate_RBV
         ref_rate_vme: PROF:DASEL:818:FRAME_RATE
         resolution: PROF:DASEL:818:RESOLUTION
       control_name: PROF:DASEL:818
-      orient_x: Negative
-      orient_y: Negative
     metadata:
       area: DASEL
       beam_path:

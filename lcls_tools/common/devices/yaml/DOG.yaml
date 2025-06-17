@@ -1421,15 +1421,11 @@ screens:
         n_bits: PROF:DOG:195:N_OF_BITS
         n_col: PROF:DOG:195:Image:ArraySize1_RBV
         n_row: PROF:DOG:195:Image:ArraySize0_RBV
-        orient_x: PROF:DOG:195:X_ORIENT
-        orient_y: PROF:DOG:195:Y_ORIENT
         ref_rate: PROF:DOG:195:ArrayRate_RBV
         ref_rate_vme: PROF:DOG:195:FRAME_RATE
         resolution: PROF:DOG:195:RESOLUTION
         sys_type: PROF:DOG:195:SYS_TYPE
       control_name: PROF:DOG:195
-      orient_x: Negative
-      orient_y: Negative
     metadata:
       area: DOG
       beam_path:

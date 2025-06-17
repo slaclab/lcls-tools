@@ -362,15 +362,11 @@ screens:
         n_bits: OTRS:DMPS:695:N_OF_BITS
         n_col: OTRS:DMPS:695:Image:ArraySize1_RBV
         n_row: OTRS:DMPS:695:Image:ArraySize0_RBV
-        orient_x: OTRS:DMPS:695:X_ORIENT
-        orient_y: OTRS:DMPS:695:Y_ORIENT
         ref_rate: OTRS:DMPS:695:ArrayRate_RBV
         ref_rate_vme: OTRS:DMPS:695:FRAME_RATE
         resolution: OTRS:DMPS:695:RESOLUTION
         sys_type: OTRS:DMPS:695:SYS_TYPE
       control_name: OTRS:DMPS:695
-      orient_x: Positive
-      orient_y: Positive
     metadata:
       area: DMPS
       beam_path:
