@@ -2,7 +2,6 @@ import csv
 import yaml
 import os
 from typing import Any, Union, List, Dict, Optional
-import meme.names
 import numpy as np
 from lcls_tools.common.devices.yaml.metadata import (
     get_magnet_metadata,
@@ -153,6 +152,8 @@ class YAMLGenerator:
     def _construct_pv_list_from_control_system_name(
         self, name, search_with_handles: Optional[Dict[str, str]]
     ) -> Dict[str, str]:
+        from meme import names
+
         if name == "":
             raise RuntimeError("No control system name provided for meme search.")
         # Use the control system name to get all PVs associated with device
@@ -163,7 +164,7 @@ class YAMLGenerator:
                 search_term, field = search_term.split(".")
             # End of the PV name is implied in search_term
             try:
-                pv_list = meme.names.list_pvs(name + ":" + search_term, sort_by="z")
+                pv_list = names.list_pvs(name + ":" + search_term, sort_by="z")
                 # We expect to have ZERO or ONE result returned from meme
                 if pv_list != list():
                     if len(pv_list) == 1:
@@ -228,6 +229,7 @@ class YAMLGenerator:
         for device in device_elements:
             # We need a control-system-name
             if device["Control System Name"] != "":
+                pv_info = None
                 try:
                     # grab the pv information for this element using the search_list
                     pv_info = self._construct_pv_list_from_control_system_name(
@@ -350,17 +352,21 @@ class YAMLGenerator:
             "SYS_TYPE": "sys_type",
             "FRAME_RATE": "ref_rate_vme",
             "ArrayRate_RBV": "ref_rate",
+            "X_ORIENT": "orient_x",
+            "Y_ORIENT": "orient_y",
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_metadata_data = get_screen_metadata()
-        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-        additional_controls_data = get_screen_controls_information()
         basic_screen_data = self.extract_devices(
             area=area,
             required_types=required_screen_types,
             pv_search_terms=possible_screen_pvs,
         )
         if basic_screen_data:
+            # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+            additional_controls_data = get_screen_controls_information(
+                basic_screen_data
+            )
             complete_screen_data = self.add_extra_data_to_device(
                 device_data=basic_screen_data,
                 additional_controls_information=additional_controls_data,

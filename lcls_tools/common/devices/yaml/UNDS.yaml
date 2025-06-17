@@ -2524,11 +2524,16 @@ screens:
         n_bits: YAGS:UNDS:3575:N_OF_BITS
         n_col: YAGS:UNDS:3575:Image:ArraySize1_RBV
         n_row: YAGS:UNDS:3575:Image:ArraySize0_RBV
+        orient_x: YAGS:UNDS:3575:X_ORIENT
+        orient_y: YAGS:UNDS:3575:Y_ORIENT
         ref_rate: YAGS:UNDS:3575:ArrayRate_RBV
         ref_rate_vme: YAGS:UNDS:3575:FRAME_RATE
         resolution: YAGS:UNDS:3575:RESOLUTION
         sys_type: YAGS:UNDS:3575:SYS_TYPE
       control_name: YAGS:UNDS:3575
+      pv_cache:
+        orient_x: Positive
+        orient_y: Positive
     metadata:
       area: UNDS
       beam_path:
@@ -2547,11 +2552,16 @@ screens:
         n_bits: YAGS:UNDS:3795:N_OF_BITS
         n_col: YAGS:UNDS:3795:Image:ArraySize1_RBV
         n_row: YAGS:UNDS:3795:Image:ArraySize0_RBV
+        orient_x: YAGS:UNDS:3795:X_ORIENT
+        orient_y: YAGS:UNDS:3795:Y_ORIENT
         ref_rate: YAGS:UNDS:3795:ArrayRate_RBV
         ref_rate_vme: YAGS:UNDS:3795:FRAME_RATE
         resolution: YAGS:UNDS:3795:RESOLUTION
         sys_type: YAGS:UNDS:3795:SYS_TYPE
       control_name: YAGS:UNDS:3795
+      pv_cache:
+        orient_x: Positive
+        orient_y: Positive
     metadata:
       area: UNDS
       beam_path:
