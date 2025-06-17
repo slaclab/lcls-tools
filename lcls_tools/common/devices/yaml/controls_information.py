@@ -28,11 +28,14 @@ def get_screen_controls_information(screen_information: Dict = None):
     controls_information = {}
     for k, v in screen_information.items():
         pvs = v["controls_information"]["PVs"]
+        if pvs is None:
+            return {}
         if "orient_x" in pvs and "orient_y" in pvs:
-            controls_information[k] = {
+            pv_cache = {
                 "orient_x": caget(pvs["orient_x"], as_string=True),
                 "orient_y": caget(pvs["orient_y"], as_string=True),
             }
+            controls_information[k] = {"pv_cache": pv_cache}
     return controls_information
 
 
