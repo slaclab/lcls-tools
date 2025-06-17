@@ -64,6 +64,7 @@ class ScreenControlInformation(ControlInformation):
 class Screen(Device):
     controls_information: SerializeAsAny[ScreenControlInformation]
     metadata: SerializeAsAny[Metadata]
+    new_orientation: Optional[bool] = False
     _saving_images: Optional[bool] = False
     _root_hdf5_location: Optional[str] = "."
     _last_save_filepath: Optional[str] = ""
@@ -99,7 +100,8 @@ class Screen(Device):
     @property
     def orient_x(self):
         i = self.controls_information
-        if (pv_cache := getattr(i, "pv_cache", None)) is not None:
+        pv_cache = getattr(i, "pv_cache", None)
+        if pv_cache is not None and not self.new_orientation:
             if (v := getattr(pv_cache, "orient_x", None)) is not None:
                 return v
         if (pv := getattr(i, "orient_x", None)) is not None:
@@ -109,7 +111,8 @@ class Screen(Device):
     @property
     def orient_y(self):
         i = self.controls_information
-        if (pv_cache := getattr(i, "pv_cache", None)) is not None:
+        pv_cache = getattr(i, "pv_cache", None)
+        if pv_cache is not None and not self.new_orientation:
             if (v := getattr(pv_cache, "orient_y", None)) is not None:
                 return v
         if (pv := getattr(i, "orient_y", None)) is not None:
