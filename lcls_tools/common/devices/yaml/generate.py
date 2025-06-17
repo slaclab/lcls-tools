@@ -152,7 +152,7 @@ class YAMLGenerator:
     def _construct_pv_list_from_control_system_name(
         self, name, search_with_handles: Optional[Dict[str, str]]
     ) -> Dict[str, str]:
-        import meme.names
+        from meme import names
 
         if name == "":
             raise RuntimeError("No control system name provided for meme search.")
@@ -164,7 +164,7 @@ class YAMLGenerator:
                 search_term, field = search_term.split(".")
             # End of the PV name is implied in search_term
             try:
-                pv_list = meme.names.list_pvs(name + ":" + search_term, sort_by="z")
+                pv_list = names.list_pvs(name + ":" + search_term, sort_by="z")
                 # We expect to have ZERO or ONE result returned from meme
                 if pv_list != list():
                     if len(pv_list) == 1:
