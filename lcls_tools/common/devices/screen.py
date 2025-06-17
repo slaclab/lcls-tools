@@ -99,20 +99,20 @@ class Screen(Device):
     @property
     def orient_x(self):
         i = self.controls_information
-        if (pv_cache := getattr(i, 'pv_cache', None)) is not None:
-            if (v := getattr(pv_cache, 'orient_x', None)) is not None:
+        if (pv_cache := getattr(i, "pv_cache", None)) is not None:
+            if (v := getattr(pv_cache, "orient_x", None)) is not None:
                 return v
-        if (pv := getattr(i, 'orient_x', None)) is not None:
+        if (pv := getattr(i, "orient_x", None)) is not None:
             return pv.get()
         return None
-                    
+
     @property
     def orient_y(self):
         i = self.controls_information
-        if (pv_cache := getattr(i, 'pv_cache', None)) is not None:
-            if (v := getattr(pv_cache, 'orient_y', None)) is not None:
+        if (pv_cache := getattr(i, "pv_cache", None)) is not None:
+            if (v := getattr(pv_cache, "orient_y", None)) is not None:
                 return v
-        if (pv := getattr(i, 'orient_y', None)) is not None:
+        if (pv := getattr(i, "orient_y", None)) is not None:
             return pv.get()
         return None
 
