@@ -4,48 +4,36 @@ import importlib.util
 from lcls_tools.common.data.model_general_calcs import (
     bmag_func,
     propagate_twiss,
-    build_quad_rmat,
-    bdes_to_kmod,
 )
 
-
 def compute_emit_bmag(
-    k: np.ndarray,
     beamsize_squared: np.ndarray,
-    q_len: float,
     rmat: np.ndarray,
     twiss_design: np.ndarray = None,
-    thin_lens: bool = False,
     maxiter: int = None,
 ):
     """
-    Computes the emittance(s) corresponding to a set of quadrupole measurement scans
-    using nonlinear fitting of beam matrix parameters to guarantee physically valid results.
+    Computes the emittance(s) from a set of beamsize measurements and their corresponding
+    transport matrices (rmats).
+    Must provide beamsize measurements corresponding to at least 3 unique rmats (e.g. quad scan
+    with minimum of 3 steps, or 3-wire scan).
+    Uses nonlinear fitting of beam matrix parameters to guarantee physically valid results.
+
 
     Parameters
     ----------
-    k : numpy.ndarray
-        Array of shape (n_steps_quad_scan,) or (batchshape x n_steps_quad_scan)
-        representing the measurement quad geometric focusing strengths in [m^-2]
-        used in the emittance scan(s).
-
     beamsize_squared : numpy.ndarray
-        Array of shape (batchshape x n_steps_quad_scan), representing the mean-square
-        beamsize outputs in [mm^2] of the emittance scan(s) with inputs given by k.
-
-    q_len : float
-        The (longitudinal) quadrupole length or "thickness" in [m].
+        Array of shape (batchshape x n_measurements), representing the mean-square
+        beamsize outputs in [mm^2].
 
     rmat : numpy.ndarray
-        Array of shape (2x2) or (batchshape x 2 x 2) containing the 2x2 R matrices
-        describing the transport from the end of the measurement quad to the observation screen.
+        Array of shape (n_measurements x 2 x 2) or (batchshape x n_measurements x 2 x 2)
+        containing the 2x2 R matrices describing the transport from a common upstream
+        point in the beamline to the locations at which each beamsize was observed.
 
     twiss_design : numpy.ndarray, optional
         Array of shape (2,) or (batchshape x 2) designating the design (beta, alpha)
         twiss parameters at the screen.
-
-    thin_lens : bool, optional
-        Specifies whether or not to use thin lens approximation for measurement quad.
 
     maxiter : int, optional
         Maximum number of iterations to perform in nonlinear fitting (minimization algorithm).
@@ -71,15 +59,8 @@ def compute_emit_bmag(
     # return variable dictionary
     rv = {}
 
-    # construct the A matrix from eq. (3.2) & (3.3) of source paper
-    quad_rmat = build_quad_rmat(
-        k, q_len, thin_lens=thin_lens
-    )  # result shape (batchshape x nsteps x 2 x 2)
-    total_rmat = np.expand_dims(rmat, -3) @ quad_rmat
-    # result shape (batchshape x nsteps x 2 x 2)
-
-    # prepare the A matrix
-    r11, r12 = total_rmat[..., 0, 0], total_rmat[..., 0, 1]
+    # prepare the A matrix from eq. (3.2) & (3.3) of source paper
+    r11, r12 = rmat[..., 0, 0], rmat[..., 0, 1]
     amat = np.stack((r11**2, 2.0 * r11 * r12, r12**2), axis=-1)
     # amat result (batchshape x nsteps x 3)
 
@@ -114,24 +95,31 @@ def compute_emit_bmag(
             sig = torch.stack(beam_matrix_tuple(params), dim=-1).unsqueeze(-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
             total_abs_error = (
-                (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared)).abs().sum()
+                (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared))
+                .abs()
+                .sum()
             )
             return total_abs_error
 
         def loss_jacobian(params):
             return (
-                torch.autograd.functional.jacobian(loss_torch, torch.from_numpy(params))
+                torch.autograd.functional.jacobian(
+                    loss_torch, torch.from_numpy(params)
+                )
                 .detach()
                 .numpy()
             )
 
         def loss(params):
             return loss_torch(torch.from_numpy(params)).detach().numpy()
+
     else:
         # define loss function in numpy without jacobian
         def loss(params):
             params = np.reshape(params, [*beamsize_squared.shape[:-2], 3])
-            sig = np.expand_dims(np.stack(beam_matrix_tuple(params), axis=-1), axis=-1)
+            sig = np.expand_dims(
+                np.stack(beam_matrix_tuple(params), axis=-1), axis=-1
+            )
             # sig should now be shape batchshape x 3 x 1 (column vectors)
             total_abs_error = np.sum(
                 np.abs(np.sqrt(amat @ sig) - np.sqrt(beamsize_squared))
@@ -144,7 +132,9 @@ def compute_emit_bmag(
     eps = 1.0e-6
 
     # get initial guesses for lambda1, lambda2, c, from pseudo-inverse method
-    init_beam_matrix = np.linalg.pinv(np.array(amat)) @ np.array(beamsize_squared)
+    init_beam_matrix = np.linalg.pinv(np.array(amat)) @ np.array(
+        beamsize_squared
+    )
     lambda1 = np.sqrt(init_beam_matrix[..., 0, 0].clip(min=eps))
     lambda2 = np.sqrt(init_beam_matrix[..., 2, 0].clip(min=eps))
     c = (init_beam_matrix[..., 1, 0] / (lambda1 * lambda2)).clip(
@@ -163,7 +153,13 @@ def compute_emit_bmag(
         options = None
 
     # minimize loss
-    res = minimize(loss, init_params, jac=loss_jacobian, bounds=bounds, options=options)
+    res = minimize(
+        loss,
+        init_params,
+        jac=loss_jacobian,
+        bounds=bounds,
+        options=options,
+    )
 
     # get the fit result and reshape to (batchshape x 3)
     fit_params = np.reshape(res.x, [*beamsize_squared.shape[:-2], 3])
@@ -178,11 +174,16 @@ def compute_emit_bmag(
     )
     # result shape (batchshape x 1)
 
-    # get twiss at entrance of measurement quad from beam_matrix
+    # get twiss at upstream origin from beam_matrix
     def _twiss_upstream(b_matrix):
         return np.expand_dims(
             np.stack(
-                (b_matrix[..., 0], -1 * b_matrix[..., 1], b_matrix[..., 2]), axis=-1
+                (
+                    b_matrix[..., 0],
+                    -1 * b_matrix[..., 1],
+                    b_matrix[..., 2],
+                ),
+                axis=-1,
             )
             / rv["emittance"],
             axis=-2,
@@ -190,15 +191,21 @@ def compute_emit_bmag(
 
     # propagate twiss params to screen (expand_dims for broadcasting)
     rv["twiss_at_screen"] = propagate_twiss(
-        _twiss_upstream(rv["beam_matrix"]), total_rmat
+        _twiss_upstream(rv["beam_matrix"]), rmat
     )
     # result shape (batchshape x nsteps x 3)
-    beta, alpha = rv["twiss_at_screen"][..., 0], rv["twiss_at_screen"][..., 1]
+    beta, alpha = (
+        rv["twiss_at_screen"][..., 0],
+        rv["twiss_at_screen"][..., 1],
+    )
     # shapes batchshape x nsteps
 
     # compute bmag if twiss_design is provided
     if twiss_design is not None:
-        beta_design, alpha_design = twiss_design[..., 0:1], twiss_design[..., 1:2]
+        beta_design, alpha_design = (
+            twiss_design[..., 0:1],
+            twiss_design[..., 1:2],
+        )
         # results shape batchshape x 1
 
         # result batchshape x 3 containing [beta, alpha, gamma]
@@ -209,131 +216,6 @@ def compute_emit_bmag(
         rv["bmag"] = None
 
     return rv
-
-
-def preprocess_inputs(quad_vals: list, beamsizes: list, energy: float, q_len: float):
-    """
-    Preprocesses the inputs for compute_emit_bmag.
-
-    Parameters
-    ----------
-    quad_vals : list
-        A list of two arrays containing the quadrupole values in kG for x and y respectively.
-    beamsizes : dict
-        A list of two arrays containing the beam sizes in meters for x and y respectively.
-    energy : float
-        The energy of the beam in eV.
-    q_len : float
-        The effective length of the quadrupole in meters.
-
-    Returns
-    -------
-    tuple
-        A tuple containing the list of kmod values and the list of beam sizes squared.
-    """
-    kmod_list = []
-    beamsizes_squared_list = []
-
-    for i in range(2):
-        # Get rid of nans
-        idx = ~np.isnan(beamsizes[i])
-        q = quad_vals[i][idx]
-        b = beamsizes[i][idx]
-
-        # Beamsizes to mm squared
-        beamsizes_squared_list.append((b * 1e3) ** 2)
-
-        # Quad values to kmod
-        kmod = bdes_to_kmod(energy, q_len, q)
-
-        # Negate for y
-        if i == 1:
-            kmod = -1 * kmod
-
-        kmod_list.append(kmod)
-
-    return kmod_list, beamsizes_squared_list
-
-
-def compute_emit_bmag_machine_units(
-    quad_vals: list,
-    beamsizes: list,
-    q_len: float,
-    rmat: np.ndarray,
-    energy: float,
-    twiss_design: np.ndarray,
-    thin_lens: bool = False,
-    maxiter: int = None,
-):
-    """
-    Wrapper for compute_emit_bmag that takes quads in machine units and beamsize in meters.
-
-    Parameters
-    ----------
-    quad_vals : list
-        A list of two arrays containing the quadrupole values in kG for x and y respectively.
-    beamsizes : list
-        A list of two arrays containing the beam sizes in meters for x and y respectively.
-    q_len : float
-        The effective length of the quadrupole in meters.
-    rmat : np.ndarray
-        The R-matrix. Shape (2, 2, 2).
-    energy : float
-        The energy of the beam in eV.
-    twiss_design : np.ndarray or None
-        The design Twiss parameters. Shape (2, 2).
-    thin_lens : bool, optional
-        Whether to use the thin lens approximation. Default is False.
-    maxiter : int, optional
-        Maximum number of iterations for the optimization. Default is None.
-
-    Returns
-    -------
-    dict
-        The results of the emittance calculation.
-    """  # Preprocessing data
-    kmod_list, beamsizes_squared_list = preprocess_inputs(
-        quad_vals, beamsizes, energy, q_len
-    )
-
-    # Prepare outputs
-    results = {
-        "emittance": [],
-        "twiss_at_screen": [],
-        "beam_matrix": [],
-        "bmag": [] if twiss_design is not None else None,
-        "quadrupole_focusing_strengths": [],
-        "quadrupole_pv_values": [],
-        "rms_beamsizes": [],
-    }
-
-    # Then call compute_emit_bmag
-    # fit scans independently for x/y
-    # only keep data that has non-nan beam sizes -- independent for x/y
-    for i in range(2):
-        result = compute_emit_bmag(
-            k=kmod_list[i],
-            beamsize_squared=beamsizes_squared_list[i],
-            q_len=q_len,
-            rmat=rmat[i],
-            twiss_design=twiss_design[i] if twiss_design is not None else None,
-            thin_lens=thin_lens,
-            maxiter=maxiter,
-        )
-
-        result.update({"quadrupole_focusing_strengths": kmod_list[i]})
-        result.update({"quadrupole_pv_values": quad_vals[i][~np.isnan(beamsizes[i])]})
-
-        # add results to dict object
-        for name, value in result.items():
-            if name == "bmag" and value is None:
-                continue
-            else:  # beam matrix and emittance get appended
-                results[name].append(value)
-
-        results["rms_beamsizes"].append(beamsizes[i][~np.isnan(beamsizes[i])])
-
-    return results
 
 
 def normalize_emittance(emit, energy):
