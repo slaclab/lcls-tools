@@ -39,6 +39,12 @@ class ScreenPVSet(PVSet):
     n_bits: PV
     resolution: PV
     sys_type: PV
+    targets_status: Optional[PV] = None
+    filter_1_status: Optional[PV] = None
+    filter_1_control: Optional[PV] = None
+    filter_2_status: Optional[PV] = None
+    filter_2_control: Optional[PV] = None
+    lamp_power: Optional[PV] = None
     target_control: Optional[PV] = None
     target_status: Optional[PV] = None
     ref_rate_vme: Optional[PV] = None
