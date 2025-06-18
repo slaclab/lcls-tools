@@ -115,5 +115,6 @@ screens:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 409.964
       type: PROF

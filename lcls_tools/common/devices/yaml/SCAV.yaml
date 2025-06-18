@@ -683,6 +683,7 @@ screens:
       area: SCAV
       beam_path:
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 919.713
       type: PROF
 wires:

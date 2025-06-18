@@ -350,9 +350,14 @@ class YAMLGenerator:
             "SYS_TYPE": "sys_type",
             "FRAME_RATE": "ref_rate_vme",
             "ArrayRate_RBV": "ref_rate",
+            "PNEUMATIC": "target_control",
+            "TGT_STS": "target_status",
+            "FLT1_STS": "filter_1_status",
+            "FLT1_CTRL": "filter_1_control",
+            "FLT2_STS": "filter_2_status",
+            "FLT2_CTRL": "filter_2_control",
+            "TGT_LAMP_PWR": "lamp_power",
         }
-        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-        additional_metadata_data = get_screen_metadata()
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_controls_data = get_screen_controls_information()
         basic_screen_data = self.extract_devices(
@@ -361,6 +366,8 @@ class YAMLGenerator:
             pv_search_terms=possible_screen_pvs,
         )
         if basic_screen_data:
+            # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+            additional_metadata_data = get_screen_metadata(basic_screen_data)
             complete_screen_data = self.add_extra_data_to_device(
                 device_data=basic_screen_data,
                 additional_controls_information=additional_controls_data,

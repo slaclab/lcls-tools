@@ -47,6 +47,7 @@ screens:
     metadata:
       area: LTU
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   PRXL2:
@@ -56,6 +57,7 @@ screens:
     metadata:
       area: LTU
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   PRXL3:
@@ -65,6 +67,7 @@ screens:
     metadata:
       area: LTU
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
 wires:

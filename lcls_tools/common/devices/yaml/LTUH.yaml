@@ -2744,13 +2744,21 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware: {}
       sum_l_meters: 1326.826
       type: PROF
   OTR33:
     controls_information:
       PVs:
+        filter_1_control: OTRS:LTUH:745:FLT1_CTRL
+        filter_1_status: OTRS:LTUH:745:FLT1_STS
+        filter_2_control: OTRS:LTUH:745:FLT2_CTRL
+        filter_2_status: OTRS:LTUH:745:FLT2_STS
+        lamp_power: OTRS:LTUH:745:TGT_LAMP_PWR
         ref_rate_vme: OTRS:LTUH:745:FRAME_RATE
         sys_type: OTRS:LTUH:745:SYS_TYPE
+        target_control: OTRS:LTUH:745:PNEUMATIC
+        target_status: OTRS:LTUH:745:TGT_STS
       control_name: OTRS:LTUH:745
     metadata:
       area: LTUH
@@ -2760,12 +2768,25 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware:
+        CAM: 0.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 0.0
       sum_l_meters: 1462.607
       type: PROF
   YAGPSI:
     controls_information:
       PVs:
+        filter_1_control: YAGS:LTUH:743:FLT1_CTRL
+        filter_1_status: YAGS:LTUH:743:FLT1_STS
+        filter_2_control: YAGS:LTUH:743:FLT2_CTRL
+        filter_2_status: YAGS:LTUH:743:FLT2_STS
         image: YAGS:LTUH:743:Image:ArrayData
+        lamp_power: YAGS:LTUH:743:TGT_LAMP_PWR
         n_bits: YAGS:LTUH:743:N_OF_BITS
         n_col: YAGS:LTUH:743:Image:ArraySize1_RBV
         n_row: YAGS:LTUH:743:Image:ArraySize0_RBV
@@ -2773,6 +2794,8 @@ screens:
         ref_rate_vme: YAGS:LTUH:743:FRAME_RATE
         resolution: YAGS:LTUH:743:RESOLUTION
         sys_type: YAGS:LTUH:743:SYS_TYPE
+        target_control: YAGS:LTUH:743:PNEUMATIC
+        target_status: YAGS:LTUH:743:TGT_STS
       control_name: YAGS:LTUH:743
     metadata:
       area: LTUH
@@ -2782,6 +2805,14 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 0.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 1461.796
       type: PROF
 wires:

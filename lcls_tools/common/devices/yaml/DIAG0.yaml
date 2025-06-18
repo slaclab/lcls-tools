@@ -627,7 +627,12 @@ screens:
   OTRDG02:
     controls_information:
       PVs:
+        filter_1_control: OTRS:DIAG0:420:FLT1_CTRL
+        filter_1_status: OTRS:DIAG0:420:FLT1_STS
+        filter_2_control: OTRS:DIAG0:420:FLT2_CTRL
+        filter_2_status: OTRS:DIAG0:420:FLT2_STS
         image: OTRS:DIAG0:420:Image:ArrayData
+        lamp_power: OTRS:DIAG0:420:TGT_LAMP_PWR
         n_bits: OTRS:DIAG0:420:N_OF_BITS
         n_col: OTRS:DIAG0:420:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:420:Image:ArraySize0_RBV
@@ -635,17 +640,32 @@ screens:
         ref_rate_vme: OTRS:DIAG0:420:FRAME_RATE
         resolution: OTRS:DIAG0:420:RESOLUTION
         sys_type: OTRS:DIAG0:420:SYS_TYPE
+        target_control: OTRS:DIAG0:420:PNEUMATIC
+        target_status: OTRS:DIAG0:420:TGT_STS
       control_name: OTRS:DIAG0:420
     metadata:
       area: DIAG0
       beam_path:
       - SC_DIAG0
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 56.813
       type: PROF
   OTRDG04:
     controls_information:
       PVs:
+        filter_1_control: OTRS:DIAG0:525:FLT1_CTRL
+        filter_1_status: OTRS:DIAG0:525:FLT1_STS
+        filter_2_control: OTRS:DIAG0:525:FLT2_CTRL
+        filter_2_status: OTRS:DIAG0:525:FLT2_STS
         image: OTRS:DIAG0:525:Image:ArrayData
+        lamp_power: OTRS:DIAG0:525:TGT_LAMP_PWR
         n_bits: OTRS:DIAG0:525:N_OF_BITS
         n_col: OTRS:DIAG0:525:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:525:Image:ArraySize0_RBV
@@ -653,11 +673,21 @@ screens:
         ref_rate_vme: OTRS:DIAG0:525:FRAME_RATE
         resolution: OTRS:DIAG0:525:RESOLUTION
         sys_type: OTRS:DIAG0:525:SYS_TYPE
+        target_control: OTRS:DIAG0:525:PNEUMATIC
+        target_status: OTRS:DIAG0:525:TGT_STS
       control_name: OTRS:DIAG0:525
     metadata:
       area: DIAG0
       beam_path:
       - SC_DIAG0
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 61.871
       type: PROF
 tcavs:

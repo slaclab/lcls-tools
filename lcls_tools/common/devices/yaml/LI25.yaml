@@ -6,5 +6,6 @@ screens:
     metadata:
       area: LI25
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF

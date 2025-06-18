@@ -762,7 +762,11 @@ magnets:
 screens:
   OTR1:
     controls_information:
-      PVs: {}
+      PVs:
+        filter_1_status: OTRS:IN20:541:FLT1_STS
+        filter_2_status: OTRS:IN20:541:FLT2_STS
+        target_control: OTRS:IN20:541:PNEUMATIC
+        target_status: OTRS:IN20:541:TGT_STS
       control_name: OTRS:IN20:541
     metadata:
       area: DL1
@@ -774,12 +778,18 @@ screens:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      hardware: {}
       sum_l_meters: 12.327
       type: PROF
   OTR2:
     controls_information:
       PVs:
+        filter_1_control: OTRS:IN20:571:FLT1_CTRL
+        filter_1_status: OTRS:IN20:571:FLT1_STS
+        filter_2_control: OTRS:IN20:571:FLT2_CTRL
+        filter_2_status: OTRS:IN20:571:FLT2_STS
         image: OTRS:IN20:571:Image:ArrayData
+        lamp_power: OTRS:IN20:571:TGT_LAMP_PWR
         n_bits: OTRS:IN20:571:N_OF_BITS
         n_col: OTRS:IN20:571:Image:ArraySize1_RBV
         n_row: OTRS:IN20:571:Image:ArraySize0_RBV
@@ -787,6 +797,8 @@ screens:
         ref_rate_vme: OTRS:IN20:571:FRAME_RATE
         resolution: OTRS:IN20:571:RESOLUTION
         sys_type: OTRS:IN20:571:SYS_TYPE
+        target_control: OTRS:IN20:571:PNEUMATIC
+        target_status: OTRS:IN20:571:TGT_STS
       control_name: OTRS:IN20:571
     metadata:
       area: DL1
@@ -798,11 +810,21 @@ screens:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 1.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 14.241
       type: PROF
   OTR3:
     controls_information:
       PVs:
+        filter_1_status: OTRS:IN20:621:FLT1_STS
+        filter_2_status: OTRS:IN20:621:FLT2_STS
         image: OTRS:IN20:621:IMAGE
         n_bits: OTRS:IN20:621:N_OF_BITS
         n_col: OTRS:IN20:621:N_OF_COL
@@ -810,6 +832,8 @@ screens:
         ref_rate_vme: OTRS:IN20:621:FRAME_RATE
         resolution: OTRS:IN20:621:RESOLUTION
         sys_type: OTRS:IN20:621:SYS_TYPE
+        target_control: OTRS:IN20:621:PNEUMATIC
+        target_status: OTRS:IN20:621:TGT_STS
       control_name: OTRS:IN20:621
     metadata:
       area: DL1
@@ -821,11 +845,14 @@ screens:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      hardware: {}
       sum_l_meters: 16.155
       type: PROF
   OTR4:
     controls_information:
       PVs:
+        filter_1_status: OTRS:IN20:711:FLT1_STS
+        filter_2_status: OTRS:IN20:711:FLT2_STS
         image: OTRS:IN20:711:IMAGE
         n_bits: OTRS:IN20:711:N_OF_BITS
         n_col: OTRS:IN20:711:N_OF_COL
@@ -833,6 +860,8 @@ screens:
         ref_rate_vme: OTRS:IN20:711:FRAME_RATE
         resolution: OTRS:IN20:711:RESOLUTION
         sys_type: OTRS:IN20:711:SYS_TYPE
+        target_control: OTRS:IN20:711:PNEUMATIC
+        target_status: OTRS:IN20:711:TGT_STS
       control_name: OTRS:IN20:711
     metadata:
       area: DL1
@@ -843,12 +872,18 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 17.797
       type: PROF
   OTRH1:
     controls_information:
       PVs:
+        filter_1_control: OTRS:IN20:465:FLT1_CTRL
+        filter_1_status: OTRS:IN20:465:FLT1_STS
+        filter_2_control: OTRS:IN20:465:FLT2_CTRL
+        filter_2_status: OTRS:IN20:465:FLT2_STS
         image: OTRS:IN20:465:Image:ArrayData
+        lamp_power: OTRS:IN20:465:TGT_LAMP_PWR
         n_bits: OTRS:IN20:465:N_OF_BITS
         n_col: OTRS:IN20:465:Image:ArraySize1_RBV
         n_row: OTRS:IN20:465:Image:ArraySize0_RBV
@@ -856,6 +891,8 @@ screens:
         ref_rate_vme: OTRS:IN20:465:FRAME_RATE
         resolution: OTRS:IN20:465:RESOLUTION
         sys_type: OTRS:IN20:465:SYS_TYPE
+        target_control: OTRS:IN20:465:PNEUMATIC
+        target_status: OTRS:IN20:465:TGT_STS
       control_name: OTRS:IN20:465
     metadata:
       area: DL1
@@ -867,12 +904,25 @@ screens:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 0.0
+        FLT2: 0.0
+        GLAMP: 1.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 9.528
       type: PROF
   OTRH2:
     controls_information:
       PVs:
+        filter_1_control: OTRS:IN20:471:FLT1_CTRL
+        filter_1_status: OTRS:IN20:471:FLT1_STS
+        filter_2_control: OTRS:IN20:471:FLT2_CTRL
+        filter_2_status: OTRS:IN20:471:FLT2_STS
         image: OTRS:IN20:471:Image:ArrayData
+        lamp_power: OTRS:IN20:471:TGT_LAMP_PWR
         n_bits: OTRS:IN20:471:N_OF_BITS
         n_col: OTRS:IN20:471:Image:ArraySize1_RBV
         n_row: OTRS:IN20:471:Image:ArraySize0_RBV
@@ -880,6 +930,8 @@ screens:
         ref_rate_vme: OTRS:IN20:471:FRAME_RATE
         resolution: OTRS:IN20:471:RESOLUTION
         sys_type: OTRS:IN20:471:SYS_TYPE
+        target_control: OTRS:IN20:471:PNEUMATIC
+        target_status: OTRS:IN20:471:TGT_STS
       control_name: OTRS:IN20:471
     metadata:
       area: DL1
@@ -891,6 +943,14 @@ screens:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 0.0
+        FLT2: 0.0
+        GLAMP: 1.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 10.211
       type: PROF
   YAG04:
@@ -900,6 +960,7 @@ screens:
     metadata:
       area: DL1
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
 wires:

@@ -1393,6 +1393,7 @@ screens:
     metadata:
       area: UND
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   YAGBOD2:
@@ -1402,5 +1403,6 @@ screens:
     metadata:
       area: UND
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
