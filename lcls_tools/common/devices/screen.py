@@ -39,6 +39,8 @@ class ScreenPVSet(PVSet):
     n_bits: PV
     resolution: PV
     sys_type: PV
+    target_control: Optional[PV] = None
+    target_status: Optional[PV] = None
     ref_rate_vme: Optional[PV] = None
     ref_rate: Optional[PV] = None
 
@@ -83,6 +85,19 @@ class Screen(Device):
     def image_timestamp(self):
         """Get last timestamp for last PV activity"""
         return self.controls_information.PVs.image.timestamp
+
+    @property
+    def target(self):
+        return self.controls_information.PVs.target_status.get()
+
+    @target.setter
+    @property
+    def target(self, val: str):
+        return self.controls_information.PVs.target_control.put(val)
+
+    @property
+    def target_states(self):
+        return self.controls_information.PVs.target_control.enum_strs
 
     @property
     def hdf_save_location(self) -> str:
