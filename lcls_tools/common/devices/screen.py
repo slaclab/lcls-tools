@@ -152,6 +152,37 @@ class Screen(Device):
         """Location and filename for the last file saved by this screen (set in save_images())"""
         return self._last_save_filepath
 
+    def filter_in(self, filter_n: int = 1):
+        pvs = self.controls_information.PVs
+        if flt := getattr(pvs, "filter_%s_control", None):
+            flt.put("IN")
+
+    def filter_out(self, filter_n: int = 1):
+        pvs = self.controls_information.PVs
+        if flt := getattr(pvs, "filter_%s_control", None):
+            flt.put("OUT")
+
+    def get_filter_status(self, filter_n: int = 1):
+        pvs = self.controls_information.PVs
+        if flt := getattr(pvs, "filter_%s_status", None):
+            return flt.get()
+
+    def lamp_on(self):
+        pvs = self.controls_information.PVs
+        if lamp := getattr(pvs, "lamp_power", None):
+            return lamp.put("On")
+
+    def lamp_off(self):
+        pvs = self.controls_information.PVs
+        if lamp := getattr(pvs, "lamp_power", None):
+            return lamp.put("Off")
+
+    @property
+    def lamp_states(self):
+        pvs = self.controls_information.PVs
+        if lamp := getattr(pvs, "lamp_power", None):
+            return lamp.enum_strs
+
     def _inserted_check():
         """Check if the screen is inserted"""
         return NotImplementedError

@@ -352,6 +352,11 @@ class YAMLGenerator:
             "ArrayRate_RBV": "ref_rate",
             "PNEUMATIC": "target_control",
             "TGT_STS": "target_status",
+            "FLT1_STS": "filter_1_status",
+            "FLT1_CTRL": "filter_1_control",
+            "FLT2_STS": "filter_2_status",
+            "FLT2_CTRL": "filter_2_control",
+            "TGT_LAMP_PWR": "lamp_power",
         }
         # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
         additional_controls_data = get_screen_controls_information()

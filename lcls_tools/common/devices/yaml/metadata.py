@@ -54,6 +54,7 @@ def get_screen_metadata(basic_screen_data: dict):
             status = caget(i)
             if status is not None:
                 hardware[name] = status
+
         metadata[mad_name]["hardware"] = hardware
     return metadata
 
