@@ -88,7 +88,7 @@ class Screen(Device):
 
     @property
     def target(self):
-        return self.controls_information.PVs.target_status.get()
+        return self.controls_information.PVs.target_status.get(as_string=True)
 
     @target.setter
     @property

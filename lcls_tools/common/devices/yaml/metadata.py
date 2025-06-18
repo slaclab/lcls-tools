@@ -1,4 +1,6 @@
+import re
 from typing import List
+from epics import caget
 
 
 def get_magnet_metadata(
@@ -29,18 +31,27 @@ def get_magnet_metadata(
         return {}
 
 
-def get_screen_metadata(screen_names: List[str] = []):
+def get_screen_metadata(basic_screen_data: dict):
     # return a data structure of the form:
     # {
     #  scr-name-1 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  scr-name-2 : {metadata-field-1 : value-1, metadata-field-2 : value-2},
     #  ...
     # }
-    if screen_names:
-        raise NotImplementedError(
-            "No method of getting additional metadata for screens."
-        )
-    return {}
+    from meme.names import list_pvs
+
+    metadata = {}
+    for mad_name, info in basic_screen_data.items():
+        ctrl_name = info["controls_information"]["control_name"]
+        flags = list_pvs(ctrl_name + "%INSTALLED")
+        hardware = {}
+        for i in flags:
+            name = re.search("(?<=^" + ctrl_name + ").*(?=INSTALLED)", i).group(0)
+            status = caget(i)
+            if status is not None:
+                hardware[name] = status
+        metadata[mad_name] = hardware
+    return metadata
 
 
 def get_wire_metadata(wire_names: List[str] = []):
