@@ -40,8 +40,9 @@ def get_screen_metadata(basic_screen_data: dict):
     # }
     from meme.names import list_pvs
 
-    metadata = {"hardware": {}}
+    metadata = {}
     for mad_name, info in basic_screen_data.items():
+        metadata[mad_name] = {}
         ctrl_name = info["controls_information"]["control_name"]
         flags = list_pvs(ctrl_name + "%INSTALLED")
         hardware = {}
