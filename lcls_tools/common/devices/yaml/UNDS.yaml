@@ -2520,7 +2520,12 @@ screens:
   BOD10:
     controls_information:
       PVs:
+        filter_1_control: YAGS:UNDS:3575:FLT1_CTRL
+        filter_1_status: YAGS:UNDS:3575:FLT1_STS
+        filter_2_control: YAGS:UNDS:3575:FLT2_CTRL
+        filter_2_status: YAGS:UNDS:3575:FLT2_STS
         image: YAGS:UNDS:3575:Image:ArrayData
+        lamp_power: YAGS:UNDS:3575:TGT_LAMP_PWR
         n_bits: YAGS:UNDS:3575:N_OF_BITS
         n_col: YAGS:UNDS:3575:Image:ArraySize1_RBV
         n_row: YAGS:UNDS:3575:Image:ArraySize0_RBV
@@ -2528,6 +2533,8 @@ screens:
         ref_rate_vme: YAGS:UNDS:3575:FRAME_RATE
         resolution: YAGS:UNDS:3575:RESOLUTION
         sys_type: YAGS:UNDS:3575:SYS_TYPE
+        target_control: YAGS:UNDS:3575:PNEUMATIC
+        target_status: YAGS:UNDS:3575:TGT_STS
       control_name: YAGS:UNDS:3575
     metadata:
       area: UNDS
@@ -2538,12 +2545,25 @@ screens:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 0.0
+        FLT2: 0.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 3661.222
       type: PROF
   BOD12:
     controls_information:
       PVs:
+        filter_1_control: YAGS:UNDS:3795:FLT1_CTRL
+        filter_1_status: YAGS:UNDS:3795:FLT1_STS
+        filter_2_control: YAGS:UNDS:3795:FLT2_CTRL
+        filter_2_status: YAGS:UNDS:3795:FLT2_STS
         image: YAGS:UNDS:3795:Image:ArrayData
+        lamp_power: YAGS:UNDS:3795:TGT_LAMP_PWR
         n_bits: YAGS:UNDS:3795:N_OF_BITS
         n_col: YAGS:UNDS:3795:Image:ArraySize1_RBV
         n_row: YAGS:UNDS:3795:Image:ArraySize0_RBV
@@ -2551,6 +2571,8 @@ screens:
         ref_rate_vme: YAGS:UNDS:3795:FRAME_RATE
         resolution: YAGS:UNDS:3795:RESOLUTION
         sys_type: YAGS:UNDS:3795:SYS_TYPE
+        target_control: YAGS:UNDS:3795:PNEUMATIC
+        target_status: YAGS:UNDS:3795:TGT_STS
       control_name: YAGS:UNDS:3795
     metadata:
       area: UNDS
@@ -2561,5 +2583,13 @@ screens:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 0.0
+        FLT2: 0.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 3670.392
       type: PROF

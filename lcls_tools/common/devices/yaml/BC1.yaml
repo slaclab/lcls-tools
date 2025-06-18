@@ -600,6 +600,8 @@ screens:
   OTR11:
     controls_information:
       PVs:
+        filter_1_status: OTRS:LI21:237:FLT1_STS
+        filter_2_status: OTRS:LI21:237:FLT2_STS
         image: OTRS:LI21:237:IMAGE
         n_bits: OTRS:LI21:237:N_OF_BITS
         n_col: OTRS:LI21:237:N_OF_COL
@@ -607,6 +609,8 @@ screens:
         ref_rate_vme: OTRS:LI21:237:FRAME_RATE
         resolution: OTRS:LI21:237:RESOLUTION
         sys_type: OTRS:LI21:237:SYS_TYPE
+        target_control: OTRS:LI21:237:PNEUMATIC
+        target_status: OTRS:LI21:237:TGT_STS
       control_name: OTRS:LI21:237
     metadata:
       area: BC1
@@ -617,11 +621,14 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 34.834
       type: PROF
   OTR12:
     controls_information:
       PVs:
+        filter_1_status: OTRS:LI21:291:FLT1_STS
+        filter_2_status: OTRS:LI21:291:FLT2_STS
         image: OTRS:LI21:291:IMAGE
         n_bits: OTRS:LI21:291:N_OF_BITS
         n_col: OTRS:LI21:291:N_OF_COL
@@ -629,6 +636,8 @@ screens:
         ref_rate_vme: OTRS:LI21:291:FRAME_RATE
         resolution: OTRS:LI21:291:RESOLUTION
         sys_type: OTRS:LI21:291:SYS_TYPE
+        target_control: OTRS:LI21:291:PNEUMATIC
+        target_status: OTRS:LI21:291:TGT_STS
       control_name: OTRS:LI21:291
     metadata:
       area: BC1
@@ -639,6 +648,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 41.512
       type: PROF
 wires:

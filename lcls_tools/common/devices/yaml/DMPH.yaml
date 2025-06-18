@@ -350,7 +350,12 @@ screens:
   OTRDMP:
     controls_information:
       PVs:
+        filter_1_control: OTRS:DMPH:695:FLT1_CTRL
+        filter_1_status: OTRS:DMPH:695:FLT1_STS
+        filter_2_control: OTRS:DMPH:695:FLT2_CTRL
+        filter_2_status: OTRS:DMPH:695:FLT2_STS
         image: OTRS:DMPH:695:Image:ArrayData
+        lamp_power: OTRS:DMPH:695:TGT_LAMP_PWR
         n_bits: OTRS:DMPH:695:N_OF_BITS
         n_col: OTRS:DMPH:695:Image:ArraySize1_RBV
         n_row: OTRS:DMPH:695:Image:ArraySize0_RBV
@@ -358,11 +363,21 @@ screens:
         ref_rate_vme: OTRS:DMPH:695:FRAME_RATE
         resolution: OTRS:DMPH:695:RESOLUTION
         sys_type: OTRS:DMPH:695:SYS_TYPE
+        target_control: OTRS:DMPH:695:PNEUMATIC
+        target_status: OTRS:DMPH:695:TGT_STS
       control_name: OTRS:DMPH:695
     metadata:
       area: DMPH
       beam_path:
       - CU_HXR
       - SC_HXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 1746.602
       type: PROF

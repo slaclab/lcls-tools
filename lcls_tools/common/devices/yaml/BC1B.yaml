@@ -319,7 +319,12 @@ screens:
   OTR11B:
     controls_information:
       PVs:
+        filter_1_control: PROF:BC1B:470:FLT1_CTRL
+        filter_1_status: PROF:BC1B:470:FLT1_STS
+        filter_2_control: PROF:BC1B:470:FLT2_CTRL
+        filter_2_status: PROF:BC1B:470:FLT2_STS
         image: PROF:BC1B:470:Image:ArrayData
+        lamp_power: PROF:BC1B:470:TGT_LAMP_PWR
         n_bits: PROF:BC1B:470:N_OF_BITS
         n_col: PROF:BC1B:470:Image:ArraySize1_RBV
         n_row: PROF:BC1B:470:Image:ArraySize0_RBV
@@ -327,6 +332,8 @@ screens:
         ref_rate_vme: PROF:BC1B:470:FRAME_RATE
         resolution: PROF:BC1B:470:RESOLUTION
         sys_type: PROF:BC1B:470:SYS_TYPE
+        target_control: PROF:BC1B:470:PNEUMATIC
+        target_status: PROF:BC1B:470:TGT_STS
       control_name: PROF:BC1B:470
     metadata:
       area: BC1B
@@ -339,5 +346,13 @@ screens:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 1.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 135.571
       type: PROF
