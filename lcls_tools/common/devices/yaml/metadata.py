@@ -47,7 +47,9 @@ def get_screen_metadata(basic_screen_data: dict):
         flags = list_pvs(ctrl_name + "%INSTALLED")
         hardware = {}
         for i in flags:
-            name = re.search("(?<=^" + ctrl_name + ":).*(?=:INSTALLED)", i).group(0)
+            if name := re.search("(?<=^" + ctrl_name + ":).*(?=:INSTALLED)", i) is None:
+                continue
+            name = name.group(0)
             status = caget(i)
             if status is not None:
                 hardware[name] = status
