@@ -40,17 +40,17 @@ def get_screen_metadata(basic_screen_data: dict):
     # }
     from meme.names import list_pvs
 
-    metadata = {}
+    metadata = {"hardware": {}}
     for mad_name, info in basic_screen_data.items():
         ctrl_name = info["controls_information"]["control_name"]
         flags = list_pvs(ctrl_name + "%INSTALLED")
         hardware = {}
         for i in flags:
-            name = re.search("(?<=^" + ctrl_name + ").*(?=INSTALLED)", i).group(0)
+            name = re.search("(?<=^" + ctrl_name + ":).*(?=:INSTALLED)", i).group(0)
             status = caget(i)
             if status is not None:
                 hardware[name] = status
-        metadata[mad_name] = hardware
+        metadata[mad_name]["hardware"] = hardware
     return metadata
 
 
