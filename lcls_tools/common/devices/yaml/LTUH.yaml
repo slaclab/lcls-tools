@@ -2769,11 +2769,16 @@ screens:
         n_bits: YAGS:LTUH:743:N_OF_BITS
         n_col: YAGS:LTUH:743:Image:ArraySize1_RBV
         n_row: YAGS:LTUH:743:Image:ArraySize0_RBV
+        orient_x: YAGS:LTUH:743:X_ORIENT
+        orient_y: YAGS:LTUH:743:Y_ORIENT
         ref_rate: YAGS:LTUH:743:ArrayRate_RBV
         ref_rate_vme: YAGS:LTUH:743:FRAME_RATE
         resolution: YAGS:LTUH:743:RESOLUTION
         sys_type: YAGS:LTUH:743:SYS_TYPE
       control_name: YAGS:LTUH:743
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: LTUH
       beam_path:
