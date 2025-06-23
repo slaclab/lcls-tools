@@ -102,10 +102,10 @@ class Screen(Device):
         i = self.controls_information
         pv_cache = getattr(i, "pv_cache", None)
         if pv_cache is not None and not self.new_orientation:
-            if (v := getattr(pv_cache, "orient_x", None)) is not None:
-                return v
-        if (pv := getattr(i, "orient_x", None)) is not None:
-            return pv.get()
+            if "orient_x" in pv_cache:
+                return pv_cache["orient_x"]
+        if (pv := getattr(i.PVs, "orient_x", None)) is not None:
+            return pv.get(as_string=True)
         return None
 
     @property
@@ -113,10 +113,10 @@ class Screen(Device):
         i = self.controls_information
         pv_cache = getattr(i, "pv_cache", None)
         if pv_cache is not None and not self.new_orientation:
-            if (v := getattr(pv_cache, "orient_y", None)) is not None:
-                return v
-        if (pv := getattr(i, "orient_y", None)) is not None:
-            return pv.get()
+            if "orient_y" in pv_cache:
+                return pv_cache["orient_y"]
+        if (pv := getattr(i.PVs, "orient_y", None)) is not None:
+            return pv.get(as_string=True)
         return None
 
     @property
