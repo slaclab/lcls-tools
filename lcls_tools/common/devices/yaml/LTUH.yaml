@@ -2769,16 +2769,11 @@ screens:
         n_bits: YAGS:LTUH:743:N_OF_BITS
         n_col: YAGS:LTUH:743:Image:ArraySize1_RBV
         n_row: YAGS:LTUH:743:Image:ArraySize0_RBV
-        orient_x: YAGS:LTUH:743:X_ORIENT
-        orient_y: YAGS:LTUH:743:Y_ORIENT
         ref_rate: YAGS:LTUH:743:ArrayRate_RBV
         ref_rate_vme: YAGS:LTUH:743:FRAME_RATE
         resolution: YAGS:LTUH:743:RESOLUTION
         sys_type: YAGS:LTUH:743:SYS_TYPE
       control_name: YAGS:LTUH:743
-      pv_cache:
-        orient_x: Negative
-        orient_y: Negative
     metadata:
       area: LTUH
       beam_path:
@@ -2794,6 +2789,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:715:MOTR.STOP
+        beam_rate: WIRE:LTUH:715:BEAMRATE
         enabled: WIRE:LTUH:715:MOTR_ENABLED_STS
         homed: WIRE:LTUH:715:MOTR_HOMED_STS
         initialize: WIRE:LTUH:715:MOTR_INIT
@@ -2835,6 +2831,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:735:MOTR.STOP
+        beam_rate: WIRE:LTUH:735:BEAMRATE
         enabled: WIRE:LTUH:735:MOTR_ENABLED_STS
         homed: WIRE:LTUH:735:MOTR_HOMED_STS
         initialize: WIRE:LTUH:735:MOTR_INIT
@@ -2876,6 +2873,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:755:MOTR.STOP
+        beam_rate: WIRE:LTUH:755:BEAMRATE
         enabled: WIRE:LTUH:755:MOTR_ENABLED_STS
         homed: WIRE:LTUH:755:MOTR_HOMED_STS
         initialize: WIRE:LTUH:755:MOTR_INIT
@@ -2917,6 +2915,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:775:MOTR.STOP
+        beam_rate: WIRE:LTUH:775:BEAMRATE
         enabled: WIRE:LTUH:775:MOTR_ENABLED_STS
         homed: WIRE:LTUH:775:MOTR_HOMED_STS
         initialize: WIRE:LTUH:775:MOTR_INIT
@@ -2958,6 +2957,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:246:MOTR.STOP
+        beam_rate: WIRE:LTUH:246:BEAMRATE
         enabled: WIRE:LTUH:246:MOTR_ENABLED_STS
         homed: WIRE:LTUH:246:MOTR_HOMED_STS
         initialize: WIRE:LTUH:246:MOTR_INIT
@@ -3033,6 +3033,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:122:MOTR.STOP
+        beam_rate: WIRE:LTUH:122:BEAMRATE
         enabled: WIRE:LTUH:122:MOTR_ENABLED_STS
         homed: WIRE:LTUH:122:MOTR_HOMED_STS
         initialize: WIRE:LTUH:122:MOTR_INIT
