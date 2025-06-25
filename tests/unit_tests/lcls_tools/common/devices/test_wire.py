@@ -13,6 +13,7 @@ class WireTest(TestCase):
         # Set up some mocks that are needed for all test-cases.
         self.options_and_getter_function = {
             "MOTR.VELO": None,
+            "BEAMRATE": None,
             "MOTR.VMAX": None,
             "MOTR.VBAS": None,
             "MOTR.RBV": None,
@@ -49,6 +50,7 @@ class WireTest(TestCase):
         ]
         self.options_and_getter_function = {
             "MOTR.STOP": self.wire.abort_scan,
+            "BEAMRATE": self.wire.beam_rate,
             "MOTR_ENABLED_STS": self.wire.enabled,
             "MOTR_HOMED_STS": self.wire.homed,
             "MOTR_INIT": self.wire.initialize,
@@ -102,6 +104,7 @@ class WireTest(TestCase):
         # Assert that magnet has public properties
         for item in [
             "abort_scan",
+            "beam_rate",
             "enabled",
             "homed",
             "initialize",
