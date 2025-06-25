@@ -369,6 +369,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:SPD:872:MOTR.STOP
+        beam_rate: WIRE:SPD:872:BEAMRATE
         enabled: WIRE:SPD:872:MOTR_ENABLED_STS
         homed: WIRE:SPD:872:MOTR_HOMED_STS
         initialize: WIRE:SPD:872:MOTR_INIT
@@ -412,6 +413,6 @@ wires:
       - BPMS:SPD:525
       - BPMS:SPD:570
       lblms:
-      - LBLM22A
+      - LBLM22A:SPS
       sum_l_meters: 3024.92
       type: WIRE

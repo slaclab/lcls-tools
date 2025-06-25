@@ -382,13 +382,13 @@ class YAMLGenerator:
         # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
         possible_wire_pvs = {
             "MOTR.STOP": "abort_scan",
+            "BEAMRATE": "beam_rate",
             "MOTR_ENABLED_STS": "enabled",
             "MOTR_HOMED_STS": "homed",
             "MOTR_INIT": "initialize",
             "MOTR_INIT_STS": "initialize_status",
             "MOTR": "motor",
             "MOTR.RBV": "motor_rbv",
-            # "POSN": "position",
             "MOTR_RETRACT": "retract",
             "SCANPULSES": "scan_pulses",
             "MOTR.VELO": "speed",

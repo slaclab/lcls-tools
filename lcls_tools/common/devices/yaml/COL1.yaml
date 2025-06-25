@@ -81,7 +81,10 @@ bpms:
       type: BPM
   BPMC105:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL1:400:TMIT
+        x: BPMS:COL1:400:X
+        y: BPMS:COL1:400:Y
       control_name: BPMS:COL1:400
     metadata:
       area: COL1
@@ -98,7 +101,10 @@ bpms:
       type: BPM
   BPMC106:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL1:480:TMIT
+        x: BPMS:COL1:480:X
+        y: BPMS:COL1:480:Y
       control_name: BPMS:COL1:480
     metadata:
       area: COL1
@@ -155,7 +161,10 @@ bpms:
       type: BPM
   BPMC109:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL1:720:TMIT
+        x: BPMS:COL1:720:X
+        y: BPMS:COL1:720:Y
       control_name: BPMS:COL1:720
     metadata:
       area: COL1
@@ -172,7 +181,10 @@ bpms:
       type: BPM
   BPMC110:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL1:800:TMIT
+        x: BPMS:COL1:800:X
+        y: BPMS:COL1:800:Y
       control_name: BPMS:COL1:800
     metadata:
       area: COL1
@@ -808,6 +820,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:COL1:360:MOTR.STOP
+        beam_rate: WIRE:COL1:360:BEAMRATE
         enabled: WIRE:COL1:360:MOTR_ENABLED_STS
         homed: WIRE:COL1:360:MOTR_HOMED_STS
         initialize: WIRE:COL1:360:MOTR_INIT
@@ -863,15 +876,16 @@ wires:
       - BPMS:COL1:280
       - BPMS:COL1:320
       lblms:
-      - LBLM03A
-      - LBLM04A
-      - TMITLOSS
+      - LBLM03A:L1B
+      - LBLM04A:L2B
+      - TMITLOSS:COL1
       sum_l_meters: 154.52
       type: WIRE
   WSC106:
     controls_information:
       PVs:
         abort_scan: WIRE:COL1:520:MOTR.STOP
+        beam_rate: WIRE:COL1:520:BEAMRATE
         enabled: WIRE:COL1:520:MOTR_ENABLED_STS
         homed: WIRE:COL1:520:MOTR_HOMED_STS
         initialize: WIRE:COL1:520:MOTR_INIT
@@ -926,15 +940,16 @@ wires:
       - BPMS:COL1:280
       - BPMS:COL1:320
       lblms:
-      - LBLM03A
-      - LBLM04A
-      - TMITLOSS
+      - LBLM03A:L1B
+      - LBLM04A:L2B
+      - TMITLOSS:COL1
       sum_l_meters: 162.52
       type: WIRE
   WSC108:
     controls_information:
       PVs:
         abort_scan: WIRE:COL1:680:MOTR.STOP
+        beam_rate: WIRE:COL1:680:BEAMRATE
         enabled: WIRE:COL1:680:MOTR_ENABLED_STS
         homed: WIRE:COL1:680:MOTR_HOMED_STS
         initialize: WIRE:COL1:680:MOTR_INIT
@@ -990,15 +1005,16 @@ wires:
       - BPMS:COL1:280
       - BPMS:COL1:320
       lblms:
-      - LBLM03A
-      - LBLM04A
-      - TMITLOSS
+      - LBLM03A:L1B
+      - LBLM04A:L2B
+      - TMITLOSS:COL1
       sum_l_meters: 170.52
       type: WIRE
   WSC110:
     controls_information:
       PVs:
         abort_scan: WIRE:COL1:840:MOTR.STOP
+        beam_rate: WIRE:COL1:840:BEAMRATE
         enabled: WIRE:COL1:840:MOTR_ENABLED_STS
         homed: WIRE:COL1:840:MOTR_HOMED_STS
         initialize: WIRE:COL1:840:MOTR_INIT
@@ -1054,8 +1070,8 @@ wires:
       - BPMS:COL1:280
       - BPMS:COL1:320
       lblms:
-      - LBLM03A
-      - LBLM04A
-      - TMITLOSS
+      - LBLM03A:L1B
+      - LBLM04A:L2B
+      - TMITLOSS:COL1
       sum_l_meters: 178.52
       type: WIRE
