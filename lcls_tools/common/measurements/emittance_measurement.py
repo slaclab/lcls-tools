@@ -1,4 +1,5 @@
 from abc import abstractmethod
+from pathlib import Path
 import sys
 import time
 import enum
@@ -150,7 +151,7 @@ class EmittanceMeasurementBase(Measurement):
     ------------------------
     energy: float
         Beam energy in GeV
-    n_measurements: int
+    n_measurements: int, optional
         number of beamsize measurements to make for each phase advance
     rmat: ndarray, optional
         Transport matricies for the horizontal and vertical phase space from
@@ -309,11 +310,14 @@ class EmittanceMeasurementBase(Measurement):
                 beam_sizes.append(np.mean(result.rms_sizes, axis=0) * 1e-6)
             elif isinstance(result, WireBeamProfileMeasurementResult):
                 # Get rms size from default detector for wire
-                with open("../devices/yaml/wire_lblms.yaml", "r") as wire_lblms_yaml:
-                    wire_lblms = yaml.safe_load(wire_lblms_yaml)
-                wire = result.metadata["my_wire"].name
+                current_file = Path(__file__).resolve()
+                devices_root = current_file.parent.parent
+                file_to_open = devices_root / "devices" / "yaml" / "wire_lblms.yaml"
+                with open(file_to_open, "r") as wire_lblms_yaml:
+                     wire_lblms = yaml.safe_load(wire_lblms_yaml)
+                wire = result.metadata.wire_name
                 lblm = wire_lblms[wire]
-                beam_sizes.append(result.rms_sizes[lblm] * 1e-6)
+                beam_sizes.append(np.array(result.rms_sizes[lblm]) * 1e-6)
             else:
                 raise ValueError("Unknown beamsize measurement result type")
 
@@ -337,7 +341,7 @@ class QuadScanEmittance(EmittanceMeasurementBase):
     ------------------------
     energy: float
         Beam energy in GeV
-    n_measurements: int
+    n_measurements: int, optional
         number of beamsize measurements to make per individual quad strength
     scan_values: List[float]
         BDES values of magnet to scan over
@@ -393,10 +397,18 @@ class QuadScanEmittance(EmittanceMeasurementBase):
         """
         # TODO: get settings from arbitrary methods (ie. not meme)
         if self.rmat is None and self.design_twiss is None:
-            optics = get_optics(
-                self.magnet.name,
-                self.beamsize_measurement.device.name,
-            )
+            if isinstance(self.beamsize_measurement, ScreenBeamProfileMeasurement):
+                optics = get_optics(
+                    self.magnet.name,
+                    self.beamsize_measurement.device.name,
+                )
+            elif isinstance(self.beamsize_measurement, WireBeamProfileMeasurement):
+                optics = get_optics(
+                    self.magnet.name,
+                    self.beamsize_measurement.my_wire.name,
+                )
+            else:
+                raise ValueError("Unknown beamsize measurement type")
 
             self.rmat = optics["rmat"]
             self.design_twiss = optics["design_twiss"]
