@@ -1,67 +1,22 @@
-from typing import Any, Optional, Dict, Tuple
+from typing import Optional
 from lcls_tools.common.devices.wire import Wire
 from lcls_tools.common.devices.reader import create_lblm
 from lcls_tools.common.data.fit.projection import ProjectionFit
 from lcls_tools.common.measurements.measurement import Measurement
+from lcls_tools.common.measurements.wire_scan_results import (
+    WireBeamProfileMeasurementResult,
+    ProfileMeasurement,
+    DetectorMeasurement,
+    MeasurementMetadata,
+)
 import time
 from datetime import datetime
 import edef
 import os
-from pydantic import SerializeAsAny, BaseModel, ConfigDict, model_validator
-from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
+from pydantic import BaseModel, model_validator
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
 from typing_extensions import Self
-
-
-class MeasurementMetadata(BaseModel):
-    wire_name: str
-    area: str
-    beampath: str
-    detectors: list[str]
-    default_detector: str
-    scan_ranges: Dict[str, Tuple[int, int]]
-    timestamp: datetime
-    notes: Optional[str] = None
-
-
-class DetectorMeasurement(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-    values: NDArrayAnnotatedType
-    units: str | None = None
-    label: str | None = None
-
-
-class PlaneMeasurement(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-    positions: NDArrayAnnotatedType
-    detectors: dict[str, DetectorMeasurement]
-    profile_idxs: NDArrayAnnotatedType
-
-
-class WireBeamProfileMeasurementResult(BaseModel):
-    """
-    Stores the results of a wire beam profile measurement.
-
-    Attributes:
-        position_data (np.ndarray): Wire position (um) data for each plane.
-        detector_data (np.ndarray): Detector responses (loss counts) separated by plane.
-        raw_data (np.ndarray): Raw unprocessed BSA data for all devices.
-        metadata (Any): Metadata describing the measurement setup and parameters.
-        fit_result (np.ndarray): Fit results from beam profile projections.
-        rms_sizes (dict): RMS  beamsizes (sigma values) extracted from fits.
-
-    Config:
-        arbitrary_types_allowed: Allows use of non-standard types like np.ndarray.
-        extra: Forbids extra fields not explicitly defined in the model.
-    """
-
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-    planes: Dict[str, PlaneMeasurement]
-    raw_data: Dict[str, Any]
-    fit_result: NDArrayAnnotatedType
-    rms_sizes: Dict[str, Tuple[float, float]]
-    metadata: SerializeAsAny[Any]
 
 
 class WireBeamProfileMeasurement(Measurement):
@@ -86,7 +41,7 @@ class WireBeamProfileMeasurement(Measurement):
     my_buffer: Optional[edef.BSABuffer] = None
     devices: Optional[dict] = None
     data: Optional[dict] = None
-    plane_measurements: Optional[dict] = None
+    profile_measurements: Optional[dict] = None
 
     @model_validator(mode="after")
     def run_setup(self) -> Self:
@@ -124,16 +79,16 @@ class WireBeamProfileMeasurement(Measurement):
         profile_idxs = self.get_profile_range_indices()
 
         # Separate detector data by profile
-        self.plane_measurements = self.organize_data_by_plane(profile_idxs)
+        self.profile = self.organize_data_by_profile(profile_idxs)
 
         # Fit detector data by profile
-        fit_result, rms_sizes = self.fit_data_by_plane()
+        fit_result, rms_sizes = self.fit_data_by_profile()
 
         # Create measurement metadata object
         metadata = self.create_metadata()
 
         return WireBeamProfileMeasurementResult(
-            planes=self.plane_measurements,
+            profiles=self.profile_measurements,
             raw_data=self.data,
             fit_result=fit_result,
             rms_sizes=rms_sizes,
@@ -268,40 +223,40 @@ class WireBeamProfileMeasurement(Measurement):
 
     def get_profile_range_indices(self):
         """
-        Finds sequential scan indices within each plane's position range.
+        Finds sequential scan indices within each profile's position range.
 
         Filters wire position data to identify index ranges for x, y, and u
-        planes, excluding non-continuous points like wire retractions.
+        profiles, excluding non-continuous points like wire retractions.
 
         Returns:
-            dict: Plane keys ('x', 'y', 'u') with lists of index arrays.
+            dict: Profile keys ('x', 'y', 'u') with lists of index arrays.
         """
-        # Get wire data to detemine plane indices
+        # Get wire data to detemine profile indices
         position_data = self.data[self.my_wire.name]
 
-        # Hold plane ranges
+        # Hold profile ranges
         ranges = {}
 
         # Hold sequential indices (avoid catching return wires)
         profile_idxs = {}
 
-        active_planes = []
+        active_profiles = []
         if self.my_wire.use_x_wire:
-            active_planes.append("x")
+            active_profiles.append("x")
         if self.my_wire.use_y_wire:
-            active_planes.append("y")
+            active_profiles.append("y")
         if self.my_wire.use_u_wire:
-            active_planes.append("u")
+            active_profiles.append("u")
 
-        for plane in active_planes:
+        for profile in active_profiles:
             # Get range methods e.g. x_range()
-            method_name = f"{plane}_range"
-            ranges[plane] = getattr(self.my_wire, method_name)
+            method_name = f"{profile}_range"
+            ranges[profile] = getattr(self.my_wire, method_name)
 
             # Get indices of when position is within a range
             idx = np.where(
-                (position_data >= ranges[plane][0])
-                & (position_data <= ranges[plane][1])
+                (position_data >= ranges[profile][0])
+                & (position_data <= ranges[profile][1])
             )[0]
 
             pos = position_data[idx]
@@ -310,28 +265,28 @@ class WireBeamProfileMeasurement(Measurement):
 
             mono_idx = idx[mono_mask]
 
-            profile_idxs[plane] = mono_idx
+            profile_idxs[profile] = mono_idx
 
         return profile_idxs
 
-    def organize_data_by_plane(self, profile_idxs):
+    def organize_data_by_profile(self, profile_idxs):
         """
-        Organizes detector data by scan plane for each device.
+        Organizes detector data by scan profile for each device.
 
         Uses sequential indices to separate full device data into
-        x, y, and u plane datasets.
+        x, y, and u profile datasets.
 
         Returns:
-            dict: Nested dict with planes as keys and device data per plane.
+            dict: Nested dict with profiles as keys and device data per profile.
         """
 
-        planes = list(profile_idxs.keys())
+        profiles = list(profile_idxs.keys())
         devices = list(self.devices.keys())
 
-        plane_measurements = {}
+        profile_measurements = {}
 
-        for plane in planes:
-            idx = profile_idxs.get(plane)
+        for profile in profiles:
+            idx = profile_idxs.get(profile)
             detectors = {}
 
             for device in devices:
@@ -344,29 +299,29 @@ class WireBeamProfileMeasurement(Measurement):
                         values=data_slice, units=units, label=device
                     )
 
-            plane_measurements[plane] = PlaneMeasurement(
+            profile_measurements[profile] = ProfileMeasurement(
                 positions=positions, detectors=detectors, profile_idxs=idx
             )
 
-        return plane_measurements
+        return profile_measurements
 
-    def fit_data_by_plane(self):
+    def fit_data_by_profile(self):
         """
-        Fits detector data for each plane and device.
+        Fits detector data for each profile and device.
 
         Applies beam fitting to x, y, and u projections
         for all devices in the detector data.
 
         Returns:
-            dict: Fit results organized by plane and device.
+            dict: Fit results organized by profile and device.
         """
-        # Get list of planes from data set
-        planes = list(self.plane_measurements.keys())
-        fit_result = {plane: {} for plane in planes}
+        # Get list of profiles from data set
+        profiles = list(self.profile_measurements.keys())
+        fit_result = {profile: {} for profile in profiles}
         devices = list(self.data.keys())
 
-        for plane in planes:
-            wire_posn = self.plane_measurements[plane].positions
+        for profile in profiles:
+            wire_posn = self.profile_measurements[profile].positions
             posn_start = wire_posn[0]
             posn_diff = np.mean(np.diff(wire_posn))
 
@@ -374,14 +329,14 @@ class WireBeamProfileMeasurement(Measurement):
                 if device == self.my_wire.name:
                     continue
                 proj_fit = self.beam_fit()
-                proj_data = self.plane_measurements[plane].detectors[device].values
-                fit_result[plane][device] = proj_fit.fit_projection(proj_data)
+                proj_data = self.profile_measurements[profile].detectors[device].values
+                fit_result[profile][device] = proj_fit.fit_projection(proj_data)
 
-                mean_idx = fit_result[plane][device]["mean"]
-                fit_result[plane][device]["mean"] = mean_idx * posn_diff + posn_start
+                mean_idx = fit_result[profile][device]["mean"]
+                fit_result[profile][device]["mean"] = mean_idx * posn_diff + posn_start
 
-                sigma_idx = fit_result[plane][device]["sigma"]
-                fit_result[plane][device]["sigma"] = sigma_idx * posn_diff
+                sigma_idx = fit_result[profile][device]["sigma"]
+                fit_result[profile][device]["sigma"] = sigma_idx * posn_diff
 
                 x_fits = fit_result["x"]
                 y_fits = fit_result["y"]
@@ -396,8 +351,8 @@ class WireBeamProfileMeasurement(Measurement):
 
     def create_metadata(self):
         # Make additional metadata
-        sample_plane = next(iter(self.plane_measurements.values()))
-        detectors = list(sample_plane.detectors.keys())
+        sample_profile = next(iter(self.profile_measurements.values()))
+        detectors = list(sample_profile.detectors.keys())
 
         scan_ranges = {
             "x": self.my_wire.x_range,
