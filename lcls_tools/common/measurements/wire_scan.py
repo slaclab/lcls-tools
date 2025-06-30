@@ -14,7 +14,6 @@ from lcls_tools.common.measurements.wire_scan_results import (
 import time
 from datetime import datetime
 import edef
-import os
 from pydantic import BaseModel, model_validator
 import numpy as np
 from typing_extensions import Self
@@ -52,7 +51,7 @@ class WireBeamProfileMeasurement(Measurement):
                 name="LCLS Tools Wire Scan",
                 n_measurements=1600,
                 destination_mode="Inclusion",
-                logger=None
+                logger=None,
             )
         print("Creating device dictionary...")
         self.devices = self.create_device_dictionary()
@@ -140,7 +139,7 @@ class WireBeamProfileMeasurement(Measurement):
                 name="LCLS Tools Wire Scan",
                 n_measurements=1600,
                 destination_mode="Inclusion",
-                logger=None
+                logger=None,
             )
 
         print("Starting wire motion procedure...")

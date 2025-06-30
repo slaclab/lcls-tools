@@ -7,19 +7,16 @@ class BufferError(Exception):
     pass
 
 
-DEST_MODE_MAP = {
-    "Disable": 0,
-    "Exclusion": 1,
-    "Inclusion": 2
-}
+DEST_MODE_MAP = {"Disable": 0, "Exclusion": 1, "Inclusion": 2}
 
 
 def reserve_buffer(
-        name: str,
-        beampath: str,
-        n_measurements: int,
-        destination_mode: str = "Disable",
-        logger: logging.Logger = None):
+    name: str,
+    beampath: str,
+    n_measurements: int,
+    destination_mode: str = "Disable",
+    logger: logging.Logger = None,
+):
     user = os.getlogin()
     if logger:
         logging.info("Reserving buffer...")
