@@ -3,6 +3,8 @@ from lcls_tools.common.devices.wire import Wire
 from lcls_tools.common.devices.reader import create_lblm
 from lcls_tools.common.data.fit.projection import ProjectionFit
 from lcls_tools.common.measurements.measurement import Measurement
+from lcls_tools.common.measurements.tmit_loss import TMITLoss
+from lcls_tools.common.measurements.scan_utils.buffer_reservation import reserve_buffer
 from lcls_tools.common.measurements.wire_scan_results import (
     WireBeamProfileMeasurementResult,
     ProfileMeasurement,
@@ -14,7 +16,6 @@ from datetime import datetime
 import edef
 import os
 from pydantic import BaseModel, model_validator
-from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
 from typing_extensions import Self
 
@@ -46,9 +47,13 @@ class WireBeamProfileMeasurement(Measurement):
     @model_validator(mode="after")
     def run_setup(self) -> Self:
         if self.my_buffer is None:
-            print("Reserving BSA Buffer...")
-            self.my_buffer = self.reserve_buffer()
-            print(f"Reserved BSA Buffer {self.my_buffer.number}")
+            self.my_buffer = reserve_buffer(
+                beampath=self.beampath,
+                name="LCLS Tools Wire Scan",
+                n_measurements=1600,
+                destination_mode="Inclusion",
+                logger=None
+            )
         print("Creating device dictionary...")
         self.devices = self.create_device_dictionary()
         return self
@@ -95,43 +100,6 @@ class WireBeamProfileMeasurement(Measurement):
             metadata=metadata,
         )
 
-    def reserve_buffer(self):
-        """
-        Reserves an appropriate buffer based on the beampath.
-
-        Uses BSABuffer for SC paths and EventDefinition for CU.
-        Raises BufferError if beampath is unrecognized.
-
-        Parameters:
-            beampath (str): The beamline path identifier.
-
-        Returns:
-            object: A buffer object for data collection.
-        """
-        user = os.getlogin()
-        if self.beampath.startswith("SC"):
-            # Reserve BSA buffer for SC destinations
-            my_buffer = edef.BSABuffer("LCLS Tools Wire Scan", user=user)
-            my_buffer.n_measurements = 1600
-
-            # Set mode to 'Inclusion'
-            my_buffer.destination_mode = 2
-
-            # Clear all previous destinations
-            my_buffer.clear_masks()
-
-            # Set appropriate destination mask for chosen beampath
-            my_buffer.destination_masks = [self.beampath]
-            return my_buffer
-
-        elif self.beampath.startswith("CU"):
-            # Reserve eDef buffer for CU destinations
-            my_buffer = edef.EventDefinition("LCLS Tools Wire Scan", user=user)
-            my_buffer.n_measurements = 1600
-            return my_buffer
-        else:
-            raise BufferError
-
     def create_device_dictionary(self):
         """
         Creates a device dictionary for a wire scan setup.
@@ -166,6 +134,15 @@ class WireBeamProfileMeasurement(Measurement):
         and allows time for the buffer to update its state.
         """
         # Start wire scan
+        if self.my_buffer is None:
+            self.my_buffer = reserve_buffer(
+                beampath=self.beampath,
+                name="LCLS Tools Wire Scan",
+                n_measurements=1600,
+                destination_mode="Inclusion",
+                logger=None
+            )
+
         print("Starting wire motion procedure...")
         self.my_wire.start_scan()
 
