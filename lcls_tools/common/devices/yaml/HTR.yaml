@@ -972,11 +972,16 @@ screens:
         n_bits: OTRS:HTR:330:N_OF_BITS
         n_col: OTRS:HTR:330:Image:ArraySize1_RBV
         n_row: OTRS:HTR:330:Image:ArraySize0_RBV
+        orient_x: OTRS:HTR:330:X_ORIENT
+        orient_y: OTRS:HTR:330:Y_ORIENT
         ref_rate: OTRS:HTR:330:ArrayRate_RBV
         ref_rate_vme: OTRS:HTR:330:FRAME_RATE
         resolution: OTRS:HTR:330:RESOLUTION
         sys_type: OTRS:HTR:330:SYS_TYPE
       control_name: OTRS:HTR:330
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: HTR
       beam_path:
@@ -998,11 +1003,16 @@ screens:
         n_bits: YAGS:HTR:625:N_OF_BITS
         n_col: YAGS:HTR:625:Image:ArraySize1_RBV
         n_row: YAGS:HTR:625:Image:ArraySize0_RBV
+        orient_x: YAGS:HTR:625:X_ORIENT
+        orient_y: YAGS:HTR:625:Y_ORIENT
         ref_rate: YAGS:HTR:625:ArrayRate_RBV
         ref_rate_vme: YAGS:HTR:625:FRAME_RATE
         resolution: YAGS:HTR:625:RESOLUTION
         sys_type: YAGS:HTR:625:SYS_TYPE
       control_name: YAGS:HTR:625
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: HTR
       beam_path:
@@ -1024,11 +1034,16 @@ screens:
         n_bits: YAGS:HTR:675:N_OF_BITS
         n_col: YAGS:HTR:675:Image:ArraySize1_RBV
         n_row: YAGS:HTR:675:Image:ArraySize0_RBV
+        orient_x: YAGS:HTR:675:X_ORIENT
+        orient_y: YAGS:HTR:675:Y_ORIENT
         ref_rate: YAGS:HTR:675:ArrayRate_RBV
         ref_rate_vme: YAGS:HTR:675:FRAME_RATE
         resolution: YAGS:HTR:675:RESOLUTION
         sys_type: YAGS:HTR:675:SYS_TYPE
       control_name: YAGS:HTR:675
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: HTR
       beam_path:

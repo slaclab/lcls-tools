@@ -2748,6 +2748,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: YAGS:LTUS:417
+      pv_cache: {}
     metadata:
       area: LTUS
       beam_path:
