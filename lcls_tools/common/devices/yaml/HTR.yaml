@@ -190,7 +190,10 @@ bpms:
       type: BPM
   BPMHD04:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:HTR:980:TMIT
+        x: BPMS:HTR:980:X
+        y: BPMS:HTR:980:Y
       control_name: BPMS:HTR:980
     metadata:
       area: HTR
@@ -1060,6 +1063,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:HTR:340:MOTR.STOP
+        beam_rate: WIRE:HTR:340:BEAMRATE
         enabled: WIRE:HTR:340:MOTR_ENABLED_STS
         homed: WIRE:HTR:340:MOTR_HOMED_STS
         initialize: WIRE:HTR:340:MOTR_INIT
@@ -1109,7 +1113,7 @@ wires:
       - BPMS:HTR:120
       - BPMS:HTR:320
       lblms:
-      - LBLM01A
-      - LBLM01B
+      - LBLM01A:HTR
+      - LBLM01B:HTR
       sum_l_meters: 24.589
       type: WIRE

@@ -2736,6 +2736,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: OTRS:LTU1:449
+      pv_cache: {}
     metadata:
       area: LTUH
       beam_path:
@@ -2752,6 +2753,7 @@ screens:
         ref_rate_vme: OTRS:LTUH:745:FRAME_RATE
         sys_type: OTRS:LTUH:745:SYS_TYPE
       control_name: OTRS:LTUH:745
+      pv_cache: {}
     metadata:
       area: LTUH
       beam_path:
@@ -2794,6 +2796,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:715:MOTR.STOP
+        beam_rate: WIRE:LTUH:715:BEAMRATE
         enabled: WIRE:LTUH:715:MOTR_ENABLED_STS
         homed: WIRE:LTUH:715:MOTR_HOMED_STS
         initialize: WIRE:LTUH:715:MOTR_INIT
@@ -2835,6 +2838,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:735:MOTR.STOP
+        beam_rate: WIRE:LTUH:735:BEAMRATE
         enabled: WIRE:LTUH:735:MOTR_ENABLED_STS
         homed: WIRE:LTUH:735:MOTR_HOMED_STS
         initialize: WIRE:LTUH:735:MOTR_INIT
@@ -2876,6 +2880,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:755:MOTR.STOP
+        beam_rate: WIRE:LTUH:755:BEAMRATE
         enabled: WIRE:LTUH:755:MOTR_ENABLED_STS
         homed: WIRE:LTUH:755:MOTR_HOMED_STS
         initialize: WIRE:LTUH:755:MOTR_INIT
@@ -2917,6 +2922,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:775:MOTR.STOP
+        beam_rate: WIRE:LTUH:775:BEAMRATE
         enabled: WIRE:LTUH:775:MOTR_ENABLED_STS
         homed: WIRE:LTUH:775:MOTR_HOMED_STS
         initialize: WIRE:LTUH:775:MOTR_INIT
@@ -2958,6 +2964,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:246:MOTR.STOP
+        beam_rate: WIRE:LTUH:246:BEAMRATE
         enabled: WIRE:LTUH:246:MOTR_ENABLED_STS
         homed: WIRE:LTUH:246:MOTR_HOMED_STS
         initialize: WIRE:LTUH:246:MOTR_INIT
@@ -3033,6 +3040,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:122:MOTR.STOP
+        beam_rate: WIRE:LTUH:122:BEAMRATE
         enabled: WIRE:LTUH:122:MOTR_ENABLED_STS
         homed: WIRE:LTUH:122:MOTR_HOMED_STS
         initialize: WIRE:LTUH:122:MOTR_INIT
