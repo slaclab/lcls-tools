@@ -1,280 +1,263 @@
-from typing import Dict, Any
 import h5py
 import numpy as np
-from pydantic import validate_call
 import pandas as pd
-
+from pathlib import PosixPath
 
 class H5Saver:
     """
-    Class to dump and load dictionaries to and from HDF5 files.
+    Serialize and deserialize Python data structures to and from HDF5 files.
 
-    Methods
-    -------
-    dump(data, filepath)
-        Dumps a dictionary to an HDF5 file.
-    load(filepath)
-        Loads a dictionary from an HDF5 file.
+    Supports:
+        - dict, list, tuple, np.ndarray, pandas.DataFrame,
+          scalars (int, float, bool, str), None, PosixPath.
+
+    Raises
+    ------
+    NotImplementedError
+        If an unsupported type or structure is encountered.
     """
 
     def __init__(self):
         """
-        Initialize the H5Saver class.
+        Initialize the H5Saver.
 
-        Parameters
-        ----------
-        string_dtype : str, optional
-            The encoding to use when saving string data. Default is 'utf-8'.
+        Sets string encoding and supported scalar types.
         """
         self.string_dtype = "utf-8"
-        self.supported_types = (bool, int, float, np.integer, np.floating)
+        self.supported_scalars = (bool, int, float, str, np.integer, np.floating, np.bool_)
 
-    @validate_call
-    def dump(self, data: Dict[str, Any], filepath: str):
+    def dump(self, data, filepath):
         """
-        Save a dictionary to an HDF5 file.
+        Serialize a Python dictionary to an HDF5 file.
 
         Parameters
         ----------
-        data : Dict[str, Any]
-            The dictionary to save.
+        data : dict
+            The data to serialize. Can contain nested dicts, lists, tuples,
+            numpy arrays, pandas DataFrames, scalars, None, and PosixPath.
         filepath : str
-            The path to save the HDF5 file.
+            Path to the HDF5 file to write.
 
-        Returns
-        -------
-        None
+        Raises
+        ------
+        NotImplementedError
+            If an unsupported type or structure is encountered.
         """
         h5str = h5py.string_dtype(encoding=self.string_dtype)
 
-        def recursive_save(d, f):
-            for key, val in d.items():
-                if key == "attrs":
-                    f.attrs.update(val or h5py.Empty("f4"))
-                elif isinstance(val, dict):
-                    group = f.create_group(key, track_order=True)
-                    recursive_save(val, group)
-                elif isinstance(val, list):
-                    types = [type(ele).__name__ for ele in val]
-                    if all(isinstance(ele, list) for ele in val):
-                        group = f.create_group(key, track_order=True)
-                        for i, sublist in enumerate(val):
-                            # Save each sublist as a dataset (handle homogeneous/heterogeneous as before)
-                            sub_types = [type(x).__name__ for x in sublist]
-                            if len(set(sub_types)) == 1 and all(
-                                    isinstance(x, (str, int, float, bool)) for x in sublist):
-                                dset = group.create_dataset(str(i), data=sublist,
-                                                            dtype=h5py.string_dtype(encoding=self.string_dtype) if
-                                                            sub_types[0] == "str" else None, track_order=True)
-                                dset.attrs["_type"] = sub_types[0]
-                            else:
-                                dset = group.create_dataset(str(i), data=[str(x) for x in sublist],
-                                                            dtype=h5py.string_dtype(encoding=self.string_dtype),
-                                                            track_order=True)
-                                dset.attrs["_types"] = np.array(sub_types,
-                                                                dtype=h5py.string_dtype(encoding=self.string_dtype))
-                    elif len(set(types)) == 1 and all(isinstance(ele, (str, int, float, bool)) for ele in val):
-                        dset = f.create_dataset(key, data=val,
-                                                dtype=h5py.string_dtype(encoding=self.string_dtype) if types[
-                                                                                                           0] == "str" else None,
-                                                track_order=True)
-                        dset.attrs["_type"] = types[0]
-                    elif all(isinstance(ele, np.ndarray) for ele in val):
-                        # save np.arrays as datasets
-                        for i, ele in enumerate(val):
-                            f.create_dataset(f"{key}/{i}", data=ele, track_order=True)
-                            if ele.dtype == np.dtype("O"):
-                                f.create_dataset(
-                                    f"{key}/{i}",
-                                    data=str(ele),
-                                    dtype=h5str,
-                                    track_order=True,
-                                )
-                    elif all(isinstance(ele, dict) for ele in val):
-                        # save dictionaries as groups recursively
-                        for i, ele in enumerate(val):
-                            group = f.create_group(f"{key}/{i}", track_order=True)
-                            recursive_save(ele, group)
-                    elif all(isinstance(ele, tuple) for ele in val):
-                        # save tuples as np.array
-                        for i, ele in enumerate(val):
-                            val_array = np.array(ele)
-                            f.create_dataset(
-                                f"{key}/{i}", data=val_array, track_order=True
-                            )
-                    elif all(isinstance(ele, list) for ele in val):
-                        # if it's  a list of lists, save as np.array if homogeneous and type allows
-                        # else save as strings
-                        for i, ele in enumerate(val):
-                            if all(isinstance(j, self.supported_types) for j in ele):
-                                f.create_dataset(
-                                    f"{key}/{i}", data=np.array(ele), track_order=True
-                                )
-                            else:
-                                f.create_dataset(
-                                    f"{key}/{i}",
-                                    data=str(ele),
-                                    dtype=h5str,
-                                    track_order=True,
-                                )
-                    else:
-                        # Mixed types: save as strings and store types
-                        dset = f.create_dataset(key, data=[str(ele) for ele in val], dtype=h5str, track_order=True)
-                        dset.attrs["_types"] = np.array(types, dtype=h5str)
-                elif isinstance(val, self.supported_types):
-                    f.create_dataset(key, data=val, track_order=True)
-                elif isinstance(val, np.ndarray):
-                    if val.dtype != np.dtype("O"):
-                        f.create_dataset(key, data=val, track_order=True)
-                    else:
-                        f.create_dataset(key, data=str(val), dtype=h5str, track_order=True)
-                elif isinstance(val, tuple):
-                    val_array = np.array(val)
-                    f.create_dataset(key, data=val_array, track_order=True)
-                elif isinstance(val, str):
-                    # specify string dtype to avoid issues with encodings
-                    f.create_dataset(key, data=val, dtype=h5str, track_order=True)
-                elif isinstance(val, pd.DataFrame):
-                    # save DataFrame as a group with datasets for columns
-                    group = f.create_group(key)
-                    group.attrs["pandas_type"] = "dataframe"
-                    group.attrs["columns"] = list(val.columns)
-                    for col in val.columns:
-                        if val[col].dtype == np.dtype("O"):
-                            try:
-                                val[col] = val[col].astype("float64")
-                            except ValueError:
-                                val[col] = val[col].astype("string")
-                        group.create_dataset(col, data=val[col].values)
-                else:
-                    f.create_dataset(key, data=str(val), dtype=h5str, track_order=True)
+        def recursive_save(key, val, f):
+            """
+            Recursively save a key-value pair to the HDF5 group or file.
 
+            Parameters
+            ----------
+            key : str
+                The key or name for the group/dataset.
+            val : Any
+                The value to serialize.
+            f : h5py.Group or h5py.File
+                The HDF5 group or file to write to.
+
+            Raises
+            ------
+            NotImplementedError
+                If an unsupported type or structure is encountered.
+            """
+            # Handle dictionaries
+            if isinstance(val, dict):
+                group = f.create_group(key, track_order=True)
+                if not val:
+                    group.attrs["is_empty_dict"] = True  # Mark empty dicts
+                for k, v in val.items():
+                    recursive_save(k, v, group)
+            # Handle pandas DataFrames
+            elif isinstance(val, pd.DataFrame):
+                group = f.create_group(key)
+                group.attrs["pandas_type"] = "dataframe"
+                group.attrs["columns"] = list(val.columns)
+                group.attrs["dtypes"] = [str(dt) for dt in val.dtypes]
+                for col in val.columns:
+                    col_data = val[col].values
+                    # Handle string/object columns
+                    if val[col].dtype == np.dtype("O") or np.issubdtype(val[col].dtype, np.str_):
+                        try:
+                            col_data = col_data.astype("float64")
+                            group.create_dataset(col, data=col_data)
+                        except ValueError:
+                            group.create_dataset(
+                                col,
+                                data=col_data.astype(h5py.string_dtype(encoding=self.string_dtype)),
+                                dtype=h5py.string_dtype(encoding=self.string_dtype)
+                            )
+                    else:
+                        group.create_dataset(col, data=col_data)
+            # Handle numpy arrays
+            elif isinstance(val, np.ndarray):
+                if val.dtype == np.dtype("O"):
+                    # Disallow np.ndarray of dicts
+                    if any(isinstance(x, dict) for x in val):
+                        raise NotImplementedError("np.ndarray of dicts is not supported.")
+                    # Save object arrays as group
+                    group = f.create_group(key, track_order=True)
+                    group.attrs["_ndarray"] = True
+                    for i, ele in enumerate(val.tolist()):
+                        recursive_save(str(i), ele, group)
+                else:
+                    # Save homogeneous arrays as dataset
+                    f.create_dataset(key, data=val, track_order=True)
+                    f[key].attrs["_type"] = "ndarray"
+            # Handle lists
+            elif isinstance(val, list):
+                # Disallow lists of dicts or heterogeneous lists with dicts, but only if not empty
+                if len(val) > 0 and all(isinstance(x, dict) for x in val):
+                    raise NotImplementedError("Lists of dictionaries are not supported.")
+                if len(val) > 0 and any(isinstance(x, dict) for x in val):
+                    raise NotImplementedError("Heterogeneous lists containing dictionaries are not supported.")
+                group = f.create_group(key, track_order=True)
+                if not val:
+                    group.attrs["_empty_list"] = True  # Mark empty list
+                for i, ele in enumerate(val):
+                    recursive_save(str(i), ele, group)
+            # Handle tuples
+            elif isinstance(val, tuple):
+                # Disallow tuple of dicts, but only if not empty
+                if len(val) > 0 and all(isinstance(x, dict) for x in val):
+                    raise NotImplementedError("Tuples of dictionaries are not supported.")
+                group = f.create_group(key, track_order=True)
+                group.attrs["_tuple"] = True
+                if not val:
+                    group.attrs["_empty_tuple"] = True  # Mark empty tuple
+                for i, ele in enumerate(val):
+                    recursive_save(str(i), ele, group)
+            # Handle PosixPath
+            elif isinstance(val, PosixPath):
+                f.create_dataset(key, data=str(val), dtype=h5str, track_order=True)
+                f[key].attrs["_type"] = "posixpath"
+            # Handle None
+            elif val is None:
+                f.create_dataset(key, data="None", dtype=h5str, track_order=True)
+                f[key].attrs["_type"] = "none"
+            # Handle scalars
+            elif isinstance(val, self.supported_scalars):
+                f.create_dataset(key, data=val, track_order=True)
+                f[key].attrs["_type"] = type(val).__name__
+            # Raise for unsupported types
+            else:
+                raise NotImplementedError(f"Type {type(val)} is not supported.")
+
+        # Open file and start recursive save
         with h5py.File(filepath, "w") as file:
-            recursive_save(data, file)
+            for k, v in data.items():
+                recursive_save(k, v, file)
 
     def load(self, filepath):
         """
-        Load a dictionary from an HDF5 file.
+        Deserialize an HDF5 file into a Python dictionary.
 
         Parameters
         ----------
         filepath : str
-            The path to the file to load.
+            Path to the HDF5 file to read.
 
         Returns
         -------
         dict
-            The dictionary loaded from the file.
+            The reconstructed data structure, with original types restored.
+
+        Raises
+        ------
+        NotImplementedError
+            If an unsupported type or structure is encountered.
         """
-
         def recursive_load(f):
-            d = {"attrs": dict(f.attrs)} if f.attrs else {}
-            keys = list(f.keys())
-            if keys and all(k.isdigit() for k in keys):
-                items = []
-                for k in sorted(keys, key=int):
-                    val = f[k]
-                    if isinstance(val, h5py.Group):
-                        items.append(recursive_load(val))
-                    elif isinstance(val, h5py.Dataset):
-                        if "_type" in val.attrs:
-                            dtype = val.attrs["_type"]
-                            arr = val[()]
-                            if dtype == "str":
-                                items.append(
-                                    [x.decode(self.string_dtype) if isinstance(x, bytes) else str(x) for x in arr])
-                            elif dtype == "int":
-                                items.append([int(x) for x in arr])
-                            elif dtype == "float":
-                                items.append([float(x) for x in arr])
-                            elif dtype == "bool":
-                                items.append([bool(x) for x in arr])
-                            else:
-                                items.append(arr.tolist())
-                        elif "_types" in val.attrs:
-                            arr = val[()]
-                            types = val.attrs["_types"]
-                            if isinstance(types, bytes):
-                                types = [types.decode(self.string_dtype)]
-                            else:
-                                types = [t.decode(self.string_dtype) if isinstance(t, bytes) else t for t in types]
-                            result = []
-                            for x, t in zip(arr, types):
-                                if t == "int":
-                                    result.append(int(x))
-                                elif t == "float":
-                                    result.append(float(x))
-                                elif t == "bool":
-                                    result.append(x == b"True" if isinstance(x, bytes) else x == "True")
-                                elif t == "list":
-                                    # Try to parse stringified list
-                                    s = x.decode(self.string_dtype) if isinstance(x, bytes) else str(x)
-                                    try:
-                                        result.append(ast.literal_eval(s))
-                                    except Exception:
-                                        result.append(s)
-                                else:
-                                    result.append(x.decode(self.string_dtype) if isinstance(x, bytes) else str(x))
-                            d[key] = result
-                        else:
-                            v = val[()]
-                            if isinstance(v, bytes):
-                                v = v.decode(self.string_dtype)
-                            # Try to parse stringified list
-                            try:
-                                parsed = ast.literal_eval(v)
-                                if isinstance(parsed, list):
-                                    items.append(parsed)
-                                else:
-                                    items.append(v)
-                            except Exception:
-                                items.append(v)
-                return items
-            for key, val in f.items():
-                if isinstance(val, h5py.Group):
-                    if "pandas_type" in val.attrs and val.attrs["pandas_type"] == "dataframe":
-                        columns = val.attrs["columns"]
-                        data = {}
-                        for col in columns:
-                            data[col] = val[col][:]
-                        d[key] = pd.DataFrame(data)
-                    else:
-                        d[key] = recursive_load(val)
-                elif isinstance(val, h5py.Dataset):
-                    if "_type" in val.attrs:
-                        dtype = val.attrs["_type"]
-                        arr = val[()]
-                        if dtype == "str":
-                            d[key] = [x.decode(self.string_dtype) if isinstance(x, bytes) else str(x) for x in arr]
-                        elif dtype == "int":
-                            d[key] = [int(x) for x in arr]
-                        elif dtype == "float":
-                            d[key] = [float(x) for x in arr]
-                        elif dtype == "bool":
-                            d[key] = [bool(x) for x in arr]
-                        else:
-                            d[key] = arr.tolist()
-                    elif "_types" in val.attrs:
-                        arr = val[()]
-                        types = val.attrs["_types"]
-                        if isinstance(types, bytes):
-                            types = [types.decode(self.string_dtype)]
-                        else:
-                            types = [t.decode(self.string_dtype) if isinstance(t, bytes) else t for t in types]
-                        result = []
-                        for x, t in zip(arr, types):
-                            if t == "int":
-                                result.append(int(x))
-                            elif t == "float":
-                                result.append(float(x))
-                            elif t == "bool":
-                                result.append(x == b"True" if isinstance(x, bytes) else x == "True")
-                            else:
-                                result.append(x.decode(self.string_dtype) if isinstance(x, bytes) else str(x))
-                        d[key] = result
-                    else:
-                        d[key] = val[()].decode(self.string_dtype) if isinstance(val[()], bytes) else val[()]
-            return d
+            """
+            Recursively load an HDF5 group or dataset.
 
+            Parameters
+            ----------
+            f : h5py.Group or h5py.Dataset
+                The HDF5 group or dataset to read.
+
+            Returns
+            -------
+            Any
+                The reconstructed Python object.
+            """
+            # Handle groups (dict, list, tuple, ndarray, DataFrame, etc.)
+            if isinstance(f, h5py.Group):
+                # Handle DataFrame
+                if "pandas_type" in f.attrs and f.attrs["pandas_type"] == "dataframe":
+                    columns = f.attrs["columns"]
+                    dtypes = f.attrs.get("dtypes", None)
+                    data = {col: f[col][:] for col in columns}
+                    for col in columns:
+                        if data[col].dtype.kind == "S" or data[col].dtype == object:
+                            data[col] = [x.decode(self.string_dtype) if isinstance(x, bytes) else x for x in data[col]]
+                    df = pd.DataFrame(data)
+                    if dtypes is not None:
+                        for col, dtype in zip(columns, dtypes):
+                            if len(df[col]) > 0:
+                                df[col] = df[col].astype(dtype)
+                            else:
+                                df[col] = df[col].astype(dtype, copy=False)
+                    return df
+                # Handle empty dict
+                elif "is_empty_dict" in f.attrs and f.attrs["is_empty_dict"]:
+                    return {}
+                # Handle empty list
+                elif "_empty_list" in f.attrs and f.attrs["_empty_list"]:
+                    return []
+                # Handle empty tuple
+                elif "_tuple" in f.attrs and "_empty_tuple" in f.attrs and f.attrs["_empty_tuple"]:
+                    return tuple()
+                # Handle tuple
+                elif "_tuple" in f.attrs:
+                    items = []
+                    for k in sorted(f.keys(), key=lambda x: int(x)):
+                        items.append(recursive_load(f[k]))
+                    return tuple(items)
+                # Handle object ndarray
+                elif "_ndarray" in f.attrs:
+                    items = []
+                    for k in sorted(f.keys(), key=lambda x: int(x)):
+                        items.append(recursive_load(f[k]))
+                    return np.array(items, dtype=object)
+                # Handle list (integer keys)
+                elif all(k.isdigit() for k in f.keys()):
+                    items = []
+                    for k in sorted(f.keys(), key=lambda x: int(x)):
+                        items.append(recursive_load(f[k]))
+                    return items
+                # Handle dict
+                else:
+                    return {k: recursive_load(f[k]) for k in f.keys()}
+            # Handle datasets (scalars, arrays, etc.)
+            elif isinstance(f, h5py.Dataset):
+                dtype = f.attrs.get("_type", None)
+                if dtype is not None:
+                    dtype = dtype if isinstance(dtype, str) else dtype.decode("utf-8")
+                v = f[()]
+                # Restore type from _type attribute
+                if dtype == "str":
+                    return v.decode(self.string_dtype) if isinstance(v, bytes) else str(v)
+                elif dtype == "int":
+                    return int(v)
+                elif dtype == "float":
+                    return float(v)
+                elif dtype == "bool":
+                    return bool(v)
+                elif dtype == "ndarray":
+                    return v
+                elif dtype == "posixpath":
+                    return PosixPath(v.decode(self.string_dtype) if isinstance(v, bytes) else v)
+                elif dtype == "none":
+                    return None
+                else:
+                    return v
+            # Fallback: return raw value
+            else:
+                return f[()]
+
+        # Open file and start recursive load
         with h5py.File(filepath, "r") as file:
-            return recursive_load(file)
+            return {k: recursive_load(file[k]) for k in file.keys()}
