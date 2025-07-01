@@ -500,7 +500,7 @@ class YAMLGenerator:
             "PFBST": "phase_fbst",
             "MODECFG": "mode_config",
             "PACT_AVGNT": "phase_avgnt",
-            "AMPL_W0CH0": "amplitude_wocho"
+            "AMPL_W0CH0": "amplitude_wocho",
         }
 
         basic_tcav_data = self.extract_devices(
