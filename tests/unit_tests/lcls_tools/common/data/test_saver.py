@@ -10,7 +10,7 @@ from lcls_tools.common.measurements.screen_profile import (
 )
 from lcls_tools.common.image.processing import ImageProcessor
 from lcls_tools.common.image.fit import ImageProjectionFit
-from lcls_tools.common.data.saver import H5Saver
+
 
 class TestH5Saver(unittest.TestCase):
     def setUp(self):
@@ -119,12 +119,7 @@ class TestH5Saver(unittest.TestCase):
         self.assertTrue(np.all(loaded["objarr"] == arr))
 
     def test_nested_structures_not_implemented(self):
-        data = {
-            "d": {
-                "l": [1, 2, {"x": 5}],
-                "t": (3, 4, [5, 6])
-            }
-        }
+        data = {"d": {"l": [1, 2, {"x": 5}], "t": (3, 4, [5, 6])}}
         self.assertRaises(NotImplementedError, self.roundtrip, data)
 
     def test_nested_empty_structures(self):
@@ -139,7 +134,7 @@ class TestH5Saver(unittest.TestCase):
             "a": 1,
             "b": [1, "two", 3.0, None],
             "c": {"x": True, "y": [1.1, 2.2]},
-            "d": (None, "str", 5)
+            "d": (None, "str", 5),
         }
         loaded = self.roundtrip(data)
         self.assertEqual(loaded["a"], 1)
@@ -164,13 +159,15 @@ class TestH5Saver(unittest.TestCase):
         pd.testing.assert_frame_equal(loaded["df"], df)
 
     def test_dataframe_various_dtypes(self):
-        df = pd.DataFrame({
-            "int": [1, 2],
-            "float": [1.1, 2.2],
-            "str": ["a", "b"],
-            "bool": [True, False],
-            "none": [None, None]
-        })
+        df = pd.DataFrame(
+            {
+                "int": [1, 2],
+                "float": [1.1, 2.2],
+                "str": ["a", "b"],
+                "bool": [True, False],
+                "none": [None, None],
+            }
+        )
         data = {"df": df}
         loaded = self.roundtrip(data)
         pd.testing.assert_frame_equal(loaded["df"], df)
@@ -272,15 +269,15 @@ class TestH5Saver(unittest.TestCase):
         for i in range(len(data["nested_list"])):
             # lists of lists are saved as dicts
             # here the lists are saved as nd.arrays
-            assert np.array_equal(
-                data["nested_list"][i], loaded["nested_list"][i]
-            )
+            assert np.array_equal(data["nested_list"][i], loaded["nested_list"][i])
 
     def test_object_arrays(self):
         data = {"object_array": np.array([1, "a", 3.14], dtype=object)}
         loaded = self.roundtrip(data)
         types = [int, str, float]
-        assert all(isinstance(item, type) for item, type in zip(loaded["object_array"], types))
+        assert all(
+            isinstance(item, type) for item, type in zip(loaded["object_array"], types)
+        )
 
     def test_list_of_ndarrays(self):
         data = {"list_of_ndarrays": [np.array([1, 2, 3]), np.array([4, 5, 6])]}
@@ -292,6 +289,7 @@ class TestH5Saver(unittest.TestCase):
         ):
             # lists of ndarrays are saved as dicts
             assert np.array_equal(original, loaded)
+
 
 if __name__ == "__main__":
     unittest.main()

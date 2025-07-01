@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from pathlib import PosixPath
 
+
 class H5Saver:
     """
     Serialize and deserialize Python data structures to and from HDF5 files.
@@ -24,7 +25,15 @@ class H5Saver:
         Sets string encoding and supported scalar types.
         """
         self.string_dtype = "utf-8"
-        self.supported_scalars = (bool, int, float, str, np.integer, np.floating, np.bool_)
+        self.supported_scalars = (
+            bool,
+            int,
+            float,
+            str,
+            np.integer,
+            np.floating,
+            np.bool_,
+        )
 
     def dump(self, data, filepath):
         """
@@ -79,15 +88,19 @@ class H5Saver:
                 for col in val.columns:
                     col_data = val[col].values
                     # Handle string/object columns
-                    if val[col].dtype == np.dtype("O") or np.issubdtype(val[col].dtype, np.str_):
+                    if val[col].dtype == np.dtype("O") or np.issubdtype(
+                        val[col].dtype, np.str_
+                    ):
                         try:
                             col_data = col_data.astype("float64")
                             group.create_dataset(col, data=col_data)
                         except ValueError:
                             group.create_dataset(
                                 col,
-                                data=col_data.astype(h5py.string_dtype(encoding=self.string_dtype)),
-                                dtype=h5py.string_dtype(encoding=self.string_dtype)
+                                data=col_data.astype(
+                                    h5py.string_dtype(encoding=self.string_dtype)
+                                ),
+                                dtype=h5py.string_dtype(encoding=self.string_dtype),
                             )
                     else:
                         group.create_dataset(col, data=col_data)
@@ -96,7 +109,9 @@ class H5Saver:
                 if val.dtype == np.dtype("O"):
                     # Disallow np.ndarray of dicts
                     if any(isinstance(x, dict) for x in val):
-                        raise NotImplementedError("np.ndarray of dicts is not supported.")
+                        raise NotImplementedError(
+                            "np.ndarray of dicts is not supported."
+                        )
                     # Save object arrays as group
                     group = f.create_group(key, track_order=True)
                     group.attrs["_ndarray"] = True
@@ -110,9 +125,13 @@ class H5Saver:
             elif isinstance(val, list):
                 # Disallow lists of dicts or heterogeneous lists with dicts, but only if not empty
                 if len(val) > 0 and all(isinstance(x, dict) for x in val):
-                    raise NotImplementedError("Lists of dictionaries are not supported.")
+                    raise NotImplementedError(
+                        "Lists of dictionaries are not supported."
+                    )
                 if len(val) > 0 and any(isinstance(x, dict) for x in val):
-                    raise NotImplementedError("Heterogeneous lists containing dictionaries are not supported.")
+                    raise NotImplementedError(
+                        "Heterogeneous lists containing dictionaries are not supported."
+                    )
                 group = f.create_group(key, track_order=True)
                 if not val:
                     group.attrs["_empty_list"] = True  # Mark empty list
@@ -122,7 +141,9 @@ class H5Saver:
             elif isinstance(val, tuple):
                 # Disallow tuple of dicts, but only if not empty
                 if len(val) > 0 and all(isinstance(x, dict) for x in val):
-                    raise NotImplementedError("Tuples of dictionaries are not supported.")
+                    raise NotImplementedError(
+                        "Tuples of dictionaries are not supported."
+                    )
                 group = f.create_group(key, track_order=True)
                 group.attrs["_tuple"] = True
                 if not val:
@@ -169,6 +190,7 @@ class H5Saver:
         NotImplementedError
             If an unsupported type or structure is encountered.
         """
+
         def recursive_load(f):
             """
             Recursively load an HDF5 group or dataset.
@@ -192,7 +214,12 @@ class H5Saver:
                     data = {col: f[col][:] for col in columns}
                     for col in columns:
                         if data[col].dtype.kind == "S" or data[col].dtype == object:
-                            data[col] = [x.decode(self.string_dtype) if isinstance(x, bytes) else x for x in data[col]]
+                            data[col] = [
+                                x.decode(self.string_dtype)
+                                if isinstance(x, bytes)
+                                else x
+                                for x in data[col]
+                            ]
                     df = pd.DataFrame(data)
                     if dtypes is not None:
                         for col, dtype in zip(columns, dtypes):
@@ -208,7 +235,11 @@ class H5Saver:
                 elif "_empty_list" in f.attrs and f.attrs["_empty_list"]:
                     return []
                 # Handle empty tuple
-                elif "_tuple" in f.attrs and "_empty_tuple" in f.attrs and f.attrs["_empty_tuple"]:
+                elif (
+                    "_tuple" in f.attrs
+                    and "_empty_tuple" in f.attrs
+                    and f.attrs["_empty_tuple"]
+                ):
                     return tuple()
                 # Handle tuple
                 elif "_tuple" in f.attrs:
@@ -239,7 +270,9 @@ class H5Saver:
                 v = f[()]
                 # Restore type from _type attribute
                 if dtype == "str":
-                    return v.decode(self.string_dtype) if isinstance(v, bytes) else str(v)
+                    return (
+                        v.decode(self.string_dtype) if isinstance(v, bytes) else str(v)
+                    )
                 elif dtype == "int":
                     return int(v)
                 elif dtype == "float":
@@ -249,7 +282,9 @@ class H5Saver:
                 elif dtype == "ndarray":
                     return v
                 elif dtype == "posixpath":
-                    return PosixPath(v.decode(self.string_dtype) if isinstance(v, bytes) else v)
+                    return PosixPath(
+                        v.decode(self.string_dtype) if isinstance(v, bytes) else v
+                    )
                 elif dtype == "none":
                     return None
                 else:
