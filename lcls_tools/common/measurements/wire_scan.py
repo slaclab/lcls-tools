@@ -135,16 +135,10 @@ class WireBeamProfileMeasurement(Measurement):
         Delays ensure the buffer is active before the scan begins
         and allows time for the buffer to update its state.
         """
-        # Start wire scan
-        if self.my_buffer is None:
-            self.my_buffer = reserve_buffer(
-                beampath=self.beampath,
-                name="LCLS Tools Wire Scan",
-                n_measurements=1600,
-                destination_mode="Inclusion",
-                logger=None,
-            )
+        # Check for reserved buffer
+        self.buffer_setup()
 
+        # Start wire scan
         print("Starting wire motion procedure...")
         self.my_wire.start_scan()
 
