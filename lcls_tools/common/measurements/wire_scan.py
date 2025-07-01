@@ -45,6 +45,12 @@ class WireBeamProfileMeasurement(Measurement):
 
     @model_validator(mode="after")
     def run_setup(self) -> Self:
+        self.buffer_setup()
+        print("Creating device dictionary...")
+        self.devices = self.create_device_dictionary()
+        return self
+
+    def buffer_setup(self):
         if self.my_buffer is None:
             self.my_buffer = reserve_buffer(
                 beampath=self.beampath,
@@ -53,9 +59,6 @@ class WireBeamProfileMeasurement(Measurement):
                 destination_mode="Inclusion",
                 logger=None,
             )
-        print("Creating device dictionary...")
-        self.devices = self.create_device_dictionary()
-        return self
 
     def measure(self) -> WireBeamProfileMeasurementResult:
         """
@@ -194,6 +197,7 @@ class WireBeamProfileMeasurement(Measurement):
         # Release EDEF/BSA
         print("Releasing BSA buffer")
         self.my_buffer.release()
+        self.my_buffer = None
 
         return data
 
