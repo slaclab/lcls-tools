@@ -285,6 +285,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:EMIT2:600:MOTR.STOP
+        beam_rate: WIRE:EMIT2:600:BEAMRATE
         enabled: WIRE:EMIT2:600:MOTR_ENABLED_STS
         homed: WIRE:EMIT2:600:MOTR_HOMED_STS
         initialize: WIRE:EMIT2:600:MOTR_INIT
@@ -336,8 +337,8 @@ wires:
       - BPMS:EMIT2:150
       - BPMS:EMIT2:300
       lblms:
-      - LBLM04A
-      - LBLM07A
-      - TMITLOSS
+      - LBLM04A:L2B
+      - LBLM07A:L3B
+      - TMITLOSS:EMIT2
       sum_l_meters: 384.229
       type: WIRE
