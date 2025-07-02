@@ -1,19 +1,18 @@
-from typing import Any
-
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.image.processing import ImageProcessor
-from lcls_tools.common.measurements.measurement import Measurement
 import numpy as np
 from pydantic import (
     ConfigDict,
-    SerializeAsAny,
 )
 from typing import Optional
 
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 
-from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurement, BeamProfileMeasurementResult
+from lcls_tools.common.measurements.beam_profile import (
+    BeamProfileMeasurement, 
+    BeamProfileMeasurementResult,
+)
 
 
 class ScreenBeamProfileMeasurementResult(BeamProfileMeasurementResult):
@@ -94,8 +93,12 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
             total_intensities_all = []
             for image in processed_images:
                 fit_result = self.beam_fit.fit_image(image)
-                rms_sizes_all.append(fit_result.rms_size * self.beam_profile_device.resolution)
-                centroids_all.append(fit_result.centroid * self.beam_profile_device.resolution)
+                rms_sizes_all.append(
+                    fit_result.rms_size * self.beam_profile_device.resolution
+                )
+                centroids_all.append(
+                    fit_result.centroid * self.beam_profile_device.resolution
+                )
                 total_intensities_all.append(fit_result.total_intensity)
             rms_sizes = np.mean(np.array(rms_sizes_all), axis=0)
             centroids = np.mean(np.array(centroids_all), axis=0)
