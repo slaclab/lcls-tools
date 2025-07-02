@@ -382,13 +382,13 @@ class YAMLGenerator:
         # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
         possible_wire_pvs = {
             "MOTR.STOP": "abort_scan",
+            "BEAMRATE": "beam_rate",
             "MOTR_ENABLED_STS": "enabled",
             "MOTR_HOMED_STS": "homed",
             "MOTR_INIT": "initialize",
             "MOTR_INIT_STS": "initialize_status",
             "MOTR": "motor",
             "MOTR.RBV": "motor_rbv",
-            # "POSN": "position",
             "MOTR_RETRACT": "retract",
             "SCANPULSES": "scan_pulses",
             "MOTR.VELO": "speed",
@@ -491,14 +491,16 @@ class YAMLGenerator:
         additional_filter_constraints = {"Engineering Name": "TRANS_DEFL"}
         # add pvs we care about
         possible_tcav_pvs = {
-            "AREQ": "amp_set",
-            "PREQ": "phase_set",
+            "AREQ": "amplitude",
+            "PREQ": "phase",
             "RF_ENABLE": "rf_enable",
-            "AFBENB": "amp_fbenb",
+            "AFBENB": "amplitude_fbenb",
             "PFBENB": "phase_fbenb",
-            "AFBST": "amp_fbst",
+            "AFBST": "amplitude_fbst",
             "PFBST": "phase_fbst",
             "MODECFG": "mode_config",
+            "PACT_AVGNT": "phase_avgnt",
+            "AMPL_W0CH0": "amplitude_wocho",
         }
 
         basic_tcav_data = self.extract_devices(

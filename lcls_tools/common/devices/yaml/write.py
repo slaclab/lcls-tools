@@ -110,13 +110,11 @@ def write(mode="overwrite", devices=None, areas=None, location=None):
         areas = yaml_writer.areas
     match mode:
         case "overwrite":
-            selected_writer = yaml_writer.overwrite
+            yaml_writer.overwrite(areas)
         case "greedy":
-            selected_writer = yaml_writer.greedy_write
+            yaml_writer.greedy_write(areas, devices)
         case "lazy":
-            selected_writer = yaml_writer.lazy_write
-    for area in areas:
-        selected_writer(area, devices)
+            yaml_writer.lazy_write(areas, devices)
 
 
 if __name__ == "__main__":
