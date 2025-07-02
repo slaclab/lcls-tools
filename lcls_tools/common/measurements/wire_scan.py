@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Any, Optional, Dict, Tuple
 from lcls_tools.common.devices.wire import Wire
 from lcls_tools.common.devices.reader import create_lblm
@@ -5,6 +6,8 @@ from lcls_tools.common.data.fit.projection import ProjectionFit
 from lcls_tools.common.measurements.measurement import Measurement
 import time
 from datetime import datetime
+
+import yaml
 import edef
 import os
 from pydantic import SerializeAsAny, BaseModel, ConfigDict, model_validator
@@ -60,7 +63,6 @@ class WireBeamProfileMeasurementResult(BaseModel):
     planes: Dict[str, PlaneMeasurement]
     raw_data: Dict[str, Any]
     fit_result: NDArrayAnnotatedType
-    rms_sizes: Dict[str, Tuple[float, float]]
     metadata: SerializeAsAny[Any]
 
 
@@ -77,7 +79,7 @@ class WireBeamProfileMeasurement(Measurement):
     """
 
     name: str = "beam_profile"
-    my_wire: Wire
+    beam_profile_device: Wire
     beampath: str
     beam_fit: BaseModel = ProjectionFit
     fit_profile: bool = True
@@ -88,6 +90,15 @@ class WireBeamProfileMeasurement(Measurement):
     data: Optional[dict] = None
     plane_measurements: Optional[dict] = None
 
+    # alias so beam_profile_device can also be accessed with name my_wire
+    @property
+    def my_wire(self) -> Wire:
+        return self.beam_profile_device
+    
+    @my_wire.setter
+    def my_wire(self, value):
+        self.beam_profile_device = value
+    
     @model_validator(mode="after")
     def run_setup(self) -> Self:
         if self.my_buffer is None:
@@ -127,7 +138,7 @@ class WireBeamProfileMeasurement(Measurement):
         self.plane_measurements = self.organize_data_by_plane(profile_idxs)
 
         # Fit detector data by profile
-        fit_result, rms_sizes = self.fit_data_by_plane()
+        fit_result, rms_sizes, centroids, total_intensities = self.fit_data_by_plane()
 
         # Create measurement metadata object
         metadata = self.create_metadata()
@@ -137,6 +148,8 @@ class WireBeamProfileMeasurement(Measurement):
             raw_data=self.data,
             fit_result=fit_result,
             rms_sizes=rms_sizes,
+            centroids=centroids,
+            total_intensities=total_intensities,
             metadata=metadata,
         )
 
@@ -383,16 +396,31 @@ class WireBeamProfileMeasurement(Measurement):
                 sigma_idx = fit_result[plane][device]["sigma"]
                 fit_result[plane][device]["sigma"] = sigma_idx * posn_diff
 
+                fit_result[plane][device]["total_intensity"] = np.sum(proj_data)
+
                 x_fits = fit_result["x"]
                 y_fits = fit_result["y"]
+        
+        rms_sizes_all = {}
+        centroids_all = {}
+        total_intensities_all = {}
+        for device in devices:
+            if device != self.my_wire.name:
+                rms_sizes_all[device] = (x_fits[device]["sigma"], y_fits[device]["sigma"])
+                centroids_all[device] = (x_fits[device]["mean"], y_fits[device]["mean"])
+                total_intensities_all[device] = (x_fits[device]["total_intensity"], y_fits[device]["total_intensity"])
 
-        rms_sizes = {
-            device: (x_fits[device]["sigma"], y_fits[device]["sigma"])
-            for device in devices
-            if device != self.my_wire.name
-        }
+        current_file = Path(__file__).resolve()
+        devices_root = current_file.parent.parent
+        file_to_open = devices_root / "devices" / "yaml" / "wire_lblms.yaml"
+        with open(file_to_open, "r") as wire_lblms_yaml:
+            wire_lblms = yaml.safe_load(wire_lblms_yaml)
+        lblm = wire_lblms[self.my_wire.name]
+        rms_sizes = rms_sizes_all[lblm]
+        centroids = centroids_all[lblm]
+        total_intensities = total_intensities_all[lblm]
 
-        return fit_result, rms_sizes
+        return fit_result, rms_sizes, centroids, total_intensities
 
     def create_metadata(self):
         # Make additional metadata
