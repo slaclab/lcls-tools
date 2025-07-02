@@ -20,7 +20,7 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
 
         type(screen).image = property(mock_get_image)
 
-        self.measurement = ScreenBeamProfileMeasurement(device=screen)
+        self.measurement = ScreenBeamProfileMeasurement(beam_profile_device=screen)
 
     def test_measure(self):
         result = self.measurement.measure()
