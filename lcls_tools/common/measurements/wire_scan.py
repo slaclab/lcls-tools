@@ -347,19 +347,19 @@ class WireBeamProfileMeasurement(Measurement):
 
                 x_fits = fit_result["x"]
                 y_fits = fit_result["y"]
-        
+
         rms_sizes_all = {}
         centroids_all = {}
         total_intensities_all = {}
         for device in devices:
             if device != self.my_wire.name:
                 rms_sizes_all[device] = (
-                    x_fits[device]["sigma"], 
+                    x_fits[device]["sigma"],
                     y_fits[device]["sigma"],
                 )
                 centroids_all[device] = (x_fits[device]["mean"], y_fits[device]["mean"])
                 total_intensities_all[device] = (
-                    x_fits[device]["total_intensity"], 
+                    x_fits[device]["total_intensity"],
                     y_fits[device]["total_intensity"],
                 )
 

@@ -10,7 +10,7 @@ from typing import Optional
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 
 from lcls_tools.common.measurements.beam_profile import (
-    BeamProfileMeasurement, 
+    BeamProfileMeasurement,
     BeamProfileMeasurementResult,
 )
 
