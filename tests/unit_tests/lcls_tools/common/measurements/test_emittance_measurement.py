@@ -112,9 +112,7 @@ class EmittanceMeasurementTest(TestCase):
                 mock_beamsize_measurements = []
                 for i, val in enumerate(k):
                     result = MagicMock(ScreenBeamProfileMeasurementResult)
-                    result.rms_sizes = np.array(
-                        [float(x_data[i]), float(y_data[i])]
-                    )
+                    result.rms_sizes = np.array([float(x_data[i]), float(y_data[i])])
 
                     mock_beamsize_measurements += [result]
 
