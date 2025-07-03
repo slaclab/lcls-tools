@@ -94,21 +94,21 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
             for image in processed_images:
                 fit_result = self.beam_fit.fit_image(image)
                 rms_sizes_all.append(
-                    fit_result.rms_size * self.beam_profile_device.resolution
+                    np.array(fit_result.rms_size) * self.beam_profile_device.resolution
                 )
                 centroids_all.append(
-                    fit_result.centroid * self.beam_profile_device.resolution
+                    np.array(fit_result.centroid) * self.beam_profile_device.resolution
                 )
                 total_intensities_all.append(fit_result.total_intensity)
-            rms_sizes = np.mean(np.array(rms_sizes_all), axis=0)
-            centroids = np.mean(np.array(centroids_all), axis=0)
-            total_intensities = np.mean(np.array(total_intensities_all), axis=0)
+            rms_sizes = np.mean(rms_sizes_all, axis=0)
+            centroids = np.mean(centroids_all, axis=0)
+            total_intensities = np.mean(total_intensities_all, axis=0)
 
         return ScreenBeamProfileMeasurementResult(
             raw_images=images,
             processed_images=processed_images,
-            rms_sizes=rms_sizes or None,
-            centroids=centroids or None,
-            total_intensities=total_intensities or None,
+            rms_sizes=rms_sizes if rms_sizes.size > 0 else None,
+            centroids=centroids if centroids.size > 0 else None,
+            total_intensities=total_intensities if total_intensities.size > 0 else None,
             metadata=self.model_dump(),
         )
