@@ -1,20 +1,21 @@
-from typing import Any
-
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.image.fit import ImageProjectionFit, ImageFit
 from lcls_tools.common.image.processing import ImageProcessor
-from lcls_tools.common.measurements.measurement import Measurement
+import numpy as np
 from pydantic import (
     ConfigDict,
-    SerializeAsAny,
 )
 from typing import Optional
 
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
-import lcls_tools
+
+from lcls_tools.common.measurements.beam_profile import (
+    BeamProfileMeasurement,
+    BeamProfileMeasurementResult,
+)
 
 
-class ScreenBeamProfileMeasurementResult(lcls_tools.common.BaseModel):
+class ScreenBeamProfileMeasurementResult(BeamProfileMeasurementResult):
     """
     Class that contains the results of a beam profile measurement
 
@@ -25,9 +26,9 @@ class ScreenBeamProfileMeasurementResult(lcls_tools.common.BaseModel):
     processed_images : ndarray
         Numpy array of processed images taken during the measurement
     rms_sizes : ndarray
-        Numpy array of rms sizes of the beam in pixel units.
+        Numpy array of rms sizes of the beam in microns.
     centroids : ndarray
-        Numpy array of centroids of the beam in pixel units.
+        Numpy array of centroids of the beam in microns.
     total_intensities : ndarray
         Numpy array of total intensities of the beam.
     metadata : Any
@@ -37,15 +38,11 @@ class ScreenBeamProfileMeasurementResult(lcls_tools.common.BaseModel):
 
     raw_images: NDArrayAnnotatedType
     processed_images: NDArrayAnnotatedType
-    rms_sizes: Optional[NDArrayAnnotatedType] = None
-    centroids: Optional[NDArrayAnnotatedType] = None
-    total_intensities: Optional[NDArrayAnnotatedType] = None
-    metadata: SerializeAsAny[Any]
 
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid")
 
 
-class ScreenBeamProfileMeasurement(Measurement):
+class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
     """
     Class that allows for beam profile measurements and fitting
     ------------------------
@@ -65,13 +62,13 @@ class ScreenBeamProfileMeasurement(Measurement):
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    name: str = "beam_profile"
-    device: Screen
+    beam_profile_device: Screen
+    n_shots: int = 1
     image_processor: Optional[ImageProcessor] = ImageProcessor()
     beam_fit: ImageFit = ImageProjectionFit()
     fit_profile: bool = True
 
-    def measure(self, n_shots: int = 1) -> dict:
+    def measure(self) -> ScreenBeamProfileMeasurementResult:
         """
         Measurement function that takes in n_shots as argument
         where n_shots is the number of image profiles
@@ -82,8 +79,8 @@ class ScreenBeamProfileMeasurement(Measurement):
         shot number
         """
         images = []
-        while len(images) < n_shots:
-            images.append(self.device.image)
+        while len(images) < self.n_shots:
+            images.append(self.beam_profile_device.image)
             # TODO: need to add a wait statement in here for images to update
 
         processed_images = [
@@ -91,20 +88,27 @@ class ScreenBeamProfileMeasurement(Measurement):
         ]
 
         if self.fit_profile:
-            rms_sizes = []
-            centroids = []
-            total_intensities = []
+            rms_sizes_all = []
+            centroids_all = []
+            total_intensities_all = []
             for image in processed_images:
                 fit_result = self.beam_fit.fit_image(image)
-                rms_sizes.append(fit_result.rms_size)
-                centroids.append(fit_result.centroid)
-                total_intensities.append(fit_result.total_intensity)
+                rms_sizes_all.append(
+                    np.array(fit_result.rms_size) * self.beam_profile_device.resolution
+                )
+                centroids_all.append(
+                    np.array(fit_result.centroid) * self.beam_profile_device.resolution
+                )
+                total_intensities_all.append(fit_result.total_intensity)
+            rms_sizes = np.mean(rms_sizes_all, axis=0)
+            centroids = np.mean(centroids_all, axis=0)
+            total_intensities = np.mean(total_intensities_all, axis=0)
 
         return ScreenBeamProfileMeasurementResult(
             raw_images=images,
             processed_images=processed_images,
-            rms_sizes=rms_sizes or None,
-            centroids=centroids or None,
-            total_intensities=total_intensities or None,
+            rms_sizes=rms_sizes if rms_sizes.size > 0 else None,
+            centroids=centroids if centroids.size > 0 else None,
+            total_intensities=total_intensities if total_intensities.size > 0 else None,
             metadata=self.model_dump(),
         )
