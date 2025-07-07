@@ -6,6 +6,7 @@ from lcls_tools.common.data.model_general_calcs import (
     propagate_twiss,
 )
 
+
 def compute_emit_bmag(
     beamsize_squared: np.ndarray,
     rmat: np.ndarray,
@@ -95,17 +96,13 @@ def compute_emit_bmag(
             sig = torch.stack(beam_matrix_tuple(params), dim=-1).unsqueeze(-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
             total_abs_error = (
-                (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared))
-                .abs()
-                .sum()
+                (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared)).abs().sum()
             )
             return total_abs_error
 
         def loss_jacobian(params):
             return (
-                torch.autograd.functional.jacobian(
-                    loss_torch, torch.from_numpy(params)
-                )
+                torch.autograd.functional.jacobian(loss_torch, torch.from_numpy(params))
                 .detach()
                 .numpy()
             )
@@ -117,9 +114,7 @@ def compute_emit_bmag(
         # define loss function in numpy without jacobian
         def loss(params):
             params = np.reshape(params, [*beamsize_squared.shape[:-2], 3])
-            sig = np.expand_dims(
-                np.stack(beam_matrix_tuple(params), axis=-1), axis=-1
-            )
+            sig = np.expand_dims(np.stack(beam_matrix_tuple(params), axis=-1), axis=-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
             total_abs_error = np.sum(
                 np.abs(np.sqrt(amat @ sig) - np.sqrt(beamsize_squared))
@@ -132,9 +127,7 @@ def compute_emit_bmag(
     eps = 1.0e-6
 
     # get initial guesses for lambda1, lambda2, c, from pseudo-inverse method
-    init_beam_matrix = np.linalg.pinv(np.array(amat)) @ np.array(
-        beamsize_squared
-    )
+    init_beam_matrix = np.linalg.pinv(np.array(amat)) @ np.array(beamsize_squared)
     lambda1 = np.sqrt(init_beam_matrix[..., 0, 0].clip(min=eps))
     lambda2 = np.sqrt(init_beam_matrix[..., 2, 0].clip(min=eps))
     c = (init_beam_matrix[..., 1, 0] / (lambda1 * lambda2)).clip(
@@ -190,9 +183,7 @@ def compute_emit_bmag(
         )
 
     # propagate twiss params to screen (expand_dims for broadcasting)
-    rv["twiss_at_screen"] = propagate_twiss(
-        _twiss_upstream(rv["beam_matrix"]), rmat
-    )
+    rv["twiss_at_screen"] = propagate_twiss(_twiss_upstream(rv["beam_matrix"]), rmat)
     # result shape (batchshape x nsteps x 3)
     beta, alpha = (
         rv["twiss_at_screen"][..., 0],

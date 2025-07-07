@@ -48,9 +48,7 @@ class BMAGMode(enum.IntEnum):
                 return cls(value)
         except (ValueError, KeyError):
             pass
-        raise ValueError(
-            f"invalid {cls.__name__}={value} must be one of: {_members()}"
-        )
+        raise ValueError(f"invalid {cls.__name__}={value} must be one of: {_members()}")
 
 
 class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
@@ -108,9 +106,7 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
 
         """
         if self.bmag is None:
-            raise ValueError(
-                "BMAG values are not available for this measurement"
-            )
+            raise ValueError("BMAG values are not available for this measurement")
 
         mode = BMAGMode.from_any(mode)
 
@@ -299,9 +295,7 @@ class QuadScanEmittance(Measurement):
 
     def perform_beamsize_measurements(self):
         """Perform the beamsize measurements using a basic quadrupole scan."""
-        self.magnet.scan(
-            scan_settings=self.scan_values, function=self.measure_beamsize
-        )
+        self.magnet.scan(scan_settings=self.scan_values, function=self.measure_beamsize)
 
     def measure_beamsize(self):
         """
@@ -406,9 +400,7 @@ def compute_emit_bmag_quad_scan(
     return rv
 
 
-def preprocess_inputs(
-    quad_vals: list, beamsizes: list, energy: float, q_len: float
-):
+def preprocess_inputs(quad_vals: list, beamsizes: list, energy: float, q_len: float):
     """
     Preprocesses the inputs for analyze_quad_scan.
 
@@ -513,17 +505,13 @@ def compute_emit_bmag_quad_scan_machine_units(
             beamsize_squared=beamsizes_squared_list[i],
             q_len=q_len,
             rmat=rmat[i],
-            twiss_design=(
-                twiss_design[i] if twiss_design is not None else None
-            ),
+            twiss_design=(twiss_design[i] if twiss_design is not None else None),
             thin_lens=thin_lens,
             maxiter=maxiter,
         )
 
         result.update({"quadrupole_focusing_strengths": kmod_list[i]})
-        result.update(
-            {"quadrupole_pv_values": quad_vals[i][~np.isnan(beamsizes[i])]}
-        )
+        result.update({"quadrupole_pv_values": quad_vals[i][~np.isnan(beamsizes[i])]})
 
         # add results to dict object
         for name, value in result.items():
