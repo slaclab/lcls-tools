@@ -4,7 +4,7 @@ from lcls_tools.common.devices.reader import create_lblm
 from lcls_tools.common.data.fit.projection import ProjectionFit
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
-from lcls_tools.common.measurements.scan_utils.buffer_reservation import reserve_buffer
+from lcls_tools.common.measurements.buffer_reservation import reserve_buffer
 from lcls_tools.common.measurements.wire_scan_results import (
     WireBeamProfileMeasurementResult,
     ProfileMeasurement,
@@ -55,7 +55,7 @@ class WireBeamProfileMeasurement(Measurement):
             self.my_buffer = reserve_buffer(
                 beampath=self.beampath,
                 name="LCLS Tools Wire Scan",
-                n_measurements=1600,
+                n_measurements=1600,  # Determined via empirical testing at 120 Hz
                 destination_mode="Inclusion",
                 logger=None,
             )
