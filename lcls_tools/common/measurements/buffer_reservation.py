@@ -7,9 +7,6 @@ class BufferError(Exception):
     pass
 
 
-DEST_MODE_MAP = {"Disable": 0, "Exclusion": 1, "Inclusion": 2}
-
-
 def reserve_buffer(
     name: str,
     beampath: str,
@@ -22,12 +19,12 @@ def reserve_buffer(
         logging.info("Reserving buffer...")
 
     if beampath.startswith("SC"):
-        if destination_mode not in DEST_MODE_MAP:
+        if destination_mode not in ["Disable", "Exclusion", "Inclusion"]:
             raise BufferError(f"Invalid destination mode: {destination_mode}")
 
         buf = edef.BSABuffer(name=name, user=user)
         buf.n_measurements = n_measurements
-        buf.destination_mode = DEST_MODE_MAP[destination_mode]
+        buf.destination_mode = destination_mode
         buf.clear_masks()
         buf.destination_masks = [beampath]
         if logger:
