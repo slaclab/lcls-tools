@@ -2,7 +2,6 @@ import csv
 import yaml
 import os
 from typing import Any, Union, List, Dict, Optional
-import meme.names
 import numpy as np
 from lcls_tools.common.devices.yaml.metadata import (
     get_magnet_metadata,
@@ -153,6 +152,8 @@ class YAMLGenerator:
     def _construct_pv_list_from_control_system_name(
         self, name, search_with_handles: Optional[Dict[str, str]]
     ) -> Dict[str, str]:
+        from meme import names
+
         if name == "":
             raise RuntimeError("No control system name provided for meme search.")
         # Use the control system name to get all PVs associated with device
@@ -163,7 +164,7 @@ class YAMLGenerator:
                 search_term, field = search_term.split(".")
             # End of the PV name is implied in search_term
             try:
-                pv_list = meme.names.list_pvs(name + ":" + search_term, sort_by="z")
+                pv_list = names.list_pvs(name + ":" + search_term, sort_by="z")
                 # We expect to have ZERO or ONE result returned from meme
                 if pv_list != list():
                     if len(pv_list) == 1:
@@ -228,6 +229,7 @@ class YAMLGenerator:
         for device in device_elements:
             # We need a control-system-name
             if device["Control System Name"] != "":
+                pv_info = None
                 try:
                     # grab the pv information for this element using the search_list
                     pv_info = self._construct_pv_list_from_control_system_name(
@@ -357,9 +359,9 @@ class YAMLGenerator:
             "FLT2_STS": "filter_2_status",
             "FLT2_CTRL": "filter_2_control",
             "TGT_LAMP_PWR": "lamp_power",
+            "X_ORIENT": "orient_x",
+            "Y_ORIENT": "orient_y",
         }
-        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-        additional_controls_data = get_screen_controls_information()
         basic_screen_data = self.extract_devices(
             area=area,
             required_types=required_screen_types,
@@ -368,6 +370,9 @@ class YAMLGenerator:
         if basic_screen_data:
             # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
             additional_metadata_data = get_screen_metadata(basic_screen_data)
+            additional_controls_data = get_screen_controls_information(
+                basic_screen_data
+            )
             complete_screen_data = self.add_extra_data_to_device(
                 device_data=basic_screen_data,
                 additional_controls_information=additional_controls_data,
@@ -383,13 +388,13 @@ class YAMLGenerator:
         # None implies that we are happen using the PV suffix (lowercase) as the name in yaml
         possible_wire_pvs = {
             "MOTR.STOP": "abort_scan",
+            "BEAMRATE": "beam_rate",
             "MOTR_ENABLED_STS": "enabled",
             "MOTR_HOMED_STS": "homed",
             "MOTR_INIT": "initialize",
             "MOTR_INIT_STS": "initialize_status",
             "MOTR": "motor",
             "MOTR.RBV": "motor_rbv",
-            # "POSN": "position",
             "MOTR_RETRACT": "retract",
             "SCANPULSES": "scan_pulses",
             "MOTR.VELO": "speed",
@@ -492,14 +497,16 @@ class YAMLGenerator:
         additional_filter_constraints = {"Engineering Name": "TRANS_DEFL"}
         # add pvs we care about
         possible_tcav_pvs = {
-            "AREQ": "amp_set",
-            "PREQ": "phase_set",
+            "AREQ": "amplitude",
+            "PREQ": "phase",
             "RF_ENABLE": "rf_enable",
-            "AFBENB": "amp_fbenb",
+            "AFBENB": "amplitude_fbenb",
             "PFBENB": "phase_fbenb",
-            "AFBST": "amp_fbst",
+            "AFBST": "amplitude_fbst",
             "PFBST": "phase_fbst",
             "MODECFG": "mode_config",
+            "PACT_AVGNT": "phase_avgnt",
+            "AMPL_W0CH0": "amplitude_wocho",
         }
 
         basic_tcav_data = self.extract_devices(

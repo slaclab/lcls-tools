@@ -128,7 +128,10 @@ bpms:
       type: BPM
   BPMDG0RF:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:DIAG0:330:TMIT
+        x: BPMS:DIAG0:330:X
+        y: BPMS:DIAG0:330:Y
       control_name: BPMS:DIAG0:330
     metadata:
       area: DIAG0
@@ -636,6 +639,8 @@ screens:
         n_bits: OTRS:DIAG0:420:N_OF_BITS
         n_col: OTRS:DIAG0:420:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:420:Image:ArraySize0_RBV
+        orient_x: OTRS:DIAG0:420:X_ORIENT
+        orient_y: OTRS:DIAG0:420:Y_ORIENT
         ref_rate: OTRS:DIAG0:420:ArrayRate_RBV
         ref_rate_vme: OTRS:DIAG0:420:FRAME_RATE
         resolution: OTRS:DIAG0:420:RESOLUTION
@@ -643,6 +648,9 @@ screens:
         target_control: OTRS:DIAG0:420:PNEUMATIC
         target_status: OTRS:DIAG0:420:TGT_STS
       control_name: OTRS:DIAG0:420
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: DIAG0
       beam_path:
@@ -669,6 +677,8 @@ screens:
         n_bits: OTRS:DIAG0:525:N_OF_BITS
         n_col: OTRS:DIAG0:525:Image:ArraySize1_RBV
         n_row: OTRS:DIAG0:525:Image:ArraySize0_RBV
+        orient_x: OTRS:DIAG0:525:X_ORIENT
+        orient_y: OTRS:DIAG0:525:Y_ORIENT
         ref_rate: OTRS:DIAG0:525:ArrayRate_RBV
         ref_rate_vme: OTRS:DIAG0:525:FRAME_RATE
         resolution: OTRS:DIAG0:525:RESOLUTION
@@ -676,6 +686,9 @@ screens:
         target_control: OTRS:DIAG0:525:PNEUMATIC
         target_status: OTRS:DIAG0:525:TGT_STS
       control_name: OTRS:DIAG0:525
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: DIAG0
       beam_path:
@@ -694,13 +707,15 @@ tcavs:
   TCXDG0:
     controls_information:
       PVs:
-        amp_fbenb: TCAV:DIAG0:11:AFBENB
-        amp_fbst: TCAV:DIAG0:11:AFBST
-        amp_set: TCAV:DIAG0:11:AREQ
+        amplitude: TCAV:DIAG0:11:AREQ
+        amplitude_fbenb: TCAV:DIAG0:11:AFBENB
+        amplitude_fbst: TCAV:DIAG0:11:AFBST
+        amplitude_wocho: TCAV:DIAG0:11:AMPL_W0CH0
         mode_config: TCAV:DIAG0:11:MODECFG
+        phase: TCAV:DIAG0:11:PREQ
+        phase_avgnt: TCAV:DIAG0:11:PACT_AVGNT
         phase_fbenb: TCAV:DIAG0:11:PFBENB
         phase_fbst: TCAV:DIAG0:11:PFBST
-        phase_set: TCAV:DIAG0:11:PREQ
         rf_enable: TCAV:DIAG0:11:RF_ENABLE
       control_name: TCAV:DIAG0:11
     metadata:

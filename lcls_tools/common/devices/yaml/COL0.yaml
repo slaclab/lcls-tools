@@ -861,6 +861,8 @@ screens:
         n_bits: PROF:COL0:535:N_OF_BITS
         n_col: PROF:COL0:535:Image:ArraySize1_RBV
         n_row: PROF:COL0:535:Image:ArraySize0_RBV
+        orient_x: PROF:COL0:535:X_ORIENT
+        orient_y: PROF:COL0:535:Y_ORIENT
         ref_rate: PROF:COL0:535:ArrayRate_RBV
         ref_rate_vme: PROF:COL0:535:FRAME_RATE
         resolution: PROF:COL0:535:RESOLUTION
@@ -868,6 +870,9 @@ screens:
         target_control: PROF:COL0:535:PNEUMATIC
         target_status: PROF:COL0:535:TGT_STS
       control_name: PROF:COL0:535
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: COL0
       beam_path:

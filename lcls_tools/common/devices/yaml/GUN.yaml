@@ -230,11 +230,16 @@ screens:
         n_bits: YAGS:IN20:211:N_OF_BITS
         n_col: YAGS:IN20:211:N_OF_COL
         n_row: YAGS:IN20:211:N_OF_ROW
+        orient_x: YAGS:IN20:211:X_ORIENT
+        orient_y: YAGS:IN20:211:Y_ORIENT
         ref_rate_vme: YAGS:IN20:211:FRAME_RATE
         resolution: YAGS:IN20:211:RESOLUTION
         target_control: YAGS:IN20:211:PNEUMATIC
         target_status: YAGS:IN20:211:TGT_STS
       control_name: YAGS:IN20:211
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: GUN
       beam_path:

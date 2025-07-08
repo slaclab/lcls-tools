@@ -244,7 +244,10 @@ bpms:
       type: BPM
   BPME31B:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LTUS:720:TMIT
+        x: BPMS:LTUS:720:X
+        y: BPMS:LTUS:720:Y
       control_name: BPMS:LTUS:720
     metadata:
       area: LTUS
@@ -259,7 +262,10 @@ bpms:
       type: BPM
   BPME32B:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LTUS:730:TMIT
+        x: BPMS:LTUS:730:X
+        y: BPMS:LTUS:730:Y
       control_name: BPMS:LTUS:730
     metadata:
       area: LTUS
@@ -310,7 +316,10 @@ bpms:
       type: BPM
   BPME35B:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LTUS:760:TMIT
+        x: BPMS:LTUS:760:X
+        y: BPMS:LTUS:760:Y
       control_name: BPMS:LTUS:760
     metadata:
       area: LTUS
@@ -325,7 +334,10 @@ bpms:
       type: BPM
   BPME36B:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:LTUS:780:TMIT
+        x: BPMS:LTUS:780:X
+        y: BPMS:LTUS:780:Y
       control_name: BPMS:LTUS:780
     metadata:
       area: LTUS
@@ -2736,6 +2748,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: YAGS:LTUS:417
+      pv_cache: {}
     metadata:
       area: LTUS
       beam_path:
@@ -2753,6 +2766,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUS:715:MOTR.STOP
+        beam_rate: WIRE:LTUS:715:BEAMRATE
         enabled: WIRE:LTUS:715:MOTR_ENABLED_STS
         homed: WIRE:LTUS:715:MOTR_HOMED_STS
         initialize: WIRE:LTUS:715:MOTR_INIT
@@ -2810,14 +2824,15 @@ wires:
       - BPMS:SPS:840
       - BPMS:SLTS:150
       lblms:
-      - LBLMS32A
-      - TMITLOSS
+      - LBLMS32A:LTUS
+      - TMITLOSS:LTUS
       sum_l_meters: 3434.508
       type: WIRE
   WS32B:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUS:735:MOTR.STOP
+        beam_rate: WIRE:LTUS:735:BEAMRATE
         enabled: WIRE:LTUS:735:MOTR_ENABLED_STS
         homed: WIRE:LTUS:735:MOTR_HOMED_STS
         initialize: WIRE:LTUS:735:MOTR_INIT
@@ -2875,14 +2890,15 @@ wires:
       - BPMS:SPS:840
       - BPMS:SLTS:150
       lblms:
-      - LBLMS32A
-      - TMITLOSS
+      - LBLMS32A:LTUS
+      - TMITLOSS:LTUS
       sum_l_meters: 3469.772
       type: WIRE
   WS33B:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUS:755:MOTR.STOP
+        beam_rate: WIRE:LTUS:755:BEAMRATE
         enabled: WIRE:LTUS:755:MOTR_ENABLED_STS
         homed: WIRE:LTUS:755:MOTR_HOMED_STS
         initialize: WIRE:LTUS:755:MOTR_INIT
@@ -2940,14 +2956,15 @@ wires:
       - BPMS:SPS:840
       - BPMS:SLTS:150
       lblms:
-      - LBLMS32A
-      - TMITLOSS
+      - LBLMS32A:LTUS
+      - TMITLOSS:LTUS
       sum_l_meters: 3505.035
       type: WIRE
   WS34B:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUS:785:MOTR.STOP
+        beam_rate: WIRE:LTUS:785:BEAMRATE
         enabled: WIRE:LTUS:785:MOTR_ENABLED_STS
         homed: WIRE:LTUS:785:MOTR_HOMED_STS
         initialize: WIRE:LTUS:785:MOTR_INIT
@@ -3005,7 +3022,7 @@ wires:
       - BPMS:SPS:840
       - BPMS:SLTS:150
       lblms:
-      - LBLMS32A
-      - TMITLOSS
+      - LBLMS32A:LTUS
+      - TMITLOSS:LTUS
       sum_l_meters: 3540.299
       type: WIRE

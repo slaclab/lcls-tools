@@ -49,6 +49,8 @@ class ScreenPVSet(PVSet):
     target_status: Optional[PV] = None
     ref_rate_vme: Optional[PV] = None
     ref_rate: Optional[PV] = None
+    orient_x: Optional[PV] = None
+    orient_y: Optional[PV] = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -61,6 +63,7 @@ class ScreenPVSet(PVSet):
 
 class ScreenControlInformation(ControlInformation):
     PVs: SerializeAsAny[ScreenPVSet]
+    pv_cache: dict = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -69,12 +72,20 @@ class ScreenControlInformation(ControlInformation):
 class Screen(Device):
     controls_information: SerializeAsAny[ScreenControlInformation]
     metadata: SerializeAsAny[Metadata]
+    new_orientation: Optional[bool] = False
     _saving_images: Optional[bool] = False
     _root_hdf5_location: Optional[str] = "."
     _last_save_filepath: Optional[str] = ""
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+    def flip_image(self, image):
+        if self.orient_x == "Negative":
+            image = np.flip(image, 0)
+        if self.orient_y == "Negative":
+            image = np.flip(image, 1)
+        return image
 
     @property
     def image(self) -> np.ndarray:
@@ -83,9 +94,11 @@ class Screen(Device):
         reshaped to the dimensions of
         the camera associated with this screen
         """
-        return self.controls_information.PVs.image.get(as_numpy=True).reshape(
+        img = self.controls_information.PVs.image.get(as_numpy=True).reshape(
             self.n_columns, self.n_rows
         )
+        img = self.flip_image(img)
+        return img
 
     @property
     def image_timestamp(self):
@@ -104,6 +117,28 @@ class Screen(Device):
     @property
     def target_states(self):
         return self.controls_information.PVs.target_control.enum_strs
+
+    @property
+    def orient_x(self):
+        i = self.controls_information
+        pv_cache = getattr(i, "pv_cache", None)
+        if pv_cache is not None and not self.new_orientation:
+            if "orient_x" in pv_cache:
+                return pv_cache["orient_x"]
+        if (pv := getattr(i.PVs, "orient_x", None)) is not None:
+            return pv.get(as_string=True)
+        return None
+
+    @property
+    def orient_y(self):
+        i = self.controls_information
+        pv_cache = getattr(i, "pv_cache", None)
+        if pv_cache is not None and not self.new_orientation:
+            if "orient_y" in pv_cache:
+                return pv_cache["orient_y"]
+        if (pv := getattr(i.PVs, "orient_y", None)) is not None:
+            return pv.get(as_string=True)
+        return None
 
     @property
     def hdf_save_location(self) -> str:
