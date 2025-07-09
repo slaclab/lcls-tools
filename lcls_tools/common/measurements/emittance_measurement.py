@@ -509,7 +509,9 @@ def compute_emit_bmag_quad_scan_machine_units(
             beamsize_squared=beamsizes_squared_list[i],
             q_len=q_len,
             rmat=rmat[i],
-            twiss_design=(np.expand_dims(twiss_design[i], 0) if twiss_design is not None else None),
+            twiss_design=(
+                np.expand_dims(twiss_design[i], 0) if twiss_design is not None else None
+            ),
             thin_lens=thin_lens,
             maxiter=maxiter,
         )

@@ -34,7 +34,7 @@ def compute_emit_bmag(
 
     twiss_design : numpy.ndarray, optional
         Array of shape (batchshape x n_measurements x 2) designating the design (beta, alpha)
-        twiss parameters at each measurement location. 
+        twiss parameters at each measurement location.
         Note that it is also possible to pass an array of shape (batchshape x 1 x 2),
         which will result in broadcasting a single set of design twiss parameters
         to each measurement in the respective batch for the calculation of Bmag
