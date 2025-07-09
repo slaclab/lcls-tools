@@ -18,14 +18,16 @@ from epics import PV
 
 
 class TCAVPVSet(PVSet):
-    amp_set: PV
-    phase_set: PV
+    amplitude: PV
+    phase: PV
     rf_enable: PV
-    amp_fbenb: PV
+    amplitude_fbenb: PV
     phase_fbenb: PV
-    amp_fbst: PV
+    amplitude_fbst: PV
     phase_fbst: PV
     mode_config: PV
+    amplitude_wocho: PV
+    phase_avgnt: PV
 
     @field_validator("*", mode="before")
     def validate_pv_fields(cls, v: str) -> PV:
@@ -144,34 +146,34 @@ class TCAV(Device):
             function() if function else None
 
     @property
-    def amp_set(self):
+    def amplitude(self):
         """The amplitude set point of the TCAV"""
-        return self.controls_information.PVs.amp_set.get(use_monitor=False)
+        return self.controls_information.PVs.amplitude.get(use_monitor=False)
 
-    @amp_set.setter
-    def amp_set(self, amplitude):
+    @amplitude.setter
+    def amplitude(self, amplitude):
         if not isinstance(amplitude, float):
             return
-        self.controls_information.PVs.amp_set.put(amplitude)
+        self.controls_information.PVs.amplitude.put(amplitude)
 
     @property
-    def phase_set(self):
+    def phase(self):
         """The phase set point of the TCAV"""
-        return self.controls_information.PVs.phase_set.get(use_monitor=False)
+        return self.controls_information.PVs.phase.get(use_monitor=False)
 
-    @phase_set.setter
-    def phase_set(self, phase):
+    @phase.setter
+    def phase(self, phase):
         if not isinstance(phase, float):
             return
-        self.controls_information.PVs.phase_set.put(phase)
+        self.controls_information.PVs.phase.put(phase)
 
     @property
-    def amp_fbenb(self):
+    def amplitude_fbenb(self):
         """The status of the amplitude set point feedback"""
-        return self.controls_information.PVs.amp_fbenb.get()
+        return self.controls_information.PVs.amplitude_fbenb.get()
 
-    @amp_fbenb.setter
-    def amp_fbenb(self, enum_str: str):
+    @amplitude_fbenb.setter
+    def amplitude_fbenb(self, enum_str: str):
         field_options = self.controls_information.amplitude_feedback_options
         if not isinstance(enum_str, str):
             raise TypeError(f"{enum_str} is not of type: str")
@@ -179,7 +181,7 @@ class TCAV(Device):
             raise ValueError(
                 f"{enum_str} not in list of acceptable enumerate string PV values"
             )
-        self.controls_information.PVs.amp_fbenb.put(field_options[enum_str])
+        self.controls_information.PVs.amplitude_fbenb.put(field_options[enum_str])
 
     @property
     def phase_fbenb(self):
@@ -198,9 +200,9 @@ class TCAV(Device):
         self.controls_information.PVs.phase_fbenb.put(field_options[enum_str])
 
     @property
-    def amp_fbst(self):
+    def amplitude_fbst(self):
         """The state of the amplitude feedback"""
-        return self.controls_information.PVs.amp_fbst.get()
+        return self.controls_information.PVs.amplitude_fbst.get()
 
     @property
     def phase_fbst(self):
@@ -222,6 +224,15 @@ class TCAV(Device):
                 f"{enum_str} not in list of acceptable enumerate string PV values"
             )
         self.controls_information.PVs.mode_config.put(field_options[enum_str])
+
+    @property
+    def amplitude_wocho(self):
+        return self.controls_information.PVs.amplitude_wocho.get()
+
+    @property
+    def phase_avgnt(self):
+        """The state of the phase feedback"""
+        return self.controls_information.PVs.phase_avgnt.get()
 
     @property
     def l_eff(self):
