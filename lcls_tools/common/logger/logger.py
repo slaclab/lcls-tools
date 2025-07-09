@@ -1,23 +1,39 @@
-import logging
 import sys
-
-FORMAT_STRING = (
-    "%(asctime)s [%(levelname)s] [%(pathname)s:%(funcName)s:%(lineno)d] - %(message)s"
-)
+import logging
 
 
-def custom_logger(name):
-    """Configure log as we want it here, very basic.  Plan to write custom logger later"""
-    root_logger = logging.getLogger(name)
-    if not root_logger.handlers:
-        root_logger.setLevel(logging.DEBUG)
-        formatter = logging.Formatter(FORMAT_STRING)
+FORMAT_STRING = "%(asctime)s - %(levelname)s - %(message)s"
+DATE_FORMAT = "%H:%M:%S"
 
-        # console
-        out_handler = logging.StreamHandler(sys.stdout)
-        out_handler.setLevel(logging.DEBUG)
-        out_handler.setFormatter(formatter)
 
-        root_logger.addHandler(out_handler)
+def custom_logger(log_file=None, name=__name__, level=logging.INFO):
+    logger = logging.getLogger(name)
+    logger.handlers.clear()
+    logger.setLevel(level)
 
-    return root_logger
+    def make_handler(handler, use_date_format=False):
+        formatter = logging.Formatter(
+            FORMAT_STRING, datefmt=DATE_FORMAT if use_date_format else None
+        )
+        handler.setFormatter(formatter)
+        return handler
+
+    # File handler
+    if log_file is not None:
+        logger.addHandler(make_handler(logging.FileHandler(log_file)))
+
+    # Console handler
+    logger.addHandler(make_handler(logging.StreamHandler(), use_date_format=True))
+
+    # Exception hook
+    def handle_exception(exc_type, exc_value, exc_traceback):
+        if issubclass(exc_type, KeyboardInterrupt):
+            sys.__excepthook__(exc_type, exc_value, exc_traceback)
+            return
+        logger.error(
+            "Unhandled exception", exc_info=(exc_type, exc_value, exc_traceback)
+        )
+
+    sys.excepthook = handle_exception
+
+    return logger
