@@ -6,7 +6,7 @@ FORMAT_STRING = "%(asctime)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%H:%M:%S"
 
 
-def custom_logger(log_file, name=__name__, level=logging.INFO):
+def custom_logger(log_file=None, name=__name__, level=logging.INFO):
     logger = logging.getLogger(name)
     logger.handlers.clear()
     logger.setLevel(level)
@@ -19,7 +19,8 @@ def custom_logger(log_file, name=__name__, level=logging.INFO):
         return handler
 
     # File handler
-    logger.addHandler(make_handler(logging.FileHandler(log_file)))
+    if log_file is not None:
+        logger.addHandler(make_handler(logging.FileHandler(log_file)))
 
     # Console handler
     logger.addHandler(make_handler(logging.StreamHandler(), use_date_format=True))
