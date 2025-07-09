@@ -59,6 +59,7 @@ class PlaneModel(BaseModel):
 
 class WirePVSet(PVSet):
     abort_scan: PV
+    beam_rate: PV
     enabled: PV
     homed: PV
     initialize: PV
@@ -151,6 +152,11 @@ class Wire(Device):
     def enabled(self):
         """Returns the enabled state of the wire sacnner"""
         return self.controls_information.PVs.enabled.get()
+
+    @property
+    def beam_rate(self):
+        """Returns current beam rate"""
+        return self.controls_information.PVs.beam_rate.get()
 
     @property
     def homed(self):

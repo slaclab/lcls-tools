@@ -121,7 +121,10 @@ bpms:
       type: BPM
   BPMDOG4:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:DOG:165:TMIT
+        x: BPMS:DOG:165:X
+        y: BPMS:DOG:165:Y
       control_name: BPMS:DOG:165
     metadata:
       area: DOG
@@ -138,7 +141,10 @@ bpms:
       type: BPM
   BPMDOG5:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:DOG:180:TMIT
+        x: BPMS:DOG:180:X
+        y: BPMS:DOG:180:Y
       control_name: BPMS:DOG:180
     metadata:
       area: DOG
@@ -215,7 +221,10 @@ bpms:
       type: BPM
   BPML1P:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:DOG:250:TMIT
+        x: BPMS:DOG:250:X
+        y: BPMS:DOG:250:Y
       control_name: BPMS:DOG:250
     metadata:
       area: DOG
@@ -1421,11 +1430,16 @@ screens:
         n_bits: PROF:DOG:195:N_OF_BITS
         n_col: PROF:DOG:195:Image:ArraySize1_RBV
         n_row: PROF:DOG:195:Image:ArraySize0_RBV
+        orient_x: PROF:DOG:195:X_ORIENT
+        orient_y: PROF:DOG:195:Y_ORIENT
         ref_rate: PROF:DOG:195:ArrayRate_RBV
         ref_rate_vme: PROF:DOG:195:FRAME_RATE
         resolution: PROF:DOG:195:RESOLUTION
         sys_type: PROF:DOG:195:SYS_TYPE
       control_name: PROF:DOG:195
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: DOG
       beam_path:
@@ -1444,6 +1458,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:DOG:655:MOTR.STOP
+        beam_rate: WIRE:DOG:655:BEAMRATE
         enabled: WIRE:DOG:655:MOTR_ENABLED_STS
         homed: WIRE:DOG:655:MOTR_HOMED_STS
         initialize: WIRE:DOG:655:MOTR_INIT
@@ -1513,9 +1528,9 @@ wires:
       - BPMS:DOG:355
       - BPMS:DOG:405
       lblms:
-      - LBLM11A_1
-      - LBLM11A_2
-      - LBLM11A_3
-      - TMITLOSS
+      - LBLM11A_1:BYP
+      - LBLM11A_2:BYP
+      - LBLM11A_3:BYP
+      - TMITLOSS:BYP
       sum_l_meters: 1009.649
       type: WIRE
