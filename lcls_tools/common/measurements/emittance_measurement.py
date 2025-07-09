@@ -186,6 +186,7 @@ class QuadScanEmittance(Measurement):
 
     rmat: Optional[ndarray] = None
     design_twiss: Optional[dict] = None  # design twiss values
+    physics_model: Optional[str] = "BMAD"
 
     wait_time: PositiveFloat = 1.0
 
@@ -234,6 +235,7 @@ class QuadScanEmittance(Measurement):
             optics = quad_scan_optics(
                 self.magnet_name,
                 self.device_measurement.device.name,
+                physics_model=self.physics_model,
             )
 
             self.rmat = optics["rmat"]
