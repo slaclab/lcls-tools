@@ -24,7 +24,7 @@ def compute_emit_bmag(
     Parameters
     ----------
     beamsize_squared : numpy.ndarray
-        Array of shape (batchshape x n_measurements), representing the mean-square
+        Array of shape (batchshape x n_measurements x 1), representing the mean-square
         beamsize outputs in [mm^2].
 
     rmat : numpy.ndarray
@@ -69,8 +69,6 @@ def compute_emit_bmag(
     amat = np.stack((r11**2, 2.0 * r11 * r12, r12**2), axis=-1)
     # amat result (batchshape x nsteps x 3)
 
-    beamsize_squared = np.expand_dims(beamsize_squared, -1)
-
     def beam_matrix_tuple(params):
         """
         converts fit parameters (batchshape x 3), containing [lambda1, lambda2, c],
@@ -100,7 +98,7 @@ def compute_emit_bmag(
             sig = torch.stack(beam_matrix_tuple(params), dim=-1).unsqueeze(-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
             total_abs_error = (
-                (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared)).abs().sum()
+                (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared)).abs().nansum()
             )
             return total_abs_error
 
@@ -120,7 +118,7 @@ def compute_emit_bmag(
             params = np.reshape(params, [*beamsize_squared.shape[:-2], 3])
             sig = np.expand_dims(np.stack(beam_matrix_tuple(params), axis=-1), axis=-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
-            total_abs_error = np.sum(
+            total_abs_error = np.nansum(
                 np.abs(np.sqrt(amat @ sig) - np.sqrt(beamsize_squared))
             )
             return total_abs_error

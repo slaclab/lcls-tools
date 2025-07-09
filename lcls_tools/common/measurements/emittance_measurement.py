@@ -368,7 +368,7 @@ def compute_emit_bmag_quad_scan(
         describing the transport from the end of the measurement quad to the observation screen.
 
     twiss_design : numpy.ndarray, optional
-        Array of shape (batchshape x 1 x 2) designating the design (beta, alpha)
+        Array of shape (batchshape x 2) designating the design (beta, alpha)
         twiss parameters at the screen.
 
     thin_lens : bool, optional
@@ -397,6 +397,12 @@ def compute_emit_bmag_quad_scan(
     )  # result shape (batchshape x nsteps x 2 x 2)
     total_rmat = np.expand_dims(rmat, -3) @ quad_rmat
     # result shape (batchshape x nsteps x 2 x 2)
+
+    # reshape inputs
+    beamsize_squared = np.expand_dims(beamsize_squared, -1)
+    twiss_design = (
+        np.expand_dims(twiss_design, -2) if twiss_design is not None else None
+    )
 
     # compute emittance
     rv = compute_emit_bmag(beamsize_squared, total_rmat, twiss_design, maxiter)
@@ -509,9 +515,7 @@ def compute_emit_bmag_quad_scan_machine_units(
             beamsize_squared=beamsizes_squared_list[i],
             q_len=q_len,
             rmat=rmat[i],
-            twiss_design=(
-                np.expand_dims(twiss_design[i], 0) if twiss_design is not None else None
-            ),
+            twiss_design=(twiss_design[i] if twiss_design is not None else None),
             thin_lens=thin_lens,
             maxiter=maxiter,
         )
