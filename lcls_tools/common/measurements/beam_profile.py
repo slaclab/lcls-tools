@@ -16,6 +16,7 @@ import lcls_tools
 class BeamProfileMeasurementResult(lcls_tools.common.BaseModel):
     """
     Class that contains the results of a beam profile measurement
+    (for any set of axes)
 
     Attributes
     ----------
@@ -23,6 +24,8 @@ class BeamProfileMeasurementResult(lcls_tools.common.BaseModel):
         Numpy array of rms sizes of the beam in microns.
     centroids : ndarray
         Numpy array of centroids of the beam in microns.
+    total_intensities : ndarray
+        Numpy array of total intensities of the beam.
     metadata : Any
         Metadata information related to the measurement.
 
@@ -33,12 +36,13 @@ class BeamProfileMeasurementResult(lcls_tools.common.BaseModel):
     total_intensities: Optional[NDArrayAnnotatedType] = None
     metadata: SerializeAsAny[Any]
 
-    model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid")
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class BeamProfileMeasurement(Measurement):
     """
     Class that allows for beam profile measurements and fitting
+    (for any set of axes)
     ------------------------
     Arguments:
     name: str (name of measurement default is beam_profile),

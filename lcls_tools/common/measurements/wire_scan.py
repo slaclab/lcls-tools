@@ -3,7 +3,6 @@ from typing import Optional
 from lcls_tools.common.devices.wire import Wire
 from lcls_tools.common.devices.reader import create_lblm
 from lcls_tools.common.data.fit.projection import ProjectionFit
-from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.wire_scan_results import (
     WireBeamProfileMeasurementResult,
     ProfileMeasurement,
@@ -21,8 +20,10 @@ from lcls_tools.common.measurements.tmit_loss import TMITLoss
 import numpy as np
 from typing_extensions import Self
 
+from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurement
 
-class WireBeamProfileMeasurement(Measurement):
+
+class WireBeamProfileMeasurement(BeamProfileMeasurement):
     """
     Performs a wire scan measurement and fits beam profiles.
 
@@ -45,6 +46,15 @@ class WireBeamProfileMeasurement(Measurement):
     devices: Optional[dict] = None
     data: Optional[dict] = None
     profile_measurements: Optional[dict] = None
+
+    # alias so beam_profile_device can also be accessed with name my_wire
+    @property
+    def my_wire(self) -> Wire:
+        return self.beam_profile_device
+
+    @my_wire.setter
+    def my_wire(self, value):
+        self.beam_profile_device = value
 
     @model_validator(mode="after")
     def run_setup(self) -> Self:

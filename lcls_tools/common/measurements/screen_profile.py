@@ -53,7 +53,6 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
     fit_profile: bool = True
     ------------------------
     Methods:
-    single_measure: measures device and returns raw and processed image
     measure: does multiple measurements and has an option to fit the image
              profiles
 
@@ -70,13 +69,10 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
 
     def measure(self) -> ScreenBeamProfileMeasurementResult:
         """
-        Measurement function that takes in n_shots as argument
-        where n_shots is the number of image profiles
-        we would like to measure. Invokes single_measure per shot,
-        storing them in a dictionary sorted by shot number
-        Then if self.fit_profile = True, fits the profile of the beam
-        and concatenates results with the image dictionary sorted by
-        shot number
+        Measurement takes self.n_shots number of images and stores them
+        in a list, processes them, and if self.fit_profile = True,
+        fits the profile of the beam for each image. The results are
+        then returned in a ScreenBeamProfileMeasurementResult.
         """
         images = []
         while len(images) < self.n_shots:
@@ -107,6 +103,7 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
         return ScreenBeamProfileMeasurementResult(
             raw_images=images,
             processed_images=processed_images,
+            rms_sizes_all=rms_sizes_all,
             rms_sizes=rms_sizes if rms_sizes.size > 0 else None,
             centroids=centroids if centroids.size > 0 else None,
             total_intensities=total_intensities if total_intensities.size > 0 else None,
