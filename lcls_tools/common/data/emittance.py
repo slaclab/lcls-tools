@@ -33,8 +33,12 @@ def compute_emit_bmag(
         point in the beamline to the locations at which each beamsize was observed.
 
     twiss_design : numpy.ndarray, optional
-        Array of shape (2,) or (batchshape x 2) designating the design (beta, alpha)
-        twiss parameters at the screen.
+        Array of shape (batchshape x n_measurements x 2) designating the design (beta, alpha)
+        twiss parameters at each measurement location. 
+        Note that it is also possible to pass an array of shape (batchshape x 1 x 2),
+        which will result in broadcasting a single set of design twiss parameters
+        to each measurement in the respective batch for the calculation of Bmag
+        (useful for quad scans).
 
     maxiter : int, optional
         Maximum number of iterations to perform in nonlinear fitting (minimization algorithm).
@@ -194,10 +198,10 @@ def compute_emit_bmag(
     # compute bmag if twiss_design is provided
     if twiss_design is not None:
         beta_design, alpha_design = (
-            twiss_design[..., 0:1],
-            twiss_design[..., 1:2],
+            twiss_design[..., 0],
+            twiss_design[..., 1],
         )
-        # results shape batchshape x 1
+        # shape batchshape x nsteps x 1 (multi-device) or batchshape x 1 (quad scan)
 
         # result batchshape x 3 containing [beta, alpha, gamma]
         rv["bmag"] = bmag_func(
