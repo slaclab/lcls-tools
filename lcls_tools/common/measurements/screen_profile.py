@@ -25,6 +25,8 @@ class ScreenBeamProfileMeasurementResult(BeamProfileMeasurementResult):
         Numpy array of raw images taken during the measurement
     processed_images : ndarray
         Numpy array of processed images taken during the measurement
+    rms_sizes_all: ndarray
+        Numpy array of rms sizes for all shots for each axis (um)
     rms_sizes : ndarray
         Numpy array of rms sizes of the beam in microns.
     centroids : ndarray
@@ -38,6 +40,7 @@ class ScreenBeamProfileMeasurementResult(BeamProfileMeasurementResult):
 
     raw_images: NDArrayAnnotatedType
     processed_images: NDArrayAnnotatedType
+    rms_sizes_all: NDArrayAnnotatedType
 
     model_config = ConfigDict(arbitrary_types_allowed=True, extra="forbid")
 
