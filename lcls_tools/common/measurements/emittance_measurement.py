@@ -15,7 +15,7 @@ from pydantic import (
 from lcls_tools.common.data.emittance import (
     compute_emit_bmag_machine_units,
 )
-from lcls_tools.common.data.model_general_calcs import get_optics
+from lcls_tools.common.data.model_general_calcs import quad_scan_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
@@ -186,6 +186,7 @@ class QuadScanEmittance(Measurement):
 
     rmat: Optional[ndarray] = None
     design_twiss: Optional[dict] = None  # design twiss values
+    physics_model: Optional[str] = "BMAD"
 
     wait_time: PositiveFloat = 1.0
 
@@ -231,9 +232,10 @@ class QuadScanEmittance(Measurement):
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
         if self.rmat is None and self.design_twiss is None:
-            optics = get_optics(
+            optics = quad_scan_optics(
                 self.magnet_name,
                 self.device_measurement.device.name,
+                physics_model=self.physics_model,
             )
 
             self.rmat = optics["rmat"]
