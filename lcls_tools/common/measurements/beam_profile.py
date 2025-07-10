@@ -61,4 +61,4 @@ class BeamProfileMeasurement(Measurement):
         """
         Measure the beam profile and return a BeamProfileMeasurementResult
         """
-        raise NotImplementedError
+        pass
