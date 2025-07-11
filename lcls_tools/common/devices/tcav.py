@@ -80,7 +80,7 @@ class TCAVControlInformation(ControlInformation):
         Raises:
             TimeoutError: If control variables are not returned within the timeout duration.
         """
-        amplitude_feedback_options = self.PVs.amp_fbenb.get_ctrlvars(timeout=2.5)
+        amplitude_feedback_options = self.PVs.amplitude_fbenb.get_ctrlvars(timeout=2.5)
         if not amplitude_feedback_options:
             raise TimeoutError(
                 "Timeout while retrieving control variables from amp_fbenb PV."

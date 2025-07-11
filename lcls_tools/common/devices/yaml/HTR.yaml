@@ -968,7 +968,12 @@ screens:
   OTR0H04:
     controls_information:
       PVs:
+        filter_1_control: OTRS:HTR:330:FLT1_CTRL
+        filter_1_status: OTRS:HTR:330:FLT1_STS
+        filter_2_control: OTRS:HTR:330:FLT2_CTRL
+        filter_2_status: OTRS:HTR:330:FLT2_STS
         image: OTRS:HTR:330:Image:ArrayData
+        lamp_power: OTRS:HTR:330:TGT_LAMP_PWR
         n_bits: OTRS:HTR:330:N_OF_BITS
         n_col: OTRS:HTR:330:Image:ArraySize1_RBV
         n_row: OTRS:HTR:330:Image:ArraySize0_RBV
@@ -978,6 +983,8 @@ screens:
         ref_rate_vme: OTRS:HTR:330:FRAME_RATE
         resolution: OTRS:HTR:330:RESOLUTION
         sys_type: OTRS:HTR:330:SYS_TYPE
+        target_control: OTRS:HTR:330:PNEUMATIC
+        target_status: OTRS:HTR:330:TGT_STS
       control_name: OTRS:HTR:330
       pv_cache:
         orient_x: Negative
@@ -994,12 +1001,25 @@ screens:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 0.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 24.345
       type: PROF
   YAGH1:
     controls_information:
       PVs:
+        filter_1_control: YAGS:HTR:625:FLT1_CTRL
+        filter_1_status: YAGS:HTR:625:FLT1_STS
+        filter_2_control: YAGS:HTR:625:FLT2_CTRL
+        filter_2_status: YAGS:HTR:625:FLT2_STS
         image: YAGS:HTR:625:Image:ArrayData
+        lamp_power: YAGS:HTR:625:TGT_LAMP_PWR
         n_bits: YAGS:HTR:625:N_OF_BITS
         n_col: YAGS:HTR:625:Image:ArraySize1_RBV
         n_row: YAGS:HTR:625:Image:ArraySize0_RBV
@@ -1009,6 +1029,8 @@ screens:
         ref_rate_vme: YAGS:HTR:625:FRAME_RATE
         resolution: YAGS:HTR:625:RESOLUTION
         sys_type: YAGS:HTR:625:SYS_TYPE
+        target_control: YAGS:HTR:625:PNEUMATIC
+        target_status: YAGS:HTR:625:TGT_STS
       control_name: YAGS:HTR:625
       pv_cache:
         orient_x: Negative
@@ -1025,12 +1047,25 @@ screens:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 32.253
       type: PROF
   YAGH2:
     controls_information:
       PVs:
+        filter_1_control: YAGS:HTR:675:FLT1_CTRL
+        filter_1_status: YAGS:HTR:675:FLT1_STS
+        filter_2_control: YAGS:HTR:675:FLT2_CTRL
+        filter_2_status: YAGS:HTR:675:FLT2_STS
         image: YAGS:HTR:675:Image:ArrayData
+        lamp_power: YAGS:HTR:675:TGT_LAMP_PWR
         n_bits: YAGS:HTR:675:N_OF_BITS
         n_col: YAGS:HTR:675:Image:ArraySize1_RBV
         n_row: YAGS:HTR:675:Image:ArraySize0_RBV
@@ -1040,6 +1075,8 @@ screens:
         ref_rate_vme: YAGS:HTR:675:FRAME_RATE
         resolution: YAGS:HTR:675:RESOLUTION
         sys_type: YAGS:HTR:675:SYS_TYPE
+        target_control: YAGS:HTR:675:PNEUMATIC
+        target_status: YAGS:HTR:675:TGT_STS
       control_name: YAGS:HTR:675
       pv_cache:
         orient_x: Negative
@@ -1056,6 +1093,14 @@ screens:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 33.311
       type: PROF
 wires:

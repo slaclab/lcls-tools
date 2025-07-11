@@ -191,11 +191,14 @@ screens:
       area: SPEC
       beam_path:
       - CU_SPEC
+      hardware: {}
       sum_l_meters: 21.782
       type: PROF
   YAGS1:
     controls_information:
       PVs:
+        filter_1_status: YAGS:IN20:921:FLT1_STS
+        filter_2_status: YAGS:IN20:921:FLT2_STS
         image: YAGS:IN20:921:IMAGE
         n_bits: YAGS:IN20:921:N_OF_BITS
         n_col: YAGS:IN20:921:N_OF_COL
@@ -205,6 +208,8 @@ screens:
         ref_rate_vme: YAGS:IN20:921:FRAME_RATE
         resolution: YAGS:IN20:921:RESOLUTION
         sys_type: YAGS:IN20:921:SYS_TYPE
+        target_control: YAGS:IN20:921:PNEUMATIC
+        target_status: YAGS:IN20:921:TGT_STS
       control_name: YAGS:IN20:921
       pv_cache:
         orient_x: Negative
@@ -213,11 +218,14 @@ screens:
       area: SPEC
       beam_path:
       - CU_SPEC
+      hardware: {}
       sum_l_meters: 18.588
       type: PROF
   YAGS2:
     controls_information:
       PVs:
+        filter_1_status: YAGS:IN20:995:FLT1_STS
+        filter_2_status: YAGS:IN20:995:FLT2_STS
         image: YAGS:IN20:995:IMAGE
         n_bits: YAGS:IN20:995:N_OF_BITS
         n_col: YAGS:IN20:995:N_OF_COL
@@ -227,6 +235,8 @@ screens:
         ref_rate_vme: YAGS:IN20:995:FRAME_RATE
         resolution: YAGS:IN20:995:RESOLUTION
         sys_type: YAGS:IN20:995:SYS_TYPE
+        target_control: YAGS:IN20:995:PNEUMATIC
+        target_status: YAGS:IN20:995:TGT_STS
       control_name: YAGS:IN20:995
       pv_cache:
         orient_x: Negative
@@ -235,5 +245,6 @@ screens:
       area: SPEC
       beam_path:
       - CU_SPEC
+      hardware: {}
       sum_l_meters: 21.414
       type: PROF

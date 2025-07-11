@@ -42,6 +42,7 @@ class Metadata(lcls_tools.common.BaseModel):
     type: Optional[str] = None
     safe_level: Optional[float] = None
     read_tolerance: Optional[float] = None
+    hardware: Optional[dict] = None
 
     def __init__(
         self,
