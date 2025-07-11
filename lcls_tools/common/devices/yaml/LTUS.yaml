@@ -2758,6 +2758,7 @@ screens:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      hardware: {}
       sum_l_meters: 3339.057
       type: PROF
 wires:

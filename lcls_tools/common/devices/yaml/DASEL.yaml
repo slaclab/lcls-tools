@@ -562,7 +562,12 @@ screens:
   PRDAS12:
     controls_information:
       PVs:
+        filter_1_control: PROF:DASEL:440:FLT1_CTRL
+        filter_1_status: PROF:DASEL:440:FLT1_STS
+        filter_2_control: PROF:DASEL:440:FLT2_CTRL
+        filter_2_status: PROF:DASEL:440:FLT2_STS
         image: PROF:DASEL:440:Image:ArrayData
+        lamp_power: PROF:DASEL:440:TGT_LAMP_PWR
         n_bits: PROF:DASEL:440:N_OF_BITS
         n_col: PROF:DASEL:440:Image:ArraySize1_RBV
         n_row: PROF:DASEL:440:Image:ArraySize0_RBV
@@ -572,6 +577,8 @@ screens:
         ref_rate_vme: PROF:DASEL:440:FRAME_RATE
         resolution: PROF:DASEL:440:RESOLUTION
         sys_type: PROF:DASEL:440:SYS_TYPE
+        target_control: PROF:DASEL:440:PNEUMATIC
+        target_status: PROF:DASEL:440:TGT_STS
       control_name: PROF:DASEL:440
       pv_cache:
         orient_x: Negative
@@ -580,12 +587,25 @@ screens:
       area: DASEL
       beam_path:
       - SC_DASEL
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 0.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 3014.49
       type: PROF
   PRDAS14:
     controls_information:
       PVs:
+        filter_1_control: PROF:DASEL:655:FLT1_CTRL
+        filter_1_status: PROF:DASEL:655:FLT1_STS
+        filter_2_control: PROF:DASEL:655:FLT2_CTRL
+        filter_2_status: PROF:DASEL:655:FLT2_STS
         image: PROF:DASEL:655:Image:ArrayData
+        lamp_power: PROF:DASEL:655:TGT_LAMP_PWR
         n_bits: PROF:DASEL:655:N_OF_BITS
         n_col: PROF:DASEL:655:Image:ArraySize1_RBV
         n_row: PROF:DASEL:655:Image:ArraySize0_RBV
@@ -594,6 +614,8 @@ screens:
         ref_rate: PROF:DASEL:655:ArrayRate_RBV
         ref_rate_vme: PROF:DASEL:655:FRAME_RATE
         resolution: PROF:DASEL:655:RESOLUTION
+        target_control: PROF:DASEL:655:PNEUMATIC
+        target_status: PROF:DASEL:655:TGT_STS
       control_name: PROF:DASEL:655
       pv_cache:
         orient_x: Negative
@@ -602,12 +624,25 @@ screens:
       area: DASEL
       beam_path:
       - SC_DASEL
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 0.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 3073.484
       type: PROF
   PRDAS17:
     controls_information:
       PVs:
+        filter_1_control: PROF:DASEL:818:FLT1_CTRL
+        filter_1_status: PROF:DASEL:818:FLT1_STS
+        filter_2_control: PROF:DASEL:818:FLT2_CTRL
+        filter_2_status: PROF:DASEL:818:FLT2_STS
         image: PROF:DASEL:818:Image:ArrayData
+        lamp_power: PROF:DASEL:818:TGT_LAMP_PWR
         n_bits: PROF:DASEL:818:N_OF_BITS
         n_col: PROF:DASEL:818:Image:ArraySize1_RBV
         n_row: PROF:DASEL:818:Image:ArraySize0_RBV
@@ -616,6 +651,8 @@ screens:
         ref_rate: PROF:DASEL:818:ArrayRate_RBV
         ref_rate_vme: PROF:DASEL:818:FRAME_RATE
         resolution: PROF:DASEL:818:RESOLUTION
+        target_control: PROF:DASEL:818:PNEUMATIC
+        target_status: PROF:DASEL:818:TGT_STS
       control_name: PROF:DASEL:818
       pv_cache:
         orient_x: Negative
@@ -624,5 +661,13 @@ screens:
       area: DASEL
       beam_path:
       - SC_DASEL
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 0.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 3118.053
       type: PROF

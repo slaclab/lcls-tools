@@ -306,7 +306,12 @@ screens:
   YAG02:
     controls_information:
       PVs:
+        filter_1_control: YAGS:IN20:241:FLT1_CTRL
+        filter_1_status: YAGS:IN20:241:FLT1_STS
+        filter_2_control: YAGS:IN20:241:FLT2_CTRL
+        filter_2_status: YAGS:IN20:241:FLT2_STS
         image: YAGS:IN20:241:Image:ArrayData
+        lamp_power: YAGS:IN20:241:TGT_LAMP_PWR
         n_bits: YAGS:IN20:241:N_OF_BITS
         n_col: YAGS:IN20:241:Image:ArraySize1_RBV
         n_row: YAGS:IN20:241:Image:ArraySize0_RBV
@@ -316,6 +321,8 @@ screens:
         ref_rate_vme: YAGS:IN20:241:FRAME_RATE
         resolution: YAGS:IN20:241:RESOLUTION
         sys_type: YAGS:IN20:241:SYS_TYPE
+        target_control: YAGS:IN20:241:PNEUMATIC
+        target_status: YAGS:IN20:241:TGT_STS
       control_name: YAGS:IN20:241
       pv_cache:
         orient_x: Negative
@@ -330,11 +337,21 @@ screens:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 1.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 1.388
       type: PROF
   YAG03:
     controls_information:
       PVs:
+        filter_1_status: YAGS:IN20:351:FLT1_STS
+        filter_2_status: YAGS:IN20:351:FLT2_STS
         image: YAGS:IN20:351:IMAGE
         n_bits: YAGS:IN20:351:N_OF_BITS
         n_col: YAGS:IN20:351:N_OF_COL
@@ -344,6 +361,8 @@ screens:
         ref_rate_vme: YAGS:IN20:351:FRAME_RATE
         resolution: YAGS:IN20:351:RESOLUTION
         sys_type: YAGS:IN20:351:SYS_TYPE
+        target_control: YAGS:IN20:351:PNEUMATIC
+        target_status: YAGS:IN20:351:TGT_STS
       control_name: YAGS:IN20:351
       pv_cache:
         orient_x: Negative
@@ -358,5 +377,6 @@ screens:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      hardware: {}
       sum_l_meters: 4.615
       type: PROF

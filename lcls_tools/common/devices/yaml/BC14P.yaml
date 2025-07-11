@@ -74,5 +74,6 @@ screens:
       area: BC14P
       beam_path:
       - F2_POSI
+      hardware: {}
       sum_l_meters: 363.016
       type: PROF

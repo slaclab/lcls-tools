@@ -352,11 +352,16 @@ class YAMLGenerator:
             "SYS_TYPE": "sys_type",
             "FRAME_RATE": "ref_rate_vme",
             "ArrayRate_RBV": "ref_rate",
+            "PNEUMATIC": "target_control",
+            "TGT_STS": "target_status",
+            "FLT1_STS": "filter_1_status",
+            "FLT1_CTRL": "filter_1_control",
+            "FLT2_STS": "filter_2_status",
+            "FLT2_CTRL": "filter_2_control",
+            "TGT_LAMP_PWR": "lamp_power",
             "X_ORIENT": "orient_x",
             "Y_ORIENT": "orient_y",
         }
-        # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
-        additional_metadata_data = get_screen_metadata()
         basic_screen_data = self.extract_devices(
             area=area,
             required_types=required_screen_types,
@@ -364,6 +369,7 @@ class YAMLGenerator:
         )
         if basic_screen_data:
             # should be structured {MAD-NAME : {field_name : value, field_name_2 : value}, ... }
+            additional_metadata_data = get_screen_metadata(basic_screen_data)
             additional_controls_data = get_screen_controls_information(
                 basic_screen_data
             )
@@ -491,14 +497,16 @@ class YAMLGenerator:
         additional_filter_constraints = {"Engineering Name": "TRANS_DEFL"}
         # add pvs we care about
         possible_tcav_pvs = {
-            "AREQ": "amp_set",
-            "PREQ": "phase_set",
+            "AREQ": "amplitude",
+            "PREQ": "phase",
             "RF_ENABLE": "rf_enable",
-            "AFBENB": "amp_fbenb",
+            "AFBENB": "amplitude_fbenb",
             "PFBENB": "phase_fbenb",
-            "AFBST": "amp_fbst",
+            "AFBST": "amplitude_fbst",
             "PFBST": "phase_fbst",
             "MODECFG": "mode_config",
+            "PACT_AVGNT": "phase_avgnt",
+            "AMPL_W0CH0": "amplitude_wocho",
         }
 
         basic_tcav_data = self.extract_devices(

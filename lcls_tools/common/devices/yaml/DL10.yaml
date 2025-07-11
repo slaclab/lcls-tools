@@ -409,6 +409,7 @@ screens:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 14.237
       type: PROF
   PR10711:
@@ -420,6 +421,7 @@ screens:
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 17.354
       type: PROF
 wires:
