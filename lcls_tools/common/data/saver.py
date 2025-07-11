@@ -75,6 +75,7 @@ class H5Saver:
             # Handle dictionaries
             if isinstance(val, dict):
                 group = f.create_group(key, track_order=True)
+                group.attrs["_type"] = "dict"
                 if not val:
                     group.attrs["is_empty_dict"] = True  # Mark empty dicts
                 for k, v in val.items():
@@ -82,7 +83,7 @@ class H5Saver:
             # Handle pandas DataFrames
             elif isinstance(val, pd.DataFrame):
                 group = f.create_group(key)
-                group.attrs["pandas_type"] = "dataframe"
+                group.attrs["_type"] = "dataframe"
                 group.attrs["columns"] = list(val.columns)
                 group.attrs["dtypes"] = [str(dt) for dt in val.dtypes]
                 for col in val.columns:
@@ -126,13 +127,13 @@ class H5Saver:
                         )
                     # Save object arrays as group
                     group = f.create_group(key, track_order=True)
-                    group.attrs["_ndarray"] = True
+                    group.attrs["_type"] = "ndarray_object"
                     for i, ele in enumerate(val.tolist()):
                         recursive_save(str(i), ele, group)
                 else:
                     # Save homogeneous arrays as dataset
-                    f.create_dataset(key, data=val, track_order=True)
-                    f[key].attrs["_type"] = "ndarray"
+                    dset = f.create_dataset(key, data=val, track_order=True)
+                    dset.attrs["_type"] = "ndarray"
             # Handle lists
             elif isinstance(val, list):
                 # Disallow lists of dicts or heterogeneous lists with dicts, but only if not empty
@@ -145,6 +146,7 @@ class H5Saver:
                         "Heterogeneous lists containing dictionaries are not supported."
                     )
                 group = f.create_group(key, track_order=True)
+                group.attrs["_type"] = "list"
                 if not val:
                     group.attrs["_empty_list"] = True  # Mark empty list
                 for i, ele in enumerate(val):
@@ -157,6 +159,7 @@ class H5Saver:
                         "Tuples of dictionaries are not supported."
                     )
                 group = f.create_group(key, track_order=True)
+                group.attrs["_type"] = "tuple"
                 group.attrs["_tuple"] = True
                 if not val:
                     group.attrs["_empty_tuple"] = True  # Mark empty tuple
@@ -164,21 +167,22 @@ class H5Saver:
                     recursive_save(str(i), ele, group)
             # Handle PosixPath
             elif isinstance(val, PosixPath):
-                f.create_dataset(key, data=str(val), dtype=h5str, track_order=True)
-                f[key].attrs["_type"] = "posixpath"
+                dset = f.create_dataset(
+                    key, data=str(val), dtype=h5str, track_order=True
+                )
+                dset.attrs["_type"] = "posixpath"
             # Handle None
             elif val is None:
-                f.create_dataset(key, data="None", dtype=h5str, track_order=True)
-                f[key].attrs["_type"] = "none"
+                dset = f.create_dataset(key, data="None", dtype=h5str, track_order=True)
+                dset.attrs["_type"] = "none"
             # Handle scalars
             elif isinstance(val, self.supported_scalars):
-                f.create_dataset(key, data=val, track_order=True)
-                f[key].attrs["_type"] = type(val).__name__
+                dset = f.create_dataset(key, data=val, track_order=True)
+                dset.attrs["_type"] = type(val).__name__
             # Raise for unsupported types
             else:
                 raise NotImplementedError(f"Type {type(val)} is not supported.")
 
-        # Open file and start recursive save
         with h5py.File(filepath, "w") as file:
             for k, v in data.items():
                 recursive_save(k, v, file)
@@ -219,8 +223,15 @@ class H5Saver:
             """
             # Handle groups (dict, list, tuple, ndarray, DataFrame, etc.)
             if isinstance(f, h5py.Group):
+                group_type = f.attrs.get("_type", None)
+                if group_type is not None:
+                    group_type = (
+                        group_type
+                        if isinstance(group_type, str)
+                        else group_type.decode("utf-8")
+                    )
                 # Handle DataFrame
-                if "pandas_type" in f.attrs and f.attrs["pandas_type"] == "dataframe":
+                if group_type == "dataframe":
                     columns = f.attrs["columns"]
                     dtypes = f.attrs.get("dtypes", None)
                     data = {}
@@ -252,38 +263,32 @@ class H5Saver:
                             else:
                                 df[col] = df[col].astype(dtype, copy=False)
                     return df
-                # Handle empty dict
-                elif "is_empty_dict" in f.attrs and f.attrs["is_empty_dict"]:
-                    return {}
-                # Handle empty list
-                elif "_empty_list" in f.attrs and f.attrs["_empty_list"]:
-                    return []
-                # Handle empty tuple
-                elif (
-                    "_tuple" in f.attrs
-                    and "_empty_tuple" in f.attrs
-                    and f.attrs["_empty_tuple"]
-                ):
-                    return tuple()
+                # Handle dict
+                elif group_type == "dict":
+                    return {k: recursive_load(f[k]) for k in f.keys()}
+                # Handle list
+                elif group_type == "list":
+                    if "_empty_list" in f.attrs and f.attrs["_empty_list"]:
+                        return []
+                    items = []
+                    for k in sorted(f.keys(), key=lambda x: int(x)):
+                        items.append(recursive_load(f[k]))
+                    return items
                 # Handle tuple
-                elif "_tuple" in f.attrs:
+                elif group_type == "tuple":
+                    if "_empty_tuple" in f.attrs and f.attrs["_empty_tuple"]:
+                        return tuple()
                     items = []
                     for k in sorted(f.keys(), key=lambda x: int(x)):
                         items.append(recursive_load(f[k]))
                     return tuple(items)
                 # Handle object ndarray
-                elif "_ndarray" in f.attrs:
+                elif group_type == "ndarray_object":
                     items = []
                     for k in sorted(f.keys(), key=lambda x: int(x)):
                         items.append(recursive_load(f[k]))
                     return np.array(items, dtype=object)
-                # Handle list (integer keys)
-                elif all(k.isdigit() for k in f.keys()):
-                    items = []
-                    for k in sorted(f.keys(), key=lambda x: int(x)):
-                        items.append(recursive_load(f[k]))
-                    return items
-                # Handle dict
+                # Fallback: treat as dict
                 else:
                     return {k: recursive_load(f[k]) for k in f.keys()}
             # Handle datasets (scalars, arrays, etc.)
@@ -317,6 +322,5 @@ class H5Saver:
             else:
                 return f[()]
 
-        # Open file and start recursive load
         with h5py.File(filepath, "r") as file:
             return {k: recursive_load(file[k]) for k in file.keys()}
