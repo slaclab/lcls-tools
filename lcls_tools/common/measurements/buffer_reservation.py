@@ -16,7 +16,7 @@ def reserve_buffer(
 ):
     user = os.getlogin()
     if logger:
-        logging.info("Reserving buffer...")
+        logger.info("Reserving buffer...")
 
     if beampath.startswith("SC"):
         if destination_mode not in ["Disable", "Exclusion", "Inclusion"]:
