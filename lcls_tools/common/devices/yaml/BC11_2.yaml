@@ -150,6 +150,7 @@ screens:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 47.105
       type: PROF
   PR11375:
@@ -162,6 +163,7 @@ screens:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 50.557
       type: PROF
   TD11390:
@@ -174,5 +176,6 @@ screens:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 52.375
       type: PROF

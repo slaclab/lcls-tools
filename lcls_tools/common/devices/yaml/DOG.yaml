@@ -1426,7 +1426,12 @@ screens:
   OTRDOG:
     controls_information:
       PVs:
+        filter_1_control: PROF:DOG:195:FLT1_CTRL
+        filter_1_status: PROF:DOG:195:FLT1_STS
+        filter_2_control: PROF:DOG:195:FLT2_CTRL
+        filter_2_status: PROF:DOG:195:FLT2_STS
         image: PROF:DOG:195:Image:ArrayData
+        lamp_power: PROF:DOG:195:TGT_LAMP_PWR
         n_bits: PROF:DOG:195:N_OF_BITS
         n_col: PROF:DOG:195:Image:ArraySize1_RBV
         n_row: PROF:DOG:195:Image:ArraySize0_RBV
@@ -1436,6 +1441,8 @@ screens:
         ref_rate_vme: PROF:DOG:195:FRAME_RATE
         resolution: PROF:DOG:195:RESOLUTION
         sys_type: PROF:DOG:195:SYS_TYPE
+        target_control: PROF:DOG:195:PNEUMATIC
+        target_status: PROF:DOG:195:TGT_STS
       control_name: PROF:DOG:195
       pv_cache:
         orient_x: Negative
@@ -1451,6 +1458,14 @@ screens:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 729.924
       type: PROF
 wires:

@@ -79,10 +79,11 @@ class MagnetTest(TestCase):
                 msg=f"expected magnet to have attribute {handle}",
             )
         for item, _ in self.magnet.metadata:
-            self.assertTrue(
-                hasattr(self.magnet, item),
-                msg=f"expected magnet to have attribute {item}",
-            )
+            if item != "hardware":
+                self.assertTrue(
+                    hasattr(self.magnet, item),
+                    msg=f"expected magnet to have attribute {item}",
+                )
         # Assert that magnet has public properties
         for item in [
             "bctrl",

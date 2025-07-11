@@ -852,7 +852,12 @@ screens:
   OTRC006:
     controls_information:
       PVs:
+        filter_1_control: PROF:COL0:535:FLT1_CTRL
+        filter_1_status: PROF:COL0:535:FLT1_STS
+        filter_2_control: PROF:COL0:535:FLT2_CTRL
+        filter_2_status: PROF:COL0:535:FLT2_STS
         image: PROF:COL0:535:Image:ArrayData
+        lamp_power: PROF:COL0:535:TGT_LAMP_PWR
         n_bits: PROF:COL0:535:N_OF_BITS
         n_col: PROF:COL0:535:Image:ArraySize1_RBV
         n_row: PROF:COL0:535:Image:ArraySize0_RBV
@@ -862,6 +867,8 @@ screens:
         ref_rate_vme: PROF:COL0:535:FRAME_RATE
         resolution: PROF:COL0:535:RESOLUTION
         sys_type: PROF:COL0:535:SYS_TYPE
+        target_control: PROF:COL0:535:PNEUMATIC
+        target_status: PROF:COL0:535:TGT_STS
       control_name: PROF:COL0:535
       pv_cache:
         orient_x: Negative
@@ -877,5 +884,13 @@ screens:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 0.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 63.199
       type: PROF
