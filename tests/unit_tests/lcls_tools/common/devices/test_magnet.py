@@ -79,7 +79,7 @@ class MagnetTest(TestCase):
                 msg=f"expected magnet to have attribute {handle}",
             )
         for item, _ in self.magnet.metadata:
-            if item != 'hardware':
+            if item != "hardware":
                 self.assertTrue(
                     hasattr(self.magnet, item),
                     msg=f"expected magnet to have attribute {item}",
