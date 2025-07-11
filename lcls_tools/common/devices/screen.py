@@ -39,6 +39,14 @@ class ScreenPVSet(PVSet):
     n_bits: PV
     resolution: PV
     sys_type: PV
+    targets_status: Optional[PV] = None
+    filter_1_status: Optional[PV] = None
+    filter_1_control: Optional[PV] = None
+    filter_2_status: Optional[PV] = None
+    filter_2_control: Optional[PV] = None
+    lamp_power: Optional[PV] = None
+    target_control: Optional[PV] = None
+    target_status: Optional[PV] = None
     ref_rate_vme: Optional[PV] = None
     ref_rate: Optional[PV] = None
     orient_x: Optional[PV] = None
@@ -96,6 +104,19 @@ class Screen(Device):
     def image_timestamp(self):
         """Get last timestamp for last PV activity"""
         return self.controls_information.PVs.image.timestamp
+
+    @property
+    def target(self):
+        return self.controls_information.PVs.target_status.get(as_string=True)
+
+    @target.setter
+    @property
+    def target(self, val: str):
+        return self.controls_information.PVs.target_control.put(val)
+
+    @property
+    def target_states(self):
+        return self.controls_information.PVs.target_control.enum_strs
 
     @property
     def orient_x(self):
@@ -171,6 +192,37 @@ class Screen(Device):
     def last_save_filepath(self):
         """Location and filename for the last file saved by this screen (set in save_images())"""
         return self._last_save_filepath
+
+    def filter_in(self, filter_n: int = 1):
+        pvs = self.controls_information.PVs
+        if flt := getattr(pvs, "filter_%s_control", None):
+            flt.put("IN")
+
+    def filter_out(self, filter_n: int = 1):
+        pvs = self.controls_information.PVs
+        if flt := getattr(pvs, "filter_%s_control", None):
+            flt.put("OUT")
+
+    def get_filter_status(self, filter_n: int = 1):
+        pvs = self.controls_information.PVs
+        if flt := getattr(pvs, "filter_%s_status", None):
+            return flt.get()
+
+    def lamp_on(self):
+        pvs = self.controls_information.PVs
+        if lamp := getattr(pvs, "lamp_power", None):
+            return lamp.put("On")
+
+    def lamp_off(self):
+        pvs = self.controls_information.PVs
+        if lamp := getattr(pvs, "lamp_power", None):
+            return lamp.put("Off")
+
+    @property
+    def lamp_states(self):
+        pvs = self.controls_information.PVs
+        if lamp := getattr(pvs, "lamp_power", None):
+            return lamp.enum_strs
 
     def _inserted_check():
         """Check if the screen is inserted"""

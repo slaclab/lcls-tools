@@ -67,6 +67,7 @@ screens:
     metadata:
       area: SPECT2
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   BETA2:
@@ -76,6 +77,7 @@ screens:
     metadata:
       area: SPECT2
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   BETAL:
@@ -85,6 +87,7 @@ screens:
     metadata:
       area: SPECT2
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   CFAR:
@@ -94,6 +97,7 @@ screens:
     metadata:
       area: SPECT2
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   ELANEX:
@@ -103,6 +107,7 @@ screens:
     metadata:
       area: SPECT2
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   WDSOTR:
@@ -114,5 +119,6 @@ screens:
       beam_path:
       - F2_ELEC
       - F2_POSI
+      hardware: {}
       sum_l_meters: 999.253
       type: PROF

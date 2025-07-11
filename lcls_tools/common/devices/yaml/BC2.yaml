@@ -334,6 +334,8 @@ screens:
   OTR21:
     controls_information:
       PVs:
+        filter_1_status: OTRS:LI24:807:FLT1_STS
+        filter_2_status: OTRS:LI24:807:FLT2_STS
         image: OTRS:LI24:807:IMAGE
         n_bits: OTRS:LI24:807:N_OF_BITS
         n_col: OTRS:LI24:807:N_OF_COL
@@ -343,6 +345,8 @@ screens:
         ref_rate_vme: OTRS:LI24:807:FRAME_RATE
         resolution: OTRS:LI24:807:RESOLUTION
         sys_type: OTRS:LI24:807:SYS_TYPE
+        target_control: OTRS:LI24:807:PNEUMATIC
+        target_status: OTRS:LI24:807:TGT_STS
       control_name: OTRS:LI24:807
       pv_cache:
         orient_x: Negative
@@ -356,6 +360,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 410.405
       type: PROF
 wires:
