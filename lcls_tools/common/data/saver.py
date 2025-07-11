@@ -87,20 +87,26 @@ class H5Saver:
                 group.attrs["dtypes"] = [str(dt) for dt in val.dtypes]
                 for col in val.columns:
                     col_data = val[col].values
-                    # Handle string/object columns
-                    if val[col].dtype == np.dtype("O") or np.issubdtype(
-                        val[col].dtype, np.str_
-                    ):
-                        try:
-                            col_data = col_data.astype("float64")
-                            group.create_dataset(col, data=col_data)
-                        except ValueError:
+                    if col_data.dtype == np.dtype("O"):
+                        # Check if all elements are np.ndarray
+                        if all(isinstance(x, np.ndarray) for x in col_data):
+                            # Save as a group of arrays
+                            for i, arr in enumerate(col_data):
+                                group.create_dataset(f"{col}/{i}", data=arr)
+                        # Check for dicts, lists, tuples, or None (unsupported)
+                        elif any(
+                            isinstance(x, (dict, list, tuple)) or x is None
+                            for x in col_data
+                        ):
+                            raise NotImplementedError(
+                                "Saving DataFrame columns containing dict, list, tuple, or None is not supported"
+                            )
+                        else:
+                            # Save as pickled objects or handle accordingly
                             group.create_dataset(
                                 col,
-                                data=col_data.astype(
-                                    h5py.string_dtype(encoding=self.string_dtype)
-                                ),
-                                dtype=h5py.string_dtype(encoding=self.string_dtype),
+                                data=np.array(col_data, dtype=object),
+                                dtype=h5py.special_dtype(vlen=bytes),
                             )
                     else:
                         group.create_dataset(col, data=col_data)
@@ -111,6 +117,12 @@ class H5Saver:
                     if any(isinstance(x, dict) for x in val):
                         raise NotImplementedError(
                             "np.ndarray of dicts is not supported."
+                        )
+                    # Disallow heterogeneous object arrays
+                    types = set(type(x) for x in val)
+                    if len(types) > 1:
+                        raise NotImplementedError(
+                            "Heterogeneous numpy arrays (object dtype with mixed types) are not supported."
                         )
                     # Save object arrays as group
                     group = f.create_group(key, track_order=True)
@@ -211,15 +223,27 @@ class H5Saver:
                 if "pandas_type" in f.attrs and f.attrs["pandas_type"] == "dataframe":
                     columns = f.attrs["columns"]
                     dtypes = f.attrs.get("dtypes", None)
-                    data = {col: f[col][:] for col in columns}
+                    data = {}
                     for col in columns:
-                        if data[col].dtype.kind == "S" or data[col].dtype == object:
-                            data[col] = [
-                                x.decode(self.string_dtype)
-                                if isinstance(x, bytes)
-                                else x
-                                for x in data[col]
+                        if col in f and isinstance(f[col], h5py.Group):
+                            # Column is a group of arrays
+                            col_group = f[col]
+                            arrs = [
+                                col_group[str(i)][()] for i in range(len(col_group))
                             ]
+                            data[col] = arrs
+                        elif col in f:
+                            data[col] = f[col][:]
+                            if data[col].dtype.kind == "S" or data[col].dtype == object:
+                                data[col] = [
+                                    x.decode(self.string_dtype)
+                                    if isinstance(x, bytes)
+                                    else x
+                                    for x in data[col]
+                                ]
+                        else:
+                            # Column is empty (no dataset created)
+                            data[col] = []
                     df = pd.DataFrame(data)
                     if dtypes is not None:
                         for col, dtype in zip(columns, dtypes):

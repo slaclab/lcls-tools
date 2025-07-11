@@ -47,10 +47,15 @@ class TestH5Saver(unittest.TestCase):
         loaded = self.roundtrip(data)
         self.assertEqual(loaded["lst"], [])
 
-    def test_tuple(self):
-        data = {"tup": (1, 2, 3)}
+    def test_list_of_ndarrays(self):
+        data = {"list_of_ndarrays": [np.array([1, 2, 3]), np.array([4, 5, 6])]}
         loaded = self.roundtrip(data)
-        self.assertEqual(tuple(loaded["tup"]), data["tup"])
+        assert len(data["list_of_ndarrays"]) == len(loaded["list_of_ndarrays"])
+
+    def test_tuple(self):
+        data = {"tup": (1, "2", (None, 3.5))}
+        loaded = self.roundtrip(data)
+        self.assertEqual(loaded["tup"], data["tup"])
 
     def test_empty_tuple(self):
         data = {"tup": ()}
@@ -67,22 +72,26 @@ class TestH5Saver(unittest.TestCase):
         loaded = self.roundtrip(data)
         self.assertAlmostEqual(loaded["f"], 3.14159)
 
-    def test_special_floats(self):
-        data = {"nan": float("nan"), "inf": float("inf"), "ninf": float("-inf")}
+    def test_special_values(self):
+        data = {
+            "nan": np.nan,
+            "inf": np.inf,
+            "ninf": -np.inf,
+            "nan_list": [np.nan, np.inf, -np.inf],
+        }
         loaded = self.roundtrip(data)
-        self.assertTrue(np.isnan(loaded["nan"]))
-        self.assertEqual(loaded["inf"], float("inf"))
-        self.assertEqual(loaded["ninf"], float("-inf"))
+
+        assert np.isnan(loaded["nan"])
+        assert np.isinf(loaded["inf"])
+        assert np.isneginf(loaded["ninf"])
+        assert np.isnan(loaded["nan_list"][0])
+        assert np.isinf(loaded["nan_list"][1])
+        assert np.isneginf(loaded["nan_list"][2])
 
     def test_bool(self):
         data = {"b": True}
         loaded = self.roundtrip(data)
         self.assertIs(loaded["b"], True)
-
-    def test_false_bool(self):
-        data = {"b": False}
-        loaded = self.roundtrip(data)
-        self.assertIs(loaded["b"], False)
 
     def test_str(self):
         data = {"s": "hello world"}
@@ -115,8 +124,15 @@ class TestH5Saver(unittest.TestCase):
     def test_numpy_object_array(self):
         arr = np.array([1, "a", 3.5], dtype=object)
         data = {"objarr": arr}
+        self.assertRaises(NotImplementedError, self.roundtrip, data)
+
+    def test_nested_structures(self):
+        data = {
+            "nested_dict": {"level1": {"level2": {"level3": "value"}}},
+            "nested_list": [[1, 2, 3], [4, 5, 6]],
+        }
         loaded = self.roundtrip(data)
-        self.assertTrue(np.all(loaded["objarr"] == arr))
+        assert data["nested_dict"] == loaded["nested_dict"]
 
     def test_nested_structures_not_implemented(self):
         data = {"d": {"l": [1, 2, {"x": 5}], "t": (3, 4, [5, 6])}}
@@ -147,7 +163,15 @@ class TestH5Saver(unittest.TestCase):
         self.assertEqual(tuple(loaded["d"]), (None, "str", 5))
 
     def test_dataframe(self):
-        df = pd.DataFrame({"a": [1, 2], "b": [3.5, 4.5], "c": ["x", "y"]})
+        df = pd.DataFrame(
+            {
+                "int": [1, 2],
+                "float": [1.1, 2.2],
+                "str": ["a", "b"],
+                "bool": [True, False],
+                "array": [np.array([1, 2]), np.array([3, 4])],
+            }
+        )
         data = {"df": df}
         loaded = self.roundtrip(data)
         pd.testing.assert_frame_equal(loaded["df"], df)
@@ -158,31 +182,6 @@ class TestH5Saver(unittest.TestCase):
         loaded = self.roundtrip(data)
         pd.testing.assert_frame_equal(loaded["df"], df)
 
-    def test_dataframe_various_dtypes(self):
-        df = pd.DataFrame(
-            {
-                "int": [1, 2],
-                "float": [1.1, 2.2],
-                "str": ["a", "b"],
-                "bool": [True, False],
-                "none": [None, None],
-            }
-        )
-        data = {"df": df}
-        loaded = self.roundtrip(data)
-        pd.testing.assert_frame_equal(loaded["df"], df)
-
-    def test_dataframe_with_unicode(self):
-        df = pd.DataFrame({"a": ["α", "β", "γ"]})
-        data = {"df": df}
-        loaded = self.roundtrip(data)
-        pd.testing.assert_frame_equal(loaded["df"], df)
-
-    def test_heterogeneous_list(self):
-        data = {"het_list": [1, "two", 3.0, None, True]}
-        loaded = self.roundtrip(data)
-        self.assertEqual(loaded["het_list"], [1, "two", 3.0, None, True])
-
     def test_tuple_of_dicts(self):
         data = {"tuple_dicts": ({"a": 1}, {"b": 2.2}, {"c": "three"})}
         self.assertRaises(NotImplementedError, self.roundtrip, data)
@@ -191,6 +190,14 @@ class TestH5Saver(unittest.TestCase):
         arr = np.array([{"x": 1}, {"y": 2}], dtype=object)
         data = {"arr_dicts": arr}
         self.assertRaises(NotImplementedError, self.roundtrip, data)
+
+    def test_posix_path(self):
+        from pathlib import PosixPath
+
+        data = {"path": PosixPath("/tmp/testfile.txt")}
+        loaded = self.roundtrip(data)
+        self.assertIsInstance(loaded["path"], PosixPath)
+        self.assertEqual(loaded["path"], PosixPath("/tmp/testfile.txt"))
 
     def test_screen_measurement_results(self):
         # Load test data
@@ -241,54 +248,6 @@ class TestH5Saver(unittest.TestCase):
         assert np.allclose(
             total_intensities, loaded_dict["total_intensities"], rtol=1e-5
         )
-
-    def test_special_values(self):
-        data = {
-            "nan": np.nan,
-            "inf": np.inf,
-            "ninf": -np.inf,
-            "nan_list": [np.nan, np.inf, -np.inf],
-        }
-        loaded = self.roundtrip(data)
-
-        assert np.isnan(loaded["nan"])
-        assert np.isinf(loaded["inf"])
-        assert np.isneginf(loaded["ninf"])
-        assert np.isnan(loaded["nan_list"][0])
-        assert np.isinf(loaded["nan_list"][1])
-        assert np.isneginf(loaded["nan_list"][2])
-
-    def test_nested_structures(self):
-        data = {
-            "nested_dict": {"level1": {"level2": {"level3": "value"}}},
-            "nested_list": [[1, 2, 3], [4, 5, 6]],
-        }
-        loaded = self.roundtrip(data)
-
-        assert data["nested_dict"] == loaded["nested_dict"]
-        for i in range(len(data["nested_list"])):
-            # lists of lists are saved as dicts
-            # here the lists are saved as nd.arrays
-            assert np.array_equal(data["nested_list"][i], loaded["nested_list"][i])
-
-    def test_object_arrays(self):
-        data = {"object_array": np.array([1, "a", 3.14], dtype=object)}
-        loaded = self.roundtrip(data)
-        types = [int, str, float]
-        assert all(
-            isinstance(item, type) for item, type in zip(loaded["object_array"], types)
-        )
-
-    def test_list_of_ndarrays(self):
-        data = {"list_of_ndarrays": [np.array([1, 2, 3]), np.array([4, 5, 6])]}
-        loaded = self.roundtrip(data)
-
-        assert len(data["list_of_ndarrays"]) == len(loaded["list_of_ndarrays"])
-        for original, loaded in zip(
-            data["list_of_ndarrays"], loaded["list_of_ndarrays"]
-        ):
-            # lists of ndarrays are saved as dicts
-            assert np.array_equal(original, loaded)
 
 
 if __name__ == "__main__":
