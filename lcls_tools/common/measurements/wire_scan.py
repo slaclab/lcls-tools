@@ -131,9 +131,8 @@ class WireBeamProfileMeasurement(Measurement):
         # Instantiate device dictionary with wire device
         devices = {self.my_wire.name: self.my_wire}
 
-        # 
+        #
         for lblm_str in self.my_wire.metadata.lblms:
-
             # Detectors are stored in YAML file as a string like {NAME}:{AREA}
             name, area = lblm_str.split(":")
             if name == "TMITLOSS":
@@ -230,7 +229,7 @@ class WireBeamProfileMeasurement(Measurement):
             # Post wire position during scan
             self.logger.info("Wire position: %s", self.my_wire.motor_rbv)
             i += 1
-        
+
         self.logger.info(
             "BSA buffer %s acquisition complete after %s seconds",
             self.my_buffer.number,
@@ -242,7 +241,6 @@ class WireBeamProfileMeasurement(Measurement):
         # Get data for SC devices
         if self.beampath.startswith("SC"):
             for d in self.devices:
-
                 # Get position data if wire device
                 if d == self.my_wire.name:
                     data[d] = self.my_wire.position_buffer(self.my_buffer)
@@ -302,8 +300,7 @@ class WireBeamProfileMeasurement(Measurement):
 
             # Get indices of when position is within a range
             idx = np.where(
-                (position_data >= ranges[p][0])
-                & (position_data <= ranges[p][1])
+                (position_data >= ranges[p][0]) & (position_data <= ranges[p][1])
             )[0]
 
             # Data slice representing a given profile measurement
