@@ -200,7 +200,7 @@ class WireBeamProfileMeasurement(Measurement):
                 self.logger.error(msg)
                 raise TimeoutError(msg)
 
-        self.logger.info("%s initialized after %s seconds", self.my_wire.name, i)
+        self.logger.info("%s initialized after %s seconds", self.my_wire.name, elapsed_time)
 
         # Start buffer
         self.logger.info("Starting BSA buffer...")
@@ -402,7 +402,7 @@ class WireBeamProfileMeasurement(Measurement):
                 y_fits = fit_result["y"]
 
         rms_sizes = {
-            device: (x_fits[d]["sigma"], y_fits[d]["sigma"])
+            d: (x_fits[d]["sigma"], y_fits[d]["sigma"])
             for d in devices
             if d != self.my_wire.name
         }
