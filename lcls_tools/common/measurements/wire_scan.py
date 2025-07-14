@@ -3,20 +3,22 @@ from lcls_tools.common.devices.wire import Wire
 from lcls_tools.common.devices.reader import create_lblm
 from lcls_tools.common.data.fit.projection import ProjectionFit
 from lcls_tools.common.measurements.measurement import Measurement
+import time
+from datetime import datetime
+import edef
+from pydantic import ValidationError, BaseModel, model_validator
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
-from lcls_tools.common.measurements.buffer_reservation import reserve_buffer
 from lcls_tools.common.measurements.wire_scan_results import (
     WireBeamProfileMeasurementResult,
     ProfileMeasurement,
     DetectorMeasurement,
     MeasurementMetadata,
 )
-import time
-from datetime import datetime
-import edef
-from pydantic import BaseModel, model_validator
 import numpy as np
 from typing_extensions import Self
+import logging
+from lcls_tools.common.logger.file_logger import custom_logger
+from lcls_tools.common.measurements.buffer_reservation import reserve_buffer
 
 
 class WireBeamProfileMeasurement(Measurement):
@@ -24,41 +26,51 @@ class WireBeamProfileMeasurement(Measurement):
     Performs a wire scan measurement and fits beam profiles.
 
     Attributes:
-        name (str): Name identifier for the measurement type.
-        device (Wire): Wire device used to perform the scan.
+        name (str): Scan object name required by Measurement class.
+        my_wire (Wire): Wire device used to perform the scan.
         beampath (str): Beamline path identifier for buffer and device selection.
-        beam_fit (BaseModel): Model used to fit beam profiles (default: ProjectionFit).
-        fit_profile (bool): Flag to enable or disable fitting of the beam profiles.
+        beam_fit (ProjectionFit): Model used to fit beam profiles (default: ProjectionFit).
+        my_buffer (edef.BSABuffer): edef buffer object to manage data acquisition.
+        devices (dict): Holds all slac-tools device objects associated with this measurement
+                        (wires, detectors, bpms, etc).
+        data (dict): Raw data object for all devices defined above.
+        profile_measurements (dict): Collected data organized by profile.
+        logger (logging.Logger): Object for log file management.
     """
 
-    name: str = "beam_profile"
+    name: str = "Wire Beam Profile Measurement"
     my_wire: Wire
     beampath: str
     beam_fit: BaseModel = ProjectionFit
-    fit_profile: bool = True
 
     # Extra fields to be set after validation
+    # Must be optional to start
     my_buffer: Optional[edef.BSABuffer] = None
     devices: Optional[dict] = None
     data: Optional[dict] = None
     profile_measurements: Optional[dict] = None
+    logger: Optional[logging.Logger] = None
 
     @model_validator(mode="after")
     def run_setup(self) -> Self:
-        self.buffer_setup()
-        print("Creating device dictionary...")
-        self.devices = self.create_device_dictionary()
-        return self
+        # Configure custom logger
+        date_str = datetime.now().strftime("%Y%m%d")
+        log_filename = f"ws_log_{date_str}.txt"
+        self.logger = custom_logger(log_file=log_filename, name="wire_scan_logger")
 
-    def buffer_setup(self):
+        # Reserve BSA buffer
         if self.my_buffer is None:
             self.my_buffer = reserve_buffer(
                 beampath=self.beampath,
                 name="LCLS Tools Wire Scan",
-                n_measurements=1600,  # Determined via empirical testing at 120 Hz
+                n_measurements=self.calc_buffer_points(),
                 destination_mode="Inclusion",
-                logger=None,
+                logger=self.logger,
             )
+
+        # Generate dictionary of all requried devices
+        self.devices = self.create_device_dictionary()
+        return self
 
     def measure(self) -> WireBeamProfileMeasurementResult:
         """
@@ -86,7 +98,7 @@ class WireBeamProfileMeasurement(Measurement):
         profile_idxs = self.get_profile_range_indices()
 
         # Separate detector data by profile
-        self.profile = self.organize_data_by_profile(profile_idxs)
+        self.profile_measurements = self.organize_data_by_profile(profile_idxs)
 
         # Fit detector data by profile
         fit_result, rms_sizes = self.fit_data_by_profile()
@@ -114,8 +126,15 @@ class WireBeamProfileMeasurement(Measurement):
         Returns:
             dict: A mapping of device names to device objects.
         """
-        devices = {f"{self.my_wire.name}": self.my_wire}
+        self.logger.info("Creating device dictionary...")
+
+        # Instantiate device dictionary with wire device
+        devices = {self.my_wire.name: self.my_wire}
+
+        # 
         for lblm_str in self.my_wire.metadata.lblms:
+
+            # Detectors are stored in YAML file as a string like {NAME}:{AREA}
             name, area = lblm_str.split(":")
             if name == "TMITLOSS":
                 devices["TMITLOSS"] = TMITLoss(
@@ -125,7 +144,18 @@ class WireBeamProfileMeasurement(Measurement):
                     region=self.my_wire.area,
                 )
             else:
-                devices[name] = create_lblm(area=area, name=name)
+                try:
+                    # Make LBLM object
+                    devices[name] = create_lblm(area=area, name=name)
+                except ValidationError as e:
+                    self.logger.warning(
+                        "Validation error creating %s. Continuing...", name
+                    )
+                    for err in e.errors():
+                        loc = " -> ".join(str(i) for i in err["loc"])
+                        self.logger.warning("%s: %s (%s)", loc, err["msg"], err["type"])
+
+        self.logger.info("Device dictionary built.")
         return devices
 
     def scan_with_wire(self):
@@ -135,19 +165,46 @@ class WireBeamProfileMeasurement(Measurement):
         Delays ensure the buffer is active before the scan begins
         and allows time for the buffer to update its state.
         """
-        # Check for reserved buffer
-        self.buffer_setup()
+        # Reserve a new buffer if necessary
+        if self.my_buffer is None:
+            self.my_buffer = reserve_buffer(
+                beampath=self.beampath,
+                name="LCLS Tools Wire Scan",
+                n_measurements=self.calc_buffer_points(),
+                destination_mode="Inclusion",
+                logger=self.logger,
+            )
 
         # Start wire scan
-        print("Starting wire motion procedure...")
+        self.logger.info("Starting wire motion sequence...")
         self.my_wire.start_scan()
 
         # Give wire time to initialize
-        print("Waiting for wire initialization...")
-        time.sleep(3)
+        self.logger.info("Waiting for wire initialization...")
+        elapsed_time = 0
+        attempt_count = 1
+
+        while not self.my_wire.enabled:
+            time.sleep(0.1)
+            elapsed_time += 0.1
+
+            if elapsed_time.is_integer():
+                self.logger.info("Waited %0.f seconds", elapsed_time)
+
+            if elapsed_time in (10, 20):
+                attempt_count += 1
+                self.logger.info("Scan sequence attempt #%s", attempt_count)
+                self.my_wire.start_scan()
+
+            if elapsed_time >= 30:
+                msg = f"{self.my_wire.name} failed to initialized after {int(elapsed_time)} seconds"
+                self.logger.error(msg)
+                raise TimeoutError(msg)
+
+        self.logger.info("%s initialized after %s seconds", self.my_wire.name, i)
 
         # Start buffer
-        print("Starting BSA buffer...")
+        self.logger.info("Starting BSA buffer...")
         self.my_buffer.start()
 
         # Wait briefly before checking buffer 'ready'
@@ -165,20 +222,40 @@ class WireBeamProfileMeasurement(Measurement):
             dict: Collected data keyed by device name.
         """
         data = {}
-        # Wait for buffer 'ready'
-        while not self.my_buffer.is_acquisition_complete():
-            time.sleep(0.1)
-            print(f"Wire position: {self.my_wire.motor_rbv}")
-        print("BSA buffer data acquisition complete!")
 
+        # Wait for buffer 'ready'
+        i = 1
+        while not self.my_buffer.is_acquisition_complete():
+            time.sleep(1)
+            # Post wire position during scan
+            self.logger.info("Wire position: %s", self.my_wire.motor_rbv)
+            i += 1
+        
+        self.logger.info(
+            "BSA buffer %s acquisition complete after %s seconds",
+            self.my_buffer.number,
+            i,
+        )
+
+        self.logger.info("Getting data from BSA buffer...")
+
+        # Get data for SC devices
         if self.beampath.startswith("SC"):
-            for device in self.devices:
-                if device == self.my_wire.name:
-                    data[device] = self.my_wire.position_buffer(self.my_buffer)
-                elif device == "TMITLOSS":
-                    data[device] = self.devices[device].measure()
+            for d in self.devices:
+
+                # Get position data if wire device
+                if d == self.my_wire.name:
+                    data[d] = self.my_wire.position_buffer(self.my_buffer)
+
+                # Get TMITLoss data
+                elif d == "TMITLOSS":
+                    data[d] = self.devices[d].measure()
+
+                # Get LBLM/PMT data
                 else:
-                    data[device] = self.devices[device].fast_buffer(self.my_buffer)
+                    data[d] = self.devices[d].fast_buffer(self.my_buffer)
+
+        # Get data for CU devices
         elif self.beampath.startswith("CU"):
             # CU LBLMs use "QDCRAW" signal
             data.update(
@@ -187,9 +264,10 @@ class WireBeamProfileMeasurement(Measurement):
                     for lblm in self.my_wire.metadata.lblms
                 }
             )
+        self.logger.info("Data retrieved from BSA buffer.")
 
         # Release EDEF/BSA
-        print("Releasing BSA buffer")
+        self.logger.info("Releasing BSA buffer.")
         self.my_buffer.release()
         self.my_buffer = None
 
@@ -197,134 +275,148 @@ class WireBeamProfileMeasurement(Measurement):
 
     def get_profile_range_indices(self):
         """
-        Finds sequential scan indices within each profile's position range.
+        Finds sequential scan indices within each plane's position range.
 
         Filters wire position data to identify index ranges for x, y, and u
-        profiles, excluding non-continuous points like wire retractions.
+        planes, excluding non-continuous points like wire retractions.
 
         Returns:
-            dict: Profile keys ('x', 'y', 'u') with lists of index arrays.
+            dict: Plane keys ('x', 'y', 'u') with lists of index arrays.
         """
-        # Get wire data to detemine profile indices
+        self.logger.info("Getting profile range indices...")
+        # Get wire data to detemine plane indices
         position_data = self.data[self.my_wire.name]
 
-        # Hold profile ranges
+        # Hold plane ranges
         ranges = {}
 
         # Hold sequential indices (avoid catching return wires)
         profile_idxs = {}
 
-        active_profiles = []
-        if self.my_wire.use_x_wire:
-            active_profiles.append("x")
-        if self.my_wire.use_y_wire:
-            active_profiles.append("y")
-        if self.my_wire.use_u_wire:
-            active_profiles.append("u")
+        ap = self.active_profiles()
 
-        for profile in active_profiles:
+        for p in ap:
             # Get range methods e.g. x_range()
-            method_name = f"{profile}_range"
-            ranges[profile] = getattr(self.my_wire, method_name)
+            method_name = f"{p}_range"
+            ranges[p] = getattr(self.my_wire, method_name)
 
             # Get indices of when position is within a range
             idx = np.where(
-                (position_data >= ranges[profile][0])
-                & (position_data <= ranges[profile][1])
+                (position_data >= ranges[p][0])
+                & (position_data <= ranges[p][1])
             )[0]
 
+            # Data slice representing a given profile measurement
             pos = position_data[idx]
+
+            # Boolean mask of monotonically non-decreasing data points
+            # Mask of values where difference between neighbors is positive or zero
             mono_mask = np.diff(pos) >= 0
             mono_mask = np.concatenate(([True], mono_mask))
 
-            mono_idx = idx[mono_mask]
+            # Boolean mask of indices in a given profile measurement
+            try:
+                mono_idx = idx[mono_mask]
+                profile_idxs[p] = mono_idx
+            except Exception as e:
+                msg = (
+                    f"Could not determine '{p}' profile data range. "
+                    "This usually means the wire didn't move properly or the "
+                    "buffer did not properly capture the motion data."
+                )
+                self.logger.error(msg)
+                raise ValueError(msg) from e
 
-            profile_idxs[profile] = mono_idx
-
+        self.logger.info("Profile range information collected.")
         return profile_idxs
 
     def organize_data_by_profile(self, profile_idxs):
         """
-        Organizes detector data by scan profile for each device.
+        Organizes detector data by scan plane for each device.
 
         Uses sequential indices to separate full device data into
-        x, y, and u profile datasets.
+        x, y, and u plane datasets.
 
         Returns:
-            dict: Nested dict with profiles as keys and device data per profile.
+            dict: Nested dict with planes as keys and device data per plane.
         """
-
+        self.logger.info("Creating profile data objects...")
         profiles = list(profile_idxs.keys())
         devices = list(self.devices.keys())
 
         profile_measurements = {}
 
-        for profile in profiles:
-            idx = profile_idxs.get(profile)
+        for p in profiles:
+            idx = profile_idxs.get(p)
             detectors = {}
 
-            for device in devices:
-                data_slice = self.data[device][idx]
-                if device == self.my_wire.name:
+            for d in devices:
+                data_slice = self.data[d][idx]
+                if d == self.my_wire.name:
                     positions = data_slice
                 else:
-                    units = "%% beam loss" if device == "TMITLOSS" else "counts"
-                    detectors[device] = DetectorMeasurement(
-                        values=data_slice, units=units, label=device
+                    units = "%% beam loss" if d == "TMITLOSS" else "counts"
+                    detectors[d] = DetectorMeasurement(
+                        values=data_slice, units=units, label=d
                     )
 
-            profile_measurements[profile] = ProfileMeasurement(
+            profile_measurements[p] = ProfileMeasurement(
                 positions=positions, detectors=detectors, profile_idxs=idx
             )
 
+        self.logger.info("Profile data objects created.")
         return profile_measurements
 
     def fit_data_by_profile(self):
         """
-        Fits detector data for each profile and device.
+        Fits detector data for each plane and device.
 
         Applies beam fitting to x, y, and u projections
         for all devices in the detector data.
 
         Returns:
-            dict: Fit results organized by profile and device.
+            dict: Fit results organized by plane and device.
         """
+        self.logger.info("Fitting profile data...")
         # Get list of profiles from data set
         profiles = list(self.profile_measurements.keys())
         fit_result = {profile: {} for profile in profiles}
         devices = list(self.data.keys())
 
-        for profile in profiles:
-            wire_posn = self.profile_measurements[profile].positions
+        for p in profiles:
+            wire_posn = self.profile_measurements[p].positions
             posn_start = wire_posn[0]
             posn_diff = np.mean(np.diff(wire_posn))
 
-            for device in devices:
-                if device == self.my_wire.name:
+            for d in devices:
+                if d == self.my_wire.name:
                     continue
                 proj_fit = self.beam_fit()
-                proj_data = self.profile_measurements[profile].detectors[device].values
-                fit_result[profile][device] = proj_fit.fit_projection(proj_data)
+                proj_data = self.profile_measurements[p].detectors[d].values
+                fit_result[p][d] = proj_fit.fit_projection(proj_data)
 
-                mean_idx = fit_result[profile][device]["mean"]
-                fit_result[profile][device]["mean"] = mean_idx * posn_diff + posn_start
+                mean_idx = fit_result[p][d]["mean"]
+                fit_result[p][d]["mean"] = mean_idx * posn_diff + posn_start
 
-                sigma_idx = fit_result[profile][device]["sigma"]
-                fit_result[profile][device]["sigma"] = sigma_idx * posn_diff
+                sigma_idx = fit_result[p][d]["sigma"]
+                fit_result[p][d]["sigma"] = sigma_idx * posn_diff
 
                 x_fits = fit_result["x"]
                 y_fits = fit_result["y"]
 
         rms_sizes = {
-            device: (x_fits[device]["sigma"], y_fits[device]["sigma"])
-            for device in devices
-            if device != self.my_wire.name
+            device: (x_fits[d]["sigma"], y_fits[d]["sigma"])
+            for d in devices
+            if d != self.my_wire.name
         }
 
+        self.logger.info("Profile data fit.")
         return fit_result, rms_sizes
 
     def create_metadata(self):
-        # Make additional metadata
+        """
+        Make additional metadata
+        """
         sample_profile = next(iter(self.profile_measurements.values()))
         detectors = list(sample_profile.detectors.keys())
 
@@ -346,3 +438,28 @@ class WireBeamProfileMeasurement(Measurement):
         )
 
         return metadata
+
+    def active_profiles(self):
+        return [
+            axis
+            for axis, use in zip(
+                "xyu",
+                [
+                    self.my_wire.use_x_wire,
+                    self.my_wire.use_y_wire,
+                    self.my_wire.use_u_wire,
+                ],
+            )
+            if use
+        ]
+
+    def calc_buffer_points(self):
+        rate = self.my_wire.beam_rate
+        pulses = self.my_wire.scan_pulses
+
+        log_range = np.log10(16000) - np.log10(120)  # 16000 max rate, 120 min rate
+        rate_factor = (np.log10(rate) - np.log10(120)) / log_range
+        fudge = 1.5 - 0.4 * rate_factor
+
+        buffer_points = pulses * 3 * fudge + rate / 6
+        return int(buffer_points)
