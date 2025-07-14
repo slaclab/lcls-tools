@@ -200,7 +200,9 @@ class WireBeamProfileMeasurement(Measurement):
                 self.logger.error(msg)
                 raise TimeoutError(msg)
 
-        self.logger.info("%s initialized after %s seconds", self.my_wire.name, elapsed_time)
+        self.logger.info(
+            "%s initialized after %s seconds", self.my_wire.name, elapsed_time
+        )
 
         # Start buffer
         self.logger.info("Starting BSA buffer...")
