@@ -180,25 +180,32 @@ class WireBeamProfileMeasurement(Measurement):
 
         # Give wire time to initialize
         self.logger.info("Waiting for wire initialization...")
-        elapsed_time = 0
-        attempt_count = 1
+
+        start_time = time.monotonic()
+        last_print_time = start_time
+        last_trigger_time = start_time
+        attempt_count = 10
 
         while not self.my_wire.enabled:
-            time.sleep(0.1)
-            elapsed_time += 0.1
-
-            if elapsed_time.is_integer():
-                self.logger.info("Waited %0.f seconds", elapsed_time)
-
-            if elapsed_time in (10, 20):
-                attempt_count += 1
-                self.logger.info("Scan sequence attempt #%s", attempt_count)
-                self.my_wire.start_scan()
+            current_time = time.monotonic()
+            elapsed_time = current_time - start_time
 
             if elapsed_time >= 30:
                 msg = f"{self.my_wire.name} failed to initialized after {int(elapsed_time)} seconds"
                 self.logger.error(msg)
                 raise TimeoutError(msg)
+
+            if current_time - last_print_time >= 5:
+                self.logger.info("Waited %0.f seconds", elapsed_time)
+                last_print_time = current_time
+
+            if current_time - last_trigger_time >= 10:
+                attempt_count += 1
+                self.logger.info("Scan sequence attempt #%s", attempt_count)
+                self.my_wire.start_scan()
+                last_trigger_time = current_time
+
+            time.sleep(0.1)
 
         self.logger.info(
             "%s initialized after %s seconds", self.my_wire.name, elapsed_time
