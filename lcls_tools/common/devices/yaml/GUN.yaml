@@ -224,6 +224,8 @@ screens:
   YAG01:
     controls_information:
       PVs:
+        filter_1_status: YAGS:IN20:211:FLT1_STS
+        filter_2_status: YAGS:IN20:211:FLT2_STS
         image: YAGS:IN20:211:IMAGE
         n_bits: YAGS:IN20:211:N_OF_BITS
         n_col: YAGS:IN20:211:N_OF_COL
@@ -232,6 +234,8 @@ screens:
         orient_y: YAGS:IN20:211:Y_ORIENT
         ref_rate_vme: YAGS:IN20:211:FRAME_RATE
         resolution: YAGS:IN20:211:RESOLUTION
+        target_control: YAGS:IN20:211:PNEUMATIC
+        target_status: YAGS:IN20:211:TGT_STS
       control_name: YAGS:IN20:211
       pv_cache:
         orient_x: Negative
@@ -247,5 +251,6 @@ screens:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
+      hardware: {}
       sum_l_meters: 0.614
       type: PROF
