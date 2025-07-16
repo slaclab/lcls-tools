@@ -18,5 +18,6 @@ screens:
     metadata:
       area: SFTS
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF

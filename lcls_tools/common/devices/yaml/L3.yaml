@@ -4195,6 +4195,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 523.207
       type: PROF
   P30013:
@@ -4210,6 +4211,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 929.435
       type: PROF
   P30014:
@@ -4225,6 +4227,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 929.638
       type: PROF
   P30143:
@@ -4240,6 +4243,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 943.17
       type: PROF
   P30144:
@@ -4255,6 +4259,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 943.373
       type: PROF
   P30443:
@@ -4270,6 +4275,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 980.2
       type: PROF
   P30444:
@@ -4285,6 +4291,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 980.403
       type: PROF
   P30543:
@@ -4300,6 +4307,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 992.546
       type: PROF
   P30544:
@@ -4315,6 +4323,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 992.757
       type: PROF
 wires:

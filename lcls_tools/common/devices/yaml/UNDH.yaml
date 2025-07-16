@@ -3331,6 +3331,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware: {}
       sum_l_meters: 1549.467
       type: PROF
   DSSCBX11:
@@ -3345,6 +3346,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware: {}
       sum_l_meters: 1581.412
       type: PROF
   YAGBRAG:
@@ -3354,6 +3356,7 @@ screens:
     metadata:
       area: UNDH
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   YAGCBX42:
@@ -3368,5 +3371,6 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware: {}
       sum_l_meters: 1549.411
       type: PROF
