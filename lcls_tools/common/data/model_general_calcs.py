@@ -4,7 +4,7 @@ import numpy as np
 
 from lcls_tools.common.devices.magnet import Magnet
 
-from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurement
+from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 
 
 def bmag(twiss, twiss_reference):
@@ -61,7 +61,7 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None, tao=None, element
 
 
 def quad_scan_optics(
-    magnet: Magnet, measurement: BeamProfileMeasurement, physics_model="BMAD"
+    magnet: Magnet, measurement: ScreenBeamProfileMeasurement, physics_model="BMAD"
 ) -> Dict:
     """Get rmats from magnet to measurement device and twiss at measurement device"""
     # TODO: get optics from arbitrary devices (potentially in different beam lines)
@@ -70,26 +70,24 @@ def quad_scan_optics(
     model = Model(magnet.metadata.area, model_source=physics_model, use_design=False)
     rmats = model.get_rmat(
         from_device=magnet.name,
-        to_device=measurement.beam_profile_device.name,
+        to_device=measurement.device.name,
     )
-    twiss = model.get_twiss(measurement.beam_profile_device.name)
+    twiss = model.get_twiss(measurement.device.name)
     return {"rmats": rmats, "design_twiss": twiss}
 
 
 def multi_device_optics(
-    measurements: list[BeamProfileMeasurement], physics_model="BMAD"
+    measurements: list[ScreenBeamProfileMeasurement], physics_model="BMAD"
 ) -> Dict:
     """Get rmats and twiss at measurement devices"""
     from meme.model import Model
 
     model = Model(
-        measurements[0].beam_profile_device.metadata.area,
+        measurements[0].device.metadata.area,
         model_source=physics_model,
         use_design=False,
     )
-    device_names = [
-        measurement.beam_profile_device.name for measurement in measurements
-    ]
+    device_names = [measurement.device.name for measurement in measurements]
     rmats = model.get_rmat(device_names)
     twiss = model.get_twiss(device_names)
     return {"rmats": rmats, "design_twiss": twiss}

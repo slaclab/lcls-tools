@@ -231,7 +231,7 @@ class QuadScanEmittance(Measurement):
         """
 
         # extract beam sizes from info
-        scan_values, beam_sizes = self._get_beamsizes_scan_values_from_info()
+        beam_sizes = self._get_beamsizes_scan_values_from_info()
 
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
@@ -244,13 +244,6 @@ class QuadScanEmittance(Measurement):
 
             self.rmat = optics["rmat"]
             self.design_twiss = optics["design_twiss"]
-
-        magnet_length = self.magnet.metadata.l_eff
-        if magnet_length is None:
-            raise ValueError(
-                "magnet length needs to be specified for magnet "
-                f"{self.magnet.name} to be used in emittance measurement"
-            )
 
         # organize data into arrays for use in `compute_emit_bmag`
         # rmat = np.stack([self.rmat[0:2, 0:2], self.rmat[2:4, 2:4]])
@@ -270,19 +263,21 @@ class QuadScanEmittance(Measurement):
         else:
             twiss_betas_alphas = None
 
-        inputs = {
-            "quad_vals": scan_values,
-            "beamsizes": beam_sizes,
-            "q_len": magnet_length,
-            "rmat": self.rmat,
-            "energy": self.energy,
-            "twiss_design": (
-                twiss_betas_alphas if twiss_betas_alphas is not None else None
-            ),
-        }
+        beamsizes = []
+        for i in range(2):
+            # Get rid of nans
+            idx = ~np.isnan(beam_sizes[i])
+            b = beam_sizes[i][idx]
+
+            # Beamsizes to mm squared
+            beamsizes.append((b * 1e3) ** 2)
 
         # Call wrapper that takes quads in machine units and beamsize in meters
-        results = compute_emit_bmag_quad_scan_machine_units(**inputs)
+        results = compute_emit_bmag(
+            beamsize_squared=beamsizes,
+            rmat=self.rmat,
+            twiss_design=twiss_betas_alphas if twiss_betas_alphas is not None else None,
+        )
         results.update(
             {
                 "metadata": self.model_dump()
@@ -313,7 +308,7 @@ class QuadScanEmittance(Measurement):
         result = self.beamsize_measurement.measure(self.n_measurement_shots)
         self._info += [result]
 
-    def _get_beamsizes_scan_values_from_info(self) -> ndarray:
+    def _get_beamsizes_from_info(self) -> ndarray:
         """
         Extract the mean rms beam sizes from the info list, units in meters.
         """
@@ -325,10 +320,7 @@ class QuadScanEmittance(Measurement):
                 * 1e-6
             )
 
-        # get scan values and extend for each direction
-        scan_values = np.tile(np.array(self.scan_values), (2, 1))
-
-        return scan_values, np.array(beam_sizes).T
+        return np.array(beam_sizes).T
 
 
 class MultiDeviceEmittance(Measurement):
