@@ -1,12 +1,12 @@
 from typing import Optional
 from lcls_tools.common.devices.wire import Wire
 from lcls_tools.common.devices.reader import create_lblm
-from lcls_tools.common.data.fit.projection import ProjectionFit
+import lcls_tools.common.model.gaussian as gaussian
 from lcls_tools.common.measurements.measurement import Measurement
 import time
 from datetime import datetime
 import edef
-from pydantic import ValidationError, BaseModel, model_validator
+from pydantic import ValidationError, model_validator
 from lcls_tools.common.measurements.tmit_loss import TMITLoss
 from lcls_tools.common.measurements.wire_scan_results import (
     WireBeamProfileMeasurementResult,
@@ -30,7 +30,6 @@ class WireBeamProfileMeasurement(Measurement):
         name (str): Scan object name required by Measurement class.
         my_wire (Wire): Wire device used to perform the scan.
         beampath (str): Beamline path identifier for buffer and device selection.
-        beam_fit (ProjectionFit): Model used to fit beam profiles (default: ProjectionFit).
         my_buffer (edef.BSABuffer): edef buffer object to manage data acquisition.
         devices (dict): Holds all slac-tools device objects associated with this measurement
                         (wires, detectors, bpms, etc).
@@ -42,7 +41,6 @@ class WireBeamProfileMeasurement(Measurement):
     name: str = "Wire Beam Profile Measurement"
     my_wire: Wire
     beampath: str
-    beam_fit: BaseModel = ProjectionFit
 
     # Extra fields to be set after validation
     # Must be optional to start
@@ -391,30 +389,28 @@ class WireBeamProfileMeasurement(Measurement):
         devices = list(self.data.keys())
 
         for p in profiles:
-            wire_posn = self.profile_measurements[p].positions
-            posn_start = wire_posn[0]
-            posn_diff = np.mean(np.diff(wire_posn))
-
             for d in devices:
                 if d == self.my_wire.name:
                     continue
-                proj_fit = self.beam_fit()
-                proj_data = self.profile_measurements[p].detectors[d].values
-                # fit_result[p][d] = proj_fit.fit_projection(proj_data)
-                # mean_idx = fit_result[p][d]["mean"]
-                # fit_result[p][d]["mean"] = mean_idx * posn_diff + posn_start
-                # sigma_idx = fit_result[p][d]["sigma"]
-                # fit_result[p][d]["sigma"] = sigma_idx * posn_diff
 
-                detector_fit = proj_fit.fit_projection(proj_data)
-                mean_phys = detector_fit["mean"] * posn_diff + posn_start
-                sigma_phys = detector_fit["sigma"] * posn_diff
+                fit_params = gaussian.fit(
+                    pos=self.profile_measurements[p].positions,
+                    data=self.profile_measurements[p].detectors[d].values,
+                )
+
+                fit_curve = gaussian.curve(
+                    x=self.profile_measurements[p].positions,
+                    mean=fit_params["mean"],
+                    sigma=fit_params["sigma"],
+                    amp=fit_params["amp"],
+                    off=fit_params["off"],
+                )
                 fit_result[p][d] = FitResult(
-                    mean=mean_phys,
-                    sigma=sigma_phys,
-                    amplitude=detector_fit["amplitude"],
-                    offset=detector_fit["offset"],
-                    curve=np.ndarray(),  # TODO
+                    mean=fit_params["mean"],
+                    sigma=fit_params["sigma"],
+                    amplitude=fit_params["amp"],
+                    offset=fit_params["off"],
+                    curve=fit_curve,
                 )
 
                 x_fits = fit_result["x"]
