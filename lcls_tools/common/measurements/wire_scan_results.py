@@ -67,6 +67,6 @@ class WireBeamProfileMeasurementResult(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     profiles: Dict[str, ProfileMeasurement]
     raw_data: Dict[str, Any]
-    fit_result: NDArrayAnnotatedType
+    fit_result: Dict[str, Dict[str, FitResult]]
     rms_sizes: Dict[str, tuple[float, float]]
     metadata: SerializeAsAny[Any]
