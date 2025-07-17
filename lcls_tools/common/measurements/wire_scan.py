@@ -13,6 +13,7 @@ from lcls_tools.common.measurements.wire_scan_results import (
     ProfileMeasurement,
     DetectorMeasurement,
     MeasurementMetadata,
+    FitResult,
 )
 import numpy as np
 from typing_extensions import Self
@@ -399,13 +400,22 @@ class WireBeamProfileMeasurement(Measurement):
                     continue
                 proj_fit = self.beam_fit()
                 proj_data = self.profile_measurements[p].detectors[d].values
-                fit_result[p][d] = proj_fit.fit_projection(proj_data)
+                # fit_result[p][d] = proj_fit.fit_projection(proj_data)
+                # mean_idx = fit_result[p][d]["mean"]
+                # fit_result[p][d]["mean"] = mean_idx * posn_diff + posn_start
+                # sigma_idx = fit_result[p][d]["sigma"]
+                # fit_result[p][d]["sigma"] = sigma_idx * posn_diff
 
-                mean_idx = fit_result[p][d]["mean"]
-                fit_result[p][d]["mean"] = mean_idx * posn_diff + posn_start
-
-                sigma_idx = fit_result[p][d]["sigma"]
-                fit_result[p][d]["sigma"] = sigma_idx * posn_diff
+                detector_fit = proj_fit.fit_projection(proj_data)
+                mean_phys = detector_fit["mean"] * posn_diff + posn_start
+                sigma_phys = detector_fit["sigma"] * posn_diff
+                fit_result[p][d] = FitResult(
+                    mean=mean_phys,
+                    sigma=sigma_phys,
+                    amplitude=detector_fit["amplitude"],
+                    offset=detector_fit["offset"],
+                    curve=np.ndarray(),  # TODO
+                )
 
                 x_fits = fit_result["x"]
                 y_fits = fit_result["y"]
