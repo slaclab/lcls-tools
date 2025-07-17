@@ -97,7 +97,7 @@ class WireBeamProfileMeasurement(Measurement):
         profile_idxs = self.get_profile_range_indices()
 
         # Separate detector data by profile
-        self.profile_measurements = self.organize_data_by_profile(profile_idxs)
+        self.profiles = self.organize_data_by_profile(profile_idxs)
 
         # Fit detector data by profile
         fit_result, rms_sizes = self.fit_data_by_profile()
@@ -106,7 +106,7 @@ class WireBeamProfileMeasurement(Measurement):
         metadata = self.create_metadata()
 
         return WireBeamProfileMeasurementResult(
-            profiles=self.profile_measurements,
+            profiles=self.profiles,
             raw_data=self.data,
             fit_result=fit_result,
             rms_sizes=rms_sizes,
@@ -384,7 +384,7 @@ class WireBeamProfileMeasurement(Measurement):
         """
         self.logger.info("Fitting profile data...")
         # Get list of profiles from data set
-        profiles = list(self.profile_measurements.keys())
+        profiles = list(self.profiles.keys())
         fit_result = {profile: {} for profile in profiles}
         devices = list(self.data.keys())
 
@@ -394,12 +394,12 @@ class WireBeamProfileMeasurement(Measurement):
                     continue
 
                 fit_params = gaussian.fit(
-                    pos=self.profile_measurements[p].positions,
-                    data=self.profile_measurements[p].detectors[d].values,
+                    pos=self.profiles[p].positions,
+                    data=self.profiles[p].detectors[d].values,
                 )
 
                 fit_curve = gaussian.curve(
-                    x=self.profile_measurements[p].positions,
+                    x=self.profiles[p].positions,
                     mean=fit_params["mean"],
                     sigma=fit_params["sigma"],
                     amp=fit_params["amp"],
@@ -429,7 +429,7 @@ class WireBeamProfileMeasurement(Measurement):
         """
         Make additional metadata
         """
-        sample_profile = next(iter(self.profile_measurements.values()))
+        sample_profile = next(iter(self.profiles.values()))
         detectors = list(sample_profile.detectors.keys())
 
         scan_ranges = {
