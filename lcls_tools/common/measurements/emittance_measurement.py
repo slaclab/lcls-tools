@@ -1,6 +1,6 @@
 import time
 import enum
-from typing import Any, List, Optional
+from typing import Any, List, Literal, Optional
 
 import numpy as np
 from numpy import ndarray
@@ -191,7 +191,7 @@ class QuadScanEmittance(Measurement):
 
     rmat: Optional[ndarray] = None
     design_twiss: Optional[dict] = None  # design twiss values
-    physics_model: Optional[str] = "BMAD"
+    physics_model: Literal["BMAD", "BLEM", "Lucretia"] = "BMAD"
 
     wait_time: PositiveFloat = 1.0
 
