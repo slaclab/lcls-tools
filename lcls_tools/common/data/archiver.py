@@ -31,6 +31,7 @@ class ArchiverValue:
     https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
     """
 
+    meta: dict = None
     secs: int = None
     val: Union[float, int, str] = None
     nanos: int = None
