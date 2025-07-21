@@ -14,7 +14,7 @@ from lcls_tools.common.data.archiver import (
 
 AACT_META = {
     "DBRType": "DBR_SCALAR_DOUBLE",
-    "DESC": "Cavity amplitude " "readback",
+    "DESC": "Cavity amplitude readback",
     "EGU": "MV",
     "HIGH": "6.825",
     "HIHI": "7.15",
