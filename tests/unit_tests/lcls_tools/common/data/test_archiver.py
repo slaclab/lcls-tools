@@ -364,18 +364,7 @@ class TestArchiver(unittest.TestCase):
 
         expected_result = {
             "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
-                meta={
-                    "DBRType": "DBR_SCALAR_DOUBLE",
-                    "DESC": "Cavity amplitude " "readback",
-                    "EGU": "MV",
-                    "HIGH": "6.825",
-                    "HIHI": "7.15",
-                    "HOPR": "22.0",
-                    "LOLO": "5.85",
-                    "LOPR": "0.0",
-                    "LOW": "6.175",
-                    "PREC": "1",
-                },
+                meta=AACT_META,
                 secs=1711400839,
                 val=0.0004232343591732812,
                 nanos=299095469,
