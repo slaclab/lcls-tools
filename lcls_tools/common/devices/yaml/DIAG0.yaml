@@ -1,5 +1,5 @@
 bpms:
-  BPMDG000?:
+  BPMDG000:
     controls_information:
       PVs: {}
       control_name: BPMS:DIAG0:136
@@ -482,6 +482,24 @@ magnets:
       l_eff: 0.0
       sum_l_meters: 51.113
       type: XCOR
+  XCDGTCX:
+    controls_information:
+      PVs:
+        bact: XCOR:DIAG0:340:BACT
+        bcon: XCOR:DIAG0:340:BCON
+        bctrl: XCOR:DIAG0:340:BCTRL
+        bdes: XCOR:DIAG0:340:BDES
+        bmax: XCOR:DIAG0:340:BMAX
+        bmin: XCOR:DIAG0:340:BMIN
+        ctrl: XCOR:DIAG0:340:CTRL
+      control_name: XCOR:DIAG0:340
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      l_eff: 0.0
+      sum_l_meters: 53.312
+      type: XCOR
   XCDG008:
     controls_information:
       PVs:
@@ -589,6 +607,24 @@ magnets:
       - SC_DIAG0
       l_eff: 0.0
       sum_l_meters: 51.113
+      type: YCOR
+  YCDGTCX:
+    controls_information:
+      PVs:
+        bact: YCOR:DIAG0:340:BACT
+        bcon: YCOR:DIAG0:340:BCON
+        bctrl: YCOR:DIAG0:340:BCTRL
+        bdes: YCOR:DIAG0:340:BDES
+        bmax: YCOR:DIAG0:340:BMAX
+        bmin: YCOR:DIAG0:340:BMIN
+        ctrl: YCOR:DIAG0:340:CTRL
+      control_name: YCOR:DIAG0:340
+    metadata:
+      area: DIAG0
+      beam_path:
+      - SC_DIAG0
+      l_eff: 0.0
+      sum_l_meters: 53.312
       type: YCOR
   YCDG008:
     controls_information:
