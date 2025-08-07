@@ -281,19 +281,19 @@ class WireBeamProfileMeasurement(Measurement):
 
     def get_profile_range_indices(self):
         """
-        Finds sequential scan indices within each plane's position range.
+        Finds sequential scan indices within each profile's position range.
 
         Filters wire position data to identify index ranges for x, y, and u
-        planes, excluding non-continuous points like wire retractions.
+        profiles, excluding non-continuous points like wire retractions.
 
         Returns:
-            dict: Plane keys ('x', 'y', 'u') with lists of index arrays.
+            dict: Profile keys ('x', 'y', 'u') with lists of index arrays.
         """
         self.logger.info("Getting profile range indices...")
-        # Get wire data to detemine plane indices
+        # Get wire data to detemine profile indices
         position_data = self.data[self.my_wire.name]
 
-        # Hold plane ranges
+        # Hold profile ranges
         ranges = {}
 
         # Hold sequential indices (avoid catching return wires)
@@ -337,13 +337,13 @@ class WireBeamProfileMeasurement(Measurement):
 
     def organize_data_by_profile(self, profile_idxs):
         """
-        Organizes detector data by scan plane for each device.
+        Organizes detector data by scan profile for each device.
 
         Uses sequential indices to separate full device data into
-        x, y, and u plane datasets.
+        x, y, and u profile datasets.
 
         Returns:
-            dict: Nested dict with planes as keys and device data per plane.
+            dict: Nested dict with profiles as keys and device data per profile.
         """
         self.logger.info("Creating profile data objects...")
         profiles = list(profile_idxs.keys())
@@ -374,13 +374,13 @@ class WireBeamProfileMeasurement(Measurement):
 
     def fit_data_by_profile(self):
         """
-        Fits detector data for each plane and device.
+        Fits detector data for each profile and device.
 
         Applies beam fitting to x, y, and u projections
         for all devices in the detector data.
 
         Returns:
-            dict: Fit results organized by plane and device.
+            dict: Fit results organized by profile and device.
         """
         self.logger.info("Fitting profile data...")
         # Get list of profiles from data set
