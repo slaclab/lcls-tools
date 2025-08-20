@@ -241,7 +241,7 @@ class WireBeamProfileMeasurement(Measurement):
         self.logger.info(
             "BSA buffer %s acquisition complete after %s seconds",
             self.my_buffer.number,
-            i/10,
+            i / 10,
         )
 
         self.logger.info("Getting data from BSA buffer...")
@@ -270,7 +270,7 @@ class WireBeamProfileMeasurement(Measurement):
                     for lblm in self.my_wire.metadata.lblms
                 }
             )
-        self.logger.info("Data retrieved from BSA buffer.")
+        self.logger.info("Data retrieved from BSA buffer.  Scan complete.")
 
         # Release EDEF/BSA
         self.logger.info("Releasing BSA buffer.")
@@ -306,6 +306,11 @@ class WireBeamProfileMeasurement(Measurement):
             method_name = f"{p}_range"
             ranges[p] = getattr(self.my_wire, method_name)
 
+            if position_data.max() < ranges[p][0]:
+                msg = f"Scan did not reach expected {p} profile range.  Exiting scan."
+                self.logger.error(msg)
+                raise RuntimeError(msg)
+
             # Get indices of when position is within a selected wire scan profile range
             idx = np.where(
                 (position_data >= ranges[p][0]) & (position_data <= ranges[p][1])
@@ -318,8 +323,12 @@ class WireBeamProfileMeasurement(Measurement):
             # Mask of values where difference between neighbors is positive or zero
             def mono_array(pos):
                 mono = True
-                mono_mask = np.array([mono := (pos[i-1] <= pos[i] and mono)
-                                      for i in range(1, len(pos))])
+                mono_mask = np.array(
+                    [
+                        mono := (pos[i - 1] <= pos[i] and mono)
+                        for i in range(1, len(pos))
+                    ]
+                )
                 mono_mask = np.concatenate(([True], mono_mask))
                 return mono_mask
 
@@ -474,14 +483,15 @@ class WireBeamProfileMeasurement(Measurement):
         """
         Determine the number of buffer points for a wire scan.
 
-        The beam rate and pulses per profile are used to calculate the minimum safe
-        wire speed (as enforced by motion IOCs) and the number of BSA buffer points
-        needed to capture the full scan. The buffer size must be sufficient for data
-        collection while staying under the 20,000-point operational limit.
+        The beam rate and pulses per profile are used here to calculate the wire speed,
+        which in turn defines how many BSA buffer points are needed to capture the full
+        scan. The minimum safe wire speed is calculated separately and enforced by the
+        motion IOC. The buffer size must be sufficient for data collection while staying
+        under the 20,000-point operational limit.
 
         In the historical mode (120 Hz, 350 pulses), ~1,600 points are required; this
         function returns 1,595. In the expected high-rate mode (16 kHz, 5,000 pulses),
-        the function estimates ~19,000 points, still within the system limit.
+        the function estimates ~19,166 points, still within the system limit.
 
         Returns
         -------
