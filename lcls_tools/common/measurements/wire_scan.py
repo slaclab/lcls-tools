@@ -306,7 +306,13 @@ class WireBeamProfileMeasurement(Measurement):
             method_name = f"{p}_range"
             ranges[p] = getattr(self.my_wire, method_name)
 
-            if position_data.max() < ranges[p][0]:
+            if position_data.min() == position_data.max():  # No change in data at all
+                msg = "Data did not collect properly in BSA buffer.  Exiting scan."
+                self.logger.error(msg)
+                raise RuntimeError(msg)
+            elif (
+                position_data.max() < ranges[p][0]
+            ):  # Max position less than lower scan bound
                 msg = f"Scan did not reach expected {p} profile range.  Exiting scan."
                 self.logger.error(msg)
                 raise RuntimeError(msg)
@@ -324,6 +330,8 @@ class WireBeamProfileMeasurement(Measurement):
             def mono_array(pos):
                 mono = True
                 mono_mask = np.array(
+                    # Data point [i-1] is less than subsequent data point [i] AND
+                    # that relationship was True for the previous pair, for all points
                     [
                         mono := (pos[i - 1] <= pos[i] and mono)
                         for i in range(1, len(pos))
@@ -333,18 +341,9 @@ class WireBeamProfileMeasurement(Measurement):
                 return mono_mask
 
             # Boolean mask of indices in a given profile measurement
-            try:
-                mono_mask = mono_array(pos)
-                mono_idx = np.array(idx)[mono_mask]
-                profile_idxs[p] = mono_idx.tolist()
-            except Exception as e:
-                msg = (
-                    f"Could not determine '{p}' profile data range. "
-                    "This usually means the wire didn't move properly or the "
-                    "buffer did not properly capture the motion data."
-                )
-                self.logger.error(msg)
-                raise ValueError(msg) from e
+            mono_mask = mono_array(pos)
+            mono_idx = np.array(idx)[mono_mask]
+            profile_idxs[p] = mono_idx
 
         self.logger.info("Profile range information collected.")
         return profile_idxs
