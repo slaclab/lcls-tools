@@ -231,17 +231,17 @@ class WireBeamProfileMeasurement(Measurement):
         data = {}
 
         # Wait for buffer 'ready'
-        i = 1
+        i = 0
         while not self.my_buffer.is_acquisition_complete():
-            time.sleep(1)
-            # Post wire position during scan
-            self.logger.info("Wire position: %s", self.my_wire.motor_rbv)
+            time.sleep(0.1)  # Check for completion every 0.1 s, post position every 1s
+            if i % 10 == 0:
+                self.logger.info("Wire position: %s", self.my_wire.motor_rbv)
             i += 1
 
         self.logger.info(
             "BSA buffer %s acquisition complete after %s seconds",
             self.my_buffer.number,
-            i,
+            i/10,
         )
 
         self.logger.info("Getting data from BSA buffer...")
@@ -306,23 +306,28 @@ class WireBeamProfileMeasurement(Measurement):
             method_name = f"{p}_range"
             ranges[p] = getattr(self.my_wire, method_name)
 
-            # Get indices of when position is within a range
+            # Get indices of when position is within a selected wire scan profile range
             idx = np.where(
                 (position_data >= ranges[p][0]) & (position_data <= ranges[p][1])
             )[0]
 
-            # Data slice representing a given profile measurement
+            # Data slice representing wire positions for a given profile measurement
             pos = position_data[idx]
 
             # Boolean mask of monotonically non-decreasing data points
             # Mask of values where difference between neighbors is positive or zero
-            mono_mask = np.diff(pos) >= 0
-            mono_mask = np.concatenate(([True], mono_mask))
+            def mono_array(pos):
+                mono = True
+                mono_mask = np.array([mono := (pos[i-1] <= pos[i] and mono)
+                                      for i in range(1, len(pos))])
+                mono_mask = np.concatenate(([True], mono_mask))
+                return mono_mask
 
             # Boolean mask of indices in a given profile measurement
             try:
-                mono_idx = idx[mono_mask]
-                profile_idxs[p] = mono_idx
+                mono_mask = mono_array(pos)
+                mono_idx = np.array(idx)[mono_mask]
+                profile_idxs[p] = mono_idx.tolist()
             except Exception as e:
                 msg = (
                     f"Could not determine '{p}' profile data range. "
@@ -466,12 +471,30 @@ class WireBeamProfileMeasurement(Measurement):
         ]
 
     def calc_buffer_points(self):
+        """
+        Determine the number of buffer points for a wire scan.
+
+        The beam rate and pulses per profile are used to calculate the minimum safe
+        wire speed (as enforced by motion IOCs) and the number of BSA buffer points
+        needed to capture the full scan. The buffer size must be sufficient for data
+        collection while staying under the 20,000-point operational limit.
+
+        In the historical mode (120 Hz, 350 pulses), ~1,600 points are required; this
+        function returns 1,595. In the expected high-rate mode (16 kHz, 5,000 pulses),
+        the function estimates ~19,000 points, still within the system limit.
+
+        Returns
+        -------
+        int
+            Estimated number of buffer points to allocate for the scan.
+        """
+
         rate = self.my_wire.beam_rate
         pulses = self.my_wire.scan_pulses
 
         log_range = np.log10(16000) - np.log10(120)  # 16000 max rate, 120 min rate
         rate_factor = (np.log10(rate) - np.log10(120)) / log_range
-        fudge = 1.5 - 0.4 * rate_factor
+        fudge = 1.5 - 0.4 * rate_factor  # Fudge the calculation by 1.1 to 1.5
 
         buffer_points = pulses * 3 * fudge + rate / 6
         return int(buffer_points)
