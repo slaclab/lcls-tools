@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import epics
+from lcls_tools.common.controls.epics import pv_get_direct
 from lcls_tools.common.data.bmad_modeling import bmad_modeling as mod
 
 
@@ -90,10 +90,10 @@ def quad_table(tao, pct_lim=1, show_energy=False):
         print("Ele.    Device           BDES    BMOD    Bmad     %")
     for element in quads[1:]:
         device = tao.ele_head(element)["alias"]
-        bmod = epics.caget(device + ":BMOD")
-        bdes = epics.caget(device + ":BDES")
-        eact = epics.caget(device + ":EACT")
-        edes = epics.caget(device + ":EDES")
+        bmod = pv_get_direct(device + ":BMOD")
+        bdes = pv_get_direct(device + ":BDES")
+        eact = pv_get_direct(device + ":EACT")
+        edes = pv_get_direct(device + ":EDES")
         e_tot = tao.ele_gen_attribs(element)["E_TOT"] / 1e9
 
         model_bdes = mod.get_bmad_bdes(tao, element)

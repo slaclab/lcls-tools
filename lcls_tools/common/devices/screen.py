@@ -15,7 +15,7 @@ from lcls_tools.common.devices.device import (
     PVSet,
 )
 
-from epics import PV
+from lcls_tools.common.controls.epics import PV
 import h5py
 from pydantic import (
     Field,

@@ -14,7 +14,7 @@ from lcls_tools.common.devices.device import (
     Metadata,
     PVSet,
 )
-from epics import PV
+from lcls_tools.common.controls.epics import PV
 
 
 class TCAVPVSet(PVSet):

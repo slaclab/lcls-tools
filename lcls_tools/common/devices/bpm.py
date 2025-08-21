@@ -15,7 +15,7 @@ from lcls_tools.common.devices.device import (
     Metadata,
     PVSet,
 )
-from epics import PV
+from lcls_tools.common.controls.epics import PV
 
 EPICS_ERROR_MESSAGE = "Unable to connect to EPICS."
 

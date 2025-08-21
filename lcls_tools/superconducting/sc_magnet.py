@@ -1,6 +1,6 @@
 from typing import Optional, TYPE_CHECKING
 
-from lcls_tools.common.controls.pyepics.utils import PV
+from lcls_tools.common.controls.epics import PV
 from lcls_tools.superconducting import sc_linac_utils as utils
 
 if TYPE_CHECKING:

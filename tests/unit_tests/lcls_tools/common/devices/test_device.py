@@ -2,12 +2,12 @@ import os
 import unittest
 from unittest.mock import MagicMock, patch
 from pydantic import ValidationError
+from lcls_tools.common.controls.epics import PV
 from lcls_tools.common.devices.device import (
     Device,
     ApplyDeviceCallbackError,
     RemoveDeviceCallbackError,
 )
-from epics import PV
 import yaml
 
 

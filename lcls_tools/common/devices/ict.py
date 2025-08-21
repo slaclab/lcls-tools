@@ -1,7 +1,7 @@
 from pydantic import field_validator, SerializeAsAny
 
 from lcls_tools.common.devices.device import Device, PVSet, ControlInformation, Metadata
-from epics import PV
+from lcls_tools.common.controls.epics import PV
 
 
 class ICTPVSet(PVSet):
@@ -31,4 +31,4 @@ class ICT(Device):
     metadata: SerializeAsAny[Metadata]
 
     def get_charge(self) -> float:
-        return self.controls_information.PVs.charge_nC.get(as_numpy=True)
+        return self.controls_information.PVs.charge_nC.get()

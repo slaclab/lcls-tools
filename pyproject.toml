@@ -18,6 +18,7 @@ dependencies = [
     "scipy",
     "matplotlib",
     "pyepics",
+    "p4p",
     "pyyaml",
     "requests",
     "pydantic",

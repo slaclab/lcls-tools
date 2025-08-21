@@ -7,7 +7,7 @@ from typing import Dict, List, Optional, Union
 
 import requests
 
-from lcls_tools.common.controls.pyepics.utils import EPICS_INVALID_VAL
+from lcls_tools.common.controls.epics import EPICS_INVALID_VAL
 
 ARCHIVER_URL_FORMATTER = "http://lcls-archapp.slac.stanford.edu/retrieval/data/{SUFFIX}"
 

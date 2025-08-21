@@ -1,7 +1,6 @@
 from pydantic import SerializeAsAny, ConfigDict, field_validator
 from typing import List, Union, Callable, Dict, Optional
-from epics import PV
-
+from lcls_tools.common.controls.epics import PV
 import lcls_tools
 
 

@@ -1,7 +1,8 @@
 from time import sleep
 from unittest.mock import MagicMock
 
-from epics import PV as EPICS_PV, caget as epics_caget, caput as epics_caput
+import epics
+from p4p.client.thread import Context
 
 # These are the values that decide whether a PV is alarming (and if so, how)
 EPICS_NO_ALARM_VAL = 0
@@ -10,34 +11,46 @@ EPICS_MAJOR_VAL = 2
 EPICS_INVALID_VAL = 3
 
 
+PVA_CONTEXT = Context("pva", nt=False)
+
+
 class PVInvalidError(Exception):
     def __init__(self, message):
         super(PVInvalidError, self).__init__(message)
 
 
-class PV(EPICS_PV):
+def pv_get_direct(pvname, unwrap=True):
+    value = PVA_CONTEXT.get(pvname)
+    if value is None:
+        value = epics.caget(pvname)
+    elif unwrap:
+        value = value["value"]
+    return value
+
+
+class PV:
     def __init__(
         self,
         pvname,
         connection_timeout=0.01,
         callback=None,
-        form="time",
         verbose=False,
         auto_monitor=None,
-        count=None,
         connection_callback=None,
         access_callback=None,
     ):
-        super().__init__(
-            pvname=pvname,
-            connection_timeout=connection_timeout,
-            callback=callback,
-            form=form,
-            verbose=verbose,
-            auto_monitor=auto_monitor,
-            count=count,
-            connection_callback=connection_callback,
-            access_callback=access_callback,
+        self.pvname = pvname
+        self.connection_timeout = connection_timeout
+        self.callback = callback
+        self.verbose = verbose
+        self.auto_monitor = auto_monitor
+        self.connection_callback = connection_callback
+        self.access_callback = access_callback
+        self.caobj = epics.PV(
+            pvname=self.pvname,
+            connection_timeout=self.connection_timeout,
+            verbose=self.verbose,
+            auto_monitor=self.auto_monitor,
         )
 
     def __str__(self):
@@ -45,20 +58,20 @@ class PV(EPICS_PV):
 
     @property
     def val(self):
-        return super().value
+        return pv_get_direct(self.pvname, timeout=self.connection_timeout)
 
-    def caget(self, count=None, as_string=False, as_numpy=True, use_monitor=True):
+    def caget(self, unwrap=True, as_string=False, as_numpy=True):
         attempt = 1
         while True:
             if attempt > 3:
                 raise PVInvalidError(f"{self} caget failed 3 times, aborting")
-            value = epics_caget(
-                self.pvname,
-                as_string=as_string,
-                count=count,
-                as_numpy=as_numpy,
-                use_monitor=use_monitor,
-            )
+            value = PVA_CONTEXT.get(self.pvname)
+            if value is None:
+                value = self.caobj.get(as_string=as_string, as_numpy=as_numpy)
+            elif unwrap:
+                value = value["value"]
+                if as_string:
+                    value = str(value)
 
             if value is not None:
                 break
@@ -72,9 +85,11 @@ class PV(EPICS_PV):
         while True:
             if attempt > 3:
                 raise PVInvalidError(f"{self} caget failed 3 times, aborting")
-            status = epics_caput(self.pvname, value)
-            if status == 1:
-                break
+            status = PVA_CONTEXT.put(self.pvname, value)
+            if status is None:
+                status = self.caobj.put(value)
+                if status is None:
+                    break
             attempt += 1
             print(f"{self} caput did not execute successfully, retrying")
             sleep(0.5)
@@ -82,32 +97,15 @@ class PV(EPICS_PV):
 
     def get(
         self,
-        count=None,
+        unwrap=True,
         as_string=False,
         as_numpy=True,
         timeout=None,
-        with_ctrlvars=False,
-        use_monitor=True,
         use_caget=True,
     ):
         if use_caget:
-            return self.caget(
-                as_string=as_string, as_numpy=as_numpy, use_monitor=use_monitor
-            )
-
-        else:
-            self.connect()
-
-            value = super().get(
-                count, as_string, as_numpy, timeout, with_ctrlvars, use_monitor
-            )
-            if value is not None:
-                return value
-            else:
-                print(f"{self} get failed, trying caget instead")
-                return self.caget(
-                    as_string=as_string, as_numpy=as_numpy, use_monitor=use_monitor
-                )
+            return self.caget(unwrap=unwrap, as_string=as_string, as_numpy=as_numpy)
+        return self.val
 
     def put(
         self,
@@ -121,9 +119,10 @@ class PV(EPICS_PV):
         use_caput=True,
     ):
         if use_caput:
+            # Mimic CA logic
             return self.caput(value)
 
-        status = super().put(
+        status = self.caput(
             value,
             wait=wait,
             timeout=timeout,
@@ -133,8 +132,15 @@ class PV(EPICS_PV):
         )
 
         if retry and (status != 1):
-            print(f"{self} put not successful, using caput")
-            self.caput(value)
+            print(f"{self} put not successful, retrying...")
+            self.caput(
+                value,
+                wait=wait,
+                timeout=timeout,
+                use_complete=use_complete,
+                callback=callback,
+                callback_data=callback_data,
+            )
 
 
 def make_mock_pv(
