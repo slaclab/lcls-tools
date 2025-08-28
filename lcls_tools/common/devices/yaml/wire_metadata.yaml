@@ -1,0 +1,536 @@
+WS01:
+  lblms:
+    - PMT03:DL1
+    - PMT05:DL1
+    - PMT21350:LI21
+
+WS02:
+  lblms:
+    - PMT03:DL1
+    - PMT05:DL1
+    - PMT21350:LI21
+
+WS03:
+  lblms:
+    - PMT03:DL1
+    - PMT05:DL1
+    - PMT21350:LI21
+
+WS04:
+  lblms:
+    - PMT03:DL1
+    - PMT05:DL1
+    - PMT21350:LI21
+
+WS11:
+  lblms:
+    - PMT11:LI21
+    - PMT12:LI21
+    - PMT13:LI21
+    - PMT21350:LI21
+    - PMT14:LI21
+    - PMT15:LI21
+
+WS12:
+  lblms:
+    - PMT11:LI21
+    - PMT12:LI21
+    - PMT13:LI21
+    - PMT21350:LI21
+    - PMT14:LI21
+    - PMT15:LI21
+
+WS13:
+  lblms:
+    - PMT11:LI21
+    - PMT12:LI21
+    - PMT13:LI21
+    - PMT21350:LI21
+    - PMT14:LI21
+    - PMT15:LI21
+
+WS24:
+  lblms:
+    - PMT24:LI24
+    - PMT25:LI24
+    - BLM707:LI24
+    - BLM740:LI24
+
+WS144:
+  lblms:
+    - PMT28750:LI28
+    - PMT29150:LI29
+    - PMT756:LTUH
+    - PMT820:LTUH
+
+WS444:
+  lblms:
+    - PMT28750:LI28
+    - PMT29150:LI29
+    - PMT756:LTUH
+    - PMT820:LTUH
+
+WS744:
+  lblms:
+    - PMT28750:LI28
+    - PMT29150:LI29
+    - PMT756:LTUH
+    - PMT820:LTUH
+
+WS644:
+  lblms:
+    - PMT28750:LI28
+    - PMT29150:LI29
+    - PMT756:LTUH
+    - PMT820:LTUH
+
+WS0H04:
+  lblms:
+    - LBLM01A:HTR
+    - LBLM01B:HTR
+  bpms_before_wire:
+    - BPMS:GUNB:925
+    - BPMS:HTR:120
+    - BPMS:HTR:320
+  bpms_after_wire:
+    - BPMS:HTR:760
+    - BPMS:HTR:830
+    - BPMS:HTR:860
+    - BPMS:HTR:960
+
+WSDG0:
+  lblms:
+    - SBLM01A:DIAG0
+  bpms_before_wire:
+    - BPMS:DIAG0:190
+    - BPMS:DIAG0:210
+    - BPMS:DIAG0:230
+    - BPMS:DIAG0:270
+    - BPMS:DIAG0:285
+    - BPMS:DIAG0:330
+    - BPMS:DIAG0:370
+    - BPMS:DIAG0:390
+  bpms_after_wire:
+    - BPMS:DIAG0:470
+    - BPMS:DIAG0:520
+
+WSC104:
+  lblms:
+    - LBLM03A:L1B
+    - LBLM04A:L2B
+    - TMITLOSS:COL1
+  bpms_before_wire:
+    - BPMS:BC1B:125
+    - BPMS:BC1B:440
+    - BPMS:COL1:120
+    - BPMS:COL1:260
+    - BPMS:COL1:280
+    - BPMS:COL1:320
+  bpms_after_wire:
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPD:420
+    - BPMS:SPD:525
+
+WSC106:
+  lblms:
+    - LBLM03A:L1B
+    - LBLM04A:L2B
+    - TMITLOSS:COL1
+  bpms_before_wire:
+    - BPMS:BC1B:125
+    - BPMS:BC1B:440
+    - BPMS:COL1:120
+    - BPMS:COL1:260
+    - BPMS:COL1:280
+    - BPMS:COL1:320
+  bpms_after_wire:
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPD:420
+    - BPMS:SPD:525
+
+WSC108:
+  lblms:
+    - LBLM03A:L1B
+    - LBLM04A:L2B
+    - TMITLOSS:COL1
+  bpms_before_wire:
+    - BPMS:BC1B:125
+    - BPMS:BC1B:440
+    - BPMS:COL1:120
+    - BPMS:COL1:260
+    - BPMS:COL1:280
+    - BPMS:COL1:320
+  bpms_after_wire:
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPD:420
+    - BPMS:SPD:525
+
+WSC110:
+  lblms:
+    - LBLM03A:L1B
+    - LBLM04A:L2B
+    - TMITLOSS:COL1
+  bpms_before_wire:
+    - BPMS:BC1B:125
+    - BPMS:BC1B:440
+    - BPMS:COL1:120
+    - BPMS:COL1:260
+    - BPMS:COL1:280
+    - BPMS:COL1:320
+  bpms_after_wire:
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPD:420
+    - BPMS:SPD:525
+
+WSEMIT2:
+  lblms:
+    - LBLM04A:L2B
+    - LBLM07A:L3B
+    - TMITLOSS:EMIT2
+  bpms_before_wire:
+    - BPMS:BC2B:150
+    - BPMS:BC2B:530
+    - BPMS:EMIT2:150
+    - BPMS:EMIT2:300
+  bpms_after_wire:
+    - BPMS:SPS:780
+    - BPMS:SPS:830
+    - BPMS:SPS:840
+    - BPMS:SLTS:150
+    - BPMS:SLTS:430
+    - BPMS:SLTS:460
+
+WSBP1:
+  lblms:
+    - LBLM11A_1:BYP
+    - LBLM11A_2:BYP
+    - LBLM11A_3:BYP
+    - TMITLOSS:BYP
+  bpms_before_wire:
+    - BPMS:L3B:3583
+    - BPMS:EXT:351
+    - BPMS:EXT:748
+    - BPMS:DOG:120
+    - BPMS:DOG:135
+    - BPMS:DOG:150
+    - BPMS:DOG:200
+    - BPMS:DOG:215
+    - BPMS:DOG:230
+    - BPMS:DOG:280
+    - BPMS:DOG:335
+    - BPMS:DOG:355
+    - BPMS:DOG:405
+  bpms_after_wire:
+    - BPMS:BPN23:400
+    - BPMS:BPN24:400
+    - BPMS:BPN25:400
+    - BPMS:BPN26:400
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPD:420
+    - BPMS:SPD:525
+    - BPMS:SPD:570
+    - BPMS:SPD:700
+    - BPMS:SPD:955
+
+WSBP2:
+  lblms:
+    - LBLM11A_1:BYP
+    - LBLM11A_2:BYP
+    - LBLM11A_3:BYP
+    - TMITLOSS:BYP
+  bpms_before_wire:
+    - BPMS:L3B:3583
+    - BPMS:EXT:351
+    - BPMS:EXT:748
+    - BPMS:DOG:120
+    - BPMS:DOG:135
+    - BPMS:DOG:150
+    - BPMS:DOG:200
+    - BPMS:DOG:215
+    - BPMS:DOG:230
+    - BPMS:DOG:280
+    - BPMS:DOG:335
+    - BPMS:DOG:355
+    - BPMS:DOG:405
+  bpms_after_wire:
+    - BPMS:BPN23:400
+    - BPMS:BPN24:400
+    - BPMS:BPN25:400
+    - BPMS:BPN26:400
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPD:420
+    - BPMS:SPD:525
+    - BPMS:SPD:570
+    - BPMS:SPD:700
+    - BPMS:SPD:955
+
+WSBP3:
+  lblms:
+    - LBLM11A_1:BYP
+    - LBLM11A_2:BYP
+    - LBLM11A_3:BYP
+    - TMITLOSS:BYP
+  bpms_before_wire:
+    - BPMS:L3B:3583
+    - BPMS:EXT:351
+    - BPMS:EXT:748
+    - BPMS:DOG:120
+    - BPMS:DOG:135
+    - BPMS:DOG:150
+    - BPMS:DOG:200
+    - BPMS:DOG:215
+    - BPMS:DOG:230
+    - BPMS:DOG:280
+    - BPMS:DOG:335
+    - BPMS:DOG:355
+    - BPMS:DOG:405
+  bpms_after_wire:
+    - BPMS:BPN23:400
+    - BPMS:BPN24:400
+    - BPMS:BPN25:400
+    - BPMS:BPN26:400
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPD:420
+    - BPMS:SPD:525
+    - BPMS:SPD:570
+    - BPMS:SPD:700
+    - BPMS:SPD:955
+
+WSBP4:
+  lblms:
+    - LBLM11A_1:BYP
+    - LBLM11A_2:BYP
+    - LBLM11A_3:BYP
+    - TMITLOSS:BYP
+  bpms_before_wire:
+    - BPMS:L3B:3583
+    - BPMS:EXT:351
+    - BPMS:EXT:748
+    - BPMS:DOG:120
+    - BPMS:DOG:135
+    - BPMS:DOG:150
+    - BPMS:DOG:200
+    - BPMS:DOG:215
+    - BPMS:DOG:230
+    - BPMS:DOG:280
+    - BPMS:DOG:335
+    - BPMS:DOG:355
+    - BPMS:DOG:405
+  bpms_after_wire:
+    - BPMS:BPN23:400
+    - BPMS:BPN24:400
+    - BPMS:BPN25:400
+    - BPMS:BPN26:400
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPD:420
+    - BPMS:SPD:525
+    - BPMS:SPD:570
+    - BPMS:SPD:700
+    - BPMS:SPD:955
+
+WSSP1D:
+  lblms:
+    - LBLM22A:SPS
+  bpms_before_wire:
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPD:420
+    - BPMS:SPD:525
+    - BPMS:SPD:570
+  bpms_after_wire:
+    - BPMS:SPD:700
+    - BPMS:SPD:955
+    - BPMS:SLTD:625
+
+WS31:
+  lblms:
+    - PMT122:LTUH
+    - PMT246:LTUH
+    - PMT430:LTUH
+    - PMT431:LTUH
+    - PMT550:LTUH
+    - PMT755:LTUH
+    - PMT756:LTUH
+    - PMT820:LTUH
+    - PMT850:LTUH
+    - LBLM32A:LTUH
+
+WS32:
+  lblms:
+    - PMT122:LTUH
+    - PMT246:LTUH
+    - PMT430:LTUH
+    - PMT431:LTUH
+    - PMT550:LTUH
+    - PMT755:LTUH
+    - PMT756:LTUH
+    - PMT820:LTUH
+    - PMT850:LTUH
+    - LBLM32A:LTUH
+
+WS33:
+  lblms:
+    - PMT122:LTUH
+    - PMT246:LTUH
+    - PMT430:LTUH
+    - PMT431:LTUH
+    - PMT550:LTUH
+    - PMT755:LTUH
+    - PMT756:LTUH
+    - PMT820:LTUH
+    - PMT850:LTUH
+    - LBLM32A:LTUH
+
+WS34:
+  lblms:
+    - PMT122:LTUH
+    - PMT246:LTUH
+    - PMT430:LTUH
+    - PMT431:LTUH
+    - PMT550:LTUH
+    - PMT755:LTUH
+    - PMT756:LTUH
+    - PMT820:LTUH
+    - PMT850:LTUH
+    - LBLM32A:LTUH
+
+WS31B:
+  lblms:
+    - LBLMS32A:LTUS
+    - TMITLOSS:LTUS
+  bpms_before_wire:
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPS:572
+    - BPMS:SPS:580
+    - BPMS:SPS:640
+    - BPMS:SPS:710
+    - BPMS:SPS:770
+    - BPMS:SPS:780
+    - BPMS:SPS:830
+    - BPMS:SPS:840
+    - BPMS:SLTS:150
+  bpms_after_wire:
+    - BPMS:DMPS:381
+    - BPMS:DMPS:502
+    - BPMS:DMPS:693
+
+WS32B:
+  lblms:
+    - LBLMS32A:LTUS
+    - TMITLOSS:LTUS
+  bpms_before_wire:
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPS:572
+    - BPMS:SPS:580
+    - BPMS:SPS:640
+    - BPMS:SPS:710
+    - BPMS:SPS:770
+    - BPMS:SPS:780
+    - BPMS:SPS:830
+    - BPMS:SPS:840
+    - BPMS:SLTS:150
+  bpms_after_wire:
+    - BPMS:DMPS:381
+    - BPMS:DMPS:502
+    - BPMS:DMPS:693
+
+WS33B:
+  lblms:
+    - LBLMS32A:LTUS
+    - TMITLOSS:LTUS
+  bpms_before_wire:
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPS:572
+    - BPMS:SPS:580
+    - BPMS:SPS:640
+    - BPMS:SPS:710
+    - BPMS:SPS:770
+    - BPMS:SPS:780
+    - BPMS:SPS:830
+    - BPMS:SPS:840
+    - BPMS:SLTS:150
+  bpms_after_wire:
+    - BPMS:DMPS:381
+    - BPMS:DMPS:502
+    - BPMS:DMPS:693
+
+WS34B:
+  lblms:
+    - LBLMS32A:LTUS
+    - TMITLOSS:LTUS
+  bpms_before_wire:
+    - BPMS:BPN27:400
+    - BPMS:BPN28:200
+    - BPMS:BPN28:400
+    - BPMS:SPD:135
+    - BPMS:SPD:255
+    - BPMS:SPD:340
+    - BPMS:SPS:572
+    - BPMS:SPS:580
+    - BPMS:SPS:640
+    - BPMS:SPS:710
+    - BPMS:SPS:770
+    - BPMS:SPS:780
+    - BPMS:SPS:830
+    - BPMS:SPS:840
+    - BPMS:SLTS:150
+  bpms_after_wire:
+    - BPMS:DMPS:381
+    - BPMS:DMPS:502
+    - BPMS:DMPS:693
