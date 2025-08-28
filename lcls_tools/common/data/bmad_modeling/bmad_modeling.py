@@ -1,7 +1,7 @@
 import numpy as np
 import yaml
 import os
-import epics
+from lcls_tools.common.controls.epics import pv_get_direct
 from datetime import datetime, timedelta
 from lcls_live.datamaps import get_datamaps
 from lcls_live.archiver import lcls_archiver_restore
@@ -174,7 +174,7 @@ def get_element(tao, datum):
 
 def get_live(pvlist):
     """Returns dictionary with PV names as keys and values of PVs"""
-    return dict(zip(pvlist, epics.caget_many(pvlist)))
+    return dict(zip(pvlist, [pv_get_direct(item) for item in pvlist]))
 
 
 def use_klys_when_beam_off(tao_cmds, pvdata, beam_code="1"):

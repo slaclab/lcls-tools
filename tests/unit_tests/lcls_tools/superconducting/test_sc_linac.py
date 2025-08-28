@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from lcls_tools.common.controls.pyepics.utils import EPICS_NO_ALARM_VAL
+from lcls_tools.common.controls.epics import EPICS_NO_ALARM_VAL
 from lcls_tools.superconducting.sc_linac import Machine, Linac
 from lcls_tools.superconducting.sc_linac_utils import (
     ALL_CRYOMODULES,

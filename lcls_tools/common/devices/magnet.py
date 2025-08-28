@@ -20,7 +20,7 @@ from lcls_tools.common.devices.device import (
     Metadata,
     PVSet,
 )
-from epics import PV
+from lcls_tools.common.controls.epics import PV
 
 
 class MagnetPVSet(PVSet):
@@ -47,16 +47,16 @@ class MagnetControlInformation(ControlInformation):
     def __init__(self, *args, **kwargs):
         super(MagnetControlInformation, self).__init__(*args, **kwargs)
         # Get possible options for magnet ctrl PV, empty dict by default.
-        options = self.PVs.ctrl.get_ctrlvars(timeout=1)
-        if options:
-            [
-                self._ctrl_options.update({option: i})
-                for i, option in enumerate(options["enum_strs"])
-            ]
-
-    @property
-    def ctrl_options(self):
-        return self._ctrl_options
+        # todo: figure out less hacky PVA code
+        if self.PVs.ctrl.caobj is not None:
+            options = self.PVs.ctrl.caobj.get_ctrlvars(timeout=1)
+            if options:
+                for i, option in enumerate(options["enum_strs"]):
+                    self._ctrl_options.update({option: i})
+        else:
+            for option in ["TRIM", "PERTURB", "RESET"]:
+                if (pv := self.PVs.ctrl.get(unwrap=False)) is not None:
+                    self._ctrl_options.update({option: pv["choices"][pv["index"]]})
 
 
 class MagnetMetadata(Metadata):
@@ -107,10 +107,6 @@ class Magnet(Device):
             return decorated
 
         return decorator
-
-    @property
-    def ctrl_options(self):
-        return self.controls_information.ctrl_options
 
     @property
     def b_tolerance(self):
@@ -164,7 +160,11 @@ class Magnet(Device):
     @property
     def ctrl(self) -> str:
         """Get the current action on magnet"""
-        return self.controls_information.PVs.ctrl.get(as_string=True)
+        # todo: figure out less hacky PVA code
+        out = self.controls_information.PVs.ctrl.get(as_string=True)
+        if not isinstance(out, str):
+            return out["choices"][self.controls_information.PVs.ctrl.get()["index"]]
+        return out
 
     @property
     def bcon(self) -> float:

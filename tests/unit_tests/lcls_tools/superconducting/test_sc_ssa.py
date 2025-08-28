@@ -2,7 +2,7 @@ from random import randint, uniform
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from lcls_tools.common.controls.pyepics.utils import make_mock_pv
+from lcls_tools.common.controls.epics import make_mock_pv
 from lcls_tools.superconducting.sc_linac import CavityIterator, MACHINE
 from lcls_tools.superconducting.sc_linac_utils import (
     SSA_STATUS_ON_VALUE,

@@ -2,7 +2,7 @@ from datetime import datetime
 from time import sleep
 from typing import Optional, Callable, TYPE_CHECKING
 
-from lcls_tools.common.controls.pyepics.utils import PV, EPICS_INVALID_VAL
+from lcls_tools.common.controls.epics import PV, EPICS_INVALID_VAL
 from lcls_tools.superconducting import sc_linac_utils as utils
 
 if TYPE_CHECKING:
