@@ -45,3 +45,17 @@ magnets:
       l_eff: 0.0
       sum_l_meters: null
       type: QUAD
+tcavs:
+  XTCAVF:
+    controls_information:
+      PVs: {}
+      control_name: TCAV:LI20:2400
+    metadata:
+      area: FF20
+      beam_path:
+      - F2_ELEC
+      - F2_POSI
+      l_eff: 1.033
+      rf_freq: 11424.0
+      sum_l_meters: 986.615
+      type: LCAV

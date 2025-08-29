@@ -404,6 +404,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: OTRS:IN10:571
+      pv_cache: {}
     metadata:
       area: DL10
       beam_path:
@@ -416,6 +417,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: OTRS:IN10:711
+      pv_cache: {}
     metadata:
       area: DL10
       beam_path:

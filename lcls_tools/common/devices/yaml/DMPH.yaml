@@ -386,3 +386,20 @@ screens:
         TLAMP: 1.0
       sum_l_meters: 1746.602
       type: PROF
+tcavs:
+  TCX01:
+    controls_information:
+      PVs: {}
+      control_name: TCAV:DMPH:360
+    metadata:
+      area: DMPH
+      beam_path:
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - SC_HXR
+      l_eff: 1.0
+      rf_freq: 11424.0
+      sum_l_meters: 1713.869
+      type: LCAV

@@ -1,0 +1,49 @@
+pmts:
+  PMT2113:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LI21:301
+    metadata:
+      area: LI21
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT2114:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LI21:401:QDCRAW
+      control_name: PMT:LI21:401
+    metadata:
+      area: LI21
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT2115:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LI21:402:QDCRAW
+      control_name: PMT:LI21:402
+    metadata:
+      area: LI21
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT21293:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LI21:293
+    metadata:
+      area: LI21
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT21350:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LI21:350:QDCRAW
+      control_name: PMT:LI21:350
+    metadata:
+      area: LI21
+      beam_path: []
+      sum_l_meters: null
+      type: INST

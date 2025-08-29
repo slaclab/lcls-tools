@@ -6,6 +6,7 @@ from lcls_tools.common.devices.screen import Screen, ScreenCollection
 from lcls_tools.common.devices.magnet import Magnet, MagnetCollection
 from lcls_tools.common.devices.wire import Wire, WireCollection
 from lcls_tools.common.devices.lblm import LBLM, LBLMCollection
+from lcls_tools.common.devices.pmt import PMT, PMTCollection
 from lcls_tools.common.devices.bpm import BPM, BPMCollection
 from lcls_tools.common.devices.tcav import TCAV
 from lcls_tools.common.devices.area import Area
@@ -172,6 +173,21 @@ def create_tcav(area: str = None, name: str = None) -> Union[None, TCAV]:
         except ValidationError as field_error:
             print(field_error)
             return None
+
+
+def create_pmt(area: str = None, name: str = None) -> Union[None, PMT]:
+    device_data = _device_data(area=area, device_type="pmts", name=name)
+    if not device_data:
+        return None
+    if name:
+        try:
+            device_data.update({"name": name})
+            return PMT(**device_data)
+        except ValidationError as field_error:
+            print(field_error)
+            return None
+    else:
+        return PMTCollection(**device_data)
 
 
 def create_area(area: str = None) -> Union[None, Area]:

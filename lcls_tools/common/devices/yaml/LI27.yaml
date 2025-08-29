@@ -19,6 +19,16 @@ magnets:
       l_eff: 0.0
       sum_l_meters: null
       type: YCOR
+pmts:
+  PMT27644:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LI27:644
+    metadata:
+      area: LI27
+      beam_path: []
+      sum_l_meters: null
+      type: INST
 wires:
   WS044:
     controls_information:

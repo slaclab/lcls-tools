@@ -27,6 +27,7 @@ from lcls_tools.common.devices.lblm import (
     LBLM,
     LBLMCollection,
 )
+from lcls_tools.common.devices.pmt import PMT, PMTCollection
 
 from pydantic import SerializeAsAny, Field, field_validator
 
@@ -89,6 +90,15 @@ class Area(lcls_tools.common.BaseModel):
         alias="lblms",
         default=None,
     )
+    pmt_collection: Optional[
+        Union[
+            SerializeAsAny[PMTCollection],
+            None,
+        ]
+    ] = Field(
+        alias="pmts",
+        default=None,
+    )
 
     def __init__(
         self,
@@ -146,6 +156,15 @@ class Area(lcls_tools.common.BaseModel):
         if not v:
             return None
         return LBLMCollection(lblms=v)
+
+    @field_validator(
+        "pmt_collection",
+        mode="before",
+    )
+    def validate_pmts(cls, v: Dict[str, Any]):
+        if not v:
+            return None
+        return PMTCollection(pmts=v)
 
     @property
     def magnets(
@@ -232,6 +251,23 @@ class Area(lcls_tools.common.BaseModel):
             print("Area does not contain lblms.")
             return None
 
+    @property
+    def pmts(
+        self,
+    ) -> Union[
+        Dict[str, PMT],
+        None,
+    ]:
+        """
+        A Dict[str, PMT] for this area, where the dict keys are pmt names
+        If no pmts exist for this area, this property is None
+        """
+        if self.pmt_collection:
+            return self.pmt_collection.pmts
+        else:
+            print("Area does not contain pmts.")
+            return None
+
     def does_magnet_exist(
         self,
         magnet_name: str = None,
@@ -261,3 +297,9 @@ class Area(lcls_tools.common.BaseModel):
         lblm_name: str = None,
     ) -> bool:
         return lblm_name in self.lblms
+
+    def does_pmt_exist(
+        self,
+        pmt_name: str = None,
+    ) -> bool:
+        return pmt_name in self.pmts

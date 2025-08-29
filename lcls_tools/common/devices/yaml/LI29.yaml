@@ -1,0 +1,11 @@
+pmts:
+  PMT29150:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LI29:150:QDCRAW
+      control_name: PMT:LI29:150
+    metadata:
+      area: LI29
+      beam_path: []
+      sum_l_meters: null
+      type: INST

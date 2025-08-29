@@ -514,6 +514,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: MOVR:GUNB:753
+      pv_cache: {}
     metadata:
       area: GUNB
       beam_path:

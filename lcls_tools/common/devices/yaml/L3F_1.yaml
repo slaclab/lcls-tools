@@ -1842,6 +1842,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: BPMS:LI15:944
+      pv_cache: {}
     metadata:
       area: L3F_1
       beam_path:

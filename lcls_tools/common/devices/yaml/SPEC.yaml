@@ -187,6 +187,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: OTRS:IN20:997
+      pv_cache: {}
     metadata:
       area: SPEC
       beam_path:

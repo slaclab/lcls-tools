@@ -2731,6 +2731,66 @@ magnets:
       l_eff: 0.0
       sum_l_meters: 1239.413
       type: YCOR
+pmts:
+  PMT122:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:122:QDCRAW
+      control_name: PMT:LTUH:122
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT246:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:246:QDCRAW
+      control_name: PMT:LTUH:246
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT550:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:550:QDCRAW
+      control_name: PMT:LTUH:550
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT755:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LTUH:755
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT756:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:756:QDCRAW
+      control_name: PMT:LTUH:756
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT820:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:820:QDCRAW
+      control_name: PMT:LTUH:820
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
 screens:
   OTR30:
     controls_information:
@@ -2863,6 +2923,17 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      lblms:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1409.712
       type: WIRE
   WS32:
@@ -2905,6 +2976,17 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      lblms:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1444.975
       type: WIRE
   WS33:
@@ -2947,6 +3029,17 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      lblms:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1480.239
       type: WIRE
   WS34:
@@ -2989,6 +3082,17 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      lblms:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1515.502
       type: WIRE
   WSDL31:

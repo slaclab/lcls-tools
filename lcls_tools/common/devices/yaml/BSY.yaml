@@ -251,11 +251,22 @@ magnets:
       l_eff: 0.0
       sum_l_meters: null
       type: YCOR
+pmts:
+  PMTBSY62:
+    controls_information:
+      PVs: {}
+      control_name: PMT:BSY0:62
+    metadata:
+      area: BSY
+      beam_path: []
+      sum_l_meters: null
+      type: INST
 screens:
   PRBSY45:
     controls_information:
       PVs: {}
       control_name: PROF:BSY0:45
+      pv_cache: {}
     metadata:
       area: BSY
       beam_path: []

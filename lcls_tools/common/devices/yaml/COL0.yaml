@@ -21,7 +21,10 @@ bpms:
       type: BPM
   BPMC002:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL0:260:TMIT
+        x: BPMS:COL0:260:X
+        y: BPMS:COL0:260:Y
       control_name: BPMS:COL0:260
     metadata:
       area: COL0
@@ -98,7 +101,10 @@ bpms:
       type: BPM
   BPMC006:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL0:480:TMIT
+        x: BPMS:COL0:480:X
+        y: BPMS:COL0:480:Y
       control_name: BPMS:COL0:480
     metadata:
       area: COL0
@@ -155,7 +161,10 @@ bpms:
       type: BPM
   BPMC009:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL0:720:TMIT
+        x: BPMS:COL0:720:X
+        y: BPMS:COL0:720:Y
       control_name: BPMS:COL0:720
     metadata:
       area: COL0
@@ -172,7 +181,10 @@ bpms:
       type: BPM
   BPMC010:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL0:800:TMIT
+        x: BPMS:COL0:800:X
+        y: BPMS:COL0:800:Y
       control_name: BPMS:COL0:800
     metadata:
       area: COL0

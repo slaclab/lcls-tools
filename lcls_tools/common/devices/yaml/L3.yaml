@@ -4186,6 +4186,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: OTRS:LI25:920
+      pv_cache: {}
     metadata:
       area: L3
       beam_path:
@@ -4202,6 +4203,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI30:PROF:13
+      pv_cache: {}
     metadata:
       area: L3
       beam_path:
@@ -4218,6 +4220,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI30:PROF:14
+      pv_cache: {}
     metadata:
       area: L3
       beam_path:
@@ -4234,6 +4237,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI30:PROF:143
+      pv_cache: {}
     metadata:
       area: L3
       beam_path:
@@ -4250,6 +4254,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI30:PROF:144
+      pv_cache: {}
     metadata:
       area: L3
       beam_path:
@@ -4266,6 +4271,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI30:PROF:443
+      pv_cache: {}
     metadata:
       area: L3
       beam_path:
@@ -4282,6 +4288,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI30:PROF:444
+      pv_cache: {}
     metadata:
       area: L3
       beam_path:
@@ -4298,6 +4305,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI30:PROF:543
+      pv_cache: {}
     metadata:
       area: L3
       beam_path:
@@ -4314,6 +4322,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI30:PROF:544
+      pv_cache: {}
     metadata:
       area: L3
       beam_path:
@@ -4326,6 +4335,24 @@ screens:
       hardware: {}
       sum_l_meters: 992.757
       type: PROF
+tcavs:
+  TCAV3:
+    controls_information:
+      PVs: {}
+      control_name: TCAV:LI24:800
+    metadata:
+      area: L3
+      beam_path:
+      - CU_ALINE
+      - CU_HTXI
+      - CU_HXR
+      - CU_HXTES
+      - CU_SFTH
+      - CU_SXR
+      l_eff: 2.438
+      rf_freq: 2856.0
+      sum_l_meters: 446.761
+      type: LCAV
 wires:
   WS27644:
     controls_information:

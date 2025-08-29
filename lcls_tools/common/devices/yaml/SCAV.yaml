@@ -679,6 +679,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: EP01:PROF:185
+      pv_cache: {}
     metadata:
       area: SCAV
       beam_path:
