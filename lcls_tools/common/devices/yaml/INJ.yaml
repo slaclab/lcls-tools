@@ -112,6 +112,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: YAGS:IN10:241
+      pv_cache: {}
     metadata:
       area: INJ
       beam_path:

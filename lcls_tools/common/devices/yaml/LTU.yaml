@@ -39,11 +39,40 @@ magnets:
       l_eff: 0.0
       sum_l_meters: null
       type: YCOR
+pmts:
+  PMT715:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LTUH:715
+    metadata:
+      area: LTU
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT970:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LTU1:970
+    metadata:
+      area: LTU
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT971:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LTU1:971
+    metadata:
+      area: LTU
+      beam_path: []
+      sum_l_meters: null
+      type: INST
 screens:
   PRXL1:
     controls_information:
       PVs: {}
       control_name: YAGS:LTU1:844
+      pv_cache: {}
     metadata:
       area: LTU
       beam_path: []
@@ -54,6 +83,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: YAGS:LTU1:853
+      pv_cache: {}
     metadata:
       area: LTU
       beam_path: []
@@ -64,6 +94,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: OTRS:LTU1:858
+      pv_cache: {}
     metadata:
       area: LTU
       beam_path: []
