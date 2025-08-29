@@ -1,60 +1,58 @@
 WS01:
   lblms:
-    - PMT03:DL1
-    - PMT05:DL1
+    - PMTINJ03:DL1
+    - PMTINJ05:DL1
     - PMT21350:LI21
 
 WS02:
   lblms:
-    - PMT03:DL1
-    - PMT05:DL1
+    - PMTINJ03:DL1
+    - PMTINJ05:DL1
     - PMT21350:LI21
 
 WS03:
   lblms:
-    - PMT03:DL1
-    - PMT05:DL1
+    - PMTINJ03:DL1
+    - PMTINJ05:DL1
     - PMT21350:LI21
 
 WS04:
   lblms:
-    - PMT03:DL1
-    - PMT05:DL1
+    - PMTINJ03:DL1
+    - PMTINJ05:DL1
     - PMT21350:LI21
 
 WS11:
   lblms:
-    - PMT11:LI21
-    - PMT12:LI21
-    - PMT13:LI21
+    - PMT2111:DL1
+    - PMT21293:LI21
+    - PMT2113:LI21
     - PMT21350:LI21
-    - PMT14:LI21
-    - PMT15:LI21
+    - PMT2114:LI21
+    - PMT2115:LI21
 
 WS12:
   lblms:
-    - PMT11:LI21
-    - PMT12:LI21
-    - PMT13:LI21
+    - PMT2111:DL1
+    - PMT21293:LI21
+    - PMT2113:LI21
     - PMT21350:LI21
-    - PMT14:LI21
-    - PMT15:LI21
+    - PMT2114:LI21
+    - PMT2115:LI21
 
 WS13:
   lblms:
-    - PMT11:LI21
-    - PMT12:LI21
-    - PMT13:LI21
+    - PMT2111:DL1
+    - PMT21293:LI21
+    - PMT2113:LI21
     - PMT21350:LI21
-    - PMT14:LI21
-    - PMT15:LI21
+    - PMT2114:LI21
+    - PMT2115:LI21
 
 WS24:
   lblms:
-    - PMT24:LI24
-    - PMT25:LI24
-    - BLM707:LI24
-    - BLM740:LI24
+    - PMT24705:LI24
+    - PMT24706:LI24
 
 WS144:
   lblms:
