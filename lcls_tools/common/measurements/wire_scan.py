@@ -1,6 +1,6 @@
 from typing import Optional
 from lcls_tools.common.devices.wire import Wire
-from lcls_tools.common.devices.reader import create_lblm
+from lcls_tools.common.devices.reader import create_lblm, create_pmt
 import lcls_tools.common.model.gaussian as gaussian
 from lcls_tools.common.measurements.measurement import Measurement
 import time
@@ -29,10 +29,12 @@ class WireBeamProfileMeasurement(Measurement):
     Attributes:
         name (str): Scan object name required by Measurement class.
         my_wire (Wire): Wire device used to perform the scan.
-        beampath (str): Beamline path identifier for buffer and device selection.
-        my_buffer (edef.BSABuffer): edef buffer object to manage data acquisition.
-        devices (dict): Holds all slac-tools device objects associated with this measurement
-                        (wires, detectors, bpms, etc).
+        beampath (str): Beamline path identifier for buffer and device
+                        selection.
+        my_buffer (edef.BSABuffer): edef buffer object to manage data
+                                    acquisition.
+        devices (dict): Holds all slac-tools device objects associated
+                        with this measurement (wires, detectors, bpms, etc).
         data (dict): Raw data object for all devices defined above.
         profile_measurements (dict): Collected data organized by profile.
         logger (logging.Logger): Object for log file management.
@@ -55,7 +57,10 @@ class WireBeamProfileMeasurement(Measurement):
         # Configure custom logger
         date_str = datetime.now().strftime("%Y%m%d")
         log_filename = f"ws_log_{date_str}.txt"
-        self.logger = custom_logger(log_file=log_filename, name="wire_scan_logger")
+        self.logger = custom_logger(
+            log_file=log_filename,
+            name="wire_scan_logger",
+        )
 
         # Reserve BSA buffer
         if self.my_buffer is None:
@@ -130,10 +135,21 @@ class WireBeamProfileMeasurement(Measurement):
         # Instantiate device dictionary with wire device
         devices = {self.my_wire.name: self.my_wire}
 
-        #
-        for lblm_str in self.my_wire.metadata.lblms:
+        def _log_validation_error(logger, name: str, e: ValidationError) -> None:
+            logger.warning("Validation error creating %s. Continuing...", name)
+            for err in e.errors():
+                loc = " -> ".join(str(i) for i in err["loc"])
+                logger.warning("%s: %s (%s)", loc, err["msg"], err["type"])
+
+        create_by_prefix = {
+            "LBLM": create_lblm,
+            "PMT": create_pmt,
+        }
+
+        for d_str in self.my_wire.metadata.detectors:
             # Detectors are stored in YAML file as a string like {NAME}:{AREA}
-            name, area = lblm_str.split(":")
+            name, area = d_str.split(":")
+
             if name == "TMITLOSS":
                 devices["TMITLOSS"] = TMITLoss(
                     my_buffer=self.my_buffer,
@@ -141,17 +157,24 @@ class WireBeamProfileMeasurement(Measurement):
                     beampath=self.beampath,
                     region=self.my_wire.area,
                 )
-            else:
-                try:
-                    # Make LBLM object
-                    devices[name] = create_lblm(area=area, name=name)
-                except ValidationError as e:
-                    self.logger.warning(
-                        "Validation error creating %s. Continuing...", name
-                    )
-                    for err in e.errors():
-                        loc = " -> ".join(str(i) for i in err["loc"])
-                        self.logger.warning("%s: %s (%s)", loc, err["msg"], err["type"])
+
+            creator = next(
+                (
+                    f
+                    for prefix, f in create_by_prefix.items()
+                    if name.startswith(prefix)
+                ),
+                None,
+            )
+            if creator is None:
+                self.logger.warning(
+                    "Unknown detector type '%s'in '%s'. Skipping.", name, d_str
+                )
+
+            try:
+                devices[name] = creator(area=area, name=name)
+            except ValidationError as e:
+                _log_validation_error(self.logger, name, e)
 
         self.logger.info("Device dictionary built.")
         return devices
@@ -183,14 +206,19 @@ class WireBeamProfileMeasurement(Measurement):
         start_time = time.monotonic()
         last_print_time = start_time
         last_trigger_time = start_time
-        attempt_count = 10
+        attempt_count = 0
 
+        elapsed_time = 0
         while not self.my_wire.enabled:
             current_time = time.monotonic()
             elapsed_time = current_time - start_time
 
             if elapsed_time >= 30:
-                msg = f"{self.my_wire.name} failed to initialized after {int(elapsed_time)} seconds"
+                msg = (
+                    f"{self.my_wire.name} failed to initialize"
+                    "after {int(elapsed_time)} seconds"
+                )
+
                 self.logger.error(msg)
                 raise TimeoutError(msg)
 
@@ -233,7 +261,8 @@ class WireBeamProfileMeasurement(Measurement):
         # Wait for buffer 'ready'
         i = 0
         while not self.my_buffer.is_acquisition_complete():
-            time.sleep(0.1)  # Check for completion every 0.1 s, post position every 1s
+            # Check for completion every 0.1 s, post position 1s
+            time.sleep(0.1)
             if i % 10 == 0:
                 self.logger.info("Wire position: %s", self.my_wire.motor_rbv)
             i += 1
@@ -246,30 +275,22 @@ class WireBeamProfileMeasurement(Measurement):
 
         self.logger.info("Getting data from BSA buffer...")
 
-        # Get data for SC devices
-        if self.beampath.startswith("SC"):
-            for d in self.devices:
-                # Get position data if wire device
-                if d == self.my_wire.name:
-                    data[d] = self.my_wire.position_buffer(self.my_buffer)
+        # Get device data from buffer
+        for d in self.devices:
+            # Get position data if wire device
+            if d == self.my_wire.name:
+                data[d] = self.my_wire.position_buffer(self.my_buffer)
 
-                # Get TMITLoss data
-                elif d == "TMITLOSS":
-                    data[d] = self.devices[d].measure()
+            # Get TMITLoss data
+            elif d == "TMITLOSS":
+                data[d] = self.devices[d].measure()
 
-                # Get LBLM/PMT data
-                else:
-                    data[d] = self.devices[d].fast_buffer(self.my_buffer)
+            elif d.starswith("LBLM"):
+                data[d] = self.devices[d].fast_buffer(self.my_buffer)
 
-        # Get data for CU devices
-        elif self.beampath.startswith("CU"):
-            # CU LBLMs use "QDCRAW" signal
-            data.update(
-                {
-                    lblm: self.devices[lblm].qdcraw_buffer(self.my_buffer)
-                    for lblm in self.my_wire.metadata.lblms
-                }
-            )
+            elif d.startswith("PMT"):
+                data[d] = self.devices[d].qdcraw_buffer(self.my_buffer)
+
         self.logger.info("Data retrieved from BSA buffer.  Scan complete.")
 
         # Release EDEF/BSA
@@ -306,8 +327,8 @@ class WireBeamProfileMeasurement(Measurement):
             method_name = f"{p}_range"
             ranges[p] = getattr(self.my_wire, method_name)
 
-            if position_data.min() == position_data.max():  # No change in data at all
-                msg = "Data did not collect properly in BSA buffer.  Exiting scan."
+            if position_data.min() == position_data.max():  # No change in data
+                msg = "Data did not collect properly in BSA buffer. Exiting scan."
                 self.logger.error(msg)
                 raise RuntimeError(msg)
             elif (
@@ -317,21 +338,24 @@ class WireBeamProfileMeasurement(Measurement):
                 self.logger.error(msg)
                 raise RuntimeError(msg)
 
-            # Get indices of when position is within a selected wire scan profile range
+            # Get indices of  position when within a
+            # selected wire scan profile range
             idx = np.where(
                 (position_data >= ranges[p][0]) & (position_data <= ranges[p][1])
             )[0]
 
-            # Data slice representing wire positions for a given profile measurement
+            # Data slice representing wire positions
+            # for a given profile measurement
             pos = position_data[idx]
 
             # Boolean mask of monotonically non-decreasing data points
-            # Mask of values where difference between neighbors is positive or zero
+            # Mask of values where difference between neighbors is > 0
             def mono_array(pos):
                 mono = True
                 mono_mask = np.array(
-                    # Data point [i-1] is less than subsequent data point [i] AND
-                    # that relationship was True for the previous pair, for all points
+                    # Data point [i-1] is less than subsequent data point [i]
+                    # and that relationship was True for the previous pair
+                    # for all points
                     [
                         mono := (pos[i - 1] <= pos[i] and mono)
                         for i in range(1, len(pos))
@@ -356,7 +380,8 @@ class WireBeamProfileMeasurement(Measurement):
         x, y, and u profile datasets.
 
         Returns:
-            dict: Nested dict with profiles as keys and device data per profile.
+            dict: Nested dict with profiles as keys and device
+                  data per profile.
         """
         self.logger.info("Creating profile data objects...")
         profiles = list(profile_idxs.keys())
@@ -482,15 +507,17 @@ class WireBeamProfileMeasurement(Measurement):
         """
         Determine the number of buffer points for a wire scan.
 
-        The beam rate and pulses per profile are used here to calculate the wire speed,
-        which in turn defines how many BSA buffer points are needed to capture the full
-        scan. The minimum safe wire speed is calculated separately and enforced by the
-        motion IOC. The buffer size must be sufficient for data collection while staying
-        under the 20,000-point operational limit.
+        The beam rate and pulses per profile are used here to calculate the
+        wire speed, which in turn defines how many BSA buffer points are needed
+        to capture the full scan. The minimum safe wire speed is calculated
+        separately and enforced by the motion IOC. The buffer size must be
+        sufficient for data collection while staying under the 20,000-point
+        operational limit.
 
-        In the historical mode (120 Hz, 350 pulses), ~1,600 points are required; this
-        function returns 1,595. In the expected high-rate mode (16 kHz, 5,000 pulses),
-        the function estimates ~19,166 points, still within the system limit.
+        In the historical mode (120 Hz, 350 pulses), ~1,600 points are
+        required; this function returns 1,595. In the expected high-rate mode
+        (16 kHz, 5,000 pulses), the function estimates ~19,166 points, still
+        within the system limit.
 
         Returns
         -------
@@ -501,7 +528,8 @@ class WireBeamProfileMeasurement(Measurement):
         rate = self.my_wire.beam_rate
         pulses = self.my_wire.scan_pulses
 
-        log_range = np.log10(16000) - np.log10(120)  # 16000 max rate, 120 min rate
+        # 16000 max rate, 120 min rate
+        log_range = np.log10(16000) - np.log10(120)
         rate_factor = (np.log10(rate) - np.log10(120)) / log_range
         fudge = 1.5 - 0.4 * rate_factor  # Fudge the calculation by 1.1 to 1.5
 
