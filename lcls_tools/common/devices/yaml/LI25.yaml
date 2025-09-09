@@ -3,6 +3,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: OTRS:LI25:342
+      pv_cache: {}
     metadata:
       area: LI25
       beam_path: []

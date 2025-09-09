@@ -1,0 +1,561 @@
+bpms:
+  M202050T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2050
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202061T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2061
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202131T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2131
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202140T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2140
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202147T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2147
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202151T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2151
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202221T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2221
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202223T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2223
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202231T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2231
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202235T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2235
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202245T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2245
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202251T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2251
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202261T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2261
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202278T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2278
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202281T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2281
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202351T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2351
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202360T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2360
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202368T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2368
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202371T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2371
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202441T:
+    controls_information:
+      PVs: {}
+      control_name: BPMS:LI20:2441
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+  M202445T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BPMS:2445
+    metadata:
+      area: ELECTR
+      beam_path: []
+      sum_l_meters: null
+      type: BPM
+magnets:
+  B202030:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI20:2030
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: BEND
+  B202040:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI20:2040
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: BEND
+  B202050:
+    controls_information:
+      PVs: {}
+      control_name: BEND:LI20:2050
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: BEND
+  B202110:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2110
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: BEND
+  B202240:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2240
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: BEND
+  B202260:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2260
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: BEND
+  B202390:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2390
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: BEND
+  B202410:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2410
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: BEND
+  B202420:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2420
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: BEND
+  B202430:
+    controls_information:
+      PVs: {}
+      control_name: LI20:BEND:2430
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: BEND
+  Q202061T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2061
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202131T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2131
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202151T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2151
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202161T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2161
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202201T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2201
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202211T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2211
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202221T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2221
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202231T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2231
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202251T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2251
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202261T:
+    controls_information:
+      PVs: {}
+      control_name: QUAD:LI20:2261
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202262T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2262
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202281T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2281
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202291T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2291
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202301T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2301
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202341T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2341
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202351T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2351
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202371T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2371
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  Q202441T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:QUAD:2441
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: QUAD
+  X202096T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:2096
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: XCOR
+  X202176T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:2176
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: XCOR
+  X202316T:
+    controls_information:
+      PVs: {}
+      control_name: XCOR:LI20:2316
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: XCOR
+  X202326T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:2326
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: XCOR
+  X202396T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:XCOR:2396
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: XCOR
+  Y202087T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:2087
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: YCOR
+  Y202227T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:2227
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: YCOR
+  Y202267T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:2267
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: YCOR
+  Y202397T:
+    controls_information:
+      PVs: {}
+      control_name: LI20:YCOR:2397
+    metadata:
+      area: ELECTR
+      beam_path: []
+      l_eff: 0.0
+      sum_l_meters: null
+      type: YCOR
