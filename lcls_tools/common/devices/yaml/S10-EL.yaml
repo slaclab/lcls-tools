@@ -1,0 +1,10 @@
+bpms:
+  M103448T:
+    controls_information:
+      PVs: {}
+      control_name: LI10:BPMS:3448
+    metadata:
+      area: S10-EL
+      beam_path: []
+      sum_l_meters: null
+      type: BPM

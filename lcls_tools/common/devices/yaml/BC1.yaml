@@ -682,6 +682,13 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      lblms:
+      - PMT2111:DL1
+      - PMT21293:LI21
+      - PMT2113:LI21
+      - PMT21350:LI21
+      - PMT2114:LI21
+      - PMT2115:LI21
       sum_l_meters: 39.56
       type: WIRE
   WS12:
@@ -704,6 +711,13 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      lblms:
+      - PMT2111:DL1
+      - PMT21293:LI21
+      - PMT2113:LI21
+      - PMT21350:LI21
+      - PMT2114:LI21
+      - PMT2115:LI21
       sum_l_meters: 41.217
       type: WIRE
   WS13:
@@ -746,5 +760,12 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      lblms:
+      - PMT2111:DL1
+      - PMT21293:LI21
+      - PMT2113:LI21
+      - PMT21350:LI21
+      - PMT2114:LI21
+      - PMT2115:LI21
       sum_l_meters: 42.873
       type: WIRE
