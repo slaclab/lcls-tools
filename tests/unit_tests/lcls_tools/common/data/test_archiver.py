@@ -3,6 +3,7 @@ import unittest.mock as mock
 from datetime import datetime, timedelta
 
 import requests
+from typing import Dict
 
 from lcls_tools.common.data.archiver import (
     ArchiveDataHandler,
@@ -27,6 +28,7 @@ class TestArchiver(unittest.TestCase):
                 "severity": 0,
                 "status": 0,
                 "val": 6.509116634443234,
+                "fields": {},
             },
             "ACCL:L0B:0110:DFBEST": {
                 "nanos": 351862628,
@@ -34,6 +36,7 @@ class TestArchiver(unittest.TestCase):
                 "severity": 0,
                 "status": 0,
                 "val": -0.5760000000000001,
+                "fields": {},
             },
         }
 
@@ -65,7 +68,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=351862628,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
@@ -74,7 +77,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=706573951,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
         }
@@ -263,6 +266,7 @@ class TestArchiver(unittest.TestCase):
                 _timestamp=None,
             ),
         ]
+        # Make this a defaultdict
         self.expected_time_delta_result = {
             "ACCL:L0B:0110:DFBEST": ArchiveDataHandler(value_list=dfbest_lst),
             "ACCL:L0B:0110:AACTMEAN": ArchiveDataHandler(value_list=aactmean_lst),
@@ -329,7 +333,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=299095469,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             )
         }
@@ -347,6 +351,7 @@ class TestArchiver(unittest.TestCase):
                 "test_get_data_no_microseconds connection unsuccessful as network was unreachable."
             )
 
+    # TODO Fix, actual assertion error problems here
     def test_get_data_with_time_interval(self):
         try:
             result = get_data_with_time_interval(
@@ -623,8 +628,28 @@ class TestArchiver(unittest.TestCase):
             self.expected_time_delta_result,
         )
 
+    # TODO Fix, actual assertion error
     def test_get_values_over_time_range_with_timedelta(self):
+        get_values: Dict[str, ArchiveDataHandler] = get_values_over_time_range(
+            self.pv_lst, self.time - timedelta(days=10), self.time, timedelta(days=1)
+        )
         try:
+            """
+            result = get_values_over_time_range(
+                self.pv_lst,
+                self.time - timedelta(days=10),
+                self.time,
+                timedelta(days=1),
+            )
+            for (pv, archive_data_handler), (
+                expected_pv,
+                expected_archive_data_handler,
+            ) in zip(result.items(), self.expected_time_delta_result.items()):
+                # print(pv, expected_pv)
+                print(archive_data_handler, expected_archive_data_handler)
+                self.assertEqual(pv, expected_pv)
+                self.assertEqual(archive_data_handler, expected_archive_data_handler)
+            """
             self.assertEqual(
                 get_values_over_time_range(
                     self.pv_lst,
@@ -642,6 +667,7 @@ class TestArchiver(unittest.TestCase):
                 "test_get_values_over_time_range connection unsuccessful as network was unreachable."
             )
 
+    # TODO, fix actual Assertion error
     def test_get_values_over_time_range_without_timedelta(self):
         dfbest_lst = [
             ArchiverValue(
