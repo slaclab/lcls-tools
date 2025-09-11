@@ -66,10 +66,7 @@ bpms:
       type: BPM
   BPMSP4H:
     controls_information:
-      PVs:
-        tmit: BPMS:SPH:450:TMIT
-        x: BPMS:SPH:450:X
-        y: BPMS:SPH:450:Y
+      PVs: {}
       control_name: BPMS:SPH:450
     metadata:
       area: SPH

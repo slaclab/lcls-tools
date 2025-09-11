@@ -36,6 +36,7 @@ class YAMLWriter:
             "lblms": self.generator.extract_lblms,
             "bpms": self.generator.extract_bpms,
             "tcavs": self.generator.extract_tcavs,
+            "pmts": self.generator.extract_pmts,
         }
 
         if devices is None:
@@ -58,8 +59,10 @@ class YAMLWriter:
             with open(fullpath, "w") as file:
                 yaml.safe_dump(output, file)
 
-    def overwrite(self, area: Optional[str] = "GUNB") -> None:
-        yaml_output = self._construct_yaml_contents(area=area)
+    def overwrite(
+        self, area: Optional[str] = "GUNB", devices: List[str] = None
+    ) -> None:
+        yaml_output = self._construct_yaml_contents(area=area, devices=devices)
         self._yaml_dump(area, yaml_output)
 
     def _get_current(self, area):
@@ -108,13 +111,17 @@ def write(mode="overwrite", devices=None, areas=None, location=None):
     yaml_writer = YAMLWriter(location=location)
     if areas is None:
         areas = yaml_writer.areas
+    if type(areas) is not list:
+        areas = [areas]
     match mode:
         case "overwrite":
-            yaml_writer.overwrite(areas)
+            w = yaml_writer.overwrite
         case "greedy":
-            yaml_writer.greedy_write(areas, devices)
+            w = yaml_writer.greedy_write
         case "lazy":
-            yaml_writer.lazy_write(areas, devices)
+            w = yaml_writer.lazy_write
+    for a in areas:
+        w(a, devices)
 
 
 if __name__ == "__main__":
@@ -140,5 +147,14 @@ if __name__ == "__main__":
             "aren't currently selected."
         ),
     )
+    parser.add_argument(
+        "--areas",
+        nargs="+",
+        help=(
+            "The devices to read from lcls_elements.csv. Use this arg "
+            "with --mode greedy or lazy to avoid deleting devices that "
+            "aren't currently selected."
+        ),
+    )
     args = parser.parse_args()
-    write(mode=args.mode, devices=args.devices)
+    write(mode=args.mode, areas=args.areas, devices=args.devices)
