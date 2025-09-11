@@ -267,7 +267,8 @@ class TestArchiver(unittest.TestCase):
                 _timestamp=None,
             ),
         ]
-        # Needed to make this a DefaultDict[str, ArchiveDataHandler]
+
+        # Needed to make a DefaultDict[str, ArchiveDataHandler]
         self.expected_time_delta_result: DefaultDict[str, ArchiveDataHandler] = (
             defaultdict(ArchiveDataHandler)
         )
@@ -277,12 +278,7 @@ class TestArchiver(unittest.TestCase):
         self.expected_time_delta_result["ACCL:L0B:0110:AACTMEAN"] = ArchiveDataHandler(
             value_list=aactmean_lst
         )
-        """
-        self.expected_time_delta_result = {
-            "ACCL:L0B:0110:DFBEST": ArchiveDataHandler(value_list=dfbest_lst),
-            "ACCL:L0B:0110:AACTMEAN": ArchiveDataHandler(value_list=aactmean_lst),
-        }
-        """
+
         return super().setUp()
 
     def tearDown(self) -> None:
@@ -363,8 +359,7 @@ class TestArchiver(unittest.TestCase):
                 "test_get_data_no_microseconds connection unsuccessful as network was unreachable."
             )
 
-    # TODO Fix, actual assertion error problems here
-    # TODO fails due to different ArchiveDataHandler objects
+    # TODO Fix actual Assertion error (ArchiveDataHandler objects are different)
     def test_get_data_with_time_interval(self):
         try:
             result = get_data_with_time_interval(
@@ -642,27 +637,9 @@ class TestArchiver(unittest.TestCase):
         )
 
     # TODO Fix, actual assertion error
-    # TODO fails because ArchiveDataHandler objects are different (but they're not????)
+    # Test fails because ArchiveDataHandler objects are different (but the content is the same????)
     def test_get_values_over_time_range_with_timedelta(self):
-        get_values: Dict[str, ArchiveDataHandler] = get_values_over_time_range(
-            self.pv_lst, self.time - timedelta(days=10), self.time, timedelta(days=1)
-        )
         try:
-            """
-            result = get_values_over_time_range(
-                self.pv_lst,
-                self.time - timedelta(days=10),
-                self.time,
-                timedelta(days=1),
-            )
-            for (pv, archive_data_handler), (
-                expected_pv,
-                expected_archive_data_handler,
-            ) in zip(result.items(), self.expected_time_delta_result.items()):
-                print(archive_data_handler, expected_archive_data_handler)
-                self.assertEqual(pv, expected_pv)
-                self.assertEqual(archive_data_handler, expected_archive_data_handler)
-            """
             self.assertEqual(
                 get_values_over_time_range(
                     self.pv_lst,
@@ -680,8 +657,7 @@ class TestArchiver(unittest.TestCase):
                 "test_get_values_over_time_range connection unsuccessful as network was unreachable."
             )
 
-    # TODO fix actual Assertion error
-    # TODO - expected is not a DefaultDict and ArchiveDataHandler objects are different)
+    # TODO fix actual Assertion error (ArchiveDataHandler objects are different)
     def test_get_values_over_time_range_without_timedelta(self):
         dfbest_lst = [
             ArchiverValue(
@@ -878,10 +854,15 @@ class TestArchiver(unittest.TestCase):
             ),
         ]
 
-        expected_result = {
-            "ACCL:L0B:0110:DFBEST": ArchiveDataHandler(value_list=dfbest_lst),
-            "ACCL:L0B:0110:AACTMEAN": ArchiveDataHandler(value_list=aactmean_lst),
-        }
+        expected_result: DefaultDict[str, ArchiveDataHandler] = defaultdict(
+            ArchiveDataHandler
+        )
+        expected_result["ACCL:L0B:0110:DFBEST"] = ArchiveDataHandler(
+            value_list=dfbest_lst
+        )
+        expected_result["ACCL:L0B:0110:AACTMEAN"] = ArchiveDataHandler(
+            value_list=aactmean_lst
+        )
 
         try:
             self.assertEqual(

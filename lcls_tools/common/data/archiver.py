@@ -135,13 +135,9 @@ def get_data_with_time_interval(
 
     while curr_time < end_time:
         value: Dict[str, ArchiverValue] = get_data_at_time(pv_list, curr_time)
-        # print("value = ", value)
         for pv, archiver_value in value.items():
             result[pv].value_list.append(archiver_value)
-            # print("result[", pv, "]=", result[pv])
         curr_time += time_delta
-        # print("result[", pv, "] = ", result[pv])
-    # print("archiver.py: ", result)
     return result
 
 
