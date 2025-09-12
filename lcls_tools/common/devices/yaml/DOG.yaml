@@ -1542,7 +1542,7 @@ wires:
       - BPMS:DOG:335
       - BPMS:DOG:355
       - BPMS:DOG:405
-      lblms:
+      detectors:
       - LBLM11A_1:BYP
       - LBLM11A_2:BYP
       - LBLM11A_3:BYP

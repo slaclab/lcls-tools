@@ -2863,6 +2863,17 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1409.712
       type: WIRE
   WS32:
@@ -2905,6 +2916,17 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1444.975
       type: WIRE
   WS33:
@@ -2947,6 +2969,17 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1480.239
       type: WIRE
   WS34:
@@ -2989,6 +3022,17 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1515.502
       type: WIRE
   WSDL31:

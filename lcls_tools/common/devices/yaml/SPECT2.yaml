@@ -64,6 +64,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI20:PROF:3501
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path: []
@@ -74,6 +75,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI20:PROF:3488
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path: []
@@ -84,6 +86,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI20:PROF:3303
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path: []
@@ -94,6 +97,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: CMOS:LI20:3492
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path: []
@@ -104,6 +108,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI20:PROF:3500
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path: []
@@ -114,6 +119,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: CAMR:LI20:3230
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path:

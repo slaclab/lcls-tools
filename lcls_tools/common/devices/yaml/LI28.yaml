@@ -54,6 +54,11 @@ wires:
     metadata:
       area: LI28
       beam_path: []
+      detectors:
+      - PMT28750:LI28
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
       sum_l_meters: null
       type: WIRE
   WS444:
@@ -90,6 +95,11 @@ wires:
     metadata:
       area: LI28
       beam_path: []
+      detectors:
+      - PMT28750:LI28
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
       sum_l_meters: null
       type: WIRE
   WS544:

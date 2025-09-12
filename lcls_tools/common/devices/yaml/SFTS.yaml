@@ -15,6 +15,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: YAGS:DMPS:500
+      pv_cache: {}
     metadata:
       area: SFTS
       beam_path: []

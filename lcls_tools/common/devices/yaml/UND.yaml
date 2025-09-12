@@ -1390,6 +1390,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: YAGS:UND1:1005
+      pv_cache: {}
     metadata:
       area: UND
       beam_path: []
@@ -1400,6 +1401,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: YAGS:UND1:1305
+      pv_cache: {}
     metadata:
       area: UND
       beam_path: []

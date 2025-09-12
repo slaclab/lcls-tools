@@ -256,6 +256,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: PROF:BSY0:45
+      pv_cache: {}
     metadata:
       area: BSY
       beam_path: []

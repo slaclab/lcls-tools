@@ -70,6 +70,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: OTRS:LI14:1803
+      pv_cache: {}
     metadata:
       area: BC14P
       beam_path:
