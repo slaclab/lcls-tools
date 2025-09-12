@@ -120,16 +120,20 @@ class TMITLoss(Measurement):
         """
         bpm_obj_dict = {}
 
-        # Iterate throw Dataframe of Elements and Areas
-        for index, row in bpms_elements.iterrows():
+        # Iterate through Dataframe of Elements and Areas
+        for _, row in bpms_elements.iterrows():
             element = row["Element"]
             area = row["Area"]
 
             # Create an lcls-tools BPM object and append to dictionary
-            # Key: Element Name
-            # Value: lcls-tools BPM object
-            bpm_obj_dict[element] = create_bpm(name=element, area=area)
-        return bpm_obj_dict
+            bpm = create_bpm(name=element, area=area)
+            if bpm is not None:
+                bpm_obj_dict[element] = bpm
+
+        if bpm_obj_dict:
+            return bpm_obj_dict
+        else:
+            raise LookupError("No BPM objects could be created.")
 
     def get_bpm_data(self):
         """
@@ -151,12 +155,16 @@ class TMITLoss(Measurement):
                           - Columns contain the retrieved TMIT buffer data.
         """
         data = {}
+        n_m = self.my_buffer.n_measurements
 
         for element, bpm in self.bpms.items():
             try:
                 # Get data from BSA buffer
                 bpm_data = bpm.tmit_buffer(self.my_buffer)
                 if bpm_data is not None and len(bpm_data) > 0:
+                    if bpm_data.size < n_m:
+                        pad_len = n_m - bpm_data.size
+                        padding = np.full(pad_len, bpm_data[-1])
                     data[element] = bpm_data
                 else:
                     data[element] = None
@@ -197,10 +205,10 @@ class TMITLoss(Measurement):
                 - list: Indices of BPMs located **after** the wire.
         """
         # Define valid regions
-        tmit_regions = {"HTR", "DIAG0", "COL1", "EMIT2", "BYP", "SPD", "LTUS"}
+        tmit_regions = {"HTR", "DIAG0", "COL1", "EMIT2", "DOG", "BYP", "SPD", "LTUS"}
         if self.region not in tmit_regions:
             raise ValueError(
-                f"Invalid region '{self.region}'.Must be one of {{valid_regions}}"
+                f"Invalid region '{self.region}'. Must be one of {{valid_regions}}"
             )
 
         bpms_before_wire = self.my_wire.metadata.bpms_before_wire
