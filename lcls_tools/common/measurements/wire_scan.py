@@ -466,10 +466,7 @@ class WireBeamProfileMeasurement(Measurement):
             y_fits = fit_result["y"].detectors
 
             self.logger.info("Getting RMS beam sizes...")
-            rms_sizes = {
-                d: (x_fits[d].sigma, y_fits[d].sigma)
-                for d in detectors
-            }
+            rms_sizes = {d: (x_fits[d].sigma, y_fits[d].sigma) for d in detectors}
         else:
             self.logger.warning(
                 "Both x and y profiles not found. Skipping RMS sizes return."
