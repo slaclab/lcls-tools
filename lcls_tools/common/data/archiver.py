@@ -33,6 +33,7 @@ class ArchiverValue:
     https://epicsarchiver.readthedocs.io/en/latest/user/userguide.html#processing-of-data
     """
 
+    meta: dict = None
     secs: int = None
     val: Union[float, int, str] = None
     nanos: int = None
