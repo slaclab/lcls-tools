@@ -29,3 +29,31 @@ magnets:
       l_eff: 0.0
       sum_l_meters: null
       type: YCOR
+pmts:
+  PMT430:
+    controls_information:
+      PVs: {}
+      control_name: PMT:DMP1:430
+    metadata:
+      area: DUMP
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT431:
+    controls_information:
+      PVs: {}
+      control_name: PMT:DMP1:431
+    metadata:
+      area: DUMP
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT696:
+    controls_information:
+      PVs: {}
+      control_name: PMT:DMP1:696
+    metadata:
+      area: DUMP
+      beam_path: []
+      sum_l_meters: null
+      type: INST

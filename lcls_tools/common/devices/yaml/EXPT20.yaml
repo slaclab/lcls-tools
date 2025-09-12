@@ -3,6 +3,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: WIRE:LI20:3179
+      pv_cache: {}
     metadata:
       area: EXPT20
       beam_path:
@@ -15,6 +16,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: WIRE:LI20:3229
+      pv_cache: {}
     metadata:
       area: EXPT20
       beam_path:
