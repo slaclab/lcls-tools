@@ -14,6 +14,7 @@ from lcls_tools.common.measurements.wire_scan_results import (
     DetectorMeasurement,
     MeasurementMetadata,
     FitResult,
+    DetectorFit
 )
 import numpy as np
 from typing_extensions import Self
@@ -49,7 +50,7 @@ class WireBeamProfileMeasurement(Measurement):
     my_buffer: Optional[edef.BSABuffer] = None
     devices: Optional[dict] = None
     data: Optional[dict] = None
-    profile_measurements: Optional[dict] = None
+    profiles: Optional[dict] = None
     logger: Optional[logging.Logger] = None
 
     @model_validator(mode="after")
@@ -61,6 +62,7 @@ class WireBeamProfileMeasurement(Measurement):
             log_file=log_filename,
             name="wire_scan_logger",
         )
+        self.logger.propagate = False
 
         # Reserve BSA buffer
         if self.my_buffer is None:
@@ -207,12 +209,13 @@ class WireBeamProfileMeasurement(Measurement):
         last_print_time = start_time
         last_trigger_time = start_time
         attempt_count = 0
-
         elapsed_time = 0
+
         while not self.my_wire.enabled:
             current_time = time.monotonic()
             elapsed_time = current_time - start_time
 
+            # Fail after 30 seconds
             if elapsed_time >= 30:
                 msg = (
                     f"{self.my_wire.name} failed to initialize"
@@ -222,16 +225,19 @@ class WireBeamProfileMeasurement(Measurement):
                 self.logger.error(msg)
                 raise TimeoutError(msg)
 
+            # Print every 5 seconds
             if current_time - last_print_time >= 5:
                 self.logger.info("Waited %0.f seconds", elapsed_time)
                 last_print_time = current_time
 
+            # Retrigger every 10 seconds
             if current_time - last_trigger_time >= 10:
                 attempt_count += 1
                 self.logger.info("Scan sequence attempt #%s", attempt_count)
                 self.my_wire.start_scan()
                 last_trigger_time = current_time
 
+            # Check enabled state every 0.1 seconds
             time.sleep(0.1)
 
         self.logger.info(
@@ -243,7 +249,8 @@ class WireBeamProfileMeasurement(Measurement):
         self.my_buffer.start()
 
         # Wait briefly before checking buffer 'ready'
-        time.sleep(0.1)
+        # Wire is already moving, data is already collecting...
+        time.sleep(0.5)
 
     def get_data_from_bsa(self):
         """
@@ -421,44 +428,52 @@ class WireBeamProfileMeasurement(Measurement):
             dict: Fit results organized by profile and device.
         """
         self.logger.info("Fitting profile data...")
+
         # Get list of profiles from data set
         profiles = list(self.profiles.keys())
         fit_result = {profile: {} for profile in profiles}
-        devices = list(self.data.keys())
+
+        # Get list of devices from data set - drop wire device
+        detectors = list(self.data.keys())
+        detectors.remove(self.my_wire.name)
 
         for p in profiles:
-            for d in devices:
-                if d == self.my_wire.name:
-                    continue
-
-                fit_params = gaussian.fit(
+            detector_fit = {d: {} for d in detectors}
+            for d in detectors:
+                # Get fit parameters
+                fp = gaussian.fit(
                     pos=self.profiles[p].positions,
                     data=self.profiles[p].detectors[d].values,
                 )
 
                 fit_curve = gaussian.curve(
                     x=self.profiles[p].positions,
-                    mean=fit_params["mean"],
-                    sigma=fit_params["sigma"],
-                    amp=fit_params["amp"],
-                    off=fit_params["off"],
+                    mean=fp["mean"],
+                    sigma=fp["sigma"],
+                    amp=fp["amp"],
+                    off=fp["off"],
                 )
-                fit_result[p][d] = FitResult(
-                    mean=fit_params["mean"],
-                    sigma=fit_params["sigma"],
-                    amplitude=fit_params["amp"],
-                    offset=fit_params["off"],
+                detector_fit[d] = DetectorFit(
+                    mean=fp["mean"],
+                    sigma=fp["sigma"],
+                    amplitude=fp["amp"],
+                    offset=fp["off"],
                     curve=fit_curve,
                 )
+            fit_result[p] = FitResult(detectors=detector_fit)
+        if "x" in profiles and "y" in profiles:
+            x_fits = fit_result["x"].detectors
+            y_fits = fit_result["y"].detectors
 
-                x_fits = fit_result["x"]
-                y_fits = fit_result["y"]
-
-        rms_sizes = {
-            d: (x_fits[d]["sigma"], y_fits[d]["sigma"])
-            for d in devices
-            if d != self.my_wire.name
-        }
+            self.logger.info("Getting RMS beam sizes...")
+            rms_sizes = {
+                d: (x_fits[d].sigma, y_fits[d].sigma)
+                for d in detectors
+            }
+        else:
+            self.logger.warning(
+                "Both x and y profiles not found. Skipping RMS sizes return.")
+            rms_sizes = None
 
         self.logger.info("Profile data fit.")
         return fit_result, rms_sizes
