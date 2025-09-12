@@ -14,7 +14,7 @@ from lcls_tools.common.measurements.wire_scan_results import (
     DetectorMeasurement,
     MeasurementMetadata,
     FitResult,
-    DetectorFit
+    DetectorFit,
 )
 import numpy as np
 from typing_extensions import Self
@@ -472,7 +472,8 @@ class WireBeamProfileMeasurement(Measurement):
             }
         else:
             self.logger.warning(
-                "Both x and y profiles not found. Skipping RMS sizes return.")
+                "Both x and y profiles not found. Skipping RMS sizes return."
+            )
             rms_sizes = None
 
         self.logger.info("Profile data fit.")
