@@ -167,12 +167,14 @@ class TMITLoss(Measurement):
                     if bpm_data.size < n_m:
                         pad_len = n_m - bpm_data.size
                         # 8 pads is 0.5% of the minimum buffer size 1600
-                        # so only pad if small difference 
+                        # so only pad if small difference
                         if pad_len <= 8:
                             padding = np.full(pad_len, bpm_data[-1])
+                            bpm_data = np.concatenate([bpm_data, padding])
                         if pad_len > 8:
                             raise BufferError(
-                                f"BPM {element} returned {bpm_data.size} points, expected {n_m}.")
+                                f"BPM {element} returned {bpm_data.size} points, expected {n_m}."
+                            )
                     data[element] = bpm_data
                 else:
                     data[element] = None
