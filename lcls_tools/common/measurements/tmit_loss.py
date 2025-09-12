@@ -162,9 +162,17 @@ class TMITLoss(Measurement):
                 # Get data from BSA buffer
                 bpm_data = bpm.tmit_buffer(self.my_buffer)
                 if bpm_data is not None and len(bpm_data) > 0:
+                    # BSA can return fewer points than requested.
+                    # Pad with last value if difference is small.
                     if bpm_data.size < n_m:
                         pad_len = n_m - bpm_data.size
-                        padding = np.full(pad_len, bpm_data[-1])
+                        # 8 pads is 0.5% of the minimum buffer size 1600
+                        # so only pad if small difference 
+                        if pad_len <= 8:
+                            padding = np.full(pad_len, bpm_data[-1])
+                        if pad_len > 8:
+                            raise BufferError(
+                                f"BPM {element} returned {bpm_data.size} points, expected {n_m}.")
                     data[element] = bpm_data
                 else:
                     data[element] = None
