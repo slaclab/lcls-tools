@@ -15,11 +15,7 @@ class DetectorFit(BaseModel):
 
 class FitResult(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    mean: float
-    sigma: float
-    amplitude: float
-    offset: float
-    curve: NDArrayAnnotatedType
+    detectors: Dict[str, DetectorFit]
 
 
 class MeasurementMetadata(BaseModel):
@@ -67,6 +63,6 @@ class WireBeamProfileMeasurementResult(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     profiles: Dict[str, ProfileMeasurement]
     raw_data: Dict[str, Any]
-    fit_result: Dict[str, Dict[str, FitResult]]
-    rms_sizes: Dict[str, tuple[float, float]]
+    fit_result: Dict[str, FitResult]
+    rms_sizes: Optional[Dict[str, tuple[float, float]]] = None
     metadata: SerializeAsAny[Any]
