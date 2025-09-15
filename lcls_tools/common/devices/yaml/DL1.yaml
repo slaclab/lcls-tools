@@ -759,6 +759,76 @@ magnets:
       l_eff: 0.0
       sum_l_meters: 19.382
       type: YCOR
+pmts:
+  PMT2111:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LI21:285
+    metadata:
+      area: DL1
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMTINJ01:
+    controls_information:
+      PVs:
+        qdcraw: PMT:IN20:621:QDCRAW
+      control_name: PMT:IN20:621
+    metadata:
+      area: DL1
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMTINJ02:
+    controls_information:
+      PVs:
+        qdcraw: PMT:IN20:622:QDCRAW
+      control_name: PMT:IN20:622
+    metadata:
+      area: DL1
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMTINJ03:
+    controls_information:
+      PVs:
+        qdcraw: PMT:IN20:511:QDCRAW
+      control_name: PMT:IN20:511
+    metadata:
+      area: DL1
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMTINJ04:
+    controls_information:
+      PVs:
+        qdcraw: PMT:IN20:512:QDCRAW
+      control_name: PMT:IN20:512
+    metadata:
+      area: DL1
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMTINJ05:
+    controls_information:
+      PVs:
+        qdcraw: PMT:IN20:761:QDCRAW
+      control_name: PMT:IN20:761
+    metadata:
+      area: DL1
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMTINJ06:
+    controls_information:
+      PVs:
+        qdcraw: PMT:IN20:762:QDCRAW
+      control_name: PMT:IN20:762
+    metadata:
+      area: DL1
+      beam_path: []
+      sum_l_meters: null
+      type: INST
 screens:
   OTR1:
     controls_information:
@@ -768,6 +838,7 @@ screens:
         target_control: OTRS:IN20:541:PNEUMATIC
         target_status: OTRS:IN20:541:TGT_STS
       control_name: OTRS:IN20:541
+      pv_cache: {}
       pv_cache: {}
     metadata:
       area: DL1

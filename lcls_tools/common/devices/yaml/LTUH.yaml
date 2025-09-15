@@ -2731,6 +2731,66 @@ magnets:
       l_eff: 0.0
       sum_l_meters: 1239.413
       type: YCOR
+pmts:
+  PMT122:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:122:QDCRAW
+      control_name: PMT:LTUH:122
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT246:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:246:QDCRAW
+      control_name: PMT:LTUH:246
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT550:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:550:QDCRAW
+      control_name: PMT:LTUH:550
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT755:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LTUH:755
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT756:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:756:QDCRAW
+      control_name: PMT:LTUH:756
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT820:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:820:QDCRAW
+      control_name: PMT:LTUH:820
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
 screens:
   OTR30:
     controls_information:

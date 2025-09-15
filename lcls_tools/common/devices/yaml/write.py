@@ -36,6 +36,7 @@ class YAMLWriter:
             "lblms": self.generator.extract_lblms,
             "bpms": self.generator.extract_bpms,
             "tcavs": self.generator.extract_tcavs,
+            "pmts": self.generator.extract_pmts,
         }
 
         if devices is None:

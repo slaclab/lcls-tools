@@ -1,3 +1,24 @@
+pmts:
+  PMT24705:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LI24:705:QDCRAW
+      control_name: PMT:LI24:705
+    metadata:
+      area: LI24
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT24706:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LI24:706:QDCRAW
+      control_name: PMT:LI24:706
+    metadata:
+      area: LI24
+      beam_path: []
+      sum_l_meters: null
+      type: INST
 wires:
   WS21:
     controls_information:
