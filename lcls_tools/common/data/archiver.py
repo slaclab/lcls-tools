@@ -40,7 +40,6 @@ class ArchiverValue:
     severity: int = None
     status: int = None
     fields: Optional[Dict] = None
-    meta = None
     _timestamp: Optional[datetime] = None
 
     def __hash__(self):
@@ -112,10 +111,6 @@ def get_data_at_time(
     try:
         json_data = json.loads(response.text)
         for pv, data in json_data.items():
-            # Added this in because tests in test_archiver.py kept failing due to
-            # a TypeError from an unexpected keyword argument 'meta' in json_data
-            if "meta" in data:
-                data.pop("meta")
             result[pv] = ArchiverValue(**data)
 
     except ValueError:

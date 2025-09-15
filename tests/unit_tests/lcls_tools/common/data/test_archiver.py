@@ -14,20 +14,8 @@ from lcls_tools.common.data.archiver import (
     get_values_over_time_range,
 )
 
-AACT_META = {
-    "DBRType": "DBR_SCALAR_DOUBLE",
-    "DESC": "Cavity amplitude readback",
-    "EGU": "MV",
-    "HIGH": "6.825",
-    "HIHI": "7.15",
-    "HOPR": "22.0",
-    "LOLO": "5.85",
-    "LOPR": "0.0",
-    "LOW": "6.175",
-    "PREC": "1",
-}
-
-DF_META = {"DBRType": "DBR_SCALAR_DOUBLE", "DESC": "", "EGU": "Hz"}
+AACT_META = {"DBRType": "DBR_SCALAR_DOUBLE"}
+DF_META = {"DBRType": "DBR_SCALAR_DOUBLE"}
 
 
 class TestArchiver(unittest.TestCase):
@@ -423,6 +411,7 @@ class TestArchiver(unittest.TestCase):
             )
 
     @mock.patch("lcls_tools.common.data.archiver.get_data_at_time")
+    # TODO Fix actual Assertion error (ArchiveDataHandler objects are different)
     def test_get_data_with_time_interval_mocked(self, mocked_get_data: mock.MagicMock):
         """
         We want to overload the call to get_data_at_time that
@@ -677,9 +666,26 @@ class TestArchiver(unittest.TestCase):
             self.expected_time_delta_result,
         )
 
-    # TODO Fix, actual assertion error
-    # Test fails because ArchiveDataHandler objects are different (but the content is the same????)
+    # TODO Fix actual Assertion error (ArchiveDataHandler objects are different)
     def test_get_values_over_time_range_with_timedelta(self):
+        # Trying to debug
+        """
+        actual_result = get_values_over_time_range(
+            self.pv_lst,
+            self.time - timedelta(days=10),
+            self.time,
+            timedelta(days=1),
+        )
+
+        print("Actual")
+        for act_key, act_val in actual_result.items():
+            print(act_key, act_val.values)
+
+        print("Expected")
+        for exp_key, exp_val in self.expected_time_delta_result.items():
+            print(exp_key, exp_val.values)
+        """
+
         try:
             self.assertEqual(
                 get_values_over_time_range(
@@ -904,6 +910,23 @@ class TestArchiver(unittest.TestCase):
         expected_result["ACCL:L0B:0110:AACTMEAN"] = ArchiveDataHandler(
             value_list=aactmean_lst
         )
+
+        # Trying to debug
+        """
+        actual_result = get_values_over_time_range(
+            self.pv_lst,
+            self.time - timedelta(seconds=10),
+            self.time,
+        )
+
+        print("\nActual")
+        for act_key, act_val in actual_result.items():
+            print(act_key, act_val.value_list)
+
+        print("\nExpected")
+        for exp_key, exp_val in expected_result.items():
+            print(exp_key, exp_val.value_list)
+        """
 
         try:
             self.assertEqual(
