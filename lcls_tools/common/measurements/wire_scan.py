@@ -428,7 +428,7 @@ class WireBeamProfileMeasurement(Measurement):
 
         for p in profiles:
             detector_fit = {d: {} for d in self.my_wire.metadata.detectors}
-            for d in detectors:
+            for d in self.my_wire.metadata.detectors:
                 # Get fit parameters
                 fp = gaussian.fit(
                     pos=self.profiles[p].positions,
