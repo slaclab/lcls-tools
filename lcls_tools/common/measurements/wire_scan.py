@@ -69,7 +69,7 @@ class WireBeamProfileMeasurement(Measurement):
             self.my_buffer = reserve_buffer(
                 beampath=self.beampath,
                 name="LCLS Tools Wire Scan",
-                n_measurements=self.calc_buffer_points(),
+                n_measurements=self._calc_buffer_points(),
                 destination_mode="Inclusion",
                 logger=self.logger,
             )
@@ -100,14 +100,17 @@ class WireBeamProfileMeasurement(Measurement):
         self.data = self.get_data_from_bsa()
 
         # Determine the profile range indices
-        # e.g., u range = (13000, 18000) -> position_data[100:250]
+        # e.g., u range = (13000, 18000) -> position_data[100:450]
         profile_idxs = self.get_profile_range_indices()
 
         # Separate detector data by profile
         self.profiles = self.organize_data_by_profile(profile_idxs)
 
         # Fit detector data by profile
-        fit_result, rms_sizes = self.fit_data_by_profile()
+        fit_result = self.fit_data_by_profile()
+
+        # Get RMS beam sizes if both x and y profiles are present
+        rms_sizes = self.get_rms_sizes(fit_result)
 
         # Create measurement metadata object
         metadata = self.create_metadata()
@@ -185,7 +188,7 @@ class WireBeamProfileMeasurement(Measurement):
             self.my_buffer = reserve_buffer(
                 beampath=self.beampath,
                 name="LCLS Tools Wire Scan",
-                n_measurements=self.calc_buffer_points(),
+                n_measurements=self._calc_buffer_points(),
                 destination_mode="Inclusion",
                 logger=self.logger,
             )
@@ -334,52 +337,35 @@ class WireBeamProfileMeasurement(Measurement):
         # Hold sequential indices (avoid catching return wires)
         profile_idxs = {}
 
-        ap = self.active_profiles()
+        ap = self._active_profiles()
 
         for p in ap:
             # Get range methods e.g. x_range()
             method_name = f"{p}_range"
             ranges[p] = getattr(self.my_wire, method_name)
 
-            if position_data.min() == position_data.max():  # No change in data
+            # No motion in selected profile
+            if position_data.min() == position_data.max():
                 msg = "Data did not collect properly in BSA buffer. Exiting scan."
                 self.logger.error(msg)
                 raise RuntimeError(msg)
-            elif (
-                position_data.max() < ranges[p][0]
-            ):  # Max position less than lower scan bound
+
+            # Max position less than lower scan bound
+            elif position_data.max() < ranges[p][0]:
                 msg = f"Scan did not reach expected {p} profile range.  Exiting scan."
                 self.logger.error(msg)
                 raise RuntimeError(msg)
 
-            # Get indices of  position when within a
-            # selected wire scan profile range
+            # Get indices of position in a selected wire scan profile range
             idx = np.where(
                 (position_data >= ranges[p][0]) & (position_data <= ranges[p][1])
             )[0]
 
             # Data slice representing wire positions
-            # for a given profile measurement
             pos = position_data[idx]
 
-            # Boolean mask of monotonically non-decreasing data points
-            # Mask of values where difference between neighbors is > 0
-            def mono_array(pos):
-                mono = True
-                mono_mask = np.array(
-                    # Data point [i-1] is less than subsequent data point [i]
-                    # and that relationship was True for the previous pair
-                    # for all points
-                    [
-                        mono := (pos[i - 1] <= pos[i] and mono)
-                        for i in range(1, len(pos))
-                    ]
-                )
-                mono_mask = np.concatenate(([True], mono_mask))
-                return mono_mask
-
             # Boolean mask of indices in a given profile measurement
-            mono_mask = mono_array(pos)
+            mono_mask = self._mono_array(pos)
             mono_idx = np.array(idx)[mono_mask]
             profile_idxs[p] = mono_idx
 
@@ -440,12 +426,8 @@ class WireBeamProfileMeasurement(Measurement):
         profiles = list(self.profiles.keys())
         fit_result = {profile: {} for profile in profiles}
 
-        # Get list of devices from data set - drop wire device
-        detectors = list(self.data.keys())
-        detectors.remove(self.my_wire.name)
-
         for p in profiles:
-            detector_fit = {d: {} for d in detectors}
+            detector_fit = {d: {} for d in self.my_wire.metadata.detectors}
             for d in detectors:
                 # Get fit parameters
                 fp = gaussian.fit(
@@ -468,20 +450,26 @@ class WireBeamProfileMeasurement(Measurement):
                     curve=fit_curve,
                 )
             fit_result[p] = FitResult(detectors=detector_fit)
-        if "x" in profiles and "y" in profiles:
+
+        self.logger.info("Profile data fit.")
+        return fit_result
+
+    def get_rms_sizes(self, fit_result):
+        if "x" in fit_result and "y" in fit_result:
             x_fits = fit_result["x"].detectors
             y_fits = fit_result["y"].detectors
 
             self.logger.info("Getting RMS beam sizes...")
-            rms_sizes = {d: (x_fits[d].sigma, y_fits[d].sigma) for d in detectors}
+            rms_sizes = {
+                d: (x_fits[d].sigma, y_fits[d].sigma)
+                for d in self.my_wire.metadata.detectors
+            }
         else:
             self.logger.warning(
                 "Both x and y profiles not found. Skipping RMS sizes return."
             )
             rms_sizes = None
-
-        self.logger.info("Profile data fit.")
-        return fit_result, rms_sizes
+        return rms_sizes
 
     def create_metadata(self):
         """
@@ -509,7 +497,7 @@ class WireBeamProfileMeasurement(Measurement):
 
         return metadata
 
-    def active_profiles(self):
+    def _active_profiles(self):
         """
         Returns a list of active scan profiles based on wire settings.
         """
@@ -526,7 +514,7 @@ class WireBeamProfileMeasurement(Measurement):
             if use
         ]
 
-    def calc_buffer_points(self):
+    def _calc_buffer_points(self):
         """
         Determine the number of buffer points for a wire scan.
 
@@ -603,3 +591,18 @@ class WireBeamProfileMeasurement(Measurement):
         raise RuntimeError(
             f"Failed to collect data of expected size {expected_points} after {max_retries} attempts."
         )
+
+    def _mono_array(self, pos):
+        """
+        Boolean mask of monotonically non-decreasing data points
+        Mask of values where difference between neighbors is > 0.
+        """
+        mono = True
+        mono_mask = np.array(
+            # Data point [i-1] is less than subsequent data point [i]
+            # and that relationship was True for the previous pair
+            # for all points
+            [mono := (pos[i - 1] <= pos[i] and mono) for i in range(1, len(pos))]
+        )
+        mono_mask = np.concatenate(([True], mono_mask))
+        return mono_mask
