@@ -839,7 +839,6 @@ screens:
         target_status: OTRS:IN20:541:TGT_STS
       control_name: OTRS:IN20:541
       pv_cache: {}
-      pv_cache: {}
     metadata:
       area: DL1
       beam_path:
