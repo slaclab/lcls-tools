@@ -63,34 +63,49 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None, tao=None, element
 def quad_scan_optics(
     magnet: Magnet, measurement: ScreenBeamProfileMeasurement, physics_model="BMAD"
 ) -> Dict:
-    """Get rmats from magnet to measurement device and twiss at measurement device"""
+    """Get rmat from magnet to measurement device and twiss at measurement device"""
     # TODO: get optics from arbitrary devices (potentially in different beam lines)
-    from meme.model import Model
-
-    model = Model(magnet.metadata.area, model_source=physics_model, use_design=False)
-    rmats = model.get_rmat(
+    model = _get_model_from_device(measurement.device, physics_model)
+    rmat = model.get_rmat(
         from_device=magnet.name,
         to_device=measurement.device.name,
     )
     twiss = model.get_twiss(measurement.device.name)
-    return {"rmats": rmats, "design_twiss": twiss}
+    return {"rmat": rmat, "design_twiss": twiss}
 
 
 def multi_device_optics(
     measurements: list[ScreenBeamProfileMeasurement], physics_model="BMAD"
 ) -> Dict:
-    """Get rmats and twiss at measurement devices"""
+    """Get rmat and twiss at measurement devices"""
+    model = _get_model_from_device(measurements[-1].device, physics_model)
+    device_names = [measurement.device.name for measurement in measurements]
+    rmat = model.get_rmat(device_names)
+    twiss = model.get_twiss(device_names)
+    return {"rmat": rmat, "design_twiss": twiss}
+
+
+def _get_model_from_device(device, physics_model):
     from meme.model import Model
 
-    model = Model(
-        measurements[0].device.metadata.area,
-        model_source=physics_model,
-        use_design=False,
-    )
-    device_names = [measurement.device.name for measurement in measurements]
-    rmats = model.get_rmat(device_names)
-    twiss = model.get_twiss(device_names)
-    return {"rmats": rmats, "design_twiss": twiss}
+    beam_path = None
+    for bp in device.metadata.beam_path:
+        if bp in [
+            "CU_HXR",
+            "CU_SXR",
+            "CU_SPEC",
+            "SC_DIAG0",
+            "SC_BSYD",
+            "SC_HXR",
+            "SC_SXR",
+            "FACET2E",
+        ]:
+            beam_path = bp
+            break
+    if beam_path is None:
+        raise ValueError("Valid beam path not found in device metadata.")
+
+    return Model(beam_path, model_source=physics_model, use_design=False)
 
 
 def propagate_twiss(twiss_init: np.ndarray, rmat: np.ndarray):

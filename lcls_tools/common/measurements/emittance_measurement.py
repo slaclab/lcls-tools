@@ -267,7 +267,7 @@ class QuadScanEmittance(Measurement):
             twiss_betas_alphas = None
 
         if not self.rmat_given:
-            np.stack(self.rmat, axis=1)  # reshape to (2, n_steps, 2, 2)
+            self.rmat = np.stack(self.rmat, axis=1)  # reshape to (2, n_steps, 2, 2)
             results = {
                 "emittance": [],
                 "twiss_at_screen": [],
@@ -350,12 +350,13 @@ class QuadScanEmittance(Measurement):
         # TODO: get settings from arbitrary methods (ie. not meme)
         if not self.rmat_given:
             optics = quad_scan_optics(
-                self.magnet.name,
-                self.beamsize_measurement.device.name,
+                self.magnet,
+                self.beamsize_measurement,
                 self.physics_model,
             )
             rmat = optics["rmat"]
-            self.rmat.append(np.stack([rmat[0:2][0:2], rmat[2:4][2:4]]))
+            # pick out x and y rmats
+            self.rmat.append(np.stack([rmat[0:2, 0:2], rmat[2:4, 2:4]]))
             if not self.design_twiss:
                 self.design_twiss = optics["design_twiss"]
 
