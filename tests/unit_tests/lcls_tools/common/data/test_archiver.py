@@ -54,7 +54,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=351862628,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
@@ -63,7 +63,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=706573951,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
         }
@@ -99,7 +99,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=643901554,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -109,7 +109,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=644712314,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -119,7 +119,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=650207766,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -129,7 +129,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=652453946,
                 severity=3,
                 status=14,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -139,7 +139,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=644099825,
                 severity=3,
                 status=14,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -149,7 +149,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=335606946,
                 severity=3,
                 status=14,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -159,7 +159,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=335472655,
                 severity=3,
                 status=14,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -169,7 +169,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=339083194,
                 severity=3,
                 status=14,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -179,7 +179,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=347603983,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -189,7 +189,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=339947228,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
         ]
@@ -201,7 +201,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=814986356,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -211,7 +211,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=45399642,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -221,7 +221,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=888839911,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -231,7 +231,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=693785347,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -241,7 +241,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=828662425,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -251,7 +251,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=399083384,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -261,7 +261,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=228827866,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -271,7 +271,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=928502917,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -281,7 +281,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=284106860,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
@@ -291,7 +291,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=98839769,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
         ]
@@ -437,8 +437,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=351862628,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1712008589,
@@ -446,8 +447,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=706573951,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-31 14:56:30.000010": {
@@ -457,8 +459,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=339947228,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711922189,
@@ -466,8 +469,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=98839769,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-30 14:56:30.000010": {
@@ -477,8 +481,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=347603983,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711835789,
@@ -486,8 +491,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=284106860,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-29 14:56:30.000010": {
@@ -497,8 +503,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=339083194,
                         severity=3,
                         status=14,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711749389,
@@ -506,8 +513,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=928502917,
                         severity=2,
                         status=5,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-28 14:56:30.000010": {
@@ -517,8 +525,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=335472655,
                         severity=3,
                         status=14,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711662989,
@@ -526,8 +535,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=228827866,
                         severity=2,
                         status=5,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-27 14:56:30.000010": {
@@ -537,8 +547,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=335606946,
                         severity=3,
                         status=14,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711576589,
@@ -546,8 +557,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=399083384,
                         severity=2,
                         status=5,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-26 14:56:30.000010": {
@@ -557,8 +569,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=644099825,
                         severity=3,
                         status=14,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711490189,
@@ -566,8 +579,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=828662425,
                         severity=2,
                         status=5,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-25 14:56:30.000010": {
@@ -577,8 +591,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=652453946,
                         severity=3,
                         status=14,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711403789,
@@ -586,8 +601,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=693785347,
                         severity=2,
                         status=5,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-24 14:56:30.000010": {
@@ -597,8 +613,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=650207766,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711317388,
@@ -606,8 +623,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=888839911,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-23 14:56:30.000010": {
@@ -617,8 +635,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=644712314,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711230989,
@@ -626,8 +645,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=45399642,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-22 14:56:30.000010": {
@@ -637,8 +657,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=643901554,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711144589,
@@ -646,8 +667,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=814986356,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
             }
@@ -656,13 +678,14 @@ class TestArchiver(unittest.TestCase):
 
         mocked_get_data.side_effect = side_effect
 
+        interval = get_data_with_time_interval(
+            self.pv_lst,
+            self.time - timedelta(days=10),
+            self.time,
+            timedelta(days=1),
+        )
         self.assertEqual(
-            get_data_with_time_interval(
-                self.pv_lst,
-                self.time - timedelta(days=10),
-                self.time,
-                timedelta(days=1),
-            ),
+            interval,
             self.expected_time_delta_result,
         )
 
@@ -715,6 +738,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144580,
@@ -724,6 +748,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144581,
@@ -733,6 +758,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144582,
@@ -742,6 +768,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144583,
@@ -751,6 +778,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144584,
@@ -760,6 +788,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144585,
@@ -769,6 +798,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144586,
@@ -778,6 +808,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144587,
@@ -787,6 +818,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144588,
@@ -796,6 +828,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144589,
@@ -805,6 +838,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
         ]
 
@@ -817,6 +851,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144581,
@@ -826,6 +861,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144582,
@@ -835,6 +871,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144583,
@@ -844,6 +881,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144584,
@@ -853,6 +891,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144585,
@@ -862,6 +901,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144586,
@@ -871,6 +911,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144587,
@@ -880,6 +921,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144588,
@@ -889,6 +931,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
                 secs=1711144589,
@@ -898,6 +941,7 @@ class TestArchiver(unittest.TestCase):
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
         ]
 
@@ -929,12 +973,13 @@ class TestArchiver(unittest.TestCase):
         """
 
         try:
+            actual_result = get_values_over_time_range(
+                self.pv_lst,
+                self.time - timedelta(seconds=10),
+                self.time,
+            )
             self.assertEqual(
-                get_values_over_time_range(
-                    self.pv_lst,
-                    self.time - timedelta(seconds=10),
-                    self.time,
-                ),
+                actual_result,
                 expected_result,
             )
 
