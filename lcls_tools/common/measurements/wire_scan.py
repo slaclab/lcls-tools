@@ -155,10 +155,8 @@ class WireBeamProfileMeasurement(Measurement):
                     None,
                 )
                 if c is None:
-                    self.logger.warning(
-                        "Unknown detector type '%s'. Skipping.", name
-                    )
-                    raise ValidationError(f"Unknown detector type '%s'", name)
+                    self.logger.warning("Unknown detector type '%s'. Skipping.", name)
+                    raise ValidationError("Unknown detector type '%s'", name)
                 else:
                     try:
                         devices[name] = c(area=area, name=name)
@@ -240,7 +238,7 @@ class WireBeamProfileMeasurement(Measurement):
 
     def start_timing_buffer(self):
         """
-        Start a BSA buffer and wait for it to complete.  Post wire position to 
+        Start a BSA buffer and wait for it to complete.  Post wire position to
         the log every second.
         """
         # Start buffer
