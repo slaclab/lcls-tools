@@ -90,11 +90,11 @@ class WireBeamProfileMeasurement(Measurement):
             WireBeamProfileMeasurementResult: Structured results including
             position data, detector responses, fit parameters, and RMS sizes.
         """
-        # TODO: Jitter Correction
-        # TODO: Charge Normalization
-
-        # Start the buffer and move the wire
+        # Send command to start wire motion sequence and wait for initialization
         self.scan_with_wire()
+
+        # Start BSA buffer and wait for acquisition to complete
+        self.start_timing_buffer()
 
         # Get position and detector data from the buffer
         self.data = self.get_data_from_bsa()
@@ -124,59 +124,53 @@ class WireBeamProfileMeasurement(Measurement):
         """
         Creates a device dictionary for a wire scan setup.
 
-        Includes the wire device and any associated LBLM devices
-        based on metadata.
+        Includes the wire device and any associated detectors
+        from metadata.
 
         Parameters:
             my_wire (Wire): An lcls-tools Wire object.
         Returns:
             dict: A mapping of device names to device objects.
         """
+
         self.logger.info("Creating device dictionary...")
 
         # Instantiate device dictionary with wire device
         devices = {self.my_wire.name: self.my_wire}
-
-        def _log_validation_error(logger, name: str, e: ValidationError) -> None:
-            logger.warning("Validation error creating %s. Continuing...", name)
-            for err in e.errors():
-                loc = " -> ".join(str(i) for i in err["loc"])
-                logger.warning("%s: %s (%s)", loc, err["msg"], err["type"])
 
         create_by_prefix = {
             "LBLM": create_lblm,
             "PMT": create_pmt,
         }
 
-        for d_str in self.my_wire.metadata.detectors:
-            # Detectors are stored in YAML file as a string like {NAME}:{AREA}
-            name, area = d_str.split(":")
-
-            if name == "TMITLOSS":
+        for ds in self.my_wire.metadata.detectors:
+            name, area = ds.split(":")
+            if name != "TMITLOSS":
+                c = next(
+                    (
+                        f
+                        for prefix, f in create_by_prefix.items()
+                        if name.startswith(prefix)
+                    ),
+                    None,
+                )
+                if c is None:
+                    self.logger.warning(
+                        "Unknown detector type '%s'. Skipping.", name
+                    )
+                    raise ValidationError(f"Unknown detector type '%s'", name)
+                else:
+                    try:
+                        devices[name] = c(area=area, name=name)
+                    except ValidationError as e:
+                        self._log_validation_error(self.logger, name, e)
+            else:
                 devices["TMITLOSS"] = TMITLoss(
                     my_buffer=self.my_buffer,
                     my_wire=self.my_wire,
                     beampath=self.beampath,
                     region=self.my_wire.area,
                 )
-
-            creator = next(
-                (
-                    f
-                    for prefix, f in create_by_prefix.items()
-                    if name.startswith(prefix)
-                ),
-                None,
-            )
-            if creator is None:
-                self.logger.warning(
-                    "Unknown detector type '%s'in '%s'. Skipping.", name, d_str
-                )
-
-            try:
-                devices[name] = creator(area=area, name=name)
-            except ValidationError as e:
-                _log_validation_error(self.logger, name, e)
 
         self.logger.info("Device dictionary built.")
         return devices
@@ -244,6 +238,11 @@ class WireBeamProfileMeasurement(Measurement):
             "%s initialized after %s seconds", self.my_wire.name, elapsed_time
         )
 
+    def start_timing_buffer(self):
+        """
+        Start a BSA buffer and wait for it to complete.  Post wire position to 
+        the log every second.
+        """
         # Start buffer
         self.logger.info("Starting BSA buffer...")
         self.my_buffer.start()
@@ -251,19 +250,6 @@ class WireBeamProfileMeasurement(Measurement):
         # Wait briefly before checking buffer 'ready'
         # Wire is already moving, data is already collecting...
         time.sleep(0.5)
-
-    def get_data_from_bsa(self):
-        """
-        Collects wire scan and detector data after buffer completes.
-
-        Waits for buffer to finish, then gathers data from the wire
-        and associated devices. Adds TMIT loss if in supported area.
-        Releases the buffer after data collection.
-
-        Returns:
-            dict: Collected data keyed by device name.
-        """
-        data = {}
 
         # Wait for buffer 'ready'
         i = 0
@@ -280,23 +266,46 @@ class WireBeamProfileMeasurement(Measurement):
             i / 10,
         )
 
+    def get_data_from_bsa(self):
+        """
+        Collects wire scan and detector data after buffer completes.
+
+        Checks data size against expected points and retries if needed.
+
+        Returns:
+            dict: Collected data keyed by device name.
+        """
+        data = {}
+
         self.logger.info("Getting data from BSA buffer...")
 
-        # Get device data from buffer
         for d in self.devices:
-            # Get position data if wire device
             if d == self.my_wire.name:
-                data[d] = self.my_wire.position_buffer(self.my_buffer)
-
-            # Get TMITLoss data
+                wire_data = self._collect_with_size_check(
+                    self.devices[d].position_buffer,
+                    self.my_buffer.n_measurements,
+                    self.my_buffer,
+                )
+                data[d] = wire_data
             elif d == "TMITLOSS":
-                data[d] = self.devices[d].measure()
-
+                tmit_data = self._collect_with_size_check(
+                    self.devices[d].measure, self.my_buffer.n_measurements
+                )
+                data["TMITLOSS"] = tmit_data
             elif d.starswith("LBLM"):
-                data[d] = self.devices[d].fast_buffer(self.my_buffer)
-
+                lblm_data = self._collect_with_size_check(
+                    self.devices[d].fast_buffer,
+                    self.my_buffer.n_measurements,
+                    self.my_buffer,
+                )
+                data[d] = lblm_data
             elif d.startswith("PMT"):
-                data[d] = self.devices[d].qdcraw_buffer(self.my_buffer)
+                pmt_data = self._collect_with_size_check(
+                    self.devices[d].qdcraw_buffer,
+                    self.my_buffer.n_measurements,
+                    self.my_buffer,
+                )
+                data[d] = pmt_data
 
         self.logger.info("Data retrieved from BSA buffer.  Scan complete.")
 
@@ -503,6 +512,9 @@ class WireBeamProfileMeasurement(Measurement):
         return metadata
 
     def active_profiles(self):
+        """
+        Returns a list of active scan profiles based on wire settings.
+        """
         return [
             axis
             for axis, use in zip(
@@ -548,3 +560,48 @@ class WireBeamProfileMeasurement(Measurement):
 
         buffer_points = pulses * 3 * fudge + rate / 6
         return int(buffer_points)
+
+    def _log_validation_error(self, logger, name: str, e: ValidationError) -> None:
+        """
+        Logs details of a Pydantic ValidationError during device creation.
+        """
+        logger.warning("Validation error creating %s. Continuing...", name)
+        for err in e.errors():
+            loc = " -> ".join(str(i) for i in err["loc"])
+            logger.warning("%s: %s (%s)", loc, err["msg"], err["type"])
+
+    def _collect_with_size_check(
+        self, collector_func, expected_points, max_retries=3, delay=0.1, *args, **kwargs
+    ):
+        """
+        Collects data using the provided function and checks its size.
+        Retries collection if the data size does not match the expected points.
+        Parameters:
+            collector_func (callable): Function to collect data.
+            expected_points (int): Expected number of data points.
+            max_retries (int): Maximum number of retries on size mismatch.
+            delay (float): Delay in seconds between retries.
+            *args, **kwargs: Arguments to pass to the collector function.
+        Returns:
+            Collected data if size matches expected points.
+        """
+        for attempt in range(max_retries):
+            data = collector_func(*args, **kwargs)
+            size = len(data) if data is not None else 0
+
+            if size == expected_points:
+                return data
+
+            self.logger.warning(
+                "Data size mismatch: expected %d, got %d. Retrying (%d/%d)...",
+                expected_points,
+                size,
+                attempt + 1,
+                max_retries,
+            )
+            if delay > 0:
+                time.sleep(delay)
+
+        raise RuntimeError(
+            f"Failed to collect data of expected size {expected_points} after {max_retries} attempts."
+        )
