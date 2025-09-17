@@ -3,7 +3,7 @@ import unittest.mock as mock
 from datetime import datetime, timedelta
 
 import requests
-from typing import Dict, DefaultDict
+from typing import DefaultDict
 from collections import defaultdict
 
 from lcls_tools.common.data.archiver import (
