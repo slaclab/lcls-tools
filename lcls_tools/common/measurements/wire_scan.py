@@ -49,6 +49,7 @@ class WireBeamProfileMeasurement(Measurement):
     # Must be optional to start
     my_buffer: Optional[edef.BSABuffer] = None
     devices: Optional[dict] = None
+    detectors: Optional[list] = None
     data: Optional[dict] = None
     profiles: Optional[dict] = None
     logger: Optional[logging.Logger] = None
@@ -73,8 +74,9 @@ class WireBeamProfileMeasurement(Measurement):
                 destination_mode="Inclusion",
                 logger=self.logger,
             )
+        self.detectors = [d.split(":")[0] for d in self.my_wire.metadata.detectors]
 
-        # Generate dictionary of all requried devices
+        # Generate dictionary of all requried lcls-tools device objects
         self.devices = self.create_device_dictionary()
         return self
 
@@ -97,7 +99,7 @@ class WireBeamProfileMeasurement(Measurement):
         self.start_timing_buffer()
 
         # Get position and detector data from the buffer
-        self.data = self.get_data_from_bsa()
+        self.data = self.get_data_from_buffer()
 
         # Determine the profile range indices
         # e.g., u range = (13000, 18000) -> position_data[100:450]
@@ -114,6 +116,11 @@ class WireBeamProfileMeasurement(Measurement):
 
         # Create measurement metadata object
         metadata = self.create_metadata()
+
+        # Release EDEF/BSA
+        self.logger.info("Releasing BSA buffer.")
+        self.my_buffer.release()
+        self.my_buffer = None
 
         return WireBeamProfileMeasurementResult(
             profiles=self.profiles,
@@ -267,7 +274,7 @@ class WireBeamProfileMeasurement(Measurement):
             i / 10,
         )
 
-    def get_data_from_bsa(self):
+    def get_data_from_buffer(self):
         """
         Collects wire scan and detector data after buffer completes.
 
@@ -293,7 +300,7 @@ class WireBeamProfileMeasurement(Measurement):
                     self.devices[d].measure, self.my_buffer.n_measurements
                 )
                 data["TMITLOSS"] = tmit_data
-            elif d.starswith("LBLM"):
+            elif d.startswith("LBLM"):
                 lblm_data = self._collect_with_size_check(
                     self.devices[d].fast_buffer,
                     self.my_buffer.n_measurements,
@@ -309,12 +316,6 @@ class WireBeamProfileMeasurement(Measurement):
                 data[d] = pmt_data
 
         self.logger.info("Data retrieved from BSA buffer.  Scan complete.")
-
-        # Release EDEF/BSA
-        self.logger.info("Releasing BSA buffer.")
-        self.my_buffer.release()
-        self.my_buffer = None
-
         return data
 
     def get_profile_range_indices(self):
@@ -346,7 +347,7 @@ class WireBeamProfileMeasurement(Measurement):
 
             # No motion in selected profile
             if position_data.min() == position_data.max():
-                msg = "Data did not collect properly in BSA buffer. Exiting scan."
+                msg = "Data did not collect properly in timing buffer. Exiting scan."
                 self.logger.error(msg)
                 raise RuntimeError(msg)
 
@@ -427,8 +428,8 @@ class WireBeamProfileMeasurement(Measurement):
         fit_result = {profile: {} for profile in profiles}
 
         for p in profiles:
-            detector_fit = {d: {} for d in self.my_wire.metadata.detectors}
-            for d in self.my_wire.metadata.detectors:
+            detector_fit = {d: {} for d in self.detectors}
+            for d in self.detectors:
                 # Get fit parameters
                 fp = gaussian.fit(
                     pos=self.profiles[p].positions,
@@ -460,10 +461,7 @@ class WireBeamProfileMeasurement(Measurement):
             y_fits = fit_result["y"].detectors
 
             self.logger.info("Getting RMS beam sizes...")
-            rms_sizes = {
-                d: (x_fits[d].sigma, y_fits[d].sigma)
-                for d in self.my_wire.metadata.detectors
-            }
+            rms_sizes = {d: (x_fits[d].sigma, y_fits[d].sigma) for d in self.detectors}
         else:
             self.logger.warning(
                 "Both x and y profiles not found. Skipping RMS sizes return."
@@ -475,9 +473,6 @@ class WireBeamProfileMeasurement(Measurement):
         """
         Make additional metadata
         """
-        sample_profile = next(iter(self.profiles.values()))
-        detectors = list(sample_profile.detectors.keys())
-
         scan_ranges = {
             "x": self.my_wire.x_range,
             "y": self.my_wire.y_range,
@@ -488,8 +483,8 @@ class WireBeamProfileMeasurement(Measurement):
             wire_name=self.my_wire.name,
             area=self.my_wire.area,
             beampath=self.beampath,
-            detectors=detectors,
-            default_detector=detectors[0],
+            detectors=self.detectors,
+            default_detector=self.detectors[0],
             scan_ranges=scan_ranges,
             timestamp=datetime.now(),
             notes=None,
@@ -557,7 +552,7 @@ class WireBeamProfileMeasurement(Measurement):
             logger.warning("%s: %s (%s)", loc, err["msg"], err["type"])
 
     def _collect_with_size_check(
-        self, collector_func, expected_points, max_retries=3, delay=0.1, *args, **kwargs
+        self, collector_func, expected_points, *collector_args, max_retries=3, delay=0.1
     ):
         """
         Collects data using the provided function and checks its size.
@@ -572,7 +567,7 @@ class WireBeamProfileMeasurement(Measurement):
             Collected data if size matches expected points.
         """
         for attempt in range(max_retries):
-            data = collector_func(*args, **kwargs)
+            data = collector_func(*collector_args)
             size = len(data) if data is not None else 0
 
             if size == expected_points:
