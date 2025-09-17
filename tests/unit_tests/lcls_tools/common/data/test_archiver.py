@@ -892,7 +892,7 @@ class TestArchiver(unittest.TestCase):
                 meta=None,
             ),
         ]
-        """
+
         expected_result: DefaultDict[str, ArchiveDataHandler] = defaultdict(
             ArchiveDataHandler
         )
@@ -902,15 +902,6 @@ class TestArchiver(unittest.TestCase):
         expected_result["ACCL:L0B:0110:AACTMEAN"] = ArchiveDataHandler(
             value_list=aactmean_lst
         )
-        """
-
-        pv_list = ["ACCL:L0B:0110:DFBEST", "ACCL:L0B:0110:AACTMEAN"]
-        value_lsts = [dfbest_lst, aactmean_lst]
-        expected_result: DefaultDict[str, ArchiveDataHandler] = defaultdict(
-            ArchiveDataHandler
-        )
-        for pv, value_lst in zip(pv_list, value_lsts):
-            expected_result[pv] = ArchiveDataHandler(value_lst)
 
         try:
             actual_result = get_values_over_time_range(
