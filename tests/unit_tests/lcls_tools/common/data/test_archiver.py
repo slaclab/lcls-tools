@@ -388,10 +388,9 @@ class TestArchiver(unittest.TestCase):
                 "test_get_data_no_microseconds connection unsuccessful as network was unreachable."
             )
 
-    # TODO Fix actual Assertion error (ArchiveDataHandler objects are different)
     def test_get_data_with_time_interval(self):
         try:
-            result = get_data_with_time_interval(
+            actual_result = get_data_with_time_interval(
                 self.pv_lst,
                 self.time - timedelta(days=10),
                 self.time,
@@ -399,7 +398,7 @@ class TestArchiver(unittest.TestCase):
             )
 
             self.assertEqual(
-                result,
+                actual_result,
                 self.expected_time_delta_result,
             )
 
@@ -411,7 +410,6 @@ class TestArchiver(unittest.TestCase):
             )
 
     @mock.patch("lcls_tools.common.data.archiver.get_data_at_time")
-    # TODO Fix actual Assertion error (ArchiveDataHandler objects are different)
     def test_get_data_with_time_interval_mocked(self, mocked_get_data: mock.MagicMock):
         """
         We want to overload the call to get_data_at_time that
@@ -678,37 +676,18 @@ class TestArchiver(unittest.TestCase):
 
         mocked_get_data.side_effect = side_effect
 
-        interval = get_data_with_time_interval(
+        actual_result = get_data_with_time_interval(
             self.pv_lst,
             self.time - timedelta(days=10),
             self.time,
             timedelta(days=1),
         )
         self.assertEqual(
-            interval,
+            actual_result,
             self.expected_time_delta_result,
         )
 
-    # TODO Fix actual Assertion error (ArchiveDataHandler objects are different)
     def test_get_values_over_time_range_with_timedelta(self):
-        # Trying to debug
-        """
-        actual_result = get_values_over_time_range(
-            self.pv_lst,
-            self.time - timedelta(days=10),
-            self.time,
-            timedelta(days=1),
-        )
-
-        print("Actual")
-        for act_key, act_val in actual_result.items():
-            print(act_key, act_val.values)
-
-        print("Expected")
-        for exp_key, exp_val in self.expected_time_delta_result.items():
-            print(exp_key, exp_val.values)
-        """
-
         try:
             self.assertEqual(
                 get_values_over_time_range(
@@ -727,7 +706,6 @@ class TestArchiver(unittest.TestCase):
                 "test_get_values_over_time_range connection unsuccessful as network was unreachable."
             )
 
-    # TODO fix actual Assertion error (ArchiveDataHandler objects are different)
     def test_get_values_over_time_range_without_timedelta(self):
         dfbest_lst = [
             ArchiverValue(
@@ -914,7 +892,7 @@ class TestArchiver(unittest.TestCase):
                 meta=None,
             ),
         ]
-
+        """
         expected_result: DefaultDict[str, ArchiveDataHandler] = defaultdict(
             ArchiveDataHandler
         )
@@ -924,23 +902,15 @@ class TestArchiver(unittest.TestCase):
         expected_result["ACCL:L0B:0110:AACTMEAN"] = ArchiveDataHandler(
             value_list=aactmean_lst
         )
-
-        # Trying to debug
         """
-        actual_result = get_values_over_time_range(
-            self.pv_lst,
-            self.time - timedelta(seconds=10),
-            self.time,
+
+        pv_list = ["ACCL:L0B:0110:DFBEST", "ACCL:L0B:0110:AACTMEAN"]
+        value_lsts = [dfbest_lst, aactmean_lst]
+        expected_result: DefaultDict[str, ArchiveDataHandler] = defaultdict(
+            ArchiveDataHandler
         )
-
-        print("\nActual")
-        for act_key, act_val in actual_result.items():
-            print(act_key, act_val.value_list)
-
-        print("\nExpected")
-        for exp_key, exp_val in expected_result.items():
-            print(exp_key, exp_val.value_list)
-        """
+        for pv, value_lst in zip(pv_list, value_lsts):
+            expected_result[pv] = ArchiveDataHandler(value_lst)
 
         try:
             actual_result = get_values_over_time_range(
