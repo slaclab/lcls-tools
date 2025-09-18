@@ -3,7 +3,6 @@ from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.utils import collect_with_size_check
 import meme.names
 import pandas as pd
-import numpy as np
 from edef import BSABuffer
 from lcls_tools.common.devices.wire import Wire
 from pydantic import model_validator
