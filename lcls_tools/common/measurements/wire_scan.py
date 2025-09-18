@@ -21,6 +21,7 @@ from typing_extensions import Self
 import logging
 from lcls_tools.common.logger.file_logger import custom_logger
 from lcls_tools.common.measurements.buffer_reservation import reserve_buffer
+from lcls_tools.common.measurements.utils import collect_with_size_check
 
 
 class WireBeamProfileMeasurement(Measurement):
@@ -289,26 +290,26 @@ class WireBeamProfileMeasurement(Measurement):
 
         for d in self.devices:
             if d == self.my_wire.name:
-                wire_data = self._collect_with_size_check(
+                wire_data = collect_with_size_check(
                     self.devices[d].position_buffer,
                     self.my_buffer.n_measurements,
                     self.my_buffer,
                 )
                 data[d] = wire_data
             elif d == "TMITLOSS":
-                tmit_data = self._collect_with_size_check(
+                tmit_data = collect_with_size_check(
                     self.devices[d].measure, self.my_buffer.n_measurements
                 )
                 data["TMITLOSS"] = tmit_data
             elif d.startswith("LBLM"):
-                lblm_data = self._collect_with_size_check(
+                lblm_data = collect_with_size_check(
                     self.devices[d].fast_buffer,
                     self.my_buffer.n_measurements,
                     self.my_buffer,
                 )
                 data[d] = lblm_data
             elif d.startswith("PMT"):
-                pmt_data = self._collect_with_size_check(
+                pmt_data = collect_with_size_check(
                     self.devices[d].qdcraw_buffer,
                     self.my_buffer.n_measurements,
                     self.my_buffer,
@@ -550,42 +551,6 @@ class WireBeamProfileMeasurement(Measurement):
         for err in e.errors():
             loc = " -> ".join(str(i) for i in err["loc"])
             logger.warning("%s: %s (%s)", loc, err["msg"], err["type"])
-
-    def _collect_with_size_check(
-        self, collector_func, expected_points, *collector_args, max_retries=3, delay=0.1
-    ):
-        """
-        Collects data using the provided function and checks its size.
-        Retries collection if the data size does not match the expected points.
-        Parameters:
-            collector_func (callable): Function to collect data.
-            expected_points (int): Expected number of data points.
-            max_retries (int): Maximum number of retries on size mismatch.
-            delay (float): Delay in seconds between retries.
-            *args, **kwargs: Arguments to pass to the collector function.
-        Returns:
-            Collected data if size matches expected points.
-        """
-        for attempt in range(max_retries):
-            data = collector_func(*collector_args)
-            size = len(data) if data is not None else 0
-
-            if size == expected_points:
-                return data
-
-            self.logger.warning(
-                "Data size mismatch: expected %d, got %d. Retrying (%d/%d)...",
-                expected_points,
-                size,
-                attempt + 1,
-                max_retries,
-            )
-            if delay > 0:
-                time.sleep(delay)
-
-        raise RuntimeError(
-            f"Failed to collect data of expected size {expected_points} after {max_retries} attempts."
-        )
 
     def _mono_array(self, pos):
         """

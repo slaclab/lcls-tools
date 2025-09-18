@@ -1,5 +1,6 @@
 from lcls_tools.common.devices.reader import create_bpm
 from lcls_tools.common.measurements.measurement import Measurement
+from lcls_tools.common.measurements.utils import collect_with_size_check
 import meme.names
 import pandas as pd
 import numpy as np
@@ -158,39 +159,8 @@ class TMITLoss(Measurement):
         n_m = self.my_buffer.n_measurements
 
         for element, bpm in self.bpms.items():
-            try:
-                # Get data from BSA buffer
-                bpm_data = bpm.tmit_buffer(self.my_buffer)
-                if bpm_data is not None and len(bpm_data) > 0:
-                    # BSA can return fewer points than requested.
-                    # Pad with last value if difference is small.
-                    if bpm_data.size < n_m:
-                        pad_len = n_m - bpm_data.size
-                        # 8 pads is 0.5% of the minimum buffer size 1600
-                        # so only pad if small difference
-                        if pad_len <= 8:
-                            padding = np.full(pad_len, bpm_data[-1])
-                            bpm_data = np.concatenate([bpm_data, padding])
-                        if pad_len > 8:
-                            raise BufferError(
-                                f"BPM {element} returned {bpm_data.size} points, expected {n_m}."
-                            )
-                    data[element] = bpm_data
-                else:
-                    data[element] = None
-            except (BufferError, TypeError):
-                data[element] = None
-
-        valid_lengths = [len(v) for v in data.values() if v is not None]
-        if not valid_lengths:
-            raise ValueError("No valid BPM data could be retrieved.")
-        min_len = min(valid_lengths)
-
-        for key, val in data.items():
-            if val is None or len(val) < min_len:
-                data[key] = np.zeros(min_len)
-            else:
-                data[key] = val[:min_len]
+            bpm_data = collect_with_size_check(bpm.tmit_buffer, n_m, self.my_buffer)
+            data[element] = bpm_data
 
         df = pd.DataFrame(data)
         return df.T
