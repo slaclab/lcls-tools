@@ -57,7 +57,7 @@ class PlaneModel(BaseModel):
 
 class WirePVSet(PVSet):
     abort_scan: PV
-    beam_rate: Optional[PV] = None  # Some wires do not have beam rate PV
+    beam_rate: PV
     enabled: PV
     homed: PV
     initialize: PV
@@ -156,7 +156,8 @@ class Wire(Device):
         """Returns current beam rate"""
         # NC wires do not have beam rate PV defined and
         # use global beam rate PV
-        if self.controls_information.PVs.beam_rate is None:
+        nc_areas = ["LI20", "LI24", "LI28", "LTUH", "DL1", "BC1", "BC2", "LTU"]
+        if self.area in nc_areas and self.controls_information.PVs.beam_rate is None:
             self.controls_information.PVs.beam_rate = PV("EVNT:SYS0:1:LCLSBEAMRATE")
         return self.controls_information.PVs.beam_rate.get()
 
