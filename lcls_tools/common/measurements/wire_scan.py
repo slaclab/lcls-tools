@@ -1,8 +1,8 @@
+from pathlib import Path
 from typing import Optional
 from lcls_tools.common.devices.wire import Wire
 from lcls_tools.common.devices.reader import create_lblm
 import lcls_tools.common.model.gaussian as gaussian
-from lcls_tools.common.measurements.measurement import Measurement
 import time
 from datetime import datetime
 import edef
@@ -15,14 +15,17 @@ from lcls_tools.common.measurements.wire_scan_results import (
     MeasurementMetadata,
     FitResult,
 )
+import yaml
 import numpy as np
 from typing_extensions import Self
 import logging
 from lcls_tools.common.logger.file_logger import custom_logger
 from lcls_tools.common.measurements.buffer_reservation import reserve_buffer
 
+from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurement
 
-class WireBeamProfileMeasurement(Measurement):
+
+class WireBeamProfileMeasurement(BeamProfileMeasurement):
     """
     Performs a wire scan measurement and fits beam profiles.
 
@@ -39,7 +42,7 @@ class WireBeamProfileMeasurement(Measurement):
     """
 
     name: str = "Wire Beam Profile Measurement"
-    my_wire: Wire
+    beam_profile_device: Wire
     beampath: str
 
     # Extra fields to be set after validation
@@ -49,6 +52,15 @@ class WireBeamProfileMeasurement(Measurement):
     data: Optional[dict] = None
     profile_measurements: Optional[dict] = None
     logger: Optional[logging.Logger] = None
+
+    # alias so beam_profile_device can also be accessed with name my_wire
+    @property
+    def my_wire(self) -> Wire:
+        return self.beam_profile_device
+
+    @my_wire.setter
+    def my_wire(self, value):
+        self.beam_profile_device = value
 
     @model_validator(mode="after")
     def run_setup(self) -> Self:
@@ -426,14 +438,42 @@ class WireBeamProfileMeasurement(Measurement):
                     curve=fit_curve,
                 )
 
+                # proj_data = self.profile_measurements[profile].detectors[device].values
+                # fit_result[profile][device]["total_intensity"] = np.sum(proj_data)
+
                 x_fits = fit_result["x"]
                 y_fits = fit_result["y"]
 
-        rms_sizes = {
-            d: (x_fits[d]["sigma"], y_fits[d]["sigma"])
-            for d in devices
-            if d != self.my_wire.name
-        }
+        rms_sizes_all = {}
+        """
+        centroids_all = {}
+        total_intensities_all = {}
+        """
+        for device in devices:
+            if device != self.my_wire.name:
+                rms_sizes_all[device] = (
+                    x_fits[device]["sigma"],
+                    y_fits[device]["sigma"],
+                )
+                """
+                centroids_all[device] = (x_fits[device]["mean"], y_fits[device]["mean"])
+                total_intensities_all[device] = (
+                    x_fits[device]["total_intensity"],
+                    y_fits[device]["total_intensity"],
+                )
+                """
+
+        current_file = Path(__file__).resolve()
+        devices_root = current_file.parent.parent
+        file_to_open = devices_root / "devices" / "yaml" / "wire_lblms.yaml"
+        with open(file_to_open, "r") as wire_lblms_yaml:
+            wire_lblms = yaml.safe_load(wire_lblms_yaml)
+        lblm = wire_lblms[self.my_wire.name]
+        rms_sizes = rms_sizes_all[lblm]
+        """
+        centroids = centroids_all[lblm]
+        total_intensities = total_intensities_all[lblm]
+        """
 
         self.logger.info("Profile data fit.")
         return fit_result, rms_sizes
