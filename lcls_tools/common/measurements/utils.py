@@ -18,8 +18,8 @@ def ensure_numpy_array(v):
 
 
 def collect_with_size_check(
-        self, collector_func, expected_points, *collector_args, max_retries=3, delay=0.1
-        ):
+    collector_func, expected_points, *collector_args, logger, max_retries=3, delay=0.5
+):
     """
     Collects data using the provided function and checks its size.
     Retries collection if the data size does not match the expected points.
@@ -39,18 +39,20 @@ def collect_with_size_check(
         if size == expected_points:
             return data
 
-        self.logger.warning(
-            "Data size mismatch: expected %d, got %d. Retrying (%d/%d)...",
-            expected_points,
-            size,
-            attempt + 1,
-            max_retries,
-        )
+        if logger is not None:
+            logger.warning(
+                "Data size mismatch: expected %d, got %d. Retrying (%d/%d)...",
+                expected_points,
+                size,
+                attempt + 1,
+                max_retries,
+            )
         if delay > 0:
             time.sleep(delay)
 
     raise RuntimeError(
         f"Failed to collect data of expected size {expected_points} after {max_retries} attempts."
     )
+
 
 NDArrayAnnotatedType = Annotated[np.ndarray, BeforeValidator(ensure_numpy_array)]
