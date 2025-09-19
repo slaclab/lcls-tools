@@ -3,6 +3,8 @@ import unittest.mock as mock
 from datetime import datetime, timedelta
 
 import requests
+from typing import DefaultDict
+from collections import defaultdict
 
 from lcls_tools.common.data.archiver import (
     ArchiveDataHandler,
@@ -12,9 +14,13 @@ from lcls_tools.common.data.archiver import (
     get_values_over_time_range,
 )
 
+AACT_META = {"DBRType": "DBR_SCALAR_DOUBLE"}
+DF_META = {"DBRType": "DBR_SCALAR_DOUBLE"}
+
 
 class TestArchiver(unittest.TestCase):
     def setUp(self) -> None:
+        self.maxDiff = None
         self.time = datetime(
             year=2024, month=4, day=1, hour=14, minute=56, second=30, microsecond=10
         )
@@ -22,18 +28,22 @@ class TestArchiver(unittest.TestCase):
 
         self.json_data = {
             "ACCL:L0B:0110:AACTMEAN": {
+                "meta": AACT_META,
                 "nanos": 706573951,
                 "secs": 1712008589,
                 "severity": 0,
                 "status": 0,
                 "val": 6.509116634443234,
+                "fields": {},
             },
             "ACCL:L0B:0110:DFBEST": {
+                "meta": DF_META,
                 "nanos": 351862628,
                 "secs": 1712008589,
                 "severity": 0,
                 "status": 0,
                 "val": -0.5760000000000001,
+                "fields": {},
             },
         }
 
@@ -44,7 +54,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=351862628,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
@@ -53,7 +63,7 @@ class TestArchiver(unittest.TestCase):
                 nanos=706573951,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
         }
@@ -65,8 +75,9 @@ class TestArchiver(unittest.TestCase):
                 nanos=351862628,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
+                meta=DF_META,
             ),
             "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                 secs=1712008589,
@@ -74,199 +85,228 @@ class TestArchiver(unittest.TestCase):
                 nanos=706573951,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
+                meta=AACT_META,
             ),
         }
 
         dfbest_lst = [
             ArchiverValue(
+                meta=DF_META,
                 secs=1711144589,
                 val=-0.10400000000000001,
                 nanos=643901554,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=DF_META,
                 secs=1711230989,
                 val=-1.1280000000000001,
                 nanos=644712314,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=DF_META,
                 secs=1711317389,
                 val=-1.712,
                 nanos=650207766,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=DF_META,
                 secs=1711403789,
                 val=0.0,
                 nanos=652453946,
                 severity=3,
                 status=14,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=DF_META,
                 secs=1711490181,
                 val=0.0,
                 nanos=644099825,
                 severity=3,
                 status=14,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=DF_META,
                 secs=1711576583,
                 val=0.0,
                 nanos=335606946,
                 severity=3,
                 status=14,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=DF_META,
                 secs=1711662980,
                 val=0.0,
                 nanos=335472655,
                 severity=3,
                 status=14,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=DF_META,
                 secs=1711749389,
                 val=-0.004,
                 nanos=339083194,
                 severity=3,
                 status=14,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=DF_META,
                 secs=1711835789,
                 val=-1.068,
                 nanos=347603983,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=DF_META,
                 secs=1711922189,
                 val=-1.592,
                 nanos=339947228,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
         ]
         aactmean_lst = [
             ArchiverValue(
+                meta=AACT_META,
                 secs=1711144589,
                 val=6.5092583877407435,
                 nanos=814986356,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=AACT_META,
                 secs=1711230989,
                 val=6.50903783824157,
                 nanos=45399642,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=AACT_META,
                 secs=1711317388,
                 val=6.509005035059151,
                 nanos=888839911,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=AACT_META,
                 secs=1711403789,
                 val=0.0014643136084407868,
                 nanos=693785347,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=AACT_META,
                 secs=1711490189,
                 val=0.0004538000381352912,
                 nanos=828662425,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=AACT_META,
                 secs=1711576589,
                 val=0.00041344532175155213,
                 nanos=399083384,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=AACT_META,
                 secs=1711662989,
                 val=0.00040902722895514007,
                 nanos=228827866,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=AACT_META,
                 secs=1711749389,
                 val=0.00042876622143185557,
                 nanos=928502917,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=AACT_META,
                 secs=1711835789,
                 val=6.509181480616865,
                 nanos=284106860,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
             ArchiverValue(
+                meta=AACT_META,
                 secs=1711922189,
                 val=6.509128665496809,
                 nanos=98839769,
                 severity=0,
                 status=0,
-                fields=None,
+                fields={},
                 _timestamp=None,
             ),
         ]
-        self.expected_time_delta_result = {
-            "ACCL:L0B:0110:DFBEST": ArchiveDataHandler(value_list=dfbest_lst),
-            "ACCL:L0B:0110:AACTMEAN": ArchiveDataHandler(value_list=aactmean_lst),
-        }
+
+        # Needed to make a DefaultDict[str, ArchiveDataHandler]
+        self.expected_time_delta_result: DefaultDict[str, ArchiveDataHandler] = (
+            defaultdict(ArchiveDataHandler)
+        )
+        self.expected_time_delta_result["ACCL:L0B:0110:DFBEST"] = ArchiveDataHandler(
+            value_list=dfbest_lst
+        )
+        self.expected_time_delta_result["ACCL:L0B:0110:AACTMEAN"] = ArchiveDataHandler(
+            value_list=aactmean_lst
+        )
+
         return super().setUp()
 
     def tearDown(self) -> None:
@@ -324,12 +364,13 @@ class TestArchiver(unittest.TestCase):
 
         expected_result = {
             "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
+                meta=AACT_META,
                 secs=1711400839,
                 val=0.0004232343591732812,
                 nanos=299095469,
                 severity=2,
                 status=5,
-                fields=None,
+                fields={},
                 _timestamp=None,
             )
         }
@@ -349,7 +390,7 @@ class TestArchiver(unittest.TestCase):
 
     def test_get_data_with_time_interval(self):
         try:
-            result = get_data_with_time_interval(
+            actual_result = get_data_with_time_interval(
                 self.pv_lst,
                 self.time - timedelta(days=10),
                 self.time,
@@ -357,7 +398,7 @@ class TestArchiver(unittest.TestCase):
             )
 
             self.assertEqual(
-                result,
+                actual_result,
                 self.expected_time_delta_result,
             )
 
@@ -394,8 +435,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=351862628,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1712008589,
@@ -403,8 +445,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=706573951,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-31 14:56:30.000010": {
@@ -414,8 +457,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=339947228,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711922189,
@@ -423,8 +467,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=98839769,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-30 14:56:30.000010": {
@@ -434,8 +479,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=347603983,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711835789,
@@ -443,8 +489,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=284106860,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-29 14:56:30.000010": {
@@ -454,8 +501,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=339083194,
                         severity=3,
                         status=14,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711749389,
@@ -463,8 +511,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=928502917,
                         severity=2,
                         status=5,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-28 14:56:30.000010": {
@@ -474,8 +523,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=335472655,
                         severity=3,
                         status=14,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711662989,
@@ -483,8 +533,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=228827866,
                         severity=2,
                         status=5,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-27 14:56:30.000010": {
@@ -494,8 +545,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=335606946,
                         severity=3,
                         status=14,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711576589,
@@ -503,8 +555,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=399083384,
                         severity=2,
                         status=5,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-26 14:56:30.000010": {
@@ -514,8 +567,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=644099825,
                         severity=3,
                         status=14,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711490189,
@@ -523,8 +577,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=828662425,
                         severity=2,
                         status=5,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-25 14:56:30.000010": {
@@ -534,8 +589,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=652453946,
                         severity=3,
                         status=14,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711403789,
@@ -543,8 +599,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=693785347,
                         severity=2,
                         status=5,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-24 14:56:30.000010": {
@@ -554,8 +611,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=650207766,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711317388,
@@ -563,8 +621,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=888839911,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-23 14:56:30.000010": {
@@ -574,8 +633,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=644712314,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711230989,
@@ -583,8 +643,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=45399642,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
                 "2024-03-22 14:56:30.000010": {
@@ -594,8 +655,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=643901554,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                     "ACCL:L0B:0110:AACTMEAN": ArchiverValue(
                         secs=1711144589,
@@ -603,8 +665,9 @@ class TestArchiver(unittest.TestCase):
                         nanos=814986356,
                         severity=0,
                         status=0,
-                        fields=None,
+                        fields={},
                         _timestamp=None,
+                        meta={"DBRType": "DBR_SCALAR_DOUBLE"},
                     ),
                 },
             }
@@ -613,13 +676,14 @@ class TestArchiver(unittest.TestCase):
 
         mocked_get_data.side_effect = side_effect
 
+        actual_result = get_data_with_time_interval(
+            self.pv_lst,
+            self.time - timedelta(days=10),
+            self.time,
+            timedelta(days=1),
+        )
         self.assertEqual(
-            get_data_with_time_interval(
-                self.pv_lst,
-                self.time - timedelta(days=10),
-                self.time,
-                timedelta(days=1),
-            ),
+            actual_result,
             self.expected_time_delta_result,
         )
 
@@ -645,211 +709,208 @@ class TestArchiver(unittest.TestCase):
     def test_get_values_over_time_range_without_timedelta(self):
         dfbest_lst = [
             ArchiverValue(
-                secs=1711144579,
-                val=-0.064,
-                nanos=646824500,
+                secs=1712008579,
+                val=0.384,
+                nanos=339654425,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144580,
-                val=-1.428,
-                nanos=651779421,
+                secs=1712008580,
+                val=-0.136,
+                nanos=335625034,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144581,
-                val=-1.248,
-                nanos=644160331,
+                secs=1712008581,
+                val=-1.504,
+                nanos=340185632,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144582,
-                val=-0.436,
-                nanos=654723549,
+                secs=1712008582,
+                val=-0.392,
+                nanos=335705244,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144583,
-                val=1.472,
-                nanos=645089755,
+                secs=1712008583,
+                val=2.524,
+                nanos=335132113,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144584,
-                val=-1.172,
-                nanos=645400162,
+                secs=1712008584,
+                val=2.468,
+                nanos=343157132,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144585,
-                val=-0.632,
-                nanos=657752634,
+                secs=1712008585,
+                val=-1.056,
+                nanos=335973383,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144586,
-                val=1.512,
-                nanos=645096219,
+                secs=1712008586,
+                val=-0.524,
+                nanos=335243245,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144587,
-                val=1.364,
-                nanos=644934776,
+                secs=1712008587,
+                val=0.772,
+                nanos=342905024,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144588,
-                val=0.392,
-                nanos=644432381,
+                secs=1712008588,
+                val=1.564,
+                nanos=335933803,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144589,
-                val=-0.10400000000000001,
-                nanos=643901554,
+                secs=1712008589,
+                val=-0.5760000000000001,
+                nanos=351862628,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
         ]
 
         aactmean_lst = [
             ArchiverValue(
-                secs=1711144579,
-                val=6.509255890878457,
-                nanos=987746610,
+                secs=1712008579,
+                val=6.509116869696968,
+                nanos=782748462,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144581,
-                val=6.509258049946067,
-                nanos=98389596,
+                secs=1712008580,
+                val=6.509116381950056,
+                nanos=896122632,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144582,
-                val=6.509257530421206,
-                nanos=114770550,
+                secs=1712008582,
+                val=6.509115496941781,
+                nanos=9162288,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144583,
-                val=6.509256739492492,
-                nanos=226437225,
+                secs=1712008583,
+                val=6.509114874488454,
+                nanos=120870202,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144584,
-                val=6.509256903062449,
-                nanos=338140932,
+                secs=1712008584,
+                val=6.5091161400477375,
+                nanos=139994427,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144585,
-                val=6.509256608192711,
-                nanos=452886090,
+                secs=1712008585,
+                val=6.5091153248503755,
+                nanos=252011512,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
+                meta=None,
             ),
             ArchiverValue(
-                secs=1711144586,
-                val=6.509255910803729,
-                nanos=570835181,
+                secs=1712008589,
+                val=6.509116634443234,
+                nanos=706573951,
                 severity=0,
                 status=0,
                 fields=None,
                 _timestamp=None,
-            ),
-            ArchiverValue(
-                secs=1711144587,
-                val=6.509256441099705,
-                nanos=686557679,
-                severity=0,
-                status=0,
-                fields=None,
-                _timestamp=None,
-            ),
-            ArchiverValue(
-                secs=1711144588,
-                val=6.5092569579434,
-                nanos=703651446,
-                severity=0,
-                status=0,
-                fields=None,
-                _timestamp=None,
-            ),
-            ArchiverValue(
-                secs=1711144589,
-                val=6.5092583877407435,
-                nanos=814986356,
-                severity=0,
-                status=0,
-                fields=None,
-                _timestamp=None,
+                meta=None,
             ),
         ]
 
-        expected_result = {
-            "ACCL:L0B:0110:DFBEST": ArchiveDataHandler(value_list=dfbest_lst),
-            "ACCL:L0B:0110:AACTMEAN": ArchiveDataHandler(value_list=aactmean_lst),
-        }
+        expected_result: DefaultDict[str, ArchiveDataHandler] = defaultdict(
+            ArchiveDataHandler
+        )
+        expected_result["ACCL:L0B:0110:DFBEST"] = ArchiveDataHandler(
+            value_list=dfbest_lst
+        )
+        expected_result["ACCL:L0B:0110:AACTMEAN"] = ArchiveDataHandler(
+            value_list=aactmean_lst
+        )
 
         try:
+            actual_result = get_values_over_time_range(
+                self.pv_lst,
+                self.time - timedelta(seconds=10),
+                self.time,
+            )
             self.assertEqual(
-                get_values_over_time_range(
-                    self.pv_lst,
-                    self.time - timedelta(seconds=10),
-                    self.time,
-                ),
+                actual_result,
                 expected_result,
             )
 
