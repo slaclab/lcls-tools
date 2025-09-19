@@ -158,7 +158,7 @@ class TMITLoss(Measurement):
         n_m = self.my_buffer.n_measurements
 
         for element, bpm in self.bpms.items():
-            bpm_data = collect_with_size_check(bpm.tmit_buffer, n_m, self.my_buffer)
+            bpm_data = collect_with_size_check(bpm.tmit_buffer, n_m, None, self.my_buffer)
             data[element] = bpm_data
 
         df = pd.DataFrame(data)

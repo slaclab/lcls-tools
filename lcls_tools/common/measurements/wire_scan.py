@@ -293,15 +293,14 @@ class WireBeamProfileMeasurement(Measurement):
                 wire_data = collect_with_size_check(
                     self.devices[d].position_buffer,
                     self.my_buffer.n_measurements,
-                    self.my_buffer,
                     self.logger,
+                    self.my_buffer,
                 )
                 data[d] = wire_data
             elif d == "TMITLOSS":
                 tmit_data = collect_with_size_check(
                     self.devices[d].measure,
                     self.my_buffer.n_measurements,
-                    None,
                     self.logger,
                 )
                 data["TMITLOSS"] = tmit_data
@@ -309,16 +308,16 @@ class WireBeamProfileMeasurement(Measurement):
                 lblm_data = collect_with_size_check(
                     self.devices[d].fast_buffer,
                     self.my_buffer.n_measurements,
-                    self.my_buffer,
                     self.logger,
+                    self.my_buffer,
                 )
                 data[d] = lblm_data
             elif d.startswith("PMT"):
                 pmt_data = collect_with_size_check(
                     self.devices[d].qdcraw_buffer,
                     self.my_buffer.n_measurements,
-                    self.my_buffer,
                     self.logger,
+                    self.my_buffer,
                 )
                 data[d] = pmt_data
 

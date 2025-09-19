@@ -18,7 +18,7 @@ def ensure_numpy_array(v):
 
 
 def collect_with_size_check(
-    collector_func, expected_points, *collector_args, logger, max_retries=3, delay=0.5
+    collector_func, expected_points, logger, *collector_args, max_retries=3, delay=0.5
 ):
     """
     Collects data using the provided function and checks its size.
