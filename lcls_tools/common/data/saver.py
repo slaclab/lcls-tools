@@ -12,6 +12,13 @@ class H5Saver:
         - dict, list, tuple, np.ndarray, pandas.DataFrame,
           scalars (int, float, bool, str), None, PosixPath.
 
+    Methods
+    -------
+    dump(data, filepath)
+        Dumps a dictionary to an HDF5 file.
+    load(filepath)
+        Loads a dictionary from an HDF5 file.
+
     Raises
     ------
     NotImplementedError
@@ -82,35 +89,17 @@ class H5Saver:
                     recursive_save(k, v, group)
             # Handle pandas DataFrames
             elif isinstance(val, pd.DataFrame):
+                # save DataFrame as a group with datasets for columns
                 group = f.create_group(key)
-                group.attrs["_type"] = "dataframe"
+                group.attrs["pandas_type"] = "dataframe"
                 group.attrs["columns"] = list(val.columns)
-                group.attrs["dtypes"] = [str(dt) for dt in val.dtypes]
                 for col in val.columns:
-                    col_data = val[col].values
-                    if col_data.dtype == np.dtype("O"):
-                        # Check if all elements are np.ndarray
-                        if all(isinstance(x, np.ndarray) for x in col_data):
-                            # Save as a group of arrays
-                            for i, arr in enumerate(col_data):
-                                group.create_dataset(f"{col}/{i}", data=arr)
-                        # Check for dicts, lists, tuples, or None (unsupported)
-                        elif any(
-                            isinstance(x, (dict, list, tuple)) or x is None
-                            for x in col_data
-                        ):
-                            raise NotImplementedError(
-                                "Saving DataFrame columns containing dict, list, tuple, or None is not supported"
-                            )
-                        else:
-                            # Save as pickled objects or handle accordingly
-                            group.create_dataset(
-                                col,
-                                data=np.array(col_data, dtype=object),
-                                dtype=h5py.special_dtype(vlen=bytes),
-                            )
-                    else:
-                        group.create_dataset(col, data=col_data)
+                    if val[col].dtype == np.dtype("O"):
+                        try:
+                            val[col] = val[col].astype("float64")
+                        except ValueError:
+                            val[col] = val[col].astype("string")
+                    group.create_dataset(col, data=val[col].values)
             # Handle numpy arrays
             elif isinstance(val, np.ndarray):
                 if val.dtype == np.dtype("O"):
@@ -181,7 +170,7 @@ class H5Saver:
                 dset.attrs["_type"] = type(val).__name__
             # Raise for unsupported types
             else:
-                raise NotImplementedError(f"Type {type(val)} is not supported.")
+                f.create_dataset(key, data=str(val), dtype=h5str, track_order=True)
 
         with h5py.File(filepath, "w") as file:
             for k, v in data.items():
