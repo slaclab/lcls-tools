@@ -239,7 +239,9 @@ class TestH5Saver(unittest.TestCase):
 
         mask = ~np.isnan(rms_sizes_all)
         assert np.allclose(
-            np.asarray(rms_sizes_all)[mask], loaded_dict["rms_sizes_all"][mask], rtol=1e-5
+            np.asarray(rms_sizes_all)[mask],
+            loaded_dict["rms_sizes_all"][mask],
+            rtol=1e-5,
         )
         mask = ~np.isnan(centroids)
         assert np.allclose(
