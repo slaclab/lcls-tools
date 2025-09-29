@@ -35,8 +35,6 @@ class MagnetPVSet(PVSet):
         super(MagnetPVSet, self).__init__(*args, **kwargs)
 
 
-
-
 class MagnetControlInformation(ControlInformation):
     PVs: SerializeAsAny[MagnetPVSet]
     _ctrl_options: SerializeAsAny[Optional[Dict[str, int]]] = dict()
