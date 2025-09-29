@@ -29,10 +29,6 @@ class TCAVPVSet(PVSet):
     amplitude_wocho: PV
     phase_avgnt: PV
 
-    @field_validator("*", mode="before")
-    def validate_pv_fields(cls, v: str) -> PV:
-        return PV(v)
-
 
 class TCAVControlInformation(ControlInformation):
     PVs: SerializeAsAny[TCAVPVSet]
