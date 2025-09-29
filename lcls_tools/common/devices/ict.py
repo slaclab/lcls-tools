@@ -1,4 +1,4 @@
-from pydantic import field_validator, SerializeAsAny
+from pydantic import SerializeAsAny
 
 from lcls_tools.common.devices.device import Device, PVSet, ControlInformation, Metadata
 from epics import PV

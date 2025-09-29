@@ -1,7 +1,6 @@
 from pydantic import (
     NonNegativeFloat,
     SerializeAsAny,
-    field_validator,
 )
 from typing import (
     Dict,

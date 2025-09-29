@@ -20,7 +20,6 @@ import h5py
 from pydantic import (
     Field,
     SerializeAsAny,
-    field_validator,
 )
 import numpy as np
 
