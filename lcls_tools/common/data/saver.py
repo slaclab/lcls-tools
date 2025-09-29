@@ -170,7 +170,7 @@ class H5Saver:
                 dset.attrs["_type"] = type(val).__name__
             # Raise for unsupported types
             else:
-                f.create_dataset(key, data=str(val), dtype=h5str, track_order=True)
+                raise NotImplementedError(f"Type {type(val)} is not supported.")
 
         with h5py.File(filepath, "w") as file:
             for k, v in data.items():
