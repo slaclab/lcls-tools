@@ -7,6 +7,8 @@ from lcls_tools.common.devices.reader import create_screen
 import h5py
 import numpy as np
 
+from lcls_tools.common.devices.screen import Screen
+
 
 class TestScreen(unittest.TestCase):
     def setUp(self) -> None:
@@ -102,3 +104,11 @@ class TestScreen(unittest.TestCase):
                     self.assertTrue(
                         np.array_equal(np.zeros(shape=(2000, 2000)), f[dataset])
                     )
+
+    def test_serialization(self):
+        info = self.screen.model_dump()
+        self.assertEqual(info["controls_information"]["PVs"]["image"], self.screen.controls_information.PVs.image.pvname)
+
+        # create screen from info dict
+        new_screen = Screen(**info)
+        self.assertEqual(self.screen, new_screen)

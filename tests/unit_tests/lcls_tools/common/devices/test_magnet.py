@@ -8,7 +8,7 @@ import inspect
 
 # Local imports
 from lcls_tools.common.devices.reader import create_magnet
-from lcls_tools.common.devices.magnet import MagnetCollection
+from lcls_tools.common.devices.magnet import MagnetCollection, Magnet
 
 
 class MagnetTest(TestCase):
@@ -602,3 +602,12 @@ class MagnetCollectionTest(TestCase):
         magnet_name = "BAD-MAGNET"
         self.magnet_collection.degauss(magnet_name)
         mock_degauss.assert_not_called()
+
+    def test_serialization(self):
+        magnet = self.magnet_collection.magnets["CQ01B"]
+        info = magnet.model_dump()
+        self.assertEqual(info["controls_information"]["PVs"]["bctrl"], magnet.controls_information.PVs.bctrl.pvname)
+
+        # create magnet from info dict
+        new_magnet = Magnet(**info)
+        self.assertEqual(magnet, new_magnet)
