@@ -208,12 +208,12 @@ class TestH5Saver(unittest.TestCase):
 
         processed_images = [image_processor.auto_process(image) for image in images]
 
-        rms_sizes = []
+        rms_sizes_all = []
         centroids = []
         total_intensities = []
         for image in processed_images:
             fit_result = ImageProjectionFit().fit_image(image)
-            rms_sizes.append(fit_result.rms_size)
+            rms_sizes_all.append(fit_result.rms_size)
             centroids.append(fit_result.centroid)
             total_intensities.append(fit_result.total_intensity)
 
@@ -221,7 +221,7 @@ class TestH5Saver(unittest.TestCase):
         result = ScreenBeamProfileMeasurementResult(
             raw_images=images,
             processed_images=processed_images,
-            rms_sizes=rms_sizes or None,
+            rms_sizes_all=rms_sizes_all or None,
             centroids=centroids or None,
             total_intensities=total_intensities or None,
             metadata={"info": "test"},
@@ -237,9 +237,11 @@ class TestH5Saver(unittest.TestCase):
         assert isinstance(loaded_dict["raw_images"], np.ndarray)
         assert np.allclose(images, loaded_dict["raw_images"], rtol=1e-5)
 
-        mask = ~np.isnan(rms_sizes)
+        mask = ~np.isnan(rms_sizes_all)
         assert np.allclose(
-            np.asarray(rms_sizes)[mask], loaded_dict["rms_sizes"][mask], rtol=1e-5
+            np.asarray(rms_sizes_all)[mask],
+            loaded_dict["rms_sizes_all"][mask],
+            rtol=1e-5,
         )
         mask = ~np.isnan(centroids)
         assert np.allclose(
