@@ -20,7 +20,6 @@ import h5py
 from pydantic import (
     Field,
     SerializeAsAny,
-    field_validator,
 )
 import numpy as np
 
@@ -54,11 +53,6 @@ class ScreenPVSet(PVSet):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-    @field_validator("*", mode="before")
-    def validate_pv_fields(cls, v: str):
-        """Convert each PV string from YAML into a PV object"""
-        return PV(v)
 
 
 class ScreenControlInformation(ControlInformation):

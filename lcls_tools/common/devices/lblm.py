@@ -44,10 +44,6 @@ class LBLMPVSet(PVSet):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    @field_validator("*", mode="before")
-    def validate_pv_fields(cls, v: str) -> PV:
-        return PV(v)
-
 
 class LBLMControlInformation(ControlInformation):
     PVs: SerializeAsAny[LBLMPVSet]

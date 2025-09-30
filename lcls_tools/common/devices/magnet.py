@@ -5,7 +5,6 @@ from pydantic import (
     PositiveFloat,
     NonNegativeFloat,
     SerializeAsAny,
-    field_validator,
 )
 from typing import (
     Dict,
@@ -34,10 +33,6 @@ class MagnetPVSet(PVSet):
 
     def __init__(self, *args, **kwargs):
         super(MagnetPVSet, self).__init__(*args, **kwargs)
-
-    @field_validator("*", mode="before")
-    def validate_pv_fields(cls, v: str) -> PV:
-        return PV(v)
 
 
 class MagnetControlInformation(ControlInformation):
