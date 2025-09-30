@@ -107,7 +107,10 @@ class TestScreen(unittest.TestCase):
 
     def test_serialization(self):
         info = self.screen.model_dump()
-        self.assertEqual(info["controls_information"]["PVs"]["image"], self.screen.controls_information.PVs.image.pvname)
+        self.assertEqual(
+            info["controls_information"]["PVs"]["image"],
+            self.screen.controls_information.PVs.image.pvname,
+        )
 
         # create screen from info dict
         new_screen = Screen(**info)
