@@ -606,7 +606,10 @@ class MagnetCollectionTest(TestCase):
     def test_serialization(self):
         magnet = self.magnet_collection.magnets["CQ01B"]
         info = magnet.model_dump()
-        self.assertEqual(info["controls_information"]["PVs"]["bctrl"], magnet.controls_information.PVs.bctrl.pvname)
+        self.assertEqual(
+            info["controls_information"]["PVs"]["bctrl"],
+            magnet.controls_information.PVs.bctrl.pvname,
+        )
 
         # create magnet from info dict
         new_magnet = Magnet(**info)
