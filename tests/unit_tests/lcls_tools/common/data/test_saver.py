@@ -77,7 +77,7 @@ class TestH5Saver(unittest.TestCase):
         )
         loaded_mixed = self.roundtrip({"df": df_mixed})["df"]
         pd.testing.assert_frame_equal(loaded_mixed, df_mixed.astype(str))
-        
+
     def test_tuple(self):
         data = {"tup": (1, "2", (None, 3.5))}
         loaded = self.roundtrip(data)
