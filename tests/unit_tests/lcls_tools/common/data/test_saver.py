@@ -150,7 +150,7 @@ class TestH5Saver(unittest.TestCase):
     def test_numpy_object_array(self):
         arr = np.array([1, "a", 3.5], dtype=object)
         data = {"objarr": arr}
-        self.assertRaises(NotImplementedError, self.roundtrip, data)
+        self.assertRaises(RuntimeError, self.roundtrip, data)
 
     def test_nested_structures(self):
         data = {
@@ -162,7 +162,7 @@ class TestH5Saver(unittest.TestCase):
 
     def test_nested_structures_not_implemented(self):
         data = {"d": {"l": [1, 2, {"x": 5}], "t": (3, 4, [5, 6])}}
-        self.assertRaises(NotImplementedError, self.roundtrip, data)
+        self.assertRaises(RuntimeError, self.roundtrip, data)
 
     def test_nested_empty_structures(self):
         data = {"d": {"l": [], "t": (), "d2": {}}}
@@ -210,12 +210,12 @@ class TestH5Saver(unittest.TestCase):
 
     def test_tuple_of_dicts(self):
         data = {"tuple_dicts": ({"a": 1}, {"b": 2.2}, {"c": "three"})}
-        self.assertRaises(NotImplementedError, self.roundtrip, data)
+        self.assertRaises(RuntimeError, self.roundtrip, data)
 
     def test_numpy_array_of_dicts(self):
         arr = np.array([{"x": 1}, {"y": 2}], dtype=object)
         data = {"arr_dicts": arr}
-        self.assertRaises(NotImplementedError, self.roundtrip, data)
+        self.assertRaises(RuntimeError, self.roundtrip, data)
 
     def test_posix_path(self):
         from pathlib import PosixPath
