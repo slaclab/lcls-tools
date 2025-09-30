@@ -52,6 +52,32 @@ class TestH5Saver(unittest.TestCase):
         loaded = self.roundtrip(data)
         assert len(data["list_of_ndarrays"]) == len(loaded["list_of_ndarrays"])
 
+    def test_typed_dataframe(self):
+        df = pd.DataFrame(
+            {
+                "int": pd.Series([1, 2, 3], dtype="int32"),
+                "float": pd.Series([1.1, 2.2, 3.3], dtype="float32"),
+                "float_w_nan": pd.Series([1.1, 2.2, np.nan], dtype="float32"),
+                "double": pd.Series([1.1, 2.2, 3.3], dtype="float64"),
+                "double_w_nan": pd.Series([1.1, 2.2, np.nan], dtype="float64"),
+                "object_array": np.array([1, np.nan, 3.5], dtype=object),
+                "str": pd.Series(["a", "b", "c"], dtype="str"),
+                "bool": pd.Series([True, False, True], dtype="boolean"),
+            }
+        )
+
+        loaded = self.roundtrip({"df": df})["df"]
+        pd.testing.assert_frame_equal(loaded, df)
+
+        # this should cast everything to a string
+        df_mixed = pd.DataFrame(
+            {
+                "mixed": pd.Series([1.0, "two", np.nan], dtype=object),
+            }
+        )
+        loaded_mixed = self.roundtrip({"df": df_mixed})["df"]
+        pd.testing.assert_frame_equal(loaded_mixed, df_mixed.astype(str))
+        
     def test_tuple(self):
         data = {"tup": (1, "2", (None, 3.5))}
         loaded = self.roundtrip(data)

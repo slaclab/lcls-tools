@@ -4,6 +4,19 @@ import pandas as pd
 from pathlib import PosixPath
 
 
+def normalize_mixed(col_data):
+    norm = []
+    for x in col_data:
+        if isinstance(x, (int, float, np.floating)):
+            if np.isnan(x):
+                norm.append("nan")  # special marker
+            else:
+                norm.append(str(x))
+        else:
+            norm.append(str(x))
+    return norm
+
+
 class H5Saver:
     """
     Serialize and deserialize Python data structures to and from HDF5 files.
@@ -92,17 +105,42 @@ class H5Saver:
                         )
                 # Handle pandas DataFrames
                 elif isinstance(val, pd.DataFrame):
-                    # save DataFrame as a group with datasets for columns
                     group = f.create_group(key)
-                    group.attrs["pandas_type"] = "dataframe"
+                    group.attrs["_type"] = "dataframe"
                     group.attrs["columns"] = list(val.columns)
+                    group.attrs["dtypes"] = [str(dt) for dt in val.dtypes]
                     for col in val.columns:
-                        if val[col].dtype == np.dtype("O"):
-                            try:
-                                val[col] = val[col].astype("float64")
-                            except ValueError:
-                                val[col] = val[col].astype("string")
-                        group.create_dataset(col, data=val[col].values)
+                        col_data = val[col].values
+                        if col_data.dtype == np.dtype("O"):
+                            # Check if all elements are np.ndarray
+                            if all(isinstance(x, np.ndarray) for x in col_data):
+                                # Save as a group of arrays
+                                for i, arr in enumerate(col_data):
+                                    group.create_dataset(f"{col}/{i}", data=arr)
+                            # Check for dicts, lists, tuples, or None (unsupported)
+                            elif any(
+                                isinstance(x, (dict, list, tuple)) or x is None
+                                for x in col_data
+                            ):
+                                raise NotImplementedError(
+                                    "Saving DataFrame columns containing dict, list, tuple, or None is not supported"
+                                )
+                            else:
+                                # try casting object type to float
+                                try:
+                                    group.create_dataset(
+                                        col, data=np.array(col_data, dtype=np.float64)
+                                    )
+                                except ValueError:
+                                    # If that fails save as strings
+                                    group.create_dataset(
+                                        col,
+                                        data=normalize_mixed(col_data),
+                                        dtype=h5py.string_dtype(encoding="utf-8"),
+                                    )
+                        else:
+                            group.create_dataset(col, data=col_data)
+
                 # Handle numpy arrays
                 elif isinstance(val, np.ndarray):
                     if val.dtype == np.dtype("O"):
