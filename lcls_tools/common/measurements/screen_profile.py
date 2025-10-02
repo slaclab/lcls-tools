@@ -27,8 +27,11 @@ class ScreenBeamProfileMeasurementResult(BeamProfileMeasurementResult):
         Numpy array of processed images taken during the measurement
     rms_sizes_all: ndarray
         Numpy array of rms sizes for all shots for each axis (um)
+
+    Inherited Attributes
+    ----------
     rms_sizes : ndarray
-        Numpy array of rms sizes of the beam in microns.
+        Numpy array of rms sizes averaged over all shots in microns.
     centroids : ndarray
         Numpy array of centroids of the beam in microns.
     total_intensities : ndarray
