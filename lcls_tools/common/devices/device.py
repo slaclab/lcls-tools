@@ -18,6 +18,8 @@ class PVSet(lcls_tools.common.BaseModel):
 
     @field_serializer("*")
     def serialize_pv_fields(self, v: PV, _info) -> str:
+        if v is None:
+            return None
         return v.pvname
 
 
