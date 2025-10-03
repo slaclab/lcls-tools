@@ -1,7 +1,6 @@
 from pydantic import (
     NonNegativeFloat,
     SerializeAsAny,
-    field_validator,
 )
 from typing import (
     Dict,
@@ -28,10 +27,6 @@ class TCAVPVSet(PVSet):
     mode_config: PV
     amplitude_wocho: PV
     phase_avgnt: PV
-
-    @field_validator("*", mode="before")
-    def validate_pv_fields(cls, v: str) -> PV:
-        return PV(v)
 
 
 class TCAVControlInformation(ControlInformation):
