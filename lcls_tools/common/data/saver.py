@@ -4,6 +4,19 @@ import pandas as pd
 from pathlib import PosixPath
 
 
+def normalize_mixed(col_data):
+    norm = []
+    for x in col_data:
+        if isinstance(x, (int, float, np.floating)):
+            if np.isnan(x):
+                norm.append("nan")  # special marker
+            else:
+                norm.append(str(x))
+        else:
+            norm.append(str(x))
+    return norm
+
+
 class H5Saver:
     """
     Serialize and deserialize Python data structures to and from HDF5 files.
@@ -11,6 +24,13 @@ class H5Saver:
     Supports:
         - dict, list, tuple, np.ndarray, pandas.DataFrame,
           scalars (int, float, bool, str), None, PosixPath.
+
+    Methods
+    -------
+    dump(data, filepath)
+        Dumps a dictionary to an HDF5 file.
+    load(filepath)
+        Loads a dictionary from an HDF5 file.
 
     Raises
     ------
@@ -54,7 +74,7 @@ class H5Saver:
         """
         h5str = h5py.string_dtype(encoding=self.string_dtype)
 
-        def recursive_save(key, val, f):
+        def recursive_save(key, val, f, top_level=""):
             """
             Recursively save a key-value pair to the HDF5 group or file.
 
@@ -72,116 +92,138 @@ class H5Saver:
             NotImplementedError
                 If an unsupported type or structure is encountered.
             """
-            # Handle dictionaries
-            if isinstance(val, dict):
-                group = f.create_group(key, track_order=True)
-                group.attrs["_type"] = "dict"
-                if not val:
-                    group.attrs["is_empty_dict"] = True  # Mark empty dicts
-                for k, v in val.items():
-                    recursive_save(k, v, group)
-            # Handle pandas DataFrames
-            elif isinstance(val, pd.DataFrame):
-                group = f.create_group(key)
-                group.attrs["_type"] = "dataframe"
-                group.attrs["columns"] = list(val.columns)
-                group.attrs["dtypes"] = [str(dt) for dt in val.dtypes]
-                for col in val.columns:
-                    col_data = val[col].values
-                    if col_data.dtype == np.dtype("O"):
-                        # Check if all elements are np.ndarray
-                        if all(isinstance(x, np.ndarray) for x in col_data):
-                            # Save as a group of arrays
-                            for i, arr in enumerate(col_data):
-                                group.create_dataset(f"{col}/{i}", data=arr)
-                        # Check for dicts, lists, tuples, or None (unsupported)
-                        elif any(
-                            isinstance(x, (dict, list, tuple)) or x is None
-                            for x in col_data
-                        ):
-                            raise NotImplementedError(
-                                "Saving DataFrame columns containing dict, list, tuple, or None is not supported"
-                            )
+            try:
+                # Handle dictionaries
+                if isinstance(val, dict):
+                    group = f.create_group(key, track_order=True)
+                    group.attrs["_type"] = "dict"
+                    if not val:
+                        group.attrs["is_empty_dict"] = True  # Mark empty dicts
+                    for k, v in val.items():
+                        recursive_save(
+                            k, v, group, top_level="/".join([top_level, key])
+                        )
+                # Handle pandas DataFrames
+                elif isinstance(val, pd.DataFrame):
+                    group = f.create_group(key)
+                    group.attrs["_type"] = "dataframe"
+                    group.attrs["columns"] = list(val.columns)
+                    group.attrs["dtypes"] = [str(dt) for dt in val.dtypes]
+                    for col in val.columns:
+                        col_data = val[col].values
+                        if col_data.dtype == np.dtype("O"):
+                            # Check if all elements are np.ndarray
+                            if all(isinstance(x, np.ndarray) for x in col_data):
+                                # Save as a group of arrays
+                                for i, arr in enumerate(col_data):
+                                    group.create_dataset(f"{col}/{i}", data=arr)
+                            # Check for dicts, lists, tuples, or None (unsupported)
+                            elif any(
+                                isinstance(x, (dict, list, tuple)) or x is None
+                                for x in col_data
+                            ):
+                                raise NotImplementedError(
+                                    "Saving DataFrame columns containing dict, list, tuple, or None is not supported"
+                                )
+                            else:
+                                # try casting object type to float
+                                try:
+                                    group.create_dataset(
+                                        col, data=np.array(col_data, dtype=np.float64)
+                                    )
+                                except ValueError:
+                                    # If that fails save as strings
+                                    group.create_dataset(
+                                        col,
+                                        data=normalize_mixed(col_data),
+                                        dtype=h5py.string_dtype(encoding="utf-8"),
+                                    )
                         else:
-                            # Save as pickled objects or handle accordingly
-                            group.create_dataset(
-                                col,
-                                data=np.array(col_data, dtype=object),
-                                dtype=h5py.special_dtype(vlen=bytes),
+                            group.create_dataset(col, data=col_data)
+
+                # Handle numpy arrays
+                elif isinstance(val, np.ndarray):
+                    if val.dtype == np.dtype("O"):
+                        # Disallow np.ndarray of dicts
+                        if any(isinstance(x, dict) for x in val):
+                            raise NotImplementedError(
+                                "np.ndarray of dicts is not supported."
+                            )
+                        # Disallow heterogeneous object arrays
+                        types = set(type(x) for x in val)
+                        if len(types) > 1:
+                            raise NotImplementedError(
+                                "Heterogeneous numpy arrays (object dtype with mixed types) are not supported."
+                            )
+                        # Save object arrays as group
+                        group = f.create_group(key, track_order=True)
+                        group.attrs["_type"] = "ndarray_object"
+                        for i, ele in enumerate(val.tolist()):
+                            recursive_save(
+                                str(i), ele, group, top_level="/".join([top_level, key])
                             )
                     else:
-                        group.create_dataset(col, data=col_data)
-            # Handle numpy arrays
-            elif isinstance(val, np.ndarray):
-                if val.dtype == np.dtype("O"):
-                    # Disallow np.ndarray of dicts
-                    if any(isinstance(x, dict) for x in val):
+                        # Save homogeneous arrays as dataset
+                        dset = f.create_dataset(key, data=val, track_order=True)
+                        dset.attrs["_type"] = "ndarray"
+                # Handle lists
+                elif isinstance(val, list):
+                    # Disallow lists of dicts or heterogeneous lists with dicts, but only if not empty
+                    if len(val) > 0 and all(isinstance(x, dict) for x in val):
                         raise NotImplementedError(
-                            "np.ndarray of dicts is not supported."
+                            "Lists of dictionaries are not supported."
                         )
-                    # Disallow heterogeneous object arrays
-                    types = set(type(x) for x in val)
-                    if len(types) > 1:
+                    if len(val) > 0 and any(isinstance(x, dict) for x in val):
                         raise NotImplementedError(
-                            "Heterogeneous numpy arrays (object dtype with mixed types) are not supported."
+                            "Heterogeneous lists containing dictionaries are not supported."
                         )
-                    # Save object arrays as group
                     group = f.create_group(key, track_order=True)
-                    group.attrs["_type"] = "ndarray_object"
-                    for i, ele in enumerate(val.tolist()):
-                        recursive_save(str(i), ele, group)
-                else:
-                    # Save homogeneous arrays as dataset
+                    group.attrs["_type"] = "list"
+                    if not val:
+                        group.attrs["_empty_list"] = True  # Mark empty list
+                    for i, ele in enumerate(val):
+                        recursive_save(
+                            str(i), ele, group, top_level="/".join([top_level, key])
+                        )
+                # Handle tuples
+                elif isinstance(val, tuple):
+                    # Disallow tuple of dicts, but only if not empty
+                    if len(val) > 0 and all(isinstance(x, dict) for x in val):
+                        raise NotImplementedError(
+                            "Tuples of dictionaries are not supported."
+                        )
+                    group = f.create_group(key, track_order=True)
+                    group.attrs["_type"] = "tuple"
+                    group.attrs["_tuple"] = True
+                    if not val:
+                        group.attrs["_empty_tuple"] = True  # Mark empty tuple
+                    for i, ele in enumerate(val):
+                        recursive_save(
+                            str(i), ele, group, top_level="/".join([top_level, key])
+                        )
+                # Handle PosixPath
+                elif isinstance(val, PosixPath):
+                    dset = f.create_dataset(
+                        key, data=str(val), dtype=h5str, track_order=True
+                    )
+                    dset.attrs["_type"] = "posixpath"
+                # Handle None
+                elif val is None:
+                    dset = f.create_dataset(
+                        key, data="None", dtype=h5str, track_order=True
+                    )
+                    dset.attrs["_type"] = "none"
+                # Handle scalars
+                elif isinstance(val, self.supported_scalars):
                     dset = f.create_dataset(key, data=val, track_order=True)
-                    dset.attrs["_type"] = "ndarray"
-            # Handle lists
-            elif isinstance(val, list):
-                # Disallow lists of dicts or heterogeneous lists with dicts, but only if not empty
-                if len(val) > 0 and all(isinstance(x, dict) for x in val):
-                    raise NotImplementedError(
-                        "Lists of dictionaries are not supported."
-                    )
-                if len(val) > 0 and any(isinstance(x, dict) for x in val):
-                    raise NotImplementedError(
-                        "Heterogeneous lists containing dictionaries are not supported."
-                    )
-                group = f.create_group(key, track_order=True)
-                group.attrs["_type"] = "list"
-                if not val:
-                    group.attrs["_empty_list"] = True  # Mark empty list
-                for i, ele in enumerate(val):
-                    recursive_save(str(i), ele, group)
-            # Handle tuples
-            elif isinstance(val, tuple):
-                # Disallow tuple of dicts, but only if not empty
-                if len(val) > 0 and all(isinstance(x, dict) for x in val):
-                    raise NotImplementedError(
-                        "Tuples of dictionaries are not supported."
-                    )
-                group = f.create_group(key, track_order=True)
-                group.attrs["_type"] = "tuple"
-                group.attrs["_tuple"] = True
-                if not val:
-                    group.attrs["_empty_tuple"] = True  # Mark empty tuple
-                for i, ele in enumerate(val):
-                    recursive_save(str(i), ele, group)
-            # Handle PosixPath
-            elif isinstance(val, PosixPath):
-                dset = f.create_dataset(
-                    key, data=str(val), dtype=h5str, track_order=True
-                )
-                dset.attrs["_type"] = "posixpath"
-            # Handle None
-            elif val is None:
-                dset = f.create_dataset(key, data="None", dtype=h5str, track_order=True)
-                dset.attrs["_type"] = "none"
-            # Handle scalars
-            elif isinstance(val, self.supported_scalars):
-                dset = f.create_dataset(key, data=val, track_order=True)
-                dset.attrs["_type"] = type(val).__name__
-            # Raise for unsupported types
-            else:
-                raise NotImplementedError(f"Type {type(val)} is not supported.")
+                    dset.attrs["_type"] = type(val).__name__
+                # Raise for unsupported types
+                else:
+                    raise NotImplementedError(f"Type {type(val)} is not supported.")
+            except Exception as e:
+                raise RuntimeError(
+                    f"Error saving key {'/'.join([top_level, key])}: {e}"
+                ) from e
 
         with h5py.File(filepath, "w") as file:
             for k, v in data.items():
