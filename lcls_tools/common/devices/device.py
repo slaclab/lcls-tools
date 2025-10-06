@@ -14,12 +14,12 @@ class PVSet(lcls_tools.common.BaseModel):
 
     @field_validator("*", mode="before")
     def validate_pv_fields(cls, v: str) -> PV:
-        return PV(v)
-
-    @field_serializer("*")
-    def serialize_pv_fields(self, v: PV, _info) -> str:
         if v is None:
             return None
+        return PV(v)
+
+    @field_serializer("*", when_used="unless-none")
+    def serialize_pv_fields(self, v: PV, _info) -> str:
         return v.pvname
 
 

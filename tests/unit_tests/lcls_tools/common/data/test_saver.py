@@ -235,21 +235,27 @@ class TestH5Saver(unittest.TestCase):
         processed_images = [image_processor.auto_process(image) for image in images]
 
         rms_sizes_all = []
-        centroids = []
-        total_intensities = []
+        centroids_all = []
+        total_intensities_all = []
         for image in processed_images:
             fit_result = ImageProjectionFit().fit_image(image)
-            rms_sizes_all.append(fit_result.rms_size)
-            centroids.append(fit_result.centroid)
-            total_intensities.append(fit_result.total_intensity)
+            rms_sizes_all.append(
+                np.array(fit_result.rms_size) * 1.0  # fake resolution of 1.0
+            )
+            centroids_all.append(np.array(fit_result.centroid) * 1.0)
+            total_intensities_all.append(fit_result.total_intensity)
+        rms_sizes = np.mean(rms_sizes_all, axis=0)
+        centroids = np.mean(centroids_all, axis=0)
+        total_intensities = np.mean(total_intensities_all, axis=0)
 
         # Store results in ScreenBeamProfileMeasurementResult
         result = ScreenBeamProfileMeasurementResult(
             raw_images=images,
             processed_images=processed_images,
-            rms_sizes_all=rms_sizes_all or None,
-            centroids=centroids or None,
-            total_intensities=total_intensities or None,
+            rms_sizes_all=rms_sizes_all,
+            rms_sizes=rms_sizes if rms_sizes.size > 0 else None,
+            centroids=centroids if centroids.size > 0 else None,
+            total_intensities=total_intensities if total_intensities.size > 0 else None,
             metadata={"info": "test"},
         )
 
