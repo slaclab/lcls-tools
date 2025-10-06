@@ -243,9 +243,11 @@ class TestH5Saver(unittest.TestCase):
         assert isinstance(loaded_dict["raw_images"], np.ndarray)
         assert np.allclose(images, loaded_dict["raw_images"], rtol=1e-5)
 
-        mask = ~np.isnan(rms_sizes)
+        mask = ~np.isnan(rms_sizes_all)
         assert np.allclose(
-            np.asarray(rms_sizes)[mask], loaded_dict["rms_sizes"][mask], rtol=1e-5
+            np.asarray(rms_sizes_all)[mask],
+            loaded_dict["rms_sizes_all"][mask],
+            rtol=1e-5,
         )
         mask = ~np.isnan(centroids)
         assert np.allclose(
