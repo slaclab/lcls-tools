@@ -105,6 +105,9 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             WireBeamProfileMeasurementResult: Structured results including
             position data, detector responses, fit parameters, and RMS sizes.
         """
+        # Create measurement metadata object
+        metadata = self.create_metadata()
+
         # Send command to start wire motion sequence and wait for initialization
         self.scan_with_wire()
 
@@ -125,10 +128,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         fit_result = self.fit_data_by_profile()
 
         # Get RMS beam sizes if both x and y profiles are present
-        rms_sizes = self.get_rms_sizes(fit_result)
-
-        # Create measurement metadata object
-        metadata = self.create_metadata()
+        rms_sizes = self.get_rms_sizes(fit_result, metadata.default_detector)
 
         # Release EDEF/BSA
         self.logger.info("Releasing BSA buffer.")
@@ -473,16 +473,16 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         self.logger.info("Profile data fit.")
         return fit_result
 
-    def get_rms_sizes(self, fit_result):
+    def get_rms_sizes(self, fit_result, default_detector):
         if "x" in fit_result and "y" in fit_result:
-            x_fits = fit_result["x"].detectors
-            y_fits = fit_result["y"].detectors
+            x_fit = fit_result["x"].detectors[default_detector]
+            y_fit = fit_result["y"].detectors[default_detector]
 
-            self.logger.info("Getting RMS beam sizes...")
-            rms_sizes = {d: (x_fits[d].sigma, y_fits[d].sigma) for d in self.detectors}
+            self.logger.info("Getting RMS beam size...")
+            rms_sizes = (x_fit.sigma, y_fit.sigma)
         else:
             self.logger.warning(
-                "Both x and y profiles not found. Skipping RMS sizes return."
+                "Both x and y profiles not found. Skipping RMS size return."
             )
             rms_sizes = None
         return rms_sizes
@@ -497,12 +497,15 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             "u": self.my_wire.u_range,
         }
 
+        lblm_config = self._load_yaml_config()
+        default_detector = lblm_config[self.my_wire.name]
+
         metadata = MeasurementMetadata(
             wire_name=self.my_wire.name,
             area=self.my_wire.area,
             beampath=self.beampath,
             detectors=self.detectors,
-            default_detector=self.detectors[0],
+            default_detector=default_detector,
             scan_ranges=scan_ranges,
             timestamp=datetime.now(),
             notes=None,
@@ -583,3 +586,9 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         )
         mono_mask = np.concatenate(([True], mono_mask))
         return mono_mask
+
+    def _load_yaml_config(self):
+        file_to_open = Path(__file__).resolve().parent.parent / "devices" / "yaml" / "wire_lblms.yaml"
+        with open(file_to_open, "r") as f:
+            wire_lblms = yaml.safe_load(f)
+        return wire_lblms
