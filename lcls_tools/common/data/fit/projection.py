@@ -95,7 +95,16 @@ class ProjectionFit(BaseModel):
         Returns a dictionary where the keys are the model params and their
         values are the params fitted to the data
         """
-        assert len(projection_data.shape) == 1
+        if not isinstance(projection_data, np.ndarray):
+            raise TypeError("projection_data must be a NumPy ndarray.")
+
+        if projection_data.ndim != 1:
+            raise ValueError(
+                f"Expected 1D array for projection_data, but got {projection_data.ndim}D."
+            )
+
+        if projection_data.size == 0:
+            raise ValueError("projection_data must not be empty.")
         fitted_params_dict = {}
         normalized_data = self.normalize(projection_data)
         self.model_setup(projection_data=normalized_data)

@@ -1,8 +1,8 @@
+from pathlib import Path
 from typing import Optional
 from lcls_tools.common.devices.wire import Wire
 from lcls_tools.common.devices.reader import create_lblm, create_pmt
 import lcls_tools.common.model.gaussian as gaussian
-from lcls_tools.common.measurements.measurement import Measurement
 import time
 from datetime import datetime
 import edef
@@ -16,6 +16,7 @@ from lcls_tools.common.measurements.wire_scan_results import (
     FitResult,
     DetectorFit,
 )
+import yaml
 import numpy as np
 from typing_extensions import Self
 import logging
@@ -23,8 +24,10 @@ from lcls_tools.common.logger.file_logger import custom_logger
 from lcls_tools.common.measurements.buffer_reservation import reserve_buffer
 from lcls_tools.common.measurements.utils import collect_with_size_check
 
+from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurement
 
-class WireBeamProfileMeasurement(Measurement):
+
+class WireBeamProfileMeasurement(BeamProfileMeasurement):
     """
     Performs a wire scan measurement and fits beam profiles.
 
@@ -43,7 +46,7 @@ class WireBeamProfileMeasurement(Measurement):
     """
 
     name: str = "Wire Beam Profile Measurement"
-    my_wire: Wire
+    beam_profile_device: Wire
     beampath: str
 
     # Extra fields to be set after validation
@@ -54,6 +57,15 @@ class WireBeamProfileMeasurement(Measurement):
     data: Optional[dict] = None
     profiles: Optional[dict] = None
     logger: Optional[logging.Logger] = None
+
+    # alias so beam_profile_device can also be accessed with name my_wire
+    @property
+    def my_wire(self) -> Wire:
+        return self.beam_profile_device
+
+    @my_wire.setter
+    def my_wire(self, value):
+        self.beam_profile_device = value
 
     @model_validator(mode="after")
     def run_setup(self) -> Self:

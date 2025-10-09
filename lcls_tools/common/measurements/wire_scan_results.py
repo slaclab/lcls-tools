@@ -1,7 +1,9 @@
-from pydantic import SerializeAsAny, BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from typing import Any, Optional, Dict, Tuple
 from datetime import datetime
+
+from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurementResult
 
 
 class DetectorFit(BaseModel):
@@ -43,7 +45,7 @@ class ProfileMeasurement(BaseModel):
     profile_idxs: NDArrayAnnotatedType
 
 
-class WireBeamProfileMeasurementResult(BaseModel):
+class WireBeamProfileMeasurementResult(BeamProfileMeasurementResult):
     """
     Stores the results of a wire beam profile measurement.
 
@@ -55,9 +57,16 @@ class WireBeamProfileMeasurementResult(BaseModel):
         raw_data (dict): Dictionary of device data as np.ndarrays.
                          Keys are device names.
         fit_result (dict): Nested dictionary of fit parameters by detector.
-        rms_sizes (dict): Dictionary of tuples containing (x_rms, y_rms) by
-                          detector.
-        metadata: Various data relevant to the wire scan measurement.
+
+    Inherited Attributes:
+        rms_sizes (ndarray): Numpy array containing (x_rms, y_rms) in microns of
+                          default detector.
+        centroids : ndarray
+            Numpy array of centroids of the beam in microns.
+        total_intensities : ndarray
+            Numpy array of total intensities of the beam.
+        metadata : Any
+            Metadata information related to the measurement.
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
