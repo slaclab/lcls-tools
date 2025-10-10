@@ -588,7 +588,12 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         return mono_mask
 
     def _load_yaml_config(self):
-        file_to_open = Path(__file__).resolve().parent.parent / "devices" / "yaml" / "wire_lblms.yaml"
+        file_to_open = (
+            Path(__file__).resolve().parent.parent
+            / "devices"
+            / "yaml"
+            / "wire_lblms.yaml"
+        )
         with open(file_to_open, "r") as f:
             wire_lblms = yaml.safe_load(f)
         return wire_lblms
