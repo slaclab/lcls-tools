@@ -2923,7 +2923,7 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      lblms:
+      detectors:
       - PMT122:LTUH
       - PMT246:LTUH
       - PMT430:LTUH
@@ -2976,7 +2976,7 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      lblms:
+      detectors:
       - PMT122:LTUH
       - PMT246:LTUH
       - PMT430:LTUH
@@ -3029,7 +3029,7 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      lblms:
+      detectors:
       - PMT122:LTUH
       - PMT246:LTUH
       - PMT430:LTUH
@@ -3082,7 +3082,7 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
-      lblms:
+      detectors:
       - PMT122:LTUH
       - PMT246:LTUH
       - PMT430:LTUH

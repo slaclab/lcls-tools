@@ -135,6 +135,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: PROF:LI11:316
+      pv_cache: {}
     metadata:
       area: BC11_1
       beam_path:
@@ -147,6 +148,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: PROF:LI11:334
+      pv_cache: {}
     metadata:
       area: BC11_1
       beam_path:
@@ -159,6 +161,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: OTRS:LI11:335
+      pv_cache: {}
     metadata:
       area: BC11_1
       beam_path:
@@ -171,6 +174,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: PROF:LI11:342
+      pv_cache: {}
     metadata:
       area: BC11_1
       beam_path:

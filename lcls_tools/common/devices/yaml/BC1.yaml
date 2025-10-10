@@ -682,7 +682,7 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      lblms:
+      detectors:
       - PMT2111:DL1
       - PMT21293:LI21
       - PMT2113:LI21
@@ -711,7 +711,7 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      lblms:
+      detectors:
       - PMT2111:DL1
       - PMT21293:LI21
       - PMT2113:LI21
@@ -760,7 +760,7 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      lblms:
+      detectors:
       - PMT2111:DL1
       - PMT21293:LI21
       - PMT2113:LI21

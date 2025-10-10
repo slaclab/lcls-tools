@@ -100,7 +100,7 @@ wires:
     metadata:
       area: LI28
       beam_path: []
-      lblms:
+      detectors:
       - PMT28750:LI28
       - PMT29150:LI29
       - PMT756:LTUH
@@ -141,7 +141,7 @@ wires:
     metadata:
       area: LI28
       beam_path: []
-      lblms:
+      detectors:
       - PMT28750:LI28
       - PMT29150:LI29
       - PMT756:LTUH
