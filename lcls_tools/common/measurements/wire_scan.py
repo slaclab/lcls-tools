@@ -594,6 +594,20 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             / "yaml"
             / "wire_lblms.yaml"
         )
+
+        if file_to_open.exists() is False:
+            msg = f"YAML config file {file_to_open} not found."
+            self.logger.error(msg)
+            return None
+
         with open(file_to_open, "r") as f:
             wire_lblms = yaml.safe_load(f)
         return wire_lblms
+
+    def _get_default_detector(self):
+        lblm_config = self._load_yaml_config()
+        if lblm_config is None:
+            return self.detectors[0]
+        else:
+            default_detector = lblm_config[self.my_wire.name]
+            return default_detector
