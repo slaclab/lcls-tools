@@ -79,10 +79,10 @@ class ImageProjectionFit(ImageFit):
     the x/y projections. The default configuration uses a Gaussian fitting of the
     profile with prior distributions placed on the model parameters.
     """
-    #Default is the fit method from model.gaussian, but any callable can be passed here.
-    #maybe this should be restricted to a special type of fit_callable.
-    #class fit(some_gauss):
-        #def __call__(proj_data):
+    #TODO: Default is the fit method from model.gaussian, but any callable can be passed here.
+    # maybe this should be restricted to a special type of fit_callable.
+    # class fit(some_gauss):
+        # def __call__(proj_data):
     # or we can decorate these methods in some way to make them a different type that we can restrict h
     model_config = ConfigDict(arbitrary_types_allowed=True)
     projection_fit_method: Optional[Callable] = fit
@@ -96,19 +96,21 @@ class ImageProjectionFit(ImageFit):
     )
 
     def _fit_image(self, image: ndarray) -> ImageProjectionFitResult:
-        directions = ('x','y')
+        dimensions = ('x','y')
         fit_parameters = []
         noise_stds = []
         signal_to_noise_ratios = []
         beam_extent = []
 
-        for axis, dir in enumerate(directions):
+        for axis, dim in enumerate(dimensions):
             projection = np.array(np.sum(image, axis=axis))
             x = np.arange(len(projection))
             parameters = self.projection_fit_method(x, projection)
-            print(parameters)
+            
+            # have Eloises code return signal to noise ratios and noise stds
+            # 
+
             # determine the noise around the projection fit
-    
             noise_std = np.std(
                 self.curve(x, **parameters) - projection
             )
@@ -123,13 +125,13 @@ class ImageProjectionFit(ImageFit):
                 ]
             )
             # if the amplitude of the the fit is smaller than noise then reject
-            #moving this into a validate function to clean it up.
+            # moving this into a validate function to clean it up.
             if signal_to_noise_ratios[-1] < self.signal_to_noise_threshold:
                 #for name in parameters.keys():
                 #    parameters[name] = np.nan
 
                 warnings.warn(
-                    f"Projection in {dir} had a low amplitude relative to noise"
+                    f"Projection in {dim} had a low amplitude relative to noise"
                 )
 
             # if the beam extent is outside the image then its off the screen etc. and fits cannot be trusted
@@ -138,7 +140,7 @@ class ImageProjectionFit(ImageFit):
                 #    parameters[name] = np.nan
 
                 warnings.warn(
-                    f"Projection in {dir} was off the screen, fit cannot be trusted"
+                    f"Projection in {dim} was off the screen, fit cannot be trusted"
                 )
 
             fit_parameters.append(parameters)
