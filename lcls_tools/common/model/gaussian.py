@@ -4,6 +4,7 @@ import lcls_tools.common.model.optimize as optimize
 from lcls_tools.common.pydantic import BaseModel
 from typing import Callable, Dict, List, Optional
 
+
 def curve(x, mean=0, sigma=1, amp=1, off=0):
     A = np.sqrt(2 * np.pi) * amp
     return A * norm.pdf((x - mean) / sigma) + off
@@ -91,13 +92,15 @@ params = [mean, sigma, amplitude, offset]
 def fit(pos, data, use_prior=False):
     return optimize.param_fit(curve, params, pos, data, use_prior)
 
+
 class GaussianModel(BaseModel):
-    curve : Callable = curve # can remove but might be useful for dumping
-    fit : Callable = fit # can remove but might be useful for dumping
-    parameters : Optional[Dict[str,float]] = None
+    curve: Callable = curve  # can remove but might be useful for dumping
+    fit: Callable = fit  # can remove but might be useful for dumping
+    parameters: Optional[Dict[str, float]] = None
     noise_std: Optional[List[float]] = None
     snr: Optional[List[float]] = None
     extent: Optional[float] = None
+
     def fit_projection(
         self,
         x,
@@ -110,8 +113,6 @@ class GaussianModel(BaseModel):
         self.noise_std = np.std(data - self.curve(x, **self.parameters))
         self.snr = self.parameters["amp"] / self.noise_std
         self.extent = (
-            self.parameters["mean"]
-            + beam_extent_n_stds * self.parameters["sigma"]
+            self.parameters["mean"] + beam_extent_n_stds * self.parameters["sigma"]
         )
         return self.parameters, self.noise_std, self.snr, self.extent
-    
