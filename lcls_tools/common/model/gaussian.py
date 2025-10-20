@@ -86,14 +86,10 @@ class offset(optimize.Parameter):
         return off * y_scale + min(y)
 
 
-params = [mean, sigma, amplitude, offset]
-
-
-def fit(pos, data, use_prior=False):
-    return optimize.param_fit(curve, params, pos, data, use_prior)
-
-
 class GaussianFit(BaseModel):
+    parameters: list[optimize.Parameter] = Field(
+        [mean, sigma, amplitude, offset], frozen = True
+    )
     def fit(
         self,
         x,
@@ -102,7 +98,7 @@ class GaussianFit(BaseModel):
         beam_extent_n_stds: float = 4.0,
     ) -> Dict[str, float]:
         """Fit a projection curve and compute noise, SNR, and beam extent."""
-        parameters = fit(x, data, use_prior)
+        parameters = optimize.param_fit(curve, self.parameters, pos, data, use_prior)
         noise_std = np.std(data - curve(x, **parameters))
         snr = parameters["amp"] / noise_std
         extent = parameters["mean"] + beam_extent_n_stds * parameters["sigma"]
