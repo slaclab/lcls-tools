@@ -15,25 +15,37 @@ class ImageProcessor(lcls_tools.common.BaseModel):
     Image Processing class that allows for background subtraction and roi cropping
     ------------------------
     Arguments:
-    roi: ROI (roi object either Circular or Rectangular),
     background_image: np.ndarray (optional image that will be used in
         background subtraction if passed),
-    threshold: Positive Float (value of pixel intensity to be subtracted
-        if background_image is None, default value = 0.0)
-    visualize: bool (plots processed image)
+    pool_size : int, optional
+        Size of the pooling window. If None, no pooling is applied.
+    median_filter_size : int, optional
+        Size of the median filter. If None, no median filter is applied.
+    threshold : float, optional
+        Threshold to apply before filtering. If None, calculated via triangle method.
+    threshold_multiplier : float, optional
+        Multiplier for the threshold value. Default is 1.0.
+    n_stds : int, optional
+        Number of standard deviations for cropping. Default is 8.
+    center : bool, optional
+        If True, center images using the image fitter. Default is True.
+    crop : bool, optional
+        If True, crop images using fitted centroid and RMS size. Default is True.
     ------------------------
     Methods:
     subtract_background: takes a raw image and does pixel intensity subtraction
-    process: takes raw image and calls subtract_background, passes to result
-        to the roi object for cropping.
+    process: takes raw image and calls subtract_background then processes the images
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    roi: Optional[ROI] = None
     background_image: Optional[np.ndarray] = None
-    threshold: Optional[PositiveFloat] = 0.0
-    gaussian_filter_size: Optional[PositiveInt] = None
-    median_filter_size: Optional[PositiveInt] = None
+    pool_size: Optional[int] = None,
+    median_filter_size: Optional[int] = None,
+    threshold: Optional[float] = None,
+    threshold_multiplier: float = 1.0,
+    n_stds: int = 8,
+    center: bool = True,
+    crop: bool = True,
 
     def subtract_background(self, raw_image: np.ndarray) -> np.ndarray:
         """Subtract background pixel intensity from a raw image"""
@@ -45,21 +57,34 @@ class ImageProcessor(lcls_tools.common.BaseModel):
         # clip images to make sure values are positive
         return np.clip(image, 0, None)
 
-    def auto_process(self, raw_images: np.ndarray) -> np.ndarray:
-        return process_images(raw_images)
+    def process(self, raw_images: np.ndarray) -> np.ndarray:
+        return process_images(
+            self.subtract_background(raw_images),
+            pool_size=self.pool_size,
+            median_filter_size=self.median_filter_size,
+            threshold=self.threshold,
+            threshold_multiplier=self.threshold_multiplier,
+            n_stds=self.n_stds,
+            center=self.center,
+            crop=self.crop,
+        )
 
 
 def compute_blob_stats(image):
     """
-    Compute the center (centroid) and RMS size of a blob in a 2D image
-    using intensity-weighted averages.
+    Compute the RMS size and centroid of a blob in a 2D image using intensity-weighted averages.
 
-    Parameters:
-        image (np.ndarray): 2D array representing the image.
+    Parameters
+    ----------
+    image : np.ndarray
+        2D array representing the image. Shape should be (height (y size), width (x size)).
 
-    Returns:
-        center (tuple): (x_center, y_center)
-        rms_size (tuple): (x_rms, y_rms)
+    Returns
+    -------
+    centroid : np.ndarray
+        Array containing the centroid coordinates (x_center, y_center).
+    rms_size : np.ndarray
+        Array containing the RMS size along (x, y) axes.
     """
     if image.ndim != 2:
         raise ValueError("Input image must be a 2D array")
@@ -87,78 +112,257 @@ def compute_blob_stats(image):
     x_rms = np.sqrt(np.sum(weights * (x - x_center) ** 2) / total_weight)
     y_rms = np.sqrt(np.sum(weights * (y - y_center) ** 2) / total_weight)
 
-    return np.array((x_rms, y_rms)), np.array((x_center, y_center))
+    return np.array((x_center, y_center)), np.array((x_rms, y_rms))
 
+
+def calc_image_centroids(
+    images: np.ndarray, image_fitter: Callable = compute_blob_stats
+) -> np.ndarray:
+    """
+    Calculate centroids for a batch of images using the provided image_fitter function.
+
+    Parameters
+    ----------
+    images : np.ndarray
+        Batch of images with shape (..., height (y size), width (x size)).
+    image_fitter : Callable, optional
+        Function that returns (centroid, rms) for a single image.
+
+    Returns
+    -------
+    np.ndarray
+        Array of centroids with shape (..., 2), where the last dimension is (x, y) coordinates.
+    """
+
+    batch_shape = images.shape[:-2]
+    flattened_images = images.reshape((-1,) + images.shape[-2:])
+    flattened_centroids = np.zeros((flattened_images.shape[0], 2))
+
+    for i in range(flattened_images.shape[0]):
+        centroid, _ = image_fitter(flattened_images[i])
+        flattened_centroids[i] = centroid
+
+    return flattened_centroids.reshape(batch_shape + (2,))
+
+
+def center_images(
+    images: np.ndarray,
+    image_centroids: np.ndarray,
+) -> np.ndarray:
+    """
+    Centers a batch of images based on provided centroid coordinates.
+
+    Each image in the batch is shifted such that its centroid aligns with the center of the image.
+
+    Parameters
+    ----------
+    images : np.ndarray
+        Batch of images with shape (..., height (y size), width (x size)).
+    image_centroids : np.ndarray
+        Array of centroid coordinates for each image, shape (..., 2).
+
+    Returns
+    -------
+    np.ndarray
+        Batch of centered images with the same shape as the input.
+    """
+
+    batch_shape = images.shape[:-2]
+    center_location = np.array(images.shape[-2:]) // 2
+    center_location = center_location[::-1]
+
+    # Flatten batch dimensions
+    flattened_images = images.reshape((-1,) + images.shape[-2:])
+    flattened_centroids = image_centroids.reshape((flattened_images.shape[0], 2))
+    centered_images = np.zeros_like(flattened_images)
+
+    for i in range(flattened_images.shape[0]):
+        # Shift the images to center them
+        centered_images[i] = scipy.ndimage.shift(
+            flattened_images[i],
+            -(flattened_centroids[i] - center_location)[::-1],
+            order=1,  # Linear interpolation to avoid artifacts
+        )
+
+    # Reshape back to original shape
+    centered_images = centered_images.reshape(images.shape)
+
+    return centered_images
+
+
+def calc_crop_ranges(
+    images,
+    n_stds: int = 8,
+    image_fitter=compute_blob_stats,
+    filter_size: int = 5,
+) -> np.ndarray:
+    """
+    Calculate crop ranges for a batch of images based on the centroid and RMS size of the mean image.
+
+    Parameters
+    ----------
+    images : np.ndarray
+        Batch of images with shape (..., height (y size), width (x size)).
+    n_stds : int, optional
+        Number of standard deviations (RMS size) to include in the crop range. Default is 8.
+    image_fitter : Callable, optional
+        Function to compute centroid and RMS size from an image. Default is compute_blob_stats.
+
+    Returns
+    -------
+    np.ndarray
+        Array of shape (2, 2) containing crop ranges for each axis:
+        [[start_x, end_x], [start_y, end_y]].
+    """
+
+    batch_shape = images.shape[:-2]
+    batch_dims = tuple(range(len(batch_shape)))
+
+    test_images = np.copy(images)
+    total_image = np.mean(test_images, axis=batch_dims)
+
+    # apply a strong median filter to remove noise
+    total_image = median_filter(total_image, size=filter_size)
+
+    # apply a threshold to remove background noise
+    threshold = threshold_triangle(total_image)
+
+    total_image[total_image < threshold] = 0
+
+    centroid, rms_size = image_fitter(total_image)
+    centroid = centroid[::-1]
+    rms_size = rms_size[::-1]
+
+    crop_ranges = np.array(
+        [
+            (centroid - n_stds * rms_size).astype("int"),
+            (centroid + n_stds * rms_size).astype("int"),
+        ]
+    )
+    crop_ranges = crop_ranges.T  # Transpose to match (start_x, end_x), (start_y, end_y)
+
+    return crop_ranges
+
+
+def crop_images(
+    images: np.ndarray,
+    crop_ranges: np.ndarray,
+) -> np.ndarray:
+    """
+    Crops a batch of images according to specified crop ranges.
+
+    Parameters
+    ----------
+    images : np.ndarray
+        A batch of images to be cropped. The shape should be (..., height (y_size), width (x_size)).
+    crop_ranges : np.ndarray
+        An array specifying the crop ranges for x,y. Should be of shape (2, 2),
+        where crop_ranges[0] is [start_x, end_x] and crop_ranges[1] is [start_y, end_y].
+
+    Returns
+    -------
+    np.ndarray
+        The cropped images as a numpy array with the same batch dimensions as the input.
+    """
+    if crop_ranges.shape != (2, 2):
+        raise ValueError("crop_ranges must be of shape (2, 2)")
+
+    if images.ndim < 2:
+        raise ValueError(
+            "images must have at least 2 dimensions (batch, height, width)"
+        )
+
+    batch_shape = images.shape[:-2]
+
+    crop_ranges[0] = np.clip(crop_ranges[0], 0, images.shape[-2])
+    crop_ranges[1] = np.clip(crop_ranges[1], 0, images.shape[-1])
+
+    cropped_images = images[
+        ...,
+        crop_ranges[0][0] : crop_ranges[0][1],
+        crop_ranges[1][0] : crop_ranges[1][1],
+    ]
+
+    return cropped_images
+
+
+def pool_images(images: np.ndarray, pool_size) -> np.ndarray:
+    """
+    Pools (downsamples) the input images by applying mean pooling over non-overlapping blocks.
+
+    Parameters
+    ----------
+    images : np.ndarray
+        Input array of images. The last two dimensions are assumed to be spatial (height, width).
+    pool_size : Optional[int], optional
+        Size of the pooling window along each spatial dimension. If None, no pooling is applied.
+
+    Returns
+    -------
+    np.ndarray
+        Array of pooled images with reduced spatial dimensions.
+    """
+
+    batch_shape = images.shape[:-2]
+    block_size = (1,) * len(batch_shape) + (pool_size,) * 2
+    pooled_images = block_reduce(images, block_size=block_size, func=np.mean)
+    return pooled_images
 
 def process_images(
     images: np.ndarray,
-    pixel_size: float,
     image_fitter: Callable = compute_blob_stats,
     pool_size: Optional[int] = None,
     median_filter_size: Optional[int] = None,
     threshold: Optional[float] = None,
     threshold_multiplier: float = 1.0,
     n_stds: int = 8,
-    center_images: bool = False,
-    visualize: bool = False,
-    return_raw_cropped: bool = False,
+    center: bool = False,
+    crop: bool = False,
+    image_centroids: Optional[np.ndarray] = None,
+    crop_ranges: Optional[np.ndarray] = None,
 ) -> Tuple[np.ndarray, Tuple[np.ndarray, np.ndarray]]:
     """
     Process a batch of images for use in GPSR.
-    The images are cropped, thresholded, pooled, median filtered, and normalized.
-    An image_fitter function is used to fit the images and return the rms size and centroid to crop the images.
 
-    Optionally, the images can be centered using the image_fitter function.
+    Applies a series of processing steps to a batch of images:
+    - Median filtering (optional)
+    - Thresholding (using a provided value or the triangle method)
+    - Centering (optional, using an image fitter function)
+    - Cropping (optional, based on fitted centroid and RMS size)
 
     Parameters
     ----------
     images : np.ndarray
-        A batch of images with shape (..., H, W).
-    pixel_size : float
-        Pixel size of the screen in microns.
-    image_fitter : Callable
-        A function that fits an image and returns the rms size and centroid as a tuple in px coordinates.
-        Example: <rms size>, (<x_center>, <y_center>) = image_fitter(image)
-    threshold : float, optional
-        The threshold to apply to the images before pooling and filters, by default None. If None, the threshold is calculated via the triangle method.
-    threshold_multiplier : float, optional
-        The multiplier for the threshold, by default 1.0.
+        Batch of images with shape (..., height (y size), width (x size)).
+    image_fitter : Callable, optional
+        Function that fits an image and returns (centroid, rms) in pixel coordinates.
     pool_size : int, optional
-        The size of the pooling window, by default None. If None, no pooling is applied.
+        Size of the pooling window. If None, no pooling is applied.
     median_filter_size : int, optional
-        The size of the median filter, by default None. If None, no median filter is applied.
+        Size of the median filter. If None, no median filter is applied.
+    threshold : float, optional
+        Threshold to apply before filtering. If None, calculated via triangle method.
+    threshold_multiplier : float, optional
+        Multiplier for the threshold value. Default is 1.0.
     n_stds : int, optional
-        The number of standard deviations to crop the images, by default 8.
-    normalization : str, optional
-        Normalization method: 'independent' (default) or 'max_intensity_image'.
-    center_images : bool, optional
-        Whether to center the images before processing, by default False.
-        If True, the images are centered using the image_fitter function.
-    visualize : bool, optional
-        Whether to visualize the images at each step of the processing, by default False.
-        If True, the images are displayed using matplotlib.
-    return_raw_cropped: bool, optional
-        If true, return the raw image cropped.
+        Number of standard deviations for cropping. Default is 8.
+    center : bool, optional
+        If True, center images using the image fitter. Default is False.
+    crop : bool, optional
+        If True, crop images using fitted centroid and RMS size. Default is False.
+    image_centroids : np.ndarray, optional
+        Precomputed centroids for centering. If None, computed internally.
+    crop_ranges : np.ndarray, optional
+        Precomputed crop ranges. If None, computed internally.
 
     Returns
     -------
     np.ndarray
-        The processed images with cropped shape (..., H', W').
-    np.ndarray
-        The meshgrid for the processed images.
-
+        Processed images
     """
 
     batch_shape = images.shape[:-2]
     batch_dims = tuple(range(len(batch_shape)))
-    center_location = np.array(images.shape[-2:]) // 2
-    center_location = center_location[::-1]
-
-    raw_images = np.copy(images)
-
-    if visualize:
-        plt.figure()
-        plt.imshow(images[(0,) * len(batch_shape)])
 
     # median filter
     if median_filter_size is not None:
@@ -174,130 +378,35 @@ def process_images(
         threshold = threshold_triangle(avg_image)
     images = np.clip(images - threshold_multiplier * threshold, 0, None)
 
-    # median filter -- 2nd application
-    if median_filter_size is not None:
-        images = median_filter(
-            images,
-            size=median_filter_size,
-            axes=[-2, -1],
-        )
-
-    if visualize:
-        plt.figure()
-        plt.title("post filtering and thresholding")
-        plt.imshow(images[(0,) * len(batch_shape)])
-
     # center the images
-    if center_images:
-        # flatten batch dimensions
-        images = np.reshape(images, (-1,) + images.shape[-2:])
-        centered_images = np.zeros_like(images)
+    if center:
+        if image_centroids is None:
+            image_centroids = calc_image_centroids(images, image_fitter=image_fitter)
+        centered_images = center_images(images, image_centroids, visualize=visualize)
+    else:
+        centered_images = images
 
-        for i in range(images.shape[0]):
-            # fit the image centers
-            try:
-                rms_size, centroid = image_fitter(images[i])
-            except ValueError:
-                rms_size = np.array(images[i].shape)
-                centroid = center_location
-
-            # shift the images to center them
-            centered_images[i] = shift(
-                images[i],
-                -(centroid - center_location)[::-1],
-                order=1,  # linear interpolation to avoid artifacts
+    # crop the images
+    if crop:
+        if crop_ranges is None:
+            crop_ranges = calc_crop_ranges(
+                centered_images,
+                n_stds=n_stds,
+                image_fitter=image_fitter,
+                visualize=visualize,
             )
 
-            if visualize:
-                fig, ax = plt.subplots(1, 2, sharex=True, sharey=True)
-                ax[0].imshow(images[i])
-                ax[0].plot(*centroid, "r+")
-                ax[1].imshow(centered_images[i])
-                ax[1].plot(*center_location, "r+")
-
-        # reshape back to original shape
-        images = np.reshape(centered_images, batch_shape + images.shape[-2:])
-
-    if visualize:
-        plt.figure()
-        plt.title("post image centering")
-        plt.imshow(images[(0,) * len(batch_shape)])
-
-    total_image = np.mean(images, axis=batch_dims)
-    try:
-        rms_size, centroid = image_fitter(total_image)
-    except ValueError:
-        rms_size = np.array(total_image.shape)
-        centroid = center_location
-    centroid = centroid[::-1]
-    rms_size = rms_size[::-1]
-
-    crop_ranges = np.array(
-        [
-            (centroid - n_stds * rms_size).astype("int"),
-            (centroid + n_stds * rms_size).astype("int"),
-        ]
-    )
-
-    # transpose crop ranges temporarily to clip on image size
-    crop_ranges = crop_ranges.T
-    crop_ranges[0] = np.clip(crop_ranges[0], 0, images.shape[-2])
-    crop_ranges[1] = np.clip(crop_ranges[1], 0, images.shape[-1])
-
-    if visualize:
-        plt.figure()
-        plt.imshow(total_image)
-        plt.plot(*centroid[::-1], "+r")
-        rect = plt.Rectangle(
-            (crop_ranges[1][0], crop_ranges[0][0]),
-            crop_ranges[1][1] - crop_ranges[1][0],
-            crop_ranges[0][1] - crop_ranges[0][0],
-            linewidth=2,
-            edgecolor="r",
-            facecolor="none",
+        cropped_images = crop_images(
+            centered_images,
+            crop_ranges=crop_ranges,
+            visualize=visualize,
         )
-        plt.gca().add_patch(rect)
-
-    cropped_widths = [
-        crop_ranges[1][1] - crop_ranges[1][0],
-        crop_ranges[0][1] - crop_ranges[0][0],
-    ]
-    centroid = [
-        (crop_ranges[1][1] + crop_ranges[1][0]) / 2,
-        (crop_ranges[0][1] + crop_ranges[0][0]) / 2,
-    ]
-    if return_raw_cropped:
-        images = raw_images[
-            ...,
-            crop_ranges[0][0] : crop_ranges[0][1],
-            crop_ranges[1][0] : crop_ranges[1][1],
-        ]
     else:
-        images = images[
-            ...,
-            crop_ranges[0][0] : crop_ranges[0][1],
-            crop_ranges[1][0] : crop_ranges[1][1],
-        ]
+        cropped_images = centered_images
 
-    if visualize:
-        plt.figure()
-        plt.title("post cropping")
-        plt.imshow(images[(0,) * len(batch_shape)])
-
-    # pooling
     if pool_size is not None:
-        block_size = (1,) * len(batch_shape) + (pool_size,) * 2
-        images = block_reduce(images, block_size=block_size, func=np.mean)
+        pooled_images = pool_images(cropped_images, pool_size=pool_size)
+    else:
+        pooled_images = cropped_images
 
-    # compute meshgrids for screens
-    bins = []
-    pool_size = 1 if pool_size is None else pool_size
-
-    # returns left sided bins
-    for j in [-2, -1]:
-        img_bins = np.arange(images.shape[j])
-        img_bins = img_bins - len(img_bins) / 2
-        img_bins = img_bins * pixel_size * 1e-6 * pool_size
-        bins += [img_bins]
-
-    return images, centroid, cropped_widths
+    return pooled_images
