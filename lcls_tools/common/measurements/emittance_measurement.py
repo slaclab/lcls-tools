@@ -268,8 +268,10 @@ class QuadScanEmittance(Measurement):
 
         if not self.rmat_given:
             self.rmat = np.stack(self.rmat, axis=1)  # reshape to (2, n_steps, 2, 2)
-            kmod_list, beamsizes_squared_list = preprocess_inputs(scan_values, beam_sizes, self.energy, magnet_length)
-            
+            kmod_list, beamsizes_squared_list = preprocess_inputs(
+                scan_values, beam_sizes, self.energy, magnet_length
+            )
+
             results = {
                 "emittance": [],
                 "twiss_at_screen": [],
@@ -287,7 +289,7 @@ class QuadScanEmittance(Measurement):
                 # convert beam sizes to units of mm^2
                 beam_sizes_squared = beamsizes_squared_list[i]
                 beam_sizes_squared = np.expand_dims(beam_sizes_squared, -1)
-                
+
                 # create dict of arguments for compute_emit_bmag
                 emit_kwargs = {
                     "beamsize_squared": beam_sizes_squared,
@@ -296,14 +298,14 @@ class QuadScanEmittance(Measurement):
                     if twiss_betas_alphas is not None
                     else None,
                 }
-                print('beamsize_squared.shape:', beam_sizes_squared.shape)
+                print("beamsize_squared.shape:", beam_sizes_squared.shape)
                 # compute emittance and bmag
                 result = compute_emit_bmag(**emit_kwargs)
 
                 result.update({"quadrupole_focusing_strengths": kmod_list[i]})
                 result.update({"quadrupole_pv_values": scan_values[i][idx]})
                 result.update({"rms_beamsizes": beam_sizes[i][idx]})
-                
+
                 # add results to dict object
                 for name, value in result.items():
                     if name == "bmag" and value is None:
