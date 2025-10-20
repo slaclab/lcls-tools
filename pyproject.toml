@@ -22,7 +22,6 @@ dependencies = [
     "requests",
     "pydantic",
     "h5py",
-    "scikit-learn",
     "pandas",
     "scikit-image"
 ]
