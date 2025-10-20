@@ -1,5 +1,6 @@
 from typing import Optional, Tuple, Callable
 
+import scipy
 import numpy as np
 from pydantic import PositiveFloat, ConfigDict, PositiveInt
 from lcls_tools.common.image.roi import ROI
