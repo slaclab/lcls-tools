@@ -65,12 +65,12 @@ def quad_scan_optics(
 ) -> Dict:
     """Get rmat from magnet to measurement device and twiss at measurement device"""
     # TODO: get optics from arbitrary devices (potentially in different beam lines)
-    model = _get_model_from_device(measurement.device, physics_model)
+    model = _get_model_from_device(measurement.beam_profile_device, physics_model)
     rmat = model.get_rmat(
         from_device=magnet.name,
-        to_device=measurement.device.name,
+        to_device=measurement.beam_profile_device.name,
     )
-    twiss = model.get_twiss(measurement.device.name)
+    twiss = model.get_twiss(measurement.beam_profile_device.name)
     return {"rmat": rmat, "design_twiss": twiss}
 
 
@@ -172,7 +172,8 @@ def build_quad_rmat(k: np.ndarray, q_len: float, thin_lens: bool = False):
     """
 
     if not thin_lens:
-        sqrt_k = np.sqrt(np.abs(k))
+
+        sqrt_k = np.sqrt(np.abs(k)) + 1.e-6
 
         c = (
             np.cos(sqrt_k * q_len) * (k > 0)
