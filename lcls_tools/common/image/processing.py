@@ -2,12 +2,10 @@ from typing import Optional, Tuple, Callable
 
 import scipy
 import numpy as np
-from pydantic import PositiveFloat, ConfigDict, PositiveInt
-from lcls_tools.common.image.roi import ROI
-from scipy.ndimage import median_filter, shift
+from pydantic import ConfigDict
+from scipy.ndimage import median_filter
 from skimage.measure import block_reduce
 from skimage.filters import threshold_triangle
-import matplotlib.pyplot as plt
 import lcls_tools
 
 
@@ -40,13 +38,13 @@ class ImageProcessor(lcls_tools.common.BaseModel):
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
     background_image: Optional[np.ndarray] = None
-    pool_size: Optional[int] = None,
-    median_filter_size: Optional[int] = None,
-    threshold: Optional[float] = None,
-    threshold_multiplier: float = 1.0,
-    n_stds: int = 8,
-    center: bool = True,
-    crop: bool = True,
+    pool_size: Optional[int] = (None,)
+    median_filter_size: Optional[int] = (None,)
+    threshold: Optional[float] = (None,)
+    threshold_multiplier: float = (1.0,)
+    n_stds: int = (8,)
+    center: bool = (True,)
+    crop: bool = (True,)
 
     def subtract_background(self, raw_image: np.ndarray) -> np.ndarray:
         """Subtract background pixel intensity from a raw image"""
@@ -168,7 +166,6 @@ def center_images(
         Batch of centered images with the same shape as the input.
     """
 
-    batch_shape = images.shape[:-2]
     center_location = np.array(images.shape[-2:]) // 2
     center_location = center_location[::-1]
 
@@ -273,8 +270,6 @@ def crop_images(
             "images must have at least 2 dimensions (batch, height, width)"
         )
 
-    batch_shape = images.shape[:-2]
-
     crop_ranges[0] = np.clip(crop_ranges[0], 0, images.shape[-2])
     crop_ranges[1] = np.clip(crop_ranges[1], 0, images.shape[-1])
 
@@ -308,6 +303,7 @@ def pool_images(images: np.ndarray, pool_size) -> np.ndarray:
     block_size = (1,) * len(batch_shape) + (pool_size,) * 2
     pooled_images = block_reduce(images, block_size=block_size, func=np.mean)
     return pooled_images
+
 
 def process_images(
     images: np.ndarray,
@@ -383,7 +379,7 @@ def process_images(
     if center:
         if image_centroids is None:
             image_centroids = calc_image_centroids(images, image_fitter=image_fitter)
-        centered_images = center_images(images, image_centroids, visualize=visualize)
+        centered_images = center_images(images, image_centroids)
     else:
         centered_images = images
 
@@ -394,13 +390,11 @@ def process_images(
                 centered_images,
                 n_stds=n_stds,
                 image_fitter=image_fitter,
-                visualize=visualize,
             )
 
         cropped_images = crop_images(
             centered_images,
             crop_ranges=crop_ranges,
-            visualize=visualize,
         )
     else:
         cropped_images = centered_images
