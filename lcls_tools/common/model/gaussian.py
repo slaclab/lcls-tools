@@ -3,6 +3,7 @@ from scipy.stats import norm
 import lcls_tools.common.model.optimize as optimize
 from lcls_tools.common.pydantic import BaseModel
 from typing import Dict
+from pydantic import Field
 
 
 def curve(x, mean=0, sigma=1, amp=1, off=0):
@@ -88,8 +89,9 @@ class offset(optimize.Parameter):
 
 class GaussianFit(BaseModel):
     parameters: list[optimize.Parameter] = Field(
-        [mean, sigma, amplitude, offset], frozen = True
+        [mean, sigma, amplitude, offset], frozen=True
     )
+
     def fit(
         self,
         x,
@@ -98,7 +100,7 @@ class GaussianFit(BaseModel):
         beam_extent_n_stds: float = 4.0,
     ) -> Dict[str, float]:
         """Fit a projection curve and compute noise, SNR, and beam extent."""
-        parameters = optimize.param_fit(curve, self.parameters, pos, data, use_prior)
+        parameters = optimize.param_fit(curve, self.parameters, x, data, use_prior)
         noise_std = np.std(data - curve(x, **parameters))
         snr = parameters["amp"] / noise_std
         extent = parameters["mean"] + beam_extent_n_stds * parameters["sigma"]
