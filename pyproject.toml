@@ -23,7 +23,8 @@ dependencies = [
     "pydantic",
     "h5py",
     "scikit-learn",
-    "pandas"
+    "pandas",
+    "scikit-image"
 ]
 description = "Tools to support high level application development at LCLS using Python"
 dynamic = ["version"]
