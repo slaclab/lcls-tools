@@ -556,8 +556,8 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         pulses = self.my_wire.scan_pulses
 
         # 16000 max rate, 120 min rate
-        log_range = np.log10(16000) - np.log10(120)
-        rate_factor = (np.log10(rate) - np.log10(120)) / log_range
+        log_range = np.log10(16000) - np.log10(10)
+        rate_factor = (np.log10(rate) - np.log10(10)) / log_range
         fudge = 1.5 - 0.4 * rate_factor  # Fudge the calculation by 1.1 to 1.5
 
         buffer_points = pulses * 3 * fudge + rate / 6
