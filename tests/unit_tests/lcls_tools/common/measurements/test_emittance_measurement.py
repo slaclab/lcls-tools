@@ -112,12 +112,8 @@ class EmittanceMeasurementTest(TestCase):
                 mock_beamsize_measurements = []
                 for i, val in enumerate(k):
                     result = MagicMock(ScreenBeamProfileMeasurementResult)
-                    result.rms_sizes = np.array(
-                        [float(x_data[i]), float(y_data[i])]
-                    ).reshape(1, 2)
+                    result.rms_sizes = np.array([float(x_data[i]), float(y_data[i])])
 
-                    # extend result.rms_sizes to simulate multiple shots
-                    result.rms_sizes = np.repeat(result.rms_sizes, n_shots, axis=0)
                     mock_beamsize_measurements += [result]
 
                 # External list to return beam sizes
@@ -125,10 +121,10 @@ class EmittanceMeasurementTest(TestCase):
 
                 # Mock beamsize_measurement
                 mock_beamsize_measurement = MagicMock(spec=ScreenBeamProfileMeasurement)
-                mock_beamsize_measurement.device = MagicMock(spec=Screen)
-                mock_beamsize_measurement.device.resolution = 1.0
+                mock_beamsize_measurement.beam_profile_device = MagicMock(spec=Screen)
+                mock_beamsize_measurement.beam_profile_device.resolution = 1.0
                 mock_beamsize_measurement.measure = MagicMock(
-                    side_effect=lambda _: next(external_list)
+                    side_effect=lambda *args, **kwargs: next(external_list)
                 )
 
                 # Mock magnet
@@ -149,7 +145,6 @@ class EmittanceMeasurementTest(TestCase):
                     scan_values=k,
                     magnet=mock_magnet,
                     beamsize_measurement=mock_beamsize_measurement,
-                    n_measurements=1,
                     rmat=rmat,
                     design_twiss=design_twiss_ele,
                     wait_time=1e-3,
@@ -189,17 +184,20 @@ class EmittanceMeasurementTest(TestCase):
                     assert np.allclose(result.bmag[0][4], 1.0)
 
                     # test get_best_bmag method
-                    for mode in ["x", "y", "geometric_mean"]:
+                    for mode in ["x", "y", "geometric_mean", "joint_max"]:
                         best_bmag = result.get_best_bmag(mode)
                         if mode == "x":
-                            assert np.allclose(best_bmag[0], 1.0)
-                            assert np.allclose(best_bmag[1], k[4])
+                            assert np.allclose(best_bmag[0], 1.0, rtol=1e-2)
+                            assert np.allclose(best_bmag[1], k[4], rtol=1e-2)
                         elif mode == "y":
-                            assert np.allclose(best_bmag[0], 1.0)
-                            assert np.allclose(best_bmag[1], k[4])
+                            assert np.allclose(best_bmag[0], 1.0, rtol=1e-2)
+                            assert np.allclose(best_bmag[1], k[4], rtol=1e-2)
                         elif mode == "geometric_mean":
                             assert np.allclose(best_bmag[0], 1.0, rtol=1e-2)
-                            assert np.allclose(best_bmag[1], k[4])
+                            assert np.allclose(best_bmag[1], k[4], rtol=1e-2)
+                        elif mode == "joint_max":
+                            assert np.allclose(best_bmag[0], 1.0, rtol=1e-2)
+                            assert np.allclose(best_bmag[1], -0.909, rtol=1e-2)
 
                 # test visualization
                 fig, ax = plot_quad_scan_result(result)

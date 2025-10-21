@@ -2731,11 +2731,72 @@ magnets:
       l_eff: 0.0
       sum_l_meters: 1239.413
       type: YCOR
+pmts:
+  PMT122:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:122:QDCRAW
+      control_name: PMT:LTUH:122
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT246:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:246:QDCRAW
+      control_name: PMT:LTUH:246
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT550:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:550:QDCRAW
+      control_name: PMT:LTUH:550
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT755:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LTUH:755
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT756:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:756:QDCRAW
+      control_name: PMT:LTUH:756
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT820:
+    controls_information:
+      PVs:
+        qdcraw: PMT:LTUH:820:QDCRAW
+      control_name: PMT:LTUH:820
+    metadata:
+      area: LTUH
+      beam_path: []
+      sum_l_meters: null
+      type: INST
 screens:
   OTR30:
     controls_information:
       PVs: {}
       control_name: OTRS:LTU1:449
+      pv_cache: {}
     metadata:
       area: LTUH
       beam_path:
@@ -2744,14 +2805,23 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware: {}
       sum_l_meters: 1326.826
       type: PROF
   OTR33:
     controls_information:
       PVs:
+        filter_1_control: OTRS:LTUH:745:FLT1_CTRL
+        filter_1_status: OTRS:LTUH:745:FLT1_STS
+        filter_2_control: OTRS:LTUH:745:FLT2_CTRL
+        filter_2_status: OTRS:LTUH:745:FLT2_STS
+        lamp_power: OTRS:LTUH:745:TGT_LAMP_PWR
         ref_rate_vme: OTRS:LTUH:745:FRAME_RATE
         sys_type: OTRS:LTUH:745:SYS_TYPE
+        target_control: OTRS:LTUH:745:PNEUMATIC
+        target_status: OTRS:LTUH:745:TGT_STS
       control_name: OTRS:LTUH:745
+      pv_cache: {}
     metadata:
       area: LTUH
       beam_path:
@@ -2760,20 +2830,40 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware:
+        CAM: 0.0
+        FLT1: 1.0
+        FLT2: 1.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 0.0
       sum_l_meters: 1462.607
       type: PROF
   YAGPSI:
     controls_information:
       PVs:
+        filter_1_control: YAGS:LTUH:743:FLT1_CTRL
+        filter_1_status: YAGS:LTUH:743:FLT1_STS
+        filter_2_control: YAGS:LTUH:743:FLT2_CTRL
+        filter_2_status: YAGS:LTUH:743:FLT2_STS
         image: YAGS:LTUH:743:Image:ArrayData
+        lamp_power: YAGS:LTUH:743:TGT_LAMP_PWR
         n_bits: YAGS:LTUH:743:N_OF_BITS
         n_col: YAGS:LTUH:743:Image:ArraySize1_RBV
         n_row: YAGS:LTUH:743:Image:ArraySize0_RBV
+        orient_x: YAGS:LTUH:743:X_ORIENT
+        orient_y: YAGS:LTUH:743:Y_ORIENT
         ref_rate: YAGS:LTUH:743:ArrayRate_RBV
         ref_rate_vme: YAGS:LTUH:743:FRAME_RATE
         resolution: YAGS:LTUH:743:RESOLUTION
         sys_type: YAGS:LTUH:743:SYS_TYPE
+        target_control: YAGS:LTUH:743:PNEUMATIC
+        target_status: YAGS:LTUH:743:TGT_STS
       control_name: YAGS:LTUH:743
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: LTUH
       beam_path:
@@ -2782,6 +2872,14 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 0.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 1461.796
       type: PROF
 wires:
@@ -2789,6 +2887,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:715:MOTR.STOP
+        beam_rate: WIRE:LTUH:715:BEAMRATE
         enabled: WIRE:LTUH:715:MOTR_ENABLED_STS
         homed: WIRE:LTUH:715:MOTR_HOMED_STS
         initialize: WIRE:LTUH:715:MOTR_INIT
@@ -2824,12 +2923,24 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1409.712
       type: WIRE
   WS32:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:735:MOTR.STOP
+        beam_rate: WIRE:LTUH:735:BEAMRATE
         enabled: WIRE:LTUH:735:MOTR_ENABLED_STS
         homed: WIRE:LTUH:735:MOTR_HOMED_STS
         initialize: WIRE:LTUH:735:MOTR_INIT
@@ -2865,12 +2976,24 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1444.975
       type: WIRE
   WS33:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:755:MOTR.STOP
+        beam_rate: WIRE:LTUH:755:BEAMRATE
         enabled: WIRE:LTUH:755:MOTR_ENABLED_STS
         homed: WIRE:LTUH:755:MOTR_HOMED_STS
         initialize: WIRE:LTUH:755:MOTR_INIT
@@ -2906,12 +3029,24 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1480.239
       type: WIRE
   WS34:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:775:MOTR.STOP
+        beam_rate: WIRE:LTUH:775:BEAMRATE
         enabled: WIRE:LTUH:775:MOTR_ENABLED_STS
         homed: WIRE:LTUH:775:MOTR_HOMED_STS
         initialize: WIRE:LTUH:775:MOTR_INIT
@@ -2947,12 +3082,24 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      detectors:
+      - PMT122:LTUH
+      - PMT246:LTUH
+      - PMT430:LTUH
+      - PMT431:LTUH
+      - PMT550:LTUH
+      - PMT755:LTUH
+      - PMT756:LTUH
+      - PMT820:LTUH
+      - PMT850:LTUH
+      - LBLM32A:LTUH
       sum_l_meters: 1515.502
       type: WIRE
   WSDL31:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:246:MOTR.STOP
+        beam_rate: WIRE:LTUH:246:BEAMRATE
         enabled: WIRE:LTUH:246:MOTR_ENABLED_STS
         homed: WIRE:LTUH:246:MOTR_HOMED_STS
         initialize: WIRE:LTUH:246:MOTR_INIT
@@ -3028,6 +3175,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:122:MOTR.STOP
+        beam_rate: WIRE:LTUH:122:BEAMRATE
         enabled: WIRE:LTUH:122:MOTR_ENABLED_STS
         homed: WIRE:LTUH:122:MOTR_HOMED_STS
         initialize: WIRE:LTUH:122:MOTR_INIT

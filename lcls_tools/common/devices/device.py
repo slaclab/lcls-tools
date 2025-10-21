@@ -1,4 +1,4 @@
-from pydantic import SerializeAsAny, ConfigDict, field_validator
+from pydantic import SerializeAsAny, ConfigDict, field_validator, field_serializer
 from typing import List, Union, Callable, Dict, Optional
 from epics import PV
 
@@ -11,7 +11,16 @@ class PVSet(lcls_tools.common.BaseModel):
         extra="forbid",
         frozen=True,
     )
-    ...
+
+    @field_validator("*", mode="before")
+    def validate_pv_fields(cls, v: str) -> PV:
+        if v is None:
+            return None
+        return PV(v)
+
+    @field_serializer("*", when_used="unless-none")
+    def serialize_pv_fields(self, v: PV, _info) -> str:
+        return v.pvname
 
 
 class ControlInformation(lcls_tools.common.BaseModel):
@@ -42,6 +51,7 @@ class Metadata(lcls_tools.common.BaseModel):
     type: Optional[str] = None
     safe_level: Optional[float] = None
     read_tolerance: Optional[float] = None
+    hardware: Optional[dict] = None
 
     def __init__(
         self,

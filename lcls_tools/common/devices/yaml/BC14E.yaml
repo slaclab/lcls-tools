@@ -110,10 +110,12 @@ screens:
     controls_information:
       PVs: {}
       control_name: OTRS:LI14:803
+      pv_cache: {}
     metadata:
       area: BC14E
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 409.964
       type: PROF

@@ -3323,6 +3323,7 @@ screens:
     controls_information:
       PVs: {}
       control_name: PROF:UNDH:1354
+      pv_cache: {}
     metadata:
       area: UNDH
       beam_path:
@@ -3331,12 +3332,14 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware: {}
       sum_l_meters: 1549.467
       type: PROF
   DSSCBX11:
     controls_information:
       PVs: {}
       control_name: PROF:UNDH:2140
+      pv_cache: {}
     metadata:
       area: UNDH
       beam_path:
@@ -3345,21 +3348,25 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware: {}
       sum_l_meters: 1581.412
       type: PROF
   YAGBRAG:
     controls_information:
       PVs: {}
       control_name: YAGS:UND1:1650
+      pv_cache: {}
     metadata:
       area: UNDH
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   YAGCBX42:
     controls_information:
       PVs: {}
       control_name: YAGS:UNDH:1353
+      pv_cache: {}
     metadata:
       area: UNDH
       beam_path:
@@ -3368,5 +3375,6 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - SC_HXR
+      hardware: {}
       sum_l_meters: 1549.411
       type: PROF

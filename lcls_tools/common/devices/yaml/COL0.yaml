@@ -21,7 +21,10 @@ bpms:
       type: BPM
   BPMC002:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL0:260:TMIT
+        x: BPMS:COL0:260:X
+        y: BPMS:COL0:260:Y
       control_name: BPMS:COL0:260
     metadata:
       area: COL0
@@ -98,7 +101,10 @@ bpms:
       type: BPM
   BPMC006:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL0:480:TMIT
+        x: BPMS:COL0:480:X
+        y: BPMS:COL0:480:Y
       control_name: BPMS:COL0:480
     metadata:
       area: COL0
@@ -155,7 +161,10 @@ bpms:
       type: BPM
   BPMC009:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL0:720:TMIT
+        x: BPMS:COL0:720:X
+        y: BPMS:COL0:720:Y
       control_name: BPMS:COL0:720
     metadata:
       area: COL0
@@ -172,7 +181,10 @@ bpms:
       type: BPM
   BPMC010:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:COL0:800:TMIT
+        x: BPMS:COL0:800:X
+        y: BPMS:COL0:800:Y
       control_name: BPMS:COL0:800
     metadata:
       area: COL0
@@ -852,15 +864,27 @@ screens:
   OTRC006:
     controls_information:
       PVs:
+        filter_1_control: PROF:COL0:535:FLT1_CTRL
+        filter_1_status: PROF:COL0:535:FLT1_STS
+        filter_2_control: PROF:COL0:535:FLT2_CTRL
+        filter_2_status: PROF:COL0:535:FLT2_STS
         image: PROF:COL0:535:Image:ArrayData
+        lamp_power: PROF:COL0:535:TGT_LAMP_PWR
         n_bits: PROF:COL0:535:N_OF_BITS
         n_col: PROF:COL0:535:Image:ArraySize1_RBV
         n_row: PROF:COL0:535:Image:ArraySize0_RBV
+        orient_x: PROF:COL0:535:X_ORIENT
+        orient_y: PROF:COL0:535:Y_ORIENT
         ref_rate: PROF:COL0:535:ArrayRate_RBV
         ref_rate_vme: PROF:COL0:535:FRAME_RATE
         resolution: PROF:COL0:535:RESOLUTION
         sys_type: PROF:COL0:535:SYS_TYPE
+        target_control: PROF:COL0:535:PNEUMATIC
+        target_status: PROF:COL0:535:TGT_STS
       control_name: PROF:COL0:535
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: COL0
       beam_path:
@@ -872,5 +896,13 @@ screens:
       - SC_STMO
       - SC_STXI
       - SC_SXR
+      hardware:
+        CAM: 1.0
+        FLT1: 1.0
+        FLT2: 0.0
+        GLAMP: 0.0
+        MTR: 0.0
+        TGT: 1.0
+        TLAMP: 1.0
       sum_l_meters: 63.199
       type: PROF

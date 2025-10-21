@@ -1,44 +1,35 @@
 from abc import abstractmethod
-from pathlib import Path
-import sys
 import time
 import enum
 from typing import Any, List, Optional
 
 import numpy as np
-from numpy import ndarray
 from pydantic import (
     ConfigDict,
-    PositiveInt,
     SerializeAsAny,
     field_validator,
     PositiveFloat,
 )
-import yaml
 
-from lcls_tools.common.data.emittance import (
-    compute_emit_bmag,
-)
-from lcls_tools.common.data.model_general_calcs import bdes_to_kmod, get_optics
+from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
-from lcls_tools.common.measurements.screen_profile import (
-    ScreenBeamProfileMeasurement,
-    ScreenBeamProfileMeasurementResult,
-)
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
-import lcls_tools
-from lcls_tools.common.measurements.wire_scan import (
-    WireBeamProfileMeasurement,
-    WireBeamProfileMeasurementResult,
+from lcls_tools.common.data.model_general_calcs import (
+    build_quad_rmat,
+    bdes_to_kmod,
 )
+import lcls_tools
+
+from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurement
 
 
 class BMAGMode(enum.IntEnum):
     X = 0
     Y = 1
     # Value is not a valid index unlike X & Y
-    GEOMETRIC_MEAN = -sys.maxsize
+    GEOMETRIC_MEAN = -10
+    JOINT_MAX = -11
 
     @classmethod
     def from_any(cls, value):
@@ -63,17 +54,50 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
 
     Attributes
     ----------
+    emittance : shape (2,)
+        The geometric emittance values for x/y in mm-mrad.
+    bmag : List[ndarray], Optional
+        The BMAG values for x/y for each beamsize measurement.
+    twiss : List[ndarray]
+        Twiss parameters (beta, alpha, gamma) calculated for each beamsize measurement.
+    beamsizes : List[ndarray]
+        The RMS beam sizes for each beamsize measurement in each plane in meters.
+    beam_matrix : array, shape (2,3)
+        Reconstructed beam matrix for both x/y directions.
+        Elements correspond to (s11,s12,s22) of the beam matrix.
+    info : Any
+        Metadata information related to the measurement.
+
+    """
+
+    emittance: NDArrayAnnotatedType
+    bmag: Optional[List[NDArrayAnnotatedType]] = None
+    twiss: List[NDArrayAnnotatedType]
+    beamsizes: List[NDArrayAnnotatedType]
+    beam_matrix: NDArrayAnnotatedType
+    metadata: SerializeAsAny[Any]
+
+
+class QuadScanEmittanceResult(EmittanceMeasurementResult):
+    """
+    EmittanceMeasurementResult stores the results of an emittance measurement.
+
+    Attributes
+    ----------
     quadrupole_focusing_strengths : List[ndarray]
         Quadrupole focusing strength (k1) settings of the quadrupole used in the scan in m^{-2}.
     quadrupole_pv_values : List[ndarray]
         Quadrupole PV control values used in the measurement.
+
+    Inherited Attributes
+    ----------
     emittance : shape (2,)
         The geometric emittance values for x/y in mm-mrad.
     bmag : List[ndarray], Optional
         The BMAG values for x/y for each quadrupole strength.
-    twiss_at_screen : List[ndarray]
+    twiss : List[ndarray]
         Twiss parameters (beta, alpha, gamma) calculated at the screen for each quadrupole strength in each plane.
-    rms_beamsizes : List[ndarray]
+    beamsizes : List[ndarray]
         The RMS beam sizes for each quadrupole strength in each plane in meters.
     beam_matrix : array, shape (2,3)
         Reconstructed beam matrix at the entrance of the quadrupole for
@@ -85,12 +109,6 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
 
     quadrupole_focusing_strengths: List[NDArrayAnnotatedType]
     quadrupole_pv_values: List[NDArrayAnnotatedType]
-    emittance: NDArrayAnnotatedType
-    bmag: Optional[List[NDArrayAnnotatedType]] = None
-    twiss_at_screen: List[NDArrayAnnotatedType]
-    rms_beamsizes: List[NDArrayAnnotatedType]
-    beam_matrix: NDArrayAnnotatedType
-    metadata: SerializeAsAny[Any]
 
     def get_best_bmag(self, mode=BMAGMode.GEOMETRIC_MEAN) -> tuple:
         """
@@ -100,10 +118,11 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
         ----------
         mode : str, optional
             The mode to get the best BMAG value for, default is "geometric_mean".
-            Mode can be one of the following: "x", "y", "geometric_mean".
+            Mode can be one of the following: "x", "y", "geometric_mean", "joint_max".
             - "x": get the best BMAG value for the x plane.
             - "y": get the best BMAG value for the y plane.
             - "geometric_mean": get the best BMAG value for the geometric mean of the x and y planes.
+            - "joint_max": get the best BMAG value for the joint max of the x and y planes.
 
         Returns
         -------
@@ -117,8 +136,9 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
         mode = BMAGMode.from_any(mode)
 
         bmag = self.bmag
-        if mode == BMAGMode.GEOMETRIC_MEAN:
-            # if calculating the geometric mean, we need to interpolate between samples
+
+        if mode == BMAGMode.GEOMETRIC_MEAN or mode == BMAGMode.JOINT_MAX:
+            # interpolate between samples
             fits = []
 
             min_k = min([min(k) for k in self.quadrupole_pv_values])
@@ -127,19 +147,21 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
             for i in range(2):
                 bmag_fit = np.polyfit(self.quadrupole_pv_values[i], bmag[i], 2)
                 fits.append(np.polyval(bmag_fit, k))
-
-            # multiply x and y bmag values to get geometric mean
-            bmag = np.sqrt(fits[0] * fits[1])
-
-            # get best index and return bmag value and corresponding pv value
-            best_index = np.argmin(bmag)
-            bmag_value = bmag[best_index]
-            best_pv_value = k[best_index]
-
+            if mode == BMAGMode.GEOMETRIC_MEAN:
+                # multiply x and y bmag values to get geometric mean
+                bmag = np.sqrt(fits[0] * fits[1])
+            elif mode == BMAGMode.JOINT_MAX:
+                # get the joint max of the x and y bmag values
+                bmag = np.max(fits, axis=0)
         else:
-            best_index = np.argmin(bmag[mode.value])
-            bmag_value = bmag[mode.value][best_index]
-            best_pv_value = self.quadrupole_pv_values[mode.value][best_index]
+            # get x or y bmag values individually
+            bmag = bmag[mode.value]
+            k = self.quadrupole_pv_values[mode.value]
+
+        # get best index and return bmag value and corresponding pv value
+        best_index = np.argmin(bmag)
+        bmag_value = bmag[best_index]
+        best_pv_value = k[best_index]
 
         return bmag_value, best_pv_value
 
@@ -151,8 +173,6 @@ class EmittanceMeasurementBase(Measurement):
     ------------------------
     energy: float
         Beam energy in GeV
-    n_measurements: int, optional
-        number of beamsize measurements to make for each phase advance
     rmat: ndarray, optional
         Transport matricies for the horizontal and vertical phase space from
         the end of the scanning magnet to the screen, array shape should be 2 x 2 x 2 (
@@ -179,14 +199,8 @@ class EmittanceMeasurementBase(Measurement):
     """
 
     energy: float
-    n_measurements: PositiveInt = 1
-
-    rmat: Optional[ndarray] = None
-    design_twiss: Optional[dict] = None  # design twiss values
 
     wait_time: PositiveFloat = 5.0
-
-    _info: Optional[list] = []
 
     name: str = "emittance_measurement_base"
     model_config = ConfigDict(arbitrary_types_allowed=True)
@@ -206,132 +220,42 @@ class EmittanceMeasurementBase(Measurement):
             Object containing the results of the emittance measurement
         """
 
-        self._perform_beamsize_measurements()
+        beamsize_results = self.perform_beamsize_measurements()
 
-        # extract beam sizes from info
-        beam_sizes = self._get_beamsizes_from_info()
+        rmats, design_twiss = self.setup_rmats_and_design_twiss()
 
-        self._get_rmat_and_design_twiss()
-
-        # organize data into arrays for use in `compute_emit_bmag`
-        # rmat = np.stack([self.rmat[0:2, 0:2], self.rmat[2:4, 2:4]])
-        if self.design_twiss:
-            twiss_betas_alphas = np.array(
-                [
-                    [self.design_twiss["beta_x"], self.design_twiss["alpha_x"]],
-                    [self.design_twiss["beta_y"], self.design_twiss["alpha_y"]],
-                ]
-            )
-
-        else:
-            twiss_betas_alphas = None
-
-        # fit scans independently for x/y
-        # only keep data that has non-nan beam sizes -- independent for x/y
-        results = {
-            "emittance": [],
-            "twiss_at_screen": [],
-            "beam_matrix": [],
-            "bmag": [] if twiss_betas_alphas is not None else None,
-            "quadrupole_focusing_strengths": [],
-            "quadrupole_pv_values": [],
-            "rms_beamsizes": [],
-        }
-
-        for i in range(2):
-            # get rid of NaNs
-            idx = ~np.isnan(beam_sizes[i])
-            beam_sizes_i = beam_sizes[i][idx]
-
-            # convert beam sizes to units of mm^2
-            beam_sizes_squared = (beam_sizes_i * 1e3) ** 2
-
-            # create dict of arguments for compute_emit_bmag
-            emit_kwargs = {
-                "beamsize_squared": beam_sizes_squared.T,
-                "rmat": self.rmat[i],
-                "twiss_design": twiss_betas_alphas[i]
-                if twiss_betas_alphas is not None
-                else None,
-            }
-
-            kmod, scan_values = self._get_kmod_and_scan_values(i, beam_sizes)
-
-            # modify arguments and results for quad scan measurements
-            if kmod is not None:
-                emit_kwargs["k"] = kmod
-                emit_kwargs["q_len"] = self._get_magnet_length()
-                results["quadrupole_focusing_strengths"].append(kmod)
-                results["quadrupole_pv_values"].append(scan_values)
-
-            # compute emittance and bmag
-            result = compute_emit_bmag(**emit_kwargs)
-
-            # add results to dict object
-            for name, value in result.items():
-                if name == "bmag" and value is None:
-                    continue
-                else:  # beam matrix and emittance get appended
-                    results[name].append(value)
-
-            results["rms_beamsizes"].append(beam_sizes_i)
-
-        results.update({"metadata": self.model_dump()})
-
-        # collect information into EmittanceMeasurementResult object
-        return EmittanceMeasurementResult(**results)
-
-    def measure_beamsize(self, beamsize_measurement):
-        """
-        Take measurement from measurement device,
-        and store results in `self._info`
-        """
-        time.sleep(self.wait_time)
-
-        if isinstance(beamsize_measurement, ScreenBeamProfileMeasurement):
-            result = beamsize_measurement.measure(self.n_measurements)
-        elif isinstance(beamsize_measurement, WireBeamProfileMeasurement):
-            result = beamsize_measurement.measure()
-        else:
-            raise ValueError("Unknown beamsize measurement type")
-        self._info += [result]
+        return self.calculate_emittance(beamsize_results, rmats, design_twiss)
 
     @abstractmethod
-    def _perform_beamsize_measurements(self):
+    def perform_beamsize_measurements(self):
+        """
+
+        Perform a beam size measurement at each point.
+        Stores
+
+        """
         pass
-
-    def _get_beamsizes_from_info(self) -> ndarray:
-        """
-        Extract the mean rms beam sizes from the info list, units in meters.
-        """
-        beam_sizes = []
-        for result in self._info:
-            if isinstance(result, ScreenBeamProfileMeasurementResult):
-                beam_sizes.append(np.mean(result.rms_sizes, axis=0) * 1e-6)
-            elif isinstance(result, WireBeamProfileMeasurementResult):
-                # Get rms size from default detector for wire
-                current_file = Path(__file__).resolve()
-                devices_root = current_file.parent.parent
-                file_to_open = devices_root / "devices" / "yaml" / "wire_lblms.yaml"
-                with open(file_to_open, "r") as wire_lblms_yaml:
-                     wire_lblms = yaml.safe_load(wire_lblms_yaml)
-                wire = result.metadata.wire_name
-                lblm = wire_lblms[wire]
-                beam_sizes.append(np.array(result.rms_sizes[lblm]) * 1e-6)
-            else:
-                raise ValueError("Unknown beamsize measurement result type")
-
-        return np.array(beam_sizes).T
 
     @abstractmethod
-    def _get_rmat_and_design_twiss(self):
+    def setup_rmats_and_design_twiss(self):
         pass
 
-    def _get_magnet_length(self):
-        return None
+    @abstractmethod
+    def calculate_emittance(
+        self, beamsize_results, rmats, design_twiss
+    ) -> EmittanceMeasurementResult:
+        """
 
-    def _get_kmod_and_scan_values(self, i, beam_sizes):
-        return None, None
+        Calculate the emittance from the measured beam sizes, rmats and twiss.
+
+        Returns:
+        -------
+        result : EmittanceMeasurementResult
+            Object containing the results of the emittance measurement
+
+        """
+
+        pass
 
 
 class QuadScanEmittance(EmittanceMeasurementBase):
@@ -341,8 +265,6 @@ class QuadScanEmittance(EmittanceMeasurementBase):
     ------------------------
     energy: float
         Beam energy in GeV
-    n_measurements: int, optional
-        number of beamsize measurements to make per individual quad strength
     scan_values: List[float]
         BDES values of magnet to scan over
     magnet: Magnet
@@ -358,9 +280,17 @@ class QuadScanEmittance(EmittanceMeasurementBase):
         Dictionary containing design twiss values with the following keys (`beta_x`,
         `beta_y`, `alpha_x`, `alpha_y`) where the beta/alpha values are in units of [m]/[]
         respectively
+    beam_sizes, dict[str, list[float]], optional
+        Dictionary contraining X-rms and Y-rms beam sizes (keys:`rms_x`,`rms_y`)
+        measured during the quadrupole scan in units of [m].
     wait_time, float, optional
         Wait time in seconds between changing quadrupole settings and making beamsize
         measurements.
+
+    Other Attributes:
+    ------------------------
+    _info
+        List of raw beam size measurement results
 
     Methods:
     ------------------------
@@ -372,48 +302,56 @@ class QuadScanEmittance(EmittanceMeasurementBase):
 
     scan_values: list[float]
     magnet: Magnet
-    beamsize_measurement: Measurement
-
-    wait_time: PositiveFloat = 1.0
+    beamsize_measurement: BeamProfileMeasurement
 
     name: str = "quad_scan_emittance"
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
     @field_validator("rmat")
     def validate_rmat(cls, v, info):
         assert v.shape == (2, 2, 2)
         return v
 
-    def _perform_beamsize_measurements(self):
-        self.magnet.scan(
-            scan_settings=self.scan_values, function=self._measure_beamsize
-        )
+    def perform_beamsize_measurements(self):
+        """Perform the beamsize measurements using a basic quadrupole scan."""
+        beamsize_results = []
+        # at each scan value, measure the beam size and store the result in beamsize_results
+        self.magnet.scan(self.scan_values, self.measure_beamsize, beamsize_results)
 
-    def _measure_beamsize(self):
-        self.measure_beamsize(self.beamsize_measurement)
+        beam_sizes = []
+        for result in beamsize_results:
+            beam_sizes.append(result.rms_sizes * 1e-6)  # beam sizes in meters
 
-    def _get_rmat_and_design_twiss(self):
+        return
+
+    def measure_beamsize(self, beamsize_results):
         """
-        Get transport matrix and design twiss values from meme
+        Take measurement from measurement device,
+        and store results in `self._info`
         """
-        # TODO: get settings from arbitrary methods (ie. not meme)
-        if self.rmat is None and self.design_twiss is None:
-            if isinstance(self.beamsize_measurement, ScreenBeamProfileMeasurement):
-                optics = get_optics(
-                    self.magnet.name,
-                    self.beamsize_measurement.device.name,
-                )
-            elif isinstance(self.beamsize_measurement, WireBeamProfileMeasurement):
-                optics = get_optics(
-                    self.magnet.name,
-                    self.beamsize_measurement.my_wire.name,
-                )
-            else:
-                raise ValueError("Unknown beamsize measurement type")
+        time.sleep(self.wait_time)
 
-            self.rmat = optics["rmat"]
-            self.design_twiss = optics["design_twiss"]
+        result = self.beamsize_measurement.measure()
+        beamsize_results.append(result)
 
-    def _get_magnet_length(self):
+    def calculate_emittance(self):
+        """
+
+        Calculate the emittance from the measured beam sizes and quadrupole strengths.
+
+        Returns:
+        -------
+        result : EmittanceMeasurementResult
+            Object containing the results of the emittance measurement
+
+        """
+
+        # extract beam sizes from info
+        beam_sizes = self._get_beamsizes()
+
+        # get scan values and extend for each direction
+        scan_values = np.tile(np.array(self.scan_values), (2, 1))
+
         magnet_length = self.magnet.metadata.l_eff
         if magnet_length is None:
             raise ValueError(
@@ -421,28 +359,52 @@ class QuadScanEmittance(EmittanceMeasurementBase):
                 f"{self.magnet.name} to be used in emittance measurement"
             )
 
-        return magnet_length
+        # organize data into arrays for use in `compute_emit_bmag`
+        # rmat = np.stack([self.rmat[0:2, 0:2], self.rmat[2:4, 2:4]])
+        if self.design_twiss:
+            twiss_betas_alphas = np.array(
+                [
+                    [
+                        self.design_twiss["beta_x"],
+                        self.design_twiss["alpha_x"],
+                    ],
+                    [
+                        self.design_twiss["beta_y"],
+                        self.design_twiss["alpha_y"],
+                    ],
+                ]
+            )
+        else:
+            twiss_betas_alphas = None
 
-    def _get_kmod_and_scan_values(self, i, beam_sizes):
-        # Create two copies of quad scan values and stack together
-        scan_values = np.tile(np.array(self.scan_values), (2, 1))
+        inputs = {
+            "quad_vals": scan_values,
+            "beamsizes": beam_sizes,
+            "q_len": magnet_length,
+            "rmat": self.rmat,
+            "energy": self.energy,
+            "twiss_design": (
+                twiss_betas_alphas if twiss_betas_alphas is not None else None
+            ),
+        }
 
-        # Get rid of NaNs
-        idx = ~np.isnan(beam_sizes[i])
-        scan_values_i = scan_values[i][idx]
-
-        # Quad values to kmod values
-        kmod = bdes_to_kmod(
-            self.energy,
-            self._get_magnet_length(),
-            scan_values_i,
+        # Call wrapper that takes quads in machine units and beamsize in meters
+        results = compute_emit_bmag_quad_scan_machine_units(**inputs)
+        results.update(
+            {
+                "metadata": self.model_dump()
+                | {
+                    "resolution": self.beamsize_measurement.beam_profile_device.resolution,
+                    "image_data": {
+                        str(sval): ele.model_dump()
+                        for sval, ele in zip(self.scan_values, self._info)
+                    },
+                }
+            }
         )
 
-        # negate for y
-        if i == 1:
-            kmod = -1 * kmod
-
-        return kmod, scan_values_i
+        # collect information into EmittanceMeasurementResult object
+        return QuadScanEmittanceResult(**results)
 
 
 class MultiDeviceEmittance(EmittanceMeasurementBase):
@@ -493,3 +455,202 @@ class MultiDeviceEmittance(EmittanceMeasurementBase):
     def _get_rmat_and_design_twiss(self):
         # TODO: write for multi device measurement
         raise NotImplementedError("This method is not implemented yet")
+
+
+def compute_emit_bmag_quad_scan(
+    k: np.ndarray,
+    beamsize_squared: np.ndarray,
+    q_len: float,
+    rmat: np.ndarray,
+    twiss_design: np.ndarray = None,
+    thin_lens: bool = False,
+    maxiter: int = None,
+):
+    """
+    Computes the emittance(s) corresponding to a set of quadrupole measurement scans
+    using nonlinear fitting of beam matrix parameters to guarantee physically valid results.
+
+    Parameters
+    ----------
+    k : numpy.ndarray
+        Array of shape (n_steps_quad_scan,) or (batchshape x n_steps_quad_scan)
+        representing the measurement quad geometric focusing strengths in [m^-2]
+        used in the emittance scan(s).
+
+    beamsize_squared : numpy.ndarray
+        Array of shape (batchshape x n_steps_quad_scan), representing the mean-square
+        beamsize outputs in [mm^2] of the emittance scan(s) with inputs given by k.
+
+    q_len : float
+        The (longitudinal) quadrupole length or "thickness" in [m].
+
+    rmat : numpy.ndarray
+        Array of shape (2x2) or (batchshape x 2 x 2) containing the 2x2 R matrices
+        describing the transport from the end of the measurement quad to the observation screen.
+
+    twiss_design : numpy.ndarray, optional
+        Array of shape (batchshape x 2) designating the design (beta, alpha)
+        twiss parameters at the screen.
+
+    thin_lens : bool, optional
+        Specifies whether or not to use thin lens approximation for measurement quad.
+
+    maxiter : int, optional
+        Maximum number of iterations to perform in nonlinear fitting (minimization algorithm).
+
+    Returns
+    -------
+    dict
+        Dictionary containing the following keys:
+        - 'emittance': numpy.ndarray of shape (batchshape x 1) containing the geometric emittance
+          fit results for each scan in mm-mrad.
+        - 'bmag': numpy.ndarray of shape (batchshape x n_steps) containing the bmag corresponding
+          to each point in each scan.
+        - 'beam_matrix': numpy.ndarray of shape (batchshape x 3) containing [sig11, sig12, sig22]
+          where sig11, sig12, sig22 are the reconstructed beam matrix parameters at the entrance
+          of the measurement quad.
+        - 'twiss_at_screen': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
+          reconstructed twiss parameters at the measurement screen for each step in each quad scan.
+    """
+    # calculate and add the measurement quad transport to the rmats
+    quad_rmat = build_quad_rmat(
+        k, q_len, thin_lens=thin_lens
+    )  # result shape (batchshape x nsteps x 2 x 2)
+    total_rmat = np.expand_dims(rmat, -3) @ quad_rmat
+    # result shape (batchshape x nsteps x 2 x 2)
+
+    # reshape inputs
+    beamsize_squared = np.expand_dims(beamsize_squared, -1)
+    twiss_design = (
+        np.expand_dims(twiss_design, -2) if twiss_design is not None else None
+    )
+
+    # compute emittance
+    rv = compute_emit_bmag(beamsize_squared, total_rmat, twiss_design, maxiter)
+
+    return rv
+
+
+def preprocess_inputs(quad_vals: list, beamsizes: list, energy: float, q_len: float):
+    """
+    Preprocesses the inputs for analyze_quad_scan.
+
+    Parameters
+    ----------
+    quad_vals : list
+        A list of two arrays containing the quadrupole values in kG for x and y respectively.
+    beamsizes : dict
+        A list of two arrays containing the beam sizes in meters for x and y respectively.
+    energy : float
+        The energy of the beam in eV.
+    q_len : float
+        The effective length of the quadrupole in meters.
+
+    Returns
+    -------
+    tuple
+        A tuple containing the list of kmod values and the list of beam sizes squared.
+    """
+    kmod_list = []
+    beamsizes_squared_list = []
+
+    for i in range(2):
+        # Get rid of nans
+        idx = ~np.isnan(beamsizes[i])
+        q = quad_vals[i][idx]
+        b = beamsizes[i][idx]
+
+        # Beamsizes to mm squared
+        beamsizes_squared_list.append((b * 1e3) ** 2)
+
+        # Quad values to kmod
+        kmod = bdes_to_kmod(energy, q_len, q)
+
+        # Negate for y
+        if i == 1:
+            kmod = -1 * kmod
+
+        kmod_list.append(kmod)
+
+    return kmod_list, beamsizes_squared_list
+
+
+def compute_emit_bmag_quad_scan_machine_units(
+    quad_vals: list,
+    beamsizes: list,
+    q_len: float,
+    rmat: np.ndarray,
+    energy: float,
+    twiss_design: np.ndarray,
+    thin_lens: bool = False,
+    maxiter: int = None,
+):
+    """
+    Wrapper for analyze_quad_scan that takes quads in machine units and beamsize in meters.
+
+    Parameters
+    ----------
+    quad_vals : list
+        A list of two arrays containing the quadrupole values in kG for x and y respectively.
+    beamsizes : list
+        A list of two arrays containing the beam sizes in meters for x and y respectively.
+    q_len : float
+        The effective length of the quadrupole in meters.
+    rmat : np.ndarray
+        The R-matrix. Shape (2, 2, 2).
+    energy : float
+        The energy of the beam in eV.
+    twiss_design : np.ndarray or None
+        The design Twiss parameters. Shape (2, 2).
+    thin_lens : bool, optional
+        Whether to use the thin lens approximation. Default is False.
+    maxiter : int, optional
+        Maximum number of iterations for the optimization. Default is None.
+
+    Returns
+    -------
+    dict
+        The results of the emittance calculation.
+    """  # Preprocessing data
+    kmod_list, beamsizes_squared_list = preprocess_inputs(
+        quad_vals, beamsizes, energy, q_len
+    )
+
+    # Prepare outputs
+    results = {
+        "emittance": [],
+        "twiss_at_screen": [],
+        "beam_matrix": [],
+        "bmag": [] if twiss_design is not None else None,
+        "quadrupole_focusing_strengths": [],
+        "quadrupole_pv_values": [],
+        "rms_beamsizes": [],
+    }
+
+    # Then call analyze_quad_scan
+    # fit scans independently for x/y
+    # only keep data that has non-nan beam sizes -- independent for x/y
+    for i in range(2):
+        result = compute_emit_bmag_quad_scan(
+            k=kmod_list[i],
+            beamsize_squared=beamsizes_squared_list[i],
+            q_len=q_len,
+            rmat=rmat[i],
+            twiss_design=(twiss_design[i] if twiss_design is not None else None),
+            thin_lens=thin_lens,
+            maxiter=maxiter,
+        )
+
+        result.update({"quadrupole_focusing_strengths": kmod_list[i]})
+        result.update({"quadrupole_pv_values": quad_vals[i][~np.isnan(beamsizes[i])]})
+
+        # add results to dict object
+        for name, value in result.items():
+            if name == "bmag" and value is None:
+                continue
+            else:  # beam matrix and emittance get appended
+                results[name].append(value)
+
+        results["rms_beamsizes"].append(beamsizes[i][~np.isnan(beamsizes[i])])
+
+    return results

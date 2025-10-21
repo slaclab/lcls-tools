@@ -1,4 +1,3 @@
-from datetime import datetime
 from pydantic import (
     BaseModel,
     SerializeAsAny,
@@ -9,7 +8,6 @@ from pydantic import (
 from typing import (
     Dict,
     List,
-    Union,
     Optional,
 )
 from lcls_tools.common.devices.device import (
@@ -59,6 +57,7 @@ class PlaneModel(BaseModel):
 
 class WirePVSet(PVSet):
     abort_scan: PV
+    beam_rate: PV
     enabled: PV
     homed: PV
     initialize: PV
@@ -89,10 +88,6 @@ class WirePVSet(PVSet):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    @field_validator("*", mode="before")
-    def validate_pv_fields(cls, v: str) -> PV:
-        return PV(v)
-
 
 class WireControlInformation(ControlInformation):
     PVs: SerializeAsAny[WirePVSet]
@@ -102,7 +97,7 @@ class WireControlInformation(ControlInformation):
 
 
 class WireMetadata(Metadata):
-    lblms: List[str]
+    detectors: List[str]
     bpms_before_wire: Optional[List[str]] = None
     bpms_after_wire: Optional[List[str]] = None
 
@@ -153,6 +148,16 @@ class Wire(Device):
         return self.controls_information.PVs.enabled.get()
 
     @property
+    def beam_rate(self):
+        """Returns current beam rate"""
+        # NC wires do not have beam rate PV defined and
+        # use global beam rate PV
+        nc_areas = ["LI20", "LI24", "LI28", "LTUH", "DL1", "BC1", "BC2", "LTU"]
+        if self.area in nc_areas and self.controls_information.PVs.beam_rate is None:
+            self.controls_information.PVs.beam_rate = PV("EVNT:SYS0:1:LCLSBEAMRATE")
+        return self.controls_information.PVs.beam_rate.get()
+
+    @property
     def homed(self):
         """Checks if the wire is in the home position."""
         return self.controls_information.PVs.homed.get()
@@ -171,6 +176,14 @@ class Wire(Device):
     def motor(self):
         """Returns the readback from the MOTR PV"""
         return self.controls_information.PVs.motor.get()
+
+    @motor.setter
+    def motor(self, val: int) -> None:
+        try:
+            IntegerModel(value=val)
+            self.controls_information.PVs.motor.put(value=val)
+        except ValidationError as e:
+            print("Motor input must be an integer:", e)
 
     @property
     def motor_rbv(self):
@@ -493,20 +506,3 @@ class WireCollection(BaseModel):
             wire.update({"name": name})
             v.update({name: wire})
         return v
-
-    # TODO: can the next two functions get moved out?
-    def seconds_since(self, time_to_check: datetime) -> int:
-        if not isinstance(time_to_check, datetime):
-            raise TypeError("Please provide a datetime object for comparison.")
-        return (datetime.now() - time_to_check).seconds
-
-    def _make_wire_names_list_from_args(
-        self, args: Union[str, List[str], None]
-    ) -> List[str]:
-        wire_names = args
-        if wire_names:
-            if isinstance(wire_names, str):
-                wire_names = [args]
-        else:
-            wire_names = list(self.wires.keys())
-        return wire_names

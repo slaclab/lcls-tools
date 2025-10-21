@@ -67,7 +67,7 @@ class amplitude(optimize.Parameter):
 
 class offset(optimize.Parameter):
     name = "off"
-    bounds = (0, 1)
+    bounds = (-1, 1)
 
     @staticmethod
     def init(pos, data):

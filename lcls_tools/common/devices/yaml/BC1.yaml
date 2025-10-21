@@ -600,14 +600,23 @@ screens:
   OTR11:
     controls_information:
       PVs:
+        filter_1_status: OTRS:LI21:237:FLT1_STS
+        filter_2_status: OTRS:LI21:237:FLT2_STS
         image: OTRS:LI21:237:IMAGE
         n_bits: OTRS:LI21:237:N_OF_BITS
         n_col: OTRS:LI21:237:N_OF_COL
         n_row: OTRS:LI21:237:N_OF_ROW
+        orient_x: OTRS:LI21:237:X_ORIENT
+        orient_y: OTRS:LI21:237:Y_ORIENT
         ref_rate_vme: OTRS:LI21:237:FRAME_RATE
         resolution: OTRS:LI21:237:RESOLUTION
         sys_type: OTRS:LI21:237:SYS_TYPE
+        target_control: OTRS:LI21:237:PNEUMATIC
+        target_status: OTRS:LI21:237:TGT_STS
       control_name: OTRS:LI21:237
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: BC1
       beam_path:
@@ -617,19 +626,29 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 34.834
       type: PROF
   OTR12:
     controls_information:
       PVs:
+        filter_1_status: OTRS:LI21:291:FLT1_STS
+        filter_2_status: OTRS:LI21:291:FLT2_STS
         image: OTRS:LI21:291:IMAGE
         n_bits: OTRS:LI21:291:N_OF_BITS
         n_col: OTRS:LI21:291:N_OF_COL
         n_row: OTRS:LI21:291:N_OF_ROW
+        orient_x: OTRS:LI21:291:X_ORIENT
+        orient_y: OTRS:LI21:291:Y_ORIENT
         ref_rate_vme: OTRS:LI21:291:FRAME_RATE
         resolution: OTRS:LI21:291:RESOLUTION
         sys_type: OTRS:LI21:291:SYS_TYPE
+        target_control: OTRS:LI21:291:PNEUMATIC
+        target_status: OTRS:LI21:291:TGT_STS
       control_name: OTRS:LI21:291
+      pv_cache:
+        orient_x: Negative
+        orient_y: Negative
     metadata:
       area: BC1
       beam_path:
@@ -639,6 +658,7 @@ screens:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      hardware: {}
       sum_l_meters: 41.512
       type: PROF
 wires:
@@ -662,6 +682,13 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      detectors:
+      - PMT2111:DL1
+      - PMT21293:LI21
+      - PMT2113:LI21
+      - PMT21350:LI21
+      - PMT2114:LI21
+      - PMT2115:LI21
       sum_l_meters: 39.56
       type: WIRE
   WS12:
@@ -684,6 +711,13 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      detectors:
+      - PMT2111:DL1
+      - PMT21293:LI21
+      - PMT2113:LI21
+      - PMT21350:LI21
+      - PMT2114:LI21
+      - PMT2115:LI21
       sum_l_meters: 41.217
       type: WIRE
   WS13:
@@ -726,5 +760,12 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      detectors:
+      - PMT2111:DL1
+      - PMT21293:LI21
+      - PMT2113:LI21
+      - PMT21350:LI21
+      - PMT2114:LI21
+      - PMT2115:LI21
       sum_l_meters: 42.873
       type: WIRE

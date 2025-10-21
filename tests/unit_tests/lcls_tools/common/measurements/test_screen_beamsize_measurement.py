@@ -10,8 +10,8 @@ import numpy as np
 
 class TestScreenBeamProfileMeasurement(unittest.TestCase):
     def setUp(self):
-        screen = MagicMock(Screen)
-        screen.resolution = 1.0
+        self.screen = MagicMock(Screen)
+        self.screen.resolution = 1.0
 
         # create a mock Screen device
         def mock_get_image(*args):
@@ -19,27 +19,29 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
             image[40:60, 40:60] = 255
             return image
 
-        type(screen).image = property(mock_get_image)
-
-        self.measurement = ScreenBeamProfileMeasurement(device=screen)
+        type(self.screen).image = property(mock_get_image)
 
     def test_measure(self):
-        result = self.measurement.measure()
+        measurement = ScreenBeamProfileMeasurement(beam_profile_device=self.screen)
+        result = measurement.measure()
         self.assertIsInstance(result, ScreenBeamProfileMeasurementResult)
 
         assert result.processed_images.shape == (1, 100, 100)
-        assert result.rms_sizes.shape == (1, 2)
-        assert result.total_intensities.shape == (1,)
+        assert result.rms_sizes.shape == (2,)
+        assert result.total_intensities.shape == ()
         assert np.allclose(result.rms_sizes, np.array([8.0347, 8.0347]))
         assert np.allclose(result.centroids.flatten(), np.array([49.5, 49.5]))
         assert np.allclose(result.total_intensities, np.array([102000.0]))
 
-        assert result.metadata == self.measurement.model_dump()
+        assert result.metadata == measurement.model_dump()
 
     def test_multiple_shot_measure(self):
-        result = self.measurement.measure(n_shots=10)
+        measurement = ScreenBeamProfileMeasurement(
+            beam_profile_device=self.screen, n_shots=10
+        )
+        result = measurement.measure()
         self.assertIsInstance(result, ScreenBeamProfileMeasurementResult)
 
         assert result.processed_images.shape == (10, 100, 100)
-        assert result.rms_sizes.shape == (10, 2)
-        assert result.total_intensities.shape == (10,)
+        assert result.rms_sizes.shape == (2,)
+        assert result.total_intensities.shape == ()

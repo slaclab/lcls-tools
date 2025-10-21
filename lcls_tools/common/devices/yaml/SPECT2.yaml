@@ -64,55 +64,67 @@ screens:
     controls_information:
       PVs: {}
       control_name: LI20:PROF:3501
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   BETA2:
     controls_information:
       PVs: {}
       control_name: LI20:PROF:3488
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   BETAL:
     controls_information:
       PVs: {}
       control_name: LI20:PROF:3303
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   CFAR:
     controls_information:
       PVs: {}
       control_name: CMOS:LI20:3492
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   ELANEX:
     controls_information:
       PVs: {}
       control_name: LI20:PROF:3500
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   WDSOTR:
     controls_information:
       PVs: {}
       control_name: CAMR:LI20:3230
+      pv_cache: {}
     metadata:
       area: SPECT2
       beam_path:
       - F2_ELEC
       - F2_POSI
+      hardware: {}
       sum_l_meters: 999.253
       type: PROF

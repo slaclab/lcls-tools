@@ -26,17 +26,21 @@ screens:
     controls_information:
       PVs: {}
       control_name: PROF:DMPH:731
+      pv_cache: {}
     metadata:
       area: SFTH
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   YAGXRAY:
     controls_information:
       PVs: {}
       control_name: YAGS:DMPH:500
+      pv_cache: {}
     metadata:
       area: SFTH
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF

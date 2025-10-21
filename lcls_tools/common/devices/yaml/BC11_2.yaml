@@ -144,35 +144,41 @@ screens:
     controls_information:
       PVs: {}
       control_name: PROF:LI11:357
+      pv_cache: {}
     metadata:
       area: BC11_2
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 47.105
       type: PROF
   PR11375:
     controls_information:
       PVs: {}
       control_name: OTRS:LI11:375
+      pv_cache: {}
     metadata:
       area: BC11_2
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 50.557
       type: PROF
   TD11390:
     controls_information:
       PVs: {}
       control_name: PROF:LI12:390
+      pv_cache: {}
     metadata:
       area: BC11_2
       beam_path:
       - F2_ELEC
       - F2_POSI
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 52.375
       type: PROF

@@ -19,6 +19,52 @@ magnets:
       l_eff: 0.0
       sum_l_meters: null
       type: YCOR
+pmts:
+  PMT28144:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LI28:144
+    metadata:
+      area: LI28
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT28150:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LI28:150
+    metadata:
+      area: LI28
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT28444:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LI28:444
+    metadata:
+      area: LI28
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT28744:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LI28:744
+    metadata:
+      area: LI28
+      beam_path: []
+      sum_l_meters: null
+      type: INST
+  PMT28750:
+    controls_information:
+      PVs: {}
+      control_name: PMT:LI28:750
+    metadata:
+      area: LI28
+      beam_path: []
+      sum_l_meters: null
+      type: INST
 wires:
   WS144:
     controls_information:
@@ -54,6 +100,11 @@ wires:
     metadata:
       area: LI28
       beam_path: []
+      detectors:
+      - PMT28750:LI28
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
       sum_l_meters: null
       type: WIRE
   WS444:
@@ -90,6 +141,11 @@ wires:
     metadata:
       area: LI28
       beam_path: []
+      detectors:
+      - PMT28750:LI28
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
       sum_l_meters: null
       type: WIRE
   WS544:

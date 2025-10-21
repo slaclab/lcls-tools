@@ -679,10 +679,12 @@ screens:
     controls_information:
       PVs: {}
       control_name: EP01:PROF:185
+      pv_cache: {}
     metadata:
       area: SCAV
       beam_path:
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 919.713
       type: PROF
 wires:

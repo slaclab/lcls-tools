@@ -112,10 +112,12 @@ screens:
     controls_information:
       PVs: {}
       control_name: YAGS:IN10:241
+      pv_cache: {}
     metadata:
       area: INJ
       beam_path:
       - F2_ELEC
       - F2_SCAV
+      hardware: {}
       sum_l_meters: 0.942
       type: PROF

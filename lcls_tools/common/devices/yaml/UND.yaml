@@ -1385,22 +1385,36 @@ magnets:
       l_eff: 0.0
       sum_l_meters: null
       type: YCOR
+pmts:
+  PMT1690:
+    controls_information:
+      PVs: {}
+      control_name: PMT:UND1:1690
+    metadata:
+      area: UND
+      beam_path: []
+      sum_l_meters: null
+      type: INST
 screens:
   YAGBOD1:
     controls_information:
       PVs: {}
       control_name: YAGS:UND1:1005
+      pv_cache: {}
     metadata:
       area: UND
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF
   YAGBOD2:
     controls_information:
       PVs: {}
       control_name: YAGS:UND1:1305
+      pv_cache: {}
     metadata:
       area: UND
       beam_path: []
+      hardware: {}
       sum_l_meters: null
       type: PROF

@@ -8,7 +8,7 @@ import inspect
 
 # Local imports
 from lcls_tools.common.devices.reader import create_magnet
-from lcls_tools.common.devices.magnet import MagnetCollection
+from lcls_tools.common.devices.magnet import MagnetCollection, Magnet
 
 
 class MagnetTest(TestCase):
@@ -79,10 +79,11 @@ class MagnetTest(TestCase):
                 msg=f"expected magnet to have attribute {handle}",
             )
         for item, _ in self.magnet.metadata:
-            self.assertTrue(
-                hasattr(self.magnet, item),
-                msg=f"expected magnet to have attribute {item}",
-            )
+            if item != "hardware":
+                self.assertTrue(
+                    hasattr(self.magnet, item),
+                    msg=f"expected magnet to have attribute {item}",
+                )
         # Assert that magnet has public properties
         for item in [
             "bctrl",
@@ -601,3 +602,15 @@ class MagnetCollectionTest(TestCase):
         magnet_name = "BAD-MAGNET"
         self.magnet_collection.degauss(magnet_name)
         mock_degauss.assert_not_called()
+
+    def test_serialization(self):
+        magnet = self.magnet_collection.magnets["CQ01B"]
+        info = magnet.model_dump()
+        self.assertEqual(
+            info["controls_information"]["PVs"]["bctrl"],
+            magnet.controls_information.PVs.bctrl.pvname,
+        )
+
+        # create magnet from info dict
+        new_magnet = Magnet(**info)
+        self.assertEqual(magnet, new_magnet)
