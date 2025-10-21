@@ -150,11 +150,15 @@ class Wire(Device):
     @property
     def beam_rate(self):
         """Returns current beam rate"""
-        # NC wires do not have beam rate PV defined and
-        # use global beam rate PV
+        # Some wires do not have dedicated beam rate PVs.
+        # See CATER 180392 for more details
         nc_areas = ["LI20", "LI24", "LI28", "LTUH", "DL1", "BC1", "BC2", "LTU"]
         if self.area in nc_areas and self.controls_information.PVs.beam_rate is None:
-            self.controls_information.PVs.beam_rate = PV("EVNT:SYS0:1:LCLSBEAMRATE")
+            nc_beam_rate = PV("EVNT:SYS0:1:LCLSBEAMRATE")
+            return nc_beam_rate.get()
+        elif self.area in ["DIAG0"] and self.controls_information.PVs.beam_rate is None:
+            diag0_beam_rate = PV("TPG:SYS0:1:DST01:RATE")
+            return diag0_beam_rate.get()
         return self.controls_information.PVs.beam_rate.get()
 
     @property
