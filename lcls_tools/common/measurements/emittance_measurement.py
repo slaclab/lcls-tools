@@ -1,7 +1,7 @@
 from abc import abstractmethod
 import time
 import enum
-from typing import Any, List, Optional
+from typing import Any, List, Literal, Optional
 
 import numpy as np
 from pydantic import (
@@ -18,6 +18,7 @@ from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.data.model_general_calcs import (
     build_quad_rmat,
     bdes_to_kmod,
+    quad_scan_optics,
 )
 import lcls_tools
 
@@ -199,6 +200,7 @@ class EmittanceMeasurementBase(Measurement):
     """
 
     energy: float
+    physics_model: Literal["BMAD", "BLEM", "Lucretia"] = "BLEM"
 
     wait_time: PositiveFloat = 5.0
 
@@ -220,14 +222,14 @@ class EmittanceMeasurementBase(Measurement):
             Object containing the results of the emittance measurement
         """
 
-        beamsize_results = self.perform_beamsize_measurements()
+        beamsize_results, rmats, design_twiss = self.retrieve_beam_profiles_and_optics()
 
-        rmats, design_twiss = self.setup_rmats_and_design_twiss()
+        # rmats, design_twiss = self.setup_rmats_and_design_twiss()
 
         return self.calculate_emittance(beamsize_results, rmats, design_twiss)
 
     @abstractmethod
-    def perform_beamsize_measurements(self):
+    def retrieve_beam_profiles_and_optics(self):
         """
 
         Perform a beam size measurement at each point.
@@ -236,9 +238,11 @@ class EmittanceMeasurementBase(Measurement):
         """
         pass
 
+    """
     @abstractmethod
     def setup_rmats_and_design_twiss(self):
         pass
+    """
 
     @abstractmethod
     def calculate_emittance(
@@ -312,19 +316,29 @@ class QuadScanEmittance(EmittanceMeasurementBase):
         assert v.shape == (2, 2, 2)
         return v
 
-    def perform_beamsize_measurements(self):
+    def retrieve_beam_profiles_and_optics(self):
         """Perform the beamsize measurements using a basic quadrupole scan."""
         beamsize_results = []
+        rmats = []
+        design_twiss = None
         # at each scan value, measure the beam size and store the result in beamsize_results
-        self.magnet.scan(self.scan_values, self.measure_beamsize, beamsize_results)
+        self.magnet.scan(
+            self.scan_values,
+            self.measure_beamsize,
+            beamsize_results,
+            rmats,
+            design_twiss,
+        )
 
+        """
         beam_sizes = []
         for result in beamsize_results:
             beam_sizes.append(result.rms_sizes * 1e-6)  # beam sizes in meters
+        """
 
-        return
+        return beamsize_results
 
-    def measure_beamsize(self, beamsize_results):
+    def measure_beamsize(self, beamsize_results, rmats, design_twiss):
         """
         Take measurement from measurement device,
         and store results in `self._info`
@@ -333,6 +347,20 @@ class QuadScanEmittance(EmittanceMeasurementBase):
 
         result = self.beamsize_measurement.measure()
         beamsize_results.append(result)
+
+        optics = quad_scan_optics(
+            self.magnet,
+            self.beamsize_measurement,
+            self.physics_model,
+        )
+        rmat = optics["rmat"]
+        # pick out x and y rmats
+        self.rmat.append(np.stack([rmat[0:2, 0:2], rmat[2:4, 2:4]]))
+        if not self.design_twiss:
+            self.design_twiss = optics["design_twiss"]
+
+    def setup_rmats_and_design_twiss(self):
+        pass
 
     def calculate_emittance(self):
         """
