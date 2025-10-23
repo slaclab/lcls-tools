@@ -3,7 +3,7 @@ import time
 from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union, DefaultDict
 
 import requests
 
@@ -29,8 +29,11 @@ class ArchiverValue:
     """
     Using keys from documentation found at:
     https://slacmshankar.github.io/epicsarchiver_docs/userguide.html
+    Above link no longer works, try this one instead:
+    https://epicsarchiver.readthedocs.io/en/latest/user/userguide.html#processing-of-data
     """
 
+    meta: dict = None
     secs: int = None
     val: Union[float, int, str] = None
     nanos: int = None
@@ -114,7 +117,6 @@ def get_data_at_time(
         print(
             "JSON error with {PVS} at {TIME}".format(PVS=pv_list, TIME=time_requested)
         )
-
     return result
 
 
@@ -123,17 +125,15 @@ def get_data_with_time_interval(
     start_time: datetime,
     end_time: datetime,
     time_delta: timedelta,
-) -> Dict[str, ArchiveDataHandler]:
+) -> DefaultDict[str, ArchiveDataHandler]:
     curr_time = start_time
-    result: Dict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
+    result: DefaultDict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
 
     while curr_time < end_time:
         value: Dict[str, ArchiverValue] = get_data_at_time(pv_list, curr_time)
         for pv, archiver_value in value.items():
             result[pv].value_list.append(archiver_value)
-
         curr_time += time_delta
-
     return result
 
 
@@ -143,13 +143,13 @@ def get_values_over_time_range(
     start_time: datetime,
     end_time: datetime,
     time_delta: timedelta = None,
-) -> Dict[str, ArchiveDataHandler]:
+) -> DefaultDict[str, ArchiveDataHandler]:
     if time_delta:
         return get_data_with_time_interval(pv_list, start_time, end_time, time_delta)
 
     else:
         url = ARCHIVER_URL_FORMATTER.format(SUFFIX=RANGE_RESULT_SUFFIX)
-        result: Dict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
+        result: DefaultDict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
 
         # TODO figure out how to send all PVs at once
         for pv in pv_list:
@@ -177,5 +177,4 @@ def get_values_over_time_range(
 
             except ValueError:
                 print("JSON error with {pv}".format(pv=pv))
-
         return result

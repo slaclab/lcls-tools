@@ -396,7 +396,7 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      lblms:
+      detectors:
       - PMT24705:LI24
       - PMT24706:LI24
       sum_l_meters: 396.77

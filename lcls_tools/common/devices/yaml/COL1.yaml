@@ -875,7 +875,7 @@ wires:
       - BPMS:COL1:260
       - BPMS:COL1:280
       - BPMS:COL1:320
-      lblms:
+      detectors:
       - LBLM03A:L1B
       - LBLM04A:L2B
       - TMITLOSS:COL1
@@ -898,6 +898,7 @@ wires:
         speed_max: WIRE:COL1:520:MOTR.VMAX
         speed_min: WIRE:COL1:520:MOTR.VBAS
         start_scan: WIRE:COL1:520:STARTSCAN
+        temperature: WIRE:COL1:520:TEMP
         timeout: WIRE:COL1:520:MOTR_TIMEOUTEN
         u_size: WIRE:COL1:520:UWIRESIZE
         u_wire_inner: WIRE:COL1:520:UWIREINNER
@@ -939,7 +940,7 @@ wires:
       - BPMS:COL1:260
       - BPMS:COL1:280
       - BPMS:COL1:320
-      lblms:
+      detectors:
       - LBLM03A:L1B
       - LBLM04A:L2B
       - TMITLOSS:COL1
@@ -1004,7 +1005,7 @@ wires:
       - BPMS:COL1:260
       - BPMS:COL1:280
       - BPMS:COL1:320
-      lblms:
+      detectors:
       - LBLM03A:L1B
       - LBLM04A:L2B
       - TMITLOSS:COL1
@@ -1069,7 +1070,7 @@ wires:
       - BPMS:COL1:260
       - BPMS:COL1:280
       - BPMS:COL1:320
-      lblms:
+      detectors:
       - LBLM03A:L1B
       - LBLM04A:L2B
       - TMITLOSS:COL1

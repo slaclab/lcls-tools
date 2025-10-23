@@ -18,14 +18,13 @@ from lcls_tools.common.data.model_general_calcs import quad_scan_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
-from lcls_tools.common.measurements.screen_profile import (
-    ScreenBeamProfileMeasurement,
-)
 from lcls_tools.common.data.model_general_calcs import (
     build_quad_rmat,
     bdes_to_kmod,
 )
 import lcls_tools
+
+from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurement
 
 
 class BMAGMode(enum.IntEnum):
@@ -156,8 +155,6 @@ class QuadScanEmittance(Measurement):
         Magnet object used to conduct scan
     beamsize_measurement: BeamsizeMeasurement
         Beamsize measurement object from profile monitor/wire scanner
-    n_measurement_shots: int
-        number of beamsize measurements to make per individual quad strength
     rmat: ndarray, optional
         Transport matricies for the horizontal and vertical phase space from
         the end of the scanning magnet to the screen, array shape should be 2 x 2 x 2 (
@@ -185,8 +182,7 @@ class QuadScanEmittance(Measurement):
     energy: float
     scan_values: list[float]
     magnet: Magnet
-    beamsize_measurement: ScreenBeamProfileMeasurement
-    n_measurement_shots: PositiveInt = 1
+    beamsize_measurement: BeamProfileMeasurement
     _info: Optional[list] = []
 
     rmat: Optional[ndarray] = None
@@ -354,7 +350,7 @@ class QuadScanEmittance(Measurement):
         """
         time.sleep(self.wait_time)
 
-        result = self.beamsize_measurement.measure(self.n_measurement_shots)
+        result = self.beamsize_measurement.measure()
         self._info += [result]
 
         # get transport matrix and design twiss values from meme

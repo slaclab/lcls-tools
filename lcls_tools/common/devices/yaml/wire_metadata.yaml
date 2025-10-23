@@ -1,29 +1,29 @@
 WS01:
-  lblms:
+  detectors:
     - PMTINJ03:DL1
     - PMTINJ05:DL1
     - PMT21350:LI21
 
 WS02:
-  lblms:
+  detectors:
     - PMTINJ03:DL1
     - PMTINJ05:DL1
     - PMT21350:LI21
 
 WS03:
-  lblms:
+  detectors:
     - PMTINJ03:DL1
     - PMTINJ05:DL1
     - PMT21350:LI21
 
 WS04:
-  lblms:
+  detectors:
     - PMTINJ03:DL1
     - PMTINJ05:DL1
     - PMT21350:LI21
 
 WS11:
-  lblms:
+  detectors:
     - PMT2111:DL1
     - PMT21293:LI21
     - PMT2113:LI21
@@ -32,7 +32,7 @@ WS11:
     - PMT2115:LI21
 
 WS12:
-  lblms:
+  detectors:
     - PMT2111:DL1
     - PMT21293:LI21
     - PMT2113:LI21
@@ -41,7 +41,7 @@ WS12:
     - PMT2115:LI21
 
 WS13:
-  lblms:
+  detectors:
     - PMT2111:DL1
     - PMT21293:LI21
     - PMT2113:LI21
@@ -50,40 +50,40 @@ WS13:
     - PMT2115:LI21
 
 WS24:
-  lblms:
+  detectors:
     - PMT24705:LI24
     - PMT24706:LI24
 
 WS144:
-  lblms:
+  detectors:
     - PMT28750:LI28
     - PMT29150:LI29
     - PMT756:LTUH
     - PMT820:LTUH
 
 WS444:
-  lblms:
+  detectors:
     - PMT28750:LI28
     - PMT29150:LI29
     - PMT756:LTUH
     - PMT820:LTUH
 
 WS744:
-  lblms:
+  detectors:
     - PMT28750:LI28
     - PMT29150:LI29
     - PMT756:LTUH
     - PMT820:LTUH
 
 WS644:
-  lblms:
+  detectors:
     - PMT28750:LI28
     - PMT29150:LI29
     - PMT756:LTUH
     - PMT820:LTUH
 
 WS0H04:
-  lblms:
+  detectors:
     - LBLM01A:HTR
     - LBLM01B:HTR
   bpms_before_wire:
@@ -97,7 +97,7 @@ WS0H04:
     - BPMS:HTR:960
 
 WSDG0:
-  lblms:
+  detectors:
     - SBLM01A:DIAG0
   bpms_before_wire:
     - BPMS:DIAG0:190
@@ -113,7 +113,7 @@ WSDG0:
     - BPMS:DIAG0:520
 
 WSC104:
-  lblms:
+  detectors:
     - LBLM03A:L1B
     - LBLM04A:L2B
     - TMITLOSS:COL1
@@ -135,7 +135,7 @@ WSC104:
     - BPMS:SPD:525
 
 WSC106:
-  lblms:
+  detectors:
     - LBLM03A:L1B
     - LBLM04A:L2B
     - TMITLOSS:COL1
@@ -157,7 +157,7 @@ WSC106:
     - BPMS:SPD:525
 
 WSC108:
-  lblms:
+  detectors:
     - LBLM03A:L1B
     - LBLM04A:L2B
     - TMITLOSS:COL1
@@ -179,7 +179,7 @@ WSC108:
     - BPMS:SPD:525
 
 WSC110:
-  lblms:
+  detectors:
     - LBLM03A:L1B
     - LBLM04A:L2B
     - TMITLOSS:COL1
@@ -201,7 +201,7 @@ WSC110:
     - BPMS:SPD:525
 
 WSEMIT2:
-  lblms:
+  detectors:
     - LBLM04A:L2B
     - LBLM07A:L3B
     - TMITLOSS:EMIT2
@@ -219,7 +219,7 @@ WSEMIT2:
     - BPMS:SLTS:460
 
 WSBP1:
-  lblms:
+  detectors:
     - LBLM11A_1:BYP
     - LBLM11A_2:BYP
     - LBLM11A_3:BYP
@@ -256,7 +256,7 @@ WSBP1:
     - BPMS:SPD:955
 
 WSBP2:
-  lblms:
+  detectors:
     - LBLM11A_1:BYP
     - LBLM11A_2:BYP
     - LBLM11A_3:BYP
@@ -293,7 +293,7 @@ WSBP2:
     - BPMS:SPD:955
 
 WSBP3:
-  lblms:
+  detectors:
     - LBLM11A_1:BYP
     - LBLM11A_2:BYP
     - LBLM11A_3:BYP
@@ -330,7 +330,7 @@ WSBP3:
     - BPMS:SPD:955
 
 WSBP4:
-  lblms:
+  detectors:
     - LBLM11A_1:BYP
     - LBLM11A_2:BYP
     - LBLM11A_3:BYP
@@ -367,7 +367,7 @@ WSBP4:
     - BPMS:SPD:955
 
 WSSP1D:
-  lblms:
+  detectors:
     - LBLM22A:SPS
   bpms_before_wire:
     - BPMS:SPD:135
@@ -382,7 +382,7 @@ WSSP1D:
     - BPMS:SLTD:625
 
 WS31:
-  lblms:
+  detectors:
     - PMT122:LTUH
     - PMT246:LTUH
     - PMT430:LTUH
@@ -395,7 +395,7 @@ WS31:
     - LBLM32A:LTUH
 
 WS32:
-  lblms:
+  detectors:
     - PMT122:LTUH
     - PMT246:LTUH
     - PMT430:LTUH
@@ -408,7 +408,7 @@ WS32:
     - LBLM32A:LTUH
 
 WS33:
-  lblms:
+  detectors:
     - PMT122:LTUH
     - PMT246:LTUH
     - PMT430:LTUH
@@ -421,7 +421,7 @@ WS33:
     - LBLM32A:LTUH
 
 WS34:
-  lblms:
+  detectors:
     - PMT122:LTUH
     - PMT246:LTUH
     - PMT430:LTUH
@@ -434,7 +434,7 @@ WS34:
     - LBLM32A:LTUH
 
 WS31B:
-  lblms:
+  detectors:
     - LBLMS32A:LTUS
     - TMITLOSS:LTUS
   bpms_before_wire:
@@ -459,7 +459,7 @@ WS31B:
     - BPMS:DMPS:693
 
 WS32B:
-  lblms:
+  detectors:
     - LBLMS32A:LTUS
     - TMITLOSS:LTUS
   bpms_before_wire:
@@ -484,7 +484,7 @@ WS32B:
     - BPMS:DMPS:693
 
 WS33B:
-  lblms:
+  detectors:
     - LBLMS32A:LTUS
     - TMITLOSS:LTUS
   bpms_before_wire:
@@ -509,7 +509,7 @@ WS33B:
     - BPMS:DMPS:693
 
 WS34B:
-  lblms:
+  detectors:
     - LBLMS32A:LTUS
     - TMITLOSS:LTUS
   bpms_before_wire:

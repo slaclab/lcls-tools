@@ -336,7 +336,7 @@ wires:
       - BPMS:BC2B:530
       - BPMS:EMIT2:150
       - BPMS:EMIT2:300
-      lblms:
+      detectors:
       - LBLM04A:L2B
       - LBLM07A:L3B
       - TMITLOSS:EMIT2

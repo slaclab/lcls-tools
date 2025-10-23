@@ -1157,7 +1157,7 @@ wires:
       - BPMS:GUNB:925
       - BPMS:HTR:120
       - BPMS:HTR:320
-      lblms:
+      detectors:
       - LBLM01A:HTR
       - LBLM01B:HTR
       sum_l_meters: 24.589

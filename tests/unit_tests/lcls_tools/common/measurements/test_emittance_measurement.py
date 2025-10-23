@@ -112,12 +112,8 @@ class EmittanceMeasurementTest(TestCase):
                 mock_beamsize_measurements = []
                 for i, val in enumerate(k):
                     result = MagicMock(ScreenBeamProfileMeasurementResult)
-                    result.rms_sizes = np.array(
-                        [float(x_data[i]), float(y_data[i])]
-                    ).reshape(1, 2)
+                    result.rms_sizes = np.array([float(x_data[i]), float(y_data[i])])
 
-                    # extend result.rms_sizes to simulate multiple shots
-                    result.rms_sizes = np.repeat(result.rms_sizes, n_shots, axis=0)
                     mock_beamsize_measurements += [result]
 
                 # External list to return beam sizes
@@ -125,10 +121,10 @@ class EmittanceMeasurementTest(TestCase):
 
                 # Mock beamsize_measurement
                 mock_beamsize_measurement = MagicMock(spec=ScreenBeamProfileMeasurement)
-                mock_beamsize_measurement.device = MagicMock(spec=Screen)
-                mock_beamsize_measurement.device.resolution = 1.0
+                mock_beamsize_measurement.beam_profile_device = MagicMock(spec=Screen)
+                mock_beamsize_measurement.beam_profile_device.resolution = 1.0
                 mock_beamsize_measurement.measure = MagicMock(
-                    side_effect=lambda _: next(external_list)
+                    side_effect=lambda *args, **kwargs: next(external_list)
                 )
 
                 # Mock magnet
@@ -149,7 +145,6 @@ class EmittanceMeasurementTest(TestCase):
                     scan_values=k,
                     magnet=mock_magnet,
                     beamsize_measurement=mock_beamsize_measurement,
-                    n_measurement_shots=1,
                     rmat=rmat,
                     design_twiss=design_twiss_ele,
                     wait_time=1e-3,
