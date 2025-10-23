@@ -435,54 +435,11 @@ class QuadScanEmittance(EmittanceMeasurementBase):
         return QuadScanEmittanceResult(**results)
 
 
-class MultiDeviceEmittance(EmittanceMeasurementBase):
-    """Uses multiple profile monitors/wire scanners to perform an emittance measurement
-
-    Arguments:
-    ------------------------
-    energy: float
-        Beam energy in GeV
-    n_measurements: int
-        number of beamsize measurements to make for each beam size measurement device
-    beamsize_measurements: List[BeamsizeMeasurement]
-        List of beamsize measurement objects from profile monitors/wire scanners
-    rmat: ndarray, optional
-        Transport matricies for the horizontal and vertical phase space from
-        the end of the scanning magnet to the screen, array shape should be 2 x 2 x 2 (
-        first element is the horizontal transport matrix, second is the vertical),
-        if not provided meme is used to calculate the transport matricies
-    design_twiss: dict[str, float], optional
-        Dictionary containing design twiss values with the following keys (`beta_x`,
-        `beta_y`, `alpha_x`, `alpha_y`) where the beta/alpha values are in units of [m]/[]
-        respectively
-    wait_time, float, optional
-        Wait time in seconds between making beamsize measurements.
-
-    Methods:
-    ------------------------
-    measure: gets the beam sizes at each beam size measurement device,
-    gets the rmat and twiss parameters, then computes and returns the emittance and BMAG
-
-    measure_beamsize: take measurement from measurement device, store beam sizes
-    """
-
-    beamsize_measurements: list[Measurement]
-
+class MultiDeviceEmittance(Measurement):
     name: str = "multi_device_emittance"
 
-    @field_validator("rmat")
-    def validate_rmat(cls, v, info):
-        assert v.shape == (2, 2, 2)
-        return v
-
-    def _perform_beamsize_measurements(self):
-        """Perform the beamsize measurements"""
-        for beamsize_measurement in self.beamsize_measurements:
-            self.measure_beamsize(beamsize_measurement)
-
-    def _get_rmat_and_design_twiss(self):
-        # TODO: write for multi device measurement
-        raise NotImplementedError("This method is not implemented yet")
+    def measure(self):
+        raise NotImplementedError("Multi-device emittance not yet implemented")
 
 
 def compute_emit_bmag_quad_scan(
