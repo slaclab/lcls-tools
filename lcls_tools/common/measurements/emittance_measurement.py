@@ -11,18 +11,22 @@ from pydantic import (
     PositiveFloat,
 )
 
-from lcls_tools.common.data.emittance import compute_emit_bmag
+from lcls_tools.common.data.emittance import compute_emit_bmag, normalize_emittance
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from lcls_tools.common.data.model_general_calcs import (
     build_quad_rmat,
     bdes_to_kmod,
+    multi_device_optics,
     quad_scan_optics,
 )
 import lcls_tools
 
-from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurement
+from lcls_tools.common.measurements.beam_profile import (
+    BeamProfileMeasurement,
+    BeamProfileMeasurementResult,
+)
 
 
 class BMAGMode(enum.IntEnum):
@@ -56,12 +60,12 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
     Attributes
     ----------
     emittance : shape (2,)
-        The geometric emittance values for x/y in mm-mrad.
-    bmag : List[ndarray], Optional
+        The normalized emittance values for x/y in mm-mrad.
+    bmag : ndarray, Optional
         The BMAG values for x/y for each beamsize measurement.
-    twiss : List[ndarray]
+    twiss_at_screen : ndarray
         Twiss parameters (beta, alpha, gamma) calculated for each beamsize measurement.
-    beamsizes : List[ndarray]
+    rms_beamsizes : ndarray
         The RMS beam sizes for each beamsize measurement in each plane in meters.
     beam_matrix : array, shape (2,3)
         Reconstructed beam matrix for both x/y directions.
@@ -72,9 +76,9 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
     """
 
     emittance: NDArrayAnnotatedType
-    bmag: Optional[List[NDArrayAnnotatedType]] = None
-    twiss: List[NDArrayAnnotatedType]
-    beamsizes: List[NDArrayAnnotatedType]
+    bmag: Optional[NDArrayAnnotatedType] = None
+    twiss_at_screen: NDArrayAnnotatedType
+    rms_beamsizes: NDArrayAnnotatedType
     beam_matrix: NDArrayAnnotatedType
     metadata: SerializeAsAny[Any]
 
@@ -204,6 +208,10 @@ class EmittanceMeasurementBase(Measurement):
 
     wait_time: PositiveFloat = 5.0
 
+    beam_profiles: List[BeamProfileMeasurementResult] = []
+    rmats: NDArrayAnnotatedType = None
+    design_twiss: NDArrayAnnotatedType = None
+
     name: str = "emittance_measurement_base"
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
@@ -222,11 +230,11 @@ class EmittanceMeasurementBase(Measurement):
             Object containing the results of the emittance measurement
         """
 
-        beamsize_results, rmats, design_twiss = self.retrieve_beam_profiles_and_optics()
+        self.retrieve_beam_profiles_and_optics()
 
         # rmats, design_twiss = self.setup_rmats_and_design_twiss()
 
-        return self.calculate_emittance(beamsize_results, rmats, design_twiss)
+        return self.calculate_emittance()
 
     @abstractmethod
     def retrieve_beam_profiles_and_optics(self):
@@ -245,9 +253,7 @@ class EmittanceMeasurementBase(Measurement):
     """
 
     @abstractmethod
-    def calculate_emittance(
-        self, beamsize_results, rmats, design_twiss
-    ) -> EmittanceMeasurementResult:
+    def calculate_emittance(self) -> EmittanceMeasurementResult:
         """
 
         Calculate the emittance from the measured beam sizes, rmats and twiss.
@@ -442,8 +448,6 @@ class MultiDeviceEmittance(EmittanceMeasurementBase):
     ------------------------
     energy: float
         Beam energy in GeV
-    n_measurements: int
-        number of beamsize measurements to make for each beam size measurement device
     beamsize_measurements: List[BeamsizeMeasurement]
         List of beamsize measurement objects from profile monitors/wire scanners
     rmat: ndarray, optional
@@ -475,14 +479,59 @@ class MultiDeviceEmittance(EmittanceMeasurementBase):
         assert v.shape == (2, 2, 2)
         return v
 
-    def _perform_beamsize_measurements(self):
+    def retrieve_beam_profiles_and_optics(self):
         """Perform the beamsize measurements"""
         for beamsize_measurement in self.beamsize_measurements:
-            self.measure_beamsize(beamsize_measurement)
+            self.beam_profiles.append(beamsize_measurement.measure())
 
-    def _get_rmat_and_design_twiss(self):
-        # TODO: write for multi device measurement
-        raise NotImplementedError("This method is not implemented yet")
+        optics = multi_device_optics(
+            self.beamsize_measurements,
+            self.physics_model,
+        )
+
+        self.rmats = optics["rmat"]
+        self.design_twiss = optics["design_twiss"]
+
+    def calculate_emittance(self):
+        # Square beam sizes
+        beam_sizes = []
+        for beam_profile in self.beam_profiles:
+            beam_sizes.append(beam_profile.rms_sizes)
+        beam_sizes = np.array(beam_sizes).T
+        beamsizes_squared = (beam_sizes * 1e-3) ** 2  #  units of mm^2
+        beamsizes_squared = np.expand_dims(beamsizes_squared, -1)
+
+        # pick out x and y rmats
+        rmats = np.stack([self.rmats[:, 0:2, 0:2], self.rmats[:, 2:4, 2:4]])
+
+        # Format design twiss
+        twiss_betas_alphas = np.array(
+            [
+                [
+                    self.design_twiss["beta_x"],
+                    self.design_twiss["alpha_x"],
+                ],
+                [
+                    self.design_twiss["beta_y"],
+                    self.design_twiss["alpha_y"],
+                ],
+            ]
+        )
+
+        twiss_design = np.swapaxes(
+            twiss_betas_alphas, 1, 2
+        )  # make shape 2 x n_measurements x 2
+
+        emittance_dict = compute_emit_bmag(beamsizes_squared, rmats, twiss_design)
+        emittance_dict["emittance"] = normalize_emittance(
+            emittance_dict["emittance"], self.energy
+        )
+        results_dict = emittance_dict | {
+            "rms_beamsizes": beam_sizes,
+            "metadata": self.model_dump(),
+        }
+
+        return EmittanceMeasurementResult(**results_dict)
 
 
 def compute_emit_bmag_quad_scan(
