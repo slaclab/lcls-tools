@@ -602,7 +602,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
 
         with open(file_to_open, "r") as f:
             wire_lblms = yaml.safe_load(f)
-        return wire_lblms
+            return wire_lblms
 
     def _get_default_detector(self):
         lblm_config = self._load_yaml_config()

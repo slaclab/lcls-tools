@@ -159,7 +159,8 @@ class Wire(Device):
         elif self.area in ["DIAG0"] and self.controls_information.PVs.beam_rate is None:
             diag0_beam_rate = PV("TPG:SYS0:1:DST01:RATE")
             return diag0_beam_rate.get()
-        return self.controls_information.PVs.beam_rate.get()
+        else:
+            return self.controls_information.PVs.beam_rate.get()
 
     @property
     def homed(self):
