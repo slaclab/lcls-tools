@@ -78,7 +78,7 @@ class ImageProjectionFit(ImageFit):
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    projection_fit_method: gaussian.fit
+    projection_fit_method: Optional[Callable] = gaussian.fit
     signal_to_noise_threshold: PositiveFloat = Field(
         4.0, description="Fit amplitude to noise threshold for the fit"
     )
@@ -88,9 +88,9 @@ class ImageProjectionFit(ImageFit):
     )
 
     def _fit_image(self, image: ndarray) -> ImageProjectionFitResult:
+        print("am I using the correct implementation")
         dimensions = ("x", "y")
         fit_parameters = []
-        noise_stds = []
         signal_to_noise_ratios = []
         beam_extent = []
 
@@ -116,10 +116,8 @@ class ImageProjectionFit(ImageFit):
             rms_size=[ele["sigma"] for ele in fit_parameters],
             total_intensity=image.sum(),
             projection_fit_parameters=fit_parameters,
-            curve=self.curve,
             image=image,
             projection_fit_method=self.projection_fit_method,
-            noise_std=noise_stds,
             signal_to_noise_ratio=signal_to_noise_ratios,
             beam_extent=beam_extent,
         )
