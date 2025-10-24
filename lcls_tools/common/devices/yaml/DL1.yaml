@@ -1116,7 +1116,7 @@ wires:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      lblms:
+      detectors:
       - PMTINJ03:DL1
       - PMTINJ05:DL1
       - PMT21350:LI21
@@ -1163,7 +1163,7 @@ wires:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      lblms:
+      detectors:
       - PMTINJ03:DL1
       - PMTINJ05:DL1
       - PMT21350:LI21
@@ -1210,7 +1210,7 @@ wires:
       - CU_SFTH
       - CU_SPEC
       - CU_SXR
-      lblms:
+      detectors:
       - PMTINJ03:DL1
       - PMTINJ05:DL1
       - PMT21350:LI21
@@ -1251,7 +1251,7 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
-      lblms:
+      detectors:
       - PMTINJ03:DL1
       - PMTINJ05:DL1
       - PMT21350:LI21

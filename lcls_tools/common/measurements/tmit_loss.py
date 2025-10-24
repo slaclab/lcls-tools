@@ -1,8 +1,8 @@
 from lcls_tools.common.devices.reader import create_bpm
 from lcls_tools.common.measurements.measurement import Measurement
+from lcls_tools.common.measurements.utils import collect_with_size_check
 import meme.names
 import pandas as pd
-import numpy as np
 from edef import BSABuffer
 from lcls_tools.common.devices.wire import Wire
 from pydantic import model_validator
@@ -120,16 +120,20 @@ class TMITLoss(Measurement):
         """
         bpm_obj_dict = {}
 
-        # Iterate throw Dataframe of Elements and Areas
-        for index, row in bpms_elements.iterrows():
+        # Iterate through Dataframe of Elements and Areas
+        for _, row in bpms_elements.iterrows():
             element = row["Element"]
             area = row["Area"]
 
             # Create an lcls-tools BPM object and append to dictionary
-            # Key: Element Name
-            # Value: lcls-tools BPM object
-            bpm_obj_dict[element] = create_bpm(name=element, area=area)
-        return bpm_obj_dict
+            bpm = create_bpm(name=element, area=area)
+            if bpm is not None:
+                bpm_obj_dict[element] = bpm
+
+        if bpm_obj_dict:
+            return bpm_obj_dict
+        else:
+            raise LookupError("No BPM objects could be created.")
 
     def get_bpm_data(self):
         """
@@ -151,28 +155,13 @@ class TMITLoss(Measurement):
                           - Columns contain the retrieved TMIT buffer data.
         """
         data = {}
+        n_m = self.my_buffer.n_measurements
 
         for element, bpm in self.bpms.items():
-            try:
-                # Get data from BSA buffer
-                bpm_data = bpm.tmit_buffer(self.my_buffer)
-                if bpm_data is not None and len(bpm_data) > 0:
-                    data[element] = bpm_data
-                else:
-                    data[element] = None
-            except (BufferError, TypeError):
-                data[element] = None
-
-        valid_lengths = [len(v) for v in data.values() if v is not None]
-        if not valid_lengths:
-            raise ValueError("No valid BPM data could be retrieved.")
-        min_len = min(valid_lengths)
-
-        for key, val in data.items():
-            if val is None or len(val) < min_len:
-                data[key] = np.zeros(min_len)
-            else:
-                data[key] = val[:min_len]
+            bpm_data = collect_with_size_check(
+                bpm.tmit_buffer, n_m, None, self.my_buffer
+            )
+            data[element] = bpm_data
 
         df = pd.DataFrame(data)
         return df.T
@@ -197,10 +186,10 @@ class TMITLoss(Measurement):
                 - list: Indices of BPMs located **after** the wire.
         """
         # Define valid regions
-        tmit_regions = {"HTR", "DIAG0", "COL1", "EMIT2", "BYP", "SPD", "LTUS"}
+        tmit_regions = {"HTR", "DIAG0", "COL1", "EMIT2", "DOG", "BYP", "SPD", "LTUS"}
         if self.region not in tmit_regions:
             raise ValueError(
-                f"Invalid region '{self.region}'.Must be one of {{valid_regions}}"
+                f"Invalid region '{self.region}'. Must be one of {{valid_regions}}"
             )
 
         bpms_before_wire = self.my_wire.metadata.bpms_before_wire

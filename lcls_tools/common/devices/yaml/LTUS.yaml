@@ -2823,7 +2823,7 @@ wires:
       - BPMS:SPS:830
       - BPMS:SPS:840
       - BPMS:SLTS:150
-      lblms:
+      detectors:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
       sum_l_meters: 3434.508
@@ -2889,7 +2889,7 @@ wires:
       - BPMS:SPS:830
       - BPMS:SPS:840
       - BPMS:SLTS:150
-      lblms:
+      detectors:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
       sum_l_meters: 3469.772
@@ -2955,7 +2955,7 @@ wires:
       - BPMS:SPS:830
       - BPMS:SPS:840
       - BPMS:SLTS:150
-      lblms:
+      detectors:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
       sum_l_meters: 3505.035
@@ -3021,7 +3021,7 @@ wires:
       - BPMS:SPS:830
       - BPMS:SPS:840
       - BPMS:SLTS:150
-      lblms:
+      detectors:
       - LBLMS32A:LTUS
       - TMITLOSS:LTUS
       sum_l_meters: 3540.299

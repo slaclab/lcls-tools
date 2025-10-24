@@ -2,7 +2,6 @@ from pydantic import BaseModel, ConfigDict
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 from typing import Any, Optional, Dict, Tuple
 from datetime import datetime
-
 from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurementResult
 
 
@@ -17,11 +16,7 @@ class DetectorFit(BaseModel):
 
 class FitResult(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    mean: float
-    sigma: float
-    amplitude: float
-    offset: float
-    curve: NDArrayAnnotatedType
+    detectors: Dict[str, DetectorFit]
 
 
 class MeasurementMetadata(BaseModel):
@@ -76,4 +71,4 @@ class WireBeamProfileMeasurementResult(BeamProfileMeasurementResult):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     profiles: Dict[str, ProfileMeasurement]
     raw_data: Dict[str, Any]
-    fit_result: Dict[str, Dict[str, FitResult]]
+    fit_result: Dict[str, FitResult]
