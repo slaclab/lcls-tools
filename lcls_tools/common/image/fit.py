@@ -20,7 +20,7 @@ class ImageFitResult(lcls_tools.common.BaseModel):
 class ImageProjectionFitResult(ImageFitResult):
     projection_fit_method: Callable
     validation_method: Optional[Callable] = None
-    # total_intensity: NonNegativeFloat --> is this duplicated
+    curve: Callable
     projection_fit_parameters: List[dict[str, float]]
     signal_to_noise_ratio: NDArrayAnnotatedType = Field(
         description="Ratio of fit amplitude to noise std in the data"
@@ -78,9 +78,10 @@ class ImageProjectionFit(ImageFit):
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    projection_fit_method: Optional[Callable] = gaussian.fit
+    projection_fit_method: Callable = gaussian.fit
+    curve: Callable = gaussian.curve
     signal_to_noise_threshold: PositiveFloat = Field(
-        4.0, description="Fit amplitude to noise threshold for the fit"
+        2.0, description="Fit amplitude to noise threshold for the fit"
     )
     beam_extent_n_stds: PositiveFloat = Field(
         2.0,
@@ -88,7 +89,6 @@ class ImageProjectionFit(ImageFit):
     )
 
     def _fit_image(self, image: ndarray) -> ImageProjectionFitResult:
-        print("am I using the correct implementation")
         dimensions = ("x", "y")
         fit_parameters = []
         signal_to_noise_ratios = []
@@ -118,6 +118,7 @@ class ImageProjectionFit(ImageFit):
             projection_fit_parameters=fit_parameters,
             image=image,
             projection_fit_method=self.projection_fit_method,
+            curve=self.curve,
             signal_to_noise_ratio=signal_to_noise_ratios,
             beam_extent=beam_extent,
         )
