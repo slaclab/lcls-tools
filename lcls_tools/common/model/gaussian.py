@@ -1,9 +1,7 @@
 import numpy as np
 from scipy.stats import norm
 import lcls_tools.common.model.optimize as optimize
-from lcls_tools.common.pydantic import BaseModel
-from typing import Dict
-from pydantic import Field
+from typing import PositiveFloat
 
 
 def curve(x, mean=0, sigma=1, amp=1, off=0):
@@ -87,21 +85,19 @@ class offset(optimize.Parameter):
         return off * y_scale + min(y)
 
 
-class GaussianFit(BaseModel):
-    parameters: list[optimize.Parameter] = Field(
-        [mean, sigma, amplitude, offset], frozen=True
-    )
+params = [mean, sigma, amplitude, offset]
 
-    def fit(
-        self,
-        x,
-        data,
-        use_prior: bool = False,
-        beam_extent_n_stds: float = 4.0,
-    ) -> Dict[str, float]:
-        """Fit a projection curve and compute noise, SNR, and beam extent."""
-        parameters = optimize.param_fit(curve, self.parameters, x, data, use_prior)
-        noise_std = np.std(data - curve(x, **parameters))
-        snr = parameters["amp"] / noise_std
-        extent = parameters["mean"] + beam_extent_n_stds * parameters["sigma"]
-        return parameters, noise_std, snr, extent
+
+def fit(pos, data, use_prior=False):
+    return optimize.param_fit(curve, params, pos, data, use_prior)
+
+
+def signal_to_noise(fit_params):
+    return fit_params["amp"] / fit_params["error"]
+
+
+def extent(fit_params, extent_n_stds: PositiveFloat = 4.0):
+    return [
+        fit_params["mean"] - extent_n_stds * fit_params["sigma"],
+        fit_params["mean"] + extent_n_stds * fit_params["sigma"],
+    ]
