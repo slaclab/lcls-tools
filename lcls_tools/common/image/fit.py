@@ -78,7 +78,7 @@ class ImageProjectionFit(ImageFit):
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    projectionFitMethod: gaussian.fit
+    projection_fit_method: gaussian.fit
     signal_to_noise_threshold: PositiveFloat = Field(
         4.0, description="Fit amplitude to noise threshold for the fit"
     )
@@ -127,20 +127,20 @@ class ImageProjectionFit(ImageFit):
         return result
 
     def _validate_parameters(
-        self, signal_to_noise_ratios, beam_extent, projection, dim
+        self, parameters, signal_to_noise_ratios, beam_extent, projection, dim
     ):
         # if the amplitude of the the fit is smaller than noise then reject
         # moving this into a validate function to clean it up.
         if signal_to_noise_ratios[-1] < self.signal_to_noise_threshold:
-            # for name in parameters.keys():
-            #    parameters[name] = np.nan
+            for name in parameters.keys():
+                parameters[name] = np.nan
 
             warnings.warn(f"Projection in {dim} had a low amplitude relative to noise")
 
         # if the beam extent is outside the image then its off the screen etc. and fits cannot be trusted
         if beam_extent[-1][0] < 0 or beam_extent[-1][1] > len(projection):
-            # for name in parameters.keys():
-            #    parameters[name] = np.nan
+            for name in parameters.keys():
+                parameters[name] = np.nan
 
             warnings.warn(
                 f"Projection in {dim} was off the screen, fit cannot be trusted"
