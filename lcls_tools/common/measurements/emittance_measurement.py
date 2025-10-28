@@ -7,7 +7,6 @@ from numpy import ndarray
 from pydantic import (
     ConfigDict,
     Field,
-    PositiveInt,
     SerializeAsAny,
     field_validator,
     PositiveFloat,
