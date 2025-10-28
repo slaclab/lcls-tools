@@ -179,7 +179,6 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                 )
                 if c is None:
                     self.logger.warning("Unknown detector type '%s'. Skipping.", name)
-                    raise ValidationError("Unknown detector type '%s'", name)
                 else:
                     try:
                         devices[name] = c(area=area, name=name)

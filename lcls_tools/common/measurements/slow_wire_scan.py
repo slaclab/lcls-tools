@@ -29,5 +29,5 @@ class SlowWireBeamProfileMeasurement(WireBeamProfileMeasurement):
             method_name = f"{p}_wire_inner"
             inners[p] = getattr(self.my_wire, method_name)
 
-        while self.my_wire.motor < min(inners.values()):
+        while self.my_wire.motor_rbv < min(inners.values()):
             time.sleep(0.1)
