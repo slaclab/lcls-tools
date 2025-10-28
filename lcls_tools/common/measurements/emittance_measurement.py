@@ -294,7 +294,7 @@ class QuadScanEmittance(Measurement):
                     if twiss_betas_alphas is not None
                     else None,
                 }
-                print("beamsize_squared.shape:", beam_sizes_squared.shape)
+
                 # compute emittance and bmag
                 result = compute_emit_bmag(**emit_kwargs)
 

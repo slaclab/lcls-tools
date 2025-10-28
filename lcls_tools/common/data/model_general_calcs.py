@@ -78,8 +78,8 @@ def multi_device_optics(
     measurements: list[ScreenBeamProfileMeasurement], physics_model="BMAD"
 ) -> Dict:
     """Get rmat and twiss at measurement devices"""
-    model = _get_model_from_device(measurements[-1].device, physics_model)
-    device_names = [measurement.device.name for measurement in measurements]
+    model = _get_model_from_device(measurements[-1].beam_profile_device, physics_model)
+    device_names = [measurement.beam_profile_device.name for measurement in measurements]
     rmat = model.get_rmat(device_names)
     twiss = model.get_twiss(device_names)
     return {"rmat": rmat, "design_twiss": twiss}
