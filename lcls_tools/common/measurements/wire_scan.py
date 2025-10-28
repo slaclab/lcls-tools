@@ -180,10 +180,13 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                 if c is None:
                     self.logger.warning("Unknown detector type '%s'. Skipping.", name)
                 else:
-                    try:
-                        devices[name] = c(area=area, name=name)
-                    except ValidationError as e:
-                        self._log_validation_error(self.logger, name, e)
+                    device = c(area=area, name=name)
+                    if device is not None:
+                        devices[name] = device
+                    else:
+                        self.logger.warning(
+                            "%s device creation returned None. Skipping.", name
+                        )
             else:
                 devices["TMITLOSS"] = TMITLoss(
                     my_buffer=self.my_buffer,
