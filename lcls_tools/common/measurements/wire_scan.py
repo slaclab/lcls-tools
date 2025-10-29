@@ -179,12 +179,14 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                 )
                 if c is None:
                     self.logger.warning("Unknown detector type '%s'. Skipping.", name)
-                    raise ValidationError("Unknown detector type '%s'", name)
                 else:
-                    try:
-                        devices[name] = c(area=area, name=name)
-                    except ValidationError as e:
-                        self._log_validation_error(self.logger, name, e)
+                    device = c(area=area, name=name)
+                    if device is not None:
+                        devices[name] = device
+                    else:
+                        self.logger.warning(
+                            "%s device creation returned None. Skipping.", name
+                        )
             else:
                 devices["TMITLOSS"] = TMITLoss(
                     my_buffer=self.my_buffer,
@@ -555,9 +557,9 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         rate = self.my_wire.beam_rate
         pulses = self.my_wire.scan_pulses
 
-        # 16000 max rate, 120 min rate
-        log_range = np.log10(16000) - np.log10(120)
-        rate_factor = (np.log10(rate) - np.log10(120)) / log_range
+        # 16000 max rate, 10 min rate
+        log_range = np.log10(16000) - np.log10(10)
+        rate_factor = (np.log10(rate) - np.log10(10)) / log_range
         fudge = 1.5 - 0.4 * rate_factor  # Fudge the calculation by 1.1 to 1.5
 
         buffer_points = pulses * 3 * fudge + rate / 6
@@ -594,6 +596,20 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             / "yaml"
             / "wire_lblms.yaml"
         )
+
+        if file_to_open.exists() is False:
+            msg = f"YAML config file {file_to_open} not found."
+            self.logger.error(msg)
+            return None
+
         with open(file_to_open, "r") as f:
             wire_lblms = yaml.safe_load(f)
-        return wire_lblms
+            return wire_lblms
+
+    def _get_default_detector(self):
+        lblm_config = self._load_yaml_config()
+        if lblm_config is None:
+            return self.detectors[0]
+        else:
+            default_detector = lblm_config[self.my_wire.name]
+            return default_detector

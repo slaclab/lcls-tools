@@ -57,21 +57,21 @@ class PlaneModel(BaseModel):
 
 class WirePVSet(PVSet):
     abort_scan: PV
-    beam_rate: PV
-    enabled: PV
-    homed: PV
-    initialize: PV
-    initialize_status: PV
+    beam_rate: Optional[PV] = None
+    enabled: Optional[PV] = None
+    homed: Optional[PV] = None
+    initialize: Optional[PV] = None
+    initialize_status: Optional[PV] = None
     motor: PV
     motor_rbv: PV
-    retract: PV
+    retract: Optional[PV] = None
     scan_pulses: PV
     speed: PV
     speed_max: PV
     speed_min: PV
     start_scan: PV
-    temperature: PV
-    timeout: PV
+    temperature: Optional[PV] = None
+    timeout: Optional[PV] = None
     use_u_wire: PV
     use_x_wire: PV
     use_y_wire: PV
@@ -150,12 +150,17 @@ class Wire(Device):
     @property
     def beam_rate(self):
         """Returns current beam rate"""
-        # NC wires do not have beam rate PV defined and
-        # use global beam rate PV
+        # Some wires do not have dedicated beam rate PVs.
+        # See CATER 180392 for more details
         nc_areas = ["LI20", "LI24", "LI28", "LTUH", "DL1", "BC1", "BC2", "LTU"]
         if self.area in nc_areas and self.controls_information.PVs.beam_rate is None:
-            self.controls_information.PVs.beam_rate = PV("EVNT:SYS0:1:LCLSBEAMRATE")
-        return self.controls_information.PVs.beam_rate.get()
+            nc_beam_rate = PV("EVNT:SYS0:1:LCLSBEAMRATE")
+            return nc_beam_rate.get()
+        elif self.area in ["DIAG0"] and self.controls_information.PVs.beam_rate is None:
+            diag0_beam_rate = PV("TPG:SYS0:1:DST01:RATE")
+            return diag0_beam_rate.get()
+        else:
+            return self.controls_information.PVs.beam_rate.get()
 
     @property
     def homed(self):
