@@ -308,7 +308,6 @@ class QuadScanEmittance(Measurement):
                     else:  # beam matrix and emittance get appended
                         results[name].append(value)
 
-                # results["rms_beamsizes"].append(beam_sizes_i)
         else:
             inputs = {
                 "quad_vals": scan_values,
