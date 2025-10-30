@@ -3,7 +3,8 @@ from typing import Dict
 import numpy as np
 
 from lcls_tools.common.devices.magnet import Magnet
-from lcls_tools.common.measurements.measurement import Measurement
+
+from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
 
 
 def bmag(twiss, twiss_reference):
@@ -59,19 +60,54 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None, tao=None, element
     return bdes / effective_length / bp  # kG / m / kG m = 1/m^2
 
 
-def get_optics(magnet: Magnet, measurement: Measurement) -> Dict:
-    """Get rmats and twiss for a given beamline, magnet and measurement device"""
+def quad_scan_optics(
+    magnet: Magnet, measurement: ScreenBeamProfileMeasurement, physics_model="BMAD"
+) -> Dict:
+    """Get rmat from magnet to measurement device and twiss at measurement device"""
     # TODO: get optics from arbitrary devices (potentially in different beam lines)
+    model = _get_model_from_device(measurement.beam_profile_device, physics_model)
+    rmat = model.get_rmat(
+        from_device=magnet.name,
+        to_device=measurement.beam_profile_device.name,
+    )
+    twiss = model.get_twiss(measurement.beam_profile_device.name)
+    return {"rmat": rmat, "design_twiss": twiss}
+
+
+def multi_device_optics(
+    measurements: list[ScreenBeamProfileMeasurement], physics_model="BMAD"
+) -> Dict:
+    """Get rmat and twiss at measurement devices"""
+    model = _get_model_from_device(measurements[-1].beam_profile_device, physics_model)
+    device_names = [
+        measurement.beam_profile_device.name for measurement in measurements
+    ]
+    rmat = model.get_rmat(device_names)
+    twiss = model.get_twiss(device_names)
+    return {"rmat": rmat, "design_twiss": twiss}
+
+
+def _get_model_from_device(device, physics_model):
     from meme.model import Model
 
-    model = Model(magnet.metadata.area)
-    rmats = model.get_rmat(
-        from_device=magnet.name,
-        to_device=measurement.device.name,
-        from_device_pos="mid",
-    )
-    twiss = model.get_twiss(measurement.device.name)
-    return {"rmats": rmats, "design_twiss": twiss}
+    beam_path = None
+    for bp in device.metadata.beam_path:
+        if bp in [
+            "CU_HXR",
+            "CU_SXR",
+            "CU_SPEC",
+            "SC_DIAG0",
+            "SC_BSYD",
+            "SC_HXR",
+            "SC_SXR",
+            "FACET2E",
+        ]:
+            beam_path = bp
+            break
+    if beam_path is None:
+        raise ValueError("Valid beam path not found in device metadata.")
+
+    return Model(beam_path, model_source=physics_model, use_design=False)
 
 
 def propagate_twiss(twiss_init: np.ndarray, rmat: np.ndarray):
@@ -138,7 +174,7 @@ def build_quad_rmat(k: np.ndarray, q_len: float, thin_lens: bool = False):
     """
 
     if not thin_lens:
-        sqrt_k = np.sqrt(np.abs(k))
+        sqrt_k = np.sqrt(np.abs(k)) + 1.0e-6  # add small value for numerical stability
 
         c = (
             np.cos(sqrt_k * q_len) * (k > 0)
