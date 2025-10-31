@@ -76,7 +76,12 @@ def param_fit(curve, params, pos, data, use_prior=False):
 
     bounds = tuple(p.bounds for p in params)
     res = map_fit(forward, x, y, init, bounds, prior)
-    return {p.name: p.scale(val, pos, data) for p, val in zip(params, res.x)}
+
+    fitp = {p.name: p.scale(val, pos, data) for p, val in zip(params, res.x)}
+    error = np.std(data - curve(x, **fitp))
+    fitp["error"] = error
+
+    return fitp
 
 
 def map_fit(curve, x, y, init, bounds=None, prior=None):
