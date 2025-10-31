@@ -265,12 +265,10 @@ class Magnet(Device):
         self,
         scan_settings: List[float],
         function: Optional[callable] = None,
-        *args,
-        **kwargs,
     ) -> None:
         for setting in scan_settings:
             self.bctrl = setting
-            function(*args, **kwargs) if function else None
+            function() if function else None
 
 
 class MagnetCollection(DeviceCollection):
