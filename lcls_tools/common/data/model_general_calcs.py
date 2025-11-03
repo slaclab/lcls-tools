@@ -184,7 +184,7 @@ def build_quad_rmat(k: np.ndarray, q_len: float, thin_lens: bool = False):
     """
 
     if not thin_lens:
-        sqrt_k = np.sqrt(np.abs(k))
+        sqrt_k = np.sqrt(np.abs(k)) + 1.0e-6  # add small value for numerical stability
 
         c = (
             np.cos(sqrt_k * q_len) * (k > 0)
