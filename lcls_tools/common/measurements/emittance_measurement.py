@@ -9,7 +9,6 @@ from pydantic import (
     ConfigDict,
     PrivateAttr,
     SerializeAsAny,
-    field_validator,
     PositiveFloat,
 )
 
@@ -214,15 +213,10 @@ class EmittanceMeasurementBase(Measurement):
     beam_sizes: Optional[NDArrayAnnotatedType] = None
     rmats: Optional[NDArrayAnnotatedType] = None
     design_twiss: Optional[NDArrayAnnotatedType] = None
-    emittance_dict: dict = {}
+    emittance_dict: Optional[dict] = None
 
     name: str = "emittance_measurement_base"
     model_config = ConfigDict(arbitrary_types_allowed=True)
-
-    @field_validator("rmat")
-    def validate_rmat(cls, v, info):
-        assert v.shape == (2, 2, 2)
-        return v
 
     def measure(self):
         """
@@ -236,9 +230,9 @@ class EmittanceMeasurementBase(Measurement):
 
         self.retrieve_beam_profiles_and_optics()
 
-        # rmats, design_twiss = self.setup_rmats_and_design_twiss()
+        self.calculate_emittance()
 
-        return self.calculate_emittance()
+        return self.construct_result()
 
     @abstractmethod
     def retrieve_beam_profiles_and_optics(self):
@@ -249,12 +243,6 @@ class EmittanceMeasurementBase(Measurement):
 
         """
         pass
-
-    """
-    @abstractmethod
-    def setup_rmats_and_design_twiss(self):
-        pass
-    """
 
     def calculate_emittance(self):
         """
@@ -367,11 +355,6 @@ class QuadScanEmittance(EmittanceMeasurementBase):
 
     name: str = "quad_scan_emittance"
     model_config = ConfigDict(arbitrary_types_allowed=True)
-
-    @field_validator("rmat")
-    def validate_rmat(cls, v, info):
-        assert v.shape == (2, 2, 2)
-        return v
 
     def retrieve_beam_profiles_and_optics(self):
         """Perform the beamsize measurements using a basic quadrupole scan."""
