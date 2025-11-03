@@ -96,9 +96,11 @@ WS0H04:
     - BPMS:HTR:860
     - BPMS:HTR:960
 
-WSDG0:
+WSDG01:
   detectors:
     - SBLM01A:DIAG0
+    - LBLM01A:HTR
+    - LBLM01B:HTR
   bpms_before_wire:
     - BPMS:DIAG0:190
     - BPMS:DIAG0:210
