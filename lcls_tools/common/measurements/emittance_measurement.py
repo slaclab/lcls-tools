@@ -211,16 +211,13 @@ class EmittanceMeasurementBase(Measurement):
     wait_time: PositiveFloat = 5.0
 
     beam_profiles: List[BeamProfileMeasurementResult] = []
-    rmats: NDArrayAnnotatedType = None
-    design_twiss: NDArrayAnnotatedType = None
+    beam_sizes: Optional[NDArrayAnnotatedType] = None
+    rmats: Optional[NDArrayAnnotatedType] = None
+    design_twiss: Optional[NDArrayAnnotatedType] = None
+    emittance_dict: Optional[dict] = None
 
     name: str = "emittance_measurement_base"
     model_config = ConfigDict(arbitrary_types_allowed=True)
-
-    @field_validator("rmat")
-    def validate_rmat(cls, v, info):
-        assert v.shape == (2, 2, 2)
-        return v
 
     def measure(self):
         """
@@ -234,9 +231,9 @@ class EmittanceMeasurementBase(Measurement):
 
         self.retrieve_beam_profiles_and_optics()
 
-        # rmats, design_twiss = self.setup_rmats_and_design_twiss()
+        self.calculate_emittance()
 
-        return self.calculate_emittance()
+        return self.construct_result()
 
     @abstractmethod
     def retrieve_beam_profiles_and_optics(self):
@@ -248,17 +245,54 @@ class EmittanceMeasurementBase(Measurement):
         """
         pass
 
-    """
-    @abstractmethod
-    def setup_rmats_and_design_twiss(self):
-        pass
-    """
-
-    @abstractmethod
-    def calculate_emittance(self) -> EmittanceMeasurementResult:
+    def calculate_emittance(self):
         """
 
         Calculate the emittance from the measured beam sizes, rmats and twiss.
+
+        """
+
+        # Square beam sizes
+        beam_sizes = []
+        for beam_profile in self.beam_profiles:
+            beam_sizes.append(beam_profile.rms_sizes)
+        beam_sizes = np.array(beam_sizes).T
+        self.beam_sizes = beam_sizes
+        beamsizes_squared = (beam_sizes * 1e-3) ** 2  #  units of mm^2
+        beamsizes_squared = np.expand_dims(beamsizes_squared, -1)
+
+        # pick out x and y rmats
+        rmats = np.stack([self.rmats[:, 0:2, 0:2], self.rmats[:, 2:4, 2:4]])
+
+        # Format design twiss
+        twiss_betas_alphas = np.array(
+            [
+                [
+                    self.design_twiss["beta_x"],
+                    self.design_twiss["alpha_x"],
+                ],
+                [
+                    self.design_twiss["beta_y"],
+                    self.design_twiss["alpha_y"],
+                ],
+            ]
+        )
+
+        twiss_design = np.swapaxes(
+            twiss_betas_alphas, 1, 2
+        )  # make shape 2 x n_measurements x 2
+
+        self.emittance_dict = compute_emit_bmag(beamsizes_squared, rmats, twiss_design)
+        self.emittance_dict["emittance"] = normalize_emittance(
+            self.emittance_dict["emittance"], self.energy
+        )
+
+    @abstractmethod
+    def construct_result(self) -> EmittanceMeasurementResult:
+        """
+
+        Collect the emittance, bmag, beam matrix, and other variables into an
+        EmittanceMeasurementResult
 
         Returns:
         -------
@@ -545,11 +579,6 @@ class MultiDeviceEmittance(EmittanceMeasurementBase):
 
     name: str = "multi_device_emittance"
 
-    @field_validator("rmat")
-    def validate_rmat(cls, v, info):
-        assert v.shape == (2, 2, 2)
-        return v
-
     def retrieve_beam_profiles_and_optics(self):
         """Perform the beamsize measurements"""
         for beamsize_measurement in self.beamsize_measurements:
@@ -563,43 +592,21 @@ class MultiDeviceEmittance(EmittanceMeasurementBase):
         self.rmats = optics["rmat"]
         self.design_twiss = optics["design_twiss"]
 
-    def calculate_emittance(self):
-        # Square beam sizes
-        beam_sizes = []
-        for beam_profile in self.beam_profiles:
-            beam_sizes.append(beam_profile.rms_sizes)
-        beam_sizes = np.array(beam_sizes).T
-        beamsizes_squared = (beam_sizes * 1e-3) ** 2  #  units of mm^2
-        beamsizes_squared = np.expand_dims(beamsizes_squared, -1)
+    def construct_result(self):
+        """
 
-        # pick out x and y rmats
-        rmats = np.stack([self.rmats[:, 0:2, 0:2], self.rmats[:, 2:4, 2:4]])
+        Calculate the emittance from the measured beam sizes and quadrupole strengths.
 
-        # Format design twiss
-        twiss_betas_alphas = np.array(
-            [
-                [
-                    self.design_twiss["beta_x"],
-                    self.design_twiss["alpha_x"],
-                ],
-                [
-                    self.design_twiss["beta_y"],
-                    self.design_twiss["alpha_y"],
-                ],
-            ]
-        )
+        Returns:
+        -------
+        result : EmittanceMeasurementResult
+            Object containing the results of the emittance measurement
 
-        twiss_design = np.swapaxes(
-            twiss_betas_alphas, 1, 2
-        )  # make shape 2 x n_measurements x 2
-
-        emittance_dict = compute_emit_bmag(beamsizes_squared, rmats, twiss_design)
-        emittance_dict["emittance"] = normalize_emittance(
-            emittance_dict["emittance"], self.energy
-        )
-        results_dict = emittance_dict | {
-            "rms_beamsizes": beam_sizes,
-            "metadata": self.model_dump(),
+        """
+        metadata = self.model_dump()
+        results_dict = self.emittance_dict | {
+            "rms_beamsizes": self.beam_sizes,
+            "metadata": metadata,
         }
 
         return EmittanceMeasurementResult(**results_dict)
