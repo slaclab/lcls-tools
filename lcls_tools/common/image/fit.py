@@ -99,17 +99,17 @@ class ImageProjectionFit(ImageFit):
             x = np.arange(len(projection))
             parameters = self.projection_fit_method(x, projection)
 
-            signal_to_noise_ratios.append(gaussian.signal_to_noise(parameters))
+            snr = gaussian.signal_to_noise(parameters)
 
             # calculate the extent of the beam in the projection - scaled to the image size
-            beam_extent.append(gaussian.extent(parameters, self.beam_extent_n_stds))
+            extent = gaussian.extent(parameters, self.beam_extent_n_stds)
 
             # perform validation checks, modify parameters if checks fail
-            self._validate_parameters(
-                parameters, signal_to_noise_ratios, beam_extent, projection, dim
-            )
+            self._validate_parameters(parameters, snr, extent, projection, dim)
 
             fit_parameters.append(parameters)
+            signal_to_noise_ratios.append(snr)
+            beam_extent.append(extent)
 
         result = ImageProjectionFitResult(
             centroid=[ele["mean"] for ele in fit_parameters],
@@ -130,14 +130,14 @@ class ImageProjectionFit(ImageFit):
     ):
         # if the amplitude of the the fit is smaller than noise then reject
         # moving this into a validate function to clean it up.
-        if signal_to_noise_ratios[-1] < self.signal_to_noise_threshold:
+        if signal_to_noise_ratios < self.signal_to_noise_threshold:
             for name in parameters.keys():
                 parameters[name] = np.nan
 
             warnings.warn(f"Projection in {dim} had a low amplitude relative to noise")
 
         # if the beam extent is outside the image then its off the screen etc. and fits cannot be trusted
-        if beam_extent[-1][0] < 0 or beam_extent[-1][1] > len(projection):
+        if beam_extent[0] < 0 or beam_extent[1] > len(projection):
             for name in parameters.keys():
                 parameters[name] = np.nan
 
