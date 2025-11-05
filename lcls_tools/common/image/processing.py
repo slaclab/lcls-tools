@@ -29,9 +29,9 @@ class ImageProcessor(lcls_tools.common.BaseModel):
     n_stds : int, optional
         Number of standard deviations for cropping. Default is 8.
     center : bool, optional
-        If True, center images using the image fitter. Default is True.
+        If True, center images using the image fitter. Default is False.
     crop : bool, optional
-        If True, crop images using fitted centroid and RMS size. Default is True.
+        If True, crop images using fitted centroid and RMS size. Default is False.
     ------------------------
     Methods:
     subtract_background: takes a raw image and does pixel intensity subtraction
@@ -45,8 +45,8 @@ class ImageProcessor(lcls_tools.common.BaseModel):
     threshold: Optional[float] = None
     threshold_multiplier: float = 1.0
     n_stds: int = 8
-    center: bool = True
-    crop: bool = True
+    center: bool = False
+    crop: bool = False
 
     def subtract_background(self, raw_image: np.ndarray) -> np.ndarray:
         """Subtract background pixel intensity from a raw image"""
@@ -58,8 +58,29 @@ class ImageProcessor(lcls_tools.common.BaseModel):
         # clip images to make sure values are positive
         return np.clip(image, 0, None)
 
-    def process(self, raw_images: np.ndarray) -> np.ndarray:
-        return process_images(
+    def process(
+        self, raw_images: np.ndarray, return_offsets: bool = False
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        Process raw images by subtracting background and applying filters/cropping
+        as specified in the class parameters.
+
+        Parameters
+        ----------
+        raw_images : np.ndarray
+            Batch of raw images to be processed.
+        return_offsets : bool, optional
+            If True, also return the offsets of the image with respect to the original images. Default is False.
+
+        Returns
+        -------
+        np.ndarray
+            Processed images
+        np.ndarray
+            If specified, offsets of the image with respect to the original images.
+
+        """
+        processed_images, offsets = process_images(
             self.subtract_background(raw_images),
             pool_size=self.pool_size,
             median_filter_size=self.median_filter_size,
@@ -69,6 +90,9 @@ class ImageProcessor(lcls_tools.common.BaseModel):
             center=self.center,
             crop=self.crop,
         )
+        if return_offsets:
+            return processed_images, offsets
+        return processed_images
 
 
 def compute_blob_stats(image):
@@ -358,6 +382,8 @@ def process_images(
     -------
     np.ndarray
         Processed images
+    np.ndarray
+        Offsets of the image centers with respect to the original images.
     """
 
     batch_shape = images.shape[:-2]
@@ -406,4 +432,17 @@ def process_images(
     else:
         pooled_images = cropped_images
 
-    return pooled_images
+    # using the cropping and centering info, determine the offset of
+    # the image center with respect to the original image
+    if len(batch_shape) == 0:
+        batch_shape = (1,)
+
+    offsets = np.zeros((len(batch_shape), 2))
+    if center:
+        image_center = np.array(images.shape[-2:]) / 2
+        offsets += image_center - image_centroids
+    if crop:
+        crop_start = crop_ranges[:, 0]
+        offsets += crop_start
+
+    return pooled_images, offsets
