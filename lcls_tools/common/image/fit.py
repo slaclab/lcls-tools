@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional, List, Callable
+from typing import List
 from types import ModuleType
 
 import numpy as np
