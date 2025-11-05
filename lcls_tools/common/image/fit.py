@@ -86,9 +86,7 @@ class ImageProjectionFit(ImageFit):
         signal_to_noise_ratios = []
         beam_extent = []
 
-        module = importlib.import_module(
-            f"lcls_tools.common.model.{self.fit_module}"
-        )
+        module = importlib.import_module(f"lcls_tools.common.model.{self.fit_module}")
 
         for axis, dim in enumerate(dimensions):
             projection = np.array(np.sum(image, axis=axis))

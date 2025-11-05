@@ -49,8 +49,6 @@ def plot_image_projection_fit(result: ImageProjectionFitResult):
 
         ax[i + 1].plot(projections[name], label="data")
         fit_params.pop("error")
-        ax[i + 1].plot(
-            module.curve(x, **fit_params), label="model fit"
-        )
+        ax[i + 1].plot(module.curve(x, **fit_params), label="model fit")
 
     return fig, ax
