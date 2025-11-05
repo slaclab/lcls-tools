@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List, Callable
+from types import ModuleType
 
 import numpy as np
 from numpy import ndarray
@@ -18,9 +19,7 @@ class ImageFitResult(lcls_tools.common.BaseModel):
 
 
 class ImageProjectionFitResult(ImageFitResult):
-    projection_fit_method: Callable
-    validation_method: Optional[Callable] = None
-    curve: Callable
+    projection_fit_module: ModuleType = Field(exclude=True)
     projection_fit_parameters: List[dict[str, float]]
     signal_to_noise_ratio: NDArrayAnnotatedType = Field(
         description="Ratio of fit amplitude to noise std in the data"
@@ -28,14 +27,6 @@ class ImageProjectionFitResult(ImageFitResult):
     beam_extent: NDArrayAnnotatedType = Field(
         description="Extent of the beam in the data, defined as mean +/- 2*sigma"
     )
-
-
-"""
-
-class ImageProjectionFitResult(ImageFitResult):
-    projection_fit_method: Callable
-    projection_fit_parameters: List[dict,[str,float]]
-"""
 
 
 class ImageFit(lcls_tools.common.BaseModel, ABC):
@@ -78,14 +69,16 @@ class ImageProjectionFit(ImageFit):
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    projection_fit_method: Callable = gaussian.fit
-    curve: Callable = gaussian.curve
+    fit_module: ModuleType = gaussian
     signal_to_noise_threshold: PositiveFloat = Field(
         2.0, description="Fit amplitude to noise threshold for the fit"
     )
     beam_extent_n_stds: PositiveFloat = Field(
         2.0,
         description="Number of standard deviations on either side to use for the beam extent",
+    )
+    use_prior: bool = Field(
+        False, description="Whether to use prior distributions in the fit"
     )
 
     def _fit_image(self, image: ndarray) -> ImageProjectionFitResult:
@@ -97,12 +90,12 @@ class ImageProjectionFit(ImageFit):
         for axis, dim in enumerate(dimensions):
             projection = np.array(np.sum(image, axis=axis))
             x = np.arange(len(projection))
-            parameters = self.projection_fit_method(x, projection)
+            parameters = self.fit_module.fit(x, projection, use_prior=self.use_prior)
 
-            snr = gaussian.signal_to_noise(parameters)
+            snr = self.fit_module.signal_to_noise(parameters)
 
             # calculate the extent of the beam in the projection - scaled to the image size
-            extent = gaussian.extent(parameters, self.beam_extent_n_stds)
+            extent = self.fit_module.extent(parameters, self.beam_extent_n_stds)
 
             # perform validation checks, modify parameters if checks fail
             self._validate_parameters(parameters, snr, extent, projection, dim)
@@ -117,8 +110,7 @@ class ImageProjectionFit(ImageFit):
             total_intensity=image.sum(),
             projection_fit_parameters=fit_parameters,
             image=image,
-            projection_fit_method=self.projection_fit_method,
-            curve=self.curve,
+            projection_fit_module=self.fit_module,
             signal_to_noise_ratio=signal_to_noise_ratios,
             beam_extent=beam_extent,
         )
