@@ -8,6 +8,8 @@ from skimage.measure import block_reduce
 from skimage.filters import threshold_triangle
 import lcls_tools
 
+print("using the correct image processing")
+
 
 class ImageProcessor(lcls_tools.common.BaseModel):
     """
@@ -38,20 +40,20 @@ class ImageProcessor(lcls_tools.common.BaseModel):
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
     background_image: Optional[np.ndarray] = None
-    pool_size: Optional[int] = (None,)
-    median_filter_size: Optional[int] = (None,)
-    threshold: Optional[float] = (None,)
-    threshold_multiplier: float = (1.0,)
-    n_stds: int = (8,)
-    center: bool = (True,)
-    crop: bool = (True,)
+    pool_size: Optional[int] = None
+    median_filter_size: Optional[int] = None
+    threshold: Optional[float] = None
+    threshold_multiplier: float = 1.0
+    n_stds: int = 8
+    center: bool = True
+    crop: bool = True
 
     def subtract_background(self, raw_image: np.ndarray) -> np.ndarray:
         """Subtract background pixel intensity from a raw image"""
         if self.background_image is not None:
             image = raw_image - self.background_image
         else:
-            image = raw_image - self.threshold
+            image = raw_image
 
         # clip images to make sure values are positive
         return np.clip(image, 0, None)
