@@ -21,8 +21,8 @@ def plot_image_projection_fit(result: ImageProjectionFitResult):
     }
     centroid = np.array(
         (
-            result.x_projection_fit_parameters["mean"],
-            result.y_projection_fit_parameters["mean"],
+            result.projection_fit_parameters[0]["mean"],
+            result.projection_fit_parameters[1]["mean"],
         )
     )
 
@@ -30,7 +30,7 @@ def plot_image_projection_fit(result: ImageProjectionFitResult):
 
     # plot data and model fit
     for i, name in enumerate(["x", "y"]):
-        fit_params = getattr(result, f"{name}_projection_fit_parameters")
+        fit_params = result.projection_fit_parameters[i]
         ax[i + 1].text(
             0.01,
             0.99,
@@ -43,14 +43,9 @@ def plot_image_projection_fit(result: ImageProjectionFitResult):
         x = np.arange(len(projections[name]))
 
         ax[i + 1].plot(projections[name], label="data")
-        fit_param_numpy = np.array(
-            [
-                fit_params[name]
-                for name in result.projection_fit_method.parameters.parameters
-            ]
-        )
+        fit_params.pop("error")
         ax[i + 1].plot(
-            result.projection_fit_method._forward(x, fit_param_numpy), label="model fit"
+            result.projection_fit_module.curve(x, **fit_params), label="model fit"
         )
 
     return fig, ax
