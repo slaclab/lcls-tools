@@ -1,15 +1,13 @@
 from abc import ABC, abstractmethod
-from typing import Optional, List
+import importlib
+from typing import List
 
 import numpy as np
 from numpy import ndarray
-from pydantic import PositiveFloat, Field
-
-from lcls_tools.common.data.fit.method_base import MethodBase
-from lcls_tools.common.data.fit.methods import GaussianModel
-from lcls_tools.common.data.fit.projection import ProjectionFit
+from pydantic import PositiveFloat, Field, ConfigDict
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 import lcls_tools
+import warnings
 
 
 class ImageFitResult(lcls_tools.common.BaseModel):
@@ -20,9 +18,14 @@ class ImageFitResult(lcls_tools.common.BaseModel):
 
 
 class ImageProjectionFitResult(ImageFitResult):
-    projection_fit_method: MethodBase
-    x_projection_fit_parameters: dict[str, float]
-    y_projection_fit_parameters: dict[str, float]
+    projection_fit_module: str
+    projection_fit_parameters: List[dict[str, float]]
+    signal_to_noise_ratio: NDArrayAnnotatedType = Field(
+        description="Ratio of fit amplitude to noise std in the data"
+    )
+    beam_extent: NDArrayAnnotatedType = Field(
+        description="Extent of the beam in the data, defined as mean +/- 2*sigma"
+    )
 
 
 class ImageFit(lcls_tools.common.BaseModel, ABC):
@@ -47,6 +50,15 @@ class ImageFit(lcls_tools.common.BaseModel, ABC):
         """
         ...
 
+    @abstractmethod
+    def _validate_parameters(self, parameters: list[float]):
+        """
+        Private method to be overwritten by subclasses.
+        Expected to validate parameters.
+        return bool stating validity
+        """
+        ...
+
 
 class ImageProjectionFit(ImageFit):
     """
@@ -55,25 +67,73 @@ class ImageProjectionFit(ImageFit):
     profile with prior distributions placed on the model parameters.
     """
 
-    projection_fit_method: Optional[MethodBase] = GaussianModel(use_priors=True)
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    fit_module: str = "gaussian"
+    signal_to_noise_threshold: PositiveFloat = Field(
+        2.0, description="Fit amplitude to noise threshold for the fit"
+    )
+    beam_extent_n_stds: PositiveFloat = Field(
+        2.0,
+        description="Number of standard deviations on either side to use for the beam extent",
+    )
+    use_prior: bool = Field(
+        False, description="Whether to use prior distributions in the fit"
+    )
 
     def _fit_image(self, image: ndarray) -> ImageProjectionFitResult:
-        x_projection = np.array(np.sum(image, axis=0))
-        y_projection = np.array(np.sum(image, axis=1))
+        dimensions = ("x", "y")
+        fit_parameters = []
+        signal_to_noise_ratios = []
+        beam_extent = []
 
-        proj_fit = ProjectionFit(model=self.projection_fit_method)
+        module = importlib.import_module(f"lcls_tools.common.model.{self.fit_module}")
 
-        x_parameters = proj_fit.fit_projection(x_projection)
-        y_parameters = proj_fit.fit_projection(y_projection)
+        for axis, dim in enumerate(dimensions):
+            projection = np.array(np.sum(image, axis=axis))
+            x = np.arange(len(projection))
+            parameters = module.fit(x, projection, use_prior=self.use_prior)
+
+            snr = module.signal_to_noise(parameters)
+
+            # calculate the extent of the beam in the projection - scaled to the image size
+            extent = module.extent(parameters, self.beam_extent_n_stds)
+
+            # perform validation checks, modify parameters if checks fail
+            self._validate_parameters(parameters, snr, extent, projection, dim)
+
+            fit_parameters.append(parameters)
+            signal_to_noise_ratios.append(snr)
+            beam_extent.append(extent)
 
         result = ImageProjectionFitResult(
-            centroid=[x_parameters["mean"], y_parameters["mean"]],
-            rms_size=[x_parameters["sigma"], y_parameters["sigma"]],
+            centroid=[ele["mean"] for ele in fit_parameters],
+            rms_size=[ele["sigma"] for ele in fit_parameters],
             total_intensity=image.sum(),
-            x_projection_fit_parameters=x_parameters,
-            y_projection_fit_parameters=y_parameters,
+            projection_fit_parameters=fit_parameters,
             image=image,
-            projection_fit_method=self.projection_fit_method,
+            projection_fit_module=self.fit_module,
+            signal_to_noise_ratio=signal_to_noise_ratios,
+            beam_extent=beam_extent,
         )
 
         return result
+
+    def _validate_parameters(
+        self, parameters, signal_to_noise_ratios, beam_extent, projection, dim
+    ):
+        # if the amplitude of the the fit is smaller than noise then reject
+        # moving this into a validate function to clean it up.
+        if signal_to_noise_ratios < self.signal_to_noise_threshold:
+            for name in parameters.keys():
+                parameters[name] = np.nan
+
+            warnings.warn(f"Projection in {dim} had a low amplitude relative to noise")
+
+        # if the beam extent is outside the image then its off the screen etc. and fits cannot be trusted
+        if beam_extent[0] < 0 or beam_extent[1] > len(projection):
+            for name in parameters.keys():
+                parameters[name] = np.nan
+
+            warnings.warn(
+                f"Projection in {dim} was off the screen, fit cannot be trusted"
+            )
