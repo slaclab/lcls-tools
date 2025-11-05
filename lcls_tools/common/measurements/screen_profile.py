@@ -83,7 +83,9 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
             images.append(self.beam_profile_device.image)
             # TODO: need to add a wait statement in here for images to update
 
-        processed_images = self.image_processor.process(images)
+        processed_images, offsets = self.image_processor.process(
+            images, return_offsets=True
+        )
 
         (
             rms_sizes_all,
@@ -98,7 +100,7 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
             processed_images=processed_images,
             rms_sizes_all=rms_sizes_all,
             rms_sizes=rms_sizes if rms_sizes.size > 0 else None,
-            centroids=centroids if centroids.size > 0 else None,
+            centroids=centroids + offsets if centroids.size > 0 else None,
             total_intensities=total_intensities if total_intensities.size > 0 else None,
             signal_to_noise_ratios=signal_to_noise_ratios
             if signal_to_noise_ratios.size > 0
