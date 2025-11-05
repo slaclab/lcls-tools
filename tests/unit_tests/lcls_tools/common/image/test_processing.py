@@ -2,9 +2,7 @@ import unittest
 import numpy as np
 
 from lcls_tools.common.image.processing import ImageProcessor
-from lcls_tools.common.image.roi import ROI
 
-import matplotlib.pyplot as plt
 
 class TestImageProcessing(unittest.TestCase):
     data_location: str = "tests/datasets/images/numpy/"
@@ -31,11 +29,7 @@ class TestImageProcessing(unittest.TestCase):
         )
 
         # test fixed threshold
-        image_processor = ImageProcessor(
-            threshold=100,
-            crop=False,
-            center=False
-        )
+        image_processor = ImageProcessor(threshold=100, crop=False, center=False)
         image = image_processor.process(self.image)
         np.testing.assert_array_equal(
             image,
@@ -48,7 +42,9 @@ class TestImageProcessing(unittest.TestCase):
             crop=True,
             threshold=0,
         )
-        processed_image, offsets = image_processor.process(self.image, return_offsets=True)
+        processed_image, offsets = image_processor.process(
+            self.image, return_offsets=True
+        )
         np.testing.assert_allclose(
             processed_image,
             self.image[200:599, 200:599],
@@ -66,7 +62,9 @@ class TestImageProcessing(unittest.TestCase):
             crop=False,
             threshold=0,
         )
-        processed_image, offsets = image_processor.process(self.image[100:, 100:], return_offsets=True)
+        processed_image, offsets = image_processor.process(
+            self.image[100:, 100:], return_offsets=True
+        )
         np.testing.assert_allclose(
             processed_image,
             self.image[50:-50, 50:-50],
@@ -97,4 +95,3 @@ class TestImageProcessing(unittest.TestCase):
                 "expected image to equal background " + "during background subtraction"
             ),
         )
-
