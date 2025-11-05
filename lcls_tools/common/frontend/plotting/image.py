@@ -22,8 +22,8 @@ def plot_image_projection_fit(result: ImageProjectionFitResult):
     }
     centroid = np.array(
         (
-            result.projection_fit_parameters[0]["mean"],
-            result.projection_fit_parameters[1]["mean"],
+            result.projection_fit_parameters[0]["mean"],  # 0 - is the x parameters
+            result.projection_fit_parameters[1]["mean"],  # 1 - is the y parameters
         )
     )
 
