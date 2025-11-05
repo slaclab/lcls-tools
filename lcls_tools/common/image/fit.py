@@ -1,11 +1,10 @@
 from abc import ABC, abstractmethod
+import importlib
 from typing import List
-from types import ModuleType
 
 import numpy as np
 from numpy import ndarray
 from pydantic import PositiveFloat, Field, ConfigDict
-from lcls_tools.common.model import gaussian
 from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 import lcls_tools
 import warnings
@@ -19,7 +18,7 @@ class ImageFitResult(lcls_tools.common.BaseModel):
 
 
 class ImageProjectionFitResult(ImageFitResult):
-    projection_fit_module: ModuleType = Field(exclude=True)
+    projection_fit_module: str
     projection_fit_parameters: List[dict[str, float]]
     signal_to_noise_ratio: NDArrayAnnotatedType = Field(
         description="Ratio of fit amplitude to noise std in the data"
@@ -69,7 +68,7 @@ class ImageProjectionFit(ImageFit):
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    fit_module: ModuleType = gaussian
+    fit_module: str = "gaussian"
     signal_to_noise_threshold: PositiveFloat = Field(
         2.0, description="Fit amplitude to noise threshold for the fit"
     )
@@ -87,15 +86,19 @@ class ImageProjectionFit(ImageFit):
         signal_to_noise_ratios = []
         beam_extent = []
 
+        module = importlib.import_module(
+            f"lcls_tools.common.model.{self.fit_module}"
+        )
+
         for axis, dim in enumerate(dimensions):
             projection = np.array(np.sum(image, axis=axis))
             x = np.arange(len(projection))
-            parameters = self.fit_module.fit(x, projection, use_prior=self.use_prior)
+            parameters = module.fit(x, projection, use_prior=self.use_prior)
 
-            snr = self.fit_module.signal_to_noise(parameters)
+            snr = module.signal_to_noise(parameters)
 
             # calculate the extent of the beam in the projection - scaled to the image size
-            extent = self.fit_module.extent(parameters, self.beam_extent_n_stds)
+            extent = module.extent(parameters, self.beam_extent_n_stds)
 
             # perform validation checks, modify parameters if checks fail
             self._validate_parameters(parameters, snr, extent, projection, dim)

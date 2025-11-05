@@ -1,3 +1,4 @@
+import importlib
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -28,6 +29,10 @@ def plot_image_projection_fit(result: ImageProjectionFitResult):
 
     ax[0].plot(*centroid, "+r")
 
+    module = importlib.import_module(
+        f"lcls_tools.common.model.{result.projection_fit_module}"
+    )
+
     # plot data and model fit
     for i, name in enumerate(["x", "y"]):
         fit_params = result.projection_fit_parameters[i]
@@ -45,7 +50,7 @@ def plot_image_projection_fit(result: ImageProjectionFitResult):
         ax[i + 1].plot(projections[name], label="data")
         fit_params.pop("error")
         ax[i + 1].plot(
-            result.projection_fit_module.curve(x, **fit_params), label="model fit"
+            module.curve(x, **fit_params), label="model fit"
         )
 
     return fig, ax

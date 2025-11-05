@@ -1,9 +1,10 @@
+import unittest
 import numpy as np
 from lcls_tools.common.frontend.plotting.image import plot_image_projection_fit
 from lcls_tools.common.image.fit import ImageProjectionFit
 
 
-class TestImageProjectionFit:
+class TestImageProjectionFit(unittest.TestCase):
     def test_fit_and_visualization(self):
         test_image = np.zeros((100, 100))
         test_image[40:60, 30:70] = 255
