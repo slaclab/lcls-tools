@@ -8,8 +8,6 @@ from skimage.measure import block_reduce
 from skimage.filters import threshold_triangle
 import lcls_tools
 
-print("using the correct image processing")
-
 
 class ImageProcessor(lcls_tools.common.BaseModel):
     """

@@ -37,6 +37,17 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
 
         assert result.metadata == measurement.model_dump()
 
+    def test_measure_without_fitting(self):
+        measurement = ScreenBeamProfileMeasurement(
+            beam_profile_device=self.screen, fit_profile=False
+        )
+        result = measurement.measure()
+        self.assertIsInstance(result, ScreenBeamProfileMeasurementResult)
+
+        assert result.processed_images.shape == (1, 100, 100)
+
+        assert result.metadata == measurement.model_dump()
+
     def test_multiple_shot_measure(self):
         measurement = ScreenBeamProfileMeasurement(
             beam_profile_device=self.screen, n_shots=10
