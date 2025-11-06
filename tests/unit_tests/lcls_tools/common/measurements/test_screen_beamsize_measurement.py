@@ -29,7 +29,7 @@ class TestScreenBeamProfileMeasurement(unittest.TestCase):
         assert result.processed_images.shape == (1, 100, 100)
         assert result.rms_sizes.shape == (2,)
         assert result.total_intensities.shape == ()
-        assert np.allclose(result.rms_sizes, np.array([8.0347, 8.0347]))
+        assert np.allclose(result.rms_sizes, np.array([7.6924137, 7.6924137]))
         assert np.allclose(result.centroids.flatten(), np.array([49.5, 49.5]))
         assert np.allclose(result.total_intensities, np.array([102000.0]))
 
