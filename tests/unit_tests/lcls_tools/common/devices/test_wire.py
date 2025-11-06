@@ -6,10 +6,15 @@ import inspect
 
 # Local imports
 from lcls_tools.common.devices.reader import create_wire
+from lcls_tools.common.devices.wire import WireMetadata
 
 
 class WireTest(TestCase):
     def setUp(self) -> None:
+        # 1) Patch PV ctrlvars before wire construction
+        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=Mock)
+        self.mock_ctrl_options = self.ctrl_options_patch.start()
+
         # Set up some mocks that are needed for all test-cases.
         self.options_and_getter_function = {
             "MOTR.VELO": None,
@@ -34,20 +39,25 @@ class WireTest(TestCase):
             "MOTR_ENABLED_STS": None,
             "MOTR_HOMED_STS": None,
         }
-        # set up patch so that each magnet is constructed with ALL ctrl options
-        self.ctrl_options_patch = patch("epics.PV.get_ctrlvars", new_callable=Mock)
-        self.mock_ctrl_options = self.ctrl_options_patch.start()
         self.mock_ctrl_options.return_value = {
             "enum_strs": tuple(self.options_and_getter_function.keys())
         }
-        # create the WSBP2 wire with all possible ctrl options
-        self.wire = create_wire(
-            area="BYP",
-            name="WSBP2",
+
+        # 2) Patch the PV class before wire construction so all PVs are mocks
+        self.pv_class_patch = patch(
+            "lcls_tools.common.devices.device.PV", autospec=True
         )
-        self.options_requiring_state_check = [
-            "MOTR",
-        ]
+        self.mock_pv_class = self.pv_class_patch.start()
+
+        # The instance every PV() call returns
+        self.mock_pv = self.mock_pv_class.return_value
+
+        # Default fast return so accessing properties during init doesn't block
+        self.mock_pv.get.return_value = 0
+
+        # 3) Now safe to create wire (all PVs will be mocked)
+        self.wire = create_wire(area="BYP", name="WSBP2")
+
         self.options_and_getter_function = {
             "MOTR.STOP": self.wire.abort_scan,
             "BEAMRATE": self.wire.beam_rate,
@@ -81,17 +91,15 @@ class WireTest(TestCase):
         return super().setUp()
 
     def tearDown(self) -> None:
-        # Stop the shared patches after each test-case is complete.
         self.ctrl_options_patch.stop()
+        self.pv_class_patch.stop()
         return super().tearDown()
 
     def test_properties_exist(self) -> None:
         """Test that all the properties we expect exist"""
         # Assert that wire has all auto-generated private attributes
         for handle, _ in self.wire.controls_information.PVs:
-            if handle not in [
-                "position",
-            ]:
+            if handle not in ["position"]:
                 self.assertTrue(
                     hasattr(self.wire, handle),
                     msg=f"expected wire to have attribute {handle}",
@@ -137,10 +145,11 @@ class WireTest(TestCase):
 
     def test_methods(self) -> None:
         """Test that all the methods we expect exist"""
-        self.assertEqual(inspect.ismethod(self.wire.retract), True)
-        self.assertEqual(inspect.ismethod(self.wire.start_scan), True)
         self.assertEqual(inspect.ismethod(self.wire.abort_scan), True)
         self.assertEqual(inspect.ismethod(self.wire.initialize), True)
+        self.assertEqual(inspect.ismethod(self.wire.position_buffer), True)
+        self.assertEqual(inspect.ismethod(self.wire.retract), True)
+        self.assertEqual(inspect.ismethod(self.wire.start_scan), True)
         self.assertEqual(inspect.ismethod(self.wire.set_inner_range), True)
         self.assertEqual(inspect.ismethod(self.wire.set_outer_range), True)
         self.assertEqual(inspect.ismethod(self.wire.set_range), True)
@@ -150,143 +159,55 @@ class WireTest(TestCase):
         """Test we get expected default"""
         self.assertEqual(self.wire.name, "WSBP2")
 
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_use_x_wire(self, mock_pv_get) -> None:
-        """Test use x wire validation"""
-        mock_pv_get.return_value = 1
-        self.assertEqual(self.wire.use_x_wire, 1)
-        mock_pv_get.assert_called_once()
+    def test_area(self) -> None:
+        """Test we get expected default"""
+        self.assertEqual(self.wire.area, "BYP")
 
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_use_y_wire(self, mock_pv_get) -> None:
-        """Test use y wire validation"""
-        mock_pv_get.return_value = 1
-        self.assertEqual(self.wire.use_y_wire, 1)
-        mock_pv_get.assert_called_once()
+    def test_all_properties(self):
+        """Verify all PV-backed Wire properties call PV.get() and return the mocked value."""
+        properties_to_test = [
+            "enabled",
+            "beam_rate",
+            "homed",
+            "initialize_status",
+            "motor",
+            "motor_rbv",
+            "scan_pulses",
+            "speed",
+            "speed_max",
+            "speed_min",
+            "temperature",
+            "timeout",
+            "x_size",
+            "y_size",
+            "u_size",
+            "use_x_wire",
+            "x_wire_inner",
+            "x_wire_outer",
+            "use_y_wire",
+            "y_wire_inner",
+            "y_wire_outer",
+            "use_u_wire",
+            "u_wire_inner",
+            "u_wire_outer",
+        ]
 
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_use_u_wire(self, mock_pv_get) -> None:
-        """Test use u wire validation"""
-        mock_pv_get.return_value = 1
-        self.assertEqual(self.wire.use_u_wire, 1)
-        mock_pv_get.assert_called_once()
+        for prop in properties_to_test:
+            with self.subTest(property=prop):
+                # reset the mock to avoid call overlaps
+                self.mock_pv.get.reset_mock()
+                self.mock_pv.get.return_value = 123  # something arbitrary
 
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_motor_rbv(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 10000
-        self.assertEqual(self.wire.motor_rbv, 10000)
-        mock_pv_get.assert_called_once()
+                result = getattr(self.wire, prop)
+                self.assertEqual(result, 123, f"{prop} should return mocked value")
+                self.mock_pv.get.assert_called_once()
 
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_u_size(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 10
-        self.assertEqual(self.wire.u_size, 10)
-        mock_pv_get.assert_called_once()
+    def test_metadata_exists_and_type(self):
+        """Wire has a valid metadata object"""
+        self.assertTrue(hasattr(self.wire, "metadata"))
+        self.assertIsInstance(self.wire.metadata, WireMetadata)
 
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_x_size(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 10
-        self.assertEqual(self.wire.x_size, 10)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_y_size(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 10
-        self.assertEqual(self.wire.y_size, 10)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_u_wire_inner(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 9000
-        self.assertEqual(self.wire.u_wire_inner, 9000)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_u_wire_outer(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 14000
-        self.assertEqual(self.wire.u_wire_inner, 14000)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_x_wire_inner(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 9000
-        self.assertEqual(self.wire.x_wire_inner, 9000)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_x_wire_outer(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 14000
-        self.assertEqual(self.wire.x_wire_inner, 14000)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_y_wire_inner(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 9000
-        self.assertEqual(self.wire.y_wire_inner, 9000)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_y_wire_outer(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 14000
-        self.assertEqual(self.wire.y_wire_inner, 14000)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_initialize_status(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 1
-        self.assertEqual(self.wire.initialize_status, 1)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_homed(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 1
-        self.assertEqual(self.wire.homed, 1)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_speed(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 30000
-        self.assertEqual(self.wire.speed, 30000)
-        mock_pv_get.assert_called_once()
-
-    @patch("epics.PV.get", new_callable=Mock)
-    def test_scan_pulses(self, mock_pv_get) -> None:
-        mock_pv_get.return_value = 350
-        self.assertEqual(self.wire.scan_pulses, 350)
-        mock_pv_get.assert_called_once()
-
-    def test_all(self) -> None:
-        print("Setting up...")
-        self.setUp()
-        print("Testing properties exist...")
-        self.test_properties_exist()
-        print("Testing methods...")
-        self.test_methods()
-        print("Testing name...")
-        self.test_name()
-        print("Testing use x/y/u wire...")
-        self.test_use_u_wire()
-        self.test_use_x_wire()
-        self.test_use_y_wire()
-        print("Testing position...")
-        self.test_motor_rbv()
-        print("Testing x/y/u size")
-        self.test_u_size()
-        self.test_x_size()
-        self.test_y_size()
-        print("Testing inner/outer range...")
-        self.test_u_wire_inner()
-        self.test_u_wire_outer()
-        self.test_x_wire_inner()
-        self.test_x_wire_outer()
-        self.test_y_wire_inner()
-        self.test_y_wire_outer()
-        print("Testing initialized...")
-        self.test_initialize_status()
-        print("Testing homed...")
-        self.test_homed()
-        print("Testing speed...")
-        self.test_speed()
-        print("Testing scan pulses...")
-        self.test_scan_pulses()
-        print("Tests done!")
+    def test_metadata_has_detectors_list(self):
+        m = self.wire.metadata
+        self.assertTrue(hasattr(m, "detectors"))
+        self.assertIsInstance(m.detectors, list)
