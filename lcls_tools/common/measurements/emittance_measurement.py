@@ -114,6 +114,9 @@ class QuadScanEmittanceResult(EmittanceMeasurementResult):
 
     """
 
+    bmag: Optional[List[NDArrayAnnotatedType]] = None
+    twiss_at_screen: List[NDArrayAnnotatedType]
+    rms_beamsizes: List[NDArrayAnnotatedType]
     quadrupole_focusing_strengths: List[NDArrayAnnotatedType]
     quadrupole_pv_values: List[NDArrayAnnotatedType]
 
