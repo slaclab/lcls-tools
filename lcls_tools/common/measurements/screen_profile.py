@@ -59,9 +59,6 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
     Methods:
     measure: does multiple measurements and has an option to fit the image
              profiles
-
-    #TODO: DumpController?
-    #TODO: return images flag
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
@@ -87,20 +84,32 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
             images, return_offsets=True
         )
 
-        (
-            rms_sizes_all,
-            rms_sizes,
-            centroids,
-            total_intensities,
-            signal_to_noise_ratios,
-        ) = self.fit_data(processed_images)
+        if self.fit_profile:
+            (
+                rms_sizes_all,
+                rms_sizes,
+                centroids,
+                total_intensities,
+                signal_to_noise_ratios,
+            ) = self.fit_data(processed_images)
+
+            # add offsets to centroids
+            centroids += offsets
+        else:
+            (
+                rms_sizes_all,
+                rms_sizes,
+                centroids,
+                total_intensities,
+                signal_to_noise_ratios,
+            ) = (None, None, None, None, None)
 
         return ScreenBeamProfileMeasurementResult(
             raw_images=images,
             processed_images=processed_images,
             rms_sizes_all=rms_sizes_all,
             rms_sizes=rms_sizes if rms_sizes.size > 0 else None,
-            centroids=centroids + offsets if centroids.size > 0 else None,
+            centroids=centroids if centroids.size > 0 else None,
             total_intensities=total_intensities if total_intensities.size > 0 else None,
             signal_to_noise_ratios=signal_to_noise_ratios
             if signal_to_noise_ratios.size > 0
@@ -109,29 +118,24 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
         )
 
     def fit_data(self, processed_images):
-        if self.fit_profile:
-            rms_sizes_all = []
-            centroids_all = []
-            total_intensities_all = []
-            signal_to_noise_ratios_all = []
-            for image in processed_images:
-                fit_result = self.beam_fit.fit_image(image)
-                rms_sizes_all.append(
-                    np.array(fit_result.rms_size) * self.beam_profile_device.resolution
-                )
-                centroids_all.append(
-                    np.array(fit_result.centroid) * self.beam_profile_device.resolution
-                )
-                total_intensities_all.append(fit_result.total_intensity)
-                signal_to_noise_ratios_all.append(fit_result.signal_to_noise_ratio)
-            rms_sizes = np.mean(rms_sizes_all, axis=0)
-            centroids = np.mean(centroids_all, axis=0)
-            total_intensities = np.mean(total_intensities_all, axis=0)
-            signal_to_noise_ratios = np.mean(signal_to_noise_ratios_all, axis=0)
-        else:
-            rms_sizes_all = rms_sizes = centroids = total_intensities = (
-                signal_to_noise_ratios
-            ) = None
+        rms_sizes_all = []
+        centroids_all = []
+        total_intensities_all = []
+        signal_to_noise_ratios_all = []
+        for image in processed_images:
+            fit_result = self.beam_fit.fit_image(image)
+            rms_sizes_all.append(
+                np.array(fit_result.rms_size) * self.beam_profile_device.resolution
+            )
+            centroids_all.append(
+                np.array(fit_result.centroid) * self.beam_profile_device.resolution
+            )
+            total_intensities_all.append(fit_result.total_intensity)
+            signal_to_noise_ratios_all.append(fit_result.signal_to_noise_ratio)
+        rms_sizes = np.mean(rms_sizes_all, axis=0)
+        centroids = np.mean(centroids_all, axis=0)
+        total_intensities = np.mean(total_intensities_all, axis=0)
+        signal_to_noise_ratios = np.mean(signal_to_noise_ratios_all, axis=0)
 
         return (
             rms_sizes_all,
