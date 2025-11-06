@@ -93,7 +93,6 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
                 signal_to_noise_ratios,
             ) = self.fit_data(processed_images, offsets)
 
-
         else:
             (
                 rms_sizes_all,
@@ -124,7 +123,7 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
             Numpy array of processed images to be fitted
         offsets : ndarray, optional
             Offsets of the processed images with respect to the original images
-            
+
         Returns
         -------
         rms_sizes_all : ndarray
@@ -150,12 +149,8 @@ class ScreenBeamProfileMeasurement(BeamProfileMeasurement):
 
         for image in processed_images:
             fit_result = self.beam_fit.fit_image(image)
-            rms_sizes_all.append(
-                np.array(fit_result.rms_size)
-            )
-            centroids_all.append(
-                np.array(fit_result.centroid)
-            )
+            rms_sizes_all.append(np.array(fit_result.rms_size))
+            centroids_all.append(np.array(fit_result.centroid))
             total_intensities_all.append(fit_result.total_intensity)
             signal_to_noise_ratios_all.append(fit_result.signal_to_noise_ratio)
 
