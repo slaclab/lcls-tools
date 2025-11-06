@@ -34,6 +34,7 @@ class BeamProfileMeasurementResult(lcls_tools.common.BaseModel):
     rms_sizes: Optional[NDArrayAnnotatedType] = None
     centroids: Optional[NDArrayAnnotatedType] = None
     total_intensities: Optional[NDArrayAnnotatedType] = None
+    signal_to_noise_ratios: Optional[NDArrayAnnotatedType] = None
     metadata: SerializeAsAny[Any]
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
