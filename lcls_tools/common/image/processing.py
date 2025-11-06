@@ -165,7 +165,7 @@ def calc_image_centroids(
 
     for i in range(flattened_images.shape[0]):
         stats = image_fitter(flattened_images[i])
-        flattened_centroids[i] = [stats['x_center'], stats['y_center']]
+        flattened_centroids[i] = [stats["x_center"], stats["y_center"]]
 
     return flattened_centroids.reshape(batch_shape + (2,))
 
@@ -254,8 +254,8 @@ def calc_crop_ranges(
     total_image[total_image < threshold] = 0
 
     stats = image_fitter(total_image)
-    centroid = np.array([stats['x_center'], stats['y_center']])
-    rms_size = np.array([stats['x_rms'], stats['y_rms']])
+    centroid = np.array([stats["x_center"], stats["y_center"]])
+    rms_size = np.array([stats["x_rms"], stats["y_rms"]])
 
     crop_ranges = np.array(
         [
