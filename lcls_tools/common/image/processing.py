@@ -104,10 +104,12 @@ def compute_blob_stats(image):
 
     Returns
     -------
-    centroid : np.ndarray
-        Array containing the centroid coordinates (x_center, y_center).
-    rms_size : np.ndarray
-        Array containing the RMS size along (x, y) axes.
+    dict
+        Dictionary containing:
+        - 'x_center': x-coordinate of the centroid
+        - 'y_center': y-coordinate of the centroid
+        - 'x_rms': RMS size along the x-axis
+        - 'y_rms': RMS size along the y-axis
     """
     if image.ndim != 2:
         raise ValueError("Input image must be a 2D array")
@@ -135,7 +137,7 @@ def compute_blob_stats(image):
     x_rms = np.sqrt(np.sum(weights * (x - x_center) ** 2) / total_weight)
     y_rms = np.sqrt(np.sum(weights * (y - y_center) ** 2) / total_weight)
 
-    return np.array((x_center, y_center)), np.array((x_rms, y_rms))
+    return {"x_center": x_center, "y_center": y_center, "x_rms": x_rms, "y_rms": y_rms}
 
 
 def calc_image_centroids(
@@ -149,7 +151,7 @@ def calc_image_centroids(
     images : np.ndarray
         Batch of images with shape (..., height (y size), width (x size)).
     image_fitter : Callable, optional
-        Function that returns (centroid, rms) for a single image.
+        Function that returns a dictonary of statistics for a single image.
 
     Returns
     -------
@@ -162,8 +164,8 @@ def calc_image_centroids(
     flattened_centroids = np.zeros((flattened_images.shape[0], 2))
 
     for i in range(flattened_images.shape[0]):
-        centroid, _ = image_fitter(flattened_images[i])
-        flattened_centroids[i] = centroid
+        stats = image_fitter(flattened_images[i])
+        flattened_centroids[i] = [stats['x_center'], stats['y_center']]
 
     return flattened_centroids.reshape(batch_shape + (2,))
 
@@ -251,9 +253,9 @@ def calc_crop_ranges(
 
     total_image[total_image < threshold] = 0
 
-    centroid, rms_size = image_fitter(total_image)
-    centroid = centroid[::-1]
-    rms_size = rms_size[::-1]
+    stats = image_fitter(total_image)
+    centroid = np.array([stats['x_center'], stats['y_center']])
+    rms_size = np.array([stats['x_rms'], stats['y_rms']])
 
     crop_ranges = np.array(
         [
@@ -356,7 +358,7 @@ def process_images(
     images : np.ndarray
         Batch of images with shape (..., height (y size), width (x size)).
     image_fitter : Callable, optional
-        Function that fits an image and returns (centroid, rms) in pixel coordinates.
+        Function that fits an image and returns a dictionary of statistics in pixel coordinates.
     pool_size : int, optional
         Size of the pooling window. If None, no pooling is applied.
     median_filter_size : int, optional
