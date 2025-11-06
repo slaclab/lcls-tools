@@ -55,13 +55,13 @@ def disp_twiss(tao, element, datum=[]):
         twiss_datum = tao.data_parameter(datum, "meas_value")[0]["data"][0:4]
         twiss_datum = [float(val) for val in twiss_datum]
         twiss_model = mod.get_twiss(tao, element, which="model")
-        twiss_design = mod.get_twiss(tao, element)
-        bmag_a, bmag_b = mod.bmag(twiss_model, twiss_design)
+        twiss_lattice = mod.get_twiss(tao, element)
+        bmag_a, bmag_b = mod.bmag(twiss_model, twiss_lattice)
         print(f"\n{element} BMAG_X {bmag_a:3.2f}, BMAG_Y {bmag_b:3.2f} ")
         print(f"{' ' * 12} Beta     Alpha   Beta   Alpha ")
         print(f"{' ' * 12}  X       X       Y       Y")
         print(f"Desing:{' '} ", end="")
-        for val in twiss_design:
+        for val in twiss_lattice:
             print(f"{val:8.2f}", end="")
         print("")
         print(f"Model:{' ' * 3}", end="")

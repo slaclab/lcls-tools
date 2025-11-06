@@ -70,7 +70,7 @@ def quad_scan_optics(
         to_device=measurement.beam_profile_device.name,
     )
     twiss = model.get_twiss(measurement.beam_profile_device.name)
-    return {"rmat": rmat, "design_twiss": twiss}
+    return {"rmat": rmat, "lattice_twiss": twiss}
 
 
 def multi_device_optics(
@@ -83,7 +83,7 @@ def multi_device_optics(
     ]
     rmat = model.get_rmat(beam_profile_device_names)
     twiss = model.get_twiss(beam_profile_device_names)
-    return {"rmat": rmat, "design_twiss": twiss}
+    return {"rmat": rmat, "lattice_twiss": twiss}
 
 
 def _get_model_from_device(device, physics_model):

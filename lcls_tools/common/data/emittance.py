@@ -10,7 +10,7 @@ from lcls_tools.common.data.model_general_calcs import (
 def compute_emit_bmag(
     beamsize_squared: np.ndarray,
     rmat: np.ndarray,
-    twiss_design: np.ndarray = None,
+    twiss_lattice: np.ndarray = None,
     maxiter: int = None,
 ):
     """
@@ -32,7 +32,7 @@ def compute_emit_bmag(
         containing the 2x2 R matrices describing the transport from a common upstream
         point in the beamline to the locations at which each beamsize was observed.
 
-    twiss_design : numpy.ndarray, optional
+    twiss_lattice : numpy.ndarray, optional
         Array of shape (batchshape x n_measurements x 2) designating the design (beta, alpha)
         twiss parameters at each measurement location.
         Note that it is also possible to pass an array of shape (batchshape x 1 x 2),
@@ -54,7 +54,7 @@ def compute_emit_bmag(
         - 'beam_matrix': numpy.ndarray of shape (batchshape x 3) containing [sig11, sig12, sig22]
           where sig11, sig12, sig22 are the reconstructed beam matrix parameters at the entrance
           of the measurement quad.
-        - 'twiss_at_screen': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
+        - 'twiss': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
           reconstructed twiss parameters at the measurement screen for each step in each quad scan.
 
     References
@@ -185,19 +185,19 @@ def compute_emit_bmag(
         )
 
     # propagate twiss params to screen (expand_dims for broadcasting)
-    rv["twiss_at_screen"] = propagate_twiss(_twiss_upstream(rv["beam_matrix"]), rmat)
+    rv["twiss"] = propagate_twiss(_twiss_upstream(rv["beam_matrix"]), rmat)
     # result shape (batchshape x nsteps x 3)
     beta, alpha = (
-        rv["twiss_at_screen"][..., 0],
-        rv["twiss_at_screen"][..., 1],
+        rv["twiss"][..., 0],
+        rv["twiss"][..., 1],
     )
     # shapes batchshape x nsteps
 
-    # compute bmag if twiss_design is provided
-    if twiss_design is not None:
+    # compute bmag if twiss_lattice is provided
+    if twiss_lattice is not None:
         beta_design, alpha_design = (
-            twiss_design[..., 0],
-            twiss_design[..., 1],
+            twiss_lattice[..., 0],
+            twiss_lattice[..., 1],
         )
         # shape batchshape x nsteps x 1 (multi-device) or batchshape x 1 (quad scan)
 

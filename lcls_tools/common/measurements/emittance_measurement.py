@@ -65,7 +65,7 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
         The normalized emittance values for x/y in mm-mrad.
     bmag : ndarray, Optional
         The BMAG values for x/y for each beamsize measurement.
-    twiss_at_screen : ndarray
+    twiss : ndarray
         Twiss parameters (beta, alpha, gamma) calculated for each beamsize measurement.
     rms_beamsizes : ndarray
         The RMS beam sizes for each beamsize measurement in each plane in meters.
@@ -79,7 +79,7 @@ class EmittanceMeasurementResult(lcls_tools.common.BaseModel):
 
     emittance: NDArrayAnnotatedType
     bmag: Optional[NDArrayAnnotatedType] = None
-    twiss_at_screen: NDArrayAnnotatedType
+    twiss: NDArrayAnnotatedType
     rms_beamsizes: NDArrayAnnotatedType
     beam_matrix: NDArrayAnnotatedType
     metadata: SerializeAsAny[Any]
@@ -115,7 +115,7 @@ class QuadScanEmittanceResult(EmittanceMeasurementResult):
     """
 
     bmag: Optional[List[NDArrayAnnotatedType]] = None
-    twiss_at_screen: List[NDArrayAnnotatedType]
+    twiss: List[NDArrayAnnotatedType]
     rms_beamsizes: List[NDArrayAnnotatedType]
     quadrupole_focusing_strengths: List[NDArrayAnnotatedType]
     quadrupole_pv_values: List[NDArrayAnnotatedType]
@@ -188,7 +188,7 @@ class EmittanceMeasurementBase(Measurement):
         the end of the scanning magnet to the screen, array shape should be 2 x 2 x 2 (
         first element is the horizontal transport matrix, second is the vertical),
         if not provided meme is used to calculate the transport matricies
-    design_twiss: dict[str, float], optional
+    lattice_twiss: dict[str, float], optional
         Dictionary containing design twiss values with the following keys (`beta_x`,
         `beta_y`, `alpha_x`, `alpha_y`) where the beta/alpha values are in units of [m]/[]
         respectively
@@ -216,7 +216,7 @@ class EmittanceMeasurementBase(Measurement):
     beam_profiles: List[BeamProfileMeasurementResult] = []
     beam_sizes: Optional[NDArrayAnnotatedType] = None
     rmats: Optional[NDArrayAnnotatedType] = None
-    design_twiss: Optional[NDArrayAnnotatedType] = None
+    lattice_twiss: Optional[NDArrayAnnotatedType] = None
     emittance_dict: Optional[dict] = None
 
     name: str = "emittance_measurement_base"
@@ -271,21 +271,21 @@ class EmittanceMeasurementBase(Measurement):
         twiss_betas_alphas = np.array(
             [
                 [
-                    self.design_twiss["beta_x"],
-                    self.design_twiss["alpha_x"],
+                    self.lattice_twiss["beta_x"],
+                    self.lattice_twiss["alpha_x"],
                 ],
                 [
-                    self.design_twiss["beta_y"],
-                    self.design_twiss["alpha_y"],
+                    self.lattice_twiss["beta_y"],
+                    self.lattice_twiss["alpha_y"],
                 ],
             ]
         )
 
-        twiss_design = np.swapaxes(
+        twiss_lattice = np.swapaxes(
             twiss_betas_alphas, 1, 2
         )  # make shape 2 x n_measurements x 2
 
-        self.emittance_dict = compute_emit_bmag(beamsizes_squared, rmats, twiss_design)
+        self.emittance_dict = compute_emit_bmag(beamsizes_squared, rmats, twiss_lattice)
         self.emittance_dict["emittance"] = normalize_emittance(
             self.emittance_dict["emittance"], self.energy
         )
@@ -325,7 +325,7 @@ class QuadScanEmittance(Measurement):
         the end of the scanning magnet to the screen, array shape should be 2 x 2 x 2 (
         first element is the horizontal transport matrix, second is the vertical),
         if not provided meme is used to calculate the transport matricies
-    design_twiss: dict[str, float], optional
+    lattice_twiss: dict[str, float], optional
         Dictionary containing design twiss values with the following keys (`beta_x`,
         `beta_y`, `alpha_x`, `alpha_y`) where the beta/alpha values are in units of [m]/[]
         respectively
@@ -351,7 +351,7 @@ class QuadScanEmittance(Measurement):
     _info: Optional[list] = []
 
     rmat: Optional[ndarray] = None
-    design_twiss: Optional[dict] = None  # design twiss values
+    lattice_twiss: Optional[dict] = None  # design twiss values
     physics_model: Literal["BMAD", "BLEM", "Lucretia"] = "BMAD"
 
     wait_time: PositiveFloat = 1.0
@@ -411,16 +411,16 @@ class QuadScanEmittance(Measurement):
             )
 
         # organize data into arrays for use in `compute_emit_bmag`
-        if self.design_twiss:
+        if self.lattice_twiss:
             twiss_betas_alphas = np.array(
                 [
                     [
-                        self.design_twiss["beta_x"],
-                        self.design_twiss["alpha_x"],
+                        self.lattice_twiss["beta_x"],
+                        self.lattice_twiss["alpha_x"],
                     ],
                     [
-                        self.design_twiss["beta_y"],
-                        self.design_twiss["alpha_y"],
+                        self.lattice_twiss["beta_y"],
+                        self.lattice_twiss["alpha_y"],
                     ],
                 ]
             )
@@ -435,7 +435,7 @@ class QuadScanEmittance(Measurement):
 
             results = {
                 "emittance": [],
-                "twiss_at_screen": [],
+                "twiss": [],
                 "beam_matrix": [],
                 "bmag": [] if twiss_betas_alphas is not None else None,
                 "quadrupole_focusing_strengths": [],
@@ -455,7 +455,7 @@ class QuadScanEmittance(Measurement):
                 emit_kwargs = {
                     "beamsize_squared": beam_sizes_squared,
                     "rmat": rmat,
-                    "twiss_design": twiss_betas_alphas[i]
+                    "twiss_lattice": twiss_betas_alphas[i]
                     if twiss_betas_alphas is not None
                     else None,
                 }
@@ -481,7 +481,7 @@ class QuadScanEmittance(Measurement):
                 "q_len": magnet_length,
                 "rmat": self.rmat,
                 "energy": self.energy,
-                "twiss_design": (
+                "twiss_lattice": (
                     twiss_betas_alphas if twiss_betas_alphas is not None else None
                 ),
             }
@@ -528,8 +528,8 @@ class QuadScanEmittance(Measurement):
             rmat = optics["rmat"]
             # pick out x and y rmats
             self.rmat.append(np.stack([rmat[0:2, 0:2], rmat[2:4, 2:4]]))
-            if not self.design_twiss:
-                self.design_twiss = optics["design_twiss"]
+            if not self.lattice_twiss:
+                self.lattice_twiss = optics["lattice_twiss"]
 
     def _get_beamsizes_scan_values_from_info(self) -> ndarray:
         """
@@ -563,7 +563,7 @@ class MultiDeviceEmittance(EmittanceMeasurementBase):
         the end of the scanning magnet to the screen, array shape should be 2 x 2 x 2 (
         first element is the horizontal transport matrix, second is the vertical),
         if not provided meme is used to calculate the transport matricies
-    design_twiss: dict[str, float], optional
+    lattice_twiss: dict[str, float], optional
         Dictionary containing design twiss values with the following keys (`beta_x`,
         `beta_y`, `alpha_x`, `alpha_y`) where the beta/alpha values are in units of [m]/[]
         respectively
@@ -593,7 +593,7 @@ class MultiDeviceEmittance(EmittanceMeasurementBase):
         )
 
         self.rmats = optics["rmat"]
-        self.design_twiss = optics["design_twiss"]
+        self.lattice_twiss = optics["lattice_twiss"]
 
     def construct_result(self):
         """
@@ -620,7 +620,7 @@ def compute_emit_bmag_quad_scan(
     beamsize_squared: np.ndarray,
     q_len: float,
     rmat: np.ndarray,
-    twiss_design: np.ndarray = None,
+    twiss_lattice: np.ndarray = None,
     thin_lens: bool = False,
     maxiter: int = None,
 ):
@@ -646,7 +646,7 @@ def compute_emit_bmag_quad_scan(
         Array of shape (2x2) or (batchshape x 2 x 2) containing the 2x2 R matrices
         describing the transport from the end of the measurement quad to the observation screen.
 
-    twiss_design : numpy.ndarray, optional
+    twiss_lattice : numpy.ndarray, optional
         Array of shape (batchshape x 2) designating the design (beta, alpha)
         twiss parameters at the screen.
 
@@ -667,7 +667,7 @@ def compute_emit_bmag_quad_scan(
         - 'beam_matrix': numpy.ndarray of shape (batchshape x 3) containing [sig11, sig12, sig22]
           where sig11, sig12, sig22 are the reconstructed beam matrix parameters at the entrance
           of the measurement quad.
-        - 'twiss_at_screen': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
+        - 'twiss': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
           reconstructed twiss parameters at the measurement screen for each step in each quad scan.
     """
     # calculate and add the measurement quad transport to the rmats
@@ -679,12 +679,12 @@ def compute_emit_bmag_quad_scan(
 
     # reshape inputs
     beamsize_squared = np.expand_dims(beamsize_squared, -1)
-    twiss_design = (
-        np.expand_dims(twiss_design, -2) if twiss_design is not None else None
+    twiss_lattice = (
+        np.expand_dims(twiss_lattice, -2) if twiss_lattice is not None else None
     )
 
     # compute emittance
-    rv = compute_emit_bmag(beamsize_squared, total_rmat, twiss_design, maxiter)
+    rv = compute_emit_bmag(beamsize_squared, total_rmat, twiss_lattice, maxiter)
 
     return rv
 
@@ -739,7 +739,7 @@ def compute_emit_bmag_quad_scan_machine_units(
     q_len: float,
     rmat: np.ndarray,
     energy: float,
-    twiss_design: np.ndarray,
+    twiss_lattice: np.ndarray,
     thin_lens: bool = False,
     maxiter: int = None,
 ):
@@ -758,7 +758,7 @@ def compute_emit_bmag_quad_scan_machine_units(
         The R-matrix. Shape (2, 2, 2).
     energy : float
         The energy of the beam in eV.
-    twiss_design : np.ndarray or None
+    twiss_lattice : np.ndarray or None
         The design Twiss parameters. Shape (2, 2).
     thin_lens : bool, optional
         Whether to use the thin lens approximation. Default is False.
@@ -777,9 +777,9 @@ def compute_emit_bmag_quad_scan_machine_units(
     # Prepare outputs
     results = {
         "emittance": [],
-        "twiss_at_screen": [],
+        "twiss": [],
         "beam_matrix": [],
-        "bmag": [] if twiss_design is not None else None,
+        "bmag": [] if twiss_lattice is not None else None,
         "quadrupole_focusing_strengths": [],
         "quadrupole_pv_values": [],
         "rms_beamsizes": [],
@@ -794,7 +794,7 @@ def compute_emit_bmag_quad_scan_machine_units(
             beamsize_squared=beamsizes_squared_list[i],
             q_len=q_len,
             rmat=rmat[i],
-            twiss_design=(twiss_design[i] if twiss_design is not None else None),
+            twiss_lattice=(twiss_lattice[i] if twiss_lattice is not None else None),
             thin_lens=thin_lens,
             maxiter=maxiter,
         )

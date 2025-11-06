@@ -26,7 +26,7 @@ def plot_quad_scan_result(emittance_results):
     for i in range(2):
         sorted_indices = np.argsort(emittance_results.quadrupole_pv_values[i])
         k = emittance_results.quadrupole_pv_values[i][sorted_indices]
-        beta = emittance_results.twiss_at_screen[i][sorted_indices][:, 0]
+        beta = emittance_results.twiss[i][sorted_indices][:, 0]
 
         ax[0].plot(
             k,
