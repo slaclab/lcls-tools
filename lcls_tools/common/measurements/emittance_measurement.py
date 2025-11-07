@@ -371,16 +371,12 @@ class QuadScanEmittance(Measurement):
         """
         beam_sizes = []
         for result in self._info:
-            beam_sizes.append(
-                result.rms_sizes
-                * self.beamsize_measurement.beam_profile_device.resolution
-                * 1e-6
-            )
+            beam_sizes.append(result.rms_sizes.reshape(1, 2) * 1e-6)
 
         # get scan values and extend for each direction
         scan_values = np.tile(np.array(self.scan_values), (2, 1))
 
-        return scan_values, np.array(beam_sizes).T
+        return scan_values, np.vstack(beam_sizes).T
 
 
 class MultiDeviceEmittance(Measurement):
