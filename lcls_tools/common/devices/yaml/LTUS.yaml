@@ -2760,6 +2760,7 @@ screens:
       - SC_SXR
       hardware: {}
       sum_l_meters: 3339.057
+      timeout: 1.0
       type: PROF
 wires:
   WS31B:

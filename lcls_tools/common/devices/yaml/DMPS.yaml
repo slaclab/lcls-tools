@@ -393,6 +393,7 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 3771.399
+      timeout: 1.0
       type: PROF
 tcavs:
   TCX01B:

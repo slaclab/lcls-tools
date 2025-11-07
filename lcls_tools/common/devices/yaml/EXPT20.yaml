@@ -11,6 +11,7 @@ screens:
       - F2_POSI
       hardware: {}
       sum_l_meters: 994.813
+      timeout: 1.0
       type: PROF
   IPWS3:
     controls_information:
@@ -24,4 +25,5 @@ screens:
       - F2_POSI
       hardware: {}
       sum_l_meters: 997.053
+      timeout: 1.0
       type: PROF

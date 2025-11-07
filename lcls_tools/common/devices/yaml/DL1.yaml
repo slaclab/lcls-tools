@@ -851,6 +851,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 12.327
+      timeout: 1.0
       type: PROF
   OTR2:
     controls_information:
@@ -895,6 +896,7 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 14.241
+      timeout: 1.0
       type: PROF
   OTR3:
     controls_information:
@@ -928,6 +930,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 16.155
+      timeout: 1.0
       type: PROF
   OTR4:
     controls_information:
@@ -960,6 +963,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 17.797
+      timeout: 1.0
       type: PROF
   OTRH1:
     controls_information:
@@ -1004,6 +1008,7 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 9.528
+      timeout: 1.0
       type: PROF
   OTRH2:
     controls_information:
@@ -1048,6 +1053,7 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 10.211
+      timeout: 1.0
       type: PROF
   YAG04:
     controls_information:
@@ -1059,6 +1065,7 @@ screens:
       beam_path: []
       hardware: {}
       sum_l_meters: null
+      timeout: 1.0
       type: PROF
 tcavs:
   TCAV0:

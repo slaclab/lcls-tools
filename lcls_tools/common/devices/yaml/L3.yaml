@@ -4198,6 +4198,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 523.207
+      timeout: 1.0
       type: PROF
   P30013:
     controls_information:
@@ -4215,6 +4216,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 929.435
+      timeout: 1.0
       type: PROF
   P30014:
     controls_information:
@@ -4232,6 +4234,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 929.638
+      timeout: 1.0
       type: PROF
   P30143:
     controls_information:
@@ -4249,6 +4252,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 943.17
+      timeout: 1.0
       type: PROF
   P30144:
     controls_information:
@@ -4266,6 +4270,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 943.373
+      timeout: 1.0
       type: PROF
   P30443:
     controls_information:
@@ -4283,6 +4288,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 980.2
+      timeout: 1.0
       type: PROF
   P30444:
     controls_information:
@@ -4300,6 +4306,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 980.403
+      timeout: 1.0
       type: PROF
   P30543:
     controls_information:
@@ -4317,6 +4324,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 992.546
+      timeout: 1.0
       type: PROF
   P30544:
     controls_information:
@@ -4334,6 +4342,7 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 992.757
+      timeout: 1.0
       type: PROF
 tcavs:
   TCAV3:

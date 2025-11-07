@@ -77,4 +77,5 @@ screens:
       - F2_POSI
       hardware: {}
       sum_l_meters: 363.016
+      timeout: 1.0
       type: PROF

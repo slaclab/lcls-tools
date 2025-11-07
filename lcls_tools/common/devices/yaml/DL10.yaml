@@ -412,6 +412,7 @@ screens:
       - F2_SCAV
       hardware: {}
       sum_l_meters: 14.237
+      timeout: 1.0
       type: PROF
   PR10711:
     controls_information:
@@ -425,6 +426,7 @@ screens:
       - F2_SCAV
       hardware: {}
       sum_l_meters: 17.354
+      timeout: 1.0
       type: PROF
 wires:
   WS10561:

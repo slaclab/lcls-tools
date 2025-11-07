@@ -58,6 +58,7 @@ def get_screen_metadata(basic_screen_data: dict):
                 hardware[name] = status
 
         metadata[mad_name]["hardware"] = hardware
+        metadata[mad_name]["timeout"] = 1.0
     return metadata
 
 

@@ -121,7 +121,10 @@ bpms:
       type: BPM
   BPMBP19:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:BPN19:400:TMIT
+        x: BPMS:BPN19:400:X
+        y: BPMS:BPN19:400:Y
       control_name: BPMS:BPN19:400
     metadata:
       area: BYP

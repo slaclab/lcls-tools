@@ -118,4 +118,5 @@ screens:
       - F2_SCAV
       hardware: {}
       sum_l_meters: 409.964
+      timeout: 1.0
       type: PROF

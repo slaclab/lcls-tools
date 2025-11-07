@@ -2559,6 +2559,7 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 3661.222
+      timeout: 1.0
       type: PROF
   BOD12:
     controls_information:
@@ -2602,4 +2603,5 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 3670.392
+      timeout: 1.0
       type: PROF

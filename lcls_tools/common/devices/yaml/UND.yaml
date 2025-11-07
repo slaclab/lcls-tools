@@ -1406,6 +1406,7 @@ screens:
       beam_path: []
       hardware: {}
       sum_l_meters: null
+      timeout: 1.0
       type: PROF
   YAGBOD2:
     controls_information:
@@ -1417,4 +1418,5 @@ screens:
       beam_path: []
       hardware: {}
       sum_l_meters: null
+      timeout: 1.0
       type: PROF
