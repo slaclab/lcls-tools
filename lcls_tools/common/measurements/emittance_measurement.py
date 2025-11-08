@@ -371,7 +371,7 @@ class QuadScanEmittance(Measurement):
         """
         beam_sizes = []
         for result in self._info:
-            beam_sizes.append(result.rms_sizes.reshape(1, 2) * 1e-6)
+            beam_sizes.append(result.rms_sizes.reshape(1, 2)* 1e-6)
 
         # get scan values and extend for each direction
         scan_values = np.tile(np.array(self.scan_values), (2, 1))
