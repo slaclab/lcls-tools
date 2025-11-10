@@ -323,10 +323,10 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                 data[d] = lblm_data
             elif d.startswith("PMT"):
                 pmt_data = collect_with_size_check(
-                    self.devices[d].qdcraw_buffer,
-                    self.my_buffer.n_measurements,
-                    self.logger,
+                    self.devices[d],
+                    "qdcraw_buffer"
                     self.my_buffer,
+                    self.logger,
                 )
                 data[d] = pmt_data
 
