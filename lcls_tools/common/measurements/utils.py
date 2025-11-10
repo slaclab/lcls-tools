@@ -60,11 +60,17 @@ def collect_with_size_check(
                 attempt + 1,
                 max_retries,
             )
+        else:
+            print(
+                f"Warning: Data size mismatch for {device.name} {collector_func}: "
+                f"expected {expected_points}, got {size}. Retrying ({attempt + 1}/{max_retries})..."
+            )
         if delay > 0:
             time.sleep(delay)
 
     raise RuntimeError(
-        f"Failed to collect data of expected size {expected_points} after {max_retries} attempts."
+        f"Unable to collect complete {collector_func} data for {device.name}. "
+        f"Expected {expected_points} points but retrieved {size} after {max_retries} attempts."
     )
 
 
