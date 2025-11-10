@@ -324,7 +324,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             elif d.startswith("PMT"):
                 pmt_data = collect_with_size_check(
                     self.devices[d],
-                    "qdcraw_buffer"
+                    "qdcraw_buffer",
                     self.my_buffer,
                     self.logger,
                 )
