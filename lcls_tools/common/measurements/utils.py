@@ -18,30 +18,43 @@ def ensure_numpy_array(v):
 
 
 def collect_with_size_check(
-    collector_func, expected_points, logger, *collector_args, max_retries=3, delay=0.5
+    device, collector_func, buffer, logger, max_retries=3, delay=3
 ):
     """
     Collects data using the provided function and checks its size.
     Retries collection if the data size does not match the expected points.
     Parameters:
+        device (Device): A slac-tools Device object
         collector_func (callable): Function to collect data.
-        expected_points (int): Expected number of data points.
+        buffer (edef.BSABuffer): Buffer object containing measurement data.
+        logger (logging.Logger): Logger for logging warnings.
         max_retries (int): Maximum number of retries on size mismatch.
         delay (float): Delay in seconds between retries.
         *args, **kwargs: Arguments to pass to the collector function.
     Returns:
         Collected data if size matches expected points.
     """
+    method = getattr(device, collector_func)
     for attempt in range(max_retries):
-        data = collector_func(*collector_args)
+        try:
+            data = method(buffer)
+        except TypeError as e:
+            # Call without arguments if the function doesn't accept any
+            if "positional argument" in str(e) or "given" in str(e):
+                data = method()
+            else:
+                raise
         size = len(data) if data is not None else 0
 
+        expected_points = buffer.n_measurements
         if size == expected_points:
             return data
 
         if logger is not None:
             logger.warning(
-                "Data size mismatch: expected %d, got %d. Retrying (%d/%d)...",
+                "Data size mismatch for %d %d: expected %d, got %d. Retrying (%d/%d)...",
+                device.name,
+                collector_func,
                 expected_points,
                 size,
                 attempt + 1,
