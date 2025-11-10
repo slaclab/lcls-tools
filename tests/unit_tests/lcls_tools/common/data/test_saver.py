@@ -232,7 +232,7 @@ class TestH5Saver(unittest.TestCase):
         # Process data
         image_processor = ImageProcessor()
 
-        processed_images = [image_processor.auto_process(image) for image in images]
+        processed_images = [image_processor.process(image) for image in images]
 
         rms_sizes_all = []
         centroids_all = []
