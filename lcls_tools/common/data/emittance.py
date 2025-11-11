@@ -54,8 +54,8 @@ def compute_emit_bmag(
         - 'beam_matrix': numpy.ndarray of shape (batchshape x 3) containing [sig11, sig12, sig22]
           where sig11, sig12, sig22 are the reconstructed beam matrix parameters at the entrance
           of the measurement quad.
-        - 'twiss_at_screen': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
-          reconstructed twiss parameters at the measurement screen for each step in each quad scan.
+        - 'twiss': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
+          reconstructed twiss parameters at each measurement point for each step.
 
     References
     ----------
@@ -185,11 +185,11 @@ def compute_emit_bmag(
         )
 
     # propagate twiss params to screen (expand_dims for broadcasting)
-    rv["twiss_at_screen"] = propagate_twiss(_twiss_upstream(rv["beam_matrix"]), rmat)
+    rv["twiss"] = propagate_twiss(_twiss_upstream(rv["beam_matrix"]), rmat)
     # result shape (batchshape x nsteps x 3)
     beta, alpha = (
-        rv["twiss_at_screen"][..., 0],
-        rv["twiss_at_screen"][..., 1],
+        rv["twiss"][..., 0],
+        rv["twiss"][..., 1],
     )
     # shapes batchshape x nsteps
 

@@ -1,4 +1,5 @@
 from abc import abstractmethod
+from dataclasses import dataclass
 from typing import Any
 
 from lcls_tools.common.devices.device import Device
@@ -13,6 +14,7 @@ from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 import lcls_tools
 
 
+@dataclass(frozen=True)
 class BeamProfileMeasurementResult(lcls_tools.common.BaseModel):
     """
     Class that contains the results of a beam profile measurement
