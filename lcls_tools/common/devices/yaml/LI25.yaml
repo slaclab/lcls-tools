@@ -9,5 +9,4 @@ screens:
       beam_path: []
       hardware: {}
       sum_l_meters: null
-      timeout: 1.0
       type: PROF

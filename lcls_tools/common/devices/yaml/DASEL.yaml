@@ -362,7 +362,6 @@ screens:
       - SC_DASEL
       hardware: {}
       sum_l_meters: 3014.49
-      timeout: 1.0
       type: PROF
   PRDAS14:
     controls_information:
@@ -375,7 +374,6 @@ screens:
       - SC_DASEL
       hardware: {}
       sum_l_meters: 3073.484
-      timeout: 1.0
       type: PROF
   PRDAS17:
     controls_information:
@@ -388,5 +386,4 @@ screens:
       - SC_DASEL
       hardware: {}
       sum_l_meters: 3118.053
-      timeout: 1.0
       type: PROF

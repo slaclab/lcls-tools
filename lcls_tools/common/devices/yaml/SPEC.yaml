@@ -194,7 +194,6 @@ screens:
       - CU_SPEC
       hardware: {}
       sum_l_meters: 21.782
-      timeout: 1.0
       type: PROF
   YAGS1:
     controls_information:
@@ -222,7 +221,6 @@ screens:
       - CU_SPEC
       hardware: {}
       sum_l_meters: 18.588
-      timeout: 1.0
       type: PROF
   YAGS2:
     controls_information:
@@ -250,5 +248,4 @@ screens:
       - CU_SPEC
       hardware: {}
       sum_l_meters: 21.414
-      timeout: 1.0
       type: PROF

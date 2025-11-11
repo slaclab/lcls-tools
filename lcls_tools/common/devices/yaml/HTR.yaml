@@ -1010,7 +1010,6 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 24.345
-      timeout: 1.0
       type: PROF
   YAGH1:
     controls_information:
@@ -1057,7 +1056,6 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 32.253
-      timeout: 1.0
       type: PROF
   YAGH2:
     controls_information:
@@ -1104,7 +1102,6 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 33.311
-      timeout: 1.0
       type: PROF
 wires:
   WS0H04:

@@ -664,7 +664,6 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 56.813
-      timeout: 1.0
       type: PROF
   OTRDG04:
     controls_information:
@@ -703,7 +702,6 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 61.871
-      timeout: 1.0
       type: PROF
 tcavs:
   TCXDG0:

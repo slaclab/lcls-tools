@@ -70,7 +70,6 @@ screens:
       beam_path: []
       hardware: {}
       sum_l_meters: null
-      timeout: 1.0
       type: PROF
   BETA2:
     controls_information:
@@ -82,7 +81,6 @@ screens:
       beam_path: []
       hardware: {}
       sum_l_meters: null
-      timeout: 1.0
       type: PROF
   BETAL:
     controls_information:
@@ -94,7 +92,6 @@ screens:
       beam_path: []
       hardware: {}
       sum_l_meters: null
-      timeout: 1.0
       type: PROF
   CFAR:
     controls_information:
@@ -106,7 +103,6 @@ screens:
       beam_path: []
       hardware: {}
       sum_l_meters: null
-      timeout: 1.0
       type: PROF
   ELANEX:
     controls_information:
@@ -118,7 +114,6 @@ screens:
       beam_path: []
       hardware: {}
       sum_l_meters: null
-      timeout: 1.0
       type: PROF
   WDSOTR:
     controls_information:
@@ -132,5 +127,4 @@ screens:
       - F2_POSI
       hardware: {}
       sum_l_meters: 999.253
-      timeout: 1.0
       type: PROF

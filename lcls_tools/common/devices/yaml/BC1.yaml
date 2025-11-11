@@ -628,7 +628,6 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 34.834
-      timeout: 1.0
       type: PROF
   OTR12:
     controls_information:
@@ -661,7 +660,6 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 41.512
-      timeout: 1.0
       type: PROF
 wires:
   WS11:

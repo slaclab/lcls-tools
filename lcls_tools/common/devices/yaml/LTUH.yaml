@@ -2807,7 +2807,6 @@ screens:
       - SC_HXR
       hardware: {}
       sum_l_meters: 1326.826
-      timeout: 1.0
       type: PROF
   OTR33:
     controls_information:
@@ -2840,7 +2839,6 @@ screens:
         TGT: 1.0
         TLAMP: 0.0
       sum_l_meters: 1462.607
-      timeout: 1.0
       type: PROF
   YAGPSI:
     controls_information:
@@ -2883,7 +2881,6 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 1461.796
-      timeout: 1.0
       type: PROF
 wires:
   WS31:

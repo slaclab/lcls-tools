@@ -360,5 +360,4 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 135.571
-      timeout: 1.0
       type: PROF

@@ -346,7 +346,6 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 1.388
-      timeout: 1.0
       type: PROF
   YAG03:
     controls_information:
@@ -380,5 +379,4 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 4.615
-      timeout: 1.0
       type: PROF

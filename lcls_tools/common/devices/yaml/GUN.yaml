@@ -253,5 +253,4 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 0.614
-      timeout: 1.0
       type: PROF

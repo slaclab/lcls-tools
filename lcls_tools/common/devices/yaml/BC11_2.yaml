@@ -153,7 +153,6 @@ screens:
       - F2_SCAV
       hardware: {}
       sum_l_meters: 47.105
-      timeout: 1.0
       type: PROF
   PR11375:
     controls_information:
@@ -168,7 +167,6 @@ screens:
       - F2_SCAV
       hardware: {}
       sum_l_meters: 50.557
-      timeout: 1.0
       type: PROF
   TD11390:
     controls_information:
@@ -183,5 +181,4 @@ screens:
       - F2_SCAV
       hardware: {}
       sum_l_meters: 52.375
-      timeout: 1.0
       type: PROF

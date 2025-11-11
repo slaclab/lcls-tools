@@ -362,23 +362,12 @@ screens:
         filter_1_status: OTRS:DMPS:695:FLT1_STS
         filter_2_control: OTRS:DMPS:695:FLT2_CTRL
         filter_2_status: OTRS:DMPS:695:FLT2_STS
-        image: OTRS:DMPS:695:Image:ArrayData
         lamp_power: OTRS:DMPS:695:TGT_LAMP_PWR
-        n_bits: OTRS:DMPS:695:N_OF_BITS
-        n_col: OTRS:DMPS:695:Image:ArraySize1_RBV
-        n_row: OTRS:DMPS:695:Image:ArraySize0_RBV
-        orient_x: OTRS:DMPS:695:X_ORIENT
-        orient_y: OTRS:DMPS:695:Y_ORIENT
-        ref_rate: OTRS:DMPS:695:ArrayRate_RBV
-        ref_rate_vme: OTRS:DMPS:695:FRAME_RATE
-        resolution: OTRS:DMPS:695:RESOLUTION
         sys_type: OTRS:DMPS:695:SYS_TYPE
         target_control: OTRS:DMPS:695:PNEUMATIC
         target_status: OTRS:DMPS:695:TGT_STS
       control_name: OTRS:DMPS:695
-      pv_cache:
-        orient_x: Positive
-        orient_y: Positive
+      pv_cache: {}
     metadata:
       area: DMPS
       beam_path:
@@ -393,7 +382,6 @@ screens:
         TGT: 1.0
         TLAMP: 1.0
       sum_l_meters: 3771.399
-      timeout: 1.0
       type: PROF
 tcavs:
   TCX01B:

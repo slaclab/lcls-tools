@@ -166,5 +166,4 @@ screens:
       - CU_GSPEC
       hardware: {}
       sum_l_meters: 1.839
-      timeout: 1.0
       type: PROF

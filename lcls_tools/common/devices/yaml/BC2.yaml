@@ -362,7 +362,6 @@ screens:
       - CU_SXR
       hardware: {}
       sum_l_meters: 410.405
-      timeout: 1.0
       type: PROF
 wires:
   WS24:

@@ -686,7 +686,6 @@ screens:
       - F2_SCAV
       hardware: {}
       sum_l_meters: 919.713
-      timeout: 1.0
       type: PROF
 wires:
   WS57184:
