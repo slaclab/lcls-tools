@@ -150,7 +150,7 @@ class EmittanceMeasurementTest(TestCase):
                     scan_values=k,
                     magnet=mock_magnet,
                     beamsize_measurement=mock_beamsize_measurement,
-                    quad_to_diagnostic_rmat=rmat,
+                    rmat=rmat,
                     design_twiss=design_twiss_ele,
                     wait_time=1e-3,
                 )
