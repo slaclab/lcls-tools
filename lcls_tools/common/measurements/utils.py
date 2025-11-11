@@ -25,7 +25,7 @@ def collect_with_size_check(
     Retries collection if the data size does not match the expected points.
     Parameters:
         device (Device): A slac-tools Device object
-        collector_func (callable): Function to collect data.
+        collector_func (string): Function name (as a string) to collect data.
         buffer (edef.BSABuffer): Buffer object containing measurement data.
         logger (logging.Logger): Logger for logging warnings.
         max_retries (int): Maximum number of retries on size mismatch.
