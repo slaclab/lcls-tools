@@ -18,40 +18,59 @@ def ensure_numpy_array(v):
 
 
 def collect_with_size_check(
-    collector_func, expected_points, logger, *collector_args, max_retries=3, delay=0.5
+    device, collector_func, buffer, logger, max_retries=3, delay=3
 ):
     """
     Collects data using the provided function and checks its size.
     Retries collection if the data size does not match the expected points.
     Parameters:
-        collector_func (callable): Function to collect data.
-        expected_points (int): Expected number of data points.
+        device (Device): A slac-tools Device object
+        collector_func (string): Function name (as a string) to collect data.
+        buffer (edef.BSABuffer): Buffer object containing measurement data.
+        logger (logging.Logger): Logger for logging warnings.
         max_retries (int): Maximum number of retries on size mismatch.
         delay (float): Delay in seconds between retries.
         *args, **kwargs: Arguments to pass to the collector function.
     Returns:
         Collected data if size matches expected points.
     """
+    method = getattr(device, collector_func)
     for attempt in range(max_retries):
-        data = collector_func(*collector_args)
+        try:
+            data = method(buffer)
+        except TypeError as e:
+            # Call without arguments if the function doesn't accept any
+            if "positional argument" in str(e) or "given" in str(e):
+                data = method()
+            else:
+                raise
         size = len(data) if data is not None else 0
 
+        expected_points = buffer.n_measurements
         if size == expected_points:
             return data
 
         if logger is not None:
             logger.warning(
-                "Data size mismatch: expected %d, got %d. Retrying (%d/%d)...",
+                "Data size mismatch for %d %d: expected %d, got %d. Retrying (%d/%d)...",
+                device.name,
+                collector_func,
                 expected_points,
                 size,
                 attempt + 1,
                 max_retries,
             )
+        else:
+            print(
+                f"Warning: Data size mismatch for {device.name} {collector_func}: "
+                f"expected {expected_points}, got {size}. Retrying ({attempt + 1}/{max_retries})..."
+            )
         if delay > 0:
             time.sleep(delay)
 
     raise RuntimeError(
-        f"Failed to collect data of expected size {expected_points} after {max_retries} attempts."
+        f"Unable to collect complete {collector_func} data for {device.name}. "
+        f"Expected {expected_points} points but retrieved {size} after {max_retries} attempts."
     )
 
 
