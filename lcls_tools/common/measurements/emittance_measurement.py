@@ -7,7 +7,6 @@ import numpy as np
 from numpy import ndarray
 from pydantic import (
     ConfigDict,
-    Field,
     SerializeAsAny,
     field_validator,
     PositiveFloat,
@@ -327,7 +326,7 @@ class QuadScanEmittance(Measurement):
                     self.physics_model,
                 )
                 twiss = optics["design_twiss"]
-            except Exception as e:
+            except Exception:
                 warnings.warn(
                     "Design twiss parameters could not be "
                     "calculated using meme. Returning None."
