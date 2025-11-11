@@ -75,11 +75,11 @@ class ImageProjectionFit(ImageFit):
         Whether to validate fit parameters after fitting. If True, fitting will return NaN values if
         the beam extent is off the screen or if the fit amplitude is below the noise threshold.
         Default is False.
-    signal_to_noise_threshold : Optional[PositiveFloat]
+    signal_to_noise_threshold : PositiveFloat
         Fit amplitude to noise threshold for the fit. If the amplitude of the fit is below this
         threshold times the noise standard deviation and `validate_fit` is True,
         the fit parameters will be set to NaN.
-    beam_extent_n_stds : Optional[PositiveFloat]
+    beam_extent_n_stds : PositiveFloat
         Number of standard deviations on either side to use for the beam extent. If the beam
         extent is outside the image and `validate_fit` is True, the fit parameters will be set to NaN.
     use_prior : bool
