@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import importlib
-from typing import List, Optional
+from typing import List
 
 import numpy as np
 from numpy import ndarray
@@ -91,10 +91,10 @@ class ImageProjectionFit(ImageFit):
     validate_fit: bool = Field(
         False, description="Whether to validate fit parameters after fitting."
     )
-    signal_to_noise_threshold: Optional[PositiveFloat] = Field(
+    signal_to_noise_threshold: PositiveFloat = Field(
         2.0, description="Fit amplitude to noise threshold for the fit"
     )
-    beam_extent_n_stds: Optional[PositiveFloat] = Field(
+    beam_extent_n_stds: PositiveFloat = Field(
         2.0,
         description="Number of standard deviations on either side to use for the beam extent",
     )
