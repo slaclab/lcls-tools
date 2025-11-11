@@ -29,6 +29,8 @@ class TestImageProjectionFit(unittest.TestCase):
         result = projection_fit.fit_image(test_image)
 
         assert np.allclose(result.centroid, [np.nan, 49.5], equal_nan=True)
-        assert np.allclose(result.rms_size, [np.nan, 7.692413702989997], rtol=1e-2, equal_nan=True)
+        assert np.allclose(
+            result.rms_size, [np.nan, 7.692413702989997], rtol=1e-2, equal_nan=True
+        )
         assert np.allclose(result.total_intensity, test_image.sum())
         assert np.allclose(result.image, test_image)
