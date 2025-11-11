@@ -60,16 +60,9 @@ class ScreenControlInformation(ControlInformation):
         super().__init__(**kwargs)
 
 
-class ScreenMetadata(Metadata):
-    timeout: Optional[PositiveFloat] = 1.0
-
-    def __init__(self, *args, **kwargs):
-        super(ScreenMetadata, self).__init__(*args, **kwargs)
-
-
 class Screen(Device):
     controls_information: SerializeAsAny[ScreenControlInformation]
-    metadata: SerializeAsAny[ScreenMetadata]
+    metadata: SerializeAsAny[Metadata]
     new_orientation: Optional[bool] = False
     timeout: Optional[PositiveFloat] = 1.0
     _saving_images: Optional[bool] = False
