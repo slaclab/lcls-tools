@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import importlib
-from typing import List
+from typing import List, Optional
 
 import numpy as np
 from numpy import ndarray
@@ -65,14 +65,36 @@ class ImageProjectionFit(ImageFit):
     Image fitting class that gets the beam size and location by independently fitting
     the x/y projections. The default configuration uses a Gaussian fitting of the
     profile with prior distributions placed on the model parameters.
+
+    Attributes
+    ----------
+    fit_module : str
+        Name of the fitting module to use for the projections. Must be a module
+        in lcls_tools.common.model.
+    validate_fit : bool
+        Whether to validate fit parameters after fitting. If True, fitting will return NaN values if
+        the beam extent is off the screen or if the fit amplitude is below the noise threshold.
+        Default is False.
+    signal_to_noise_threshold : Optional[PositiveFloat]
+        Fit amplitude to noise threshold for the fit. If the amplitude of the fit is below this
+        threshold times the noise standard deviation and `validate_fit` is True,
+        the fit parameters will be set to NaN.
+    beam_extent_n_stds : Optional[PositiveFloat]
+        Number of standard deviations on either side to use for the beam extent. If the beam
+        extent is outside the image and `validate_fit` is True, the fit parameters will be set to NaN.
+    use_prior : bool
+        Whether to use prior distributions in the fit.
     """
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
     fit_module: str = "gaussian"
-    signal_to_noise_threshold: PositiveFloat = Field(
+    validate_fit: bool = Field(
+        False, description="Whether to validate fit parameters after fitting."
+    )
+    signal_to_noise_threshold: Optional[PositiveFloat] = Field(
         2.0, description="Fit amplitude to noise threshold for the fit"
     )
-    beam_extent_n_stds: PositiveFloat = Field(
+    beam_extent_n_stds: Optional[PositiveFloat] = Field(
         2.0,
         description="Number of standard deviations on either side to use for the beam extent",
     )
@@ -99,7 +121,8 @@ class ImageProjectionFit(ImageFit):
             extent = module.extent(parameters, self.beam_extent_n_stds)
 
             # perform validation checks, modify parameters if checks fail
-            self._validate_parameters(parameters, snr, extent, projection, dim)
+            if self.validate_fit:
+                self._validate_parameters(parameters, snr, extent, projection, dim)
 
             fit_parameters.append(parameters)
             signal_to_noise_ratios.append(snr)
@@ -123,17 +146,21 @@ class ImageProjectionFit(ImageFit):
     ):
         # if the amplitude of the the fit is smaller than noise then reject
         # moving this into a validate function to clean it up.
-        if signal_to_noise_ratios < self.signal_to_noise_threshold:
-            for name in parameters.keys():
-                parameters[name] = np.nan
+        if self.signal_to_noise_threshold is not None:
+            if signal_to_noise_ratios < self.signal_to_noise_threshold:
+                for name in parameters.keys():
+                    parameters[name] = np.nan
 
-            warnings.warn(f"Projection in {dim} had a low amplitude relative to noise")
+                warnings.warn(
+                    f"Projection in {dim} had a low amplitude relative to noise"
+                )
 
         # if the beam extent is outside the image then its off the screen etc. and fits cannot be trusted
-        if beam_extent[0] < 0 or beam_extent[1] > len(projection):
-            for name in parameters.keys():
-                parameters[name] = np.nan
+        if self.beam_extent_n_stds is not None:
+            if beam_extent[0] < 0 or beam_extent[1] > len(projection):
+                for name in parameters.keys():
+                    parameters[name] = np.nan
 
-            warnings.warn(
-                f"Projection in {dim} was off the screen, fit cannot be trusted"
-            )
+                warnings.warn(
+                    f"Projection in {dim} was off the screen, fit cannot be trusted"
+                )
