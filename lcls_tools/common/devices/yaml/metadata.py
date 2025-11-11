@@ -58,7 +58,6 @@ def get_screen_metadata(basic_screen_data: dict):
                 hardware[name] = status
 
         metadata[mad_name]["hardware"] = hardware
-
     return metadata
 
 
