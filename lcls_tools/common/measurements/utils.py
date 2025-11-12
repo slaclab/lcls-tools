@@ -36,17 +36,10 @@ def collect_with_size_check(
     """
     method = getattr(device, collector_func)
     for attempt in range(max_retries):
-        try:
-            data = method(buffer)
-        except TypeError as e:
-            # Call without arguments if the function doesn't accept any
-            if "positional argument" in str(e) or "given" in str(e):
-                data = method()
-            else:
-                raise
+        data = method(buffer)
         size = len(data) if data is not None else 0
-
         expected_points = buffer.n_measurements
+
         if size == expected_points:
             return data
 
