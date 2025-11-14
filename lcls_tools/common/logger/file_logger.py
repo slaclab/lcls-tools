@@ -10,6 +10,10 @@ def custom_logger(log_file=None, name=__name__, level=logging.INFO):
     logger = logging.getLogger(name)
     logger.setLevel(level)
 
+    # Prevent duplicate handlers
+    if logger.hasHandlers():
+        return logger
+
     def make_handler(handler, use_date_format=False):
         formatter = logging.Formatter(
             FORMAT_STRING, datefmt=DATE_FORMAT if use_date_format else None
