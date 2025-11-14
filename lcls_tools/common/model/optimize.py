@@ -78,7 +78,7 @@ def param_fit(curve, params, pos, data, use_prior=False):
     res = map_fit(forward, x, y, init, bounds, prior)
 
     fitp = {p.name: p.scale(val, pos, data) for p, val in zip(params, res.x)}
-    error = np.std(data - curve(x, **fitp))
+    error = np.sqrt(np.mean((data - curve(x, **fitp)) ** 2))
     fitp["error"] = error
 
     return fitp
