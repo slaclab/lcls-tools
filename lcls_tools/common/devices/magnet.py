@@ -62,6 +62,12 @@ class MagnetMetadata(Metadata):
         super(MagnetMetadata, self).__init__(*args, **kwargs)
 
 
+class MagnetTimeoutError(Exception):
+    """Raised when the magnet fails to settle within the allowed time"""
+
+    pass
+
+
 class Magnet(Device):
     controls_information: SerializeAsAny[MagnetControlInformation]
     metadata: SerializeAsAny[MagnetMetadata]
@@ -267,8 +273,31 @@ class Magnet(Device):
         function: Optional[callable] = None,
     ) -> None:
         for setting in scan_settings:
-            self.bctrl = setting
+            try:
+                self.set_bdes_for_scan(setting)
+            except MagnetTimeoutError as e:
+                # TODO: use logging here instead
+                print("Error:", e)
             function() if function else None
+
+    def set_bdes_for_scan(self, bval: float, settle_timeout_in_seconds: int = 5):
+        self.bdes = bval
+        self.trim()
+        time_when_trim_started = datetime.now()
+        while not self.is_bact_settled():
+            # Timeout if magnet takes too long to settle
+            if (
+                datetime.now() - time_when_trim_started
+            ).seconds > settle_timeout_in_seconds:
+                raise MagnetTimeoutError(
+                    "Took more than ",
+                    settle_timeout_in_seconds,
+                    " seconds for ",
+                    self.name,
+                    ":BACT to reach ",
+                    self.name,
+                    ":BDES.",
+                )
 
 
 class MagnetCollection(DeviceCollection):
