@@ -124,7 +124,7 @@ class EmittanceMeasurementTest(TestCase):
                 # Mock beamsize_measurement
                 mock_beamsize_measurement = MagicMock(spec=ScreenBeamProfileMeasurement)
                 mock_beamsize_measurement.beam_profile_device = MagicMock(spec=Screen)
-                mock_beamsize_measurement.beam_profile_device.resolution = 1.0
+                mock_beamsize_measurement.resolution = 20.0e-6  # 20 microns per pixel
                 mock_beamsize_measurement.measure = MagicMock(
                     side_effect=lambda *args, **kwargs: next(external_list)
                 )
