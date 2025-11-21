@@ -28,7 +28,7 @@ class EmittanceCalculationTest(TestCase):
             ]
         )
 
-        twiss_lattice = np.array(
+        twiss_design = np.array(
             [
                 [
                     [0.29970473, -1.58494282],
@@ -45,7 +45,7 @@ class EmittanceCalculationTest(TestCase):
 
         # compute emittance & bmag
         result = compute_emit_bmag(
-            beamsize_squared=beamsize_squared, rmat=rmat, twiss_lattice=twiss_lattice
+            beamsize_squared=beamsize_squared, rmat=rmat, twiss_design=twiss_design
         )
 
         # compare results with ground-truth
@@ -78,7 +78,7 @@ class EmittanceCalculationTest(TestCase):
             ]
         )
 
-        twiss_lattice = np.array(
+        twiss_design = np.array(
             [
                 [[0.29970473, -1.58494282]],
                 [[0.1296221, -0.66578778]],
@@ -87,7 +87,7 @@ class EmittanceCalculationTest(TestCase):
 
         # compute emittance & bmag
         result = compute_emit_bmag(
-            beamsize_squared=beamsize_squared, rmat=rmat, twiss_lattice=twiss_lattice
+            beamsize_squared=beamsize_squared, rmat=rmat, twiss_design=twiss_design
         )
 
         # compare results with ground-truth

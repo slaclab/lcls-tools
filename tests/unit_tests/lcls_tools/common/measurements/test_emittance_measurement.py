@@ -63,7 +63,7 @@ class EmittanceMeasurementTest(TestCase):
         # design twiss set such that the 5th element of the quad scan is the design
         # setting
         rmat = np.array([[[1, 1.0], [0, 1]], [[1, 1.0], [0, 1]]])
-        lattice_twiss = {
+        design_twiss = {
             "beta_x": 0.2452,
             "alpha_x": -0.1726,
             "beta_y": 0.5323,
@@ -106,8 +106,8 @@ class EmittanceMeasurementTest(TestCase):
             * 1e6
         )
 
-        # run test with and without lattice_twiss
-        for lattice_twiss_ele in [None, lattice_twiss]:
+        # run test with and without design_twiss
+        for design_twiss_ele in [None, design_twiss]:
             for n_shots in [1, 3]:
                 mock_beamsize_measurements = []
                 for i, val in enumerate(k):
@@ -151,7 +151,7 @@ class EmittanceMeasurementTest(TestCase):
                     magnet=mock_magnet,
                     beamsize_measurement=mock_beamsize_measurement,
                     rmat=rmat,
-                    lattice_twiss=lattice_twiss_ele,
+                    design_twiss=design_twiss_ele,
                     wait_time=1e-3,
                 )
 
@@ -193,7 +193,7 @@ class EmittanceMeasurementTest(TestCase):
                     np.array([[5.0e-2, -5.0e-2, 5.2e-2], [0.3, -0.3, 0.33333328]]),
                 )
 
-                if lattice_twiss_ele is None:
+                if design_twiss_ele is None:
                     assert result.bmag is None
                 else:
                     assert np.allclose(result.bmag[0][4], 1.0)

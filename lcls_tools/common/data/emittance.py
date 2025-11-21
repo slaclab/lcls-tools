@@ -10,7 +10,7 @@ from lcls_tools.common.data.model_general_calcs import (
 def compute_emit_bmag(
     beamsize_squared: np.ndarray,
     rmat: np.ndarray,
-    twiss_lattice: np.ndarray = None,
+    twiss_design: np.ndarray = None,
     maxiter: int = None,
 ):
     """
@@ -32,7 +32,7 @@ def compute_emit_bmag(
         containing the 2x2 R matrices describing the transport from a common upstream
         point in the beamline to the locations at which each beamsize was observed.
 
-    twiss_lattice : numpy.ndarray, optional
+    twiss_design : numpy.ndarray, optional
         Array of shape (batchshape x n_measurements x 2) designating the design (beta, alpha)
         twiss parameters at each measurement location.
         Note that it is also possible to pass an array of shape (batchshape x 1 x 2),
@@ -48,14 +48,15 @@ def compute_emit_bmag(
     dict
         Dictionary containing the following keys:
         - 'emittance': numpy.ndarray of shape (batchshape x 1) containing the geometric emittance
-          fit results for each scan in mm-mrad.
+          fit results for each plane in mm-mrad.
         - 'bmag': numpy.ndarray of shape (batchshape x n_steps) containing the bmag corresponding
-          to each point in each scan.
+          to each point in each plane.
         - 'beam_matrix': numpy.ndarray of shape (batchshape x 3) containing [sig11, sig12, sig22]
           where sig11, sig12, sig22 are the reconstructed beam matrix parameters at the entrance
           of the measurement quad.
         - 'twiss': numpy.ndarray of shape (batchshape x nsteps x 3) containing the
-          reconstructed twiss parameters at the measurement screen for each step in each quad scan.
+          reconstructed twiss parameters at each measurement point (e.g. at the beam profile
+          device at each point in a quad scan or at each beam profile device in a multi measurement).
 
     References
     ----------
@@ -184,7 +185,7 @@ def compute_emit_bmag(
             axis=-2,
         )
 
-    # propagate twiss params to screen (expand_dims for broadcasting)
+    # propagate twiss params to beam profile device (expand_dims for broadcasting)
     rv["twiss"] = propagate_twiss(_twiss_upstream(rv["beam_matrix"]), rmat)
     # result shape (batchshape x nsteps x 3)
     beta, alpha = (
@@ -193,11 +194,11 @@ def compute_emit_bmag(
     )
     # shapes batchshape x nsteps
 
-    # compute bmag if twiss_lattice is provided
-    if twiss_lattice is not None:
+    # compute bmag if twiss_design is provided
+    if twiss_design is not None:
         beta_design, alpha_design = (
-            twiss_lattice[..., 0],
-            twiss_lattice[..., 1],
+            twiss_design[..., 0],
+            twiss_design[..., 1],
         )
         # shape batchshape x nsteps x 1 (multi-device) or batchshape x 1 (quad scan)
 
