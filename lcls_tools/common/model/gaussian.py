@@ -1,7 +1,6 @@
 import numpy as np
 from scipy.stats import norm
 import lcls_tools.common.model.optimize as optimize
-from pydantic import PositiveFloat
 
 
 def curve(x, mean=0, sigma=1, amp=1, off=0):
