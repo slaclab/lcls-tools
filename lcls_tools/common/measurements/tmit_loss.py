@@ -155,11 +155,13 @@ class TMITLoss(Measurement):
                           - Columns contain the retrieved TMIT buffer data.
         """
         data = {}
-        n_m = self.my_buffer.n_measurements
 
         for element, bpm in self.bpms.items():
             bpm_data = collect_with_size_check(
-                bpm.tmit_buffer, n_m, None, self.my_buffer
+                bpm,
+                "tmit_buffer",
+                self.my_buffer,
+                None,
             )
             data[element] = bpm_data
 

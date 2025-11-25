@@ -1,5 +1,5 @@
 from unittest import TestCase
-from unittest.mock import MagicMock, patch, Mock
+from unittest.mock import MagicMock, PropertyMock, patch, Mock
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -113,7 +113,9 @@ class EmittanceMeasurementTest(TestCase):
                 for i, val in enumerate(k):
                     result = MagicMock(ScreenBeamProfileMeasurementResult)
                     result.rms_sizes = np.array([float(x_data[i]), float(y_data[i])])
-
+                    result.model_dump = MagicMock(
+                        return_value={"rms_sizes": result.rms_sizes}
+                    )
                     mock_beamsize_measurements += [result]
 
                 # External list to return beam sizes
@@ -122,7 +124,7 @@ class EmittanceMeasurementTest(TestCase):
                 # Mock beamsize_measurement
                 mock_beamsize_measurement = MagicMock(spec=ScreenBeamProfileMeasurement)
                 mock_beamsize_measurement.beam_profile_device = MagicMock(spec=Screen)
-                mock_beamsize_measurement.beam_profile_device.resolution = 1.0
+                mock_beamsize_measurement.resolution = 20.0e-6  # 20 microns per pixel
                 mock_beamsize_measurement.measure = MagicMock(
                     side_effect=lambda *args, **kwargs: next(external_list)
                 )
@@ -132,9 +134,12 @@ class EmittanceMeasurementTest(TestCase):
                 mock_magnet.metadata = MagnetMetadata(
                     area="test", beam_path=["test"], sum_l_meters=None, l_eff=0.1
                 )
+                bctrl_mock = PropertyMock(return_value=0.0)
+                type(mock_magnet).bctrl = bctrl_mock
 
                 def mock_function(scan_settings, function):
                     for ele in scan_settings:
+                        bctrl_mock.return_value = ele
                         function()
 
                 mock_magnet.scan = mock_function
@@ -166,6 +171,16 @@ class EmittanceMeasurementTest(TestCase):
                 )
                 assert np.allclose(
                     result.rms_beamsizes[1] * 1e6, y_data[~np.isnan(y_data)]
+                )
+
+                # check pv values are correct
+                assert np.allclose(
+                    result.quadrupole_pv_values[0],
+                    np.concatenate((k[:6], k[7:])),
+                )
+                assert np.allclose(
+                    result.quadrupole_pv_values[1],
+                    np.concatenate((k[:1], k[3:])),
                 )
 
                 # check resulting calculations against cheetah simulation ground truth
