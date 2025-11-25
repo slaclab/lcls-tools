@@ -3,7 +3,7 @@ import unittest
 from lcls_tools.common.model import asymmetric_gaussian
 
 
-class TestGaussianFits(unittest.TestCase):
+class TestAssymetricGaussianFits(unittest.TestCase):
     def test_asymmetric_gaussian_fit(self):
         # TODO: An empirical measure of fit quality.
         n = 100
