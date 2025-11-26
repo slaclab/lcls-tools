@@ -93,7 +93,7 @@ class TestImageProcessing(unittest.TestCase):
                 self.image[200:599, 200:599],
                 err_msg="expected processed image to equal cropped image",
             )
-        
+
             np.testing.assert_array_equal(
                 offsets[i],
                 np.array([200, 200]),
