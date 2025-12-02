@@ -499,6 +499,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
 
         metadata = MeasurementMetadata(
             wire_name=self.my_wire.name,
+            buffer_number=self.my_buffer.number,
             area=self.my_wire.area,
             beampath=self.beampath,
             detectors=self.detectors,
