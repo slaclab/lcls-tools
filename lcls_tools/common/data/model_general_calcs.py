@@ -3,8 +3,7 @@ from typing import Dict
 import numpy as np
 
 from lcls_tools.common.devices.magnet import Magnet
-
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
+from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurement
 
 
 def bmag(twiss, twiss_reference):
@@ -61,9 +60,9 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None, tao=None, element
 
 
 def quad_scan_optics(
-    magnet: Magnet, measurement: ScreenBeamProfileMeasurement, physics_model="BMAD"
+    magnet: Magnet, measurement: BeamProfileMeasurement, physics_model="BMAD"
 ) -> Dict:
-    """Get rmat from magnet to measurement device and twiss at measurement device"""
+    """Get rmat (6 x 6) from magnet to measurement device and twiss at measurement device"""
     # TODO: get optics from arbitrary devices (potentially in different beam lines)
     model = _get_model_from_device(measurement.beam_profile_device, physics_model)
     rmat = model.get_rmat(
@@ -75,21 +74,23 @@ def quad_scan_optics(
 
 
 def multi_device_optics(
-    measurements: list[ScreenBeamProfileMeasurement], physics_model="BMAD"
+    measurements: list[BeamProfileMeasurement], physics_model="BMAD"
 ) -> Dict:
-    """Get rmat and twiss at measurement devices"""
+    """Get rmat (n_devices x 6 x 6 from gun to measurement devices)
+    and twiss of measurement devices"""
     model = _get_model_from_device(measurements[-1].beam_profile_device, physics_model)
-    device_names = [
+    beam_profile_device_names = [
         measurement.beam_profile_device.name for measurement in measurements
     ]
-    rmat = model.get_rmat(device_names)
-    twiss = model.get_twiss(device_names)
+    rmat = model.get_rmat(beam_profile_device_names)
+    twiss = model.get_twiss(beam_profile_device_names)
     return {"rmat": rmat, "design_twiss": twiss}
 
 
 def _get_model_from_device(device, physics_model):
     from meme.model import Model
 
+    # Look for device beam path in meme beam paths
     beam_path = None
     for bp in device.metadata.beam_path:
         if bp in [
