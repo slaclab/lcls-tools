@@ -17,10 +17,7 @@ from lcls_tools.common.devices.device import (
 
 from epics import PV
 import h5py
-from pydantic import (
-    Field,
-    SerializeAsAny,
-)
+from pydantic import Field, SerializeAsAny, PositiveFloat
 import numpy as np
 
 
@@ -67,6 +64,7 @@ class Screen(Device):
     controls_information: SerializeAsAny[ScreenControlInformation]
     metadata: SerializeAsAny[Metadata]
     new_orientation: Optional[bool] = False
+    timeout: Optional[PositiveFloat] = 1.0
     _saving_images: Optional[bool] = False
     _root_hdf5_location: Optional[str] = "."
     _last_save_filepath: Optional[str] = ""
@@ -88,11 +86,19 @@ class Screen(Device):
         reshaped to the dimensions of
         the camera associated with this screen
         """
-        img = self.controls_information.PVs.image.get(as_numpy=True).reshape(
-            self.n_columns, self.n_rows
-        )
+        img = self.controls_information.PVs.image.get(
+            as_numpy=True, timeout=self.timeout
+        ).reshape(self.n_columns, self.n_rows)
         img = self.flip_image(img)
         return img
+
+    @property
+    def image_timeout(self):
+        return self.timeout
+
+    @image_timeout.setter
+    def image_timeout(self, timeout):
+        self.timeout = timeout
 
     @property
     def image_timestamp(self):
