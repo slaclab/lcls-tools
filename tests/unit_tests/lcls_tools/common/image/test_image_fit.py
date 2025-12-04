@@ -15,6 +15,12 @@ class TestImageProjectionFit(unittest.TestCase):
         assert np.allclose(result.rms_size, [15.09, 7.69], rtol=1e-2)
         assert np.allclose(result.total_intensity, test_image.sum())
         assert np.allclose(result.image, test_image)
+        assert np.allclose(
+            result.projection_fit_parameters[0]["error"], 1144.9406852568763, atol=1e-5
+        )
+        assert np.allclose(
+            result.projection_fit_parameters[1]["error"], 1619.0121682734334, atol=1e-5
+        )
 
         # test plotting
         plot_image_projection_fit(result)
@@ -24,6 +30,7 @@ class TestImageProjectionFit(unittest.TestCase):
         test_image[40:60, 30:70] = 255
 
         projection_fit = ImageProjectionFit(
+            signal_to_noise_threshold=5.0,
             validate_fit=True,
         )
         result = projection_fit.fit_image(test_image)
