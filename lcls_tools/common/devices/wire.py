@@ -109,8 +109,6 @@ class Wire(Device):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    """ Decorators """
-
     def check_state(f):
         """Decorator to only allow transitions in 'Initialized' state"""
 
@@ -152,13 +150,12 @@ class Wire(Device):
         """Returns current beam rate"""
         # Some wires do not have dedicated beam rate PVs.
         # See CATER 180392 for more details
-        nc_areas = ["LI20", "LI24", "LI28", "LTUH", "DL1", "BC1", "BC2", "LTU"]
-        if self.area in nc_areas and self.controls_information.PVs.beam_rate is None:
-            nc_beam_rate = PV("EVNT:SYS0:1:LCLSBEAMRATE")
-            return nc_beam_rate.get()
-        elif self.area in ["DIAG0"] and self.controls_information.PVs.beam_rate is None:
-            diag0_beam_rate = PV("TPG:SYS0:1:DST01:RATE")
-            return diag0_beam_rate.get()
+        nc_areas = ["L3", "LI20", "LI24", "LI28", "LTUH", "DL1", "BC1", "BC2", "LTU"]
+        if self.controls_information.PVs.beam_rate is None:
+            if self.area in nc_areas:
+                return PV("EVNT:SYS0:1:LCLSBEAMRATE").get()
+            elif self.area in ["DIAG0"]:
+                return PV("TPG:SYS0:1:DST01:RATE").get()
         else:
             return self.controls_information.PVs.beam_rate.get()
 
