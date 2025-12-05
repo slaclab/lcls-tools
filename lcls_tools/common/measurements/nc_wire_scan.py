@@ -16,17 +16,28 @@ class NCWireBeamProfileMeasurement(WireBeamProfileMeasurement):
                 beampath=self.beampath,
                 name="LCLS Tools NC Wire Scan",
                 n_measurements=self._calc_buffer_points(),
-                destination_mode="Inclusion",
                 logger=self.logger,
             )
 
         # Initialize wire scan
-        self.logger.info("Starting wire motion sequence...")
-        self.my_wire.initialize()
+        max_attempts = 3
 
-        # Wait for hardware to be ready
-        if not self._wait_until(lambda: self.my_wire.enabled, timeout=10):
-            raise RuntimeError(f"{self.my_wire.name} did not initialize after 10s.")
+        for attempt in range(1, max_attempts + 1):
+            self.logger.info(
+                f"Initializing {self.my_wire.name}: (Attempt {attempt}/{max_attempts})..."
+            )
+            self.my_wire.initialize()
+
+            if self._wait_until(lambda: self.my_wire.enabled, timeout=10):
+                break
+            else:
+                self.logger.warning(
+                    f"{self.my_wire.name} did not enable after 10s - retrying..."
+                )
+        else:
+            raise RuntimeError(
+                f"Failed to initialize {self.my_wire.name} after {max_attempts} attempts."
+            )
 
         # Build ordered profile positions
         posns = []
@@ -41,18 +52,30 @@ class NCWireBeamProfileMeasurement(WireBeamProfileMeasurement):
         self.my_buffer.start()
 
         # Move to each position
-        for target in posns:
-            self.logger.info(f"Moving wire to {target}...")
-            self.my_wire.motor = target
+        for i in range(len(posns)):
+            self.logger.info(f"Moving wire to {posns[i]}...")
+            if i in [0, 2, 4]:  # If moving to profile inner position, set speed to max
+                self.my_wire.speed = int(self.my_wire.speed_max)
 
+            elif i in [1, 3, 5]:  # If moving to profile outer position, set calculated speed
+                profile_range = posns[i] - posns[i - 1]
+                speed = (
+                    profile_range / self.my_wire.scan_pulses
+                ) * self.my_wire.beam_rate
+                self.my_wire.speed = int(speed)
+
+            self.my_wire.motor = posns[i]
+
+            # If position (within 250 um) not reached within 15s, raise error
             if not self._wait_until(
-                lambda: abs(self.my_wire.motor_rbv - target) < 25, timeout=5
+                lambda: abs(self.my_wire.motor_rbv - posns[i]) < 250, timeout=15
             ):
                 raise RuntimeError(
-                    f"{self.my_wire.name} did not reach position {target} after 5s."
+                    f"{self.my_wire.name} did not reach position {posns[i]} after 15s."
                 )
 
         # Retract wire at end of scan
+        self.my_wire.speed = self.my_wire.speed_max
         self.my_wire.motor = 100
 
         # Wait for buffer acquisition to complete
@@ -106,11 +129,3 @@ class NCWireBeamProfileMeasurement(WireBeamProfileMeasurement):
             rms_sizes=rms_sizes,
             metadata=metadata,
         )
-
-    def _wait_until(self, condition, timeout=5, period=0.1):
-        start = time.time()
-        while time.time() - start < timeout:
-            if condition():
-                return True
-            time.sleep(period)
-        return False
