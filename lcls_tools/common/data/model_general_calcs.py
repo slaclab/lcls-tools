@@ -82,9 +82,14 @@ def multi_device_optics(
     beam_profile_device_names = [
         measurement.beam_profile_device.name for measurement in measurements
     ]
-    rmat = model.get_rmat(beam_profile_device_names)
+    rmat = []
+    ref_index = int(len(beam_profile_device_names) / 2)
+    device_ref = beam_profile_device_names[ref_index]
+    for device in beam_profile_device_names:
+        rmat.append(model.get_rmat(device_ref, device))
+    rmat = np.array(rmat)
     twiss = model.get_twiss(beam_profile_device_names)
-    return {"rmat": rmat, "design_twiss": twiss}
+    return {"rmat": rmat, "lattice_twiss": twiss}
 
 
 def _get_model_from_device(device, physics_model):
