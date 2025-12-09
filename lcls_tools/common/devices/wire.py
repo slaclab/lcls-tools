@@ -62,6 +62,7 @@ class WirePVSet(PVSet):
     homed: Optional[PV] = None
     initialize: Optional[PV] = None
     initialize_status: Optional[PV] = None
+    install_angle: Optional[PV] = None
     motor: PV
     motor_rbv: PV
     retract: Optional[PV] = None
@@ -173,6 +174,11 @@ class Wire(Device):
 
     def initialize(self) -> None:
         self.controls_information.PVs.initialize.put(value=1)
+
+    @property
+    def install_angle(self):
+        """Returns the wire scanner install angle in degrees."""
+        return self.controls_information.PVs.install_angle.get()
 
     @property
     def motor(self):
