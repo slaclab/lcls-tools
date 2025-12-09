@@ -87,7 +87,7 @@ class Screen(Device):
         the camera associated with this screen
         """
         img = self.controls_information.PVs.image.get(
-            as_numpy=True, timeout=self.timeout
+            as_numpy=True, timeout=self.timeout, count=self.n_columns * self.n_rows
         ).reshape(self.n_columns, self.n_rows)
         img = self.flip_image(img)
         return img
