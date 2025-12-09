@@ -423,9 +423,12 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         for p in profiles:
             detector_fit = {d: {} for d in self.detectors}
             for d in self.detectors:
+                pos = self.profiles[p].positions
+                beam_coords = self._convert_stage_to_beam_coords(p, pos)
+
                 # Get fit parameters
                 fp = gaussian.fit(
-                    pos=self.profiles[p].positions,
+                    pos=beam_coords,
                     data=self.profiles[p].detectors[d].values,
                 )
 
@@ -596,3 +599,8 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                 return True
             time.sleep(period)
         return False
+
+    def _convert_stage_to_beam_coords(self, profile, positions):
+        rad = np.deg2rad(self.beam_profile_device.install_angle)
+        scale = {"x": np.sin(rad), "y": np.cos(rad), "u": 1.0}
+        return positions * scale[profile]
