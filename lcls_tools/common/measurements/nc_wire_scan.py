@@ -57,7 +57,11 @@ class NCWireBeamProfileMeasurement(WireBeamProfileMeasurement):
             if i in [0, 2, 4]:  # If moving to profile inner position, set speed to max
                 self.my_wire.speed = int(self.my_wire.speed_max)
 
-            elif i in [1, 3, 5]:  # If moving to profile outer position, set calculated speed
+            elif i in [
+                1,
+                3,
+                5,
+            ]:  # If moving to profile outer position, set calculated speed
                 profile_range = posns[i] - posns[i - 1]
                 speed = (
                     profile_range / self.my_wire.scan_pulses
