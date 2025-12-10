@@ -1,7 +1,6 @@
 import numpy as np
 from scipy.stats import norm
 import lcls_tools.common.model.optimize as optimize
-from pydantic import PositiveFloat
 
 
 def curve(x, mean=0, sigma=1, amp=1, off=0):
@@ -96,7 +95,7 @@ def signal_to_noise(fit_params):
     return fit_params["amp"] / fit_params["error"]
 
 
-def extent(fit_params, extent_n_stds: PositiveFloat = 4.0):
+def extent(fit_params, extent_n_stds: float = 4.0):
     return [
         fit_params["mean"] - extent_n_stds * fit_params["sigma"],
         fit_params["mean"] + extent_n_stds * fit_params["sigma"],
