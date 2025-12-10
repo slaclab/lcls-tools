@@ -52,7 +52,10 @@ bpms:
       type: BPM
   BPMSP4S:
     controls_information:
-      PVs: {}
+      PVs:
+        tmit: BPMS:SPS:650:TMIT
+        x: BPMS:SPS:650:X
+        y: BPMS:SPS:650:Y
       control_name: BPMS:SPS:650
     metadata:
       area: SPS

@@ -76,6 +76,74 @@ class TestImageProcessing(unittest.TestCase):
             err_msg="expected offsets to equal crop start",
         )
 
+    def test_batch_process(self):
+        image = np.expand_dims(self.image, axis=0)
+        images = np.repeat(image, repeats=5, axis=0)
+
+        image_processor = ImageProcessor(
+            crop=True,
+            center=True,
+            threshold=0,
+        )
+        processed_images, offsets = image_processor.process(images, return_offsets=True)
+
+        for i in range(images.shape[0]):
+            np.testing.assert_allclose(
+                processed_images[i],
+                self.image[200:599, 200:599],
+                err_msg="expected processed image to equal cropped image",
+            )
+
+            np.testing.assert_array_equal(
+                offsets[i],
+                np.array([200, 200]),
+                err_msg="expected offsets to equal crop start",
+            )
+
+    def test_zero_images(self):
+        # test case where all images are zero
+        zero_image = np.zeros(self.size)
+        image_processor = ImageProcessor(
+            crop=True,
+            center=True,
+            threshold=0,
+        )
+        processed_image, offsets = image_processor.process(
+            zero_image, return_offsets=True
+        )
+        np.testing.assert_array_equal(
+            processed_image,
+            zero_image,
+            err_msg="expected processed image to equal zero image",
+        )
+        np.testing.assert_array_equal(
+            offsets,
+            np.array([[0, 0]]),
+            err_msg="expected offsets to equal crop start",
+        )
+
+    def test_single_pixel_image(self):
+        # test case where image is a single pixel
+        single_pixel_image = np.array([[42]])
+        image_processor = ImageProcessor(
+            crop=True,
+            center=True,
+            threshold=0,
+        )
+        processed_image, offsets = image_processor.process(
+            single_pixel_image, return_offsets=True
+        )
+        np.testing.assert_array_equal(
+            processed_image,
+            single_pixel_image,
+            err_msg="expected processed image to equal single pixel image",
+        )
+        np.testing.assert_array_equal(
+            offsets,
+            np.array([[0.5, 0.5]]),
+            err_msg="expected offsets to equal crop start",
+        )
+
     def test_subtract_background(self):
         """
         Given an np.ndarray, check that when the image_processor

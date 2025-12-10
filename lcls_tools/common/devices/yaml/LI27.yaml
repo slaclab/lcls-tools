@@ -34,10 +34,12 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LI27:644:MOTR.STOP
+        beam_rate: WIRE:LI27:644:BEAMRATE
         enabled: WIRE:LI27:644:MOTR_ENABLED_STS
         homed: WIRE:LI27:644:MOTR_HOMED_STS
         initialize: WIRE:LI27:644:MOTR_INIT
         initialize_status: WIRE:LI27:644:MOTR_INIT_STS
+        install_angle: WIRE:LI27:644:INSTALLANGLE
         motor: WIRE:LI27:644:MOTR
         motor_rbv: WIRE:LI27:644:MOTR.RBV
         retract: WIRE:LI27:644:MOTR_RETRACT
