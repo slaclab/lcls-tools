@@ -235,9 +235,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                 f"Failed to initialize {self.my_wire.name} after {max_attempts} attempts."
             )
 
-        self.logger.info(
-            "%s initialized after %s seconds", self.my_wire.name, elapsed_time
-        )
+        self.logger.info(f"{self.my_wire.name} initialized.")
 
     def start_timing_buffer(self):
         """
