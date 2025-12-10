@@ -2892,6 +2892,7 @@ wires:
         homed: WIRE:LTUH:715:MOTR_HOMED_STS
         initialize: WIRE:LTUH:715:MOTR_INIT
         initialize_status: WIRE:LTUH:715:MOTR_INIT_STS
+        install_angle: WIRE:LTUH:715:INSTALLANGLE
         motor: WIRE:LTUH:715:MOTR
         motor_rbv: WIRE:LTUH:715:MOTR.RBV
         retract: WIRE:LTUH:715:MOTR_RETRACT
@@ -2945,6 +2946,7 @@ wires:
         homed: WIRE:LTUH:735:MOTR_HOMED_STS
         initialize: WIRE:LTUH:735:MOTR_INIT
         initialize_status: WIRE:LTUH:735:MOTR_INIT_STS
+        install_angle: WIRE:LTUH:735:INSTALLANGLE
         motor: WIRE:LTUH:735:MOTR
         motor_rbv: WIRE:LTUH:735:MOTR.RBV
         retract: WIRE:LTUH:735:MOTR_RETRACT
@@ -2998,6 +3000,7 @@ wires:
         homed: WIRE:LTUH:755:MOTR_HOMED_STS
         initialize: WIRE:LTUH:755:MOTR_INIT
         initialize_status: WIRE:LTUH:755:MOTR_INIT_STS
+        install_angle: WIRE:LTUH:755:INSTALLANGLE
         motor: WIRE:LTUH:755:MOTR
         motor_rbv: WIRE:LTUH:755:MOTR.RBV
         retract: WIRE:LTUH:755:MOTR_RETRACT
@@ -3051,6 +3054,7 @@ wires:
         homed: WIRE:LTUH:775:MOTR_HOMED_STS
         initialize: WIRE:LTUH:775:MOTR_INIT
         initialize_status: WIRE:LTUH:775:MOTR_INIT_STS
+        install_angle: WIRE:LTUH:775:INSTALLANGLE
         motor: WIRE:LTUH:775:MOTR
         motor_rbv: WIRE:LTUH:775:MOTR.RBV
         retract: WIRE:LTUH:775:MOTR_RETRACT
@@ -3104,6 +3108,7 @@ wires:
         homed: WIRE:LTUH:246:MOTR_HOMED_STS
         initialize: WIRE:LTUH:246:MOTR_INIT
         initialize_status: WIRE:LTUH:246:MOTR_INIT_STS
+        install_angle: WIRE:LTUH:246:INSTALLANGLE
         motor: WIRE:LTUH:246:MOTR
         motor_rbv: WIRE:LTUH:246:MOTR.RBV
         retract: WIRE:LTUH:246:MOTR_RETRACT
@@ -3141,6 +3146,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LTUH:538:MOTR.STOP
+        install_angle: WIRE:LTUH:538:INSTALLANGLE
         motor: WIRE:LTUH:538:MOTR
         motor_rbv: WIRE:LTUH:538:MOTR.RBV
         scan_pulses: WIRE:LTUH:538:SCANPULSES
@@ -3180,6 +3186,7 @@ wires:
         homed: WIRE:LTUH:122:MOTR_HOMED_STS
         initialize: WIRE:LTUH:122:MOTR_INIT
         initialize_status: WIRE:LTUH:122:MOTR_INIT_STS
+        install_angle: WIRE:LTUH:122:INSTALLANGLE
         motor: WIRE:LTUH:122:MOTR
         motor_rbv: WIRE:LTUH:122:MOTR.RBV
         retract: WIRE:LTUH:122:MOTR_RETRACT
