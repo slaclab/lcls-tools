@@ -1086,6 +1086,7 @@ wires:
         abort_scan: WIRE:IN20:531:MOTR.STOP
         enabled: WIRE:IN20:531:MOTR_ENABLED_STS
         initialize_status: WIRE:IN20:531:MOTR_INIT_STS
+        install_angle: WIRE:IN20:531:INSTALLANGLE
         motor: WIRE:IN20:531:MOTR
         motor_rbv: WIRE:IN20:531:MOTR.RBV
         scan_pulses: WIRE:IN20:531:SCANPULSES
@@ -1130,6 +1131,7 @@ wires:
         homed: WIRE:IN20:561:MOTR_HOMED_STS
         initialize: WIRE:IN20:561:MOTR_INIT
         initialize_status: WIRE:IN20:561:MOTR_INIT_STS
+        install_angle: WIRE:IN20:561:INSTALLANGLE
         motor: WIRE:IN20:561:MOTR
         motor_rbv: WIRE:IN20:561:MOTR.RBV
         retract: WIRE:IN20:561:MOTR_RETRACT
@@ -1177,6 +1179,7 @@ wires:
         homed: WIRE:IN20:611:MOTR_HOMED_STS
         initialize: WIRE:IN20:611:MOTR_INIT
         initialize_status: WIRE:IN20:611:MOTR_INIT_STS
+        install_angle: WIRE:IN20:611:INSTALLANGLE
         motor: WIRE:IN20:611:MOTR
         motor_rbv: WIRE:IN20:611:MOTR.RBV
         retract: WIRE:IN20:611:MOTR_RETRACT
@@ -1222,6 +1225,7 @@ wires:
         abort_scan: WIRE:IN20:741:MOTR.STOP
         enabled: WIRE:IN20:741:MOTR_ENABLED_STS
         initialize_status: WIRE:IN20:741:MOTR_INIT_STS
+        install_angle: WIRE:IN20:741:INSTALLANGLE
         motor: WIRE:IN20:741:MOTR
         motor_rbv: WIRE:IN20:741:MOTR.RBV
         scan_pulses: WIRE:IN20:741:SCANPULSES

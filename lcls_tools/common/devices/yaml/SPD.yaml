@@ -374,6 +374,7 @@ wires:
         homed: WIRE:SPD:872:MOTR_HOMED_STS
         initialize: WIRE:SPD:872:MOTR_INIT
         initialize_status: WIRE:SPD:872:MOTR_INIT_STS
+        install_angle: WIRE:SPD:872:INSTALLANGLE
         motor: WIRE:SPD:872:MOTR
         motor_rbv: WIRE:SPD:872:MOTR.RBV
         retract: WIRE:SPD:872:MOTR_RETRACT
