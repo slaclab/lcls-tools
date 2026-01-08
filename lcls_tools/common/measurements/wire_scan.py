@@ -305,33 +305,28 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         for d in self.devices:
             if d == self.my_wire.name:
                 wire_data = collect_with_size_check(
-                    self.devices[d].position_buffer,
-                    self.my_buffer.n_measurements,
-                    self.logger,
+                    self.devices[d],
+                    "position_buffer",
                     self.my_buffer,
+                    self.logger,
                 )
                 data[d] = wire_data
             elif d == "TMITLOSS":
-                tmit_data = collect_with_size_check(
-                    self.devices[d].measure,
-                    self.my_buffer.n_measurements,
-                    self.logger,
-                )
-                data["TMITLOSS"] = tmit_data
+                data["TMITLOSS"] = self.devices["TMITLOSS"].measure()
             elif d.startswith("LBLM"):
                 lblm_data = collect_with_size_check(
-                    self.devices[d].fast_buffer,
-                    self.my_buffer.n_measurements,
-                    self.logger,
+                    self.devices[d],
+                    "fast_buffer",
                     self.my_buffer,
+                    self.logger,
                 )
                 data[d] = lblm_data
             elif d.startswith("PMT"):
                 pmt_data = collect_with_size_check(
-                    self.devices[d].qdcraw_buffer,
-                    self.my_buffer.n_measurements,
-                    self.logger,
+                    self.devices[d],
+                    "qdcraw_buffer",
                     self.my_buffer,
+                    self.logger,
                 )
                 data[d] = pmt_data
 
@@ -504,6 +499,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
 
         metadata = MeasurementMetadata(
             wire_name=self.my_wire.name,
+            buffer_number=self.my_buffer.number,
             area=self.my_wire.area,
             beampath=self.beampath,
             detectors=self.detectors,

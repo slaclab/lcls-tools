@@ -7,6 +7,7 @@ from scipy.ndimage import median_filter
 from skimage.measure import block_reduce
 from skimage.filters import threshold_triangle
 import lcls_tools
+import warnings
 
 
 class ImageProcessor(lcls_tools.common.BaseModel):
@@ -165,7 +166,7 @@ def calc_image_centroids(
 
     for i in range(flattened_images.shape[0]):
         stats = image_fitter(flattened_images[i])
-        flattened_centroids[i] = [stats["x_center"], stats["y_center"]]
+        flattened_centroids[i] = [stats["y_center"], stats["x_center"]]
 
     return flattened_centroids.reshape(batch_shape + (2,))
 
@@ -254,8 +255,8 @@ def calc_crop_ranges(
     total_image[total_image < threshold] = 0
 
     stats = image_fitter(total_image)
-    centroid = np.array([stats["x_center"], stats["y_center"]])
-    rms_size = np.array([stats["x_rms"], stats["y_rms"]])
+    centroid = np.array([stats["y_center"], stats["x_center"]])
+    rms_size = np.array([stats["y_rms"], stats["x_rms"]])
 
     crop_ranges = np.array(
         [
@@ -345,7 +346,7 @@ def process_images(
     crop_ranges: Optional[np.ndarray] = None,
 ) -> Tuple[np.ndarray, Tuple[np.ndarray, np.ndarray]]:
     """
-    Process a batch of images for use in GPSR.
+    Process a batch of images for use in projection fitting.
 
     Applies a series of processing steps to a batch of images:
     - Median filtering (optional)
@@ -405,25 +406,40 @@ def process_images(
 
     # center the images
     if center:
-        if image_centroids is None:
-            image_centroids = calc_image_centroids(images, image_fitter=image_fitter)
-        centered_images = center_images(images, image_centroids)
+        if np.any(np.sum(images, axis=(-1, -2)) == 0) and image_centroids is None:
+            warnings.warn("Some images had zero intensity, cannot center images")
+            centered_images = images
+        else:
+            if image_centroids is None:
+                image_centroids = calc_image_centroids(
+                    images, image_fitter=image_fitter
+                )
+            centered_images = center_images(images, image_centroids)
     else:
         centered_images = images
 
     # crop the images
     if crop:
-        if crop_ranges is None:
-            crop_ranges = calc_crop_ranges(
+        if np.any(np.sum(centered_images, axis=(-1, -2)) == 0) and crop_ranges is None:
+            warnings.warn("Some images had zero intensity, cannot crop images")
+            cropped_images = centered_images
+        else:
+            if crop_ranges is None:
+                crop_ranges = calc_crop_ranges(
+                    centered_images,
+                    n_stds=n_stds,
+                    image_fitter=image_fitter,
+                )
+
+            cropped_images = crop_images(
                 centered_images,
-                n_stds=n_stds,
-                image_fitter=image_fitter,
+                crop_ranges=crop_ranges,
             )
 
-        cropped_images = crop_images(
-            centered_images,
-            crop_ranges=crop_ranges,
-        )
+            if np.any(np.array(cropped_images.shape) == 0):
+                warnings.warn("Cropping tried to create zero sized array. Reverting")
+                cropped_images = centered_images
+
     else:
         cropped_images = centered_images
 
@@ -437,12 +453,14 @@ def process_images(
     if len(batch_shape) == 0:
         batch_shape = (1,)
 
-    offsets = np.zeros((len(batch_shape), 2))
+    offsets = np.zeros((*batch_shape, 2))
     if center:
-        image_center = np.array(images.shape[-2:]) / 2
-        offsets += image_center - image_centroids
+        if image_centroids is not None:
+            image_center = np.array(images.shape[-2:]) / 2
+            offsets += image_center - image_centroids
     if crop:
-        crop_start = crop_ranges[:, 0]
-        offsets += crop_start
+        if crop_ranges is not None:
+            crop_start = crop_ranges[:, 0]
+            offsets += crop_start
 
     return pooled_images, offsets
