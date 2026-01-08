@@ -365,6 +365,7 @@ class QuadScanEmittance(Measurement):
                     if value == 0:
                         done.set()
 
+                # writing 1 to model ctrl PV causes BLEM model to update
                 model_ctrl_pv = PV("BLEM:SYS0:1:MAT_MODEL:CTRL")
                 model_ctrl_pv.add_callback(on_change)
                 model_ctrl_pv.put(1, wait=True)  # blocks until write has processed
