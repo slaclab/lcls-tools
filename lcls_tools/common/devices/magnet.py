@@ -1,5 +1,6 @@
 from datetime import datetime
 from functools import wraps
+import time
 from pydantic import (
     Field,
     PositiveFloat,
@@ -273,11 +274,7 @@ class Magnet(Device):
         function: Optional[callable] = None,
     ) -> None:
         for setting in scan_settings:
-            try:
-                self.set_bdes_for_scan(setting)
-            except MagnetTimeoutError as e:
-                # TODO: use logging here instead
-                print("Error:", e)
+            self.set_bdes_for_scan(setting)
             function() if function else None
 
     def set_bdes_for_scan(self, bval: float, settle_timeout_in_seconds: int = 5):
@@ -290,14 +287,10 @@ class Magnet(Device):
                 datetime.now() - time_when_trim_started
             ).seconds > settle_timeout_in_seconds:
                 raise MagnetTimeoutError(
-                    "Took more than ",
-                    settle_timeout_in_seconds,
-                    " seconds for ",
-                    self.name,
-                    ":BACT to reach ",
-                    self.name,
-                    ":BDES.",
+                    f"Took more than {settle_timeout_in_seconds} seconds for "
+                    f"{self.name}:BACT to reach {self.name}:BDES."
                 )
+            time.sleep(0.1)
 
 
 class MagnetCollection(DeviceCollection):
