@@ -4358,10 +4358,12 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LI27:644:MOTR.STOP
+        beam_rate: WIRE:LI27:644:BEAMRATE
         enabled: WIRE:LI27:644:MOTR_ENABLED_STS
         homed: WIRE:LI27:644:MOTR_HOMED_STS
         initialize: WIRE:LI27:644:MOTR_INIT
         initialize_status: WIRE:LI27:644:MOTR_INIT_STS
+        install_angle: WIRE:LI27:644:INSTALLANGLE
         motor: WIRE:LI27:644:MOTR
         motor_rbv: WIRE:LI27:644:MOTR.RBV
         retract: WIRE:LI27:644:MOTR_RETRACT
@@ -4400,10 +4402,12 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LI28:144:MOTR.STOP
+        beam_rate: WIRE:LI28:144:BEAMRATE
         enabled: WIRE:LI28:144:MOTR_ENABLED_STS
         homed: WIRE:LI28:144:MOTR_HOMED_STS
         initialize: WIRE:LI28:144:MOTR_INIT
         initialize_status: WIRE:LI28:144:MOTR_INIT_STS
+        install_angle: WIRE:LI28:144:INSTALLANGLE
         motor: WIRE:LI28:144:MOTR
         motor_rbv: WIRE:LI28:144:MOTR.RBV
         retract: WIRE:LI28:144:MOTR_RETRACT
@@ -4446,6 +4450,7 @@ wires:
         homed: WIRE:LI28:444:MOTR_HOMED_STS
         initialize: WIRE:LI28:444:MOTR_INIT
         initialize_status: WIRE:LI28:444:MOTR_INIT_STS
+        install_angle: WIRE:LI28:444:INSTALLANGLE
         motor: WIRE:LI28:444:MOTR
         motor_rbv: WIRE:LI28:444:MOTR.RBV
         retract: WIRE:LI28:444:MOTR_RETRACT
@@ -4488,6 +4493,7 @@ wires:
         homed: WIRE:LI28:744:MOTR_HOMED_STS
         initialize: WIRE:LI28:744:MOTR_INIT
         initialize_status: WIRE:LI28:744:MOTR_INIT_STS
+        install_angle: WIRE:LI28:744:INSTALLANGLE
         motor: WIRE:LI28:744:MOTR
         motor_rbv: WIRE:LI28:744:MOTR.RBV
         retract: WIRE:LI28:744:MOTR_RETRACT
