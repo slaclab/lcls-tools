@@ -274,10 +274,10 @@ class Magnet(Device):
         function: Optional[callable] = None,
     ) -> None:
         for setting in scan_settings:
-            self.set_bdes_for_scan(setting)
+            self.set_bdes_with_validation(setting)
             function() if function else None
 
-    def set_bdes_for_scan(self, bval: float, settle_timeout_in_seconds: int = 5):
+    def set_bdes_with_validation(self, bval: float, settle_timeout_in_seconds: int = 5):
         self.bdes = bval
         self.trim()
         time_when_trim_started = datetime.now()
