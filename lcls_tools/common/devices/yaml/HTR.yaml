@@ -1113,6 +1113,7 @@ wires:
         homed: WIRE:HTR:340:MOTR_HOMED_STS
         initialize: WIRE:HTR:340:MOTR_INIT
         initialize_status: WIRE:HTR:340:MOTR_INIT_STS
+        install_angle: WIRE:HTR:340:INSTALLANGLE
         motor: WIRE:HTR:340:MOTR
         motor_rbv: WIRE:HTR:340:MOTR.RBV
         retract: WIRE:HTR:340:MOTR_RETRACT

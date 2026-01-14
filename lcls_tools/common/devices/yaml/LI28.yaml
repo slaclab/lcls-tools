@@ -70,10 +70,12 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:LI28:144:MOTR.STOP
+        beam_rate: WIRE:LI28:144:BEAMRATE
         enabled: WIRE:LI28:144:MOTR_ENABLED_STS
         homed: WIRE:LI28:144:MOTR_HOMED_STS
         initialize: WIRE:LI28:144:MOTR_INIT
         initialize_status: WIRE:LI28:144:MOTR_INIT_STS
+        install_angle: WIRE:LI28:144:INSTALLANGLE
         motor: WIRE:LI28:144:MOTR
         motor_rbv: WIRE:LI28:144:MOTR.RBV
         retract: WIRE:LI28:144:MOTR_RETRACT
@@ -101,7 +103,6 @@ wires:
       area: LI28
       beam_path: []
       detectors:
-      - PMT28750:LI28
       - PMT29150:LI29
       - PMT756:LTUH
       - PMT820:LTUH
@@ -115,6 +116,7 @@ wires:
         homed: WIRE:LI28:444:MOTR_HOMED_STS
         initialize: WIRE:LI28:444:MOTR_INIT
         initialize_status: WIRE:LI28:444:MOTR_INIT_STS
+        install_angle: WIRE:LI28:444:INSTALLANGLE
         motor: WIRE:LI28:444:MOTR
         motor_rbv: WIRE:LI28:444:MOTR.RBV
         retract: WIRE:LI28:444:MOTR_RETRACT
@@ -142,7 +144,6 @@ wires:
       area: LI28
       beam_path: []
       detectors:
-      - PMT28750:LI28
       - PMT29150:LI29
       - PMT756:LTUH
       - PMT820:LTUH
@@ -156,6 +157,7 @@ wires:
         homed: WIRE:LI28:744:MOTR_HOMED_STS
         initialize: WIRE:LI28:744:MOTR_INIT
         initialize_status: WIRE:LI28:744:MOTR_INIT_STS
+        install_angle: WIRE:LI28:744:INSTALLANGLE
         motor: WIRE:LI28:744:MOTR
         motor_rbv: WIRE:LI28:744:MOTR.RBV
         retract: WIRE:LI28:744:MOTR_RETRACT

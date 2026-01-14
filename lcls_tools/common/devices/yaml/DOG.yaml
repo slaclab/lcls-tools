@@ -1478,6 +1478,7 @@ wires:
         homed: WIRE:DOG:655:MOTR_HOMED_STS
         initialize: WIRE:DOG:655:MOTR_INIT
         initialize_status: WIRE:DOG:655:MOTR_INIT_STS
+        install_angle: WIRE:DOG:655:INSTALLANGLE
         motor: WIRE:DOG:655:MOTR
         motor_rbv: WIRE:DOG:655:MOTR.RBV
         retract: WIRE:DOG:655:MOTR_RETRACT

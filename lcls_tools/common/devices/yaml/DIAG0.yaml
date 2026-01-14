@@ -731,6 +731,7 @@ wires:
     controls_information:
       PVs:
         abort_scan: WIRE:DIAG0:424:MOTR.STOP
+        install_angle: WIRE:DIAG0:424:INSTALLANGLE
         motor: WIRE:DIAG0:424:MOTR
         motor_rbv: WIRE:DIAG0:424:MOTR.RBV
         scan_pulses: WIRE:DIAG0:424:SCANPULSES
