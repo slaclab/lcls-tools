@@ -16,7 +16,10 @@ from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.data.model_general_calcs import quad_scan_optics
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
-from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
+from lcls_tools.common.measurements.utils import (
+    NDArrayAnnotatedType,
+    refresh_blem_model,
+)
 from lcls_tools.common.data.model_general_calcs import (
     build_quad_rmat,
     bdes_to_kmod,
@@ -356,20 +359,7 @@ class QuadScanEmittance(Measurement):
         if not self.rmat_given:
             # have live BLEM model update
             if self.physics_model == "BLEM":
-                from epics import PV
-                import threading
-
-                done = threading.Event()
-
-                def on_change(pvname=None, value=None, **kwargs):
-                    if value == 0:
-                        done.set()
-
-                # writing 1 to model ctrl PV causes BLEM model to update
-                model_ctrl_pv = PV("BLEM:SYS0:1:MAT_MODEL:CTRL")
-                model_ctrl_pv.add_callback(on_change)
-                model_ctrl_pv.put(1, wait=True)  # blocks until write has processed
-                done.wait()  # blocks until ctrl PV has reset to 0
+                refresh_blem_model()
             optics = quad_scan_optics(
                 self.magnet,
                 self.beamsize_measurement,
