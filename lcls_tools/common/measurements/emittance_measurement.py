@@ -21,7 +21,6 @@ from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
 from lcls_tools.common.measurements.utils import (
     NDArrayAnnotatedType,
-    refresh_blem_model,
 )
 from lcls_tools.common.data.model_general_calcs import (
     build_quad_rmat,
@@ -369,9 +368,6 @@ class QuadScanEmittance(Measurement):
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
         if not self.rmat_given:
-            # have live BLEM model update
-            if self.physics_model == "BLEM":
-                refresh_blem_model()
             optics = quad_scan_optics(
                 self.magnet,
                 self.beamsize_measurement,
