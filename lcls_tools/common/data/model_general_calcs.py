@@ -77,7 +77,7 @@ def quad_scan_optics(
     return {"rmat": rmat, "design_twiss": twiss}
 
 
-def get_drift_after_magnet(
+def get_rmat_after_magnet(
     magnet: Magnet, measurement: BeamProfileMeasurement, physics_model="BLEM"
 ) -> np.ndarray:
     """Get rmat from end of magnet to measurement device"""

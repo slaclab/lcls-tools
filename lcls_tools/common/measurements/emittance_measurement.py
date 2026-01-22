@@ -14,7 +14,7 @@ from pydantic import (
 
 from lcls_tools.common.data.emittance import compute_emit_bmag
 from lcls_tools.common.data.model_general_calcs import (
-    get_drift_after_magnet,
+    get_rmat_after_magnet,
     quad_scan_optics,
 )
 from lcls_tools.common.devices.magnet import Magnet
@@ -195,7 +195,7 @@ class QuadScanEmittance(Measurement):
 
     wait_time: PositiveFloat = 1.0
 
-    grab_drift_rmat: bool = False
+    grab_rmat_after_magnet: bool = False
     rmat_given: bool = Field(init=False, default=False)
 
     name: str = "quad_scan_emittance"
@@ -216,8 +216,8 @@ class QuadScanEmittance(Measurement):
             Object containing the results of the emittance measurement
         """
 
-        if self.grab_drift_rmat:
-            drift_rmat = get_drift_after_magnet(
+        if self.grab_rmat_after_magnet:
+            drift_rmat = get_rmat_after_magnet(
                 self.magnet,
                 self.beamsize_measurement,
                 self.physics_model,
