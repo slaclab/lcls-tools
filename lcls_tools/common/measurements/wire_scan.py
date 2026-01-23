@@ -215,47 +215,25 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                 logger=self.logger,
             )
 
-        # Start wire scan
-        self.logger.info("Starting wire motion sequence...")
-        self.my_wire.start_scan()
+        max_attempts = 3
+        for attempt in range(1, max_attempts + 1):
+            self.logger.info(
+                f"Initializing {self.my_wire.name}: (Attempt {attempt}/{max_attempts})..."
+            )
+            self.my_wire.start_scan()
 
-        # Give wire time to initialize
-        self.logger.info("Waiting for wire initialization...")
-
-        start_time = time.monotonic()
-        last_print_time = start_time
-        last_trigger_time = start_time
-        attempt_count = 0
-        elapsed_time = 0
-
-        while not self.my_wire.enabled:
-            current_time = time.monotonic()
-            elapsed_time = current_time - start_time
-
-            # Fail after 30 seconds
-            if elapsed_time >= 30:
-                msg = (
-                    f"{self.my_wire.name} failed to initialize"
-                    "after {int(elapsed_time)} seconds"
+            # If returns True within timeout, proceed
+            if self._wait_until(lambda: self.my_wire.enabled, timeout=10):
+                break
+            # After 10s, log and iterate through for loop again
+            else:
+                self.logger.warning(
+                    f"{self.my_wire.name} did not enable after 10s - retrying..."
                 )
-
-                self.logger.error(msg)
-                raise TimeoutError(msg)
-
-            # Print every 5 seconds
-            if current_time - last_print_time >= 5:
-                self.logger.info("Waited %0.f seconds", elapsed_time)
-                last_print_time = current_time
-
-            # Retrigger every 10 seconds
-            if current_time - last_trigger_time >= 10:
-                attempt_count += 1
-                self.logger.info("Scan sequence attempt #%s", attempt_count)
-                self.my_wire.start_scan()
-                last_trigger_time = current_time
-
-            # Check enabled state every 0.1 seconds
-            time.sleep(0.1)
+        else:
+            raise RuntimeError(
+                f"Failed to initialize {self.my_wire.name} after {max_attempts} attempts."
+            )
 
         self.logger.info(
             "%s initialized after %s seconds", self.my_wire.name, elapsed_time
@@ -444,15 +422,23 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
 
         for p in profiles:
             detector_fit = {d: {} for d in self.detectors}
+            x_stage = self.profiles[p].positions
+            x_beam = self._convert_stage_to_beam_coords(p, x_stage)
+
             for d in self.detectors:
+                peak_window = self._peak_window(
+                    x=x_beam,
+                    y=self.profiles[p].detectors[d].values,
+                )
+
                 # Get fit parameters
                 fp = gaussian.fit(
-                    pos=self.profiles[p].positions,
-                    data=self.profiles[p].detectors[d].values,
+                    pos=peak_window[0],
+                    data=peak_window[1],
                 )
 
                 fit_curve = gaussian.curve(
-                    x=self.profiles[p].positions,
+                    x=peak_window[0],
                     mean=fp["mean"],
                     sigma=fp["sigma"],
                     amp=fp["amp"],
@@ -464,6 +450,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                     amplitude=fp["amp"],
                     offset=fp["off"],
                     curve=fit_curve,
+                    positions=peak_window[0],
                 )
             fit_result[p] = FitResult(detectors=detector_fit)
 
@@ -609,3 +596,34 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         else:
             default_detector = lblm_config[self.my_wire.name]
             return default_detector
+
+    def _wait_until(self, condition, timeout=5, period=0.1):
+        # Returns True if condition met within timeout
+        start = time.time()
+        while time.time() - start < timeout:
+            if condition():
+                return True
+            time.sleep(period)
+        return False
+
+    def _convert_stage_to_beam_coords(self, profile, positions):
+        rad = np.deg2rad(self.beam_profile_device.install_angle)
+        scale = {"x": np.cos(rad), "y": np.sin(rad), "u": 1.0}
+        return positions * scale[profile]
+
+    def _peak_window(self, x, y, frac=0.05, pad=50):
+        x = np.asarray(x); y = np.asarray(y)
+        i = np.argmax(y)
+        thr = y.min() + frac*(y[i] - y.min())     # 5% of peak above baseline
+        m = y >= thr
+
+        # expand left/right from the peak while we're above threshold
+        left = i
+        while left > 0 and m[left-1]:
+            left -= 1
+        right = i
+        while right < len(y)-1 and m[right+1]:
+            right += 1
+
+        left = max(0, left - pad); right = min(len(y)-1, right + pad)
+        return x[left:right+1], y[left:right+1], (left, right)
