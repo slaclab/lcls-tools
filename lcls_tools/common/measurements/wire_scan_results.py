@@ -133,23 +133,23 @@ class WireBeamProfileMeasurementResult(BeamProfileMeasurementResult):
     def _save_metadata(self, group: h5py.Group) -> None:
         """Save measurement metadata as HDF5 attributes and datasets."""
         meta = self.metadata
-        
+
         # Store scalar metadata as attributes
         group.attrs["wire_name"] = meta.wire_name
         group.attrs["area"] = meta.area
         group.attrs["beampath"] = meta.beampath
         group.attrs["default_detector"] = meta.default_detector
         group.attrs["timestamp"] = meta.timestamp.isoformat()
-        
+
         if meta.notes:
             group.attrs["notes"] = meta.notes
-        
+
         # Store list of detectors
-        detectors_dset = group.create_dataset(
+        group.create_dataset(
             "detectors",
             data=np.array(meta.detectors, dtype="S"),
         )
-        
+
         # Store scan ranges as a structured dataset
         scan_ranges_group = group.create_group("scan_ranges")
         for axis_name, (start, end) in meta.scan_ranges.items():
@@ -160,19 +160,19 @@ class WireBeamProfileMeasurementResult(BeamProfileMeasurementResult):
         """Save profile measurement data."""
         for profile_name, profile in self.profiles.items():
             profile_group = group.create_group(profile_name)
-            
+
             # Save positions
             profile_group.create_dataset("positions", data=profile.positions)
-            
+
             # Save profile indices
             profile_group.create_dataset("profile_idxs", data=profile.profile_idxs)
-            
+
             # Save detector measurements
             detectors_group = profile_group.create_group("detectors")
             for detector_name, measurement in profile.detectors.items():
                 detector_group = detectors_group.create_group(detector_name)
                 detector_group.create_dataset("values", data=measurement.values)
-                
+
                 if measurement.units:
                     detector_group.attrs["units"] = measurement.units
                 if measurement.label:
@@ -182,16 +182,16 @@ class WireBeamProfileMeasurementResult(BeamProfileMeasurementResult):
         """Save fit results organized by detector."""
         for detector_name, fit_result in self.fit_result.items():
             detector_group = group.create_group(detector_name)
-            
+
             for fit_detector_name, detector_fit in fit_result.detectors.items():
                 fit_group = detector_group.create_group(fit_detector_name)
-                
+
                 # Save scalar fit parameters
                 fit_group.attrs["mean"] = detector_fit.mean
                 fit_group.attrs["sigma"] = detector_fit.sigma
                 fit_group.attrs["amplitude"] = detector_fit.amplitude
                 fit_group.attrs["offset"] = detector_fit.offset
-                
+
                 # Save curve and positions
                 fit_group.create_dataset("curve", data=detector_fit.curve)
                 fit_group.create_dataset("positions", data=detector_fit.positions)
@@ -213,15 +213,18 @@ class WireBeamProfileMeasurementResult(BeamProfileMeasurementResult):
         """Save computed beam properties."""
         if self.rms_sizes is not None:
             group.create_dataset("rms_sizes", data=self.rms_sizes)
-        
+
         if self.centroids is not None:
             group.create_dataset("centroids", data=self.centroids)
-        
+
         if self.total_intensities is not None:
             group.create_dataset("total_intensities", data=self.total_intensities)
-        
+
         if self.signal_to_noise_ratios is not None:
-            group.create_dataset("signal_to_noise_ratios", data=self.signal_to_noise_ratios)
+            group.create_dataset(
+                "signal_to_noise_ratios", data=self.signal_to_noise_ratios
+            )
+
 
 def load_from_h5(filepath: str) -> WireBeamProfileMeasurementResult:
     """
@@ -258,10 +261,26 @@ def load_from_h5(filepath: str) -> WireBeamProfileMeasurementResult:
         raw_data = _load_raw_data(f["raw_data"])
 
         # Load beam properties
-        rms_sizes = f["beam_properties"]["rms_sizes"][:] if "rms_sizes" in f["beam_properties"] else None
-        centroids = f["beam_properties"]["centroids"][:] if "centroids" in f["beam_properties"] else None
-        total_intensities = f["beam_properties"]["total_intensities"][:] if "total_intensities" in f["beam_properties"] else None
-        signal_to_noise_ratios = f["beam_properties"]["signal_to_noise_ratios"][:] if "signal_to_noise_ratios" in f["beam_properties"] else None
+        rms_sizes = (
+            f["beam_properties"]["rms_sizes"][:]
+            if "rms_sizes" in f["beam_properties"]
+            else None
+        )
+        centroids = (
+            f["beam_properties"]["centroids"][:]
+            if "centroids" in f["beam_properties"]
+            else None
+        )
+        total_intensities = (
+            f["beam_properties"]["total_intensities"][:]
+            if "total_intensities" in f["beam_properties"]
+            else None
+        )
+        signal_to_noise_ratios = (
+            f["beam_properties"]["signal_to_noise_ratios"][:]
+            if "signal_to_noise_ratios" in f["beam_properties"]
+            else None
+        )
 
     return WireBeamProfileMeasurementResult(
         profiles=profiles,

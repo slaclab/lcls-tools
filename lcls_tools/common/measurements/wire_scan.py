@@ -235,9 +235,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                 f"Failed to initialize {self.my_wire.name} after {max_attempts} attempts."
             )
 
-        self.logger.info(
-            "%s initialized after %s seconds", self.my_wire.name, elapsed_time
-        )
+        self.logger.info(f"{self.my_wire.name} initialized.")
 
     def start_timing_buffer(self):
         """
@@ -612,18 +610,20 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         return positions * scale[profile]
 
     def _peak_window(self, x, y, frac=0.05, pad=50):
-        x = np.asarray(x); y = np.asarray(y)
+        x = np.asarray(x)
+        y = np.asarray(y)
         i = np.argmax(y)
-        thr = y.min() + frac*(y[i] - y.min())     # 5% of peak above baseline
+        thr = y.min() + frac * (y[i] - y.min())  # 5% of peak above baseline
         m = y >= thr
 
         # expand left/right from the peak while we're above threshold
         left = i
-        while left > 0 and m[left-1]:
+        while left > 0 and m[left - 1]:
             left -= 1
         right = i
-        while right < len(y)-1 and m[right+1]:
+        while right < len(y) - 1 and m[right + 1]:
             right += 1
 
-        left = max(0, left - pad); right = min(len(y)-1, right + pad)
-        return x[left:right+1], y[left:right+1], (left, right)
+        left = max(0, left - pad)
+        right = min(len(y) - 1, right + pad)
+        return x[left : right + 1], y[left : right + 1], (left, right)
