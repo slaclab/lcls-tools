@@ -10,7 +10,7 @@ def custom_logger(log_file=None, name=__name__, level=logging.INFO):
     logger = logging.getLogger(name)
     logger.setLevel(level)
 
-    # Prevent duplicate handlers
+    # Prevent duplicate handler instantiation
     if logger.hasHandlers():
         return logger
 

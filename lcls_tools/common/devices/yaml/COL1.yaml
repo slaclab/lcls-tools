@@ -825,6 +825,7 @@ wires:
         homed: WIRE:COL1:360:MOTR_HOMED_STS
         initialize: WIRE:COL1:360:MOTR_INIT
         initialize_status: WIRE:COL1:360:MOTR_INIT_STS
+        install_angle: WIRE:COL1:360:INSTALLANGLE
         motor: WIRE:COL1:360:MOTR
         motor_rbv: WIRE:COL1:360:MOTR.RBV
         retract: WIRE:COL1:360:MOTR_RETRACT
@@ -890,6 +891,7 @@ wires:
         homed: WIRE:COL1:520:MOTR_HOMED_STS
         initialize: WIRE:COL1:520:MOTR_INIT
         initialize_status: WIRE:COL1:520:MOTR_INIT_STS
+        install_angle: WIRE:COL1:520:INSTALLANGLE
         motor: WIRE:COL1:520:MOTR
         motor_rbv: WIRE:COL1:520:MOTR.RBV
         retract: WIRE:COL1:520:MOTR_RETRACT
@@ -955,6 +957,7 @@ wires:
         homed: WIRE:COL1:680:MOTR_HOMED_STS
         initialize: WIRE:COL1:680:MOTR_INIT
         initialize_status: WIRE:COL1:680:MOTR_INIT_STS
+        install_angle: WIRE:COL1:680:INSTALLANGLE
         motor: WIRE:COL1:680:MOTR
         motor_rbv: WIRE:COL1:680:MOTR.RBV
         retract: WIRE:COL1:680:MOTR_RETRACT
@@ -1020,6 +1023,7 @@ wires:
         homed: WIRE:COL1:840:MOTR_HOMED_STS
         initialize: WIRE:COL1:840:MOTR_INIT
         initialize_status: WIRE:COL1:840:MOTR_INIT_STS
+        install_angle: WIRE:COL1:840:INSTALLANGLE
         motor: WIRE:COL1:840:MOTR
         motor_rbv: WIRE:COL1:840:MOTR.RBV
         retract: WIRE:COL1:840:MOTR_RETRACT
