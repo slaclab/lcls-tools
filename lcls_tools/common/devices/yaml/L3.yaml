@@ -4396,6 +4396,10 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      detectors:
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
       sum_l_meters: 700.132
       type: WIRE
   WS28144:
@@ -4440,6 +4444,10 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      detectors:
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
       sum_l_meters: 740.508
       type: WIRE
   WS28444:
@@ -4483,6 +4491,10 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      detectors:
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
       sum_l_meters: 777.541
       type: WIRE
   WS28744:
@@ -4526,5 +4538,9 @@ wires:
       - CU_HXTES
       - CU_SFTH
       - CU_SXR
+      detectors:
+      - PMT29150:LI29
+      - PMT756:LTUH
+      - PMT820:LTUH
       sum_l_meters: 814.077
       type: WIRE
