@@ -205,7 +205,7 @@ def center_images(
         # Shift the images to center them
         centered_images[i] = scipy.ndimage.shift(
             flattened_images[i],
-            -(flattened_centroids[i] - center_location)[::-1],
+            (center_location - flattened_centroids[i]),
             order=1,  # Linear interpolation to avoid artifacts
         )
 

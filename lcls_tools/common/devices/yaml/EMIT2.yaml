@@ -290,6 +290,7 @@ wires:
         homed: WIRE:EMIT2:600:MOTR_HOMED_STS
         initialize: WIRE:EMIT2:600:MOTR_INIT
         initialize_status: WIRE:EMIT2:600:MOTR_INIT_STS
+        install_angle: WIRE:EMIT2:600:INSTALLANGLE
         motor: WIRE:EMIT2:600:MOTR
         motor_rbv: WIRE:EMIT2:600:MOTR.RBV
         retract: WIRE:EMIT2:600:MOTR_RETRACT
