@@ -262,6 +262,10 @@ class Wire(Device):
         """Returns the current calculated speed of the wire scanner."""
         return self.controls_information.PVs.speed.get()
 
+    @speed.setter
+    def speed(self, val) -> None:
+        self.controls_information.PVs.speed.put(value=val)
+
     @property
     def speed_max(self):
         """Returns the wire scanner maximum speed in um/s"""
