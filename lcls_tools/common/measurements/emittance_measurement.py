@@ -354,6 +354,22 @@ class QuadScanEmittance(Measurement):
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
         if not self.rmat_given:
+            # have live BLEM model update
+            if self.physics_model == "BLEM":
+                from epics import PV
+                import threading
+
+                done = threading.Event()
+
+                def on_change(pvname=None, value=None, **kwargs):
+                    if value == 0:
+                        done.set()
+
+                # writing 1 to model ctrl PV causes BLEM model to update
+                model_ctrl_pv = PV("BLEM:SYS0:1:MAT_MODEL:CTRL")
+                model_ctrl_pv.add_callback(on_change)
+                model_ctrl_pv.put(1, wait=True)  # blocks until write has processed
+                done.wait()  # blocks until ctrl PV has reset to 0
             optics = quad_scan_optics(
                 self.magnet,
                 self.beamsize_measurement,

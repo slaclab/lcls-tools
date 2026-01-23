@@ -2771,6 +2771,7 @@ wires:
         homed: WIRE:LTUS:715:MOTR_HOMED_STS
         initialize: WIRE:LTUS:715:MOTR_INIT
         initialize_status: WIRE:LTUS:715:MOTR_INIT_STS
+        install_angle: WIRE:LTUS:715:INSTALLANGLE
         motor: WIRE:LTUS:715:MOTR
         motor_rbv: WIRE:LTUS:715:MOTR.RBV
         retract: WIRE:LTUS:715:MOTR_RETRACT
@@ -2837,6 +2838,7 @@ wires:
         homed: WIRE:LTUS:735:MOTR_HOMED_STS
         initialize: WIRE:LTUS:735:MOTR_INIT
         initialize_status: WIRE:LTUS:735:MOTR_INIT_STS
+        install_angle: WIRE:LTUS:735:INSTALLANGLE
         motor: WIRE:LTUS:735:MOTR
         motor_rbv: WIRE:LTUS:735:MOTR.RBV
         retract: WIRE:LTUS:735:MOTR_RETRACT
@@ -2903,6 +2905,7 @@ wires:
         homed: WIRE:LTUS:755:MOTR_HOMED_STS
         initialize: WIRE:LTUS:755:MOTR_INIT
         initialize_status: WIRE:LTUS:755:MOTR_INIT_STS
+        install_angle: WIRE:LTUS:755:INSTALLANGLE
         motor: WIRE:LTUS:755:MOTR
         motor_rbv: WIRE:LTUS:755:MOTR.RBV
         retract: WIRE:LTUS:755:MOTR_RETRACT
@@ -2969,6 +2972,7 @@ wires:
         homed: WIRE:LTUS:785:MOTR_HOMED_STS
         initialize: WIRE:LTUS:785:MOTR_INIT
         initialize_status: WIRE:LTUS:785:MOTR_INIT_STS
+        install_angle: WIRE:LTUS:785:INSTALLANGLE
         motor: WIRE:LTUS:785:MOTR
         motor_rbv: WIRE:LTUS:785:MOTR.RBV
         retract: WIRE:LTUS:785:MOTR_RETRACT

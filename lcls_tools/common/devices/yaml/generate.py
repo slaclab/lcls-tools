@@ -395,6 +395,7 @@ class YAMLGenerator:
             "MOTR_HOMED_STS": "homed",
             "MOTR_INIT": "initialize",
             "MOTR_INIT_STS": "initialize_status",
+            "INSTALLANGLE": "install_angle",
             "MOTR": "motor",
             "MOTR.RBV": "motor_rbv",
             "MOTR_RETRACT": "retract",
