@@ -607,8 +607,8 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
 
     def _convert_stage_to_beam_coords(self, profile, positions):
         rad = np.deg2rad(self.beam_profile_device.install_angle)
-        scale = {"x": np.cos(rad), "y": np.sin(rad), "u": 1.0}
-        return positions * scale[profile]
+        scale = {"x": np.sin(rad), "y": np.cos(rad), "u": 1.0}
+        return positions * abs(scale[profile])
 
     def _peak_window(self, x, y, frac=0.05, pad=50):
         x = np.asarray(x)
@@ -628,4 +628,3 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         left = max(0, left - pad)
         right = min(len(y) - 1, right + pad)
         return x[left : right + 1], y[left : right + 1], (left, right)
-
