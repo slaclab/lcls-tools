@@ -557,7 +557,8 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             # Data point [i-1] is less than subsequent data point [i]
             # and that relationship was True for the previous pair
             # for all points
-            [mono := (pos[i - 1] <= pos[i] and mono) for i in range(1, len(pos))]
+            [mono := (pos[i - 1] <= pos[i] and mono) for i in range(1, len(pos))],
+            dtype=bool,
         )
         mono_mask = np.concatenate(([True], mono_mask))
         return mono_mask
