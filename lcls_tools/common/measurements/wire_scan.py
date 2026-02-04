@@ -79,14 +79,9 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         self.logger.propagate = False
 
         # Reserve BSA buffer
-        if self.my_buffer is None:
-            self.my_buffer = reserve_buffer(
-                beampath=self.beampath,
-                name="LCLS Tools Wire Scan",
-                n_measurements=self._calc_buffer_points(),
-                destination_mode="Inclusion",
-                logger=self.logger,
-            )
+        self._reserve_buffer()
+
+        # Get list of detector names from wire metadata
         self.detectors = [d.split(":")[0] for d in self.my_wire.metadata.detectors]
 
         # Generate dictionary of all requried lcls-tools device objects
@@ -105,6 +100,9 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             WireBeamProfileMeasurementResult: Structured results including
             position data, detector responses, fit parameters, and RMS sizes.
         """
+        # Reserve a new buffer if necessary
+        self._reserve_buffer()
+
         # Create measurement metadata object
         metadata = self.create_metadata()
 
@@ -206,14 +204,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         and allows time for the buffer to update its state.
         """
         # Reserve a new buffer if necessary
-        if self.my_buffer is None:
-            self.my_buffer = reserve_buffer(
-                beampath=self.beampath,
-                name="LCLS Tools Wire Scan",
-                n_measurements=self._calc_buffer_points(),
-                destination_mode="Inclusion",
-                logger=self.logger,
-            )
+        self._reserve_buffer()
 
         max_attempts = 3
         for attempt in range(1, max_attempts + 1):
@@ -628,3 +619,13 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         left = max(0, left - pad)
         right = min(len(y) - 1, right + pad)
         return x[left : right + 1], y[left : right + 1], (left, right)
+
+    def _reserve_buffer(self):
+        if self.my_buffer is None:
+            self.my_buffer = reserve_buffer(
+                beampath=self.beampath,
+                name="LCLS Tools Wire Scan",
+                n_measurements=self._calc_buffer_points(),
+                destination_mode="Inclusion",
+                logger=self.logger,
+            )

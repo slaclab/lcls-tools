@@ -3,7 +3,6 @@ from lcls_tools.common.measurements.wire_scan_results import (
     WireBeamProfileMeasurementResult,
 )
 import time
-from lcls_tools.common.measurements.buffer_reservation import reserve_buffer
 
 
 class NCWireBeamProfileMeasurement(WireBeamProfileMeasurement):
@@ -11,13 +10,7 @@ class NCWireBeamProfileMeasurement(WireBeamProfileMeasurement):
 
     def scan_with_wire(self):
         # Reserve buffer if needed
-        if self.my_buffer is None:
-            self.my_buffer = reserve_buffer(
-                beampath=self.beampath,
-                name="LCLS Tools NC Wire Scan",
-                n_measurements=self._calc_buffer_points(),
-                logger=self.logger,
-            )
+        self._reserve_buffer()
 
         # Initialize wire scan
         max_attempts = 3
@@ -99,6 +92,9 @@ class NCWireBeamProfileMeasurement(WireBeamProfileMeasurement):
             WireBeamProfileMeasurementResult: Structured results including
             position data, detector responses, fit parameters, and RMS sizes.
         """
+        # Reserve a new buffer if necessary
+        self._reserve_buffer()
+
         # Create measurement metadata object
         metadata = self.create_metadata()
 
