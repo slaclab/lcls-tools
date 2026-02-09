@@ -56,28 +56,24 @@ WS24:
 
 WS144:
   detectors:
-    - PMT28750:LI28
     - PMT29150:LI29
     - PMT756:LTUH
     - PMT820:LTUH
 
 WS444:
   detectors:
-    - PMT28750:LI28
     - PMT29150:LI29
     - PMT756:LTUH
     - PMT820:LTUH
 
 WS744:
   detectors:
-    - PMT28750:LI28
     - PMT29150:LI29
     - PMT756:LTUH
     - PMT820:LTUH
 
 WS644:
   detectors:
-    - PMT28750:LI28
     - PMT29150:LI29
     - PMT756:LTUH
     - PMT820:LTUH
