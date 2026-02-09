@@ -9,6 +9,8 @@ from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
 import lcls_tools
 import warnings
 
+from beamfit import AnalysisMethodUnion, AnalysisResultUnion
+
 
 class ImageFitResult(lcls_tools.common.BaseModel):
     centroid: List[float] = Field(min_length=2, max_length=2)
@@ -164,3 +166,38 @@ class ImageProjectionFit(ImageFit):
                 warnings.warn(
                     f"Projection in {dim} was off the screen, fit cannot be trusted"
                 )
+
+
+class ImageFitResultBeamFit(ImageFitResult):
+    """
+    Result class that wraps a BeamFit AnalysisResult into the lcls-tools
+    ImageFitResult format.
+    """
+
+    beamfit_result: AnalysisResultUnion
+
+
+class ImageFitBeamFit(ImageFit):
+    """
+    Image fitting class that delegates to a BeamFit AnalysisMethod.
+
+    Attributes
+    ----------
+    method : AnalysisMethodUnion
+        The BeamFit analysis method to use for fitting.
+    """
+
+    method: AnalysisMethodUnion
+
+    def _fit_image(self, image: ndarray) -> ImageFitResultBeamFit:
+        result = self.method.fit(image)
+        return ImageFitResultBeamFit(
+            centroid=result.get_mean().tolist(),
+            rms_size=np.diag(result.get_covariance_matrix()).tolist(),
+            total_intensity=float(image.sum()),
+            image=image,
+            beamfit_result=result,
+        )
+
+    def _validate_parameters(self, parameters: list[float]):
+        return True
