@@ -370,6 +370,7 @@ wires:
         abort_scan: WIRE:LI24:705:MOTR.STOP
         enabled: WIRE:LI24:705:MOTR_ENABLED_STS
         initialize_status: WIRE:LI24:705:MOTR_INIT_STS
+        install_angle: WIRE:LI24:705:INSTALLANGLE
         motor: WIRE:LI24:705:MOTR
         motor_rbv: WIRE:LI24:705:MOTR.RBV
         scan_pulses: WIRE:LI24:705:SCANPULSES

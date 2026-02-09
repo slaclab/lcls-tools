@@ -728,6 +728,7 @@ wires:
         homed: WIRE:LI21:301:MOTR_HOMED_STS
         initialize: WIRE:LI21:301:MOTR_INIT
         initialize_status: WIRE:LI21:301:MOTR_INIT_STS
+        install_angle: WIRE:LI21:301:INSTALLANGLE
         motor: WIRE:LI21:301:MOTR
         motor_rbv: WIRE:LI21:301:MOTR.RBV
         retract: WIRE:LI21:301:MOTR_RETRACT
