@@ -92,13 +92,13 @@ class WireBeamProfileMeasurementResult(BeamProfileMeasurementResult):
                 - units: Units of measurement (attribute)
                 - label: Measurement label (attribute)
         - /fit_results/{detector_name}: Fit results by detector
-            - mean: Mean value
-            - sigma: Sigma value
+            - mean: Mean value (interpreted as beam centroid)
+            - sigma: Sigma value (interpreted as beam size)
             - amplitude: Amplitude value
             - offset: Offset value
             - curve: Fitted curve data
             - positions: Positions used in fit
-        - /raw_data/{device_name}: Raw sensor data
+        - /raw_data/{device_name}: Raw detector data
         - /beam_properties: Computed beam properties
             - rms_sizes: RMS beam sizes
             - centroids: Beam centroids
@@ -197,7 +197,7 @@ class WireBeamProfileMeasurementResult(BeamProfileMeasurementResult):
                 fit_group.create_dataset("positions", data=detector_fit.positions)
 
     def _save_raw_data(self, group: h5py.Group) -> None:
-        """Save raw sensor data."""
+        """Save raw detector and wire data."""
         for device_name, data in self.raw_data.items():
             if isinstance(data, np.ndarray):
                 group.create_dataset(device_name, data=data)
@@ -397,7 +397,7 @@ def _load_fit_results(group: h5py.Group) -> Dict[str, FitResult]:
 
 
 def _load_raw_data(group: h5py.Group) -> Dict[str, Any]:
-    """Load raw sensor data from HDF5 group."""
+    """Load raw detector data from HDF5 group."""
     raw_data = {}
 
     for device_name in group.keys():
