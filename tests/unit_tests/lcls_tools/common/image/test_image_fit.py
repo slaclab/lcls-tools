@@ -1,7 +1,8 @@
 import unittest
 import numpy as np
+from beamfit import GaussianProfile1D
 from lcls_tools.common.frontend.plotting.image import plot_image_projection_fit
-from lcls_tools.common.image.fit import ImageProjectionFit
+from lcls_tools.common.image.fit import ImageProjectionFit, ImageBeamFit
 
 
 class TestImageProjectionFit(unittest.TestCase):
@@ -41,3 +42,19 @@ class TestImageProjectionFit(unittest.TestCase):
         )
         assert np.allclose(result.total_intensity, test_image.sum())
         assert np.allclose(result.image, test_image)
+
+
+class TestImageFitBeamFit(unittest.TestCase):
+    def test_fit_gaussian_profile_1d(self):
+        test_image = np.zeros((100, 100))
+        test_image[40:60, 30:70] = 255
+
+        fitter = ImageBeamFit(method=GaussianProfile1D())
+        result = fitter.fit_image(test_image)
+
+        assert np.allclose(result.centroid, [49.5, 49.5], atol=1.0)
+        assert result.rms_size[0] > 0
+        assert result.rms_size[1] > 0
+        assert np.allclose(result.total_intensity, test_image.sum())
+        assert np.allclose(result.image, test_image)
+        assert result.beamfit_result is not None

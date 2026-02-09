@@ -168,7 +168,7 @@ class ImageProjectionFit(ImageFit):
                 )
 
 
-class ImageFitResultBeamFit(ImageFitResult):
+class BeamFitResult(ImageFitResult):
     """
     Result class that wraps a BeamFit AnalysisResult into the lcls-tools
     ImageFitResult format.
@@ -177,7 +177,7 @@ class ImageFitResultBeamFit(ImageFitResult):
     beamfit_result: AnalysisResultUnion
 
 
-class ImageFitBeamFit(ImageFit):
+class ImageBeamFit(ImageFit):
     """
     Image fitting class that delegates to a BeamFit AnalysisMethod.
 
@@ -189,9 +189,9 @@ class ImageFitBeamFit(ImageFit):
 
     method: AnalysisMethodUnion
 
-    def _fit_image(self, image: ndarray) -> ImageFitResultBeamFit:
+    def _fit_image(self, image: ndarray) -> BeamFitResult:
         result = self.method.fit(image)
-        return ImageFitResultBeamFit(
+        return BeamFitResult(
             centroid=result.get_mean().tolist(),
             rms_size=np.diag(result.get_covariance_matrix()).tolist(),
             total_intensity=float(image.sum()),
