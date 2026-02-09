@@ -403,6 +403,51 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         Returns:
             dict: Fit results organized by profile and device.
         """
+
+        def _peak_window(self, x, y, n_stds: int = 4, filter_size: int = 5):
+            """
+            Extract peak window from 1D data using statistical windowing.
+            """
+            from scipy.ndimage import median_filter
+            from skimage.filters import threshold_triangle
+
+            x = np.asarray(x)
+            y = np.asarray(y)
+
+            # Smooth the signal
+            y_filtered = median_filter(y, size=filter_size)
+
+            # Apply triangle threshold
+            threshold = threshold_triangle(y_filtered)
+            y_thresholded = np.clip(y_filtered - threshold, 0, None)
+
+            # Find centroid and RMS of thresholded signal
+            if y_thresholded.sum() == 0:
+                # Fallback to simple peak finding if no signal above threshold
+                i = np.argmax(y)
+                center = x[i]
+                rms = (x[-1] - x[0]) / 4  # Default quarter-range
+            else:
+                # Weighted centroid
+                weights = y_thresholded
+                center = np.sum(x * weights) / weights.sum()
+                # Weighted RMS
+                rms = np.sqrt(np.sum(weights * (x - center) ** 2) / weights.sum())
+
+            # Define window as center ± n_stds * rms
+            left_bound = center - n_stds * rms
+            right_bound = center + n_stds * rms
+
+            # Find indices
+            left = np.searchsorted(x, left_bound, side="left")
+            right = np.searchsorted(x, right_bound, side="right")
+
+            # Clip to valid range
+            left = max(0, left)
+            right = min(len(y) - 1, right)
+
+            return x[left : right + 1], y[left : right + 1], (left, right)
+
         self.logger.info("Fitting profile data...")
 
         # Get list of profiles from data set
@@ -600,25 +645,6 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         rad = np.deg2rad(self.beam_profile_device.install_angle)
         scale = {"x": np.sin(rad), "y": np.cos(rad), "u": 1.0}
         return positions * abs(scale[profile])
-
-    def _peak_window(self, x, y, frac=0.05, pad=50):
-        x = np.asarray(x)
-        y = np.asarray(y)
-        i = np.argmax(y)
-        thr = y.min() + frac * (y[i] - y.min())  # 5% of peak above baseline
-        m = y >= thr
-
-        # expand left/right from the peak while we're above threshold
-        left = i
-        while left > 0 and m[left - 1]:
-            left -= 1
-        right = i
-        while right < len(y) - 1 and m[right + 1]:
-            right += 1
-
-        left = max(0, left - pad)
-        right = min(len(y) - 1, right + pad)
-        return x[left : right + 1], y[left : right + 1], (left, right)
 
     def _reserve_buffer(self):
         if self.my_buffer is None:
