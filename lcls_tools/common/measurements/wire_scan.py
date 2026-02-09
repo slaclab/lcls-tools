@@ -424,7 +424,6 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                 fp = gaussian.fit(
                     pos=peak_window[0],
                     data=peak_window[1],
-
                 )
 
                 fit_curve = gaussian.curve(
