@@ -404,7 +404,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             dict: Fit results organized by profile and device.
         """
 
-        def _peak_window(self, x, y, n_stds: int = 6, filter_size: int = 5):
+        def _peak_window(x, y, n_stds: int = 6, filter_size: int = 5):
             """
             Extract peak window from 1D data using statistical windowing.
             """
@@ -462,7 +462,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             x_beam = self._convert_stage_to_beam_coords(p, x_stage)
 
             for d in self.detectors:
-                peak_window = self._peak_window(
+                peak_window = _peak_window(
                     x=x_beam,
                     y=self.profiles[p].detectors[d].values,
                 )
