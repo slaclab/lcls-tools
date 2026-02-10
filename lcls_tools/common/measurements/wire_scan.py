@@ -424,6 +424,8 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             # Find centroid and RMS of thresholded signal
             if y_thresholded.sum() == 0:
                 # Fallback to simple peak finding if no signal above threshold
+                self.logger.warning(
+                    "No signal above threshold. Using simple peak finding for window.")
                 i = np.argmax(y)
                 center = x[i]
                 rms = (x[-1] - x[0]) / 4  # Default quarter-range
@@ -572,6 +574,12 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         """
 
         rate = self.my_wire.beam_rate
+        if rate is None or rate <= 0:
+            self.logger.warning(
+                "Invalid beam rate '%s'. Defaulting to 120 Hz for buffer size calculation.",
+                rate,
+            )
+            rate = 120
         pulses = self.my_wire.scan_pulses
 
         # 16000 max rate, 10 min rate
