@@ -22,7 +22,7 @@ dependencies = [
     "requests",
     "pydantic",
     "h5py",
-    "pandas==2.3",
+    "pandas",
     "scikit-image"
 ]
 description = "Tools to support high level application development at LCLS using Python"
