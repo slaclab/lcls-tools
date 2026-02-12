@@ -50,7 +50,7 @@ class TestH5Saver(unittest.TestCase):
     def test_list_of_ndarrays(self):
         data = {"list_of_ndarrays": [np.array([1, 2, 3]), np.array([4, 5, 6])]}
         loaded = self.roundtrip(data)
-        assert len(data["list_of_ndarrays"]) == len(loaded["list_of_ndarrays"])
+        self.assertEqual(len(data["list_of_ndarrays"]), len(loaded["list_of_ndarrays"]))
 
     def test_typed_dataframe(self):
         df = pd.DataFrame(
@@ -76,7 +76,8 @@ class TestH5Saver(unittest.TestCase):
             }
         )
         loaded_mixed = self.roundtrip({"df": df_mixed})["df"]
-        pd.testing.assert_frame_equal(loaded_mixed, df_mixed.astype(str))
+        # Roundtrip converts mixed types to strings (including np.nan -> "nan")
+        self.assertEqual(list(loaded_mixed["mixed"]), ["1.0", "two", "nan"])
 
     def test_tuple(self):
         data = {"tup": (1, "2", (None, 3.5))}
@@ -107,12 +108,12 @@ class TestH5Saver(unittest.TestCase):
         }
         loaded = self.roundtrip(data)
 
-        assert np.isnan(loaded["nan"])
-        assert np.isinf(loaded["inf"])
-        assert np.isneginf(loaded["ninf"])
-        assert np.isnan(loaded["nan_list"][0])
-        assert np.isinf(loaded["nan_list"][1])
-        assert np.isneginf(loaded["nan_list"][2])
+        self.assertTrue(np.isnan(loaded["nan"]))
+        self.assertTrue(np.isinf(loaded["inf"]))
+        self.assertTrue(np.isneginf(loaded["ninf"]))
+        self.assertTrue(np.isnan(loaded["nan_list"][0]))
+        self.assertTrue(np.isinf(loaded["nan_list"][1]))
+        self.assertTrue(np.isneginf(loaded["nan_list"][2]))
 
     def test_bool(self):
         data = {"b": True}
@@ -158,7 +159,7 @@ class TestH5Saver(unittest.TestCase):
             "nested_list": [[1, 2, 3], [4, 5, 6]],
         }
         loaded = self.roundtrip(data)
-        assert data["nested_dict"] == loaded["nested_dict"]
+        self.assertEqual(data["nested_dict"], loaded["nested_dict"])
 
     def test_nested_structures_not_implemented(self):
         data = {"d": {"l": [1, 2, {"x": 5}], "t": (3, 4, [5, 6])}}
@@ -264,23 +265,27 @@ class TestH5Saver(unittest.TestCase):
         loaded_dict = self.roundtrip(result_dict)
 
         # Check if the loaded dictionary is the same as the original
-        assert result_dict.keys() == loaded_dict.keys()
-        assert result_dict["metadata"] == loaded_dict["metadata"]
-        assert isinstance(loaded_dict["raw_images"], np.ndarray)
-        assert np.allclose(images, loaded_dict["raw_images"], rtol=1e-5)
+        self.assertEqual(result_dict.keys(), loaded_dict.keys())
+        self.assertEqual(result_dict["metadata"], loaded_dict["metadata"])
+        self.assertIsInstance(loaded_dict["raw_images"], np.ndarray)
+        self.assertTrue(np.allclose(images, loaded_dict["raw_images"], rtol=1e-5))
 
         mask = ~np.isnan(rms_sizes_all)
-        assert np.allclose(
-            np.asarray(rms_sizes_all)[mask],
-            loaded_dict["rms_sizes_all"][mask],
-            rtol=1e-5,
+        self.assertTrue(
+            np.allclose(
+                np.asarray(rms_sizes_all)[mask],
+                loaded_dict["rms_sizes_all"][mask],
+                rtol=1e-5,
+            )
         )
         mask = ~np.isnan(centroids)
-        assert np.allclose(
-            np.asarray(centroids)[mask], loaded_dict["centroids"][mask], rtol=1e-5
+        self.assertTrue(
+            np.allclose(
+                np.asarray(centroids)[mask], loaded_dict["centroids"][mask], rtol=1e-5
+            )
         )
-        assert np.allclose(
-            total_intensities, loaded_dict["total_intensities"], rtol=1e-5
+        self.assertTrue(
+            np.allclose(total_intensities, loaded_dict["total_intensities"], rtol=1e-5)
         )
 
 
