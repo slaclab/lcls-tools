@@ -7,7 +7,7 @@ from pathlib import PosixPath
 def normalize_mixed(col_data):
     norm = []
     for x in col_data:
-        if isinstance(x, (int, float, np.floating)):
+        if isinstance(x, (int, float, np.integer, np.floating)):
             if np.isnan(x):
                 norm.append("nan")  # special marker
             else:
@@ -105,13 +105,23 @@ class H5Saver:
                         )
                 # Handle pandas DataFrames
                 elif isinstance(val, pd.DataFrame):
-                    group = f.create_group(key)
+                    group = f.create_group(key, track_order=True)
                     group.attrs["_type"] = "dataframe"
                     group.attrs["columns"] = list(val.columns)
                     group.attrs["dtypes"] = [str(dt) for dt in val.dtypes]
                     for col in val.columns:
                         col_data = val[col].values
-                        if col_data.dtype == np.dtype("O"):
+                        col_dtype = val[col].dtype
+                        # Handle pandas StringDtype (pandas 3.0+) - save as strings
+                        if isinstance(col_dtype, pd.StringDtype):
+                            group.create_dataset(
+                                col,
+                                data=[
+                                    str(x) if x is not pd.NA else "" for x in col_data
+                                ],
+                                dtype=h5py.string_dtype(encoding="utf-8"),
+                            )
+                        elif col_data.dtype == np.dtype("O"):
                             # Check if all elements are np.ndarray
                             if all(isinstance(x, np.ndarray) for x in col_data):
                                 # Save as a group of arrays
@@ -194,7 +204,6 @@ class H5Saver:
                         )
                     group = f.create_group(key, track_order=True)
                     group.attrs["_type"] = "tuple"
-                    group.attrs["_tuple"] = True
                     if not val:
                         group.attrs["_empty_tuple"] = True  # Mark empty tuple
                     for i, ele in enumerate(val):
@@ -300,10 +309,7 @@ class H5Saver:
                     df = pd.DataFrame(data)
                     if dtypes is not None:
                         for col, dtype in zip(columns, dtypes):
-                            if len(df[col]) > 0:
-                                df[col] = df[col].astype(dtype)
-                            else:
-                                df[col] = df[col].astype(dtype, copy=False)
+                            df[col] = df[col].astype(dtype)
                     return df
                 # Handle dict
                 elif group_type == "dict":
