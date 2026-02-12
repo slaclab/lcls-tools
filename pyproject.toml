@@ -14,7 +14,7 @@ classifiers = [
     "Topic :: Scientific/Engineering",
 ]
 dependencies = [
-    "numpy",
+    "numpy==2.2.6",
     "scipy",
     "matplotlib",
     "pyepics",
