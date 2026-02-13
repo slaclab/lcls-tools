@@ -425,7 +425,8 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             if y_thresholded.sum() == 0:
                 # Fallback to simple peak finding if no signal above threshold
                 self.logger.warning(
-                    "No signal above threshold. Using simple peak finding for window.")
+                    "No signal above threshold. Using simple peak finding for window."
+                )
                 i = np.argmax(y)
                 center = x[i]
                 rms = (x[-1] - x[0]) / 4  # Default quarter-range
