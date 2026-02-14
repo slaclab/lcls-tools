@@ -100,6 +100,40 @@ class TestImageProcessing(unittest.TestCase):
                 err_msg="expected offsets to equal crop start",
             )
 
+        # test case where each image has different center
+        centers = [[400, 400], [450, 350], [350, 450], [350, 350], [450, 450]]
+        test_images = []
+        for center in centers:
+            test_image = np.roll(
+                np.roll(self.image, center[0] - 400, axis=0),
+                center[1] - 400,
+                axis=1,
+            )
+            test_images.append(test_image)
+
+        test_images = np.array(test_images)
+
+        image_processor = ImageProcessor(
+            center=True,
+            threshold=0,
+        )
+        processed_images, offsets = image_processor.process(
+            test_images, return_offsets=True
+        )
+
+        for i in range(test_images.shape[0]):
+            np.testing.assert_allclose(
+                processed_images[i],
+                test_images[0],  # should all be centered to the same image
+                err_msg="expected processed image to equal cropped image",
+            )
+
+            np.testing.assert_array_equal(
+                offsets[i],
+                np.array([400 - centers[i][0], 400 - centers[i][1]]),
+                err_msg="expected offsets to equal crop start",
+            )
+
     def test_zero_images(self):
         # test case where all images are zero
         zero_image = np.zeros(self.size)
