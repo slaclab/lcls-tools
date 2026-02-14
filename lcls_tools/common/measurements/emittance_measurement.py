@@ -195,7 +195,7 @@ class QuadScanEmittance(Measurement):
 
     wait_time: PositiveFloat = 1.0
 
-    grab_rmat_after_magnet: bool = False
+    manual_quad_rmats: bool = False
     rmat_given: bool = Field(init=False, default=False)
 
     name: str = "quad_scan_emittance"
@@ -216,7 +216,7 @@ class QuadScanEmittance(Measurement):
             Object containing the results of the emittance measurement
         """
 
-        if self.grab_rmat_after_magnet:
+        if self.manual_quad_rmats:
             drift_rmat = get_rmat_after_magnet(
                 self.magnet,
                 self.beamsize_measurement,
