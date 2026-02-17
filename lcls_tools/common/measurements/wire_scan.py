@@ -79,14 +79,9 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         self.logger.propagate = False
 
         # Reserve BSA buffer
-        if self.my_buffer is None:
-            self.my_buffer = reserve_buffer(
-                beampath=self.beampath,
-                name="LCLS Tools Wire Scan",
-                n_measurements=self._calc_buffer_points(),
-                destination_mode="Inclusion",
-                logger=self.logger,
-            )
+        self._reserve_buffer()
+
+        # Get list of detector names from wire metadata
         self.detectors = [d.split(":")[0] for d in self.my_wire.metadata.detectors]
 
         # Generate dictionary of all requried lcls-tools device objects
@@ -105,6 +100,9 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             WireBeamProfileMeasurementResult: Structured results including
             position data, detector responses, fit parameters, and RMS sizes.
         """
+        # Reserve a new buffer if necessary
+        self._reserve_buffer()
+
         # Create measurement metadata object
         metadata = self.create_metadata()
 
@@ -206,14 +204,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         and allows time for the buffer to update its state.
         """
         # Reserve a new buffer if necessary
-        if self.my_buffer is None:
-            self.my_buffer = reserve_buffer(
-                beampath=self.beampath,
-                name="LCLS Tools Wire Scan",
-                n_measurements=self._calc_buffer_points(),
-                destination_mode="Inclusion",
-                logger=self.logger,
-            )
+        self._reserve_buffer()
 
         max_attempts = 3
         for attempt in range(1, max_attempts + 1):
@@ -412,6 +403,54 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         Returns:
             dict: Fit results organized by profile and device.
         """
+
+        def _peak_window(x, y, n_stds: int = 6, filter_size: int = 5):
+            """
+            Extract peak window from 1D data using statistical windowing.
+            """
+            from scipy.ndimage import median_filter
+            from skimage.filters import threshold_triangle
+
+            x = np.asarray(x)
+            y = np.asarray(y)
+
+            # Smooth the signal
+            y_filtered = median_filter(y, size=filter_size)
+
+            # Apply triangle threshold
+            threshold = threshold_triangle(y_filtered)
+            y_thresholded = np.clip(y_filtered - threshold, 0, None)
+
+            # Find centroid and RMS of thresholded signal
+            if y_thresholded.sum() == 0:
+                # Fallback to simple peak finding if no signal above threshold
+                self.logger.warning(
+                    "No signal above threshold. Using simple peak finding for window."
+                )
+                i = np.argmax(y)
+                center = x[i]
+                rms = (x[-1] - x[0]) / 4  # Default quarter-range
+            else:
+                # Weighted centroid
+                weights = y_thresholded
+                center = np.sum(x * weights) / weights.sum()
+                # Weighted RMS
+                rms = np.sqrt(np.sum(weights * (x - center) ** 2) / weights.sum())
+
+            # Define window as center ± n_stds * rms
+            left_bound = center - n_stds * rms
+            right_bound = center + n_stds * rms
+
+            # Find indices
+            left = np.searchsorted(x, left_bound, side="left")
+            right = np.searchsorted(x, right_bound, side="right")
+
+            # Clip to valid range
+            left = max(0, left)
+            right = min(len(y) - 1, right)
+
+            return x[left : right + 1], y[left : right + 1], (left, right)
+
         self.logger.info("Fitting profile data...")
 
         # Get list of profiles from data set
@@ -420,18 +459,23 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
 
         for p in profiles:
             detector_fit = {d: {} for d in self.detectors}
+            x_stage = self.profiles[p].positions
+            x_beam = self._convert_stage_to_beam_coords(p, x_stage)
+
             for d in self.detectors:
-                pos = self.profiles[p].positions
-                beam_coords = self._convert_stage_to_beam_coords(p, pos)
+                peak_window = _peak_window(
+                    x=x_beam,
+                    y=self.profiles[p].detectors[d].values,
+                )
 
                 # Get fit parameters
                 fp = gaussian.fit(
-                    pos=beam_coords,
-                    data=self.profiles[p].detectors[d].values,
+                    pos=peak_window[0],
+                    data=peak_window[1],
                 )
 
                 fit_curve = gaussian.curve(
-                    x=self.profiles[p].positions,
+                    x=peak_window[0],
                     mean=fp["mean"],
                     sigma=fp["sigma"],
                     amp=fp["amp"],
@@ -443,6 +487,7 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
                     amplitude=fp["amp"],
                     offset=fp["off"],
                     curve=fit_curve,
+                    positions=peak_window[0],
                 )
             fit_result[p] = FitResult(detectors=detector_fit)
 
@@ -530,6 +575,12 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
         """
 
         rate = self.my_wire.beam_rate
+        if rate is None or rate <= 0:
+            self.logger.warning(
+                "Invalid beam rate '%s'. Defaulting to 120 Hz for buffer size calculation.",
+                rate,
+            )
+            rate = 120
         pulses = self.my_wire.scan_pulses
 
         # 16000 max rate, 10 min rate
@@ -559,7 +610,8 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
             # Data point [i-1] is less than subsequent data point [i]
             # and that relationship was True for the previous pair
             # for all points
-            [mono := (pos[i - 1] <= pos[i] and mono) for i in range(1, len(pos))]
+            [mono := (pos[i - 1] <= pos[i] and mono) for i in range(1, len(pos))],
+            dtype=bool,
         )
         mono_mask = np.concatenate(([True], mono_mask))
         return mono_mask
@@ -601,4 +653,14 @@ class WireBeamProfileMeasurement(BeamProfileMeasurement):
     def _convert_stage_to_beam_coords(self, profile, positions):
         rad = np.deg2rad(self.beam_profile_device.install_angle)
         scale = {"x": np.sin(rad), "y": np.cos(rad), "u": 1.0}
-        return positions * scale[profile]
+        return positions * abs(scale[profile])
+
+    def _reserve_buffer(self):
+        if self.my_buffer is None:
+            self.my_buffer = reserve_buffer(
+                beampath=self.beampath,
+                name="LCLS Tools Wire Scan",
+                n_measurements=self._calc_buffer_points(),
+                destination_mode="Inclusion",
+                logger=self.logger,
+            )

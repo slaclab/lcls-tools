@@ -45,7 +45,7 @@ def collect_with_size_check(
 
         if logger is not None:
             logger.warning(
-                "Data size mismatch for %d %d: expected %d, got %d. Retrying (%d/%d)...",
+                "Data size mismatch for %s %s: expected %d, got %d. Retrying (%d/%d)...",
                 device.name,
                 collector_func,
                 expected_points,
