@@ -152,7 +152,7 @@ class QuadScanEmittance(Measurement):
     Arguments:
     ------------------------
     energy: float
-        Beam energy in GeV
+        Beam energy in eV
     scan_values: List[float]
         BDES values of magnet to scan over
     magnet: Magnet
