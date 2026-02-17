@@ -13,10 +13,15 @@ from pydantic import (
 )
 
 from lcls_tools.common.data.emittance import compute_emit_bmag
-from lcls_tools.common.data.model_general_calcs import quad_scan_optics
+from lcls_tools.common.data.model_general_calcs import (
+    get_rmat_after_magnet,
+    quad_scan_optics,
+)
 from lcls_tools.common.devices.magnet import Magnet
 from lcls_tools.common.measurements.measurement import Measurement
-from lcls_tools.common.measurements.utils import NDArrayAnnotatedType
+from lcls_tools.common.measurements.utils import (
+    NDArrayAnnotatedType,
+)
 from lcls_tools.common.data.model_general_calcs import (
     build_quad_rmat,
     bdes_to_kmod,
@@ -190,6 +195,7 @@ class QuadScanEmittance(Measurement):
 
     wait_time: PositiveFloat = 1.0
 
+    manual_quad_rmats: bool = False
     rmat_given: bool = Field(init=False, default=False)
 
     name: str = "quad_scan_emittance"
@@ -209,6 +215,14 @@ class QuadScanEmittance(Measurement):
         result : EmittanceMeasurementResult
             Object containing the results of the emittance measurement
         """
+
+        if self.manual_quad_rmats:
+            drift_rmat = get_rmat_after_magnet(
+                self.magnet,
+                self.beamsize_measurement,
+                self.physics_model,
+            )
+            self.rmat = np.stack([drift_rmat[0:2, 0:2], drift_rmat[2:4, 2:4]])
 
         if self.rmat is None or self.rmat.size == 0:
             self.rmat_given = False
@@ -354,22 +368,6 @@ class QuadScanEmittance(Measurement):
         # get transport matrix and design twiss values from meme
         # TODO: get settings from arbitrary methods (ie. not meme)
         if not self.rmat_given:
-            # have live BLEM model update
-            if self.physics_model == "BLEM":
-                from epics import PV
-                import threading
-
-                done = threading.Event()
-
-                def on_change(pvname=None, value=None, **kwargs):
-                    if value == 0:
-                        done.set()
-
-                # writing 1 to model ctrl PV causes BLEM model to update
-                model_ctrl_pv = PV("BLEM:SYS0:1:MAT_MODEL:CTRL")
-                model_ctrl_pv.add_callback(on_change)
-                model_ctrl_pv.put(1, wait=True)  # blocks until write has processed
-                done.wait()  # blocks until ctrl PV has reset to 0
             optics = quad_scan_optics(
                 self.magnet,
                 self.beamsize_measurement,
