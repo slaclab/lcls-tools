@@ -4,7 +4,7 @@ import numpy as np
 
 from lcls_tools.common.devices.magnet import Magnet
 
-from lcls_tools.common.measurements.screen_profile import ScreenBeamProfileMeasurement
+from lcls_tools.common.measurements.beam_profile import BeamProfileMeasurement
 
 
 def bmag(twiss, twiss_reference):
@@ -61,10 +61,13 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None, tao=None, element
 
 
 def quad_scan_optics(
-    magnet: Magnet, measurement: ScreenBeamProfileMeasurement, physics_model="BMAD"
+    magnet: Magnet, measurement: BeamProfileMeasurement, physics_model="BLEM"
 ) -> Dict:
     """Get rmat from magnet to measurement device and twiss at measurement device"""
     # TODO: get optics from arbitrary devices (potentially in different beam lines)
+    # have live BLEM model update
+    if physics_model == "BLEM":
+        refresh_blem_model()
     model = _get_model_from_device(measurement.beam_profile_device, physics_model)
     rmat = model.get_rmat(
         from_device=magnet.name,
@@ -74,10 +77,33 @@ def quad_scan_optics(
     return {"rmat": rmat, "design_twiss": twiss}
 
 
+def get_rmat_after_magnet(
+    magnet: Magnet, measurement: BeamProfileMeasurement, physics_model="BLEM"
+) -> np.ndarray:
+    """Get rmat from end of magnet to measurement device"""
+    # have live BLEM model update
+    if physics_model == "BLEM":
+        refresh_blem_model()
+    model = _get_model_from_device(measurement.beam_profile_device, physics_model)
+    full_rmat = model.get_rmat(
+        from_device=magnet.name,
+        to_device=measurement.beam_profile_device.name,
+    )
+    quad_rmat = model.get_rmat(
+        from_device=magnet.name,
+        to_device=magnet.name,
+    )
+    drift_rmat = full_rmat @ np.linalg.inv(quad_rmat)
+    return drift_rmat
+
+
 def multi_device_optics(
-    measurements: list[ScreenBeamProfileMeasurement], physics_model="BMAD"
+    measurements: list[BeamProfileMeasurement], physics_model="BLEM"
 ) -> Dict:
     """Get rmat and twiss at measurement devices"""
+    # have live BLEM model update
+    if physics_model == "BLEM":
+        refresh_blem_model()
     model = _get_model_from_device(measurements[-1].beam_profile_device, physics_model)
     device_names = [
         measurement.beam_profile_device.name for measurement in measurements
@@ -85,6 +111,23 @@ def multi_device_optics(
     rmat = model.get_rmat(device_names)
     twiss = model.get_twiss(device_names)
     return {"rmat": rmat, "design_twiss": twiss}
+
+
+def refresh_blem_model():
+    from epics import PV
+    import threading
+
+    done = threading.Event()
+
+    def on_change(pvname=None, value=None, **kwargs):
+        if value == 0:
+            done.set()
+
+    # writing 1 to model ctrl PV causes BLEM model to update
+    model_ctrl_pv = PV("BLEM:SYS0:1:MAT_MODEL:CTRL")
+    model_ctrl_pv.add_callback(on_change)
+    model_ctrl_pv.put(1, wait=True)  # blocks until write has processed
+    done.wait()  # blocks until ctrl PV has reset to 0
 
 
 def _get_model_from_device(device, physics_model):
