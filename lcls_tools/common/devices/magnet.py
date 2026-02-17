@@ -1,5 +1,6 @@
 from datetime import datetime
 from functools import wraps
+import time
 from pydantic import (
     Field,
     PositiveFloat,
@@ -60,6 +61,12 @@ class MagnetMetadata(Metadata):
 
     def __init__(self, *args, **kwargs):
         super(MagnetMetadata, self).__init__(*args, **kwargs)
+
+
+class MagnetTimeoutError(Exception):
+    """Raised when the magnet fails to settle within the allowed time"""
+
+    pass
 
 
 class Magnet(Device):
@@ -267,8 +274,23 @@ class Magnet(Device):
         function: Optional[callable] = None,
     ) -> None:
         for setting in scan_settings:
-            self.bctrl = setting
+            self.set_bdes_with_validation(setting)
             function() if function else None
+
+    def set_bdes_with_validation(self, bval: float, settle_timeout_in_seconds: int = 5):
+        self.bdes = bval
+        self.trim()
+        time_when_trim_started = datetime.now()
+        while not self.is_bact_settled():
+            # Timeout if magnet takes too long to settle
+            if (
+                datetime.now() - time_when_trim_started
+            ).seconds > settle_timeout_in_seconds:
+                raise MagnetTimeoutError(
+                    f"Took more than {settle_timeout_in_seconds} seconds for "
+                    f"{self.name}:BACT to reach {self.name}:BDES."
+                )
+            time.sleep(0.1)
 
 
 class MagnetCollection(DeviceCollection):
