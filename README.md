@@ -1,5 +1,4 @@
-# CAUTION: This repository is a WORK IN PROGRESS!
-## THESE TOOLS ARE IN VARIOUS STAGES OF DEVELOPMENT. You are welcome to submit an issue or pull request for any improvements you would like to see or make.
+# CAUTION: This repo is now archived. Please see slac-tools () for future developments.
 
 # About
 Various tools to support high level application development at LCLS using python.  This is an effort to maintain a single repo that can be referenced for development.
@@ -28,12 +27,7 @@ Functions used to analyze data, belongs in the common/data_analysis directory.
 * Try to understand the purpose of each tool and do not overcomplicate with business logic that can live in an application. These should be small and useful tools/apis with well understood and firm contracts between the api and the user
 
 # Python 3
-Python 2 is no longer supported. Please write all new modules in Python 3.9 or above.
-
-# TODO
-* See running list of to do's written up as [issues here.](https://github.com/slaclab/lcls-tools/issues)
-* Update documentation
-* Make a robust and somewhat flexible logger module that knows about SLAC things
+Python 3.10 or higher is required.
 
 # Dependencies and Installation
 
