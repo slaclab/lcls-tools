@@ -317,6 +317,13 @@ def calculate_emittance(beam_profiles, rmats, design_twiss, energy):
         twiss_betas_alphas, 1, 2
     )  # make shape 2 x n_measurements x 2
 
+    # Filter out NaNs (if either x or y is NaN, both are taken out)
+    # TODO: filter x and y individually
+    mask = ~np.isnan(beamsizes_squared).any(axis=0)
+    beamsizes_squared = beamsizes_squared[:, mask]
+    rmats = rmats[:, mask, :, :]
+    twiss_design = twiss_design[:, mask, :]
+
     emittance_dict = compute_emit_bmag(beamsizes_squared, rmats, twiss_design)
     emittance_dict["emittance"] = normalize_emittance(
         emittance_dict["emittance"], energy
