@@ -29,7 +29,7 @@ description = "Tools to support high level application development at LCLS using
 dynamic = ["version"]
 name = "lcls-tools"
 readme = {file = "README.md", content-type = "text/markdown"}
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 [project.optional-dependencies]
 meme  = [
