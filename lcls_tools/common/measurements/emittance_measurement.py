@@ -297,7 +297,9 @@ def calculate_emittance(beam_profiles, rmats, design_twiss, energy):
         beam_sizes.append(beam_profile.rms_sizes)
     beam_sizes = np.array(beam_sizes).T
     beamsizes_squared = (beam_sizes * 1e-3) ** 2  #  units of mm^2
-    beamsizes_squared = np.expand_dims(beamsizes_squared, -1)
+    beamsizes_squared = np.expand_dims(
+        beamsizes_squared, -1
+    )  # makes shape 2 x n x 1 for compute_emit_bmag
 
     # pick out x and y rmats
     rmats = np.stack([rmats[:, 0:2, 0:2], rmats[:, 2:4, 2:4]])
@@ -322,8 +324,11 @@ def calculate_emittance(beam_profiles, rmats, design_twiss, energy):
 
     # Filter out NaNs (if either x or y is NaN, both are taken out)
     # TODO: filter x and y individually
-    mask = ~np.isnan(beamsizes_squared).any(axis=0)
-    beamsizes_squared = beamsizes_squared[:, mask]
+    mask = ~np.isnan(beamsizes_squared).any(
+        axis=(0, 2)
+    )  # axis=(0,2) since beamsizes_squared is 2 x n x 1
+    beamsizes_squared = beamsizes_squared[:, mask, :]
+    beam_sizes = beam_sizes[:, mask]
     rmats = rmats[:, mask, :, :]
     twiss_design = twiss_design[:, mask, :]
 
