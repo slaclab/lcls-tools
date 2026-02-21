@@ -272,6 +272,8 @@ class Magnet(Device):
         self,
         scan_settings: List[float],
         function: Optional[callable] = None,
+        *args,
+        **kwargs,
     ) -> None:
         for setting in scan_settings:
             self.set_bdes_with_validation(setting)

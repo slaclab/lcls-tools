@@ -7,7 +7,10 @@ from lcls_tools.common.devices.magnet import Magnet, MagnetMetadata
 from lcls_tools.common.devices.reader import create_magnet
 from lcls_tools.common.devices.screen import Screen
 from lcls_tools.common.frontend.plotting.emittance import plot_quad_scan_result
-from lcls_tools.common.measurements.emittance_measurement import QuadScanEmittance
+from lcls_tools.common.measurements.emittance_measurement import (
+    MultiDeviceEmittance,
+    QuadScanEmittance,
+)
 from lcls_tools.common.measurements.screen_profile import (
     ScreenBeamProfileMeasurement,
     ScreenBeamProfileMeasurementResult,
@@ -218,3 +221,178 @@ class EmittanceMeasurementTest(TestCase):
                 fig, ax = plot_quad_scan_result(result)
                 assert isinstance(fig, plt.Figure)
                 assert isinstance(ax, np.ndarray)
+
+
+class MultiDeviceEmittanceTest(TestCase):
+    @patch("lcls_tools.common.measurements.emittance_measurement.multi_device_optics")
+    def test_multi_measurement_with_nans(self, mock_multi_device_optics):
+        """Test quad scan emittance measurement"""
+        rmat_mock = np.array(
+            [
+                [
+                    [2.5, 4.2, 0.0, 0.0, 1.6, -1.0],
+                    [3.6, 1.0, 0.0, 0.0, 3.8, -6.9],
+                    [0.0, 0.0, -5.1, 4.1, 0.0, 0.0],
+                    [0.0, 0.0, -3.6, 9.9, 0.0, 0.0],
+                    [3.5, -2.5, 0.0, 0.0, 1.0, 5.9],
+                    [-1.0, -1.2, 0.0, 0.0, -4.9, 1.0],
+                ],
+                [
+                    [2.5, 4.2, 0.0, 0.0, 1.6, -1.0],
+                    [3.6, 1.0, 0.0, 0.0, 3.8, -6.9],
+                    [0.0, 0.0, -5.1, 4.1, 0.0, 0.0],
+                    [0.0, 0.0, -3.6, 9.9, 0.0, 0.0],
+                    [3.5, -2.5, 0.0, 0.0, 1.0, 5.9],
+                    [-1.0, -1.2, 0.0, 0.0, -4.9, 1.0],
+                ],
+                [
+                    [2.5, 4.2, 0.0, 0.0, 1.6, -1.0],
+                    [3.6, 1.0, 0.0, 0.0, 3.8, -6.9],
+                    [0.0, 0.0, -5.1, 4.1, 0.0, 0.0],
+                    [0.0, 0.0, -3.6, 9.9, 0.0, 0.0],
+                    [3.5, -2.5, 0.0, 0.0, 1.0, 5.9],
+                    [-1.0, -1.2, 0.0, 0.0, -4.9, 1.0],
+                ],
+                [
+                    [2.5, 4.2, 0.0, 0.0, 1.6, -1.0],
+                    [3.6, 1.0, 0.0, 0.0, 3.8, -6.9],
+                    [0.0, 0.0, -5.1, 4.1, 0.0, 0.0],
+                    [0.0, 0.0, -3.6, 9.9, 0.0, 0.0],
+                    [3.5, -2.5, 0.0, 0.0, 1.0, 5.9],
+                    [-1.0, -1.2, 0.0, 0.0, -4.9, 1.0],
+                ],
+            ]
+        )
+        twiss_dtype = np.dtype(
+            [
+                ("s", "float32"),
+                ("z", "float32"),
+                ("length", "float32"),
+                ("p0c", "float32"),
+                ("alpha_x", "float32"),
+                ("beta_x", "float32"),
+                ("eta_x", "float32"),
+                ("etap_x", "float32"),
+                ("psi_x", "float32"),
+                ("alpha_y", "float32"),
+                ("beta_y", "float32"),
+                ("eta_y", "float32"),
+                ("etap_y", "float32"),
+                ("psi_y", "float32"),
+            ]
+        )
+        twiss_mock = np.array(
+            [
+                (
+                    11.9,
+                    2027.7,
+                    0.05,
+                    1.3,
+                    3.9,
+                    5.5,
+                    -6.1,
+                    1.2,
+                    5.9,
+                    0.01,
+                    5.3,
+                    0.0,
+                    0.0,
+                    3.5,
+                ),
+                (
+                    11.9,
+                    2027.7,
+                    0.05,
+                    1.3,
+                    3.9,
+                    5.5,
+                    -6.1,
+                    1.2,
+                    5.9,
+                    0.01,
+                    5.3,
+                    0.0,
+                    0.0,
+                    3.5,
+                ),
+                (
+                    11.9,
+                    2027.7,
+                    0.05,
+                    1.3,
+                    3.9,
+                    5.5,
+                    -6.1,
+                    1.2,
+                    5.9,
+                    0.01,
+                    5.3,
+                    0.0,
+                    0.0,
+                    3.5,
+                ),
+                (
+                    11.9,
+                    2027.7,
+                    0.05,
+                    1.3,
+                    3.9,
+                    5.5,
+                    -6.1,
+                    1.2,
+                    5.9,
+                    0.01,
+                    5.3,
+                    0.0,
+                    0.0,
+                    3.5,
+                ),
+            ],
+            dtype=twiss_dtype,
+        )
+        mock_multi_device_optics.return_value = {
+            "rmat": rmat_mock,
+            "design_twiss": twiss_mock,
+        }
+        energy = 3.0e9
+        profmon_measurement_1 = Mock(spec=ScreenBeamProfileMeasurement)
+        profmon_measurement_1.beam_profile_device = Mock(spec=Screen)
+        profmon_measurement_1.beam_profile_device.name = "OTR1"
+        profmon_measurement_return_value = Mock(spec=ScreenBeamProfileMeasurementResult)
+        profmon_measurement_return_value.rms_sizes = np.array([50.0, 50.0])
+        profmon_measurement_1.measure.return_value = profmon_measurement_return_value
+        profmon_measurement_2 = Mock(spec=ScreenBeamProfileMeasurement)
+        profmon_measurement_2.beam_profile_device = Mock(spec=Screen)
+        profmon_measurement_2.beam_profile_device.name = "OTR2"
+        profmon_measurement_2_return_value = Mock(
+            spec=ScreenBeamProfileMeasurementResult
+        )
+        profmon_measurement_2_return_value.rms_sizes = np.array([50.0, np.nan])
+        profmon_measurement_2.measure.return_value = profmon_measurement_2_return_value
+        profmon_measurement_3 = Mock(spec=ScreenBeamProfileMeasurement)
+        profmon_measurement_3.beam_profile_device = Mock(spec=Screen)
+        profmon_measurement_3.beam_profile_device.name = "OTR3"
+        profmon_measurement_3.measure.return_value = profmon_measurement_return_value
+        profmon_measurement_4 = Mock(spec=ScreenBeamProfileMeasurement)
+        profmon_measurement_4.beam_profile_device = Mock(spec=Screen)
+        profmon_measurement_4.beam_profile_device.name = "OTR4"
+        profmon_measurement_4.measure.return_value = profmon_measurement_return_value
+        beamsize_measurements = [
+            profmon_measurement_1,
+            profmon_measurement_2,
+            profmon_measurement_3,
+            profmon_measurement_4,
+        ]
+        multi_measurement = MultiDeviceEmittance(
+            energy=energy, beamsize_measurements=beamsize_measurements
+        )
+        multi_result = multi_measurement.measure()
+
+        self.assertEqual(profmon_measurement_1.measure.call_count, 1)
+        self.assertEqual(profmon_measurement_2.measure.call_count, 1)
+        self.assertEqual(profmon_measurement_3.measure.call_count, 1)
+        self.assertEqual(profmon_measurement_4.measure.call_count, 1)
+        mock_multi_device_optics.assert_called_once()
+        self.assertEqual(
+            multi_result.rms_beamsizes.shape[1], len(beamsize_measurements) - 1
+        )
