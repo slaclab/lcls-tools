@@ -63,7 +63,7 @@ def bdes_to_kmod(e_tot=None, effective_length=None, bdes=None, tao=None, element
 def quad_scan_optics(
     magnet: Magnet, measurement: BeamProfileMeasurement, physics_model="BLEM"
 ) -> Dict:
-    """Get rmat from magnet to measurement device and twiss at measurement device"""
+    """Get rmat (6 x 6) from magnet to measurement device and twiss at measurement device"""
     # TODO: get optics from arbitrary devices (potentially in different beam lines)
     # have live BLEM model update
     if physics_model == "BLEM":
@@ -100,17 +100,19 @@ def get_rmat_after_magnet(
 def multi_device_optics(
     measurements: list[BeamProfileMeasurement], physics_model="BLEM"
 ) -> Dict:
-    """Get rmat and twiss at measurement devices"""
-    # have live BLEM model update
-    if physics_model == "BLEM":
-        refresh_blem_model()
+    """Get rmat and twiss from reference device to all measurement devices"""
     model = _get_model_from_device(measurements[-1].beam_profile_device, physics_model)
-    device_names = [
+    beam_profile_device_names = [
         measurement.beam_profile_device.name for measurement in measurements
     ]
-    rmat = model.get_rmat(device_names)
-    twiss = model.get_twiss(device_names)
-    return {"rmat": rmat, "design_twiss": twiss}
+    rmat = []
+    ref_index = int(len(beam_profile_device_names) / 2)
+    device_ref = beam_profile_device_names[ref_index]
+    for device in beam_profile_device_names:
+        rmat.append(model.get_rmat(device_ref, device))
+    rmat = np.array(rmat)
+    twiss = model.get_twiss(beam_profile_device_names)
+    return {"rmat": rmat, "lattice_twiss": twiss}
 
 
 def refresh_blem_model():
@@ -133,6 +135,7 @@ def refresh_blem_model():
 def _get_model_from_device(device, physics_model):
     from meme.model import Model
 
+    # Look for device beam path in meme beam paths
     beam_path = None
     for bp in device.metadata.beam_path:
         if bp in [
