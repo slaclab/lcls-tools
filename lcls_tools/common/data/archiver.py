@@ -17,14 +17,13 @@ from typing import Callable, DefaultDict, Dict, List, Optional, Union
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+from zoneinfo import ZoneInfo
 
 from lcls_tools.common.controls.pyepics.utils import EPICS_INVALID_VAL
 
 logger = logging.getLogger(__name__)
 
-ARCHIVER_URL_FORMATTER = (
-    "http://lcls-archapp.slac.stanford.edu/retrieval/data/{SUFFIX}"
-)
+ARCHIVER_URL_FORMATTER = "http://lcls-archapp.slac.stanford.edu/retrieval/data/{SUFFIX}"
 
 SINGLE_RESULT_SUFFIX = "getDataAtTime?at={TIME}{OFFSET}&includeProxies=true"
 RANGE_RESULT_SUFFIX = "getData.json"
@@ -32,8 +31,9 @@ RANGE_MULTI_PV_SUFFIX = "getDataForPVs.json"
 
 TIMEOUT: int = 15
 DEFAULT_MAX_WORKERS: int = 4
+_PACIFIC = ZoneInfo("America/Los_Angeles")
 
-# Legacy constant kept for backward compatability
+# Legacy constant kept for backward compatibility
 if time.localtime().tm_isdst:
     UTC_DELTA_T = "-07:00"
 else:
@@ -89,10 +89,11 @@ def _resolve_timeout(timeout):
 
 
 def _get_utc_offset(dt: Optional[datetime] = None) -> str:
-    """Return the Pacific time UTC offset, checking DST per timestamp."""
+    """Return the Pacific time UTC offset, handling DST correctly."""
     if dt is None:
         dt = datetime.now()
-    return "-07:00" if time.localtime(dt.timestamp()).tm_isdst else "-08:00"
+    pacific_dt = dt.replace(tzinfo=_PACIFIC)
+    return "-07:00" if pacific_dt.dst() else "-08:00"
 
 
 def _iso_with_offset(dt: datetime, offset: str) -> str:
@@ -197,7 +198,9 @@ def _fetch_pv_batch_range(
     except requests.exceptions.HTTPError as exc:
         logger.error(
             "HTTP %s for %d PVs: %s",
-            response.status_code, len(pv_list), response.text[:200],
+            response.status_code,
+            len(pv_list),
+            response.text[:200],
         )
         raise ArchiverError(
             f"HTTP {response.status_code} fetching {len(pv_list)} PVs"
@@ -242,13 +245,13 @@ def get_data_at_time(
             f"Timeout in get_data_at_time for {len(pv_list)} PVs at {time_requested}"
         ) from exc
     except requests.exceptions.ConnectionError as exc:
-        raise ArchiverConnectionError(
-            "Connection error in get_data_at_time"
-        ) from exc
+        raise ArchiverConnectionError("Connection error in get_data_at_time") from exc
     except requests.exceptions.HTTPError:
         logger.warning(
             "HTTP %s in get_data_at_time for %s at %s",
-            response.status_code, pv_list, time_requested,
+            response.status_code,
+            pv_list,
+            time_requested,
         )
         return {}
 
@@ -260,7 +263,9 @@ def get_data_at_time(
     except (ValueError, KeyError) as exc:
         logger.warning(
             "JSON parse error in get_data_at_time for %s at %s: %s",
-            pv_list, time_requested, exc,
+            pv_list,
+            time_requested,
+            exc,
         )
 
     return result
@@ -286,14 +291,15 @@ def get_data_with_time_interval(
         return defaultdict(ArchiveDataHandler)
 
     result: DefaultDict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
-    workers = min(max_workers, len(sample_times))
+    workers = max(1, min(max_workers, len(sample_times)))
     snapshots: Dict[datetime, Dict[str, ArchiverValue]] = {}
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
         future_to_time = {
-            pool.submit(get_data_at_time, pv_list, t, timeout): t
-            for t in sample_times
+            pool.submit(get_data_at_time, pv_list, t, timeout): t for t in sample_times
         }
+        last_error = None
+        failed_count = 0
         for future in as_completed(future_to_time):
             t = future_to_time[future]
             try:
@@ -301,6 +307,11 @@ def get_data_with_time_interval(
             except ArchiverError as exc:
                 logger.warning("Failed to fetch data at %s: %s", t, exc)
                 snapshots[t] = {}
+                last_error = exc
+                failed_count += 1
+
+    if failed_count == len(sample_times) and last_error is not None:
+        raise last_error
 
     for t in sample_times:
         for pv, archiver_value in snapshots.get(t, {}).items():
@@ -323,21 +334,26 @@ def get_values_over_time_range(
 
     if time_delta:
         return get_data_with_time_interval(
-            pv_list, start_time, end_time, time_delta,
-            timeout=timeout, max_workers=max_workers,
+            pv_list,
+            start_time,
+            end_time,
+            time_delta,
+            timeout=timeout,
+            max_workers=max_workers,
         )
 
     result: DefaultDict[str, ArchiveDataHandler] = defaultdict(ArchiveDataHandler)
     if not pv_list:
         return result
 
-    try:
-        batch = _fetch_pv_batch_range(
-            pv_list, start_time, end_time, timeout, operator=use_operator,
-        )
-        result.update(batch)
-    except ArchiverError as exc:
-        logger.error("Batch fetch failed for %d PVs: %s", len(pv_list), exc)
+    batch = _fetch_pv_batch_range(
+        pv_list,
+        start_time,
+        end_time,
+        timeout,
+        operator=use_operator,
+    )
+    result.update(batch)
 
     for pv in pv_list:
         if pv not in result:

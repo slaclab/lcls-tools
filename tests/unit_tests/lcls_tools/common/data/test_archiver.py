@@ -9,8 +9,7 @@ from collections import defaultdict
 from lcls_tools.common.data.archiver import (
     ArchiveDataHandler,
     ArchiverValue,
-    ArchiverTimeoutError,
-    ArchiverConnectionError,
+    ArchiverError,
     get_data_at_time,
     get_data_with_time_interval,
     get_values_over_time_range,
@@ -351,12 +350,12 @@ class TestArchiver(unittest.TestCase):
                 get_data_at_time(self.pv_lst, self.time),
                 self.expected_single_result,
             )
-        except (requests.exceptions.Timeout, ArchiverTimeoutError):
-            self.skipTest("test_get_data_at_time connection timed out")
-        except (requests.exceptions.ConnectionError, ArchiverConnectionError):
-            self.skipTest(
-                "test_get_data_at_time connection unsuccessful as network was unreachable."
-            )
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            ArchiverError,
+        ):
+            self.skipTest("archiver unreachable")
 
     def test_get_data_no_microseconds(self):
         time_no_miscroseconds = datetime(
@@ -384,12 +383,12 @@ class TestArchiver(unittest.TestCase):
                 expected_result,
             )
 
-        except (requests.exceptions.Timeout, ArchiverTimeoutError):
-            self.skipTest("test_get_data_no_microseconds connection timed out")
-        except (requests.exceptions.ConnectionError, ArchiverConnectionError):
-            self.skipTest(
-                "test_get_data_no_microseconds connection unsuccessful as network was unreachable."
-            )
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            ArchiverError,
+        ):
+            self.skipTest("archiver unreachable")
 
     def test_get_data_with_time_interval(self):
         try:
@@ -405,12 +404,12 @@ class TestArchiver(unittest.TestCase):
                 self.expected_time_delta_result,
             )
 
-        except (requests.exceptions.Timeout, ArchiverTimeoutError):
-            self.skipTest("test_get_data_with_time_interval connection timed out")
-        except (requests.exceptions.ConnectionError, ArchiverConnectionError):
-            self.skipTest(
-                "test_get_data_with_time_interval connection unsuccessful as network was unreachable."
-            )
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            ArchiverError,
+        ):
+            self.skipTest("archiver unreachable")
 
     @mock.patch("lcls_tools.common.data.archiver.get_data_at_time")
     def test_get_data_with_time_interval_mocked(self, mocked_get_data: mock.MagicMock):
@@ -702,12 +701,12 @@ class TestArchiver(unittest.TestCase):
                 self.expected_time_delta_result,
             )
 
-        except (requests.exceptions.Timeout, ArchiverTimeoutError):
-            self.skipTest("test_get_values_over_time_range connection timed out")
-        except (requests.exceptions.ConnectionError, ArchiverConnectionError):
-            self.skipTest(
-                "test_get_values_over_time_range connection unsuccessful as network was unreachable."
-            )
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            ArchiverError,
+        ):
+            self.skipTest("archiver unreachable")
 
     def test_get_values_over_time_range_without_timedelta(self):
         dfbest_lst = [
@@ -917,12 +916,12 @@ class TestArchiver(unittest.TestCase):
                 expected_result,
             )
 
-        except (requests.exceptions.Timeout, ArchiverTimeoutError):
-            self.skipTest("test_get_values_over_time_range connection timed out")
-        except (requests.exceptions.ConnectionError, ArchiverConnectionError):
-            self.skipTest(
-                "test_get_values_over_time_range connection unsuccessful as network was unreachable."
-            )
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            ArchiverError,
+        ):
+            self.skipTest("archiver unreachable")
 
 
 if __name__ == "__main__":
