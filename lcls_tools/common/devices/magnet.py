@@ -195,7 +195,7 @@ class Magnet(Device):
     def read_tolerance(self) -> float:
         return self.metadata.read_tolerance
 
-    def is_bact_settled(self, b_tolerance: Optional[float] = 0.0) -> bool:
+    def is_bact_settled(self, b_tolerance: Optional[float] = 0.005) -> bool:
         return abs(self.bdes) - abs(self.bact) < b_tolerance
 
     @check_options("TRIM")
@@ -272,6 +272,8 @@ class Magnet(Device):
         self,
         scan_settings: List[float],
         function: Optional[callable] = None,
+        *args,
+        **kwargs,
     ) -> None:
         for setting in scan_settings:
             self.set_bdes_with_validation(setting)

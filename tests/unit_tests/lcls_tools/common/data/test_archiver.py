@@ -9,6 +9,7 @@ from collections import defaultdict
 from lcls_tools.common.data.archiver import (
     ArchiveDataHandler,
     ArchiverValue,
+    ArchiverError,
     get_data_at_time,
     get_data_with_time_interval,
     get_values_over_time_range,
@@ -314,28 +315,29 @@ class TestArchiver(unittest.TestCase):
 
     class MockResponse(object):
         """
-        Utility class to be used for mocking a response to requests.post
-        There should not be a need for an actual response, so this is a blank
-        class for now
+        Utility class to be used for mocking a response to requests.Session.post.
         """
 
-        def __init__(self):
-            self.text = ""
+        def __init__(self, text=""):
+            self.text = text
+            self.status_code = 200
 
-    @mock.patch("requests.post")
+        def raise_for_status(self):
+            pass
+
+    @mock.patch("lcls_tools.common.data.archiver._get_session")
     @mock.patch("json.loads")
     def test_get_data_at_time_mocked_data(
-        self, mocked_loads: mock.MagicMock, mocked_post: mock.MagicMock
+        self, mocked_loads: mock.MagicMock, mocked_get_session: mock.MagicMock
     ):
         """
-        We want requests.post to do nothing and json.loads to return a very
-        specific archiver result
-        @param mocked_loads: provided by the unit test as specific by @mock.patch
-        @param mocked_post: provided by the unit test as specific by @mock.patch
-        @return: None
+        We want the session.post to do nothing and json.loads to return a very
+        specific archiver result.
         """
         mocked_loads.return_value = self.json_data
-        mocked_post.return_value = self.MockResponse()
+        mock_session = mock.MagicMock()
+        mock_session.post.return_value = self.MockResponse()
+        mocked_get_session.return_value = mock_session
 
         self.assertEqual(
             get_data_at_time(self.pv_lst, self.time),
@@ -348,12 +350,12 @@ class TestArchiver(unittest.TestCase):
                 get_data_at_time(self.pv_lst, self.time),
                 self.expected_single_result,
             )
-        except requests.exceptions.Timeout:
-            self.skipTest("test_get_data_at_time connection timed out")
-        except requests.exceptions.ConnectionError:
-            self.skipTest(
-                "test_get_data_at_time connection unsuccessful as network was unreachable."
-            )
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            ArchiverError,
+        ):
+            self.skipTest("archiver unreachable")
 
     def test_get_data_no_microseconds(self):
         time_no_miscroseconds = datetime(
@@ -381,12 +383,12 @@ class TestArchiver(unittest.TestCase):
                 expected_result,
             )
 
-        except requests.exceptions.Timeout:
-            self.skipTest("test_get_data_no_microseconds connection timed out")
-        except requests.exceptions.ConnectionError:
-            self.skipTest(
-                "test_get_data_no_microseconds connection unsuccessful as network was unreachable."
-            )
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            ArchiverError,
+        ):
+            self.skipTest("archiver unreachable")
 
     def test_get_data_with_time_interval(self):
         try:
@@ -402,12 +404,12 @@ class TestArchiver(unittest.TestCase):
                 self.expected_time_delta_result,
             )
 
-        except requests.exceptions.Timeout:
-            self.skipTest("test_get_data_with_time_interval connection timed out")
-        except requests.exceptions.ConnectionError:
-            self.skipTest(
-                "test_get_data_with_time_interval connection unsuccessful as network was unreachable."
-            )
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            ArchiverError,
+        ):
+            self.skipTest("archiver unreachable")
 
     @mock.patch("lcls_tools.common.data.archiver.get_data_at_time")
     def test_get_data_with_time_interval_mocked(self, mocked_get_data: mock.MagicMock):
@@ -419,7 +421,7 @@ class TestArchiver(unittest.TestCase):
         @return: None
         """
 
-        def side_effect(pv_list, time_stamp):
+        def side_effect(pv_list, time_stamp, timeout=None):
             self.assertEqual(pv_list, self.pv_lst)
 
             times = []
@@ -699,12 +701,12 @@ class TestArchiver(unittest.TestCase):
                 self.expected_time_delta_result,
             )
 
-        except requests.exceptions.Timeout:
-            self.skipTest("test_get_values_over_time_range connection timed out")
-        except requests.exceptions.ConnectionError:
-            self.skipTest(
-                "test_get_values_over_time_range connection unsuccessful as network was unreachable."
-            )
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            ArchiverError,
+        ):
+            self.skipTest("archiver unreachable")
 
     def test_get_values_over_time_range_without_timedelta(self):
         dfbest_lst = [
@@ -914,12 +916,12 @@ class TestArchiver(unittest.TestCase):
                 expected_result,
             )
 
-        except requests.exceptions.Timeout:
-            self.skipTest("test_get_values_over_time_range connection timed out")
-        except requests.exceptions.ConnectionError:
-            self.skipTest(
-                "test_get_values_over_time_range connection unsuccessful as network was unreachable."
-            )
+        except (
+            requests.exceptions.Timeout,
+            requests.exceptions.ConnectionError,
+            ArchiverError,
+        ):
+            self.skipTest("archiver unreachable")
 
 
 if __name__ == "__main__":
