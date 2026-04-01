@@ -1,4 +1,4 @@
-# CAUTION: This repo is now archived. Please see slac-tools () for future developments.
+# This repo is now ARCHIVED. Please see [slac-tools](https://github.com/slaclab/slac-tools-doc) for future developments.
 
 # About
 Various tools to support high level application development at LCLS using python.  This is an effort to maintain a single repo that can be referenced for development.
