@@ -406,24 +406,21 @@ def process_images(
 
     # center the images
     if center:
-        if np.any(np.sum(images, axis=(-1, -2)) == 0) and image_centroids is None:
-            warnings.warn("Some images had zero intensity, cannot center images")
-            centered_images = images
-        else:
+        try:
             if image_centroids is None:
                 image_centroids = calc_image_centroids(
                     images, image_fitter=image_fitter
                 )
             centered_images = center_images(images, image_centroids)
+        except ValueError as e:
+            warnings.warn(f"Could not center images: {e}")
+            centered_images = images
     else:
         centered_images = images
 
     # crop the images
     if crop:
-        if np.any(np.sum(centered_images, axis=(-1, -2)) == 0) and crop_ranges is None:
-            warnings.warn("Some images had zero intensity, cannot crop images")
-            cropped_images = centered_images
-        else:
+        try:
             if crop_ranges is None:
                 crop_ranges = calc_crop_ranges(
                     centered_images,
@@ -439,6 +436,9 @@ def process_images(
             if np.any(np.array(cropped_images.shape) == 0):
                 warnings.warn("Cropping tried to create zero sized array. Reverting")
                 cropped_images = centered_images
+        except ValueError as e:
+            warnings.warn(f"Could not crop images: {e}")
+            cropped_images = centered_images
 
     else:
         cropped_images = centered_images
