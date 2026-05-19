@@ -95,7 +95,10 @@ class EmittanceCalculationTest(TestCase):
 
         # compute emittance & bmag
         result = compute_emit_bmag(
-            beamsize_squared=beamsize_squared, rmat=rmat, twiss_design=twiss_design, weighted_fit=True,
+            beamsize_squared=beamsize_squared,
+            rmat=rmat,
+            twiss_design=twiss_design,
+            weighted_fit=True,
         )
 
         # compare results with ground-truth
