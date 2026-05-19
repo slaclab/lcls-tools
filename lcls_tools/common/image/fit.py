@@ -171,7 +171,7 @@ class ImageProjectionFit(ImageFit):
                     f"Projection in {dim} was off the screen, fit cannot be trusted"
                 )
 
-        # if the beam size is smaller than the specified minimum number of pixels, fits cannot be trusted        
+        # if the beam size is smaller than the specified minimum number of pixels, fits cannot be trusted
         if self.min_beam_size is not None:
             if parameters["sigma"] < self.min_beam_size:
                 for name in parameters.keys():
