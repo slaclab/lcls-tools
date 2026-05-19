@@ -79,6 +79,9 @@ class ImageProjectionFit(ImageFit):
         Fit amplitude to noise threshold for the fit. If the amplitude of the fit is below this
         threshold times the noise standard deviation and `validate_fit` is True,
         the fit parameters will be set to NaN.
+    min_beam_size: PositiveFloat
+        Minimum beam size in pixels for the fit. If the beam size of the fit is below this threshold,
+        and 'validate_fit' is True, the fit parameters will be set to NaN.
     beam_extent_n_stds : PositiveFloat
         Number of standard deviations on either side to use for the beam extent. If the beam
         extent is outside the image and `validate_fit` is True, the fit parameters will be set to NaN.
@@ -93,6 +96,9 @@ class ImageProjectionFit(ImageFit):
     )
     signal_to_noise_threshold: PositiveFloat = Field(
         2.0, description="Fit amplitude to noise threshold for the fit"
+    )
+    min_beam_size: PositiveFloat = Field(
+        1.0, description="Minimum beam size in pixels to accept for validation"
     )
     beam_extent_n_stds: PositiveFloat = Field(
         2.0,
@@ -163,4 +169,14 @@ class ImageProjectionFit(ImageFit):
 
                 warnings.warn(
                     f"Projection in {dim} was off the screen, fit cannot be trusted"
+                )
+
+        # if the beam size is smaller than the specified minimum number of pixels, fits cannot be trusted        
+        if self.min_beam_size is not None:
+            if parameters["sigma"] < self.min_beam_size:
+                for name in parameters.keys():
+                    parameters[name] = np.nan
+
+                warnings.warn(
+                    f"Projection in {dim} had too small a beam size, fit cannot be trusted"
                 )
