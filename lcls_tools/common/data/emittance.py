@@ -11,6 +11,7 @@ def compute_emit_bmag(
     beamsize_squared: np.ndarray,
     rmat: np.ndarray,
     twiss_design: np.ndarray = None,
+    weighted_fit: bool = False,
     maxiter: int = None,
 ):
     """
@@ -39,6 +40,10 @@ def compute_emit_bmag(
         which will result in broadcasting a single set of design twiss parameters
         to each measurement in the respective batch for the calculation of Bmag
         (useful for quad scans).
+
+    weighted_fit : bool, default = False
+        Boolean specifying whether or not to weight the fitting loss function by the inverse beam
+        size. If True, smaller beam sizes will be prioritized in the non-linear curve fitting.
 
     maxiter : int, optional
         Maximum number of iterations to perform in nonlinear fitting (minimization algorithm).
@@ -98,8 +103,14 @@ def compute_emit_bmag(
             params = torch.reshape(params, [*beamsize_squared.shape[:-2], 3])
             sig = torch.stack(beam_matrix_tuple(params), dim=-1).unsqueeze(-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
+            if weighted_fit:
+                weights = 1.0 / beamsize_squared.sqrt()
+            else:
+                weights = 1.0
             total_abs_error = (
-                (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared)).abs().nansum()
+                (weights * (torch.sqrt(amat @ sig) - torch.sqrt(beamsize_squared)))
+                .abs()
+                .nansum()
             )
             return total_abs_error
 
@@ -119,8 +130,12 @@ def compute_emit_bmag(
             params = np.reshape(params, [*beamsize_squared.shape[:-2], 3])
             sig = np.expand_dims(np.stack(beam_matrix_tuple(params), axis=-1), axis=-1)
             # sig should now be shape batchshape x 3 x 1 (column vectors)
+            if weighted_fit:
+                weights = 1.0 / np.sqrt(beamsize_squared)
+            else:
+                weights = 1.0
             total_abs_error = np.nansum(
-                np.abs(np.sqrt(amat @ sig) - np.sqrt(beamsize_squared))
+                np.abs(weights * (np.sqrt(amat @ sig) - np.sqrt(beamsize_squared)))
             )
             return total_abs_error
 
