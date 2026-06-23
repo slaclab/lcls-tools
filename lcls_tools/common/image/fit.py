@@ -192,7 +192,7 @@ class ImageProjectionFit(ImageFit):
                 )
                 return ImageProjectionFitFailureMode.BEAM_SIZE_TOO_SMALL
 
-        # if the beam extent is outside the image then its off the screen etc. and fits cannot be trusted
+        # if the beam extent is outside the image then it's off the screen and fits cannot be trusted
         if self.beam_extent_n_stds is not None:
             if beam_extent[0] < 0 or beam_extent[1] > len(projection):
                 for name in parameters.keys():
@@ -204,7 +204,6 @@ class ImageProjectionFit(ImageFit):
                 return ImageProjectionFitFailureMode.BEAM_EXTENT_OFF_SCREEN
 
         # if the amplitude of the the fit is smaller than noise then reject
-        # moving this into a validate function to clean it up.
         if self.signal_to_noise_threshold is not None:
             if signal_to_noise_ratios < self.signal_to_noise_threshold:
                 for name in parameters.keys():
