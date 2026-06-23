@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import importlib
-from typing import List
+from typing import List, Optional
 
 import numpy as np
 from numpy import ndarray
@@ -45,8 +45,9 @@ class ImageProjectionFitResult(ImageFitResult):
     beam_extent: NDArrayAnnotatedType = Field(
         description="Extent of the beam in the data, defined as mean +/- 2*sigma"
     )
-    failure_mode: List[ImageProjectionFitFailureMode] = Field(
-        description="Reason for failure if either the x/y projection fit was rejected during fit validation"
+    failure_mode: Optional[List[ImageProjectionFitFailureMode]] = Field(
+        default=None,
+        description="Reason for failure if either the x/y projection fit was rejected during fit validation",
     )
 
 
@@ -157,7 +158,7 @@ class ImageProjectionFit(ImageFit):
                 )
                 failure_mode.append(fmode)
             else:
-                failure_mode.append(ImageProjectionFitFailureMode.NONE)
+                failure_mode = None
 
             fit_parameters.append(parameters)
             signal_to_noise_ratios.append(snr)
