@@ -47,10 +47,14 @@ class EllipticalROI(ROI):
             data["radius"] = [w / 2 for w in data["extent"]]
         return data
 
-    def negative_fill(self, img, fill_value):
-        """Fill the region outside the defined ellipse."""
+    def negative_fill(self, img, fill_value, center=None):
+        """Fill the region outside the defined ellipse.
+
+        `center` defaults to the ROI centre, which is correct for a full image.
+        Pass the ellipse position in `img`'s own coordinates when filling a crop.
+        """
         r = self.radius
-        c = self.center
+        c = self.center if center is None else center
         height, extent = img.shape
         for y in range(height):
             for x in range(extent):
@@ -66,7 +70,10 @@ class EllipticalROI(ROI):
         """
         img = super().crop_image(img)
         fill_value = kwargs.get("fill_value", 0.0)
-        img = self.negative_fill(img, fill_value)
+        # the crop is the ROI bounding box, so the ellipse sits at the middle of
+        # the returned array rather than at its position in the full image
+        height, extent = img.shape
+        img = self.negative_fill(img, fill_value, center=[extent / 2, height / 2])
         return img
 
 

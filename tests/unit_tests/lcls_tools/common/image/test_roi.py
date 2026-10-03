@@ -39,6 +39,21 @@ class TestROI(unittest.TestCase):
         image = circular.negative_fill(self.image, fill_value=0)
         assert image.all() == self.filled_value_test_image.all()
 
+    def test_crop_keeps_the_circle_wherever_the_roi_sits(self):
+        """
+        The crop is the ROI bounding box, so the kept area should be the circle
+        itself and must not depend on where the ROI sits in the full image.
+        """
+        image = np.ones(self.size)
+        expected = np.pi * self.radius**2
+        for center in ([400, 400], [100, 100], [self.radius, self.radius]):
+            circular = CircularROI(center=center, radius=self.radius)
+            cropped = circular.crop_image(image.copy())
+            kept = np.count_nonzero(cropped)
+            assert abs(kept - expected) / expected < 0.01, (
+                f"center={center} kept {kept} pixels, expected about {expected:.0f}"
+            )
+
     def test_rectangular_roi_crop_image(self):
         """
         Given a rectangular ROI and image,
